@@ -1,4 +1,4 @@
-// render.js (Versão Final: Correção Universal de Caminho)
+// render.js (Versão Final e Corrigida com Favicon)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
@@ -6,7 +6,6 @@
   const DATA_URL = './event.json'; 
 
   // NOVO: Detecta o caminho base automaticamente (ex: /site2026 ou /)
-  // Isso resolve problemas com GitHub Pages e mantém compatibilidade com Netlify/Root Host
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const CATEGORIES_TO_DISPLAY = [
@@ -31,14 +30,20 @@
   function buildCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
-    const slug = ev.slug; 
     
+    const slug = ev.slug; 
     const finalUrl = `evento.html?slug=${slug}`;
     
     const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
-
-    // APLICAÇÃO DA CORREÇÃO:
     const imagePath = fixPath(rawImagePath);
+
+    // NOVO: Constrói o caminho para o Favicon: /assets/img/banners/<slug>-favicon.webp
+    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconPath = fixPath(faviconRawPath);
+
+    // HTML do Favicon que será inserido no título
+    // Usa a tag <img> com classe 'favicon' (você pode precisar adicionar estilos CSS para ela)
+    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" style="width: 16px; height: 16px; margin-right: 6px; display: inline-block; vertical-align: middle;">`;
     
     return `
       <div class="cl-slide">
@@ -47,8 +52,11 @@
             <img loading="lazy" src="${imagePath}" alt="${title}">
           </div>
           <div class="content">
-            <h3 class="title">${title}</h3>
-            <p class="desc">${subtitle}</p>
+            <h3 class="title">
+              ${faviconHtml}
+              <span>${title}</span>
+            </h3>
+            <p class="subtitle">${subtitle}</p>
           </div>
         </a>
       </div>
@@ -57,7 +65,6 @@
 
   async function renderCarousels() {
     try {
-      // ... (Resto da função de carregamento permanece o mesmo) ...
       const res = await fetch(DATA_URL);
       if (!res.ok) {
           throw new Error(`Falha ao carregar ${DATA_URL}. Status: ${res.statusText}`);
