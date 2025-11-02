@@ -5,7 +5,7 @@
   
   const DATA_URL = './event.json'; 
 
-  // DETECÇÃO DE PATH: Usa '/site2026' se estiver no GitHub Pages, ou '' para Netlify/Root
+  // DETECÇÃO DE PATH UNIVERSAL: Usa '/site2026' se estiver no GitHub Pages, ou '' para Netlify/Root
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const CATEGORIES_TO_DISPLAY = [
@@ -43,6 +43,7 @@
     const faviconPath = fixPath(faviconRawPath);
 
     // HTML do Favicon inserido antes do título
+    // Adicionado onerror para esconder a imagem se não carregar
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
     return `
