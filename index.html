@@ -84,7 +84,7 @@ a{text-decoration:none;color:inherit}
 .wrap{
     max-width:var(--wrap);
     margin:16px auto; 
-    padding:0 16px; /* Padding de 16px para Eventos e Feiras */
+    padding:0 16px;
 }
 h1,h2{
   font-weight:900;
@@ -92,14 +92,13 @@ h1,h2{
   margin-bottom: .25rem; 
   line-height: 1.1;
 }
-/* 🎯 NOVO: Remove o padding da seção e aplica padding-top */
 .cat-section{
   margin:16px 0 8px; 
-  padding: 0;
+  padding: 0 16px;
   padding-top: 4px; 
 }
 
-/* 🎯 TÍTULO DA CATEGORIA: Aplica o padding de alinhamento */
+/* TÍTULO DA CATEGORIA (Para replicar o título do card) */
 .cat-title{
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
@@ -107,27 +106,29 @@ h1,h2{
   text-transform: uppercase;
   font-size: 1rem;
   margin:0 0 10px; 
-  /* CORREÇÃO: Aplica o padding de 16px aqui para alinhar com o wrap */
   padding: 0 16px; 
 }
 
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
     position: relative;
-    /* NOVO: Usa a largura total do wrap para posicionar as setas */
-    margin: 0 auto; 
+    padding: 0 40px; 
 }
+@media (max-width: 1024px) {
+    .carousel-wrapper-container {
+        padding: 0;
+    }
+}
+
 /* CORREÇÃO CRÍTICA DO CARROSSEL: Estrutura horizontal e remoção de barra */
 .cl-track{
   display:flex;
   gap:18px;
   overflow-x:auto; 
   overflow-y:hidden; 
-  /* CORREÇÃO: Remove o padding lateral do cl-track. O alinhamento será feito pelo scroll-padding-inline */
-  padding: 0 0 20px; 
+  padding:0 16px 20px; 
   scroll-snap-type:x mandatory;
-  /* CORREÇÃO: Aplica o padding de alinhamento no scroll para o primeiro/último card */
-  scroll-padding-inline: 16px;
+  scroll-padding-inline:16px;
   -webkit-overflow-scrolling: touch;
 }
 .cl-track::-webkit-scrollbar {
@@ -139,10 +140,15 @@ h1,h2{
 }
 
 /* DEFINIÇÃO DA LARGURA E ALTURA DO CARD */
-.cl-slide{flex:0 0 auto;scroll-snap-align:start}
+.cl-slide{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  /* 🎯 NOVO: Garante que o slide ocupe 100% da altura do cl-track */
+  height: 100%; 
+}
 .cl-slide .card{
   width: 300px;
-  min-height: auto; 
+  min-height: 100%; /* Garante que o card ocupe 100% da altura do slide */
   max-height: none;
   background:var(--card);
   border-radius:var(--radius);
@@ -233,8 +239,9 @@ h1,h2{
 
 /* ESTILOS DO CARD DE INTRODUÇÃO/TUTORIAL */
 .card.context-card {
-    align-items: center; 
-    justify-content: center;
+    /* 🎯 CORREÇÃO 2: Garante que o card de contexto ocupe 100% da altura do slide */
+    min-height: 100%; 
+    
     box-shadow: none !important;
     background: transparent !important;
     border: none !important;
@@ -249,13 +256,14 @@ h1,h2{
 }
 
 .context-content {
-    padding: 0 16px; 
+    /* Centraliza Verticalmente */
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+    justify-content: center; /* 🎯 CORREÇÃO 3: Centraliza verticalmente o conteúdo */
+    text-align: left; /* Alinha o texto à esquerda (alinhamento padrão) */
+    align-items: flex-start; /* Alinha itens flex à esquerda */
+    padding: 0 16px 0 0; /* Padding da esquerda e remove o padding right extra */
 }
 
 /* CORREÇÃO DA COR E TAMANHO DO TEXTO DE CONTEXTO */
@@ -265,6 +273,8 @@ h1,h2{
     font-weight: 400 !important;
     line-height: 1.3;
     margin-bottom: 20px;
+    padding: 0; /* Remove padding extra aqui */
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
 /* ESTILOS DO BOTÃO VER MAIS (Seta Laranja/Preta) */
@@ -274,7 +284,7 @@ h1,h2{
     gap: 4px; 
     padding: 8px 14px; 
     border-radius: 999px; 
-    background: var(--brand); /* Fundo Laranja para destaque */
+    background: var(--brand); /* Fundo Laranja */
     border: 1px solid var(--brand-shadow);
     color: #fff; /* Texto Branco */
     font-weight: 700;
@@ -299,8 +309,7 @@ h1,h2{
 .carousel-nav {
     position: absolute;
     top: 50%;
-    /* Posiciona verticalmente no centro (ajustado para a linha da thumb) */
-    transform: translateY(-100%); 
+    transform: translateY(-50%); 
     width: 40px; 
     height: 40px;
     border-radius: 50%;
@@ -319,20 +328,15 @@ h1,h2{
     height: 24px;
     fill: var(--text-charcoal); 
 }
-/* 🎯 POSICIONAMENTO PARA FORA DA ÁREA DE CONTEÚDO */
 .carousel-nav.prev {
-    left: -40px; /* Move a seta para fora da área do wrap (16px) */
+    left: 0px; 
 }
 .carousel-nav.next {
-    right: -40px; /* Move a seta para fora da área do wrap (16px) */
+    right: 0px; 
 }
 @media (max-width: 1024px) {
     .carousel-nav {
-        /* Oculta em mobile/tablet e remove o padding horizontal do wrapper */
         display: none !important; 
-    }
-    .carousel-wrapper-container {
-        padding: 0;
     }
 }
 .favicon {
