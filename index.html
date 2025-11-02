@@ -24,7 +24,6 @@
   --card:#fff;
   --shadow-base:0 2px 5px rgba(2,8,23,.05); 
   --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  /* 🎯 AJUSTE DO HOVER: Cor de fundo ligeiramente mais escura que o branco */
   --card-hover-bg:#f5f5f5; 
   --radius:18px;
   --wrap:1200px
@@ -136,7 +135,6 @@ h1,h2{
   border: 1px solid transparent; 
 }
 
-/* 🎯 HOVER DO CARD: Contraste maior e borda laranja */
 .card:hover{
     box-shadow:var(--shadow-hover);
     background: var(--card-hover-bg); 
@@ -158,13 +156,13 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
-  height: 80px; 
+  /* 🎯 CORREÇÃO CRÍTICA: Aumenta a altura para 100px para acomodar melhor a proporção 3:1 */
+  height: 100px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
   background:#f4f4f5;
   flex-shrink: 0; 
   width: 100%;
-  /* 🎯 NOVO: Usa Flexbox para centralizar a imagem verticalmente */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,7 +172,6 @@ h1,h2{
     height:auto; 
     object-fit: contain; 
     padding: 0; 
-    /* 🎯 NOVO: Garante que a imagem se ajuste dentro do contêiner Flex */
     max-height: 100%; 
 }
 
@@ -183,7 +180,7 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* TÍTULO DO CARD: CAIXA ALTA, 1 LINHA (com reticências) */
+/* TÍTULO DO CARD: 1 LINHA */
 .card .title{
   font-weight:900;
   font-size: 1rem; 
@@ -200,7 +197,7 @@ h1,h2{
   transition: none;
 }
 
-/* SUBTÍTULO DO CARD: Sem limite de linhas (para que o card se ajuste ao texto) */
+/* SUBTÍTULO DO CARD: Sem limite de linhas */
 .card .subtitle {
   color: var(--muted);
   font-size: 14px; 
