@@ -29,7 +29,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 
-/* 🎯 NOVO: APLICAÇÃO DA FONTE MONTSERRAT */
+/* 🎯 APLICAÇÃO DA FONTE MONTSERRAT */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
@@ -77,7 +77,7 @@ a{text-decoration:none;color:inherit}
 .btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
 .btn.btn-whatsapp svg{width:18px;height:18px;color:#fff;fill:currentColor}
 
-/* ESTILOS DE GRID E CARD (AJUSTADOS) */
+/* ESTILOS DE GRID E CARD */
 .wrap{max-width:var(--wrap);margin:24px auto;padding:0 16px}
 h1,h2{
   font-weight:900;
@@ -89,10 +89,9 @@ h1,h2{
 .cat-title{font-weight:900;margin:0 0 10px; padding: 0 16px}
 .cl-track{display:flex;gap:18px;overflow-x:auto;overflow-y:visible;padding:0 16px;scroll-snap-type:x mandatory;scroll-padding-inline:16px}
 
-/* DEFINIÇÃO DA LARGURA E ALTURA MÍNIMA DOS CARDS */
 .cl-slide{flex:0 0 auto;scroll-snap-align:start}
 .cl-slide .card{
-  width: 300px; /* Largura padrão/máxima */
+  width: 300px;
   min-height: 350px; 
   max-height: 400px; 
   background:var(--card);
@@ -106,7 +105,6 @@ h1,h2{
 }
 .card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(2,8,23,.12)}
 
-/* AJUSTES PARA RESPONSIVIDADE EM MOBILE */
 @media (max-width:640px){
   .cl-slide .card{
     width:86vw; 
@@ -129,25 +127,28 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* 🎯 NOVO: ESTILOS DO TÍTULO (MAIOR E BOLD) */
+/* 🎯 CORREÇÃO DO TÍTULO DO CARD (INDEX): CAIXA ALTA, TAMANHO REDUZIDO, 1 LINHA */
 .card .title{
-  font-weight:900; /* Forte similar à referência */
-  font-size: 1.25rem; /* Tamanho maior para o título */
-  margin:0 0 4px; /* Menos margem após o título */
-  -webkit-line-clamp: 2; 
-  min-height: 2.5em; 
-  line-height: 1.2;
+  font-weight:900;
+  font-size: 1rem; /* 16px: Tamanho reduzido */
+  margin:0 0 4px; 
+  line-height: 1.3;
+  text-transform: uppercase; /* CAIXA ALTA */
+  
+  /* Garantir 1 linha com reticências */
+  max-height: 1.3em; 
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limita a 1 linha */
   -webkit-box-orient: vertical;
 }
 
-/* 🎯 NOVO: ESTILOS DO SUBTÍTULO (MENOR E REGULAR) */
+/* 🎯 SUBTÍTULO DO CARD (INDEX): TEXTO CORRIDO (VOLTANDO AO ESTILO ANTERIOR) */
 .card .subtitle {
-  -webkit-line-clamp: 3; /* Máximo de 3 linhas para o subtítulo */
+  -webkit-line-clamp: 3; /* Máximo de 3 linhas */
   color: var(--muted);
-  font-size: 14px; /* Tamanho menor para a descrição */
+  font-size: 14px; 
   font-weight: 400; /* Peso normal */
   line-height: 1.3;
   overflow: hidden;
