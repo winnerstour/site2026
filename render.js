@@ -1,4 +1,4 @@
-// render.js (Versão Final com Carrossel e Autoplay)
+// render.js (Final com Autoplay, Setas e Card de Contexto no 1º Carrossel)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
@@ -27,8 +27,29 @@
       }
       return path;
   }
+  
+  // Função para criar o CARD TUTORIAL/CONTEXTO
+  function buildContextCard(categoryId, categoryName) {
+      const title = `Eventos: ${categoryName}`;
+      const description = "Descubra pacotes imbatíveis! Navegue pelo carrossel para ver todas as feiras e encontros de alto valor para o seu setor.";
 
-  function buildCard(ev) {
+      return `
+          <div class="cl-slide context-slide">
+              <div class="card context-card">
+                  <div class="context-content">
+                      <h3>${title}</h3>
+                      <p>${description}</p>
+                      <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
+                          Ver Mais Eventos
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+  function buildEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
     const slug = ev.slug; 
@@ -61,21 +82,24 @@
     `;
   }
 
-  // NOVO: Lógica de inicialização do carrossel com autoplay e setas
+  // Lógica de inicialização do carrossel com autoplay e setas
   function initCarousel(carouselId) {
       const carousel = document.getElementById(carouselId);
       if (!carousel) return;
 
       let scrollInterval;
+      let isPaused = false;
       const cardWidth = 318; // 300px card + 18px gap
 
       const scrollRight = () => {
+          if (isPaused) return;
+
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
           // Se estiver no final, volta suavemente para o início
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
-              carousel.scroll({left: 0, behavior: 'smooth'});
+              carousel.scroll({left: 0, behavior: 'smooth'}); 
           } else {
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
           }
@@ -90,30 +114,31 @@
       carousel.addEventListener('mouseover', () => clearInterval(scrollInterval));
       carousel.addEventListener('mouseleave', startAutoplay);
       
-      // Setas manuais (implementadas via JS para melhor controle)
       const prevButton = document.getElementById(`prev-${carouselId}`);
       const nextButton = document.getElementById(`next-${carouselId}`);
 
       if (prevButton && nextButton) {
-          prevButton.addEventListener('click', () => {
-              carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
-          });
-          nextButton.addEventListener('click', () => {
-              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
-          });
-          
-          // Lógica para desativar/travar setas no início/fim
-          // Isso é difícil com autoplay e scroll-snap, mas podemos ocultar
+          // Oculta/mostra setas ao carregar/redimensionar
           const checkScroll = () => {
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-              // Oculta/mostra setas (Desktop view)
-              prevButton.style.display = currentScroll === 0 ? 'none' : 'block';
-              nextButton.style.display = currentScroll >= maxScroll - 1 ? 'none' : 'block';
+              if (window.innerWidth > 1024) {
+                  // Trava no início/fim para visualização desktop
+                  prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
+                  nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+              }
           };
           
-          // Inicializa e monitora
+          prevButton.addEventListener('click', () => {
+              carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
+              checkScroll();
+          });
+          nextButton.addEventListener('click', () => {
+              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
+              checkScroll();
+          });
+          
           carousel.addEventListener('scroll', checkScroll);
           window.addEventListener('resize', checkScroll);
           checkScroll(); 
@@ -139,15 +164,20 @@
       
       let finalHTML = '';
 
-      CATEGORIES_TO_DISPLAY.forEach(category => {
+      // NOVO: Adicionamos o índice para injetar o Card de Contexto APENAS no primeiro carrossel (index 0)
+      CATEGORIES_TO_DISPLAY.forEach((category, index) => {
         const categoryId = `carousel-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         const filteredEvents = allEvents.filter(ev => ev.category_macro === category);
         
         if (filteredEvents.length === 0) return; 
 
-        const carouselSlides = filteredEvents.map(buildCard).join('');
+        // 🎯 LÓGICA DE INJEÇÃO INTELIGENTE: SÓ INJETA SE FOR O PRIMEIRO CARROSSEL (index === 0)
+        const contextCard = index === 0 ? buildContextCard(categoryId, category) : '';
         
-        // NOVO: Adiciona a estrutura do wrapper e os botões
+        const eventSlides = filteredEvents.map(buildEventCard).join('');
+        
+        const carouselSlides = contextCard + eventSlides; // Concatena o card de contexto (se existir) com os eventos
+        
         const carouselSection = `
           <section class="cat-section">
             <h2 class="cat-title">${category}</h2>
@@ -169,7 +199,6 @@
         finalHTML += carouselSection;
       });
 
-      // Renderiza todos os carrosséis
       container.innerHTML = finalHTML;
       
       // INICIALIZA A LÓGICA DE CARROSSEL PARA CADA CATEGORIA
