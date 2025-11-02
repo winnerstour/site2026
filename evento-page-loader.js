@@ -1,7 +1,6 @@
 // evento-page-loader.js (Versão Final: Correção de Path e Favicon)
 
 (function () {
-  // O caminho onde você colocou os JSONs individuais (os 158 arquivos "pesados")
   const DATA_BASE_PATH = './data/events/'; 
 
   // DETECÇÃO DE PATH UNIVERSAL: Usa '/site2026' se estiver no GitHub Pages, ou '' para Netlify/Root
@@ -64,14 +63,20 @@
     
     try {
       // Busca o arquivo "pesado" (completo) na pasta /data/events/
+      // Assumindo que você tem 158 arquivos JSON individuais lá.
       const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
       const res = await fetch(jsonPath);
 
       if (!res.ok) {
-        throw new Error(`Arquivo ${slug}.json não encontrado ou erro de rede.`);
+        // Tenta buscar no diretório raiz se o slug não funcionar (fallback para o arquivo consolidado, se for o caso)
+        const rootRes = await fetch(`./${slug}.json`);
+        if (!rootRes.ok) {
+             throw new Error(`Arquivo ${slug}.json não encontrado ou erro de rede.`);
+        }
+        ev = await rootRes.json();
+      } else {
+        var ev = await res.json();
       }
-      
-      const ev = await res.json();
       
       // 1. Preencher SEO e Título
       const finalTitle = ev.title || 'Evento sem Título';
@@ -79,13 +84,9 @@
       
       // Tenta usar o favicon na página de detalhes também
       const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
-      const faviconPath = fixPath(faviconRawPath);
-
-      // Você precisará de um elemento <img> com id="faviconHeader" no seu evento.html, se quiser que apareça no cabeçalho
-      const faviconEl = document.getElementById('faviconHeader');
+      const faviconEl = document.querySelector('link[rel="icon"]'); // Tenta achar o favicon padrão
       if (faviconEl) {
-          faviconEl.src = faviconPath;
-          faviconEl.onerror = function() { this.style.display = 'none'; };
+          faviconEl.href = fixPath(faviconRawPath);
       }
       
       // 2. Preencher Conteúdo Principal
@@ -133,7 +134,9 @@
       if (finalMotivos.length > 0) {
         motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
       } else {
-        document.querySelector('h2[style*="margin-top"]').hidden = true; 
+        // Esconde o título 'Motivos' se não houver conteúdo
+        const motivosSectionTitle = document.querySelector('h2[style*="margin-top"]');
+        if (motivosSectionTitle) motivosSectionTitle.hidden = true;
         motivosContainer.hidden = true;
       }
 
