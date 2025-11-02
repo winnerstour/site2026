@@ -1,7 +1,8 @@
-// evento-page-loader.js (Versão Final e Corrigida para a Página de Evento)
+// evento-page-loader.js (Versão Final: Correção de Path, Prioridade BANNER e Carrossel de Motivos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
+  // DETECÇÃO DE PATH UNIVERSAL
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
@@ -32,10 +33,10 @@
   function renderError(message) {
     loading.hidden = true;
     errorDiv.hidden = false;
-    errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento. Verifique a URL e o arquivo JSON.') + '</p>';
+    errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
   }
 
-  // NOVA LÓGICA: Motivo Template (agora dentro do cl-slide)
+  // Card de MOTIVO (agora dentro do cl-slide)
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -54,27 +55,49 @@
     `;
   }
 
-  // NOVO: Adiciona a funcionalidade de Carrossel (rolagem e autoplay)
-  function initMotivosCarousel(containerId) {
+  // Card TUTORIAL/CONTEXTO (para a página de evento)
+  function buildContextCardMotivos(categoryId, eventTitle) {
+      const title = `Vantagens do Evento`;
+      const description = `Confira os principais motivos para sua missão corporativa no ${eventTitle}. Navegue para ver todos os diferenciais.`;
+
+      return `
+          <div class="cl-slide context-slide">
+              <div class="card motivo-item context-card">
+                  <div class="context-content">
+                      <h3>${title}</h3>
+                      <p>${description}</p>
+                      <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
+                          Ver Motivos
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+  // Lógica de inicialização do carrossel (para a página de evento)
+  function initMotivosCarousel(containerId, eventName) {
       const carousel = document.getElementById(containerId);
       if (!carousel) return;
 
       let scrollInterval;
       let isPaused = false;
-      const SCROLL_SPEED = 3000; // 3 segundos para rolagem
+      const SCROLL_SPEED = 4000; 
+
+      const cardWidth = 318; 
 
       const scrollRight = () => {
           if (isPaused) return;
 
-          const cardWidth = carousel.querySelector('.cl-slide')?.offsetWidth || 300;
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          // Se estiver no final, volta para o início
-          if (currentScroll >= maxScroll - cardWidth) {
-              carousel.scrollLeft = 0;
+          // Se estiver no final, volta para o início (smoothly)
+          if (currentScroll >= maxScroll - 10) {
+              carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
-              carousel.scrollLeft += cardWidth + 18; // 18 é o gap
+              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
           }
       };
 
@@ -83,11 +106,22 @@
           scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
       };
       
-      // Controla rolagem manual
       carousel.addEventListener('mouseover', () => { isPaused = true; });
       carousel.addEventListener('mouseleave', () => { isPaused = false; });
       
       startAutoplay();
+      
+      const wrapper = document.querySelector('.motivos-wrapper');
+      if (wrapper) {
+           wrapper.insertAdjacentHTML('beforeend', `
+              <button class="carousel-nav prev" onclick="document.getElementById('${containerId}').scrollBy({left: -${cardWidth}, behavior: 'smooth'})">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+              </button>
+              <button class="carousel-nav next" onclick="document.getElementById('${containerId}').scrollBy({left: ${cardWidth}, behavior: 'smooth'})">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+              </button>
+          `);
+      }
   }
 
 
@@ -111,7 +145,6 @@
         var ev = await res.json();
       }
       
-      // 1. Preencher SEO e Título
       const finalTitle = ev.title || 'Evento sem Título';
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
@@ -121,19 +154,18 @@
           faviconEl.href = fixPath(faviconRawPath);
       }
       
-      // 2. Preencher Conteúdo Principal
       eventTitle.textContent = finalTitle;
       
-      // 🎯 CORREÇÃO DA IMAGEM: PRIORIDADE PARA BANNER_PATH
+      // 🎯 CORREÇÃO: PRIORIDADE PARA BANNER_PATH (ou o campo 'image' que é o leve)
       const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
       eventHero.src = heroPath;
-      eventHero.alt = `Imagem principal do evento ${finalTitle}`;
+      eventHero.alt = `Banner do evento ${finalTitle}`;
       
-      // Metadados
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
       eventMeta.textContent = metaHtml;
+      
       eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
       // 3. CTA (WhatsApp)
@@ -159,27 +191,21 @@
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
-        motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
-        // Adiciona classe para Carrossel
+        // 🎯 PASSO 1: CRIA O CARD DE CONTEXTO
+        const contextCard = buildContextCardMotivos('motivosCarousel', finalTitle);
+
+        // 🎯 PASSO 2: CRIA OS CARDS DE MOTIVO E CONCATENA
+        const motivoSlides = finalMotivos.map(renderMotivo).join('');
+        
+        motivosContainer.innerHTML = contextCard + motivoSlides;
+        
+        // Adiciona classe para Carrossel e ID
         motivosContainer.classList.add('cl-track');
         motivosContainer.classList.add('motivos-carousel-container');
         motivosContainer.id = 'motivosCarousel';
         
         // 🎯 INICIA O CARROSSEL (Rolagem automática e setas)
-        initMotivosCarousel('motivosCarousel');
-
-        // Renderiza as setas de navegação (fora do container cl-track)
-        document.querySelector('.motivos-wrapper').innerHTML += `
-            <button class="carousel-nav prev" onclick="document.getElementById('motivosCarousel').scrollBy({left: -318, behavior: 'smooth'})">
-                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-            </button>
-            <button class="carousel-nav next" onclick="document.getElementById('motivosCarousel').scrollBy({left: 318, behavior: 'smooth'})">
-                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-            </button>
-        `;
-
-        // Lógica de travamento/ocultar setas no final (Ajustado via CSS/JS simples)
-        // O travamento rígido será feito pelo CSS 'scroll-snap-type' e a lógica de autoplay/manual
+        initMotivosCarousel('motivosCarousel', finalTitle);
         
       } else {
         const motivosSectionTitle = document.querySelector('.motivos-section h2');
