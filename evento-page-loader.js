@@ -72,9 +72,9 @@
       // 2. Preencher Conteúdo Principal
       eventTitle.textContent = finalTitle;
       
-      const heroPath = ev.hero_image_path || ev.banner_path || 'placeholder.webp';
-      eventHero.src = heroPath;
-      eventHero.alt = `Imagem principal do evento ${finalTitle}`;
+      const heroPath = ev.hero_image_path || ev.banner_path || 'placeholder.webp'; 
+    eventHero.src = heroPath;
+    eventHero.alt = ev.title;
       
       // Metadados (Cidade, Data, Categoria)
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro]
