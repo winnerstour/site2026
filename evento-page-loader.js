@@ -1,15 +1,17 @@
-// evento-page-loader.js (Versão Final: Correção de Caminho e Imagem Banner)
+// evento-page-loader.js (Versão Final: Correção de Path e Favicon)
 
 (function () {
+  // O caminho onde você colocou os JSONs individuais (os 158 arquivos "pesados")
   const DATA_BASE_PATH = './data/events/'; 
 
-  // Detecta o caminho base automaticamente (ex: /site2026 ou /)
+  // DETECÇÃO DE PATH UNIVERSAL: Usa '/site2026' se estiver no GitHub Pages, ou '' para Netlify/Root
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
   
+  // Elementos do DOM a preencher
   const pageTitle = document.getElementById('pageTitle');
   const eventTitle = document.getElementById('eventTitle');
   const eventHero = document.getElementById('eventHero');
@@ -18,6 +20,14 @@
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
+
+  // Função que corrige o caminho absoluto para GitHub/Netlify
+  function fixPath(path) {
+      if (path && path.startsWith('/assets')) {
+          return BASE_PATH + path;
+      }
+      return path;
+  }
 
   function getSlug() {
     const params = new URLSearchParams(window.location.search);
@@ -46,14 +56,6 @@
     `;
   }
 
-  // Função que corrige o caminho absoluto
-  function fixPath(path) {
-      if (path.startsWith('/assets')) {
-          return BASE_PATH + path;
-      }
-      return path;
-  }
-
   async function loadEventData() {
     const slug = getSlug();
     if (!slug) {
@@ -61,6 +63,7 @@
     }
     
     try {
+      // Busca o arquivo "pesado" (completo) na pasta /data/events/
       const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
       const res = await fetch(jsonPath);
 
@@ -70,27 +73,48 @@
       
       const ev = await res.json();
       
+      // 1. Preencher SEO e Título
       const finalTitle = ev.title || 'Evento sem Título';
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
+      
+      // Tenta usar o favicon na página de detalhes também
+      const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
+      const faviconPath = fixPath(faviconRawPath);
+
+      // Você precisará de um elemento <img> com id="faviconHeader" no seu evento.html, se quiser que apareça no cabeçalho
+      const faviconEl = document.getElementById('faviconHeader');
+      if (faviconEl) {
+          faviconEl.src = faviconPath;
+          faviconEl.onerror = function() { this.style.display = 'none'; };
+      }
+      
+      // 2. Preencher Conteúdo Principal
       eventTitle.textContent = finalTitle;
       
-      // ALTERAÇÃO AQUI: Prioriza o banner_path
-      const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
+      // CORREÇÃO: Aplica fixPath() no caminho da imagem Hero
+      const rawHeroPath = ev.hero_image_path || ev.banner_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
       eventHero.src = heroPath;
       eventHero.alt = `Imagem principal do evento ${finalTitle}`;
       
-      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
+      // Metadados (Cidade, Data, Categoria)
+      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro]
+          .filter(Boolean)
+          .join(' | ');
       eventMeta.textContent = metaHtml;
       
+      // Descrição inicial
       eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
+      // 3. CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20evento%20" + encodeURIComponent(finalTitle);
       const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
+      
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
+      // 4. Motivos para Visitar (Lógica mantida para extrair motivos)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -102,7 +126,9 @@
             };
           });
           
-      const finalMotivos = extractedMotivos.filter(m => m.motivo_titulo).concat(Array.isArray(ev.motivos) ? ev.motivos : []);
+      const finalMotivos = extractedMotivos
+          .filter(m => m.motivo_titulo)
+          .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
         motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
