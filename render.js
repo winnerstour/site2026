@@ -1,12 +1,14 @@
-// render.js (Versão Final e Corrigida para Carrosséis)
+// render.js (Versão Final: Correção Universal de Caminho)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
   
-  // CORREÇÃO: O nome do arquivo consolidado é event.json
   const DATA_URL = './event.json'; 
 
-  // CATEGORIAS ATUAIS DO SEU PORTFÓLIO
+  // NOVO: Detecta o caminho base automaticamente (ex: /site2026 ou /)
+  // Isso resolve problemas com GitHub Pages e mantém compatibilidade com Netlify/Root Host
+  const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
+
   const CATEGORIES_TO_DISPLAY = [
     "Saúde & Medicina & Farma",
     "Automotivo & Autopeças & Motos",
@@ -18,17 +20,26 @@
     "Outros/Nichados"
   ];
   
+  // Função que corrige o caminho absoluto
+  function fixPath(path) {
+      if (path.startsWith('/assets')) {
+          return BASE_PATH + path;
+      }
+      return path;
+  }
+
   function buildCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
-    
     const slug = ev.slug; 
-    // O link aponta para a página de detalhes com o SLUG
+    
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // CORREÇÃO: Usa o campo 'image' que está no JSON (o arquivo leve)
-    const imagePath = ev.image || 'placeholder.webp'; 
+    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
 
+    // APLICAÇÃO DA CORREÇÃO:
+    const imagePath = fixPath(rawImagePath);
+    
     return `
       <div class="cl-slide">
         <a href="${finalUrl}" class="card" aria-label="${title}">
@@ -46,6 +57,7 @@
 
   async function renderCarousels() {
     try {
+      // ... (Resto da função de carregamento permanece o mesmo) ...
       const res = await fetch(DATA_URL);
       if (!res.ok) {
           throw new Error(`Falha ao carregar ${DATA_URL}. Status: ${res.statusText}`);
