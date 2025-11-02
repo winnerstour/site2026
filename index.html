@@ -98,7 +98,16 @@ h1,h2{
   padding-top: 4px; 
 }
 
-.cat-title{font-weight:900;margin:0 0 10px; padding: 0 16px}
+/* 🎯 CORREÇÃO CRÍTICA: Estiliza o título da categoria para ser igual ao título do card */
+.cat-title{
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 900; /* Igual ao card title */
+  color: var(--text-charcoal); /* Igual ao card title */
+  text-transform: uppercase; /* Caixa Alta */
+  font-size: 1rem; /* Tamanho reduzido (16px) */
+  margin:0 0 10px; 
+  padding: 0 16px;
+}
 
 .cl-track{
   display:flex;
@@ -156,7 +165,6 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
-  /* 🎯 CORREÇÃO CRÍTICA: Aumenta a altura para 100px para acomodar melhor a proporção 3:1 */
   height: 100px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
