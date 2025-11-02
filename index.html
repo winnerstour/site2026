@@ -13,11 +13,11 @@
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
-  --brand:#f97316; 
-  --brand-shadow:#C2410C; 
-  --wa:#25D366; 
-  --wa-hover:#1AC656; 
-  --wa-ring:#128C7E; 
+  --brand:#f97316;
+  --brand-shadow:#C2410C;
+  --wa:#25D366;
+  --wa-hover:#1AC656;
+  --wa-ring:#128C7E;
   --text-charcoal:#111827; 
   --muted:#6b7280;
   --bg:#fff;
@@ -29,13 +29,15 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 
-/* 🎯 APLICAÇÃO DA FONTE MONTSERRAT */
+/* APLICAÇÃO DA FONTE MONTSERRAT */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
   line-height:1.5;
   color:var(--text-charcoal);
   background:var(--bg);
+  /* 🎯 NOVO: REMOVE A BARRA DE ROLAGEM HORIZONTAL DO BODY */
+  overflow-x: hidden;
 }
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
@@ -74,10 +76,9 @@ a{text-decoration:none;color:inherit}
 .btn.btn-whatsapp:active {
   transform: translateY(1px);
 }
-.btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
 .btn.btn-whatsapp svg{width:18px;height:18px;color:#fff;fill:currentColor}
 
-/* ESTILOS DE GRID E CARD */
+/* ESTILOS DE GRID E CARD (AJUSTADOS) */
 .wrap{max-width:var(--wrap);margin:24px auto;padding:0 16px}
 h1,h2{
   font-weight:900;
@@ -85,15 +86,42 @@ h1,h2{
   margin-bottom: .25rem; 
   line-height: 1.1;
 }
-.cat-section{margin:32px 0 16px; padding: 0 16px}
-.cat-title{font-weight:900;margin:0 0 10px; padding: 0 16px}
-.cl-track{display:flex;gap:18px;overflow-x:auto;overflow-y:visible;padding:0 16px;scroll-snap-type:x mandatory;scroll-padding-inline:16px}
+.cat-section{
+  margin:32px 0 16px; 
+  padding: 0 16px;
+  /* 🎯 NOVO: Adiciona padding-top para evitar o corte do hover/translate */
+  padding-top: 10px; 
+}
 
+.cat-title{font-weight:900;margin:0 0 10px; padding: 0 16px}
+
+/* 🎯 CORREÇÃO DA BARRA DE ROLAGEM E PADDING */
+.cl-track{
+  display:flex;
+  gap:18px;
+  overflow-x:auto; /* Mantém a rolagem no carrossel */
+  overflow-y:hidden; /* Esconde a rolagem vertical que pode aparecer */
+  padding:0 16px;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:16px;
+  /* 🎯 NOVO: Oculta a barra de rolagem horizontal padrão no WebKit (Chrome/Safari) */
+  -webkit-overflow-scrolling: touch;
+}
+.cl-track::-webkit-scrollbar {
+  display: none;
+}
+.cl-track {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* DEFINIÇÃO DA LARGURA MÁXIMA DOS CARDS */
 .cl-slide{flex:0 0 auto;scroll-snap-align:start}
 .cl-slide .card{
   width: 300px;
-  min-height: 350px; 
-  max-height: 400px; 
+  /* 🎯 NOVO: REMOVE ALTURA FIXA/MÍNIMA para que o card se ajuste ao conteúdo */
+  min-height: auto; 
+  max-height: none;
   background:var(--card);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
@@ -105,6 +133,7 @@ h1,h2{
 }
 .card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(2,8,23,.12)}
 
+/* AJUSTES PARA RESPONSIVIDADE EM MOBILE */
 @media (max-width:640px){
   .cl-slide .card{
     width:86vw; 
@@ -127,34 +156,34 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* 🎯 CORREÇÃO DO TÍTULO DO CARD (INDEX): CAIXA ALTA, TAMANHO REDUZIDO, 1 LINHA */
+/* 🎯 TÍTULO DO CARD: CAIXA ALTA, 1 LINHA (com reticências) */
 .card .title{
   font-weight:900;
-  font-size: 1rem; /* 16px: Tamanho reduzido */
+  font-size: 1rem; 
   margin:0 0 4px; 
   line-height: 1.3;
-  text-transform: uppercase; /* CAIXA ALTA */
+  text-transform: uppercase; 
   
-  /* Garantir 1 linha com reticências */
+  /* IMPORTANTE: Força 1 linha e reticências */
   max-height: 1.3em; 
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* Limita a 1 linha */
+  -webkit-line-clamp: 1; 
   -webkit-box-orient: vertical;
 }
 
-/* 🎯 SUBTÍTULO DO CARD (INDEX): TEXTO CORRIDO (VOLTANDO AO ESTILO ANTERIOR) */
+/* 🎯 SUBTÍTULO DO CARD: Sem limite de linhas (se ajusta ao conteúdo) */
 .card .subtitle {
-  -webkit-line-clamp: 3; /* Máximo de 3 linhas */
+  /* REMOVEMOS A PROPRIEDADE -webkit-line-clamp AQUI */
   color: var(--muted);
   font-size: 14px; 
-  font-weight: 400; /* Peso normal */
+  font-weight: 400; 
   line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  /* Garante que o texto corra livremente, determinando a altura do card */
+  overflow: visible;
+  text-overflow: clip; 
+  display: block; 
   margin: 0;
 }
 .favicon {
@@ -175,9 +204,6 @@ h1,h2{
                 <span class="burger"><div></div></span>
                 <span class="menu-label">WINNERS TOUR</span>
             </a>
-        </div>
-        <div class="logo-center">
-            <a href="./index.html" class="menu-label">WINNERS TOUR</a>
         </div>
         <div class="topbar__cta">
             <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20em%20pacotes%20para%20eventos." target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
