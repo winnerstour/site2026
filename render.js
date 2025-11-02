@@ -1,4 +1,4 @@
-// render.js (Versão Final: Card Tutorial Discreto na Home)
+// render.js (Versão Final com Autoplay, Setas e Card de Contexto no 1º Carrossel)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
@@ -36,7 +36,7 @@
           <div class="cl-slide context-slide">
               <div class="card context-card">
                   <div class="context-content">
-                      <p class="subtitle" style="font-size: 1rem; color: var(--text-charcoal); margin-bottom: 20px;">
+                      <p class="subtitle" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
                           ${description}
                       </p>
                       <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
@@ -97,7 +97,6 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          // Se estiver no final, volta suavemente para o início
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'}); 
           } else {
@@ -164,6 +163,7 @@
       
       let finalHTML = '';
 
+      // NOVO: Adicionamos o índice para injetar o Card de Contexto APENAS no primeiro carrossel (index 0)
       CATEGORIES_TO_DISPLAY.forEach((category, index) => {
         const categoryId = `carousel-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         const filteredEvents = allEvents.filter(ev => ev.category_macro === category);
