@@ -104,7 +104,7 @@ h1,h2{
   font-weight: 900;
   color: var(--text-charcoal);
   text-transform: uppercase;
-  font-size: 1rem; /* 16px para harmonizar */
+  font-size: 1rem;
   margin:0 0 10px; 
   padding: 0 16px; 
 }
@@ -112,7 +112,6 @@ h1,h2{
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
     position: relative;
-    /* Ajusta para que as setas fiquem nas bordas */
     padding: 0 40px; 
 }
 @media (max-width: 1024px) {
@@ -234,20 +233,74 @@ h1,h2{
   filter: none;
   transition: none;
 }
-.favicon {
-    width: 16px; 
-    height: 16px; 
-    margin-right: 6px; 
-    display: inline-block; 
-    vertical-align: middle;
+
+/* ESTILOS DO CARD DE INTRODUÇÃO/TUTORIAL */
+.card.context-card {
+    /* Remove todos os efeitos visuais e interativos */
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    cursor: default;
+    display: flex;
+    align-items: center; 
 }
+.card.context-card:hover {
+    transform: none !important; 
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.context-content {
+    padding: 0 16px 0 0; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 🎯 CORREÇÃO DA COR E TAMANHO DO TEXTO DE CONTEXTO */
+.context-content p {
+    font-size: 14px !important; 
+    color: var(--muted) !important; 
+    font-weight: 400 !important;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+/* ESTILOS DO BOTÃO VER MAIS */
+.btn-ver-mais {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; 
+    padding: 4px 8px; 
+    border-radius: 999px; 
+    background: transparent;
+    border: 1px solid var(--brand); /* Borda Laranja */
+    color: var(--brand); /* Texto Laranja */
+    font-weight: 700;
+    font-size: 12px; 
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+.btn-ver-mais:hover {
+    background: var(--brand); 
+    color: #fff; 
+    border-color: var(--brand);
+}
+.btn-ver-mais svg {
+    width: 14px; 
+    height: 14px;
+    fill: currentColor; 
+}
+
 
 /* ESTILOS DAS SETAS DE NAVEGAÇÃO */
 .carousel-nav {
     position: absolute;
     top: 50%;
-    /* Posiciona verticalmente no centro do carrossel (altura de ~100px da thumb + 100px de conteúdo) */
-    transform: translateY(-100%); 
+    transform: translateY(-50%); 
     width: 40px; 
     height: 40px;
     border-radius: 50%;
@@ -277,42 +330,13 @@ h1,h2{
         display: none !important; 
     }
 }
-
-/* AJUSTES PARA O CARD DE INTRODUÇÃO/TUTORIAL */
-.card.context-card {
-    /* Remove todos os efeitos visuais e interativos */
-    box-shadow: none !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0;
-    cursor: default;
-    /* Garante que o conteúdo se alinhe no meio */
-    display: flex;
-    align-items: center; 
+.favicon {
+    width: 16px; 
+    height: 16px; 
+    margin-right: 6px; 
+    display: inline-block; 
+    vertical-align: middle;
 }
-.card.context-card:hover {
-    transform: none !important; /* Remove o hover de movimento */
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.context-content {
-    padding: 0 16px 0 0; 
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-/* Altera o texto do Card de Contexto para a classe de descrição */
-.context-content p.subtitle {
-    font-size: 1rem !important;
-    color: var(--text-charcoal) !important;
-    font-weight: 400 !important;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-    
 </style>
 </head>
 <body>
