@@ -21,12 +21,11 @@
   --text-charcoal:#111827; 
   --muted:#6b7280;
   --bg:#fff;
-  /* NOVO: Sombra Base reduzida (20% mais suave que a anterior) */
+  --card:#fff;
   --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-  /* NOVO: Sombra de Hover mais discreta (similar à base, mas ligeiramente mais escura) */
   --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  /* NOVO: Cor de fundo suave para simular clique no hover */
-  --card-hover-bg:#fafafa; 
+  /* 🎯 AJUSTE DO HOVER: Cor de fundo ligeiramente mais escura que o branco */
+  --card-hover-bg:#f5f5f5; 
   --radius:18px;
   --wrap:1200px
 }
@@ -124,35 +123,30 @@ h1,h2{
 .cl-slide{flex:0 0 auto;scroll-snap-align:start}
 .cl-slide .card{
   width: 300px;
-  /* 🎯 CORREÇÃO: Remove altura fixa para que o card se ajuste ao texto */
   min-height: auto; 
   max-height: none;
   background:var(--card);
   border-radius:var(--radius);
-  /* Sombra base suave */
   box-shadow:var(--shadow-base); 
   overflow:hidden;
   transition: all .2s ease; 
   cursor:pointer;
   display: flex;
   flex-direction: column;
-  border: 1px solid transparent; /* Borda invisível para o hover */
+  border: 1px solid transparent; 
 }
 
-/* 🎯 NOVO HOVER DO CARD: Efeito de "apertar" com mudança de cor de fundo */
+/* 🎯 HOVER DO CARD: Contraste maior e borda laranja */
 .card:hover{
     box-shadow:var(--shadow-hover);
-    background: var(--card-hover-bg); /* Fundo mais escuro/suave */
-    border-color: rgba(249, 115, 22, 0.5); /* Contorno laranja suave */
-    /* Remove a transformação para evitar o corte: */
+    background: var(--card-hover-bg); 
+    border-color: rgba(249, 115, 22, 0.5); 
     transform: none; 
 }
-/* Efeito de "apertar" mais dramático no clique */
 .card:active {
     box-shadow: 0 2px 5px rgba(2,8,23,.10);
     transform: scale(0.99);
 }
-
 
 /* AJUSTES PARA RESPONSIVIDADE EM MOBILE */
 @media (max-width:640px){
@@ -164,22 +158,24 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
-  /* 🎯 CORREÇÃO 1: Altura do thumb ajustada para a imagem 3:1/4:1 */
   height: 80px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
   background:#f4f4f5;
   flex-shrink: 0; 
   width: 100%;
+  /* 🎯 NOVO: Usa Flexbox para centralizar a imagem verticalmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .card .thumb img {
     width:100%; 
-    /* 🎯 CORREÇÃO 2: Permite que a imagem determine sua altura dentro do thumb (80px) */
     height:auto; 
-    /* Garante que a imagem inteira seja exibida (sem corte) */
     object-fit: contain; 
-    /* Adiciona padding vertical para espaçar a imagem */
-    padding: 5px 0; 
+    padding: 0; 
+    /* 🎯 NOVO: Garante que a imagem se ajuste dentro do contêiner Flex */
+    max-height: 100%; 
 }
 
 .card .content{
@@ -187,7 +183,7 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* 🎯 TÍTULO DO CARD: 1 LINHA */
+/* TÍTULO DO CARD: CAIXA ALTA, 1 LINHA (com reticências) */
 .card .title{
   font-weight:900;
   font-size: 1rem; 
@@ -200,12 +196,11 @@ h1,h2{
   display: -webkit-box;
   -webkit-line-clamp: 1; 
   -webkit-box-orient: vertical;
-  /* 🎯 NOVO: Remove a sombra/contorno do texto no hover */
   filter: none; 
   transition: none;
 }
 
-/* 🎯 SUBTÍTULO DO CARD: Sem limite de linhas (para que o card se ajuste ao texto) */
+/* SUBTÍTULO DO CARD: Sem limite de linhas (para que o card se ajuste ao texto) */
 .card .subtitle {
   color: var(--muted);
   font-size: 14px; 
@@ -215,7 +210,6 @@ h1,h2{
   text-overflow: clip; 
   display: block; 
   margin: 0;
-  /* 🎯 NOVO: Remove a sombra/contorno do texto no hover */
   filter: none;
   transition: none;
 }
