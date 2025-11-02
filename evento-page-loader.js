@@ -1,7 +1,7 @@
-// evento-page-loader.js
+// evento-page-loader.js (Versão Final e Corrigida)
 
 (function () {
-  // Caminho onde você colocará seus 158 JSONs (slug.json)
+  // O caminho onde você colocou os JSONs individuais (os 158 arquivos "pesados")
   const DATA_BASE_PATH = './data/events/'; 
 
   const eventContent = document.getElementById('eventContent');
@@ -29,9 +29,7 @@
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento. Verifique a URL e o arquivo JSON.') + '</p>';
   }
 
-  // Função para montar o HTML de um item de 'Motivo'
   function renderMotivo(m) {
-    // Tenta extrair dados do JSON: usa motivo_titulo_1/motivo_conteudo_1 OU um array 'motivos'
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
     const text = m.motivo_conteudo || m.text || '';
@@ -47,7 +45,6 @@
     `;
   }
 
-  // Função principal para carregar e preencher a página
   async function loadEventData() {
     const slug = getSlug();
     if (!slug) {
@@ -55,7 +52,7 @@
     }
     
     try {
-      // Tenta buscar o arquivo JSON com o nome do slug
+      // Busca o arquivo "pesado" (completo) na pasta /data/events/
       const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
       const res = await fetch(jsonPath);
 
@@ -72,9 +69,10 @@
       // 2. Preencher Conteúdo Principal
       eventTitle.textContent = finalTitle;
       
-      const heroPath = ev.hero_image_path || ev.banner_path || 'placeholder.webp'; 
-    eventHero.src = heroPath;
-    eventHero.alt = ev.title;
+      // Tenta hero_image_path (do JSON individual) ou fallback
+      const heroPath = ev.hero_image_path || ev.banner_path || ev.image || 'placeholder.webp';
+      eventHero.src = heroPath;
+      eventHero.alt = `Imagem principal do evento ${finalTitle}`;
       
       // Metadados (Cidade, Data, Categoria)
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro]
@@ -82,7 +80,7 @@
           .join(' | ');
       eventMeta.textContent = metaHtml;
       
-      // Descrição inicial (aceita HTML simples, como <em> ou <strong>)
+      // Descrição inicial
       eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
       // 3. CTA (WhatsApp)
@@ -93,8 +91,7 @@
       whatsappTopCta.href = whatsappLink;
 
       // 4. Motivos para Visitar
-      
-      // Tenta extrair motivos do formato motivo_titulo_N (o formato do seu JSON)
+      // Extrai motivos no formato 'motivo_titulo_N' (do seu JSON individual)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -106,20 +103,17 @@
             };
           });
           
-      // Concatena com um possível array 'motivos'
       const finalMotivos = extractedMotivos
-          .filter(m => m.motivo_titulo) // Garante que o título existe
+          .filter(m => m.motivo_titulo)
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
         motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
       } else {
-        // Se não houver motivos, esconde a seção
-        document.querySelector('h2').hidden = true; 
+        document.querySelector('h2[style*="margin-top"]').hidden = true; 
         motivosContainer.hidden = true;
       }
 
-      // Exibe o conteúdo e esconde o carregamento
       loading.hidden = true;
       eventContent.hidden = false;
 
