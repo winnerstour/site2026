@@ -1,9 +1,9 @@
-// evento-page-loader.js (Versão Final: Correção Universal de Caminho)
+// evento-page-loader.js (Versão Final: Correção de Caminho e Imagem Banner)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
 
-  // NOVO: Detecta o caminho base automaticamente (ex: /site2026 ou /)
+  // Detecta o caminho base automaticamente (ex: /site2026 ou /)
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
@@ -46,7 +46,7 @@
     `;
   }
 
-  // NOVO: Função que corrige o caminho absoluto
+  // Função que corrige o caminho absoluto
   function fixPath(path) {
       if (path.startsWith('/assets')) {
           return BASE_PATH + path;
@@ -70,19 +70,17 @@
       
       const ev = await res.json();
       
-      // ... (Preenchimento de Título, Meta, etc.)
       const finalTitle = ev.title || 'Evento sem Título';
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
       eventTitle.textContent = finalTitle;
       
-      // APLICAÇÃO DA CORREÇÃO: Corrige o path antes de atribuir ao src
-      const rawHeroPath = ev.hero_image_path || ev.banner_path || ev.image || 'placeholder.webp';
+      // ALTERAÇÃO AQUI: Prioriza o banner_path
+      const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
       eventHero.src = heroPath;
       eventHero.alt = `Imagem principal do evento ${finalTitle}`;
       
-      // ... (Resto do código para Meta, Descrição, CTA e Motivos)
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
       eventMeta.textContent = metaHtml;
       
@@ -93,7 +91,6 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // ... (Lógica de Motivos)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
