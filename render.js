@@ -1,4 +1,4 @@
-// render.js (Final com Autoplay, Setas e Card de Contexto no 1º Carrossel)
+// render.js (Versão Final: Card Tutorial Discreto na Home)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
@@ -28,19 +28,19 @@
       return path;
   }
   
-  // Função para criar o CARD TUTORIAL/CONTEXTO
+  // Função para criar o CARD TUTORIAL/CONTEXTO para a index.html
   function buildContextCard(categoryId, categoryName) {
-      const title = `Eventos: ${categoryName}`;
-      const description = "Descubra pacotes imbatíveis! Navegue pelo carrossel para ver todas as feiras e encontros de alto valor para o seu setor.";
+      const description = `Navegue pelo carrossel para ver todas as feiras e encontros desta categoria.`;
 
       return `
           <div class="cl-slide context-slide">
               <div class="card context-card">
                   <div class="context-content">
-                      <h3>${title}</h3>
-                      <p>${description}</p>
+                      <p class="subtitle" style="font-size: 1rem; color: var(--text-charcoal); margin-bottom: 20px;">
+                          ${description}
+                      </p>
                       <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
-                          Ver Mais Eventos
+                          Ver Mais
                           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                       </button>
                   </div>
@@ -164,7 +164,6 @@
       
       let finalHTML = '';
 
-      // NOVO: Adicionamos o índice para injetar o Card de Contexto APENAS no primeiro carrossel (index 0)
       CATEGORIES_TO_DISPLAY.forEach((category, index) => {
         const categoryId = `carousel-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         const filteredEvents = allEvents.filter(ev => ev.category_macro === category);
