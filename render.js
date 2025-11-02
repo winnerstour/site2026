@@ -1,33 +1,33 @@
-// render.js
+// render.js (Versão Final e Corrigida para Carrosséis)
 
 (function () {
   const container = document.getElementById('carouselsContainer');
   
-  // URL do arquivo JSON de eventos
-  const DATA_URL = './events.json';
+  // CORREÇÃO: O nome do arquivo consolidado é event.json
+  const DATA_URL = './event.json'; 
 
-  // Array de categorias que você quer exibir na página inicial.
-  // A ordem aqui define a ordem dos carrosséis.
+  // CATEGORIAS ATUAIS DO SEU PORTFÓLIO
   const CATEGORIES_TO_DISPLAY = [
-    "Beleza & Estética",
-    "Casa & Decoração",
-    "Agronegócio & Tecnologia"
-    // Adicione mais categorias aqui conforme seu JSON cresce
+    "Saúde & Medicina & Farma",
+    "Automotivo & Autopeças & Motos",
+    "Construção & Arquitetura",
+    "Tecnologia & Telecom",
+    "Foodservice & Bebidas",
+    "Entretenimento & Cultura",
+    "Logística & Supply Chain",
+    "Outros/Nichados"
   ];
   
-  // Função para construir o HTML de um único card
   function buildCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
     
-    // O slug é essencial para o link
     const slug = ev.slug; 
+    // O link aponta para a página de detalhes com o SLUG
+    const finalUrl = `evento.html?slug=${slug}`;
     
-    // Tenta usar a URL pronta ou constrói o link para o nosso novo arquivo 'evento.html'
-    const finalUrl = ev.url || (slug ? `evento.html?slug=${slug}` : '#');
-    
-    // Priorizo a imagem HERO (path deve ser completo, como no seu JSON de exemplo)
-const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
+    // CORREÇÃO: Usa o campo 'image' que está no JSON (o arquivo leve)
+    const imagePath = ev.image || 'placeholder.webp'; 
 
     return `
       <div class="cl-slide">
@@ -44,11 +44,12 @@ const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placehold
     `;
   }
 
-  // Função principal para carregar e renderizar
   async function renderCarousels() {
     try {
       const res = await fetch(DATA_URL);
-      if (!res.ok) throw new Error('Falha ao carregar events.json');
+      if (!res.ok) {
+          throw new Error(`Falha ao carregar ${DATA_URL}. Status: ${res.statusText}`);
+      }
       
       const allEvents = await res.json(); 
       
@@ -59,18 +60,13 @@ const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placehold
       
       let finalHTML = '';
 
-      // 1. Iterar sobre as categorias desejadas
       CATEGORIES_TO_DISPLAY.forEach(category => {
-        
-        // 2. Filtrar eventos por categoria
         const filteredEvents = allEvents.filter(ev => ev.category_macro === category);
         
-        if (filteredEvents.length === 0) return; // Não renderiza carrossel vazio
+        if (filteredEvents.length === 0) return; 
 
-        // 3. Montar o HTML dos slides
         const carouselSlides = filteredEvents.map(buildCard).join('');
         
-        // 4. Montar o container do carrossel para a categoria
         const carouselSection = `
           <section class="cat-section">
             <h2 class="cat-title" style="padding: 0 16px;">${category}</h2>
@@ -83,8 +79,6 @@ const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placehold
         finalHTML += carouselSection;
       });
 
-      // 5. Injetar tudo no DOM
-      // Remove o padding lateral duplicado do wrap, já que o cat-section e cl-track já aplicam.
       if (document.querySelector('.wrap')) {
          document.querySelector('.wrap').style.padding = '0';
       }
@@ -93,7 +87,7 @@ const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placehold
       
     } catch (error) {
       console.error('Erro ao renderizar carrosséis:', error);
-      container.innerHTML = '<p class="wrap">Erro ao carregar os dados dos eventos.</p>';
+      container.innerHTML = `<p class="wrap" style="color: red;">Erro ao carregar os dados dos eventos: ${error.message}</p>`;
     }
   }
 
