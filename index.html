@@ -94,13 +94,8 @@ h1,h2{
 }
 .cat-section{
   margin:16px 0 8px; 
-  /* 🎯 NOVO: Remove padding horizontal para que o wrapper gerencie */
-  padding: 0; 
-}
-
-/* 🎯 CONTAINER DO CARROSSEL + SETAS */
-.carousel-wrapper-container {
-    position: relative;
+  padding: 0 16px;
+  padding-top: 4px; 
 }
 
 /* 🎯 TÍTULO DA CATEGORIA */
@@ -111,18 +106,31 @@ h1,h2{
   text-transform: uppercase;
   font-size: 1rem;
   margin:0 0 10px; 
-  /* NOVO: Aplica padding aqui para alinhar o título com o wrap */
   padding: 0 16px; 
 }
 
-/* 🎯 CORREÇÃO CRÍTICA DO CARROSSEL: Estrutura horizontal e remoção de barra */
+/* 🎯 CONTAINER DO CARROSSEL + SETAS */
+.carousel-wrapper-container {
+    position: relative;
+    /* 🎯 NOVO: Garante espaço para a sombra e para as setas na lateral */
+    padding: 0 40px; 
+}
+@media (max-width: 1024px) {
+    /* Em telas menores, remove padding extra, pois as setas são ocultas */
+    .carousel-wrapper-container {
+        padding: 0;
+    }
+}
+
+
+/* CORREÇÃO CRÍTICA DO CARROSSEL: Estrutura horizontal e remoção de barra */
 .cl-track{
   display:flex;
   gap:18px;
   overflow-x:auto; 
   overflow-y:hidden; 
-  /* 🎯 NOVO: Aplica padding horizontal para alinhar o conteúdo com o wrap */
-  padding:0 16px; 
+  /* 🎯 NOVO: AUMENTA O ESPAÇAMENTO INFERIOR para evitar corte nos cards mais longos */
+  padding:0 16px 20px; 
   scroll-snap-type:x mandatory;
   scroll-padding-inline:16px;
   -webkit-overflow-scrolling: touch;
@@ -234,15 +242,16 @@ h1,h2{
     vertical-align: middle;
 }
 
-/* 🎯 NOVO: ESTILOS DAS SETAS DE NAVEGAÇÃO */
+/* ESTILOS DAS SETAS DE NAVEGAÇÃO */
 .carousel-nav {
     position: absolute;
     top: 50%;
-    transform: translateY(calc(-50% + 20px)); /* Ajusta para centralizar no carrossel */
+    /* Ajusta para centralizar no carrossel de 100px de altura */
+    transform: translateY(-100%); 
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--brand); /* Laranja da barra */
+    background: var(--brand); 
     border: none;
     cursor: pointer;
     z-index: 10;
@@ -255,16 +264,15 @@ h1,h2{
 .carousel-nav svg {
     width: 20px;
     height: 20px;
-    fill: var(--text-charcoal); /* Seta preta */
+    fill: var(--text-charcoal); 
 }
 .carousel-nav.prev {
-    left: 20px; 
+    left: 0px; 
 }
 .carousel-nav.next {
-    right: 20px; 
+    right: 0px; 
 }
 @media (max-width: 1024px) {
-    /* Oculta setas em telas menores/touch, deixando a rolagem touch */
     .carousel-nav {
         display: none !important; 
     }
@@ -293,7 +301,7 @@ h1,h2{
   <main class="wrap">
     <h2>Eventos e Feiras</h2>
     <div id="carouselsContainer">
-        </div>
+    </div>
   </main>
   
 <script src="./render.js"></script>
