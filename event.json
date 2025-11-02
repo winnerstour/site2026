@@ -1,0 +1,1266 @@
+[
+  {
+    "slug": "abup-show",
+    "title": "ABUP SHOW",
+    "subtitle": "A maior plataforma B2B de decoração, utilidades domésticas e design autoral no Brasil.",
+    "image": "/assets/img/banners/abup-show-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "modern-construction-show",
+    "title": "Modern Construction Show",
+    "subtitle": "O ponto de encontro da transformação tecnológica e industrial da Construção Civil no Brasil.",
+    "image": "/assets/img/banners/modern-construction-show-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Construção Civil"
+  },
+  {
+    "slug": "pesca-trade-show",
+    "title": "PESCA TRADE SHOW",
+    "subtitle": "O maior hub de negócios outdoor da América Latina focado em expansão de rede e parcerias comerciais B2B.",
+    "image": "/assets/img/banners/pesca-trade-show-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Pesca Trade"
+  },
+  {
+    "slug": "world-security-congress",
+    "title": "World Security Congress (WSC)",
+    "subtitle": "Congresso executivo focado em resiliência operacional, cibersegurança e governança de dados para o C-Level.",
+    "image": "/assets/img/banners/world-security-congress-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "World Security"
+  },
+  {
+    "slug": "estetika",
+    "title": "ESTETIKA",
+    "subtitle": "O maior congresso científico e feira de negócios B2B, focado em alta tecnologia para o setor de estética e bem-estar na América Latina.",
+    "image": "/assets/img/banners/estetika-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "expolazer-wellness",
+    "title": "Expolazer & Wellness",
+    "subtitle": "O ponto de encontro estratégico para inovações em piscinas, spas, design outdoor living e grandes projetos de infraestrutura hoteleira.",
+    "image": "/assets/img/banners/expolazer-wellness-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "abrafarma-future-trends",
+    "title": "Abrafarma Future Trends",
+    "subtitle": "O mais importante evento do varejo farmacêutico das Américas, reunindo as 29 maiores redes e mais de 1.500 executivos C-Level.",
+    "image": "/assets/img/banners/abrafarma-future-trends-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Farmácia"
+  },
+  {
+    "slug": "construlev-expo-2025",
+    "title": "CONSTRULEV EXPO 2025",
+    "subtitle": "O Evento que Transforma a Construção Civil no Brasil",
+    "image": "/assets/img/banners/construlev-expo-2025-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Construção Civil"
+  },
+  {
+    "slug": "semana-internacional-do-cafe",
+    "title": "Semana Internacional do Café (SIC)",
+    "subtitle": "O maior encontro de café do Brasil, essencial para decisores que buscam soluções em AgriTech, sustentabilidade e eficiência logística.",
+    "image": "/assets/img/banners/semana-internacional-do-cafe-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Agro & Máquinas"
+  },
+  {
+    "slug": "reatech",
+    "title": "REATECH + EXPO BRASIL PARALÍMPICO",
+    "subtitle": "A principal feira de Tecnologia Assistiva, Inclusão e Reabilitação, essencial para Compliance e ESG corporativo.",
+    "image": "/assets/img/banners/reatech-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Reatech Expo"
+  },
+  {
+    "slug": "bfshow",
+    "title": "BFSHOW",
+    "subtitle": "A principal feira B2B do setor calçadista, essencial para validar seu roadmap de 2026 e acelerar o funil de exportação.",
+    "image": "/assets/img/banners/bfshow-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Bfshow Bfshow"
+  },
+  {
+    "slug": "expo-motorhome",
+    "title": "EXPO MOTORHOME 2025",
+    "subtitle": "A principal plataforma de fornecimento de componentes técnicos para a cadeia de valor de veículos de recreio (RVs) na América Latina.",
+    "image": "/assets/img/banners/expo-motorhome-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Motocicletas"
+  },
+  {
+    "slug": "barber-week",
+    "title": "Barber Week",
+    "subtitle": "Plataforma de gestão e inovação para decisores do mercado de beleza masculina, com foco em ROI, estoque e retenção de talentos.",
+    "image": "/assets/img/banners/barber-week-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "fenauto",
+    "title": "14º Congresso Internacional FENAUTO 2025",
+    "subtitle": "Acelere seu funil B2B: compare tecnologia, funding e soluções que destravam margens e giro no mercado de seminovos.",
+    "image": "/assets/img/banners/fenauto-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Congresso Internacional"
+  },
+  {
+    "slug": "salao-do-automovel-sp-2025",
+    "title": "Salão do Automóvel",
+    "subtitle": "O <em>hub</em> estratégico da mobilidade: <strong>Integração da Cadeia</strong> e o Futuro da Indústria 4.0 no Brasil.",
+    "image": "/assets/img/banners/salao-do-automovel-sp-2025-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Salão Automóvel"
+  },
+  {
+    "slug": "lavtech",
+    "title": "VI LAVTECH – Feira Internacional para Lavanderias",
+    "subtitle": "Concentra o público mais qualificado para validação de tecnologia, Hard ROI e contratos de longo prazo no setor de lavanderia industrial.",
+    "image": "/assets/img/banners/lavtech-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Lavtech Feira"
+  },
+  {
+    "slug": "ceex",
+    "title": "CEEX",
+    "subtitle": "O encontro imersivo que une conteúdo e capital para acelerar negócios na economia da influência B2B.",
+    "image": "/assets/img/banners/ceex-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Ceex Ceex"
+  },
+  {
+    "slug": "expo-bodegas-logistica-2025-santiago",
+    "title": "🇨🇱 Expo Bodegas & Logística",
+    "subtitle": "A Plataforma Essencial para Inovação em Intralogística e Supply Chain no Cone Sul",
+    "image": "/assets/img/banners/expo-bodegas-logistica-2025-santiago-hero.webp",
+    "category_macro": "Logística & Supply Chain",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "expotea",
+    "title": "ExpoTEA",
+    "subtitle": "A principal plataforma de neurodiversidade B2B para fechar parcerias em Saúde, ESG e Inclusão Laboral.",
+    "image": "/assets/img/banners/expotea-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Laboratório"
+  },
+  {
+    "slug": "unlock-ccxp",
+    "title": "UNLOCK CCXP",
+    "subtitle": "O braço de negócios que conecta executivos, talentos e Propriedades Intelectuais globais ao mercado de games, entretenimento e audiovisual.",
+    "image": "/assets/img/banners/unlock-ccxp-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Games & Cultura Pop"
+  },
+  {
+    "slug": "vegfest",
+    "title": "Vegfest 2025",
+    "subtitle": "O principal encontro B2B de Food Tech e Plant-Based para acelerar inovações e a cadeia de suprimentos.",
+    "image": "/assets/img/banners/vegfest-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "formula-e-e-prix-sao-paulo-2025",
+    "title": "Fórmula E - E-Prix São Paulo 2025",
+    "subtitle": "O laboratório global de alta performance, mobilidade elétrica e ESG, essencial para o planejamento estratégico de 2026.",
+    "image": "/assets/img/banners/formula-e-e-prix-sao-paulo-2025-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Laboratório"
+  },
+  {
+    "slug": "miningtech-south-america",
+    "title": "MiningTech South America Conference and Exhibition",
+    "subtitle": "O principal ponto de convergência B2B para líderes em Mineração 4.0, ESG, e automação na América Latina.",
+    "image": "/assets/img/banners/miningtech-south-america-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Mineração"
+  },
+  {
+    "slug": "eb-2026-international-congress",
+    "title": "EB 2026 International Congress",
+    "subtitle": "Maximize o ROI de P&D em Doenças Raras e acelere o Market Access na América Latina via conteúdo colaborativo.",
+    "image": "/assets/img/banners/eb-2026-international-congress-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Laboratório"
+  },
+  {
+    "slug": "abimad-2026-sao-paulo-expo",
+    "title": "ABIMAD 2026 — Pacotes corporativos e hotéis perto do São Paulo Expo",
+    "subtitle": "A principal feira de móveis e acessórios de alta decoração da América Latina",
+    "image": "/assets/img/banners/abimad-2026-sao-paulo-expo-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "ciosp",
+    "title": "CIOSP 2026",
+    "subtitle": "O maior evento de Odontologia da América Latina, onde gestores e empresários buscam lançamentos e validam tecnologias de alta eficiência.",
+    "image": "/assets/img/banners/ciosp-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Odontologia"
+  },
+  {
+    "slug": "abcasafair",
+    "title": "ABCasa Fair",
+    "subtitle": "A maior feira B2B da América Latina para artigos de casa, decoração e presentes.",
+    "image": "/assets/img/banners/abcasafair-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "lacte-21",
+    "title": "LACTE 21",
+    "subtitle": "O principal encontro de Viagens, Eventos e Mobilidade Corporativa para C-Levels e decisores na América Latina.",
+    "image": "/assets/img/banners/lacte-21-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Eventos & MICE"
+  },
+  {
+    "slug": "febratextil-ent-brasil",
+    "title": "FebraTêxtil + ENT Brasil",
+    "subtitle": "A plataforma industrial B2B que impulsiona a competitividade e a transformação digital no setor têxtil, de confecção e nãotecidos.",
+    "image": "/assets/img/banners/febratextil-ent-brasil-hero.webp",
+    "category_macro": "Pets & Veterinária",
+    "category_micro": "Pet & Veterinária"
+  },
+  {
+    "slug": "marmomac-brazil-2026",
+    "title": "MARMOMAC BRAZIL 2026",
+    "subtitle": "Plataforma estratégica para sourcing global, inovações BIM e parcerias em rochas naturais de alto valor.",
+    "image": "/assets/img/banners/marmomac-brazil-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Marmomac Brazil"
+  },
+  {
+    "slug": "biel-light-building-buenos-aires",
+    "title": "🇦🇷 BIEL Light + Building Buenos Aires",
+    "subtitle": "Feira Internacional da Indústria Elétrica, Eletrônica e de Iluminação",
+    "image": "/assets/img/banners/biel-light-building-buenos-aires-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Biel Light"
+  },
+  {
+    "slug": "expo-revestir",
+    "title": "EXPO REVESTIR",
+    "subtitle": "O maior evento de revestimentos e acabamentos da América Latina, focado em negócios de alto valor e inovações técnicas.",
+    "image": "/assets/img/banners/expo-revestir-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Revestimentos & Materiais"
+  },
+  {
+    "slug": "haus-decor-show",
+    "title": "HAUS DECOR SHOW",
+    "subtitle": "O principal evento B2B de eficiência e inovação em tintas, iluminação, HVAC e automação, focado em especificadores e grandes negócios.",
+    "image": "/assets/img/banners/haus-decor-show-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Revestimentos & Materiais"
+  },
+  {
+    "slug": "abradilan-conexao-farma",
+    "title": "ABRADILAN CONEXÃO FARMA",
+    "subtitle": "O fórum central para decisores de Distribuição e Logística Farmacêutica no Brasil, focado em compliance e eficiência.",
+    "image": "/assets/img/banners/abradilan-conexao-farma-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Farmácia"
+  },
+  {
+    "slug": "salao-nacional-internacional-motopecas-2026",
+    "title": "Salão Nacional e Internacional das Motopeças",
+    "subtitle": "O ponto de encontro exclusivo B2B que impulsiona a cadeia de fornecimento de motopeças e acessórios no Brasil.",
+    "image": "/assets/img/banners/salao-nacional-internacional-motopecas-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Motocicletas"
+  },
+  {
+    "slug": "imcas-americas-2026",
+    "title": "IMCAS Americas 2026",
+    "subtitle": "O principal launchpad científico e comercial da América Latina para inovações em Dermatologia, Cirurgia Plástica e Estética Avançada.",
+    "image": "/assets/img/banners/imcas-americas-2026-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "yes-movel-show-sao-paulo-export-2026",
+    "title": "Yes Móvel Show São Paulo Export 2026",
+    "subtitle": "Plataforma B2B focada em design, sustentabilidade e negócios de exportação para a indústria moveleira e de colchões.",
+    "image": "/assets/img/banners/yes-movel-show-sao-paulo-export-2026-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Móvel Show"
+  },
+  {
+    "slug": "erp-summit",
+    "title": "ERP Summit 2026",
+    "subtitle": "O maior evento global de Software e Gestão, focado na fronteira da Inteligência Aplicada e na mitigação do risco fiscal CNPJ 2026.",
+    "image": "/assets/img/banners/erp-summit-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Segurança & Defesa"
+  },
+  {
+    "slug": "snec-pv-es-latam-2026",
+    "title": "SNEC PV & ES LATAM 2026",
+    "subtitle": "A maior feira global de PV e ES em sua 1ª edição LATAM, focada em projetos High-Ticket e C-Level.",
+    "image": "/assets/img/banners/snec-pv-es-latam-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Snec Latam"
+  },
+  {
+    "slug": "congress-brazil-mobile-expo-2026",
+    "title": "Congress Brazil Mobile & EXPO 2026",
+    "subtitle": "O hub estratégico para fabricantes, distribuidores e fintechs acelerarem negócios e canais de venda B2B no setor mobile e digital.",
+    "image": "/assets/img/banners/congress-brazil-mobile-expo-2026-hero.webp",
+    "category_macro": "Agro & Agronegócio",
+    "category_micro": "Congress Brazil"
+  },
+  {
+    "slug": "expoprint-converflexo-2026",
+    "title": "ExpoPrint Latin America & ConverFlexo 2026",
+    "subtitle": "A principal vitrine de tecnologia, inovação e tendências para as indústrias Gráfica, de Embalagens e Conversão na América Latina.",
+    "image": "/assets/img/banners/expoprint-converflexo-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Expoprint Latin"
+  },
+  {
+    "slug": "fruit-attraction-sao-paulo",
+    "title": "FRUIT ATTRACTION SÃO PAULO",
+    "subtitle": "A principal feira internacional de frutas e hortaliças do hemisfério sul para a expansão de negócios B2B.",
+    "image": "/assets/img/banners/fruit-attraction-sao-paulo-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Fruit Attraction"
+  },
+  {
+    "slug": "feicon-batimat",
+    "title": "FEICON BATIMAT",
+    "subtitle": "O maior hub de negócios da Construção Civil e Arquitetura, vital para o sourcing estratégico do ciclo anual.",
+    "image": "/assets/img/banners/feicon-batimat-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Construção Civil"
+  },
+  {
+    "slug": "expo-optica-brasil",
+    "title": "Expo Óptica Brasil (Abióptica)",
+    "subtitle": "O ponto focal anual de negociações do setor óptico, essencial para o alinhamento de OKRs e decisões de supply chain em 2026.",
+    "image": "/assets/img/banners/expo-optica-brasil-hero.webp",
+    "category_macro": "Logística & Supply Chain",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "expo-frio-calor-chile-2026",
+    "title": " 🇨🇱 Expo Frío Calor Chile 2026",
+    "subtitle": "HVAC-R, Sustentabilidade e Transição Regulamentar",
+    "image": "/assets/img/banners/expo-frio-calor-chile-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Expo Frío"
+  },
+  {
+    "slug": "intermodal-south-america",
+    "title": "Intermodal South America",
+    "subtitle": "Acelere o funil B2B e o roadmap de digitalização do supply chain com insights de IA e líderes globais em logística e comércio exterior.",
+    "image": "/assets/img/banners/intermodal-south-america-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "laad-security-2026",
+    "title": "LAAD Security 2026",
+    "subtitle": "Feira Internacional de Segurança Pública e Corporativa",
+    "image": "/assets/img/banners/laad-security-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Laad Security"
+  },
+  {
+    "slug": "proteminas",
+    "title": "PROTEMINAS – Feira Mineira de Segurança",
+    "subtitle": "O maior fórum B2B de Segurança e Saúde no Trabalho de Minas Gerais, focado em tecnologia preditiva e gestão de riscos.",
+    "image": "/assets/img/banners/proteminas-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "RH & Gestão"
+  },
+  {
+    "slug": "wtm-latin-america",
+    "title": "WTM Latin America 2026",
+    "subtitle": "A plataforma essencial para acelerar seu pipeline de vendas e mapear a tecnologia no turismo LATAM.",
+    "image": "/assets/img/banners/wtm-latin-america-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Turismo & Hotelaria"
+  },
+  {
+    "slug": "yes-movel-show-goias-2026",
+    "title": "Yes Móvel Show Goiás 2026",
+    "subtitle": "O Encontro B2B de Móveis, Eletros e Colchões do Centro-Oeste",
+    "image": "/assets/img/banners/yes-movel-show-goias-2026-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Móvel Show"
+  },
+  {
+    "slug": "expoapras",
+    "title": "EXPOAPRAS",
+    "subtitle": "O maior evento supermercadista do Paraná, plataforma de liquidez acelerada e benchmarking para executivos B2B.",
+    "image": "/assets/img/banners/expoapras-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "energy-solutions-show",
+    "title": "Energy Solutions Show (ESS)",
+    "subtitle": "O único evento B2B focado exclusivamente no consumidor corporativo de energia de média e alta tensão.",
+    "image": "/assets/img/banners/energy-solutions-show-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Energia"
+  },
+  {
+    "slug": "mara-cakes-fair",
+    "title": "MARA CAKES FAIR",
+    "subtitle": "O maior evento B2B de confeitaria, ideal para a validação técnica de produtos e a captação de lojistas e distribuidores.",
+    "image": "/assets/img/banners/mara-cakes-fair-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Mara Cakes"
+  },
+  {
+    "slug": "arnold-sports-festival-south-america",
+    "title": "Arnold Sports Festival South America",
+    "subtitle": "Principal feira B2B de saúde, fitness e bem-estar da América do Sul, essencial para o planejamento estratégico e aquisição de leads.",
+    "image": "/assets/img/banners/arnold-sports-festival-south-america-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Arnold Sports"
+  },
+  {
+    "slug": "pueri-expo",
+    "title": "Pueri Expo",
+    "subtitle": "Feira de negócios internacional focada em puericultura, essencial para decisores B2B que buscam crescimento e segurança na cadeia de suprimentos.",
+    "image": "/assets/img/banners/pueri-expo-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Pueri Expo"
+  },
+  {
+    "slug": "agrishow-2026",
+    "title": "AGRISHOW 2026 – 31ª Feira Internacional de Tecnologia Agrícola em Ação",
+    "subtitle": "O maior e mais importante hub de inovação, máquinas e crédito para o agronegócio na América Latina.",
+    "image": "/assets/img/banners/agrishow-2026-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Agro & Máquinas"
+  },
+  {
+    "slug": "gamescom-latam-2026",
+    "title": "gamescom latam",
+    "subtitle": "O maior festival de jogos da América Latina — Conexão B2B e Lançamentos Globais.",
+    "image": "/assets/img/banners/gamescom-latam-2026-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Games & Cultura Pop"
+  },
+  {
+    "slug": "bett-brasil",
+    "title": "BETT BRASIL",
+    "subtitle": "A maior feira de EdTech da América Latina focada em ROI operacional e conformidade regulatória para líderes do setor.",
+    "image": "/assets/img/banners/bett-brasil-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Bett Brasil"
+  },
+  {
+    "slug": "feimec",
+    "title": "FEIMEC - Feira Internacional de Máquinas e Equipamentos",
+    "subtitle": "Valide tecnologias de I4.0, encontre fornecedores de bens de capital e acelere seu pipeline de vendas industrial.",
+    "image": "/assets/img/banners/feimec-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "rh-summit-2026",
+    "title": "RH Summit 2026",
+    "subtitle": "A principal conferência para líderes de RH e decisores que buscam alavancar o ROI do capital humano com tecnologia e gestão de ponta.",
+    "image": "/assets/img/banners/rh-summit-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "RH & Gestão"
+  },
+  {
+    "slug": "autopar-2026",
+    "title": "AUTOPAR 2026",
+    "subtitle": "A maior feira da América Latina para sourcing, inovação técnica e fechamento de negócios no pós-venda automotivo.",
+    "image": "/assets/img/banners/autopar-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  },
+  {
+    "slug": "abrint-global-congress",
+    "title": "Abrint Global Congress",
+    "subtitle": "O maior encontro B2B de ISPs e Telecomunicações da América Latina, focado em compliance regulatório e inovação (IA, 5G).",
+    "image": "/assets/img/banners/abrint-global-congress-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Telecom"
+  },
+  {
+    "slug": "motopar-autopar-2026",
+    "title": "MOTOPAR & AUTOPAR 2026",
+    "subtitle": "O ponto de encontro estratégico da cadeia automotiva e de motopeças, essencial para decisões de investimento e networking de alto nível B2B.",
+    "image": "/assets/img/banners/motopar-autopar-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  },
+  {
+    "slug": "fenagra-2026",
+    "title": "Fenagra 2026",
+    "subtitle": "O principal ponto de encontro B2B da agroindústria Feed & Food na América Latina, focado em alta tecnologia e conhecimento técnico.",
+    "image": "/assets/img/banners/fenagra-2026-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Agro & Máquinas"
+  },
+  {
+    "slug": "apas-show-2026",
+    "title": "40ª APAS SHOW",
+    "subtitle": "O Motor do Novo Varejo Global",
+    "image": "/assets/img/banners/apas-show-2026-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Motocicletas"
+  },
+  {
+    "slug": "hospitalar",
+    "title": "HOSPITALAR 2026",
+    "subtitle": "O principal evento de negócios e conteúdo para a gestão e inovação em saúde na América Latina.",
+    "image": "/assets/img/banners/hospitalar-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "flexo-labels-expo",
+    "title": "FLEXO & LABELS EXPO",
+    "subtitle": "O maior encontro da América Latina para convertedores, brand owners e fornecedores, focado em lançamentos de equipamentos, insumos e soluções de identificação digital para o futuro do mercado.",
+    "image": "/assets/img/banners/flexo-labels-expo-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "fispalfoodservice",
+    "title": "Fispal Food Service",
+    "subtitle": "O principal encontro B2B da comunidade Food Service e Sorvetes na América Latina, focado em tecnologia e gestão.",
+    "image": "/assets/img/banners/fispalfoodservice-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "fispal-sorvetes-2026",
+    "title": "Fispal Sorvetes 2026",
+    "subtitle": "O futuro da indústria de gelados na América do Sul",
+    "image": "/assets/img/banners/fispal-sorvetes-2026-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "yes-movel-show-minas-gerais-2026",
+    "title": "Yes Móvel Show Minas Gerais 2026",
+    "subtitle": "O maior hub B2B do Sudeste para a indústria de móveis, eletros, colchões e decoração.",
+    "image": "/assets/img/banners/yes-movel-show-minas-gerais-2026-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "sao-paulo-wine-trade-fair-spwtf",
+    "title": "São Paulo Wine Trade Fair (SPWTF)",
+    "subtitle": "Principal feira 100% B2B de vinhos e destilados da América Latina, focada em transação imediata e estoque para o 2º semestre.",
+    "image": "/assets/img/banners/sao-paulo-wine-trade-fair-spwtf-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Paulo Wine"
+  },
+  {
+    "slug": "beauty-show-2026",
+    "title": "Beauty Show 2026",
+    "subtitle": "Fórum estratégico de P&D e inovação para fornecedores B2B de ingredientes, embalagens e tecnologia, impulsionando o ciclo de vendas do segundo semestre.",
+    "image": "/assets/img/banners/beauty-show-2026-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "celebra-show",
+    "title": "Celebra Show",
+    "subtitle": "Maior feira B2B de celebrações, festas e decoração sazonal da América Latina, crucial para decisões de compra e suprimentos.",
+    "image": "/assets/img/banners/celebra-show-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "exposec",
+    "title": "EXPOSEC",
+    "subtitle": "A principal feira internacional de tecnologia em segurança, única do Brasil dedicada às inovações e parcerias estratégicas B2B.",
+    "image": "/assets/img/banners/exposec-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Exposec Exposec"
+  },
+  {
+    "slug": "fce-cosmetique-pharma",
+    "title": "FCE COSMÉTIQUE | FCE PHARMA",
+    "subtitle": "A principal feira para a cadeia de suprimentos B2B de cosméticos e produtos farmacêuticos da América Latina.",
+    "image": "/assets/img/banners/fce-cosmetique-pharma-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Farmácia"
+  },
+  {
+    "slug": "fce-pharma-cosmetique",
+    "title": "FCE PHARMA & FCE COSMÉTIQUE",
+    "subtitle": "A plataforma essencial para sourcing, tecnologia e conformidade regulatória na cadeia produtiva da América Latina.",
+    "image": "/assets/img/banners/fce-pharma-cosmetique-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Pharma Cosmétique"
+  },
+  {
+    "slug": "fithep-expoalimentaria-2026",
+    "title": "🇦🇷 FITHEP Expoalimentaria 2026",
+    "subtitle": "Feira Internacional de Tecnologia e Insumos para Food Service, Padaria, Confeitaria e Gelato",
+    "image": "/assets/img/banners/fithep-expoalimentaria-2026-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "cbtox-2026",
+    "title": "CBTOX 2026",
+    "subtitle": "O Congresso Brasileiro de Toxicologia é a plataforma para alinhar P&D, compliance regulatório e networking B2B estratégico em Life Sciences.",
+    "image": "/assets/img/banners/cbtox-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Cbtox Cbtox"
+  },
+  {
+    "slug": "bio-brazil-fair-naturaltech",
+    "title": "BIO BRAZIL FAIR | BIOFACH AMERICA LATINA + NATURALTECH",
+    "subtitle": "O maior encontro B2B de orgânicos e saudáveis da América Latina, reunindo <strong>marcas de peso</strong>, <strong>lançamentos</strong> e <strong>conteúdo</strong> para decisões estratégicas em ESG e supply chain.",
+    "image": "/assets/img/banners/bio-brazil-fair-naturaltech-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "fispal-tecnologia",
+    "title": "Fispal Tecnologia",
+    "subtitle": "A principal feira de tecnologia para alimentos e bebidas da América do Sul.",
+    "image": "/assets/img/banners/fispal-tecnologia-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "hyvolution-brazil",
+    "title": "Hyvolution Brazil",
+    "subtitle": "O principal ponto de convergência B2B para fechar acordos de H2V e acelerar projetos na escala de Gigawatts.",
+    "image": "/assets/img/banners/hyvolution-brazil-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Hyvolution Brazil"
+  },
+  {
+    "slug": "eletrolar-show-2026-airconfair",
+    "title": "Eletrolar Show / airconfair 2026",
+    "subtitle": "O Hub B2B de Tecnologia e Climatização da América Latina",
+    "image": "/assets/img/banners/eletrolar-show-2026-airconfair-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Eletrolar Show"
+  },
+  {
+    "slug": "eletrolar-show-all-connected-2026",
+    "title": "Eletrolar Show All Connected",
+    "subtitle": "Feira Internacional de Eletroeletrônicos, Eletrodomésticos, Tecnologia e Varejo",
+    "image": "/assets/img/banners/eletrolar-show-all-connected-2026-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Varejo & E-commerce"
+  },
+  {
+    "slug": "expo-ferretera-brasil",
+    "title": "Expo Ferretera Brasil",
+    "subtitle": "Plataforma B2B focada em negócios técnicos, Logística 4.0, IoT e estabilidade da cadeia de suprimentos para o setor ferreiro.",
+    "image": "/assets/img/banners/expo-ferretera-brasil-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "eletrolar-show-2026-eletromobilidade",
+    "title": "Future Mobility",
+    "subtitle": "(Eletrocar e Autopeças)",
+    "image": "/assets/img/banners/eletrolar-show-2026-eletromobilidade-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  },
+  {
+    "slug": "interior-lifestyle-eletrolar-show",
+    "title": "Interior Lifestyle South America & Eletrolar Show",
+    "subtitle": "A plataforma multissetorial que conecta design premium, tecnologia Smart Home e o varejo B2B da América Latina.",
+    "image": "/assets/img/banners/interior-lifestyle-eletrolar-show-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Varejo & E-commerce"
+  },
+  {
+    "slug": "expobor-2026",
+    "title": "EXPOBOR 2026",
+    "subtitle": "A maior feira de tecnologia, máquinas e artefatos de borracha da América Latina, focada em P&D, insumos e Indústria 4.0.",
+    "image": "/assets/img/banners/expobor-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Expobor Expobor"
+  },
+  {
+    "slug": "pneushow-2026",
+    "title": "PNEUSHOW 2026",
+    "subtitle": "O maior palco de negócios da América Latina, focado exclusivamente em inovações, máquinas e soluções para a reforma e ciclo de vida do pneu.",
+    "image": "/assets/img/banners/pneushow-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Caminhões & Frotas"
+  },
+  {
+    "slug": "abf-franchising-expo",
+    "title": "ABF Franchising Expo",
+    "subtitle": "A maior feira de franquias do mundo, essencial para investidores, executivos e grandes marcas do setor de expansão B2B.",
+    "image": "/assets/img/banners/abf-franchising-expo-hero.webp",
+    "category_macro": "Franquias & Varejo",
+    "category_micro": "Franquias"
+  },
+  {
+    "slug": "batev-construcao-habitacao-2026",
+    "title": "🇦🇷 BATEV - Construção & Habitação 2026",
+    "subtitle": "A Plataforma de Negócios Mais Importante para Arquitetura e Estruturas na América Latina",
+    "image": "/assets/img/banners/batev-construcao-habitacao-2026-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Construção Civil"
+  },
+  {
+    "slug": "formobile-2026",
+    "title": "ForMóbile 2026",
+    "subtitle": "O maior e mais completo evento B2B para o setor de máquinas, tecnologia e suprimentos da indústria moveleira.",
+    "image": "/assets/img/banners/formobile-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Formóbile Formobile"
+  },
+  {
+    "slug": "caminos-y-sabores-2026",
+    "title": "🇦🇷 Caminos y Sabores 2026",
+    "subtitle": "O Grande Mercado Argentino: Agroindústria Gourmet e Exportação de Valor Agregado",
+    "image": "/assets/img/banners/caminos-y-sabores-2026-hero.webp",
+    "category_macro": "Agro & Agronegócio",
+    "category_micro": "Agro & Máquinas"
+  },
+  {
+    "slug": "professional-fair-bh",
+    "title": "Professional Fair Belo Horizonte",
+    "subtitle": "A plataforma essencial para decisores da beleza profissional que buscam inovação, gestão de ROI e parcerias estratégicas no Sudeste.",
+    "image": "/assets/img/banners/professional-fair-bh-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "analoc-rental-show",
+    "title": "ANALOC RENTAL SHOW",
+    "subtitle": "Concentre-se em otimização de frotas e soluções digitais (BIM, Gestão) para escalar o ROI do seu negócio de locação de equipamentos.",
+    "image": "/assets/img/banners/analoc-rental-show-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "mega-artesanal",
+    "title": "MEGA ARTESANAL",
+    "subtitle": "A maior plataforma B2B para sourcing de materiais, máquinas e tendências da cadeia de Artesanato e Artes Manuais.",
+    "image": "/assets/img/banners/mega-artesanal-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Mega Artesanal"
+  },
+  {
+    "slug": "shot-fair-brasil",
+    "title": "SHOT FAIR BRASIL",
+    "subtitle": "O maior evento latino-americano, dedicado a conectar fornecedores B2B de Tiro Esportivo, Tático e Outdoor para compradores estratégicos.",
+    "image": "/assets/img/banners/shot-fair-brasil-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Shot Fair"
+  },
+  {
+    "slug": "fipan-2026",
+    "title": "FIPAN 2026",
+    "subtitle": "A principal feira B2B para o setor de panificação, confeitaria e food business na América Latina, focada em eficiência e automação.",
+    "image": "/assets/img/banners/fipan-2026-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "smart-city-expo-santiago-2026",
+    "title": "🇨🇱 Smart City Expo Santiago",
+    "subtitle": "Congresso Internacional e Exibição de Soluções Urbanas Inteligentes",
+    "image": "/assets/img/banners/smart-city-expo-santiago-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Smart City"
+  },
+  {
+    "slug": "escolar-office-brasil",
+    "title": "Escolar Office Brasil",
+    "subtitle": "O principal hub de negociação e relacionamento B2B da América Latina para o setor de papelaria, material escolar e escritório.",
+    "image": "/assets/img/banners/escolar-office-brasil-hero.webp",
+    "category_macro": "Educação & Editorial & Gráfica",
+    "category_micro": "Educação"
+  },
+  {
+    "slug": "fisa",
+    "title": "FiSA | Food Ingredients South America",
+    "subtitle": "O maior evento de P&D e Sourcing de Ingredientes e Aditivos da América Latina — 100% focado no seu roadmap de inovação.",
+    "image": "/assets/img/banners/fisa-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "siavs",
+    "title": "SIAVS – Salão Internacional de Proteína Animal",
+    "subtitle": "Maior plataforma B2B da América Latina para cadeias de aves, suínos e bovinos, focada em segurança alimentar e ROI.",
+    "image": "/assets/img/banners/siavs-hero.webp",
+    "category_macro": "Pets & Veterinária",
+    "category_micro": "Pet & Veterinária"
+  },
+  {
+    "slug": "yes-movel-show-para",
+    "title": "Yes Móvel Show Pará 2026",
+    "subtitle": "O Encontro de Negócios B2B do Setor Moveleiro da Região Norte",
+    "image": "/assets/img/banners/yes-movel-show-para-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Móvel Show"
+  },
+  {
+    "slug": "ifood-move",
+    "title": "iFood Move",
+    "subtitle": "O maior evento B2B de Food Service da América Latina, focado em tecnologia, gestão e o crescimento sustentável de restaurantes.",
+    "image": "/assets/img/banners/ifood-move-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "expo-hospital-brasil",
+    "title": "Expo-Hospital Brasil",
+    "subtitle": "O evento que concentra mais de 72% dos decisores e especificadores de compra do setor de saúde de Minas Gerais.",
+    "image": "/assets/img/banners/expo-hospital-brasil-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Expo Hospital"
+  },
+  {
+    "slug": "fenasucro-agrocana",
+    "title": "Fenasucro & Agrocana",
+    "subtitle": "A maior e mais importante feira global dedicada exclusivamente à cadeia de bioenergia e ao setor sucroenergético.",
+    "image": "/assets/img/banners/fenasucro-agrocana-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Agro & Máquinas"
+  },
+  {
+    "slug": "expo-logisti-k-2026",
+    "title": "🇦🇷 Expo Logisti-K",
+    "subtitle": "A Plataforma Essencial da Logística e Supply Chain na América Latina",
+    "image": "/assets/img/banners/expo-logisti-k-2026-hero.webp",
+    "category_macro": "Logística & Supply Chain",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "abcasafair-agosto",
+    "title": "ABCasa Fair",
+    "subtitle": "A maior feira B2B da América Latina para artigos de casa, decoração e presentes.",
+    "image": "/assets/img/banners/abcasafair-agosto-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Decoração & Móveis"
+  },
+  {
+    "slug": "pet-vet-expo",
+    "title": "PET VET Expo",
+    "subtitle": "A feira mais completa de medicina veterinária, essencial para validar investimentos em gestão, P&D e eficiência operacional B2B.",
+    "image": "/assets/img/banners/pet-vet-expo-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Pet & Veterinária"
+  },
+  {
+    "slug": "travel-next-minas",
+    "title": "Travel Next Minas",
+    "subtitle": "A plataforma estratégica B2B que conecta inovação, governança e alto padrão para otimizar sua política de viagens corporativas e eventos.",
+    "image": "/assets/img/banners/travel-next-minas-hero.webp",
+    "category_macro": "Turismo & Hotelaria & Aviação",
+    "category_micro": "Eventos & MICE"
+  },
+  {
+    "slug": "codecon-summit-26",
+    "title": "Codecon Summit 26",
+    "subtitle": "O maior festival de ideias e engenharia de software focado em ROI e soluções arquiteturais para líderes de tecnologia.",
+    "image": "/assets/img/banners/codecon-summit-26-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Codecon Summit"
+  },
+  {
+    "slug": "33-congresso-expo-fenabrave",
+    "title": "33º CONGRESSO & EXPO FENABRAVE",
+    "subtitle": "O maior evento do setor de distribuição de veículos automotores na América Latina e o segundo maior do mundo. \n",
+    "image": "/assets/img/banners/33-congresso-expo-fenabrave-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Motocicletas"
+  },
+  {
+    "slug": "set-expo-2026",
+    "title": "SET EXPO 2026",
+    "subtitle": "O principal evento de tecnologia, negócios e networking para a alta gestão do mercado de Mídia e Entretenimento na América Latina.",
+    "image": "/assets/img/banners/set-expo-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Expo Expo"
+  },
+  {
+    "slug": "conarh",
+    "title": "CONARH",
+    "subtitle": "O maior e mais influente Congresso de Gestão de Pessoas (RH) da América Latina — 100% focado em futuro e inovação.",
+    "image": "/assets/img/banners/conarh-hero.webp",
+    "category_macro": "RH & Gestão",
+    "category_micro": "RH & Gestão"
+  },
+  {
+    "slug": "exposibram-expo-congresso-brasileiro-mineracao",
+    "title": "EXPOSIBRAM — Expo & Congresso Brasileiro de Mineração",
+    "subtitle": "O maior hub de experiências da mineração na América Latina, reunindo líderes, reguladores e fornecedores para acelerar a Mineração 4.0 e a agenda ESG.",
+    "image": "/assets/img/banners/exposibram-expo-congresso-brasileiro-mineracao-hero.webp",
+    "category_macro": "Mineração & Geologia",
+    "category_micro": "Mineração"
+  },
+  {
+    "slug": "concrete-show-south-america",
+    "title": "CONCRETE SHOW SOUTH AMERICA",
+    "subtitle": "O maior e mais estratégico encontro da cadeia construtiva do concreto na América Latina, focado em eficiência e sustentabilidade.",
+    "image": "/assets/img/banners/concrete-show-south-america-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Concrete Show"
+  },
+  {
+    "slug": "thesmartere",
+    "title": "The smarter E South America",
+    "subtitle": "A maior aliança de feiras da América Latina para a nova realidade energética e mobilidade elétrica.",
+    "image": "/assets/img/banners/thesmartere-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Smarter South"
+  },
+  {
+    "slug": "isc-brasil-2026",
+    "title": "ISC Brasil 2026",
+    "subtitle": "O principal hub de negócios e conteúdo para líderes em segurança integrada e gestão de riscos.",
+    "image": "/assets/img/banners/isc-brasil-2026-hero.webp",
+    "category_macro": "Segurança & Defesa",
+    "category_micro": "Segurança & Defesa"
+  },
+  {
+    "slug": "comex-tech-forum",
+    "title": "Comex Tech Forum",
+    "subtitle": "O ponto de encontro para líderes B2B de Comércio Exterior, Logística e Tecnologia.",
+    "image": "/assets/img/banners/comex-tech-forum-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "expomatcon-2026",
+    "title": "ExpoMatcon 2026",
+    "subtitle": "A plataforma B2B essencial para decisores do varejo de materiais de construção que buscam previsibilidade e crescimento de margem.",
+    "image": "/assets/img/banners/expomatcon-2026-hero.webp",
+    "category_macro": "Varejo & E‑commerce",
+    "category_micro": "Varejo & E-commerce"
+  },
+  {
+    "slug": "blip-id",
+    "title": "Blip id",
+    "subtitle": "O maior evento global de IA Conversacional, crucial para líderes de negócio que buscam crescimento e eficiência em 2026.",
+    "image": "/assets/img/banners/blip-id-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Blip Blip"
+  },
+  {
+    "slug": "bienal-internacional-do-livro-sp-2026",
+    "title": "28ª BIENAL INTERNACIONAL DO LIVRO",
+    "subtitle": "O principal palco de negociação de direitos e inovação EdTech da América Latina.",
+    "image": "/assets/img/banners/bienal-internacional-do-livro-sp-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Educação"
+  },
+  {
+    "slug": "beauty-fair-2026",
+    "title": "Beauty Fair 2026",
+    "subtitle": "O maior evento B2B da beleza nas Américas.",
+    "image": "/assets/img/banners/beauty-fair-2026-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "expopostos-conveniencia",
+    "title": "ExpoPostos & Conveniência",
+    "subtitle": "A maior feira B2B da América Latina para revenda de combustíveis, food service e tecnologia de conveniência.",
+    "image": "/assets/img/banners/expopostos-conveniencia-hero.webp",
+    "category_macro": "Foodservice & Bebidas",
+    "category_micro": "Foodservice"
+  },
+  {
+    "slug": "expolux",
+    "title": "EXPOLUX",
+    "subtitle": "A principal vitrine de inovações em iluminação e automação da América Latina, focada em negócios B2B e tendências de eficiência energética.",
+    "image": "/assets/img/banners/expolux-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Expolux Expolux"
+  },
+  {
+    "slug": "equipotel",
+    "title": "Equipotel",
+    "subtitle": "O principal encontro de hospitalidade da América Latina para planejar seu CapEx e OpEx 2027.",
+    "image": "/assets/img/banners/equipotel-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Equipotel Equipotel"
+  },
+  {
+    "slug": "intralog-expo-south-america",
+    "title": "INTRA-LOG EXPO South America",
+    "subtitle": "O evento mais importante da América Latina 100% focado em intralogística, automação e Supply Chain B2B de alto valor.",
+    "image": "/assets/img/banners/intralog-expo-south-america-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "lignum-latin-america",
+    "title": "Lignum Latin America",
+    "subtitle": "O hub estratégico para investimentos em tecnologia 4.0 e sustentabilidade na cadeia produtiva da madeira no Brasil.",
+    "image": "/assets/img/banners/lignum-latin-america-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Lignum Latin"
+  },
+  {
+    "slug": "yes-movel-show-campinas-2026",
+    "title": "Yes Móvel Show Campinas 2026",
+    "subtitle": "O Encontro B2B do Varejo Moveleiro no Interior Paulista",
+    "image": "/assets/img/banners/yes-movel-show-campinas-2026-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Varejo & E-commerce"
+  },
+  {
+    "slug": "tecno-fidta-2026",
+    "title": "🇦🇷 Tecno Fidta 2026",
+    "subtitle": "Tecnologia, Aditivos e Ingredientes para a Indústria Alimentícia do Mercosul",
+    "image": "/assets/img/banners/tecno-fidta-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Tecno Fidta"
+  },
+  {
+    "slug": "china-homelife-machinex",
+    "title": "CHINA HOMELIFE MACHINEX",
+    "subtitle": "A maior e mais completa plataforma B2B para sourcing e importação direta de fabricantes chineses, com foco em bens de consumo e produção.",
+    "image": "/assets/img/banners/china-homelife-machinex-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "China Homelife"
+  },
+  {
+    "slug": "his-healthcare-innovation-show",
+    "title": "HIS – HEALTHCARE INNOVATION SHOW",
+    "subtitle": "A principal plataforma B2B que conecta provedores de HealthTech a decisores hospitalares e líderes de TI na América Latina.",
+    "image": "/assets/img/banners/his-healthcare-innovation-show-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "paving-expo-2026",
+    "title": "Paving Expo 2026",
+    "subtitle": "A plataforma de negócios mais completa para infraestrutura, focada em concessões, tecnologia BIM e TCO.",
+    "image": "/assets/img/banners/paving-expo-2026-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Paving Expo"
+  },
+  {
+    "slug": "gotex-show",
+    "title": "GOTEX Show",
+    "subtitle": "Encontro Internacional Têxtil, de Moda e Negócios B2B para o desenvolvimento de uma cadeia de suprimentos sustentável.",
+    "image": "/assets/img/banners/gotex-show-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Moda & Calçados"
+  },
+  {
+    "slug": "in-cosmetics-latin-america",
+    "title": "in-cosmetics Latin America",
+    "subtitle": "Acelere o pipeline de P&D e valide seu roadmap de inovação no principal hub B2B de ingredientes cosméticos da América Latina.",
+    "image": "/assets/img/banners/in-cosmetics-latin-america-hero.webp",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "fit-feria-internacional-de-turismo-2026",
+    "title": "🇦🇷 FIT – Feria Internacional de Turismo de América Latina",
+    "subtitle": "O epicentro dos negócios turísticos na América Latina.",
+    "image": "/assets/img/banners/fit-feria-internacional-de-turismo-2026-hero.webp",
+    "category_macro": "Turismo & Hotelaria & Aviação",
+    "category_micro": "Turismo & Hotelaria"
+  },
+  {
+    "slug": "cidade-csc-2026",
+    "title": "Cidade CSC 2026",
+    "subtitle": "O maior evento de Cidades Inteligentes, transformação digital de governos e mobilidade urbana sustentável na América Latina.",
+    "image": "/assets/img/banners/cidade-csc-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Cidade Cidade"
+  },
+  {
+    "slug": "minasparts",
+    "title": "MINASPARTS 2026",
+    "subtitle": "A principal feira de autopeças e reparação automotiva, conectando a indústria ao 2º maior mercado do Brasil.",
+    "image": "/assets/img/banners/minasparts-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  },
+  {
+    "slug": "abx26-automotive-business-experience-2026",
+    "title": "ABX26 - Automotive Business Experience 2026",
+    "subtitle": "O palco da transformação: Veículos Definidos por Software (SDV), IA como Propulsor Central e Receita Recorrente.",
+    "image": "/assets/img/banners/abx26-automotive-business-experience-2026-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Automotive Business"
+  },
+  {
+    "slug": "febrava-rio-2026",
+    "title": "FEBRAVA RIO 2026",
+    "subtitle": "A principal plataforma B2B para consolidar o roadmap de infraestrutura em AVACR, eficiência energética e conformidade regulatória GWP no Sudeste.",
+    "image": "/assets/img/banners/febrava-rio-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Febrava Febrava"
+  },
+  {
+    "slug": "fisp-2026",
+    "title": "FISP 2026 – Feira Internacional de Segurança e Proteção",
+    "subtitle": "O maior encontro B2B de SST da América Latina, focado em compliance regulatório (NR-1) e ROI.",
+    "image": "/assets/img/banners/fisp-2026-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Fisp Feira"
+  },
+  {
+    "slug": "futurecom",
+    "title": "FUTURECOM",
+    "subtitle": "O principal hub de Cibersegurança, 6G e IA Aplicada na América Latina, focado em acelerar o ROI e a Transformação Digital.",
+    "image": "/assets/img/banners/futurecom-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Futurecom Futurecom"
+  },
+  {
+    "slug": "fire-show",
+    "title": "Fire Show",
+    "subtitle": "A maior plataforma B2B da América Latina para decisões em Segurança Industrial, Prevenção e Combate a Incêndio.",
+    "image": "/assets/img/banners/fire-show-hero.webp",
+    "category_macro": "Entretenimento & Cultura",
+    "category_micro": "Segurança & Defesa"
+  },
+  {
+    "slug": "edifica-santiago-chile",
+    "title": "🇨🇱 Edifica 2026",
+    "subtitle": "Feria Internacional de la Construcción",
+    "image": "/assets/img/banners/edifica-santiago-chile-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Edifica Edifica"
+  },
+  {
+    "slug": "fenatran",
+    "title": "Fenatran",
+    "subtitle": "A principal plataforma de negócios B2B para o Transporte Rodoviário de Carga e Logística na América Latina, gerando R$ 15 bilhões em negócios.",
+    "image": "/assets/img/banners/fenatran-hero.webp",
+    "category_macro": "Logística & Supply Chain",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "movimat",
+    "title": "MOVIMAT",
+    "subtitle": "A plataforma fundamental de Intralogística e Supply Chain na América Latina, convergindo tecnologia, movimentação e armazenagem.",
+    "image": "/assets/img/banners/movimat-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Logística"
+  },
+  {
+    "slug": "plastico-brasil",
+    "title": "PLÁSTICO BRASIL 2027",
+    "subtitle": "O palco central para decisões de investimento em Sustentabilidade, Tecnologia e Indústria 4.0.",
+    "image": "/assets/img/banners/plastico-brasil-hero.webp",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Plástico Brasil"
+  },
+  {
+    "slug": "laad-defence-security-2027",
+    "title": "LAAD Defence & Security 2027",
+    "subtitle": "Maior Feira de Defesa e Segurança da América Latina",
+    "image": "/assets/img/banners/laad-defence-security-2027-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Segurança & Defesa"
+  },
+  {
+    "slug": "automec",
+    "title": "AUTOMEC",
+    "subtitle": "O principal evento de negócios B2B na América Latina e o segundo maior do mundo no segmento.",
+    "image": "/assets/img/banners/automec-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  },
+  {
+    "slug": "tattoo-week-rio",
+    "title": "Tattoo Week Rio",
+    "subtitle": "A plataforma B2B essencial para decisores focados em compliance, equipamentos premium e expansão do mercado nacional de tatuagem no Sudeste.",
+    "image": "/assets/img/banners/tattoo-week-rio-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Hospitalar"
+  },
+  {
+    "slug": "expomafe",
+    "title": "EXPOMAFE 2027",
+    "subtitle": "A maior plataforma de inovação e sourcing estratégico para a Indústria 4.0 na América Latina.",
+    "image": "/assets/img/banners/expomafe-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Expomafe Expomafe"
+  },
+  {
+    "slug": "induspar-2027",
+    "title": "INDUSPAR 2027",
+    "subtitle": "Plataforma de inovação em componentes e automação industrial, focada em decisões e parcerias B2B.",
+    "image": "/assets/img/banners/induspar-2027-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Beleza & Cosméticos"
+  },
+  {
+    "slug": "febrava",
+    "title": "FEBRAVA",
+    "subtitle": "O principal evento da América Latina para sourcing estratégico e inovação em eficiência AVAC-R.",
+    "image": "/assets/img/banners/febrava-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Febrava Febrava"
+  },
+  {
+    "slug": "fiee-2027",
+    "title": "FIEE",
+    "subtitle": "A plataforma essencial para Automação Industrial, IoT e Eficiência Energética na América Latina — <strong>100% focada em soluções B2B</strong>.",
+    "image": "/assets/img/banners/fiee-2027-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Fiee Fiee"
+  },
+  {
+    "slug": "semana-industrial-mineira-2027",
+    "title": "Semana Industrial Mineira 2027",
+    "subtitle": "Focado em ROI, mitigação de riscos operacionais e aceleração de pipeline para o setor B2B industrial de Minas Gerais.",
+    "image": "/assets/img/banners/semana-industrial-mineira-2027-hero.webp",
+    "category_macro": "Segurança & Defesa",
+    "category_micro": "Segurança & Defesa"
+  },
+  {
+    "slug": "envase-alimentek-2027",
+    "title": "🇦🇷 Envase Alimentek",
+    "subtitle": "Exposição Internacional de Packaging e Processos",
+    "image": "/assets/img/banners/envase-alimentek-2027-hero.webp",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Envase Alimentek"
+  },
+  {
+    "slug": "abrafati-show-2027",
+    "title": "ABRAFATI SHOW",
+    "subtitle": "O motor de negócios para a expansão sustentável e tecnológica na América Latina.",
+    "image": "/assets/img/banners/abrafati-show-2027-hero.webp",
+    "category_macro": "Construção & Arquitetura",
+    "category_micro": "Motocicletas"
+  },
+  {
+    "slug": "analitica-latin-america",
+    "title": "ANALITICA LATIN AMERICA",
+    "subtitle": "O principal fórum B2B de instrumentação analítica, P&D e tecnologia laboratorial da América Latina.",
+    "image": "/assets/img/banners/analitica-latin-america-hero.webp",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Laboratório"
+  },
+  {
+    "slug": "rioparts2027",
+    "title": "Rio Parts 2027",
+    "subtitle": "O principal encontro de negócios B2B focado em autopeças e reparação automotiva do Rio de Janeiro.",
+    "image": "/assets/img/banners/rioparts2027-hero.webp",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Autopeças"
+  }
+]
