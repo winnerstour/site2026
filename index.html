@@ -13,11 +13,11 @@
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
-  --brand:#f97316;
-  --brand-shadow:#C2410C;
-  --wa:#25D366;
-  --wa-hover:#1AC656;
-  --wa-ring:#128C7E;
+  --brand:#f97316; 
+  --brand-shadow:#C2410C; 
+  --wa:#25D366; 
+  --wa-hover:#1AC656; 
+  --wa-ring:#128C7E; 
   --text-charcoal:#111827; 
   --muted:#6b7280;
   --bg:#fff;
@@ -36,7 +36,6 @@ body{
   line-height:1.5;
   color:var(--text-charcoal);
   background:var(--bg);
-  /* 🎯 NOVO: REMOVE A BARRA DE ROLAGEM HORIZONTAL DO BODY */
   overflow-x: hidden;
 }
 img{max-width:100%;display:block}
@@ -47,14 +46,18 @@ a{text-decoration:none;color:inherit}
 .topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
 .menu-area{display:flex;align-items:center}
 .menu-button{display:inline-flex;align-items:center;gap:10px;cursor:pointer;color:var(--text-charcoal);font-weight:900}
+
+/* 🎯 CORREÇÃO DO TÍTULO: REMOVENDO O CONTORNO LARANJA E DEIXANDO PRETO PURO */
 .menu-label{
   color:var(--text-charcoal);
   font-weight:900;
   letter-spacing:.06em;
   text-transform:uppercase;
-  -webkit-text-stroke:1px var(--brand-shadow);
-  text-stroke:1px var(--brand-shadow);
+  /* CORREÇÃO: Remove o contorno e sombra forte */
+  -webkit-text-stroke:0; 
+  text-stroke:0; 
 }
+
 .burger{width:24px;height:18px;position:relative}
 .burger div,.burger::before,.burger::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--text-charcoal);border-radius:2px}
 .burger div{top:50%;transform:translateY(-50%)}.burger::before{top:0}.burger::after{bottom:0}
@@ -76,6 +79,7 @@ a{text-decoration:none;color:inherit}
 .btn.btn-whatsapp:active {
   transform: translateY(1px);
 }
+.btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
 .btn.btn-whatsapp svg{width:18px;height:18px;color:#fff;fill:currentColor}
 
 /* ESTILOS DE GRID E CARD (AJUSTADOS) */
@@ -89,37 +93,33 @@ h1,h2{
 .cat-section{
   margin:32px 0 16px; 
   padding: 0 16px;
-  /* 🎯 NOVO: Adiciona padding-top para evitar o corte do hover/translate */
   padding-top: 10px; 
 }
 
 .cat-title{font-weight:900;margin:0 0 10px; padding: 0 16px}
 
-/* 🎯 CORREÇÃO DA BARRA DE ROLAGEM E PADDING */
+/* CORREÇÃO DO CARROSSEL: REMOVE A BARRA DE ROLAGEM HORIZONTAL */
 .cl-track{
   display:flex;
   gap:18px;
-  overflow-x:auto; /* Mantém a rolagem no carrossel */
-  overflow-y:hidden; /* Esconde a rolagem vertical que pode aparecer */
+  overflow-x:auto; 
+  overflow-y:hidden; 
   padding:0 16px;
   scroll-snap-type:x mandatory;
   scroll-padding-inline:16px;
-  /* 🎯 NOVO: Oculta a barra de rolagem horizontal padrão no WebKit (Chrome/Safari) */
-  -webkit-overflow-scrolling: touch;
 }
 .cl-track::-webkit-scrollbar {
   display: none;
 }
 .cl-track {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* DEFINIÇÃO DA LARGURA MÁXIMA DOS CARDS */
+/* DEFINIÇÃO DA LARGURA E ALTURA MÍNIMA DOS CARDS */
 .cl-slide{flex:0 0 auto;scroll-snap-align:start}
 .cl-slide .card{
   width: 300px;
-  /* 🎯 NOVO: REMOVE ALTURA FIXA/MÍNIMA para que o card se ajuste ao conteúdo */
   min-height: auto; 
   max-height: none;
   background:var(--card);
@@ -143,28 +143,34 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
-  height:170px;
+  /* 🎯 AJUSTE DA ALTURA PARA PROPORÇÃO 3:1 ou 4:1 (300px/80px) */
+  height:80px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
   background:#f4f4f5;
   flex-shrink: 0; 
 }
-.card .thumb img {width:100%; height:100%; object-fit:cover;}
+.card .thumb img {
+    width:100%; 
+    height:100%; 
+    /* 🎯 CORREÇÃO CRÍTICA: Não recorta (cover), mas exibe a imagem inteira (contain) */
+    object-fit: contain; 
+    /* Adiciona padding para centralizar a imagem dentro do espaço de 80px */
+    padding: 5px 0; 
+}
 
 .card .content{
   padding:14px; 
   flex-grow: 1; 
 }
 
-/* 🎯 TÍTULO DO CARD: CAIXA ALTA, 1 LINHA (com reticências) */
+/* TÍTULO DO CARD: CAIXA ALTA, 1 LINHA (com reticências) */
 .card .title{
   font-weight:900;
   font-size: 1rem; 
   margin:0 0 4px; 
   line-height: 1.3;
   text-transform: uppercase; 
-  
-  /* IMPORTANTE: Força 1 linha e reticências */
   max-height: 1.3em; 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -173,14 +179,12 @@ h1,h2{
   -webkit-box-orient: vertical;
 }
 
-/* 🎯 SUBTÍTULO DO CARD: Sem limite de linhas (se ajusta ao conteúdo) */
+/* SUBTÍTULO DO CARD: Sem limite de linhas (para que o card se ajuste ao texto) */
 .card .subtitle {
-  /* REMOVEMOS A PROPRIEDADE -webkit-line-clamp AQUI */
   color: var(--muted);
   font-size: 14px; 
   font-weight: 400; 
   line-height: 1.3;
-  /* Garante que o texto corra livremente, determinando a altura do card */
   overflow: visible;
   text-overflow: clip; 
   display: block; 
