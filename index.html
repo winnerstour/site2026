@@ -84,7 +84,7 @@ a{text-decoration:none;color:inherit}
 .wrap{
     max-width:var(--wrap);
     margin:16px auto; 
-    padding:0 16px;
+    padding:0 16px; /* Padding de 16px para Eventos e Feiras */
 }
 h1,h2{
   font-weight:900;
@@ -92,13 +92,14 @@ h1,h2{
   margin-bottom: .25rem; 
   line-height: 1.1;
 }
+/* 🎯 NOVO: Remove o padding da seção e aplica padding-top */
 .cat-section{
   margin:16px 0 8px; 
-  padding: 0 16px;
+  padding: 0;
   padding-top: 4px; 
 }
 
-/* TÍTULO DA CATEGORIA (Para replicar o título do card) */
+/* 🎯 TÍTULO DA CATEGORIA: Aplica o padding de alinhamento */
 .cat-title{
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
@@ -106,30 +107,27 @@ h1,h2{
   text-transform: uppercase;
   font-size: 1rem;
   margin:0 0 10px; 
+  /* CORREÇÃO: Aplica o padding de 16px aqui para alinhar com o wrap */
   padding: 0 16px; 
 }
 
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
     position: relative;
-    padding: 0 40px; 
+    /* NOVO: Usa a largura total do wrap para posicionar as setas */
+    margin: 0 auto; 
 }
-@media (max-width: 1024px) {
-    .carousel-wrapper-container {
-        padding: 0;
-    }
-}
-
 /* CORREÇÃO CRÍTICA DO CARROSSEL: Estrutura horizontal e remoção de barra */
 .cl-track{
   display:flex;
   gap:18px;
   overflow-x:auto; 
   overflow-y:hidden; 
-  /* AUMENTA O ESPAÇAMENTO INFERIOR para evitar corte nos cards mais longos */
-  padding:0 16px 20px; 
+  /* CORREÇÃO: Remove o padding lateral do cl-track. O alinhamento será feito pelo scroll-padding-inline */
+  padding: 0 0 20px; 
   scroll-snap-type:x mandatory;
-  scroll-padding-inline:16px;
+  /* CORREÇÃO: Aplica o padding de alinhamento no scroll para o primeiro/último card */
+  scroll-padding-inline: 16px;
   -webkit-overflow-scrolling: touch;
 }
 .cl-track::-webkit-scrollbar {
@@ -179,7 +177,6 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
-  /* Altura maior para acomodar a proporção horizontal 3:1/4:1 */
   height: 100px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
@@ -193,7 +190,7 @@ h1,h2{
 .card .thumb img {
     width:100%; 
     height:auto; 
-    object-fit: contain; /* Não corta a imagem */
+    object-fit: contain; 
     padding: 0; 
     max-height: 100%; 
 }
@@ -203,7 +200,7 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* TÍTULO DO CARD: CAIXA ALTA, 1 LINHA */
+/* TÍTULO DO CARD: 1 LINHA */
 .card .title{
   font-weight:900;
   font-size: 1rem; 
@@ -236,14 +233,13 @@ h1,h2{
 
 /* ESTILOS DO CARD DE INTRODUÇÃO/TUTORIAL */
 .card.context-card {
-    /* Remove todos os efeitos visuais e interativos */
+    align-items: center; 
+    justify-content: center;
     box-shadow: none !important;
     background: transparent !important;
     border: none !important;
     padding: 0;
     cursor: default;
-    display: flex;
-    align-items: center; 
 }
 .card.context-card:hover {
     transform: none !important; 
@@ -253,14 +249,16 @@ h1,h2{
 }
 
 .context-content {
-    padding: 0 16px 0 0; 
+    padding: 0 16px; 
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    align-items: center;
 }
 
-/* 🎯 CORREÇÃO DA COR E TAMANHO DO TEXTO DE CONTEXTO */
+/* CORREÇÃO DA COR E TAMANHO DO TEXTO DE CONTEXTO */
 .context-content p {
     font-size: 14px !important; 
     color: var(--muted) !important; 
@@ -269,38 +267,40 @@ h1,h2{
     margin-bottom: 20px;
 }
 
-/* ESTILOS DO BOTÃO VER MAIS */
+/* ESTILOS DO BOTÃO VER MAIS (Seta Laranja/Preta) */
 .btn-ver-mais {
     display: inline-flex;
     align-items: center;
     gap: 4px; 
-    padding: 4px 8px; 
+    padding: 8px 14px; 
     border-radius: 999px; 
-    background: transparent;
-    border: 1px solid var(--brand); /* Borda Laranja */
-    color: var(--brand); /* Texto Laranja */
+    background: var(--brand); /* Fundo Laranja para destaque */
+    border: 1px solid var(--brand-shadow);
+    color: #fff; /* Texto Branco */
     font-weight: 700;
-    font-size: 12px; 
+    font-size: 14px; 
     transition: all 0.2s ease;
     text-transform: uppercase;
+    width: auto; 
 }
 .btn-ver-mais:hover {
-    background: var(--brand); 
+    background: var(--brand-shadow); 
     color: #fff; 
-    border-color: var(--brand);
+    border-color: var(--brand-shadow);
 }
 .btn-ver-mais svg {
-    width: 14px; 
-    height: 14px;
-    fill: currentColor; 
+    width: 16px; 
+    height: 16px;
+    fill: #111827; /* Seta Preta */
 }
 
 
-/* ESTILOS DAS SETAS DE NAVEGAÇÃO */
+/* ESTILOS DAS SETAS DE NAVEGAÇÃO DO CARROSSEL */
 .carousel-nav {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); 
+    /* Posiciona verticalmente no centro (ajustado para a linha da thumb) */
+    transform: translateY(-100%); 
     width: 40px; 
     height: 40px;
     border-radius: 50%;
@@ -319,15 +319,20 @@ h1,h2{
     height: 24px;
     fill: var(--text-charcoal); 
 }
+/* 🎯 POSICIONAMENTO PARA FORA DA ÁREA DE CONTEÚDO */
 .carousel-nav.prev {
-    left: 0px; 
+    left: -40px; /* Move a seta para fora da área do wrap (16px) */
 }
 .carousel-nav.next {
-    right: 0px; 
+    right: -40px; /* Move a seta para fora da área do wrap (16px) */
 }
 @media (max-width: 1024px) {
     .carousel-nav {
+        /* Oculta em mobile/tablet e remove o padding horizontal do wrapper */
         display: none !important; 
+    }
+    .carousel-wrapper-container {
+        padding: 0;
     }
 }
 .favicon {
