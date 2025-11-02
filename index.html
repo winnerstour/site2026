@@ -277,6 +277,42 @@ h1,h2{
         display: none !important; 
     }
 }
+
+/* AJUSTES PARA O CARD DE INTRODUÇÃO/TUTORIAL */
+.card.context-card {
+    /* Remove todos os efeitos visuais e interativos */
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    cursor: default;
+    /* Garante que o conteúdo se alinhe no meio */
+    display: flex;
+    align-items: center; 
+}
+.card.context-card:hover {
+    transform: none !important; /* Remove o hover de movimento */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.context-content {
+    padding: 0 16px 0 0; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* Altera o texto do Card de Contexto para a classe de descrição */
+.context-content p.subtitle {
+    font-size: 1rem !important;
+    color: var(--text-charcoal) !important;
+    font-weight: 400 !important;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+    
 </style>
 </head>
 <body>
