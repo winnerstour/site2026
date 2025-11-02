@@ -1,14 +1,15 @@
-// evento-page-loader.js (Versão Final e Corrigida)
+// evento-page-loader.js (Versão Final: Correção Universal de Caminho)
 
 (function () {
-  // O caminho onde você colocou os JSONs individuais (os 158 arquivos "pesados")
   const DATA_BASE_PATH = './data/events/'; 
+
+  // NOVO: Detecta o caminho base automaticamente (ex: /site2026 ou /)
+  const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
   
-  // Elementos do DOM a preencher
   const pageTitle = document.getElementById('pageTitle');
   const eventTitle = document.getElementById('eventTitle');
   const eventHero = document.getElementById('eventHero');
@@ -45,6 +46,14 @@
     `;
   }
 
+  // NOVO: Função que corrige o caminho absoluto
+  function fixPath(path) {
+      if (path.startsWith('/assets')) {
+          return BASE_PATH + path;
+      }
+      return path;
+  }
+
   async function loadEventData() {
     const slug = getSlug();
     if (!slug) {
@@ -52,7 +61,6 @@
     }
     
     try {
-      // Busca o arquivo "pesado" (completo) na pasta /data/events/
       const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
       const res = await fetch(jsonPath);
 
@@ -62,36 +70,30 @@
       
       const ev = await res.json();
       
-      // 1. Preencher SEO e Título
+      // ... (Preenchimento de Título, Meta, etc.)
       const finalTitle = ev.title || 'Evento sem Título';
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
-      
-      // 2. Preencher Conteúdo Principal
       eventTitle.textContent = finalTitle;
       
-      // Tenta hero_image_path (do JSON individual) ou fallback
-      const heroPath = ev.hero_image_path || ev.banner_path || ev.image || 'placeholder.webp';
+      // APLICAÇÃO DA CORREÇÃO: Corrige o path antes de atribuir ao src
+      const rawHeroPath = ev.hero_image_path || ev.banner_path || ev.image || 'placeholder.webp';
+      const heroPath = fixPath(rawHeroPath);
+      
       eventHero.src = heroPath;
       eventHero.alt = `Imagem principal do evento ${finalTitle}`;
       
-      // Metadados (Cidade, Data, Categoria)
-      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro]
-          .filter(Boolean)
-          .join(' | ');
+      // ... (Resto do código para Meta, Descrição, CTA e Motivos)
+      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
       eventMeta.textContent = metaHtml;
       
-      // Descrição inicial
       eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
-      // 3. CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20evento%20" + encodeURIComponent(finalTitle);
       const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
-      
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // 4. Motivos para Visitar
-      // Extrai motivos no formato 'motivo_titulo_N' (do seu JSON individual)
+      // ... (Lógica de Motivos)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -103,9 +105,7 @@
             };
           });
           
-      const finalMotivos = extractedMotivos
-          .filter(m => m.motivo_titulo)
-          .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
+      const finalMotivos = extractedMotivos.filter(m => m.motivo_titulo).concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
         motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
