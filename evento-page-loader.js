@@ -1,4 +1,4 @@
-// evento-page-loader.js (Versão Final: Correção de Path, Prioridade BANNER e Carrossel de Motivos)
+// evento-page-loader.js (Final com Card Tutorial Discreto nos Motivos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -36,6 +36,27 @@
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
   }
 
+  // Card TUTORIAL/CONTEXTO (para a página de evento)
+  function buildContextCardMotivos(categoryId, eventTitle) {
+      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa nesta categoria.`;
+
+      return `
+          <div class="cl-slide context-slide">
+              <div class="card motivo-item context-card">
+                  <div class="context-content">
+                      <p class="motivo-text-body" style="font-size: 1rem; color: var(--text-charcoal); margin-bottom: 20px;">
+                          ${description}
+                      </p>
+                      <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
+                          Ver Mais
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
   // Card de MOTIVO (agora dentro do cl-slide)
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
@@ -55,27 +76,6 @@
     `;
   }
 
-  // Card TUTORIAL/CONTEXTO (para a página de evento)
-  function buildContextCardMotivos(categoryId, eventTitle) {
-      const title = `Vantagens do Evento`;
-      const description = `Confira os principais motivos para sua missão corporativa no ${eventTitle}. Navegue para ver todos os diferenciais.`;
-
-      return `
-          <div class="cl-slide context-slide">
-              <div class="card motivo-item context-card">
-                  <div class="context-content">
-                      <h3>${title}</h3>
-                      <p>${description}</p>
-                      <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
-                          Ver Motivos
-                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                      </button>
-                  </div>
-              </div>
-          </div>
-      `;
-  }
-
   // Lógica de inicialização do carrossel (para a página de evento)
   function initMotivosCarousel(containerId, eventName) {
       const carousel = document.getElementById(containerId);
@@ -93,7 +93,6 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          // Se estiver no final, volta para o início (smoothly)
           if (currentScroll >= maxScroll - 10) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
@@ -156,7 +155,7 @@
       
       eventTitle.textContent = finalTitle;
       
-      // 🎯 CORREÇÃO: PRIORIDADE PARA BANNER_PATH (ou o campo 'image' que é o leve)
+      // CORREÇÃO: PRIORIDADE PARA BANNER_PATH
       const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
