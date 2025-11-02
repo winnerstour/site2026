@@ -19,12 +19,19 @@
   function buildCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
+    
+    // O slug é essencial para o link
+    const slug = ev.slug; 
+    
+    // Tenta usar a URL pronta ou constrói o link para o nosso novo arquivo 'evento.html'
+    const finalUrl = ev.url || (slug ? `evento.html?slug=${slug}` : '#');
+    
     // Prioriza a imagem HERO (path deve ser completo, como no seu JSON de exemplo)
     const imagePath = ev.hero_image_path || ev.banner_path || 'placeholder.webp'; 
 
     return `
       <div class="cl-slide">
-        <a href="${ev.url}" class="card">
+        <a href="${finalUrl}" class="card" aria-label="${title}">
           <div class="thumb">
             <img loading="lazy" src="${imagePath}" alt="${title}">
           </div>
@@ -43,7 +50,6 @@
       const res = await fetch(DATA_URL);
       if (!res.ok) throw new Error('Falha ao carregar events.json');
       
-      // Assumimos que o JSON é um Array de objetos de evento
       const allEvents = await res.json(); 
       
       if (!Array.isArray(allEvents) || allEvents.length === 0) {
@@ -67,7 +73,7 @@
         // 4. Montar o container do carrossel para a categoria
         const carouselSection = `
           <section class="cat-section">
-            <h2 class="cat-title">${category}</h2>
+            <h2 class="cat-title" style="padding: 0 16px;">${category}</h2>
             <div class="cl-track" id="carousel-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}" role="region" aria-label="Eventos na categoria ${category}">
               ${carouselSlides}
             </div>
@@ -78,6 +84,11 @@
       });
 
       // 5. Injetar tudo no DOM
+      // Remove o padding lateral duplicado do wrap, já que o cat-section e cl-track já aplicam.
+      if (document.querySelector('.wrap')) {
+         document.querySelector('.wrap').style.padding = '0';
+      }
+      
       container.innerHTML = finalHTML;
       
     } catch (error) {
