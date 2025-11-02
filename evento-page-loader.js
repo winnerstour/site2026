@@ -1,8 +1,7 @@
-// evento-page-loader.js (Versão Final: Correção de Path, Prioridade BANNER e Carrossel de Motivos)
+// evento-page-loader.js (Final com Card Tutorial Discreto nos Motivos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
-  // DETECÇÃO DE PATH UNIVERSAL
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
@@ -93,7 +92,7 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
+          if (currentScroll >= maxScroll - 10) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
@@ -190,10 +189,10 @@
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
-        // 🎯 PASSO 1: CRIA O CARD DE CONTEXTO
+        // PASSO 1: CRIA O CARD DE CONTEXTO
         const contextCard = buildContextCardMotivos('motivosCarousel', finalTitle);
 
-        // 🎯 PASSO 2: CRIA OS CARDS DE MOTIVO E CONCATENA
+        // PASSO 2: CRIA OS CARDS DE MOTIVO E CONCATENA
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
         motivosContainer.innerHTML = contextCard + motivoSlides;
@@ -203,7 +202,7 @@
         motivosContainer.classList.add('motivos-carousel-container');
         motivosContainer.id = 'motivosCarousel';
         
-        // 🎯 INICIA O CARROSSEL (Rolagem automática e setas)
+        // INICIA O CARROSSEL (Rolagem automática e setas)
         initMotivosCarousel('motivosCarousel', finalTitle);
         
       } else {
