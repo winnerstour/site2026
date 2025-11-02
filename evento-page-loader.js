@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Card Tutorial Discreto nos Motivos)
+// evento-page-loader.js (Versão Final: Correção de Path, Prioridade BANNER e Carrossel de Motivos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -44,7 +44,7 @@
           <div class="cl-slide context-slide">
               <div class="card motivo-item context-card">
                   <div class="context-content">
-                      <p class="motivo-text-body" style="font-size: 1rem; color: var(--text-charcoal); margin-bottom: 20px;">
+                      <p class="motivo-text-body" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
                           ${description}
                       </p>
                       <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
@@ -93,7 +93,7 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          if (currentScroll >= maxScroll - 10) {
+          if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
