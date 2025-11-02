@@ -98,30 +98,28 @@ h1,h2{
   padding-top: 4px; 
 }
 
-/* 🎯 TÍTULO DA CATEGORIA */
+/* TÍTULO DA CATEGORIA (Para replicar o título do card) */
 .cat-title{
   font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 900;
   color: var(--text-charcoal);
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1rem; /* 16px para harmonizar */
   margin:0 0 10px; 
   padding: 0 16px; 
 }
 
-/* 🎯 CONTAINER DO CARROSSEL + SETAS */
+/* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
     position: relative;
-    /* 🎯 NOVO: Garante espaço para a sombra e para as setas na lateral */
+    /* Ajusta para que as setas fiquem nas bordas */
     padding: 0 40px; 
 }
 @media (max-width: 1024px) {
-    /* Em telas menores, remove padding extra, pois as setas são ocultas */
     .carousel-wrapper-container {
         padding: 0;
     }
 }
-
 
 /* CORREÇÃO CRÍTICA DO CARROSSEL: Estrutura horizontal e remoção de barra */
 .cl-track{
@@ -129,7 +127,7 @@ h1,h2{
   gap:18px;
   overflow-x:auto; 
   overflow-y:hidden; 
-  /* 🎯 NOVO: AUMENTA O ESPAÇAMENTO INFERIOR para evitar corte nos cards mais longos */
+  /* AUMENTA O ESPAÇAMENTO INFERIOR para evitar corte nos cards mais longos */
   padding:0 16px 20px; 
   scroll-snap-type:x mandatory;
   scroll-padding-inline:16px;
@@ -160,6 +158,7 @@ h1,h2{
   border: 1px solid transparent; 
 }
 
+/* HOVER DO CARD: Efeito de "apertar" com mudança de cor de fundo */
 .card:hover{
     box-shadow:var(--shadow-hover);
     background: var(--card-hover-bg); 
@@ -181,6 +180,7 @@ h1,h2{
 
 /* ESTILOS DA MÍDIA E CONTEÚDO */
 .card .thumb{
+  /* Altura maior para acomodar a proporção horizontal 3:1/4:1 */
   height: 100px; 
   overflow:hidden;
   border-bottom:1px solid rgba(2,8,23,.06);
@@ -194,7 +194,7 @@ h1,h2{
 .card .thumb img {
     width:100%; 
     height:auto; 
-    object-fit: contain; 
+    object-fit: contain; /* Não corta a imagem */
     padding: 0; 
     max-height: 100%; 
 }
@@ -204,7 +204,7 @@ h1,h2{
   flex-grow: 1; 
 }
 
-/* TÍTULO DO CARD: 1 LINHA */
+/* TÍTULO DO CARD: CAIXA ALTA, 1 LINHA */
 .card .title{
   font-weight:900;
   font-size: 1rem; 
@@ -246,10 +246,10 @@ h1,h2{
 .carousel-nav {
     position: absolute;
     top: 50%;
-    /* Ajusta para centralizar no carrossel de 100px de altura */
+    /* Posiciona verticalmente no centro do carrossel (altura de ~100px da thumb + 100px de conteúdo) */
     transform: translateY(-100%); 
-    width: 36px;
-    height: 36px;
+    width: 40px; 
+    height: 40px;
     border-radius: 50%;
     background: var(--brand); 
     border: none;
@@ -262,8 +262,8 @@ h1,h2{
     background: var(--brand-shadow);
 }
 .carousel-nav svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     fill: var(--text-charcoal); 
 }
 .carousel-nav.prev {
