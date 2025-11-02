@@ -26,8 +26,8 @@
     // Tenta usar a URL pronta ou constrói o link para o nosso novo arquivo 'evento.html'
     const finalUrl = ev.url || (slug ? `evento.html?slug=${slug}` : '#');
     
-    // Prioriza a imagem HERO (path deve ser completo, como no seu JSON de exemplo)
-    const imagePath = ev.hero_image_path || ev.banner_path || 'placeholder.webp'; 
+    // Priorizo a imagem HERO (path deve ser completo, como no seu JSON de exemplo)
+const imagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
 
     return `
       <div class="cl-slide">
