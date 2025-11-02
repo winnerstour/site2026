@@ -1,4 +1,4 @@
-// evento-page-loader.js (Versão Final: Correção de Path e Favicon)
+// evento-page-loader.js (Versão Final: Correção de Path e Fonte Montserrat)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -19,6 +19,18 @@
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
+  
+  // 🎯 INCLUINDO MONTSERRAT NA PÁGINA DE EVENTO (Para garantir que funcione)
+  function injectMontserrat() {
+    if (document.querySelector('link[href*="Montserrat"]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap';
+    document.head.appendChild(link);
+    // Aplicar Montserrat no body/títulos da página de evento se necessário
+    document.body.style.fontFamily = "'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif";
+  }
+  injectMontserrat();
 
   // Função que corrige o caminho absoluto para GitHub/Netlify
   function fixPath(path) {
@@ -63,12 +75,11 @@
     
     try {
       // Busca o arquivo "pesado" (completo) na pasta /data/events/
-      // Assumindo que você tem 158 arquivos JSON individuais lá.
       const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
       const res = await fetch(jsonPath);
 
       if (!res.ok) {
-        // Tenta buscar no diretório raiz se o slug não funcionar (fallback para o arquivo consolidado, se for o caso)
+        // Tenta buscar no diretório raiz se o slug não funcionar
         const rootRes = await fetch(`./${slug}.json`);
         if (!rootRes.ok) {
              throw new Error(`Arquivo ${slug}.json não encontrado ou erro de rede.`);
@@ -115,7 +126,7 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // 4. Motivos para Visitar (Lógica mantida para extrair motivos)
+      // 4. Motivos para Visitar
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -134,7 +145,6 @@
       if (finalMotivos.length > 0) {
         motivosContainer.innerHTML = finalMotivos.map(renderMotivo).join('');
       } else {
-        // Esconde o título 'Motivos' se não houver conteúdo
         const motivosSectionTitle = document.querySelector('h2[style*="margin-top"]');
         if (motivosSectionTitle) motivosSectionTitle.hidden = true;
         motivosContainer.hidden = true;
