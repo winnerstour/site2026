@@ -47,7 +47,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* BARRA SUPERIOR (TOPBAR) */
+/* BARRA SUPERIOR (TOPBAR) - Idêntica ao Index */
 .topbar{position:sticky;top:0;z-index:1000;background:var(--brand)}
 .topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
 .menu-area{display:flex;align-items:center}
@@ -114,9 +114,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 /* DETALHES DO EVENTO */
-/* 🎯 CORREÇÃO CRÍTICA: Removendo o padding que já é dado pelo .wrap */
 .event-details {
-    padding: 0; 
+    padding: 0 16px;
 }
 .event-details p {
     margin-bottom: 24px;
@@ -144,29 +143,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     width: 100%;
     max-width: 400px;
 }
-
-/* 🎯 CORREÇÃO CRÍTICA: ESTILOS PARA O VÍDEO YOUTUBE LITE */
-#youtubeContainer {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 16px; /* Adiciona padding para alinhar o vídeo com o wrap */
-}
-lite-youtube {
-    background-color: #000;
-    position: relative;
-    display: block;
-    contain: content;
-    background-position: center center;
-    background-size: cover;
-    cursor: pointer;
-    max-width: 100%;
-    /* Altura base para a proporção 16:9 */
-    padding-bottom: 56.25%; 
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-}
-/* Estilos do Player Botão - Mantidos como Web Component */
-
 
 /* ESTILO BASE DO CARD DE EVENTO SIMILAR (COPIADO DO INDEX.HTML) */
 .card {
@@ -416,6 +392,70 @@ lite-youtube {
     .carousel-nav {
         display: none !important; 
     }
+}
+
+/* ESTILOS PARA VÍDEO YOUTUBE LITE */
+#youtubeContainer {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px; /* Adiciona padding para alinhar o vídeo com o wrap */
+}
+lite-youtube {
+    background-color: #000;
+    position: relative;
+    display: block;
+    contain: content;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+    max-width: 100%;
+    /* Altura base para a proporção 16:9 */
+    padding-bottom: 56.25%; 
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+}
+
+lite-youtube::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=);
+    background-position: 0 0;
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease-out;
+}
+
+lite-youtube:hover::before {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.lty-playbtn {
+    width: 68px;
+    height: 48px;
+    background-color: #212121;
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lty-playbtn::before {
+    content: "";
+    border-style: solid;
+    border-width: 11px 0 11px 19px;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    top: 13px;
+    left: 24px;
 }
     </style>
 </head>
