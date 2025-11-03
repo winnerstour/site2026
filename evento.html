@@ -144,9 +144,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 
 /* NOVO: ESTILOS DO CARROSSEL DE MOTIVOS */
 .motivos-section {
-    /* 🎯 CORREÇÃO: Remove o padding vertical, usa margin para espaçar */
     padding: 0;
     margin: 30px 0;
+}
+
+/* Base do carrossel (Horizontal Scrolling) */
+.motivos-wrapper {
+    position: relative;
+    /* NOVO: O wrapper agora ocupa 100% da tela, mas o conteúdo é alinhado abaixo */
+    margin: 0 -16px; 
+    padding: 10px 0; 
 }
 
 /* 🎯 CORREÇÃO CRÍTICA: Aplica o WRAP (alinhamento) na área do título H2 */
@@ -154,14 +161,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     max-width: var(--wrap);
     margin: 0 auto 20px;
     padding: 0 16px;
-}
-
-/* Base do carrossel (Horizontal Scrolling) */
-.motivos-wrapper {
-    position: relative;
-    /* NOVO: O wrapper ocupa 100% da tela, mas o conteúdo é alinhado abaixo */
-    margin: 0 -16px; 
-    padding: 10px 0; 
 }
 
 .cl-track {
@@ -173,7 +172,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    /* 🎯 CORREÇÃO: Aplica o padding de alinhamento para o primeiro card aqui */
+    /* CORREÇÃO: Aplica o padding de alinhamento para o primeiro card aqui */
     padding: 0 16px; 
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
@@ -380,12 +379,26 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                 </div>
         </div>
 
+        <div id="relatedEventsSection" class="motivos-section" style="margin-top: 50px;">
+            <h2 id="relatedTitle" class="wrap">Mais Eventos na Categoria...</h2>
+            
+            <div class="motivos-wrapper">
+                <div id="relatedCarouselContainer" class="cl-track">
+                    </div>
+
+                <button class="carousel-nav prev" id="prev-related-carousel">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+                </button>
+                <button class="carousel-nav next" id="next-related-carousel">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                </button>
+            </div>
+        </div>
         <div class="event-cta-fixed">
             <a id="whatsappCta" href="#" target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco e reserve seu pacote">
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                    <span class="label">RESERVE AGORA</span>
-                </a>
-            </div>
+                <span class="label">RESERVE AGORA</span>
+            </a>
         </div>
     </main>
 
