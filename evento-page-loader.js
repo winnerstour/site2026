@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Carrosséis Funcionais e Estilos Corrigidos)
+// evento-page-loader.js (Final com Vídeo YouTube Lite, Correção de Favicon e Carrosséis Isolados)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -125,14 +125,13 @@
 
       let scrollInterval;
       let isPaused = false;
-      const cardWidth = 318; 
+      const cardWidth = 318; // 300px card + 18px gap
 
       const scrollRight = () => {
           if (isPaused) return;
 
           const currentScroll = carousel.scrollLeft;
-          // Adiciona 1px para evitar problemas de arredondamento em navegadores
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth; 
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
@@ -168,7 +167,6 @@
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-              // Só roda a lógica de display em telas maiores que 1024px
               if (window.innerWidth > 1024) { 
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
@@ -183,6 +181,41 @@
           checkScroll(); 
       }
   }
+  
+  // 🎯 NOVO: Função para extrair o ID do vídeo do parâmetro youtube_url
+  function extractVideoId(url) {
+      if (!url) return null;
+      const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
+      const match = url.match(regExp);
+      return (match && match[1].length === 11) ? match[1] : null;
+  }
+  
+  // 🎯 NOVO: Função para injetar o componente YouTube Lite
+  function injectYoutubeLite(videoId, videoTitle) {
+      if (!videoId) {
+          videoSection.hidden = true;
+          return;
+      }
+      
+      const playlabel = `Reproduzir vídeo: ${videoTitle}`;
+      
+      const youtubeHtml = `
+          <lite-youtube videoid="${videoId}"
+              style="background-image:url('https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg');"
+              params="modestbranding=1&rel=0"
+              playlabel="${playlabel}">
+              <button type="button" class="lty-playbtn" aria-label="Reproduzir vídeo"></button>
+          </lite-youtube>
+      `;
+
+      youtubeContainer.innerHTML = youtubeHtml;
+      videoSection.hidden = false;
+      
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js';
+      document.body.appendChild(script);
+  }
+
 
   // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
@@ -208,9 +241,9 @@
           
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
-
-          // Inicializa o carrossel de Sugestões
-          initCarousel(relatedCarouselId, relatedWrapperId, false); 
+          
+          // Inicializa o carrossel de Sugestões (passando o ID do wrapper)
+          initCarousel(relatedCarouselContainer.id, relatedWrapperId, false); 
 
       } catch (e) {
           console.error("Erro ao carregar eventos relacionados:", e);
@@ -250,6 +283,7 @@
       
       eventTitle.textContent = finalTitle;
       
+      // Prioridade BANNER_PATH
       const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
@@ -304,12 +338,23 @@
               </button>
           `);
         
-        initCarousel(motivosCarouselId, motivosWrapperId, true); // Inicializa Motivos
+        initCarousel(motivosContainer.id, motivosWrapperId, true); // Inicializa Motivos
         
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
         motivosWrapperEl.hidden = true;
       }
+
+      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
+      const youtubeUrl = ev.youtube_url;
+      const videoId = extractVideoId(youtubeUrl);
+      
+      if (videoId) {
+          injectYoutubeLite(videoId, finalTitle);
+      } else {
+          videoSection.hidden = true;
+      }
+
 
       // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
