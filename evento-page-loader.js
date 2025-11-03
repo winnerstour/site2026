@@ -30,7 +30,7 @@
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
   const motivosWrapperEl = document.getElementById('motivosWrapper');
-  const relatedWrapperEl = document.getElementById('relatedWrapper'); // Referência direta
+  const relatedWrapperEl = document.getElementById('relatedWrapper'); 
   
   const motivosCarouselId = 'motivosContainer';
   const motivosWrapperId = 'motivosWrapper';
@@ -343,6 +343,9 @@
           .filter(m => m.motivo_titulo)
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
+      const motivosCarouselId = 'motivosContainer';
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
+
       if (finalMotivos.length > 0) {
         const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
@@ -360,7 +363,7 @@
               </button>
           `);
         
-        initCarousel(motivosContainer.id, motivosWrapperId); // Inicializa Motivos
+        initCarousel(motivosContainer.id, motivosWrapperEl.id); // Inicializa Motivos
         
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
