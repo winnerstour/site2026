@@ -1,4 +1,4 @@
-// evento-page-loader.js (Versão Final: Funções no Escopo Correto e Lógica Estabilizada)
+// evento-page-loader.js (Final com Escopo de Funções Corrigido)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -7,10 +7,12 @@
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
   const SCROLL_SPEED = 4000; // 4 segundos para autoplay
 
+  // =======================================================
+  // REFERÊNCIAS DE ELEMENTOS
+  // =======================================================
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
-  
   const pageTitle = document.getElementById('pageTitle');
   const eventTitle = document.getElementById('eventTitle');
   const eventHero = document.getElementById('eventHero');
@@ -19,14 +21,12 @@
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
-  
-  // Elementos de Seções
-  const videoSection = document.getElementById('videoSection');
-  const youtubeContainer = document.getElementById('youtubeContainer');
   const relatedEventsSection = document.getElementById('relatedEventsSection');
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
   const motivosWrapperEl = document.getElementById('motivosWrapper');
+  const videoSection = document.getElementById('videoSection');
+  const youtubeContainer = document.getElementById('youtubeContainer');
   
   const motivosCarouselId = 'motivosContainer';
   const motivosWrapperId = 'motivosWrapper';
@@ -34,7 +34,7 @@
   const relatedWrapperId = 'relatedWrapper';
 
   // =======================================================
-  // FUNÇÕES DE UTILIDADE (Definidas no escopo superior para evitar o erro 'is not defined')
+  // FUNÇÕES DE UTILIDADE E RENDERIZAÇÃO (ESPECTO CORRIGIDO)
   // =======================================================
 
   function fixPath(path) {
@@ -57,12 +57,9 @@
   
   /**
    * @description Extrai o ID do vídeo de uma URL do YouTube.
-   * @param {string} url - URL completa do YouTube.
-   * @returns {string | null} O ID do vídeo (11 caracteres) ou null.
    */
   function extractVideoId(url) {
       if (!url) return null;
-      // Expressões Regulares para extrair ID de URLs comuns (watch?v=, youtu.be, embed/)
       const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
       const match = url.match(regExp);
       return (match && match[1].length === 11) ? match[1] : null;
@@ -70,8 +67,6 @@
   
   /**
    * @description Injeta o Web Componente YouTube Lite no DOM.
-   * @param {string} videoId - O ID do vídeo do YouTube.
-   * @param {string} videoTitle - O título do vídeo para acessibilidade.
    */
   function injectYoutubeLite(videoId, videoTitle) {
       if (!videoId) {
@@ -93,7 +88,7 @@
       youtubeContainer.innerHTML = youtubeHtml;
       videoSection.hidden = false;
   }
-
+  
   // Card TUTORIAL/CONTEXTO (para a página de evento)
   function buildContextCardMotivos(carouselId, eventTitle) {
       const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
@@ -219,7 +214,6 @@
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
               if (window.innerWidth > 1024) { 
-                  // Setas visíveis apenas quando não estiver no início ou no fim
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
               } else {
@@ -259,15 +253,17 @@
           // Inicializa o carrossel de Sugestões
           const relatedWrapperEl = document.getElementById(relatedWrapperId);
           if (relatedWrapperEl) {
-              // Adiciona as setas ao wrapper
-              relatedWrapperEl.insertAdjacentHTML('beforeend', `
-                  <button class="carousel-nav prev">
-                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-                  </button>
-                  <button class="carousel-nav next">
-                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                  </button>
-              `);
+              // Adiciona as setas ao wrapper (se não existirem)
+              if (!relatedWrapperEl.querySelector('.carousel-nav')) {
+                   relatedWrapperEl.insertAdjacentHTML('beforeend', `
+                      <button class="carousel-nav prev">
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+                      </button>
+                      <button class="carousel-nav next">
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                      </button>
+                  `);
+              }
               initCarousel(relatedCarouselContainer.id, relatedWrapperId);
           }
 
@@ -363,18 +359,19 @@
               </button>
           `);
         
-        initCarousel(motivosContainer.id, motivosWrapperId); // Inicializa Motivos
+        initCarousel(motivosContainer.id, motivosWrapperEl.id); // Inicializa Motivos
         
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
         motivosWrapperEl.hidden = true;
       }
 
-      // 🎯 CRÍTICO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
+      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE (depois dos Motivos)
       const youtubeUrl = ev.youtube_url;
       const videoId = extractVideoId(youtubeUrl);
       
       if (videoId) {
+          // Injeta o vídeo (chamando a função)
           injectYoutubeLite(videoId, finalTitle);
       } else {
           // Oculta a seção inteira se não houver vídeo
