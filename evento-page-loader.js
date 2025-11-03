@@ -1,8 +1,7 @@
-// evento-page-loader.js (Final com Carrossel de Eventos Similares)
+// evento-page-loader.js (Final com Carrosséis Isolados e Funcionamento Corrigido)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
-  // O arquivo de dados consolidado para buscar eventos similares
   const ALL_EVENTS_URL = './event.json'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
@@ -20,7 +19,6 @@
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
   
-  // Elementos do novo carrossel
   const relatedEventsSection = document.getElementById('relatedEventsSection');
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
@@ -64,7 +62,7 @@
       `;
   }
 
-  // Card de MOTIVO (agora dentro do cl-slide)
+  // Card de MOTIVO
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -83,7 +81,7 @@
     `;
   }
   
-  // NOVO: Função para construir o Card de Evento Similar (igual ao do render.js)
+  // Card de Evento Similar
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
@@ -117,15 +115,16 @@
     `;
   }
   
-  // Lógica de inicialização do carrossel (para ambas as seções)
-  function initCarousel(containerId, isRelated = false) {
-      const carousel = document.getElementById(containerId);
-      if (!carousel) return;
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  function initCarousel(carouselId, wrapperId) {
+      const carousel = document.getElementById(carouselId);
+      const wrapper = document.getElementById(wrapperId);
+      if (!carousel || !wrapper) return;
 
       let scrollInterval;
       let isPaused = false;
       const SCROLL_SPEED = 4000; 
-      const cardWidth = 318; 
+      const cardWidth = 318; // 300px card + 18px gap
 
       const scrollRight = () => {
           if (isPaused) return;
@@ -150,14 +149,9 @@
       
       startAutoplay();
       
-      // Adiciona setas somente para desktop
-      if (!isRelated) {
-          var prevButton = document.querySelector('.motivos-wrapper .carousel-nav.prev');
-          var nextButton = document.querySelector('.motivos-wrapper .carousel-nav.next');
-      } else {
-          var prevButton = document.getElementById(`prev-${containerId}`);
-          var nextButton = document.getElementById(`next-${containerId}`);
-      }
+      // Conecta os botões do WRAPPER específico
+      const prevButton = wrapper.querySelector('.carousel-nav.prev');
+      const nextButton = wrapper.querySelector('.carousel-nav.next');
 
       if (prevButton && nextButton) {
           prevButton.addEventListener('click', () => {
@@ -167,7 +161,7 @@
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
           });
           
-          // Oculta/mostra setas (lógica simples)
+          // Lógica para desativar/travar setas no início/fim
           const checkScroll = () => {
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
@@ -184,9 +178,12 @@
       }
   }
 
-  // NOVO: Função para renderizar o Carrossel de Eventos Similares
+  // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
+          const relatedCarouselId = 'relatedCarouselContainer';
+          const relatedWrapperId = 'relatedWrapper';
+          
           const res = await fetch(fixPath(ALL_EVENTS_URL));
           if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
           
@@ -197,6 +194,7 @@
               ev.category_macro === currentEventCategory
           );
           
+          // Não mostra a seção se houver 1 ou menos eventos (só o atual)
           if (relatedEvents.length <= 1) {
               relatedEventsSection.hidden = true;
               return;
@@ -209,12 +207,8 @@
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
 
-          // Inicializa o carrossel de Sugestões
-          initCarousel('relatedCarouselContainer', true); 
-          
-          // Adiciona os IDs aos botões de navegação
-          document.getElementById('prev-related-carousel').id = `prev-relatedCarouselContainer`;
-          document.getElementById('next-related-carousel').id = `next-relatedCarouselContainer`;
+          // Inicializa o carrossel de Sugestões (passando o ID do wrapper)
+          initCarousel(relatedCarouselId, relatedWrapperId); 
 
       } catch (e) {
           console.error("Erro ao carregar eventos relacionados:", e);
@@ -272,7 +266,7 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // 4. Motivos para Visitar (Carrossel)
+      // 4. Motivos para Visitar (Carrossel Principal)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -288,25 +282,37 @@
           .filter(m => m.motivo_titulo)
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
+      const motivosCarouselId = 'motivosCarousel';
+      const motivosWrapperId = 'motivosWrapper';
+
       if (finalMotivos.length > 0) {
-        const contextCard = buildContextCardMotivos('motivosCarousel', finalTitle);
+        const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
         motivosContainer.innerHTML = contextCard + motivoSlides;
-        
         motivosContainer.classList.add('cl-track');
-        motivosContainer.classList.add('motivos-carousel-container');
-        motivosContainer.id = 'motivosCarousel';
+        motivosContainer.id = motivosCarouselId;
         
-        initCarousel('motivosCarousel');
+        document.querySelector('.motivos-wrapper').id = motivosWrapperId;
+        
+        initCarousel(motivosCarouselId, motivosWrapperId);
+        
+        // Renderiza as setas de navegação (apenas o HTML)
+        document.getElementById(motivosWrapperId).insertAdjacentHTML('beforeend', `
+              <button class="carousel-nav prev" id="prev-motivosCarousel">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+              </button>
+              <button class="carousel-nav next" id="next-motivosCarousel">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+              </button>
+          `);
         
       } else {
-        const motivosSectionTitle = document.querySelector('.motivos-section h2');
-        if (motivosSectionTitle) motivosSectionTitle.hidden = true;
-        motivosContainer.hidden = true;
+        document.querySelector('.motivos-section h2').hidden = true;
+        document.querySelector('.motivos-wrapper').hidden = true;
       }
 
-      // 5. NOVO: Renderiza Eventos Similares
+      // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
           renderRelatedEvents(ev.category_macro, slug);
       } else {
