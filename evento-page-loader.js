@@ -23,6 +23,7 @@
   const relatedEventsSection = document.getElementById('relatedEventsSection');
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
+  const relatedWrapperId = 'relatedWrapper';
 
   function fixPath(path) {
       if (path && path.startsWith('/assets')) {
@@ -82,7 +83,7 @@
     `;
   }
   
-  // Card de Evento Similar (usado no carrossel de sugestões)
+  // Card de Evento Similar
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
@@ -118,7 +119,7 @@
   }
   
   // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
-  function initCarousel(carouselId, wrapperId, isMotivos = false) {
+  function initCarousel(carouselId, wrapperId) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
       if (!carousel || !wrapper) return;
@@ -168,6 +169,7 @@
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
               if (window.innerWidth > 1024) { 
+                  // CORREÇÃO: Setas visíveis apenas quando não estiver no início ou no fim
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
               } else {
@@ -210,10 +212,6 @@
 
       youtubeContainer.innerHTML = youtubeHtml;
       videoSection.hidden = false;
-      
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js';
-      document.body.appendChild(script);
   }
 
 
@@ -241,8 +239,8 @@
           
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
-          
-          // Inicializa o carrossel de Sugestões (passando o ID do wrapper)
+
+          // Inicializa o carrossel de Sugestões
           initCarousel(relatedCarouselContainer.id, relatedWrapperId, false); 
 
       } catch (e) {
@@ -301,7 +299,7 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // Motivos para Visitar (Carrossel Principal)
+      // 4. Motivos para Visitar (Carrossel Principal)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
