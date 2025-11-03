@@ -1,4 +1,4 @@
-// evento-page-loader.js (Versão Definitiva: Garante Vídeo e Carrosséis Secundários)
+// evento-page-loader.js (Final com Escopo Corrigido para Vídeo e Carrosséis)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -8,7 +8,7 @@
   const SCROLL_SPEED = 4000; // 4 segundos para autoplay
 
   // =======================================================
-  // REFERÊNCIAS DE ELEMENTOS
+  // REFERÊNCIAS DE ELEMENTOS (Definidas no escopo global para o IIFE)
   // =======================================================
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
@@ -30,6 +30,7 @@
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
   const motivosWrapperEl = document.getElementById('motivosWrapper');
+  const relatedWrapperEl = document.getElementById('relatedWrapper'); // Referência direta
   
   const motivosCarouselId = 'motivosContainer';
   const motivosWrapperId = 'motivosWrapper';
@@ -277,9 +278,6 @@
   }
 
 
-  // =======================================================
-  // FUNÇÃO PRINCIPAL DE CARREGAMENTO (Chamada no DOMContentLoaded)
-  // =======================================================
   async function loadEventData() {
     const slug = getSlug();
     if (!slug) {
@@ -329,7 +327,7 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // 4. Motivos para Visitar (Carrossel Principal)
+      // Motivos para Visitar (Carrossel Principal)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -369,7 +367,7 @@
         motivosWrapperEl.hidden = true;
       }
 
-      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
+      // 🎯 CRÍTICO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
       const youtubeUrl = ev.youtube_url;
       const videoId = extractVideoId(youtubeUrl);
       
@@ -383,8 +381,7 @@
 
       // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
-          // Chama a renderização do Carrossel de Sugestões
-          renderRelatedEvents(ev.category_macro, slug); 
+          renderRelatedEvents(ev.category_macro, slug);
       } else {
           relatedEventsSection.hidden = true;
       }
