@@ -1,7 +1,10 @@
-// evento-page-loader.js (Final com Card Tutorial Discreto nos Motivos)
+// evento-page-loader.js (Final com Carrossel de Eventos Similares)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
+  // O arquivo de dados consolidado para buscar eventos similares
+  const ALL_EVENTS_URL = './event.json'; 
+  
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
   const eventContent = document.getElementById('eventContent');
@@ -17,6 +20,11 @@
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
   
+  // Elementos do novo carrossel
+  const relatedEventsSection = document.getElementById('relatedEventsSection');
+  const relatedTitle = document.getElementById('relatedTitle');
+  const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
+
   function fixPath(path) {
       if (path && path.startsWith('/assets')) {
           return BASE_PATH + path;
@@ -37,7 +45,7 @@
 
   // Card TUTORIAL/CONTEXTO (para a página de evento)
   function buildContextCardMotivos(categoryId, eventTitle) {
-      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa nesta categoria.`;
+      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
 
       return `
           <div class="cl-slide context-slide">
@@ -74,16 +82,49 @@
       </div>
     `;
   }
+  
+  // NOVO: Função para construir o Card de Evento Similar (igual ao do render.js)
+  function buildSimilarEventCard(ev) {
+    const title = ev.title || 'Evento sem título';
+    const subtitle = ev.subtitle || 'Detalhes do evento...';
+    const slug = ev.slug; 
+    
+    const finalUrl = `evento.html?slug=${slug}`;
+    
+    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
+    const imagePath = fixPath(rawImagePath);
 
-  // Lógica de inicialização do carrossel (para a página de evento)
-  function initMotivosCarousel(containerId, eventName) {
+    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconPath = fixPath(faviconRawPath);
+
+    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
+    
+    return `
+      <div class="cl-slide">
+        <a href="${finalUrl}" class="card" aria-label="${title}">
+          <div class="thumb" style="height: 100px;">
+            <img loading="lazy" src="${imagePath}" alt="${title}">
+          </div>
+          <div class="content">
+            <h3 class="title" style="font-size: 1rem; line-height: 1.3; max-height: 1.3em;">
+              ${faviconHtml}
+              <span>${title}</span>
+            </h3>
+            <p class="subtitle" style="font-size: 14px; line-height: 1.3;">${subtitle}</p>
+          </div>
+        </a>
+      </div>
+    `;
+  }
+  
+  // Lógica de inicialização do carrossel (para ambas as seções)
+  function initCarousel(containerId, isRelated = false) {
       const carousel = document.getElementById(containerId);
       if (!carousel) return;
 
       let scrollInterval;
       let isPaused = false;
       const SCROLL_SPEED = 4000; 
-
       const cardWidth = 318; 
 
       const scrollRight = () => {
@@ -92,7 +133,7 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-          if (currentScroll >= maxScroll - 10) {
+          if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
@@ -109,16 +150,75 @@
       
       startAutoplay();
       
-      const wrapper = document.querySelector('.motivos-wrapper');
-      if (wrapper) {
-           wrapper.insertAdjacentHTML('beforeend', `
-              <button class="carousel-nav prev" onclick="document.getElementById('${containerId}').scrollBy({left: -${cardWidth}, behavior: 'smooth'})">
-                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-              </button>
-              <button class="carousel-nav next" onclick="document.getElementById('${containerId}').scrollBy({left: ${cardWidth}, behavior: 'smooth'})">
-                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-              </button>
-          `);
+      // Adiciona setas somente para desktop
+      if (!isRelated) {
+          var prevButton = document.querySelector('.motivos-wrapper .carousel-nav.prev');
+          var nextButton = document.querySelector('.motivos-wrapper .carousel-nav.next');
+      } else {
+          var prevButton = document.getElementById(`prev-${containerId}`);
+          var nextButton = document.getElementById(`next-${containerId}`);
+      }
+
+      if (prevButton && nextButton) {
+          prevButton.addEventListener('click', () => {
+              carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
+          });
+          nextButton.addEventListener('click', () => {
+              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
+          });
+          
+          // Oculta/mostra setas (lógica simples)
+          const checkScroll = () => {
+              const currentScroll = carousel.scrollLeft;
+              const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+              if (window.innerWidth > 1024) {
+                  prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
+                  nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+              }
+          };
+          
+          carousel.addEventListener('scroll', checkScroll);
+          window.addEventListener('resize', checkScroll);
+          checkScroll(); 
+      }
+  }
+
+  // NOVO: Função para renderizar o Carrossel de Eventos Similares
+  async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
+      try {
+          const res = await fetch(fixPath(ALL_EVENTS_URL));
+          if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
+          
+          const allEvents = await res.json();
+          
+          // Filtra eventos pela categoria macro
+          const relatedEvents = allEvents.filter(ev => 
+              ev.category_macro === currentEventCategory
+          );
+          
+          if (relatedEvents.length <= 1) {
+              relatedEventsSection.hidden = true;
+              return;
+          }
+          
+          // Título do Carrossel de Sugestões
+          relatedTitle.textContent = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
+          
+          // Renderiza os slides
+          const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
+          relatedCarouselContainer.innerHTML = relatedSlides;
+
+          // Inicializa o carrossel de Sugestões
+          initCarousel('relatedCarouselContainer', true); 
+          
+          // Adiciona os IDs aos botões de navegação
+          document.getElementById('prev-related-carousel').id = `prev-relatedCarouselContainer`;
+          document.getElementById('next-related-carousel').id = `next-relatedCarouselContainer`;
+
+      } catch (e) {
+          console.error("Erro ao carregar eventos relacionados:", e);
+          relatedEventsSection.hidden = true;
       }
   }
 
@@ -154,7 +254,7 @@
       
       eventTitle.textContent = finalTitle;
       
-      // CORREÇÃO: PRIORIDADE PARA BANNER_PATH
+      // Prioridade BANNER_PATH
       const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
@@ -189,27 +289,30 @@
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       if (finalMotivos.length > 0) {
-        // PASSO 1: CRIA O CARD DE CONTEXTO
         const contextCard = buildContextCardMotivos('motivosCarousel', finalTitle);
-
-        // PASSO 2: CRIA OS CARDS DE MOTIVO E CONCATENA
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
         motivosContainer.innerHTML = contextCard + motivoSlides;
         
-        // Adiciona classe para Carrossel e ID
         motivosContainer.classList.add('cl-track');
         motivosContainer.classList.add('motivos-carousel-container');
         motivosContainer.id = 'motivosCarousel';
         
-        // INICIA O CARROSSEL (Rolagem automática e setas)
-        initMotivosCarousel('motivosCarousel', finalTitle);
+        initCarousel('motivosCarousel');
         
       } else {
         const motivosSectionTitle = document.querySelector('.motivos-section h2');
         if (motivosSectionTitle) motivosSectionTitle.hidden = true;
         motivosContainer.hidden = true;
       }
+
+      // 5. NOVO: Renderiza Eventos Similares
+      if (ev.category_macro) {
+          renderRelatedEvents(ev.category_macro, slug);
+      } else {
+          relatedEventsSection.hidden = true;
+      }
+
 
       loading.hidden = true;
       eventContent.hidden = false;
