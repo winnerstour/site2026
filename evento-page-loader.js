@@ -148,7 +148,7 @@
     const imagePath = fixPath(rawImagePath);
 
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-    const faviconPath = fixPath(faviconRawPath);
+    const faviconPath = fixPath(faviconPath);
 
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
