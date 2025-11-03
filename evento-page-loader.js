@@ -43,7 +43,7 @@
   }
 
   // Card TUTORIAL/CONTEXTO (para a página de evento)
-  function buildContextCardMotivos(categoryId, eventTitle) {
+  function buildContextCardMotivos(carouselId, eventTitle) {
       const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
 
       return `
@@ -53,7 +53,7 @@
                       <p class="motivo-text-body" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
                           ${description}
                       </p>
-                      <button class="btn-ver-mais" onclick="document.getElementById('${categoryId}').scrollBy({left: 318, behavior: 'smooth'})">
+                      <button class="btn-ver-mais" onclick="document.getElementById('${carouselId}').scrollBy({left: 318, behavior: 'smooth'})">
                           Ver Mais
                           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                       </button>
@@ -96,28 +96,28 @@
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
     const faviconPath = fixPath(faviconRawPath);
 
+    // Favicon usa a classe 'favicon' para travar o tamanho via CSS
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
-    // 🎯 CORREÇÃO: Usa a estrutura de CARD e THUMB do INDEX para estilização
     return `
       <div class="cl-slide">
         <a href="${finalUrl}" class="card" aria-label="${title}">
-          <div class="thumb" style="height: 100px;">
+          <div class="thumb">
             <img loading="lazy" src="${imagePath}" alt="${title}">
           </div>
           <div class="content">
-            <h3 class="title" style="font-size: 1rem; line-height: 1.3; max-height: 1.3em;">
+            <h3 class="title">
               ${faviconHtml}
               <span>${title}</span>
             </h3>
-            <p class="subtitle" style="font-size: 14px; line-height: 1.3;">${subtitle}</p>
+            <p class="subtitle">${subtitle}</p>
           </div>
         </a>
       </div>
     `;
   }
   
-  // 🎯 FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
   function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
@@ -131,9 +131,9 @@
           if (isPaused) return;
 
           const currentScroll = carousel.scrollLeft;
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          // Adiciona 1px para evitar problemas de arredondamento em navegadores
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth; 
 
-          // Autoplay: Se estiver no final, volta suavemente para o início
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
@@ -146,7 +146,6 @@
           scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
       };
       
-      // Pausa ao interagir
       carousel.addEventListener('mouseover', () => { isPaused = true; });
       carousel.addEventListener('mouseleave', () => { isPaused = false; });
       
@@ -157,7 +156,6 @@
       const nextButton = wrapper.querySelector('.carousel-nav.next');
 
       if (prevButton && nextButton) {
-          // Lógica de Rolagem Manual
           prevButton.addEventListener('click', () => {
               carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
           });
@@ -170,12 +168,11 @@
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-              if (window.innerWidth > 1024) {
-                  // Mostra/Oculta para simular o travamento
+              // Só roda a lógica de display em telas maiores que 1024px
+              if (window.innerWidth > 1024) { 
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
               } else {
-                  // Oculta em mobile
                   prevButton.style.display = 'none';
                   nextButton.style.display = 'none';
               }
@@ -198,7 +195,6 @@
           
           const allEvents = await res.json();
           
-          // Filtra eventos pela categoria macro
           const relatedEvents = allEvents.filter(ev => 
               ev.category_macro === currentEventCategory
           );
@@ -208,14 +204,12 @@
               return;
           }
           
-          // Título do Carrossel de Sugestões
           relatedTitle.textContent = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
           
-          // Renderiza os slides
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
 
-          // Inicializa o carrossel de Sugestões (passando o ID do wrapper)
+          // Inicializa o carrossel de Sugestões
           initCarousel(relatedCarouselId, relatedWrapperId, false); 
 
       } catch (e) {
@@ -256,7 +250,6 @@
       
       eventTitle.textContent = finalTitle;
       
-      // Prioridade BANNER_PATH
       const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
       const heroPath = fixPath(rawHeroPath);
       
@@ -268,13 +261,13 @@
       
       eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
-      // 3. CTA (WhatsApp)
+      // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20evento%20" + encodeURIComponent(finalTitle);
       const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // 4. Motivos para Visitar (Carrossel Principal)
+      // Motivos para Visitar (Carrossel Principal)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -290,7 +283,7 @@
           .filter(m => m.motivo_titulo)
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
-      const motivosCarouselId = 'motivosCarousel';
+      const motivosCarouselId = 'motivosContainer';
       const motivosWrapperId = 'motivosWrapper';
       const motivosWrapperEl = document.getElementById('motivosWrapper');
 
@@ -299,18 +292,14 @@
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
         motivosContainer.innerHTML = contextCard + motivoSlides;
-        motivosContainer.classList.add('cl-track');
-        motivosContainer.id = motivosCarouselId;
+        motivosContainer.classList.add('cl-track'); // Garante que o container use o cl-track
         
-        // NOVO: Adiciona o wrapper ID e as setas
-        motivosWrapperEl.id = motivosWrapperId;
-        
-        // Renderiza as setas de navegação (HTML)
+        // Renderiza as setas de navegação (HTML) no wrapper
         motivosWrapperEl.insertAdjacentHTML('beforeend', `
-              <button class="carousel-nav prev" id="prev-motivosCarousel">
+              <button class="carousel-nav prev">
                   <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
               </button>
-              <button class="carousel-nav next" id="next-motivosCarousel">
+              <button class="carousel-nav next">
                   <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
               </button>
           `);
@@ -328,7 +317,6 @@
       } else {
           relatedEventsSection.hidden = true;
       }
-
 
       loading.hidden = true;
       eventContent.hidden = false;
