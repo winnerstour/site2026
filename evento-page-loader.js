@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Escopo de Funções Corrigido)
+// evento-page-loader.js (Versão Definitiva: Garante Vídeo e Carrosséis Secundários)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -13,6 +13,7 @@
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
+  
   const pageTitle = document.getElementById('pageTitle');
   const eventTitle = document.getElementById('eventTitle');
   const eventHero = document.getElementById('eventHero');
@@ -21,12 +22,14 @@
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
+  
+  // Elementos de Seções
+  const videoSection = document.getElementById('videoSection');
+  const youtubeContainer = document.getElementById('youtubeContainer');
   const relatedEventsSection = document.getElementById('relatedEventsSection');
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
   const motivosWrapperEl = document.getElementById('motivosWrapper');
-  const videoSection = document.getElementById('videoSection');
-  const youtubeContainer = document.getElementById('youtubeContainer');
   
   const motivosCarouselId = 'motivosContainer';
   const motivosWrapperId = 'motivosWrapper';
@@ -34,7 +37,7 @@
   const relatedWrapperId = 'relatedWrapper';
 
   // =======================================================
-  // FUNÇÕES DE UTILIDADE E RENDERIZAÇÃO (ESPECTO CORRIGIDO)
+  // FUNÇÕES DE UTILIDADE E RENDERIZAÇÃO
   // =======================================================
 
   function fixPath(path) {
@@ -274,6 +277,9 @@
   }
 
 
+  // =======================================================
+  // FUNÇÃO PRINCIPAL DE CARREGAMENTO (Chamada no DOMContentLoaded)
+  // =======================================================
   async function loadEventData() {
     const slug = getSlug();
     if (!slug) {
@@ -323,7 +329,7 @@
       whatsappCta.href = whatsappLink;
       whatsappTopCta.href = whatsappLink;
 
-      // Motivos para Visitar (Carrossel Principal)
+      // 4. Motivos para Visitar (Carrossel Principal)
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -338,9 +344,6 @@
       const finalMotivos = extractedMotivos
           .filter(m => m.motivo_titulo)
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
-
-      const motivosCarouselId = 'motivosContainer';
-      const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
         const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
@@ -359,19 +362,18 @@
               </button>
           `);
         
-        initCarousel(motivosContainer.id, motivosWrapperEl.id); // Inicializa Motivos
+        initCarousel(motivosContainer.id, motivosWrapperId); // Inicializa Motivos
         
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
         motivosWrapperEl.hidden = true;
       }
 
-      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE (depois dos Motivos)
+      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
       const youtubeUrl = ev.youtube_url;
       const videoId = extractVideoId(youtubeUrl);
       
       if (videoId) {
-          // Injeta o vídeo (chamando a função)
           injectYoutubeLite(videoId, finalTitle);
       } else {
           // Oculta a seção inteira se não houver vídeo
@@ -381,7 +383,8 @@
 
       // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
-          renderRelatedEvents(ev.category_macro, slug);
+          // Chama a renderização do Carrossel de Sugestões
+          renderRelatedEvents(ev.category_macro, slug); 
       } else {
           relatedEventsSection.hidden = true;
       }
