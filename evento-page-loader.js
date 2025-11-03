@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Escopo Corrigido para Vídeo e Carrosséis)
+// evento-page-loader.js (Final com Escopo Corrigido para Vídeo e Carrosséis - Lógica de Ocultamento Removida)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -64,6 +64,7 @@
    */
   function extractVideoId(url) {
       if (!url) return null;
+      // Regex robusto que cobre a maioria dos formatos de URL do YouTube
       const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
       const match = url.match(regExp);
       return (match && match[1].length === 11) ? match[1] : null;
@@ -73,8 +74,9 @@
    * @description Injeta o Web Componente YouTube Lite no DOM.
    */
   function injectYoutubeLite(videoId, videoTitle) {
+      // Se não houver ID, o container permanece vazio, mas não é ocultado.
       if (!videoId) {
-          videoSection.hidden = true;
+          youtubeContainer.innerHTML = ''; // Garante que o container esteja limpo
           return;
       }
       
@@ -90,7 +92,8 @@
       `;
 
       youtubeContainer.innerHTML = youtubeHtml;
-      videoSection.hidden = false;
+      // A seção de vídeo não precisa mais ser explicitamente mostrada aqui, 
+      // pois o atributo 'hidden' foi removido do HTML.
   }
   
   // Card TUTORIAL/CONTEXTO (para a página de evento)
@@ -370,16 +373,13 @@
         motivosWrapperEl.hidden = true;
       }
 
-      // 🎯 CRÍTICO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
+      // 🎯 LÓGICA DE INJEÇÃO DO VÍDEO LITE
       const youtubeUrl = ev.youtube_url;
       const videoId = extractVideoId(youtubeUrl);
       
-      if (videoId) {
-          injectYoutubeLite(videoId, finalTitle);
-      } else {
-          // Oculta a seção inteira se não houver vídeo
-          videoSection.hidden = true; 
-      }
+      // Chamamos injectYoutubeLite, que agora se encarrega de preencher o container
+      // sem se preocupar em ocultar a seção, que agora está sempre visível no HTML.
+      injectYoutubeLite(videoId, finalTitle);
 
 
       // 5. Renderiza Eventos Similares
