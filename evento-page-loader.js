@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Vídeo YouTube Lite, Correção de Favicon e Carrosséis Isolados)
+// evento-page-loader.js (Versão Final: Funções no Escopo Correto e Lógica Estabilizada)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -33,6 +33,9 @@
   const relatedCarouselId = 'relatedCarouselContainer';
   const relatedWrapperId = 'relatedWrapper';
 
+  // =======================================================
+  // FUNÇÕES DE UTILIDADE (Definidas no escopo superior para evitar o erro 'is not defined')
+  // =======================================================
 
   function fixPath(path) {
       if (path && path.startsWith('/assets')) {
@@ -50,6 +53,119 @@
     loading.hidden = true;
     errorDiv.hidden = false;
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
+  }
+  
+  /**
+   * @description Extrai o ID do vídeo de uma URL do YouTube.
+   * @param {string} url - URL completa do YouTube.
+   * @returns {string | null} O ID do vídeo (11 caracteres) ou null.
+   */
+  function extractVideoId(url) {
+      if (!url) return null;
+      // Expressões Regulares para extrair ID de URLs comuns (watch?v=, youtu.be, embed/)
+      const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
+      const match = url.match(regExp);
+      return (match && match[1].length === 11) ? match[1] : null;
+  }
+  
+  /**
+   * @description Injeta o Web Componente YouTube Lite no DOM.
+   * @param {string} videoId - O ID do vídeo do YouTube.
+   * @param {string} videoTitle - O título do vídeo para acessibilidade.
+   */
+  function injectYoutubeLite(videoId, videoTitle) {
+      if (!videoId) {
+          videoSection.hidden = true;
+          return;
+      }
+      
+      const playlabel = `Reproduzir vídeo: ${videoTitle}`;
+      
+      const youtubeHtml = `
+          <lite-youtube videoid="${videoId}"
+              style="background-image:url('https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg');"
+              params="modestbranding=1&rel=0"
+              playlabel="${playlabel}">
+              <button type="button" class="lty-playbtn" aria-label="Reproduzir vídeo"></button>
+          </lite-youtube>
+      `;
+
+      youtubeContainer.innerHTML = youtubeHtml;
+      videoSection.hidden = false;
+  }
+
+  // Card TUTORIAL/CONTEXTO (para a página de evento)
+  function buildContextCardMotivos(carouselId, eventTitle) {
+      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
+
+      return `
+          <div class="cl-slide context-slide">
+              <div class="card motivo-item context-card">
+                  <div class="context-content">
+                      <p class="motivo-text-body" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
+                          ${description}
+                      </p>
+                      <button class="btn-ver-mais" onclick="document.getElementById('${carouselId}').scrollBy({left: 318, behavior: 'smooth'})">
+                          Ver Mais
+                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+  // Card de MOTIVO
+  function renderMotivo(m) {
+    const emoji = m.motivo_emoji || m.emoji || '✨';
+    const title = m.motivo_titulo || m.title || 'Atração';
+    const text = m.motivo_conteudo || m.content || '';
+    
+    return `
+      <div class="cl-slide">
+        <li class="motivo-item">
+          <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
+            <span class="emoji" aria-hidden="true">${emoji}</span>
+            ${title.toUpperCase()}
+          </strong>
+          <p class="motivo-text-body">${text}</p>
+        </li>
+      </div>
+    `;
+  }
+  
+  // Card de Evento Similar
+  function buildSimilarEventCard(ev) {
+    const title = ev.title || 'Evento sem título';
+    const subtitle = ev.subtitle || 'Detalhes do evento...';
+    const slug = ev.slug; 
+    
+    const finalUrl = `evento.html?slug=${slug}`;
+    
+    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
+    const imagePath = fixPath(rawImagePath);
+
+    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconPath = fixPath(faviconRawPath);
+
+    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
+    
+    return `
+      <div class="cl-slide">
+        <a href="${finalUrl}" class="card" aria-label="${title}">
+          <div class="thumb">
+            <img loading="lazy" src="${imagePath}" alt="${title}">
+          </div>
+          <div class="content">
+            <h3 class="title">
+              ${faviconHtml}
+              <span>${title}</span>
+            </h3>
+            <p class="subtitle">${subtitle}</p>
+          </div>
+        </a>
+      </div>
+    `;
   }
   
   // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
@@ -118,82 +234,6 @@
       }
   }
 
-
-  // Card TUTORIAL/CONTEXTO (para a página de evento)
-  function buildContextCardMotivos(carouselId, eventTitle) {
-      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
-
-      return `
-          <div class="cl-slide context-slide">
-              <div class="card motivo-item context-card">
-                  <div class="context-content">
-                      <p class="motivo-text-body" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
-                          ${description}
-                      </p>
-                      <button class="btn-ver-mais" onclick="document.getElementById('${carouselId}').scrollBy({left: 318, behavior: 'smooth'})">
-                          Ver Mais
-                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                      </button>
-                  </div>
-              </div>
-          </div>
-      `;
-  }
-
-  // Card de MOTIVO
-  function renderMotivo(m) {
-    const emoji = m.motivo_emoji || m.emoji || '✨';
-    const title = m.motivo_titulo || m.title || 'Atração';
-    const text = m.motivo_conteudo || m.content || '';
-    
-    return `
-      <div class="cl-slide">
-        <li class="motivo-item">
-          <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
-            <span class="emoji" aria-hidden="true">${emoji}</span>
-            ${title.toUpperCase()}
-          </strong>
-          <p class="motivo-text-body">${text}</p>
-        </li>
-      </div>
-    `;
-  }
-  
-  // Card de Evento Similar
-  function buildSimilarEventCard(ev) {
-    const title = ev.title || 'Evento sem título';
-    const subtitle = ev.subtitle || 'Detalhes do evento...';
-    const slug = ev.slug; 
-    
-    const finalUrl = `evento.html?slug=${slug}`;
-    
-    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
-    const imagePath = fixPath(rawImagePath);
-
-    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-    const faviconPath = fixPath(faviconRawPath);
-
-    // Favicon usa a classe 'favicon' para travar o tamanho via CSS
-    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
-    
-    return `
-      <div class="cl-slide">
-        <a href="${finalUrl}" class="card" aria-label="${title}">
-          <div class="thumb">
-            <img loading="lazy" src="${imagePath}" alt="${title}">
-          </div>
-          <div class="content">
-            <h3 class="title">
-              ${faviconHtml}
-              <span>${title}</span>
-            </h3>
-            <p class="subtitle">${subtitle}</p>
-          </div>
-        </a>
-      </div>
-    `;
-  }
-  
   // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
@@ -228,7 +268,7 @@
                       <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                   </button>
               `);
-              initCarousel(relatedCarouselContainer.id, relatedWrapperId, false);
+              initCarousel(relatedCarouselContainer.id, relatedWrapperId);
           }
 
       } catch (e) {
@@ -304,7 +344,6 @@
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       const motivosCarouselId = 'motivosContainer';
-      const motivosWrapperId = 'motivosWrapper';
       const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
@@ -331,14 +370,15 @@
         motivosWrapperEl.hidden = true;
       }
 
-      // 🎯 NOVO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
+      // 🎯 CRÍTICO: LÓGICA DE INJEÇÃO DO VÍDEO LITE
       const youtubeUrl = ev.youtube_url;
       const videoId = extractVideoId(youtubeUrl);
       
       if (videoId) {
           injectYoutubeLite(videoId, finalTitle);
       } else {
-          videoSection.hidden = true;
+          // Oculta a seção inteira se não houver vídeo
+          videoSection.hidden = true; 
       }
 
 
