@@ -153,18 +153,17 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     flex-direction: column;
     border: 1px solid transparent; 
-    width: 300px; /* Largura necessária para o carrossel */
+    width: 300px; 
     min-height: 100%;
 }
 .card:hover {
     box-shadow: var(--shadow-hover);
     background: var(--card-hover-bg);
-    /* Efeito de borda brand no hover */
     border-color: rgba(249, 115, 22, 0.5); 
 }
 
 .card .thumb {
-    height: 100px; /* Altura do contêiner da imagem */
+    height: 100px; 
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
@@ -175,7 +174,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .card .thumb img {
     width: 100%;
     height: auto;
-    object-fit: contain; /* Garante que não corte */
+    object-fit: contain; 
     max-height: 100%;
 }
 .card .content {
@@ -193,14 +192,13 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     -webkit-line-clamp: 1; 
     -webkit-box-orient: vertical;
 }
-/* 🎯 CORREÇÃO CRÍTICA DO FAVICON */
+/* CORREÇÃO CRÍTICA DO FAVICON */
 .card .title img.favicon {
     width: 16px; 
     height: 16px; 
     margin-right: 6px; 
     display: inline-block; 
     vertical-align: middle;
-    /* Trava o Favicon para não estourar */
     max-width: 16px !important;
     max-height: 16px !important;
 }
@@ -212,7 +210,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 
-/* NOVO: ESTILOS DO CARROSSEL DE MOTIVOS (Compartilhado com Sugestões) */
+/* ESTILOS DO CARROSSEL DE MOTIVOS (Compartilhado com Sugestões) */
 .motivos-section {
     padding: 0;
     margin: 30px 0;
@@ -226,12 +224,10 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .motivos-wrapper {
     position: relative;
-    /* Margem para simular wrap, com setas fora ou sobrepostas */
     margin: 0 -16px; 
     padding: 10px 0; 
 }
 
-/* CL-TRACK: O ROLADOR */
 .cl-track {
     list-style: none; 
     padding: 0; 
@@ -241,7 +237,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    /* Padding para o primeiro card ficar alinhado com o wrap */
     padding: 0 16px; 
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
@@ -277,7 +272,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 100%;
 }
 
-/* ESTILO DO CARD DE CONTEXTO/INTRODUÇÃO (Motivos) */
+/* ESTILO DO CARD DE CONTEXTO/INTRODUÇÃO */
 .card.context-card {
     box-shadow: none !important;
     background: transparent !important;
@@ -295,6 +290,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     border: none !important;
     box-shadow: none !important;
 }
+
 .context-content {
     height: 100%;
     display: flex;
@@ -313,6 +309,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     padding: 0;
     text-align: left; 
 }
+
+
+/* Título Montserrat em Caixa Alta para Motivos */
 .motivo-title-montserrat {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
@@ -331,11 +330,38 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     color: var(--text-charcoal);
 }
 
-/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
+/* ESTILOS DO BOTÃO VER MAIS */
+.btn-ver-mais {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; 
+    padding: 8px 14px; 
+    border-radius: 999px; 
+    background: var(--brand); 
+    border: 1px solid var(--brand-shadow);
+    color: #fff; 
+    font-weight: 700;
+    font-size: 14px; 
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    width: auto; 
+}
+.btn-ver-mais:hover {
+    background: var(--brand-shadow); 
+    color: #fff; 
+    border-color: var(--brand-shadow);
+}
+.btn-ver-mais svg {
+    width: 16px; 
+    height: 16px;
+    fill: var(--text-charcoal); 
+}
+
+
+/* ESTILOS DAS SETAS DE NAVEGAÇÃO */
 .carousel-nav {
     position: absolute;
     top: 50%;
-    /* Ajusta para centralizar em relação ao conteúdo do carrossel */
     transform: translateY(-50%); 
     width: 40px; 
     height: 40px;
@@ -355,24 +381,14 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 24px;
     fill: var(--text-charcoal); 
 }
-/* Alinhamento das setas nas bordas do wrap */
 .carousel-nav.prev {
     left: 16px; 
 }
 .carousel-nav.next {
     right: 16px; 
 }
-@media (min-width: 1232px) { /* Corresponde a (wrap + 2*padding) + o deslocamento das setas */
-    .carousel-nav.prev {
-        left: calc((100vw - 1200px) / 2 - 20px); 
-    }
-    .carousel-nav.next {
-        right: calc((100vw - 1200px) / 2 - 20px); 
-    }
-}
 @media (max-width: 1024px) {
     .carousel-nav {
-        /* Garante que as setas sumam em mobile, onde a rolagem é touch */
         display: none !important; 
     }
 }
@@ -417,7 +433,11 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                 </div>
             
         </div>
-
+        
+        <div id="videoSection" class="wrap" style="margin-top: 40px;" hidden>
+            <h2 style="margin-bottom: 20px;">Conteúdo em Vídeo</h2>
+            <div id="youtubeContainer"></div> 
+        </div>
         <div class="motivos-section">
             <h2 class="wrap">Motivos para Visitar</h2>
             
@@ -444,7 +464,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         </div>
         <div class="event-cta-fixed">
             <a id="whatsappCta" href="#" target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco e reserve seu pacote">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
                 <span class="label">RESERVE AGORA</span>
             </a>
         </div>
