@@ -201,7 +201,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     margin-right: 6px; 
     display: inline-block; 
     vertical-align: middle;
-    /* Trava o Favicon para não estourar */
     max-width: 16px !important;
     max-height: 16px !important;
 }
@@ -396,10 +395,13 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 /* ESTILOS PARA VÍDEO YOUTUBE LITE */
+#youtubeContainer {
+    max-width: var(--wrap);
+    margin: 0 auto;
+}
 lite-youtube {
     background-color: #000;
     margin: 0 auto;
-    /* Proporção 16:9 (altura/largura) */
     position: relative;
     display: block;
     contain: content;
@@ -496,11 +498,7 @@ lite-youtube:hover::before {
                 </div>
             
         </div>
-        
-        <div id="videoSection" class="wrap" style="margin-top: 40px;" hidden>
-            <h2 style="margin-bottom: 20px;">Conteúdo em Vídeo</h2>
-            <div id="youtubeContainer"></div> 
-        </div>
+
         <div class="motivos-section">
             <h2 class="wrap">Motivos para Visitar</h2>
             
@@ -509,7 +507,11 @@ lite-youtube:hover::before {
                     </ul>
                 </div>
         </div>
-
+        
+        <div id="videoSection" class="wrap" style="margin-top: 40px;" hidden>
+            <h2 style="margin-bottom: 20px;">Conteúdo em Vídeo</h2>
+            <div id="youtubeContainer"></div> 
+        </div>
         <div id="relatedEventsSection" class="motivos-section" style="margin-top: 50px;">
             <h2 id="relatedTitle" class="wrap">Mais Eventos na Categoria...</h2>
             
