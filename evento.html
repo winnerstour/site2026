@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js" defer></script> 
+    <script src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js"></script> 
     
     <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -47,7 +47,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* BARRA SUPERIOR (TOPBAR) */
+/* BARRA SUPERIOR (TOPBAR) - Idêntica ao Index */
 .topbar{position:sticky;top:0;z-index:1000;background:var(--brand)}
 .topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
 .menu-area{display:flex;align-items:center}
@@ -284,7 +284,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     align-items: center; 
     justify-content: center;
-    min-height: 180px;
+    min-height: 100%;
 }
 .card.context-card:hover {
     transform: none !important; 
@@ -392,70 +392,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     .carousel-nav {
         display: none !important; 
     }
-}
-
-/* ESTILOS PARA VÍDEO YOUTUBE LITE */
-#youtubeContainer {
-    max-width: var(--wrap);
-    margin: 0 auto;
-}
-lite-youtube {
-    background-color: #000;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    contain: content;
-    background-position: center center;
-    background-size: cover;
-    cursor: pointer;
-    max-width: 100%;
-    /* Altura base para a proporção 16:9 (60%) */
-    padding-bottom: 56.25%; 
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-}
-
-lite-youtube::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=);
-    background-position: 0 0;
-    background-repeat: repeat;
-    width: 100%;
-    height: 100%;
-    transition: all 0.2s ease-out;
-}
-
-lite-youtube:hover::before {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.lty-playbtn {
-    width: 68px;
-    height: 48px;
-    background-color: #212121;
-    z-index: 1;
-    opacity: 0.8;
-    border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.lty-playbtn::before {
-    content: "";
-    border-style: solid;
-    border-width: 11px 0 11px 19px;
-    border-color: transparent transparent transparent #fff;
-    position: absolute;
-    top: 13px;
-    left: 24px;
 }
     </style>
 </head>
