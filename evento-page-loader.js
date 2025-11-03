@@ -1,10 +1,11 @@
-// evento-page-loader.js (Final com Carrosséis Isolados e Funcionamento Corrigido)
+// evento-page-loader.js (Final com Carrosséis Funcionais e Estilos Corrigidos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
+  const SCROLL_SPEED = 4000; // 4 segundos para autoplay
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
@@ -81,7 +82,7 @@
     `;
   }
   
-  // Card de Evento Similar
+  // Card de Evento Similar (usado no carrossel de sugestões)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
@@ -97,6 +98,7 @@
 
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
+    // 🎯 CORREÇÃO: Usa a estrutura de CARD e THUMB do INDEX para estilização
     return `
       <div class="cl-slide">
         <a href="${finalUrl}" class="card" aria-label="${title}">
@@ -115,16 +117,15 @@
     `;
   }
   
-  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
-  function initCarousel(carouselId, wrapperId) {
+  // 🎯 FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
       if (!carousel || !wrapper) return;
 
       let scrollInterval;
       let isPaused = false;
-      const SCROLL_SPEED = 4000; 
-      const cardWidth = 318; // 300px card + 18px gap
+      const cardWidth = 318; 
 
       const scrollRight = () => {
           if (isPaused) return;
@@ -132,6 +133,7 @@
           const currentScroll = carousel.scrollLeft;
           const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
+          // Autoplay: Se estiver no final, volta suavemente para o início
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
           } else {
@@ -144,6 +146,7 @@
           scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
       };
       
+      // Pausa ao interagir
       carousel.addEventListener('mouseover', () => { isPaused = true; });
       carousel.addEventListener('mouseleave', () => { isPaused = false; });
       
@@ -154,6 +157,7 @@
       const nextButton = wrapper.querySelector('.carousel-nav.next');
 
       if (prevButton && nextButton) {
+          // Lógica de Rolagem Manual
           prevButton.addEventListener('click', () => {
               carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
           });
@@ -161,14 +165,19 @@
               carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
           });
           
-          // Lógica para desativar/travar setas no início/fim
+          // Lógica para Ocultar/Mostrar setas (Desktop)
           const checkScroll = () => {
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
               if (window.innerWidth > 1024) {
+                  // Mostra/Oculta para simular o travamento
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+              } else {
+                  // Oculta em mobile
+                  prevButton.style.display = 'none';
+                  nextButton.style.display = 'none';
               }
           };
           
@@ -194,7 +203,6 @@
               ev.category_macro === currentEventCategory
           );
           
-          // Não mostra a seção se houver 1 ou menos eventos (só o atual)
           if (relatedEvents.length <= 1) {
               relatedEventsSection.hidden = true;
               return;
@@ -208,7 +216,7 @@
           relatedCarouselContainer.innerHTML = relatedSlides;
 
           // Inicializa o carrossel de Sugestões (passando o ID do wrapper)
-          initCarousel(relatedCarouselId, relatedWrapperId); 
+          initCarousel(relatedCarouselId, relatedWrapperId, false); 
 
       } catch (e) {
           console.error("Erro ao carregar eventos relacionados:", e);
@@ -284,6 +292,7 @@
 
       const motivosCarouselId = 'motivosCarousel';
       const motivosWrapperId = 'motivosWrapper';
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
         const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
@@ -293,12 +302,11 @@
         motivosContainer.classList.add('cl-track');
         motivosContainer.id = motivosCarouselId;
         
-        document.querySelector('.motivos-wrapper').id = motivosWrapperId;
+        // NOVO: Adiciona o wrapper ID e as setas
+        motivosWrapperEl.id = motivosWrapperId;
         
-        initCarousel(motivosCarouselId, motivosWrapperId);
-        
-        // Renderiza as setas de navegação (apenas o HTML)
-        document.getElementById(motivosWrapperId).insertAdjacentHTML('beforeend', `
+        // Renderiza as setas de navegação (HTML)
+        motivosWrapperEl.insertAdjacentHTML('beforeend', `
               <button class="carousel-nav prev" id="prev-motivosCarousel">
                   <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
               </button>
@@ -307,9 +315,11 @@
               </button>
           `);
         
+        initCarousel(motivosCarouselId, motivosWrapperId, true); // Inicializa Motivos
+        
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
-        document.querySelector('.motivos-wrapper').hidden = true;
+        motivosWrapperEl.hidden = true;
       }
 
       // 5. Renderiza Eventos Similares
