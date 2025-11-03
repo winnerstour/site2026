@@ -47,7 +47,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* BARRA SUPERIOR (TOPBAR) - Idêntica ao Index */
+/* BARRA SUPERIOR (TOPBAR) */
 .topbar{position:sticky;top:0;z-index:1000;background:var(--brand)}
 .topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
 .menu-area{display:flex;align-items:center}
@@ -114,8 +114,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 /* DETALHES DO EVENTO */
+/* 🎯 CORREÇÃO CRÍTICA: Removendo o padding que já é dado pelo .wrap */
 .event-details {
-    padding: 0 16px;
+    padding: 0; 
 }
 .event-details p {
     margin-bottom: 24px;
@@ -143,6 +144,29 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     width: 100%;
     max-width: 400px;
 }
+
+/* 🎯 CORREÇÃO CRÍTICA: ESTILOS PARA O VÍDEO YOUTUBE LITE */
+#youtubeContainer {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px; /* Adiciona padding para alinhar o vídeo com o wrap */
+}
+lite-youtube {
+    background-color: #000;
+    position: relative;
+    display: block;
+    contain: content;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+    max-width: 100%;
+    /* Altura base para a proporção 16:9 */
+    padding-bottom: 56.25%; 
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+}
+/* Estilos do Player Botão - Mantidos como Web Component */
+
 
 /* ESTILO BASE DO CARD DE EVENTO SIMILAR (COPIADO DO INDEX.HTML) */
 .card {
