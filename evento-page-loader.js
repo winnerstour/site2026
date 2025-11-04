@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - BUSCA SOMENTE [slug]-banner.webp)
+// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS SIMPLIFICADO)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -28,29 +28,28 @@
   const heroBannerContainer = document.querySelector('.hero-banner'); 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
-  // FUNÇÃO REVISADA E FINALIZADA: Trata paths de dados relativos e paths de assets absolutos
+  // FUNÇÃO REVISADA E FINALIZADA: Foca em prefixar caminhos absolutos (assets) e relativos de dados
   function fixPath(path) {
       if (!path) return path;
-      
-      // 1. Trata paths de DADOS (que usam './')
-      if (path.startsWith('./')) {
-          // Exceção: se estivermos no BASE_PATH e for um caminho de JSON, precisamos do prefixo
-          if (BASE_PATH) {
-              return BASE_PATH + path.substring(1); // Ex: /site2026/event.json
-          }
-          return path; // Retorna como estava se não tiver BASE_PATH
-      }
 
-      // 2. Trata paths de ASSETS (que usam '/')
-      if (path.startsWith('/')) {
-          // Se BASE_PATH está ativo, remove barra inicial e adiciona o prefixo
+      // Se for um caminho de dados relativo (ex: './event.json' ou 'data/events/...')
+      if (path.startsWith('./') || path.startsWith(DATA_BASE_PATH.substring(2))) {
           if (BASE_PATH) {
-              return BASE_PATH + path; // Ex: /site2026/assets/...
+              // Exemplo: /site2026/./event.json ou /site2026/data/events/...
+              return BASE_PATH + path.substring(1); 
           }
           return path;
       }
       
-      return path; // Retorna path inalterado (nome de arquivo simples)
+      // Se for um caminho absoluto de assets (ex: '/assets/img/banners/...')
+      if (path.startsWith('/')) {
+          if (BASE_PATH) {
+              return BASE_PATH + path; // Ex: /site2026/assets/img/...
+          }
+          return path;
+      }
+      
+      return path; 
   }
   
   function getSlug() {
@@ -91,7 +90,7 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // CORREÇÃO: Busca [slug]-hero.webp para a miniatura
+    // CORREÇÃO: Busca [slug]-hero.webp para a miniatura do carrossel
     const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
     const imagePath = fixPath(rawImagePath);
 
@@ -291,7 +290,7 @@
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
-          // SEM FALLBACK AQUI
+          // SEM FALLBACK/ONERROR AQUI
           faviconEl.href = faviconPath; 
       }
       
