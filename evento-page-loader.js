@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS SIMPLIFICADO)
+// evento-page-loader.js (FINAL - SEM PLACEHOLDERS E FIX CAMINHOS)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -28,23 +28,22 @@
   const heroBannerContainer = document.querySelector('.hero-banner'); 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
-  // FUNÇÃO REVISADA E FINALIZADA: Foca em prefixar caminhos absolutos (assets) e relativos de dados
+  // FUNÇÃO DE FIX PATH: Trata paths de dados relativos e paths de assets absolutos
   function fixPath(path) {
       if (!path) return path;
 
-      // Se for um caminho de dados relativo (ex: './event.json' ou 'data/events/...')
-      if (path.startsWith('./') || path.startsWith(DATA_BASE_PATH.substring(2))) {
+      // 1. Trata paths de DADOS (que usam './')
+      if (path.startsWith('./')) {
           if (BASE_PATH) {
-              // Exemplo: /site2026/./event.json ou /site2026/data/events/...
               return BASE_PATH + path.substring(1); 
           }
-          return path;
+          return path; 
       }
       
-      // Se for um caminho absoluto de assets (ex: '/assets/img/banners/...')
+      // 2. Trata paths de ASSETS (que usam '/')
       if (path.startsWith('/')) {
           if (BASE_PATH) {
-              return BASE_PATH + path; // Ex: /site2026/assets/img/...
+              return BASE_PATH + path; 
           }
           return path;
       }
@@ -85,7 +84,7 @@
   // Card de Evento Similar (usado no carrossel de sugestões)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
-    const subtitle = ev.subtitle || 'Detalhes do evento...';
+    const subtitle = ev.slug; // Usando slug como subtitle para debug visual
     const slug = ev.slug; 
     
     const finalUrl = `evento.html?slug=${slug}`;
