@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - SEM PLACEHOLDERS E FIX CAMINHOS)
+// evento-page-loader.js (FINAL - BANNER E VÍDEO COEXISTENTES E FIX CAMINHOS)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -84,12 +84,12 @@
   // Card de Evento Similar (usado no carrossel de sugestões)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
-    const subtitle = ev.slug; // Usando slug como subtitle para debug visual
+    const subtitle = ev.slug; 
     const slug = ev.slug; 
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // CORREÇÃO: Busca [slug]-hero.webp para a miniatura do carrossel
+    // Busca [slug]-hero.webp para a miniatura do carrossel
     const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
     const imagePath = fixPath(rawImagePath);
 
@@ -289,20 +289,34 @@
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
-          // SEM FALLBACK/ONERROR AQUI
           faviconEl.href = faviconPath; 
       }
       
       eventTitle.textContent = finalTitle;
       
-      // Lógica para carregar o vídeo do YouTube (<iframe>) ou o Banner (<img>)
+      /* --- INÍCIO DA LÓGICA COEXISTENTE (BANNER E VÍDEO) --- */
+
+      // 1. CARREGAR E EXIBIR O BANNER (SEMPRE)
+      
+      // LÓGICA PURA PARA O BANNER PRINCIPAL: [slug]-banner.webp
+      const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
+      const heroPath = fixPath(rawHeroPath);
+      
+      // Busca a imagem principal sem onerror ou fallback
+      eventHero.src = heroPath;
+      eventHero.alt = `Banner do evento ${finalTitle}`;
+      eventHero.style.display = 'block';
+      heroBannerContainer.style.display = 'block'; 
+
+      // 2. CARREGAR E EXIBIR O VÍDEO (SE HOUVER)
       const rawVideoInput = ev.YouTubeVideo; 
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
-          // SE HOUVER VÍDEO:
-          heroBannerContainer.style.display = 'none';
-
+          // SE HOUVER VÍDEO: Injeta o player abaixo do banner
+          
+          // Não oculta o banner. Apenas injeta o vídeo no seu container.
+          
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
@@ -321,20 +335,10 @@
           if (youtubeVideoContainer) {
               youtubeVideoContainer.innerHTML = videoHtml;
           }
-          
-      } else {
-          // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
-          heroBannerContainer.style.display = 'block'; 
+      } 
+      // Se não houver vídeo, o container do vídeo permanece vazio (o que é OK, pois o HTML do evento o posiciona).
 
-          // LÓGICA PURA PARA O BANNER PRINCIPAL: [slug]-banner.webp
-          const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
-          const heroPath = fixPath(rawHeroPath);
-          
-          // Busca a imagem principal sem onerror ou fallback
-          eventHero.src = heroPath;
-          eventHero.alt = `Banner do evento ${finalTitle}`;
-          eventHero.style.display = 'block';
-      }
+      /* --- FIM DA LÓGICA COEXISTENTE --- */
       
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
       eventMeta.textContent = metaHtml;
