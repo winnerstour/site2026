@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - Lógica de Eventos Similares Refatorada e Corrigida)
+// evento-page-loader.js (FINAL - COM LOGS DE DEBUG)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -170,6 +170,7 @@
 
   // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
+      console.log(`[DEBUG RELATED] Iniciando renderização para Categoria: ${currentEventCategory}, Slug: ${currentEventSlug}`);
       try {
           // Garante que a seção esteja visível ao iniciar a tentativa de carregamento
           relatedEventsSection.hidden = false;
@@ -177,18 +178,27 @@
           const relatedCarouselId = 'relatedCarouselContainer';
           const relatedWrapperId = 'relatedWrapper';
           
+          console.log(`[DEBUG RELATED] Tentando carregar lista de todos os eventos de: ${fixPath(ALL_EVENTS_URL)}`);
           const res = await fetch(fixPath(ALL_EVENTS_URL));
-          if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
+
+          if (!res.ok) {
+              console.error(`[DEBUG RELATED] Falha no FETCH! Status: ${res.status} para URL: ${fixPath(ALL_EVENTS_URL)}`);
+              throw new Error("Falha ao carregar lista de eventos similares (Erro de Rede).");
+          }
           
           const allEvents = await res.json();
+          console.log(`[DEBUG RELATED] Lista de eventos carregada. Total: ${allEvents.length}`);
           
           // Filtra por category_macro E exclui o evento que está sendo visualizado (pelo slug)
           const relatedEvents = allEvents.filter(ev => 
               ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
           );
+
+          console.log(`[DEBUG RELATED] Eventos similares encontrados (após filtro): ${relatedEvents.length}`);
           
           // Oculta APENAS se a lista filtrada estiver vazia (tamanho 0)
           if (relatedEvents.length === 0) {
+              console.log("[DEBUG RELATED] NENHUM evento similar encontrado. Ocultando seção.");
               relatedEventsSection.hidden = true;
               return;
           }
@@ -198,12 +208,13 @@
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
 
+          console.log("[DEBUG RELATED] Carrossel populado e inicializado com sucesso.");
           // Inicializa o carrossel de Sugestões
           initCarousel(relatedCarouselId, relatedWrapperId, false); 
 
       } catch (e) {
-          console.error("Erro ao carregar eventos relacionados:", e);
-          // Oculta apenas se houver um erro de rede/JSON
+          console.error("[DEBUG RELATED] Erro FINAL no processo de renderização de similares:", e);
+          // Oculta apenas se houver um erro grave (rede/JSON inválido)
           relatedEventsSection.hidden = true; 
       }
   }
@@ -352,10 +363,11 @@
       }
 
       // 5. Renderiza Eventos Similares
-      // Se a category_macro existir, tente renderizar. A própria função decide se deve ocultar.
       if (ev.category_macro) {
+          console.log(`[DEBUG RELATED] category_macro encontrada: ${ev.category_macro}`);
           renderRelatedEvents(ev.category_macro, slug); 
       } else {
+          console.log("[DEBUG RELATED] category_macro AUSENTE no JSON do evento. Ocultando seção.");
           relatedEventsSection.hidden = true;
       }
 
