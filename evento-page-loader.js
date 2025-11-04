@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - LÓGICA DE BANNER SIMPLIFICADA)
+// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS E BANNER)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -28,21 +28,31 @@
   const heroBannerContainer = document.querySelector('.hero-banner'); 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
-  // FUNÇÃO REVISADA E SIMPLIFICADA: Adiciona BASE_PATH somente se o caminho não for relativo (começar com /)
+  // FUNÇÃO REVISADA E FINALIZADA: Trata paths de dados relativos e paths de assets absolutos
   function fixPath(path) {
       if (!path) return path;
-
-      // Normaliza: remove barras inicial/final e BASE_PATH existente
-      let normalizedPath = path.replace(BASE_PATH, '').replace(/^\/|\/$/g, '');
       
-      if (BASE_PATH) {
-          // Garante que o path comece com BASE_PATH, exceto se for um caminho relativo de arquivo (ex: 'event.json')
-          if (normalizedPath.startsWith('assets') || normalizedPath.startsWith('data')) {
-            return BASE_PATH + '/' + normalizedPath;
+      // 1. Trata paths de DADOS (que usam './')
+      if (path.startsWith('./')) {
+          // Remove o ponto e barra inicial, e prefixa com BASE_PATH, se necessário
+          let normalizedPath = path.substring(2);
+          if (BASE_PATH) {
+              return BASE_PATH + '/' + normalizedPath;
           }
+          return path; // Retorna como estava se não tiver BASE_PATH
       }
-      // Para Netlify ou paths não afetados pelo BASE_PATH (ou paths relativos como './event.json')
-      return normalizedPath.startsWith('/') ? normalizedPath : '/' + normalizedPath;
+
+      // 2. Trata paths de ASSETS (que usam '/')
+      if (path.startsWith('/')) {
+          // Remove barra inicial e prefixa com BASE_PATH, se necessário
+          let normalizedPath = path.substring(1);
+          if (BASE_PATH) {
+              return BASE_PATH + '/' + normalizedPath;
+          }
+          return path;
+      }
+      
+      return path; // Retorna path inalterado (ex: nome de arquivo simples)
   }
   
   function getSlug() {
@@ -83,7 +93,7 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // NOVO CAMINHO SIMPLIFICADO para a thumb do card
+    // Caminhos de imagem aqui também precisam do fixPath
     const rawImagePath = `/assets/img/banners/${slug}-thumb.webp`; 
     const imagePath = fixPath(rawImagePath);
 
@@ -188,11 +198,13 @@
           const relatedCarouselId = 'relatedCarouselContainer';
           const relatedWrapperId = 'relatedWrapper';
           
-          console.log(`[DEBUG RELATED] Tentando carregar lista de todos os eventos de: ${fixPath(ALL_EVENTS_URL)}`);
-          const res = await fetch(fixPath(ALL_EVENTS_URL));
+          const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
+          console.log(`[DEBUG RELATED] Tentando carregar lista de todos os eventos de: ${finalAllEventsUrl}`);
+          
+          const res = await fetch(finalAllEventsUrl);
 
           if (!res.ok) {
-              console.error(`[DEBUG RELATED] Falha no FETCH! Status: ${res.status} para URL: ${fixPath(ALL_EVENTS_URL)}`);
+              console.error(`[DEBUG RELATED] Falha no FETCH! Status: ${res.status} para URL: ${finalAllEventsUrl}`);
               throw new Error("Falha ao carregar lista de eventos similares (Erro de Rede).");
           }
           
@@ -255,11 +267,16 @@
     }
     
     try {
-      const jsonPath = `${DATA_BASE_PATH}${slug}.json`;
-      const res = await fetch(jsonPath);
+      // O caminho dos dados deve ser ajustado para incluir BASE_PATH, se necessário
+      const finalJsonPath = fixPath(`${DATA_BASE_PATH}${slug}.json`);
+      console.log(`[DEBUG LOAD] Tentando carregar JSON do evento: ${finalJsonPath}`);
+
+      const res = await fetch(finalJsonPath);
 
       if (!res.ok) {
-        const rootRes = await fetch(`./${slug}.json`);
+        // Fallback para buscar o JSON na raiz do projeto (ajustado com fixPath)
+        const rootPath = fixPath(`./${slug}.json`);
+        const rootRes = await fetch(rootPath);
         if (!rootRes.ok) {
              throw new Error(`Arquivo ${slug}.json não encontrado ou erro de rede.`);
         }
@@ -313,7 +330,6 @@
           heroBannerContainer.style.display = 'block'; 
 
           // LÓGICA SIMPLIFICADA E PURA PARA O BANNER HERO: [slug]-hero.webp
-          // Ignora qualquer fallback complexo e usa a convenção padrão.
           const rawHeroPath = `/assets/img/banners/${slug}-hero.webp`;
           const heroPath = fixPath(rawHeroPath);
           
