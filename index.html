@@ -112,7 +112,8 @@ h1,h2{
 
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
-    /* REMOVIDO: position: relative; */ 
+    /* CORREÇÃO: Devolve position: relative para que as setas se posicionem APENAS dentro deste wrapper */
+    position: relative; 
     /* SEM PADDING HORIZONTAL! O CL-TRACK fará o espaçamento */
 }
 @media (max-width: 1024px) {
@@ -328,27 +329,22 @@ h1,h2{
     fill: var(--text-charcoal); 
 }
 
-/* Alinhamento para telas menores (setas flutuam no wrap) */
+/* Setas posicionadas para flutuar para fora da borda do WRAPPER (1024px) */
 .carousel-nav.prev {
-    left: 16px; 
+    left: 0; 
+    /* Movimenta a seta 50% para fora do limite esquerdo do .carousel-wrapper-container (desktop) */
+    transform: translateY(-50%) translateX(-50%); 
 }
 .carousel-nav.next {
-    right: 16px; 
+    right: 0; 
+    /* Movimenta a seta 50% para fora do limite direito do .carousel-wrapper-container (desktop) */
+    transform: translateY(-50%) translateX(50%); 
 }
 
-/* AJUSTE FINAL: Move as setas para a lateral externa da área útil de 1024px */
-@media (min-width: 1025px) { 
-    .carousel-nav.prev {
-        /* Calcula a posição absoluta a partir do viewport */
-        left: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-    .carousel-nav.next {
-        right: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-}
+/* Em telas maiores que 1024px, a seta já está corretamente posicionada fora do wrap (pois ela flutua 50% do seu próprio tamanho para fora do contêiner de 1024px) */
 @media (max-width: 1024px) {
     .carousel-nav {
-        /* Garante que as setas sumam em mobile, onde a rolagem é touch */
+        /* Garante que as setas sumam em mobile/tablet onde o scroll é touch */
         display: none !important; 
     }
 }
