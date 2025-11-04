@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Escopo Corrigido para Vídeo e Carrosséis - Lógica de Ocultamento Removida)
+// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -7,9 +7,6 @@
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
   const SCROLL_SPEED = 4000; // 4 segundos para autoplay
 
-  // =======================================================
-  // REFERÊNCIAS DE ELEMENTOS (Definidas no escopo global para o IIFE)
-  // =======================================================
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
@@ -23,23 +20,12 @@
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
   
-  // Elementos de Seções
-  const videoSection = document.getElementById('videoSection');
-  const youtubeContainer = document.getElementById('youtubeContainer');
   const relatedEventsSection = document.getElementById('relatedEventsSection');
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
-  const motivosWrapperEl = document.getElementById('motivosWrapper');
-  const relatedWrapperEl = document.getElementById('relatedWrapper'); 
-  
-  const motivosCarouselId = 'motivosContainer';
-  const motivosWrapperId = 'motivosWrapper';
-  const relatedCarouselId = 'relatedCarouselContainer';
-  const relatedWrapperId = 'relatedWrapper';
 
-  // =======================================================
-  // FUNÇÕES DE UTILIDADE E RENDERIZAÇÃO
-  // =======================================================
+  // Adiciona o container do Hero Banner para manipulação de estilos/conteúdo
+  const heroBannerContainer = document.querySelector('.hero-banner'); 
 
   function fixPath(path) {
       if (path && path.startsWith('/assets')) {
@@ -58,44 +44,7 @@
     errorDiv.hidden = false;
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
   }
-  
-  /**
-   * @description Extrai o ID do vídeo de uma URL do YouTube.
-   */
-  function extractVideoId(url) {
-      if (!url) return null;
-      // Regex robusto que cobre a maioria dos formatos de URL do YouTube
-      const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
-      const match = url.match(regExp);
-      return (match && match[1].length === 11) ? match[1] : null;
-  }
-  
-  /**
-   * @description Injeta o Web Componente YouTube Lite no DOM.
-   */
-  function injectYoutubeLite(videoId, videoTitle) {
-      // Se não houver ID, o container permanece vazio, mas não é ocultado.
-      if (!videoId) {
-          youtubeContainer.innerHTML = ''; // Garante que o container esteja limpo
-          return;
-      }
-      
-      const playlabel = `Reproduzir vídeo: ${videoTitle}`;
-      
-      const youtubeHtml = `
-          <lite-youtube videoid="${videoId}"
-              style="background-image:url('https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg');"
-              params="modestbranding=1&rel=0"
-              playlabel="${playlabel}">
-              <button type="button" class="lty-playbtn" aria-label="Reproduzir vídeo"></button>
-          </lite-youtube>
-      `;
 
-      youtubeContainer.innerHTML = youtubeHtml;
-      // A seção de vídeo não precisa mais ser explicitamente mostrada aqui, 
-      // pois o atributo 'hidden' foi removido do HTML.
-  }
-  
   // Card TUTORIAL/CONTEXTO (para a página de evento)
   function buildContextCardMotivos(carouselId, eventTitle) {
       const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
@@ -136,7 +85,7 @@
     `;
   }
   
-  // Card de Evento Similar
+  // Card de Evento Similar (usado no carrossel de sugestões)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.subtitle || 'Detalhes do evento...';
@@ -148,8 +97,9 @@
     const imagePath = fixPath(rawImagePath);
 
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-    const faviconPath = fixPath(faviconPath);
+    const faviconPath = fixPath(faviconRawPath);
 
+    // Favicon usa a classe 'favicon' para travar o tamanho via CSS
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
     return `
@@ -171,20 +121,21 @@
   }
   
   // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
-  function initCarousel(carouselId, wrapperId) {
+  function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
       if (!carousel || !wrapper) return;
 
       let scrollInterval;
       let isPaused = false;
-      const cardWidth = 318; // 300px card + 18px gap
+      const cardWidth = 318; 
 
       const scrollRight = () => {
           if (isPaused) return;
 
           const currentScroll = carousel.scrollLeft;
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          // Adiciona 1px para evitar problemas de arredondamento em navegadores
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth; 
 
           if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
               carousel.scroll({left: 0, behavior: 'smooth'});
@@ -220,6 +171,7 @@
               const currentScroll = carousel.scrollLeft;
               const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
+              // Só roda a lógica de display em telas maiores que 1024px
               if (window.innerWidth > 1024) { 
                   prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
                   nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
@@ -238,6 +190,9 @@
   // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
+          const relatedCarouselId = 'relatedCarouselContainer';
+          const relatedWrapperId = 'relatedWrapper';
+          
           const res = await fetch(fixPath(ALL_EVENTS_URL));
           if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
           
@@ -258,21 +213,7 @@
           relatedCarouselContainer.innerHTML = relatedSlides;
 
           // Inicializa o carrossel de Sugestões
-          const relatedWrapperEl = document.getElementById(relatedWrapperId);
-          if (relatedWrapperEl) {
-              // Adiciona as setas ao wrapper (se não existirem)
-              if (!relatedWrapperEl.querySelector('.carousel-nav')) {
-                   relatedWrapperEl.insertAdjacentHTML('beforeend', `
-                      <button class="carousel-nav prev">
-                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-                      </button>
-                      <button class="carousel-nav next">
-                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                      </button>
-                  `);
-              }
-              initCarousel(relatedCarouselContainer.id, relatedWrapperId);
-          }
+          initCarousel(relatedCarouselId, relatedWrapperId, false); 
 
       } catch (e) {
           console.error("Erro ao carregar eventos relacionados:", e);
@@ -312,12 +253,50 @@
       
       eventTitle.textContent = finalTitle;
       
-      // Prioridade BANNER_PATH
-      const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
-      const heroPath = fixPath(rawHeroPath);
-      
-      eventHero.src = heroPath;
-      eventHero.alt = `Banner do evento ${finalTitle}`;
+      // Lógica para carregar o vídeo do YouTube (<iframe>) ou o Banner (<img>)
+      const youtubeVideoId = ev.YouTubeVideo; // << O parâmetro correto foi utilizado
+
+      if (youtubeVideoId) {
+          // 1. Remove o elemento <img> do banner.
+          eventHero.remove(); 
+          
+          // 2. Ajusta os estilos do contêiner para a exibição correta do vídeo 16:9.
+          // Isso garante que o vídeo não seja cortado pelo 'max-height: 400px' do CSS.
+          heroBannerContainer.style.maxHeight = 'none';
+          heroBannerContainer.style.overflow = 'visible'; 
+          
+          // 3. Cria o HTML do embed responsivo (16:9) do YouTube.
+          const videoHtml = `
+              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
+                  <iframe 
+                      width="100%" 
+                      height="100%" 
+                      src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&amp;showinfo=0&amp;autoplay=0" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowfullscreen 
+                      style="position: absolute; top: 0; left: 0;"
+                      title="${finalTitle}"
+                  ></iframe>
+              </div>
+          `;
+          
+          // 4. Insere o vídeo no contêiner.
+          heroBannerContainer.insertAdjacentHTML('beforeend', videoHtml);
+          
+      } else {
+          // Lógica original para carregar o Banner (caso não haja vídeo).
+          const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
+          const heroPath = fixPath(rawHeroPath);
+          
+          eventHero.src = heroPath;
+          eventHero.alt = `Banner do evento ${finalTitle}`;
+          eventHero.style.display = 'block';
+          
+          // Reseta os estilos do contêiner para os valores padrão do CSS.
+          heroBannerContainer.style.maxHeight = ''; 
+          heroBannerContainer.style.overflow = ''; 
+      }
       
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
       eventMeta.textContent = metaHtml;
@@ -347,6 +326,7 @@
           .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
 
       const motivosCarouselId = 'motivosContainer';
+      const motivosWrapperId = 'motivosWrapper';
       const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
@@ -356,7 +336,7 @@
         motivosContainer.innerHTML = contextCard + motivoSlides;
         motivosContainer.classList.add('cl-track'); // Garante que o container use o cl-track
         
-        // Renderiza as setas de navegação (HTML) no wrapper dos motivos
+        // Renderiza as setas de navegação (HTML) no wrapper
         motivosWrapperEl.insertAdjacentHTML('beforeend', `
               <button class="carousel-nav prev">
                   <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
@@ -366,21 +346,12 @@
               </button>
           `);
         
-        initCarousel(motivosContainer.id, motivosWrapperEl.id); // Inicializa Motivos
+        initCarousel(motivosCarouselId, motivosWrapperId, true); // Inicializa Motivos
         
       } else {
         document.querySelector('.motivos-section h2').hidden = true;
         motivosWrapperEl.hidden = true;
       }
-
-      // 🎯 LÓGICA DE INJEÇÃO DO VÍDEO LITE
-      const youtubeUrl = ev.youtube_url;
-      const videoId = extractVideoId(youtubeUrl);
-      
-      // Chamamos injectYoutubeLite, que agora se encarrega de preencher o container
-      // sem se preocupar em ocultar a seção, que agora está sempre visível no HTML.
-      injectYoutubeLite(videoId, finalTitle);
-
 
       // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
