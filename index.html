@@ -94,7 +94,6 @@ h1,h2{
 }
 .cat-section{
   margin:16px 0 8px; 
-  /* Removido padding 0 16px aqui, será aplicado no wrap/cl-track */
   padding-top: 4px; 
 }
 
@@ -108,15 +107,13 @@ h1,h2{
   margin:0 auto 10px; /* Centraliza */
   max-width: var(--wrap); /* Limita o título à largura total */
   padding: 0 16px; /* Mantém o padding para o wrap */
-  /* NOVO: Ajusta o display para o wrap funcionar */
   display: block; 
 }
 
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
     position: relative;
-    /* REMOVIDO: padding: 0 40px; */
-    /* NOVO: Permite que o wrapper utilize 100% da largura do contêiner pai (main) */
+    /* SEM PADDING HORIZONTAL! O CL-TRACK fará o espaçamento */
 }
 @media (max-width: 1024px) {
     .carousel-wrapper-container {
@@ -331,20 +328,23 @@ h1,h2{
     fill: var(--text-charcoal); 
 }
 
-/* AJUSTE FINAL: Posiciona as setas fora do wrap, no limite da tela */
+/* Alinhamento das setas nas bordas do wrap (16px) quando a tela é menor */
+/* NOVO AJUSTE: left e right 16px para garantir que elas flutuem sobre o scroll no mobile/tablet */
 .carousel-nav.prev {
-    left: 16px; /* Alinha com o padding do wrap (16px) */
+    left: 16px; 
 }
 .carousel-nav.next {
-    right: 16px; /* Alinha com o padding do wrap (16px) */
+    right: 16px; 
 }
-/* NOVO AJUSTE: Move as setas para a lateral externa da área útil de 1024px */
+
+/* AJUSTE FINAL: Move as setas para a lateral externa da área útil de 1024px */
 @media (min-width: 1025px) { 
     .carousel-nav.prev {
-        left: calc((100vw - var(--wrap)) / 2 - 20px); /* 100vw - wrap / 2 (metade do espaço em branco) - metade da seta (20px) */
+        /* Calcula o espaço branco (100vw - 1024px) / 2, e subtrai metade da largura da seta (20px) */
+        left: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
     .carousel-nav.next {
-        right: calc((100vw - var(--wrap)) / 2 - 20px);
+        right: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
 }
 @media (max-width: 1024px) {
