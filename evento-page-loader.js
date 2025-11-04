@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS E BANNER)
+// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS ROBUSTOS)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -31,28 +31,26 @@
   // FUNÇÃO REVISADA E FINALIZADA: Trata paths de dados relativos e paths de assets absolutos
   function fixPath(path) {
       if (!path) return path;
-      
-      // 1. Trata paths de DADOS (que usam './')
-      if (path.startsWith('./')) {
-          // Remove o ponto e barra inicial, e prefixa com BASE_PATH, se necessário
-          let normalizedPath = path.substring(2);
-          if (BASE_PATH) {
-              return BASE_PATH + '/' + normalizedPath;
-          }
-          return path; // Retorna como estava se não tiver BASE_PATH
-      }
 
-      // 2. Trata paths de ASSETS (que usam '/')
-      if (path.startsWith('/')) {
-          // Remove barra inicial e prefixa com BASE_PATH, se necessário
-          let normalizedPath = path.substring(1);
+      // Se o path é relativo (começa com .), retorna ele mesmo, pois o browser sabe onde buscar os JSONs
+      if (path.startsWith('./')) {
+          // Exceção: se estivermos no BASE_PATH e for um caminho de JSON, precisamos do prefixo
           if (BASE_PATH) {
-              return BASE_PATH + '/' + normalizedPath;
+              return BASE_PATH + path.substring(1); // Ex: /site2026/event.json
           }
           return path;
       }
       
-      return path; // Retorna path inalterado (ex: nome de arquivo simples)
+      // Se o path for absoluto (imagens, favicon, começa com /), aplica BASE_PATH
+      if (path.startsWith('/')) {
+          // Se BASE_PATH está ativo, remove a barra inicial e adiciona o prefixo
+          if (BASE_PATH) {
+              return BASE_PATH + path; // Ex: /site2026/assets/...
+          }
+          return path;
+      }
+      
+      return path; // Retorna path inalterado (nome de arquivo simples)
   }
   
   function getSlug() {
@@ -93,7 +91,7 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // Caminhos de imagem aqui também precisam do fixPath
+    // CAMINHO SIMPLIFICADO para a thumb do card
     const rawImagePath = `/assets/img/banners/${slug}-thumb.webp`; 
     const imagePath = fixPath(rawImagePath);
 
@@ -107,7 +105,7 @@
       <div class="cl-slide">
         <a href="${finalUrl}" class="card" aria-label="${title}">
           <div class="thumb">
-            <img loading="lazy" src="${imagePath}" alt="${title}">
+            <img loading="lazy" src="${imagePath}" alt="${title}" onerror="this.src='${fixPath('/assets/img/banners/placeholder-banner.webp')}'">
           </div>
           <div class="content">
             <h3 class="title">
@@ -267,7 +265,7 @@
     }
     
     try {
-      // O caminho dos dados deve ser ajustado para incluir BASE_PATH, se necessário
+      // Carregar JSON do evento (ajustado com fixPath)
       const finalJsonPath = fixPath(`${DATA_BASE_PATH}${slug}.json`);
       console.log(`[DEBUG LOAD] Tentando carregar JSON do evento: ${finalJsonPath}`);
 
@@ -289,7 +287,7 @@
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
       // Caminho do Favicon
-      const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
+      const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
@@ -329,12 +327,17 @@
           // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
           heroBannerContainer.style.display = 'block'; 
 
-          // LÓGICA SIMPLIFICADA E PURA PARA O BANNER HERO: [slug]-hero.webp
+          // LÓGICA PURA PARA O BANNER HERO: [slug]-hero.webp
           const rawHeroPath = `/assets/img/banners/${slug}-hero.webp`;
           const heroPath = fixPath(rawHeroPath);
           
+          // Adiciona o placeholder (no caso de 404, o navegador tenta este fallback)
+          const fallbackPlaceholder = fixPath('/assets/img/banners/placeholder-banner.webp');
+
+          // Usa o atributo onerror para fallback no caso de 404
           eventHero.src = heroPath;
           eventHero.alt = `Banner do evento ${finalTitle}`;
+          eventHero.setAttribute('onerror', `this.onerror=null;this.src='${fallbackPlaceholder}';`);
           eventHero.style.display = 'block';
       }
       
