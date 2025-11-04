@@ -1,11 +1,11 @@
-// evento-page-loader.js (FINAL - Corrigido para Exibir a Seção e VÍDEO YOUTUBE)
+// evento-page-loader.js (FINAL - SCROLL_SPEED DOBRADO, Fix Visibilidade e Vídeo YouTube)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
-  const SCROLL_SPEED = 4000; // 4 segundos para autoplay
+  const SCROLL_SPEED = 8000; // 8 segundos para autoplay (DOBRO DO TEMPO)
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
