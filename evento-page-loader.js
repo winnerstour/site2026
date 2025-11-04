@@ -26,6 +26,8 @@
 
   // Adiciona o container do Hero Banner para manipulação de estilos/conteúdo
   const heroBannerContainer = document.querySelector('.hero-banner'); 
+  // NOVO: Adiciona o container para o vídeo do YouTube
+  const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
   function fixPath(path) {
       if (path && path.startsWith('/assets')) {
@@ -254,18 +256,15 @@
       eventTitle.textContent = finalTitle;
       
       // Lógica para carregar o vídeo do YouTube (<iframe>) ou o Banner (<img>)
-      const youtubeVideoId = ev.YouTubeVideo; // << O parâmetro correto foi utilizado
+      const youtubeVideoId = ev.YouTubeVideo; 
 
       if (youtubeVideoId) {
-          // 1. Remove o elemento <img> do banner.
-          eventHero.remove(); 
-          
-          // 2. Ajusta os estilos do contêiner para a exibição correta do vídeo 16:9.
-          // Isso garante que o vídeo não seja cortado pelo 'max-height: 400px' do CSS.
-          heroBannerContainer.style.maxHeight = 'none';
-          heroBannerContainer.style.overflow = 'visible'; 
-          
-          // 3. Cria o HTML do embed responsivo (16:9) do YouTube.
+          // SE HOUVER VÍDEO:
+
+          // 1. Oculta o contêiner do Hero Banner (que só contém a imagem de placeholder)
+          heroBannerContainer.style.display = 'none';
+
+          // 2. Cria o HTML do embed responsivo (16:9) do YouTube.
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
@@ -281,21 +280,24 @@
               </div>
           `;
           
-          // 4. Insere o vídeo no contêiner.
-          heroBannerContainer.insertAdjacentHTML('beforeend', videoHtml);
+          // 3. Insere o vídeo no NOVO contêiner (depois dos motivos).
+          if (youtubeVideoContainer) {
+              youtubeVideoContainer.innerHTML = videoHtml;
+          }
           
       } else {
-          // Lógica original para carregar o Banner (caso não haja vídeo).
+          // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
+          
+          // 1. Garante que o contêiner do Hero Banner esteja visível.
+          heroBannerContainer.style.display = 'block'; 
+
+          // 2. Carrega a imagem do banner.
           const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
           const heroPath = fixPath(rawHeroPath);
           
           eventHero.src = heroPath;
           eventHero.alt = `Banner do evento ${finalTitle}`;
           eventHero.style.display = 'block';
-          
-          // Reseta os estilos do contêiner para os valores padrão do CSS.
-          heroBannerContainer.style.maxHeight = ''; 
-          heroBannerContainer.style.overflow = ''; 
       }
       
       const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
