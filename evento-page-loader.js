@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS ROBUSTOS)
+// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS ROBUSTOS E NOMENCLATURA)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -32,7 +32,7 @@
   function fixPath(path) {
       if (!path) return path;
 
-      // Se o path é relativo (começa com .), retorna ele mesmo, pois o browser sabe onde buscar os JSONs
+      // 1. Trata paths de DADOS (que usam './')
       if (path.startsWith('./')) {
           // Exceção: se estivermos no BASE_PATH e for um caminho de JSON, precisamos do prefixo
           if (BASE_PATH) {
@@ -41,7 +41,7 @@
           return path;
       }
       
-      // Se o path for absoluto (imagens, favicon, começa com /), aplica BASE_PATH
+      // 2. Trata paths de ASSETS (que usam '/')
       if (path.startsWith('/')) {
           // Se BASE_PATH está ativo, remove a barra inicial e adiciona o prefixo
           if (BASE_PATH) {
@@ -91,8 +91,8 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // CAMINHO SIMPLIFICADO para a thumb do card
-    const rawImagePath = `/assets/img/banners/${slug}-thumb.webp`; 
+    // CORREÇÃO DE NOMENCLATURA: Usando [slug]-hero.webp para as miniaturas do carrossel
+    const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
     const imagePath = fixPath(rawImagePath);
 
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
@@ -327,11 +327,11 @@
           // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
           heroBannerContainer.style.display = 'block'; 
 
-          // LÓGICA PURA PARA O BANNER HERO: [slug]-hero.webp
-          const rawHeroPath = `/assets/img/banners/${slug}-hero.webp`;
+          // LÓGICA PURA PARA O BANNER PRINCIPAL: [slug]-banner.webp
+          const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
           const heroPath = fixPath(rawHeroPath);
           
-          // Adiciona o placeholder (no caso de 404, o navegador tenta este fallback)
+          // Fallback simples caso a imagem principal não seja encontrada
           const fallbackPlaceholder = fixPath('/assets/img/banners/placeholder-banner.webp');
 
           // Usa o atributo onerror para fallback no caso de 404
