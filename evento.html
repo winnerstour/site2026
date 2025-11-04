@@ -355,35 +355,27 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 24px;
     fill: var(--text-charcoal); 
 }
-/* CORREÇÃO: Setas posicionadas nas margens do WRAPPER (1024px) */
+/* Alinhamento para telas menores (setas flutuam no wrap) */
 .carousel-nav.prev {
-    /* Setas ficam visíveis, flutuando sobre o conteúdo quando a tela é grande */
-    left: 0; 
-    transform: translateY(-50%) translateX(-50%); /* Ajusta 50% para fora (seta para o lado) */
+    left: 16px; 
 }
 .carousel-nav.next {
-    right: 0; 
-    transform: translateY(-50%) translateX(50%); /* Ajusta 50% para fora (seta para o lado) */
+    right: 16px; 
 }
-
-/* AJUSTE PARA O CASO DE TER SETAS FORA DO WRAP (telas > 1024px) */
+/* AJUSTE FINAL: Move as setas para a lateral externa da área útil de 1024px */
 @media (min-width: 1025px) { 
     .carousel-nav.prev {
-        /* Desfaz o translateX para mantê-las alinhadas no centro da área de margem (já que agora a referência é o WRAPPER 1024px) */
-        left: 0;
-        transform: translateY(-50%) translateX(-50%); 
+        /* Define a posição esquerda calculada a partir do viewport */
+        left: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
     .carousel-nav.next {
-        right: 0;
-        transform: translateY(-50%) translateX(50%);
+        /* Define a posição direita calculada a partir do viewport */
+        right: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
 }
 @media (max-width: 1024px) {
     .carousel-nav {
-        /* Setas ficam presas no padding de 16px do .cl-track (e podem ser ocultadas em mobile, dependendo do scroll) */
-        left: 0;
-        right: 0;
-        transform: translateY(-50%);
+        /* Garante que as setas sumam em mobile, onde a rolagem é touch */
         display: none !important; 
     }
 }
@@ -417,7 +409,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     <main id="eventContent" class="event-page" hidden>
 
         <div class="hero-banner">
-            <img id="eventHero" src="/assets/img/banners/placeholder-banner.webp" alt="Banner do Evento" loading="eager">
+            <img id="eventHero" src="" alt="Banner do Evento" loading="eager">
         </div>
 
         <div class="wrap event-details">
