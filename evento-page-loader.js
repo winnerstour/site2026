@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE - Otimizado e Corrigido)
+// evento-page-loader.js (FINAL - Corrigido para Exibir a Seção)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -192,6 +192,9 @@
   // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
+          // Garante que a seção esteja visível ao iniciar a tentativa de carregamento
+          relatedEventsSection.hidden = false;
+          
           const relatedCarouselId = 'relatedCarouselContainer';
           const relatedWrapperId = 'relatedWrapper';
           
@@ -200,12 +203,12 @@
           
           const allEvents = await res.json();
           
-          // CORREÇÃO: Filtra por categoria E exclui o evento que está sendo visualizado (pelo slug)
+          // Filtra por categoria E exclui o evento que está sendo visualizado (pelo slug)
           const relatedEvents = allEvents.filter(ev => 
               ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
           );
           
-          // NOVO CHECK: Esconde apenas se a lista filtrada estiver vazia (tamanho 0)
+          // Oculta APENAS se a lista filtrada estiver vazia (tamanho 0)
           if (relatedEvents.length === 0) {
               relatedEventsSection.hidden = true;
               return;
@@ -221,7 +224,8 @@
 
       } catch (e) {
           console.error("Erro ao carregar eventos relacionados:", e);
-          relatedEventsSection.hidden = true;
+          // Oculta apenas se houver um erro de rede/JSON
+          relatedEventsSection.hidden = true; 
       }
   }
 
@@ -374,6 +378,7 @@
           // Passa o slug do evento atual para que possa ser excluído
           renderRelatedEvents(ev.category_macro, slug); 
       } else {
+          // Se não houver categoria, garante que a seção esteja oculta
           relatedEventsSection.hidden = true;
       }
 
