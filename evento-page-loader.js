@@ -1,11 +1,11 @@
-// evento-page-loader.js (FINAL - Cards de Contexto Removidos)
+// evento-page-loader.js (FINAL - Lógica de Eventos Similares Refatorada e Corrigida)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
-  const SCROLL_SPEED = 8000; // 8 segundos para autoplay (MANTIDO)
+  const SCROLL_SPEED = 8000; // 8 segundos para autoplay
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
@@ -46,8 +46,6 @@
     errorDiv.hidden = false;
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
   }
-
-  /* REMOVIDO: buildContextCardMotivos */
   
   // Card de MOTIVO
   function renderMotivo(m) {
@@ -184,7 +182,7 @@
           
           const allEvents = await res.json();
           
-          // Filtra por categoria E exclui o evento que está sendo visualizado (pelo slug)
+          // Filtra por category_macro E exclui o evento que está sendo visualizado (pelo slug)
           const relatedEvents = allEvents.filter(ev => 
               ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
           );
@@ -197,7 +195,6 @@
           
           relatedTitle.textContent = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
           
-          // Não adiciona o card de contexto/tutorial aqui
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
 
@@ -332,10 +329,8 @@
       const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
-        // REMOVIDO: const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
-        // APENAS OS SLIDES DOS MOTIVOS SÃO INJETADOS
         motivosContainer.innerHTML = motivoSlides;
         motivosContainer.classList.add('cl-track'); // Garante que o container use o cl-track
         
@@ -357,13 +352,10 @@
       }
 
       // 5. Renderiza Eventos Similares
-      // NOTA: O carrossel de Eventos Similares (relatedEventsSection) já não injetava um card de contexto,
-      // pois a função renderRelatedEvents apenas mapeia os cards com `buildSimilarEventCard`.
+      // Se a category_macro existir, tente renderizar. A própria função decide se deve ocultar.
       if (ev.category_macro) {
-          // Passa o slug do evento atual para que possa ser excluído
           renderRelatedEvents(ev.category_macro, slug); 
       } else {
-          // Se não houver categoria, garante que a seção esteja oculta
           relatedEventsSection.hidden = true;
       }
 
