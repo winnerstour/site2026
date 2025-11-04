@@ -225,8 +225,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     padding: 0 16px;
 }
 .motivos-wrapper {
-    position: relative;
-    /* CORREÇÃO PARA EVITAR TRANSBORDAMENTO: Limita e centraliza */
+    /* CORREÇÃO PARA FLUTUAR SETAS: Remove position: relative daqui */
+    /* position: relative; */ 
     max-width: var(--wrap); 
     margin: 0 auto; 
     padding: 10px 0; 
@@ -356,7 +356,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 24px;
     fill: var(--text-charcoal); 
 }
-/* Alinhamento das setas nas bordas do wrap (16px) quando a tela é menor */
+/* Alinhamento para telas menores (setas flutuam no wrap) */
 .carousel-nav.prev {
     left: 16px; 
 }
@@ -366,10 +366,11 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* AJUSTE FINAL: Move as setas para a lateral externa da área útil de 1024px */
 @media (min-width: 1025px) { 
     .carousel-nav.prev {
-        /* Calcula o espaço branco (100vw - 1024px) / 2, e subtrai metade da largura da seta (20px) */
+        /* Define a posição esquerda calculada a partir do viewport */
         left: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
     .carousel-nav.next {
+        /* Define a posição direita calculada a partir do viewport */
         right: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
 }
