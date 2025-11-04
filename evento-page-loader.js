@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX PATH ROBUSTO E EXIBIÇÃO DE BANNER/FALLBACK)
+// evento-page-loader.js (FINAL - LÓGICA DE BANNER SIMPLIFICADA)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -28,26 +28,21 @@
   const heroBannerContainer = document.querySelector('.hero-banner'); 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
-  // FUNÇÃO REVISADA: Lida melhor com o BASE_PATH e caminhos relativos/absolutos
+  // FUNÇÃO REVISADA E SIMPLIFICADA: Adiciona BASE_PATH somente se o caminho não for relativo (começar com /)
   function fixPath(path) {
       if (!path) return path;
 
-      // Se o path for apenas um nome de arquivo (ex: "placeholder.webp"), deixe como está
-      if (!path.includes('/')) {
-          return path;
-      }
-      
-      // Remove barra inicial e o BASE_PATH para normalizar, depois adiciona de volta
+      // Normaliza: remove barras inicial/final e BASE_PATH existente
       let normalizedPath = path.replace(BASE_PATH, '').replace(/^\/|\/$/g, '');
       
-      // Se estiver no ambiente BASE_PATH, força o prefixo
       if (BASE_PATH) {
-          // Garante que o path comece com BASE_PATH
-          return BASE_PATH + '/' + normalizedPath;
+          // Garante que o path comece com BASE_PATH, exceto se for um caminho relativo de arquivo (ex: 'event.json')
+          if (normalizedPath.startsWith('assets') || normalizedPath.startsWith('data')) {
+            return BASE_PATH + '/' + normalizedPath;
+          }
       }
-      
-      // Se não estiver em BASE_PATH, garante que comece com barra (path absoluto do domínio)
-      return '/' + normalizedPath;
+      // Para Netlify ou paths não afetados pelo BASE_PATH (ou paths relativos como './event.json')
+      return normalizedPath.startsWith('/') ? normalizedPath : '/' + normalizedPath;
   }
   
   function getSlug() {
@@ -88,11 +83,11 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // Caminhos de imagem aqui também precisam do fixPath
-    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder-banner.webp';
+    // NOVO CAMINHO SIMPLIFICADO para a thumb do card
+    const rawImagePath = `/assets/img/banners/${slug}-thumb.webp`; 
     const imagePath = fixPath(rawImagePath);
 
-    const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
     const faviconPath = fixPath(faviconRawPath);
 
     // Favicon usa a classe 'favicon' para travar o tamanho via CSS
@@ -276,12 +271,12 @@
       const finalTitle = ev.title || 'Evento sem Título';
       pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
-      // Corrigindo o caminho do favicon para usar o fixPath
+      // Caminho do Favicon
       const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
-          faviconEl.href = faviconPath; // Usa o caminho corrigido
+          faviconEl.href = faviconPath; 
       }
       
       eventTitle.textContent = finalTitle;
@@ -317,13 +312,9 @@
           // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
           heroBannerContainer.style.display = 'block'; 
 
-          // Caminho padrão do banner
-          const defaultBannerPath = `/assets/img/banners/placeholder-banner.webp`;
-
-          // Prioriza o caminho do JSON, usa o slug, e por fim o padrão.
-          const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || defaultBannerPath;
-
-          // AJUSTE CRÍTICO: Garante que o caminho base (fixPath) seja aplicado ao banner.
+          // LÓGICA SIMPLIFICADA E PURA PARA O BANNER HERO: [slug]-hero.webp
+          // Ignora qualquer fallback complexo e usa a convenção padrão.
+          const rawHeroPath = `/assets/img/banners/${slug}-hero.webp`;
           const heroPath = fixPath(rawHeroPath);
           
           eventHero.src = heroPath;
