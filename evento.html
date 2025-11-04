@@ -12,8 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js"></script> 
-    
     <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -155,17 +153,18 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     flex-direction: column;
     border: 1px solid transparent; 
-    width: 300px; 
+    width: 300px; /* Largura necessária para o carrossel */
     min-height: 100%;
 }
 .card:hover {
     box-shadow: var(--shadow-hover);
     background: var(--card-hover-bg);
+    /* Efeito de borda brand no hover */
     border-color: rgba(249, 115, 22, 0.5); 
 }
 
 .card .thumb {
-    height: 100px; 
+    height: 100px; /* Altura do contêiner da imagem */
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
@@ -176,7 +175,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .card .thumb img {
     width: 100%;
     height: auto;
-    object-fit: contain; 
+    object-fit: contain; /* Garante que não corte */
     max-height: 100%;
 }
 .card .content {
@@ -194,13 +193,14 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     -webkit-line-clamp: 1; 
     -webkit-box-orient: vertical;
 }
-/* CORREÇÃO CRÍTICA DO FAVICON */
+/* 🎯 CORREÇÃO CRÍTICA DO FAVICON */
 .card .title img.favicon {
     width: 16px; 
     height: 16px; 
     margin-right: 6px; 
     display: inline-block; 
     vertical-align: middle;
+    /* Trava o Favicon para não estourar */
     max-width: 16px !important;
     max-height: 16px !important;
 }
@@ -212,7 +212,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 
-/* ESTILOS DO CARROSSEL DE MOTIVOS (Compartilhado com Sugestões) */
+/* NOVO: ESTILOS DO CARROSSEL DE MOTIVOS (Compartilhado com Sugestões) */
 .motivos-section {
     padding: 0;
     margin: 30px 0;
@@ -226,10 +226,12 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .motivos-wrapper {
     position: relative;
+    /* Margem para simular wrap, com setas fora ou sobrepostas */
     margin: 0 -16px; 
     padding: 10px 0; 
 }
 
+/* CL-TRACK: O ROLADOR */
 .cl-track {
     list-style: none; 
     padding: 0; 
@@ -239,6 +241,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
+    /* Padding para o primeiro card ficar alinhado com o wrap */
     padding: 0 16px; 
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
@@ -274,7 +277,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 100%;
 }
 
-/* ESTILO DO CARD DE CONTEXTO/INTRODUÇÃO */
+/* ESTILO DO CARD DE CONTEXTO/INTRODUÇÃO (Motivos) */
 .card.context-card {
     box-shadow: none !important;
     background: transparent !important;
@@ -284,7 +287,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     align-items: center; 
     justify-content: center;
-    min-height: 100%;
+    min-height: 180px;
 }
 .card.context-card:hover {
     transform: none !important; 
@@ -310,9 +313,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     padding: 0;
     text-align: left; 
 }
-
-
-/* Título Montserrat em Caixa Alta para Motivos */
 .motivo-title-montserrat {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
@@ -331,38 +331,11 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     color: var(--text-charcoal);
 }
 
-/* ESTILOS DO BOTÃO VER MAIS */
-.btn-ver-mais {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px; 
-    padding: 8px 14px; 
-    border-radius: 999px; 
-    background: var(--brand); 
-    border: 1px solid var(--brand-shadow);
-    color: #fff; 
-    font-weight: 700;
-    font-size: 14px; 
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    width: auto; 
-}
-.btn-ver-mais:hover {
-    background: var(--brand-shadow); 
-    color: #fff; 
-    border-color: var(--brand-shadow);
-}
-.btn-ver-mais svg {
-    width: 16px; 
-    height: 16px;
-    fill: #fff; 
-}
-
-
-/* ESTILOS DAS SETAS DE NAVEGAÇÃO */
+/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
 .carousel-nav {
     position: absolute;
     top: 50%;
+    /* Ajusta para centralizar em relação ao conteúdo do carrossel */
     transform: translateY(-50%); 
     width: 40px; 
     height: 40px;
@@ -380,83 +353,28 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .carousel-nav svg {
     width: 24px;
     height: 24px;
-    fill: #fff; 
+    fill: var(--text-charcoal); 
 }
+/* Alinhamento das setas nas bordas do wrap */
 .carousel-nav.prev {
     left: 16px; 
 }
 .carousel-nav.next {
     right: 16px; 
 }
-@media (max-width: 1024px) {
-    .carousel-nav {
-        display: none !important; 
+@media (min-width: 1232px) { /* Corresponde a (wrap + 2*padding) + o deslocamento das setas */
+    .carousel-nav.prev {
+        left: calc((100vw - 1200px) / 2 - 20px); 
+    }
+    .carousel-nav.next {
+        right: calc((100vw - 1200px) / 2 - 20px); 
     }
 }
-
-/* ESTILOS PARA VÍDEO YOUTUBE LITE */
-#youtubeContainer {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 16px; 
-}
-lite-youtube {
-    background-color: #000;
-    position: relative;
-    display: block;
-    contain: content;
-    background-position: center center;
-    background-size: cover;
-    cursor: pointer;
-    max-width: 100%;
-    /* Altura base para a proporção 16:9 */
-    padding-bottom: 56.25%; 
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-}
-
-lite-youtube::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=);
-    background-position: 0 0;
-    background-repeat: repeat;
-    width: 100%;
-    height: 100%;
-    transition: all 0.2s ease-out;
-    z-index: 0; 
-}
-
-lite-youtube:hover::before {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.lty-playbtn {
-    width: 68px;
-    height: 48px;
-    background-color: #212121;
-    z-index: 1; 
-    opacity: 0.8;
-    border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.lty-playbtn::before {
-    content: "";
-    border-style: solid;
-    border-width: 11px 0 11px 19px;
-    border-color: transparent transparent transparent #fff;
-    position: absolute;
-    top: 13px;
-    left: 24px;
+@media (max-width: 1024px) {
+    .carousel-nav {
+        /* Garante que as setas sumam em mobile, onde a rolagem é touch */
+        display: none !important; 
+    }
 }
     </style>
 </head>
@@ -508,12 +426,7 @@ lite-youtube:hover::before {
                     </ul>
                 </div>
         </div>
-        
-        <div id="videoSection" class="wrap" style="margin-top: 40px;">
-            <h2 style="margin-bottom: 20px;">Conteúdo em Vídeo</h2>
-            <div id="youtubeContainer"></div> 
-        </div>
-        
+
         <div id="relatedEventsSection" class="motivos-section" style="margin-top: 50px;">
             <h2 id="relatedTitle" class="wrap">Mais Eventos na Categoria...</h2>
             
