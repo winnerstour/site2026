@@ -1,11 +1,11 @@
-// evento-page-loader.js (FINAL - SCROLL_SPEED DOBRADO, Fix Visibilidade e Vídeo YouTube)
+// evento-page-loader.js (FINAL - Cards de Contexto Removidos)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
-  const SCROLL_SPEED = 8000; // 8 segundos para autoplay (DOBRO DO TEMPO)
+  const SCROLL_SPEED = 8000; // 8 segundos para autoplay (MANTIDO)
 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
@@ -47,27 +47,8 @@
     errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
   }
 
-  // Card TUTORIAL/CONTEXTO (para a página de evento)
-  function buildContextCardMotivos(carouselId, eventTitle) {
-      const description = `Navegue pelo carrossel para ver todos os diferenciais da sua missão corporativa neste evento.`;
-
-      return `
-          <div class="cl-slide context-slide">
-              <div class="card motivo-item context-card">
-                  <div class="context-content">
-                      <p class="motivo-text-body" style="font-size: 14px !important; color: var(--muted) !important; margin-bottom: 20px;">
-                          ${description}
-                      </p>
-                      <button class="btn-ver-mais" onclick="document.getElementById('${carouselId}').scrollBy({left: 318, behavior: 'smooth'})">
-                          Ver Mais
-                          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                      </button>
-                  </div>
-              </div>
-          </div>
-      `;
-  }
-
+  /* REMOVIDO: buildContextCardMotivos */
+  
   // Card de MOTIVO
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
@@ -216,6 +197,7 @@
           
           relatedTitle.textContent = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
           
+          // Não adiciona o card de contexto/tutorial aqui
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           relatedCarouselContainer.innerHTML = relatedSlides;
 
@@ -350,10 +332,11 @@
       const motivosWrapperEl = document.getElementById('motivosWrapper');
 
       if (finalMotivos.length > 0) {
-        const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
+        // REMOVIDO: const contextCard = buildContextCardMotivos(motivosCarouselId, finalTitle);
         const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
-        motivosContainer.innerHTML = contextCard + motivoSlides;
+        // APENAS OS SLIDES DOS MOTIVOS SÃO INJETADOS
+        motivosContainer.innerHTML = motivoSlides;
         motivosContainer.classList.add('cl-track'); // Garante que o container use o cl-track
         
         // Renderiza as setas de navegação (HTML) no wrapper
@@ -374,6 +357,8 @@
       }
 
       // 5. Renderiza Eventos Similares
+      // NOTA: O carrossel de Eventos Similares (relatedEventsSection) já não injetava um card de contexto,
+      // pois a função renderRelatedEvents apenas mapeia os cards com `buildSimilarEventCard`.
       if (ev.category_macro) {
           // Passa o slug do evento atual para que possa ser excluído
           renderRelatedEvents(ev.category_macro, slug); 
