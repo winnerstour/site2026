@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - Corrigido para Exibir a Seção)
+// evento-page-loader.js (FINAL - Corrigido para Exibir a Seção e VÍDEO YOUTUBE)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
