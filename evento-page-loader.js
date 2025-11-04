@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE)
+// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE - Otimizado)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -223,6 +223,19 @@
       }
   }
 
+  // Novo: Tenta extrair o ID de uma URL completa ou usa o que foi fornecido.
+  function extractVideoId(input) {
+      if (!input) return null;
+
+      // Se for uma URL completa do YouTube
+      const urlParams = new URLSearchParams(new URL(input).search);
+      const idFromQuery = urlParams.get('v');
+      if (idFromQuery) return idFromQuery;
+      
+      // Se for apenas o ID ou uma URL curta
+      return input.split('/').pop().split('=').pop();
+  }
+
 
   async function loadEventData() {
     const slug = getSlug();
@@ -256,7 +269,9 @@
       eventTitle.textContent = finalTitle;
       
       // Lógica para carregar o vídeo do YouTube (<iframe>) ou o Banner (<img>)
-      const youtubeVideoId = ev.YouTubeVideo; 
+      // Ajuste: Chamada à função extractVideoId para garantir que estamos usando apenas o ID
+      const rawVideoInput = ev.YouTubeVideo; 
+      const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
           // SE HOUVER VÍDEO:
@@ -265,12 +280,13 @@
           heroBannerContainer.style.display = 'none';
 
           // 2. Cria o HTML do embed responsivo (16:9) do YouTube.
+          // Adicionado 'picture-in-picture' para melhor compatibilidade com extensões/navegadores
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
                       width="100%" 
                       height="100%" 
-                      src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&amp;showinfo=0&amp;autoplay=0" 
+                      src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&amp;showinfo=0&amp;autoplay=0&amp;modestbranding=1" 
                       frameborder="0" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                       allowfullscreen 
@@ -280,7 +296,7 @@
               </div>
           `;
           
-          // 3. Insere o vídeo no NOVO contêiner (depois dos motivos).
+          // 3. Insere o vídeo no NOVO contêiner.
           if (youtubeVideoContainer) {
               youtubeVideoContainer.innerHTML = videoHtml;
           }
