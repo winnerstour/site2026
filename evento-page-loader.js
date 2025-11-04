@@ -1,9 +1,10 @@
-// evento-page-loader.js (FINAL - Corrigido para Exibir Banner/Placeholder e COM LOGS DE DEBUG)
+// evento-page-loader.js (FINAL - FIX PATH ROBUSTO E CARREGAMENTO DE BANNER/FALLBACK)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   
+  // Define o prefixo necessário APENAS para o ambiente GitHub Pages
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
   const SCROLL_SPEED = 8000; // 8 segundos para autoplay
 
@@ -24,18 +25,23 @@
   const relatedTitle = document.getElementById('relatedTitle');
   const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
 
-  // Adiciona o container do Hero Banner para manipulação de estilos/conteúdo
   const heroBannerContainer = document.querySelector('.hero-banner'); 
-  // NOVO: Adiciona o container para o vídeo do YouTube
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
+  // FUNÇÃO REVISADA: Aplica o BASE_PATH apenas se o caminho for relativo ao site (começando com /)
   function fixPath(path) {
-      if (path && path.startsWith('/assets')) {
-          return BASE_PATH + path;
-      }
-      return path;
-  }
+      if (!path) return path;
 
+      // 1. Garante que o path comece com /
+      let finalPath = path.startsWith('/') ? path : `/${path}`;
+      
+      // 2. Se o BASE_PATH existir E o finalPath não começar com ele, adiciona o prefixo
+      if (BASE_PATH && !finalPath.startsWith(BASE_PATH + '/')) {
+          return BASE_PATH + finalPath;
+      }
+      return finalPath;
+  }
+  
   function getSlug() {
     const params = new URLSearchParams(window.location.search);
     return params.get("slug");
@@ -74,7 +80,8 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || 'placeholder.webp';
+    // Caminhos de imagem aqui também precisam do fixPath
+    const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder-banner.webp';
     const imagePath = fixPath(rawImagePath);
 
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
@@ -301,7 +308,12 @@
           // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
           heroBannerContainer.style.display = 'block'; 
 
-          const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || '/assets/img/banners/placeholder-banner.webp';
+          // Caminho padrão do banner
+          const defaultBannerPath = `/assets/img/banners/placeholder-banner.webp`;
+
+          // Prioriza o caminho do JSON, usa o slug, e por fim o padrão.
+          const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || defaultBannerPath;
+
           // AJUSTE CRÍTICO: Garante que o caminho base (fixPath) seja aplicado ao banner.
           const heroPath = fixPath(rawHeroPath);
           
