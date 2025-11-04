@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX PATH ROBUSTO E CARREGAMENTO DE BANNER/FALLBACK)
+// evento-page-loader.js (FINAL - FIX PATH ROBUSTO E EXIBIÇÃO DE BANNER/FALLBACK)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -28,18 +28,26 @@
   const heroBannerContainer = document.querySelector('.hero-banner'); 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
 
-  // FUNÇÃO REVISADA: Aplica o BASE_PATH apenas se o caminho for relativo ao site (começando com /)
+  // FUNÇÃO REVISADA: Lida melhor com o BASE_PATH e caminhos relativos/absolutos
   function fixPath(path) {
       if (!path) return path;
 
-      // 1. Garante que o path comece com /
-      let finalPath = path.startsWith('/') ? path : `/${path}`;
-      
-      // 2. Se o BASE_PATH existir E o finalPath não começar com ele, adiciona o prefixo
-      if (BASE_PATH && !finalPath.startsWith(BASE_PATH + '/')) {
-          return BASE_PATH + finalPath;
+      // Se o path for apenas um nome de arquivo (ex: "placeholder.webp"), deixe como está
+      if (!path.includes('/')) {
+          return path;
       }
-      return finalPath;
+      
+      // Remove barra inicial e o BASE_PATH para normalizar, depois adiciona de volta
+      let normalizedPath = path.replace(BASE_PATH, '').replace(/^\/|\/$/g, '');
+      
+      // Se estiver no ambiente BASE_PATH, força o prefixo
+      if (BASE_PATH) {
+          // Garante que o path comece com BASE_PATH
+          return BASE_PATH + '/' + normalizedPath;
+      }
+      
+      // Se não estiver em BASE_PATH, garante que comece com barra (path absoluto do domínio)
+      return '/' + normalizedPath;
   }
   
   function getSlug() {
@@ -84,7 +92,7 @@
     const rawImagePath = ev.image || ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder-banner.webp';
     const imagePath = fixPath(rawImagePath);
 
-    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
     const faviconPath = fixPath(faviconRawPath);
 
     // Favicon usa a classe 'favicon' para travar o tamanho via CSS
@@ -270,9 +278,10 @@
       
       // Corrigindo o caminho do favicon para usar o fixPath
       const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
+      const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
-          faviconEl.href = fixPath(faviconRawPath);
+          faviconEl.href = faviconPath; // Usa o caminho corrigido
       }
       
       eventTitle.textContent = finalTitle;
