@@ -1,4 +1,4 @@
-// evento-page-loader.js (FINAL - FIX CRÍTICO DE CAMINHOS ROBUSTOS E NOMENCLATURA)
+// evento-page-loader.js (FINAL - BUSCA SOMENTE [slug]-banner.webp)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -31,19 +31,19 @@
   // FUNÇÃO REVISADA E FINALIZADA: Trata paths de dados relativos e paths de assets absolutos
   function fixPath(path) {
       if (!path) return path;
-
+      
       // 1. Trata paths de DADOS (que usam './')
       if (path.startsWith('./')) {
           // Exceção: se estivermos no BASE_PATH e for um caminho de JSON, precisamos do prefixo
           if (BASE_PATH) {
               return BASE_PATH + path.substring(1); // Ex: /site2026/event.json
           }
-          return path;
+          return path; // Retorna como estava se não tiver BASE_PATH
       }
-      
+
       // 2. Trata paths de ASSETS (que usam '/')
       if (path.startsWith('/')) {
-          // Se BASE_PATH está ativo, remove a barra inicial e adiciona o prefixo
+          // Se BASE_PATH está ativo, remove barra inicial e adiciona o prefixo
           if (BASE_PATH) {
               return BASE_PATH + path; // Ex: /site2026/assets/...
           }
@@ -91,7 +91,7 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // CORREÇÃO DE NOMENCLATURA: Usando [slug]-hero.webp para as miniaturas do carrossel
+    // CORREÇÃO: Busca [slug]-hero.webp para a miniatura
     const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
     const imagePath = fixPath(rawImagePath);
 
@@ -105,7 +105,7 @@
       <div class="cl-slide">
         <a href="${finalUrl}" class="card" aria-label="${title}">
           <div class="thumb">
-            <img loading="lazy" src="${imagePath}" alt="${title}" onerror="this.src='${fixPath('/assets/img/banners/placeholder-banner.webp')}'">
+            <img loading="lazy" src="${imagePath}" alt="${title}">
           </div>
           <div class="content">
             <h3 class="title">
@@ -291,6 +291,7 @@
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
+          // SEM FALLBACK AQUI
           faviconEl.href = faviconPath; 
       }
       
@@ -331,13 +332,9 @@
           const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
           const heroPath = fixPath(rawHeroPath);
           
-          // Fallback simples caso a imagem principal não seja encontrada
-          const fallbackPlaceholder = fixPath('/assets/img/banners/placeholder-banner.webp');
-
-          // Usa o atributo onerror para fallback no caso de 404
+          // Busca a imagem principal sem onerror ou fallback
           eventHero.src = heroPath;
           eventHero.alt = `Banner do evento ${finalTitle}`;
-          eventHero.setAttribute('onerror', `this.onerror=null;this.src='${fallbackPlaceholder}';`);
           eventHero.style.display = 'block';
       }
       
