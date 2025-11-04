@@ -84,7 +84,7 @@
   // Card de Evento Similar (usado no carrossel de sugestões)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
-    const subtitle = ev.slug; 
+    const subtitle = ev.slug; // Usando slug como subtitle para debug visual
     const slug = ev.slug; 
     
     const finalUrl = `evento.html?slug=${slug}`;
@@ -302,7 +302,7 @@
       const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
       const heroPath = fixPath(rawHeroPath);
       
-      // Busca a imagem principal sem onerror ou fallback
+      // Busca a imagem principal no <img>
       eventHero.src = heroPath;
       eventHero.alt = `Banner do evento ${finalTitle}`;
       eventHero.style.display = 'block';
@@ -314,8 +314,6 @@
 
       if (youtubeVideoId) {
           // SE HOUVER VÍDEO: Injeta o player abaixo do banner
-          
-          // Não oculta o banner. Apenas injeta o vídeo no seu container.
           
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
@@ -336,7 +334,7 @@
               youtubeVideoContainer.innerHTML = videoHtml;
           }
       } 
-      // Se não houver vídeo, o container do vídeo permanece vazio (o que é OK, pois o HTML do evento o posiciona).
+      // Se não houver vídeo, o container do vídeo permanece vazio (o que é OK).
 
       /* --- FIM DA LÓGICA COEXISTENTE --- */
       
