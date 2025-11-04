@@ -1,4 +1,4 @@
-// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE - Otimizado)
+// evento-page-loader.js (Final com Carrosséis Funcionais e VÍDEO YOUTUBE - Otimizado e Corrigido)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -200,11 +200,13 @@
           
           const allEvents = await res.json();
           
+          // CORREÇÃO: Filtra por categoria E exclui o evento que está sendo visualizado (pelo slug)
           const relatedEvents = allEvents.filter(ev => 
-              ev.category_macro === currentEventCategory
+              ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
           );
           
-          if (relatedEvents.length <= 1) {
+          // NOVO CHECK: Esconde apenas se a lista filtrada estiver vazia (tamanho 0)
+          if (relatedEvents.length === 0) {
               relatedEventsSection.hidden = true;
               return;
           }
@@ -227,12 +229,17 @@
   function extractVideoId(input) {
       if (!input) return null;
 
-      // Se for uma URL completa do YouTube
-      const urlParams = new URLSearchParams(new URL(input).search);
-      const idFromQuery = urlParams.get('v');
-      if (idFromQuery) return idFromQuery;
+      try {
+          // Tenta tratar como URL completa para extrair o parâmetro 'v'
+          const url = new URL(input);
+          const urlParams = new URLSearchParams(url.search);
+          const idFromQuery = urlParams.get('v');
+          if (idFromQuery) return idFromQuery;
+      } catch (e) {
+          // Se falhar (não for uma URL válida), assume que é apenas o ID
+      }
       
-      // Se for apenas o ID ou uma URL curta
+      // Se for apenas o ID ou uma URL curta (sem query parameters)
       return input.split('/').pop().split('=').pop();
   }
 
@@ -269,18 +276,13 @@
       eventTitle.textContent = finalTitle;
       
       // Lógica para carregar o vídeo do YouTube (<iframe>) ou o Banner (<img>)
-      // Ajuste: Chamada à função extractVideoId para garantir que estamos usando apenas o ID
       const rawVideoInput = ev.YouTubeVideo; 
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
           // SE HOUVER VÍDEO:
-
-          // 1. Oculta o contêiner do Hero Banner (que só contém a imagem de placeholder)
           heroBannerContainer.style.display = 'none';
 
-          // 2. Cria o HTML do embed responsivo (16:9) do YouTube.
-          // Adicionado 'picture-in-picture' para melhor compatibilidade com extensões/navegadores
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
@@ -296,18 +298,14 @@
               </div>
           `;
           
-          // 3. Insere o vídeo no NOVO contêiner.
           if (youtubeVideoContainer) {
               youtubeVideoContainer.innerHTML = videoHtml;
           }
           
       } else {
           // SE NÃO HOUVER VÍDEO (Exibe o banner no topo como padrão):
-          
-          // 1. Garante que o contêiner do Hero Banner esteja visível.
           heroBannerContainer.style.display = 'block'; 
 
-          // 2. Carrega a imagem do banner.
           const rawHeroPath = ev.banner_path || ev.hero_image_path || ev.image || 'placeholder.webp';
           const heroPath = fixPath(rawHeroPath);
           
@@ -373,7 +371,8 @@
 
       // 5. Renderiza Eventos Similares
       if (ev.category_macro) {
-          renderRelatedEvents(ev.category_macro, slug);
+          // Passa o slug do evento atual para que possa ser excluído
+          renderRelatedEvents(ev.category_macro, slug); 
       } else {
           relatedEventsSection.hidden = true;
       }
