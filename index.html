@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="https://static.onertravel.com/widget/search/production/styles.css">
+  
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -112,7 +114,6 @@ h1,h2{
 
 /* CONTAINER DO CARROSSEL + SETAS */
 .carousel-wrapper-container {
-    /* CORREÇÃO: Devolve position: relative para que as setas se posicionem APENAS dentro deste wrapper */
     position: relative; 
     /* SEM PADDING HORIZONTAL! O CL-TRACK fará o espaçamento */
 }
@@ -355,6 +356,12 @@ h1,h2{
     display: inline-block; 
     vertical-align: middle;
 }
+/* WIDGET DE BUSCA: CSS CUSTOM para limitar a largura do wrapper */
+.wrap-widget {
+  max-width: var(--wrap);
+  margin: 16px auto 0; /* Centraliza e adiciona margem superior */
+  padding: 0 16px;
+}
 </style>
 </head>
 <body>
@@ -376,11 +383,20 @@ h1,h2{
     </div>
 </div>
 
-  <main class="wrap">
-    <h2>Eventos e Feiras</h2>
-    <div id="carouselsContainer">
-    </div>
-  </main>
+<div class="wrap-widget">
+  <div id="wrapper">
+    <befly-widget language="pt-br" new-tab="true">
+    </befly-widget>
+  </div>
+</div>
+<script type="text/javascript" src="https://static.onertravel.com/widget/search/production/widget-befly.js">
+</script>
+
+<main class="wrap">
+  <h2>Eventos e Feiras</h2>
+  <div id="carouselsContainer">
+  </div>
+</main>
   
 <script src="./render.js"></script>
 
