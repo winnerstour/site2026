@@ -32,8 +32,8 @@
   function fixPath(path) {
       if (!path) return path;
 
-      // 1. Trata paths de DADOS (que usam './')
-      if (path.startsWith('./')) {
+      // 1. Trata paths de DADOS (que usam './' ou 'data/...')
+      if (path.startsWith('./') || path.startsWith(DATA_BASE_PATH.substring(2))) {
           if (BASE_PATH) {
               return BASE_PATH + path.substring(1); 
           }
