@@ -438,8 +438,9 @@
           }
       }
       if(heroTitle) {
-          // Implementa a quebra de linha e o destaque (corrigido para uma quebra de linha)
-          heroTitle.innerHTML = `Sua viagem para<br><span class="highlight">${finalTitle.toUpperCase()}</span> resolvida em minutos.`;
+          // NOVO: Aplica a tag <small> para as partes que devem ter o tamanho reduzido (75%)
+          const formattedTitle = `<small>Sua viagem para</small><br><span class="highlight">${finalTitle.toUpperCase()}</span> <small>resolvida em minutos.</small>`;
+          heroTitle.innerHTML = formattedTitle;
       }
       if(heroSubheadline) {
           // Usa o nome do local formatado
@@ -447,7 +448,6 @@
       }
       if(heroBadge && ev.category_micro) {
           heroBadge.textContent = ev.category_micro.toUpperCase();
-          heroBadge.style.display = 'inline-block';
       } else if (heroBadge) {
           heroBadge.style.display = 'none';
       }
