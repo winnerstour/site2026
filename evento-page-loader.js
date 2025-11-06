@@ -27,7 +27,10 @@
   const footerCtaTitle = document.getElementById('footerCtaTitle');
   const footerWhatsappCta = document.getElementById('footerWhatsappCta');
   const footerAboutText = document.getElementById('footerAboutText');
-  const footerBottomRelated = document.getElementById('footerBottomRelated'); // NOVO CONTAINER
+  const footerBottomRelated = document.getElementById('footerBottomRelated'); 
+  const agencyNameTitle = document.getElementById('agencyNameTitle'); // NOVO ELEMENTO
+  const agencyNameMicro = document.getElementById('agencyNameMicro'); // NOVO ELEMENTO
+  const currentYear = document.getElementById('currentYear'); // REINTRODUZIDO
 
   // OUTROS ELEMENTOS
   const eventMeta = document.getElementById('eventMeta');
@@ -35,11 +38,6 @@
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
-  
-  // AS REFERÊNCIAS RELATED FORAM REMOVIDAS DAQUI JÁ QUE O BLOCO É INJETADO INTEIRO:
-  // const relatedEventsSection = document.getElementById('relatedEventsSection'); 
-  // const relatedTitle = document.getElementById('relatedTitle');
-  // const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
   const hotelsSection = document.getElementById('hotelsSection');
@@ -93,7 +91,7 @@
       return input.split('/').pop().split('=').pop();
   }
 
-  // Converte HEX para RGB (para variáveis CSS customizadas)
+  // Converte HEX para RGB (Não mais usado para CTA, mas mantido)
   function hexToRgb(hex) {
     if (!hex || hex.length < 7) return [249, 115, 22]; 
     var r = parseInt(hex.substring(1, 3), 16);
@@ -430,8 +428,9 @@
           heroSection.style.backgroundImage = `url('${heroBgPath}')`;
           heroSection.style.display = 'flex';
 
-          // Configura a cor de destaque CLARA e o gradiente do overlay via CSS Variables
+          // Configura a cor de destaque CLARA e a cor BRAND principal via CSS Variables (para o gradiente)
           heroSection.style.setProperty('--highlight-color-light', colors.highlightLight);
+          document.documentElement.style.setProperty('--brand', colors.highlight);
           
           const overlay = heroSection.querySelector('.hero-overlay');
           if (overlay) {
@@ -548,16 +547,21 @@
       if (ev.category_macro) {
           renderRelatedEvents(ev.category_macro, slug); 
       }
-      // Se não houver categoria macro, renderRelatedEvents não é chamada e o footerBottomRelated fica oculto (display: none).
 
       // 7. PREENCHIMENTO DO RODAPÉ
       if (eventPageFooter) {
-          // Converte cores para RGB e define no CSS
-          eventPageFooter.style.setProperty('--footer-gradient-start-rgb', hexToRgb(colors.gradientStart).join(','));
-          eventPageFooter.style.setProperty('--footer-gradient-end-rgb', hexToRgb(colors.gradientEnd).join(','));
 
           if (footerCtaTitle) {
               footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
+          }
+
+          // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
+          if (agencyNameMicro) {
+              const categoryMicro = ev.category_micro ? `Especializada em viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
+              agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
+          }
+          if (currentYear) {
+              currentYear.textContent = new Date().getFullYear();
           }
           if (footerAboutText) {
               const categoryMicro = ev.category_micro ? `viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'viagens corporativas para eventos e feiras profissionais';
