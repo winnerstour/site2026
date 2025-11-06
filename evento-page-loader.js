@@ -26,7 +26,6 @@
   const eventPageFooter = document.getElementById('eventPageFooter');
   const footerCtaTitle = document.getElementById('footerCtaTitle');
   const footerWhatsappCta = document.getElementById('footerWhatsappCta');
-  // const footerAboutText = document.getElementById('footerAboutText'); // REMOVIDO
   const footerBottomRelated = document.getElementById('footerBottomRelated'); 
   const agencyNameTitle = document.getElementById('agencyNameTitle'); 
   const agencyNameMicro = document.getElementById('agencyNameMicro'); 
@@ -368,7 +367,7 @@
         console.error("Erro FINAL no processo de renderização de similares:", e);
         if(footerBottomRelated) footerBottomRelated.style.display = 'none';
     }
-}
+  }
 
 
   // --- FUNÇÃO PRINCIPAL ---
