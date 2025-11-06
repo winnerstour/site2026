@@ -123,8 +123,9 @@
           const b = Math.round(rgb1[2] * ratio + rgb2[2] * (1 - ratio));
           return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
       }
-
-      const highlightLight = blendColors(baseColor, '#FFFFFF', 0.5); 
+      
+      // Ajuste: Mistura 90% Branco + 10% Cor Base para um toque muito sutil da cor do chip
+      const highlightLight = blendColors(baseColor, '#FFFFFF', 0.1); // 0.1 de cor base, 0.9 de branco
       
       return {
           highlight: baseColor,
@@ -427,7 +428,7 @@
           heroSection.style.backgroundImage = `url('${heroBgPath}')`;
           heroSection.style.display = 'flex';
 
-          // Configura a cor de destaque CLARA e a cor BRAND principal via CSS Variables (para o gradiente)
+          // Configura a cor de destaque CLARA e a cor BRAND principal via CSS Variables
           heroSection.style.setProperty('--highlight-color-light', colors.highlightLight);
           document.documentElement.style.setProperty('--brand', colors.highlight);
           
