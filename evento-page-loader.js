@@ -124,7 +124,7 @@
           return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
       }
 
-      // Ajuste: Mistura 90% Branco + 10% Cor Base para um toque muito sutil da cor do chip
+      // Ajuste: Mistura 90% Branco + 10% Cor Base para um toque muito sutil da cor do chip (mais próximo do branco)
       const highlightLight = blendColors(baseColor, '#FFFFFF', 0.1); 
       
       return {
