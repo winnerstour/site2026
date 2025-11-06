@@ -26,11 +26,11 @@
   const eventPageFooter = document.getElementById('eventPageFooter');
   const footerCtaTitle = document.getElementById('footerCtaTitle');
   const footerWhatsappCta = document.getElementById('footerWhatsappCta');
-  const footerAboutText = document.getElementById('footerAboutText');
+  // const footerAboutText = document.getElementById('footerAboutText'); // REMOVIDO
   const footerBottomRelated = document.getElementById('footerBottomRelated'); 
   const agencyNameTitle = document.getElementById('agencyNameTitle'); 
   const agencyNameMicro = document.getElementById('agencyNameMicro'); 
-  const currentYear = document.getElementById('currentYear'); // MANTIDO CASO REUTILIZE EM OUTRO LUGAR
+  const currentYear = document.getElementById('currentYear'); 
 
   // OUTROS ELEMENTOS
   const eventMeta = document.getElementById('eventMeta');
@@ -560,16 +560,6 @@
               const categoryMicro = ev.category_micro ? `Especializada em viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
               agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
           }
-          // REMOÇÃO DA LÓGICA DO COPYRIGHT/AVISO
-          /*
-          if (currentYear) {
-              currentYear.textContent = new Date().getFullYear();
-          }
-          if (footerAboutText) {
-              const categoryMicro = ev.category_micro ? `viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'viagens corporativas para eventos e feiras profissionais';
-              footerAboutText.innerHTML = `Agência especializada em ${categoryMicro}. Sua parceira de confiança para <strong>${finalTitle}</strong>.`;
-          }
-          */
       }
 
       if(loading) loading.hidden = true;
