@@ -27,17 +27,20 @@
   const footerCtaTitle = document.getElementById('footerCtaTitle');
   const footerWhatsappCta = document.getElementById('footerWhatsappCta');
   const footerAboutText = document.getElementById('footerAboutText');
-  const currentYear = document.getElementById('currentYear');
-  const footerWinnersLogo = document.getElementById('footerWinnersLogo'); 
+  const footerBottomRelated = document.getElementById('footerBottomRelated'); // NOVO CONTAINER
 
+  // OUTROS ELEMENTOS
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
   const motivosContainer = document.getElementById('motivosContainer');
   const whatsappCta = document.getElementById('whatsappCta');
   const whatsappTopCta = document.getElementById('whatsappTopCta');
-  const relatedEventsSection = document.getElementById('relatedEventsSection');
-  const relatedTitle = document.getElementById('relatedTitle');
-  const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
+  
+  // AS REFERÊNCIAS RELATED FORAM REMOVIDAS DAQUI JÁ QUE O BLOCO É INJETADO INTEIRO:
+  // const relatedEventsSection = document.getElementById('relatedEventsSection'); 
+  // const relatedTitle = document.getElementById('relatedTitle');
+  // const relatedCarouselContainer = document.getElementById('relatedCarouselContainer');
+
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
   const hotelsSection = document.getElementById('hotelsSection');
   const hotelsCarouselContainer = document.getElementById('hotelsCarouselContainer');
@@ -92,7 +95,7 @@
 
   // Converte HEX para RGB (para variáveis CSS customizadas)
   function hexToRgb(hex) {
-    if (!hex || hex.length < 7) return [249, 115, 22]; // Fallback RGB
+    if (!hex || hex.length < 7) return [249, 115, 22]; 
     var r = parseInt(hex.substring(1, 3), 16);
     var g = parseInt(hex.substring(3, 5), 16);
     var b = parseInt(hex.substring(5, 7), 16);
@@ -114,7 +117,6 @@
       const baseColor = colorMap[chipColorClass.split(' ')[0]] || colorMap['default'];
       const gradientEnd = '#6b21a8'; 
       
-      // Função para misturar cor com branco (50% Cor Base + 50% Branco)
       function blendColors(c1, c2, ratio) {
           const hexToRgb = hex => [parseInt(hex.substring(1, 3), 16), parseInt(hex.substring(3, 5), 16), parseInt(hex.substring(5, 7), 16)];
           const rgb1 = hexToRgb(c1);
@@ -135,7 +137,7 @@
       };
   }
 
-  // Card de MOTIVO (inalterada)
+  // Card de MOTIVO
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -154,7 +156,7 @@
     `;
   }
   
-  // Card de Evento Similar (inalterada)
+  // Card de Evento Similar
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.slug; 
@@ -188,7 +190,7 @@
     `;
   }
 
-  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL (inalterada)
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
   function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
@@ -251,7 +253,7 @@
       }
   }
   
-  // FUNÇÃO PARA CRIAR CARDS DE HOTEL (inalterada)
+  // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel) {
       const isDayTrip = hotel.type === 'daytrip';
       const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
@@ -281,7 +283,7 @@
       `;
   }
   
-  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS (inalterada)
+  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
   async function renderHotels(venueSlug, eventTitle) {
       if (!hotelsSection) return;
       
@@ -317,41 +319,58 @@
   }
 
 
-  // Função para renderizar o Carrossel de Eventos Similares (inalterada)
+  // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
-      try {
-          if(relatedEventsSection) relatedEventsSection.hidden = false;
-          
-          const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
-          const res = await fetch(finalAllEventsUrl);
+    if(!footerBottomRelated) return;
+    
+    try {
+        const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
+        const res = await fetch(finalAllEventsUrl);
+        
+        if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
+        
+        const allEvents = await res.json();
+        const relatedEvents = allEvents.filter(ev => 
+            ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
+        );
 
-          if (!res.ok) {
-              throw new Error("Falha ao carregar lista de eventos similares (Erro de Rede).");
-          }
-          
-          const allEvents = await res.json();
-          
-          const relatedEvents = allEvents.filter(ev => 
-              ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
-          );
+        if (relatedEvents.length === 0) {
+            footerBottomRelated.style.display = 'none';
+            return;
+        }
+        
+        const relatedTitleText = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
+        const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
+        
+        // NOVO: Injeta a estrutura completa do carrossel no footerBottomRelated
+        const relatedHtml = `
+            <div id="relatedEventsSection" class="motivos-section" style="margin-top: 50px;">
+                <h2 id="relatedTitle" class="wrap">${relatedTitleText}</h2>
+                <div id="relatedWrapper" class="motivos-wrapper">
+                    <div id="relatedCarouselContainer" class="cl-track">
+                        ${relatedSlides}
+                    </div>
+                    <button class="carousel-nav prev" id="prevRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+                    </button>
+                    <button class="carousel-nav next" id="nextRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        footerBottomRelated.innerHTML = relatedHtml;
+        footerBottomRelated.style.display = 'block';
 
-          if (relatedEvents.length === 0) {
-              if(relatedEventsSection) relatedEventsSection.hidden = true;
-              return;
-          }
-          
-          if(relatedTitle) relatedTitle.textContent = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
-          
-          const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
-          if(relatedCarouselContainer) relatedCarouselContainer.innerHTML = relatedSlides;
+        // Inicializa o carrossel, usando os novos IDs injetados
+        initCarousel('relatedCarouselContainer', 'relatedWrapper', false); 
 
-          initCarousel('relatedCarouselContainer', 'relatedWrapper', false); 
-
-      } catch (e) {
-          console.error("Erro FINAL no processo de renderização de similares:", e);
-          if(relatedEventsSection) relatedEventsSection.hidden = true;
-      }
-  }
+    } catch (e) {
+        console.error("Erro FINAL no processo de renderização de similares:", e);
+        if(footerBottomRelated) footerBottomRelated.style.display = 'none';
+    }
+}
 
 
   // --- FUNÇÃO PRINCIPAL ---
@@ -444,7 +463,6 @@
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
-          // O youtube-wrapper no HTML lida com o 70% e centraliza.
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
@@ -473,7 +491,7 @@
       if(whatsappCta) whatsappCta.href = whatsappLink;
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
-      if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // NOVO CTA RODAPÉ
+      if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
 
       // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
       if (venueSlug) {
@@ -526,12 +544,11 @@
         if(motivosWrapperEl) motivosWrapperEl.hidden = true;
       }
 
-      // 6. Renderiza Eventos Similares
+      // 6. Renderiza Eventos Similares (AGORA NO RODAPÉ)
       if (ev.category_macro) {
           renderRelatedEvents(ev.category_macro, slug); 
-      } else {
-          if(relatedEventsSection) relatedEventsSection.hidden = true;
       }
+      // Se não houver categoria macro, renderRelatedEvents não é chamada e o footerBottomRelated fica oculto (display: none).
 
       // 7. PREENCHIMENTO DO RODAPÉ
       if (eventPageFooter) {
@@ -545,9 +562,6 @@
           if (footerAboutText) {
               const categoryMicro = ev.category_micro ? `viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'viagens corporativas para eventos e feiras profissionais';
               footerAboutText.innerHTML = `Agência especializada em ${categoryMicro}. Sua parceira de confiança para <strong>${finalTitle}</strong>.`;
-          }
-          if (currentYear) {
-              currentYear.textContent = new Date().getFullYear();
           }
       }
 
