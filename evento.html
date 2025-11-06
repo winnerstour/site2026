@@ -1,756 +1,575 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-    <title id="pageTitle">Detalhes do Evento — WinnersTour</title> <link rel="icon" id="faviconEl" href="/assets/img/banners/placeholder-favicon.webp" type="image/webp">
+// evento-page-loader.js (COMPLETO E FINALIZADO)
+
+(function () {
+  const DATA_BASE_PATH = './data/events/'; 
+  const ALL_EVENTS_URL = './event.json'; 
+  const VENUE_DATA_PATH = './venue-data/'; 
+  
+  const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
+  const SCROLL_SPEED = 8000; 
+
+  // Seleção de Elementos 
+  const eventContent = document.getElementById('eventContent');
+  const loading = document.getElementById('loading');
+  const errorDiv = document.getElementById('error');
+  const pageTitle = document.getElementById('pageTitle');
+  const eventTitle = document.getElementById('eventTitle');
+  
+  // ELEMENTOS DO NOVO HERO DE TELA CHEIA
+  const heroSection = document.getElementById('eventHeroSection'); 
+  const heroTitle = document.getElementById('heroTitle');         
+  const heroSubheadline = document.getElementById('heroSubheadline'); 
+  const heroBadge = document.getElementById('heroBadge');         
+  const heroWhatsappCta = document.getElementById('heroWhatsappCta'); 
+
+  // ELEMENTOS DO NOVO RODAPÉ
+  const eventPageFooter = document.getElementById('eventPageFooter');
+  const footerCtaTitle = document.getElementById('footerCtaTitle');
+  const footerWhatsappCta = document.getElementById('footerWhatsappCta');
+  const footerBottomRelated = document.getElementById('footerBottomRelated'); 
+  const agencyNameTitle = document.getElementById('agencyNameTitle'); 
+  const agencyNameMicro = document.getElementById('agencyNameMicro'); 
+  const currentYear = document.getElementById('currentYear'); 
+
+  // OUTROS ELEMENTOS
+  const eventMeta = document.getElementById('eventMeta');
+  const eventDescription = document.getElementById('eventDescription');
+  const motivosContainer = document.getElementById('motivosContainer');
+  const whatsappCta = document.getElementById('whatsappCta');
+  const whatsappTopCta = document.getElementById('whatsappTopCta');
+
+  const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
+  const hotelsSection = document.getElementById('hotelsSection');
+  const hotelsCarouselContainer = document.getElementById('hotelsCarouselContainer');
+  const hotelsWrapper = document.getElementById('hotelsWrapper');
+  const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
+
+  // --- FUNÇÕES AUXILIARES ---
+
+  function fixPath(path) {
+      if (!path) return path;
+
+      if (path.startsWith('./') || path.startsWith(DATA_BASE_PATH.substring(2))) {
+          if (BASE_PATH) {
+              return BASE_PATH + path.substring(1); 
+          }
+          return path; 
+      }
+      
+      if (path.startsWith('/')) {
+          if (BASE_PATH) {
+              return BASE_PATH + path; 
+          }
+          return path;
+      }
+      
+      return path; 
+  }
+
+  function getSlug() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("slug");
+  }
+
+  function renderError(message) {
+    if (loading) loading.hidden = true;
+    if (errorDiv) {
+        errorDiv.hidden = false;
+        errorDiv.innerHTML = '<h2 style="color:var(--brand)">Erro</h2><p>' + (message || 'Não foi possível carregar os detalhes do evento.') + '</p>';
+    }
+  }
+
+  function extractVideoId(input) {
+      if (!input) return null;
+      try {
+          const url = new URL(input);
+          const urlParams = new URLSearchParams(url.search);
+          const idFromQuery = urlParams.get('v');
+          if (idFromQuery) return idFromQuery;
+      } catch (e) {}
+      return input.split('/').pop().split('=').pop();
+  }
+
+  // Converte HEX para RGB 
+  function hexToRgb(hex) {
+    if (!hex || hex.length < 7) return [249, 115, 22]; 
+    var r = parseInt(hex.substring(1, 3), 16);
+    var g = parseInt(hex.substring(3, 5), 16);
+    var b = parseInt(hex.substring(5, 7), 16);
+    return [r, g, b];
+  }
+
+  // Função auxiliar para definir cores e gradiente do Hero/Footer
+  function getHeroGradient(chipColorClass) {
+      const colorMap = {
+          'bg-amber-500': '#fbbf24', 
+          'bg-red-500': '#ef4444', 
+          'bg-green-500': '#10b981', 
+          'bg-blue-500': '#3b82f6', 
+          'bg-indigo-700': '#4338ca', 
+          'bg-slate-700': '#334155', 
+          'default': '#f97316' 
+      };
+
+      const baseColor = colorMap[chipColorClass.split(' ')[0]] || colorMap['default'];
+      const gradientEnd = '#6b21a8'; 
+      
+      function blendColors(c1, c2, ratio) {
+          const hexToRgb = hex => [parseInt(hex.substring(1, 3), 16), parseInt(hex.substring(3, 5), 16), parseInt(hex.substring(5, 7), 16)];
+          const rgb1 = hexToRgb(c1);
+          const rgb2 = hexToRgb(c2);
+          const r = Math.round(rgb1[0] * ratio + rgb2[0] * (1 - ratio));
+          const g = Math.round(rgb1[1] * ratio + rgb2[1] * (1 - ratio));
+          const b = Math.round(rgb1[2] * ratio + rgb2[2] * (1 - ratio));
+          return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+      }
+      
+      // Ajuste: Mistura 90% Branco + 10% Cor Base para um toque muito sutil da cor do chip
+      const highlightLight = blendColors(baseColor, '#FFFFFF', 0.1); // 0.1 de cor base, 0.9 de branco
+      
+      return {
+          highlight: baseColor,
+          highlightLight: highlightLight, 
+          gradientStart: baseColor,
+          gradientEnd: gradientEnd
+      };
+  }
+
+  // Card de MOTIVO
+  function renderMotivo(m) {
+    const emoji = m.motivo_emoji || m.emoji || '✨';
+    const title = m.motivo_titulo || m.title || 'Atração';
+    const text = m.motivo_conteudo || m.content || '';
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    return `
+      <div class="cl-slide">
+        <li class="motivo-item">
+          <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
+            <span class="emoji" aria-hidden="true">${emoji}</span>
+            ${title.toUpperCase()}
+          </strong>
+          <p class="motivo-text-body">${text}</p>
+        </li>
+      </div>
+    `;
+  }
+  
+  // Card de Evento Similar
+  function buildSimilarEventCard(ev) {
+    const title = ev.title || 'Evento sem título';
+    const subtitle = ev.slug; 
+    const slug = ev.slug; 
     
-    <style>
-/* VARIÁVEIS DE COR E ESTILO */
-:root{
-    --brand:#f97316; 
-    --brand-shadow:#C2410C; 
-    --wa:#25D366; 
-    --wa-hover:#1AC656; 
-    --wa-ring:#128C7E; 
-    --text-charcoal:#111827; 
-    --muted:#6b7280;
-    --bg:#fff;
-    --card:#fbfbfb; 
-    --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-    --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-    --card-hover-bg:#f5f5f5; 
-    --radius:18px;
-    --wrap:1024px; 
-    --highlight-color-light: #f97316; /* Fallback para cor de destaque CLARA */
-    --footer-gradient-start-rgb: 249, 115, 22; /* Fallback RGB para Laranja */
-    --footer-gradient-end-rgb: 107, 33, 168; /* Fallback RGB para Violeta */
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-
-/* APLICAÇÃO DA FONTE MONTSERRAT */
-body{
-    font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size:16px;
-    line-height:1.5;
-    color:var(--text-charcoal);
-    background:var(--bg);
-    overflow-x: hidden;
-}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-
-/* BARRA SUPERIOR (TOPBAR) */
-.topbar{position:sticky;top:0;z-index:1000;background:var(--brand)}
-.topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
-.menu-area{display:flex;align-items:center}
-.menu-button{display:inline-flex;align-items:center;gap:10px;cursor:pointer;color:var(--text-charcoal);font-weight:900}
-.menu-label{
-    color:var(--text-charcoal);
-    font-weight:900;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    -webkit-text-stroke:0; 
-    text-stroke:0; 
-}
-.burger{width:24px;height:18px;position:relative}
-.burger div,.burger::before,.burger::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--text-charcoal);border-radius:2px}
-.burger div{top:50%;transform:translateY(-50%)}.burger::before{top:0}.burger::after{bottom:0}
-.logo-center{display:none!important}.topbar__cta{justify-self:end}
-@media (max-width:640px){.topbar__inner{height:56px}.menu-label{font-size:14px}}
-
-/* BOTÃO WHATSAPP */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:900;line-height:1; transition: all .2s ease;}
-.btn.btn-whatsapp{
-    background:var(--wa);
-    border:2px solid var(--wa-ring); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: #fff;
-}
-.btn.btn-whatsapp:hover {
-    background: var(--wa-hover);
-    border-color: var(--wa-ring);
-}
-.btn.btn-whatsapp:active {
-    transform: translateY(1px);
-}
-.btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
-.btn.btn-whatsapp svg{width:18px;height:18px;color:#fff;fill:currentColor}
-
-/* LAYOUT PRINCIPAL */
-.wrap{
-    max-width:var(--wrap);
-    margin:16px auto; 
-    padding:0 16px;
-}
-h1,h2,h3{
-    font-weight:900;
-    margin:0 0 16px;
-    line-height: 1.1;
-    color: var(--text-charcoal);
-}
-h1 { font-size: 2.25rem; margin-bottom: 8px;}
-h2 { font-size: 1.5rem; margin-bottom: 20px;}
-
-/* CTA FIXO */
-.event-cta-fixed {
-    position: sticky;
-    bottom: 0;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid rgba(2,8,23,.06);
-    z-index: 900;
-    text-align: center;
-}
-.event-cta-fixed .btn {
-    width: 100%;
-    max-width: 400px;
-}
-
-/* ESTILO BASE DO CARD DE EVENTO SIMILAR (CARDS E CARROSSÉIS) */
-.card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-    overflow: hidden;
-    transition: all .2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid transparent; 
-    width: 300px; 
-    min-height: 100%;
-}
-.card:hover {
-    box-shadow: var(--shadow-hover);
-    background: var(--card-hover-bg);
-    border-color: rgba(249, 115, 22, 0.5); 
-}
-.card .thumb {
-    height: 100px; 
-    overflow: hidden;
-    border-bottom: 1px solid rgba(2,8,23,.06);
-    background: #f4f4f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.card .thumb img {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-}
-.card .content {
-    padding: 14px;
-}
-.card .title {
-    font-weight: 900;
-    font-size: 1rem;
-    line-height: 1.3;
-    text-transform: uppercase;
-    max-height: 1.3em; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1; 
-    -webkit-box-orient: vertical;
-}
-.card .title img.favicon {
-    width: 16px; 
-    height: 16px; 
-    margin-right: 6px; 
-    display: inline-block; 
-    vertical-align: middle;
-    max-width: 16px !important;
-    max-height: 16px !important;
-}
-.card .subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.3;
-}
-
-/* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
-.motivos-section {
-    padding: 0;
-    margin: 30px 0;
-}
-.motivos-section h2 {
-    max-width: var(--wrap);
-    margin: 0 auto 20px;
-    padding: 0 16px;
-}
-.motivos-wrapper {
-    position: relative; 
-    max-width: var(--wrap); 
-    margin: 0 auto; 
-    padding: 10px 0; 
-}
-.cl-track {
-    list-style: none; 
-    padding: 0; 
-    margin: 0; 
-    display: flex; 
-    gap: 18px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    padding: 0 16px; 
-    scroll-padding-inline: 16px;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.cl-track::-webkit-scrollbar {
-    display: none;
-}
-.cl-slide {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 300px; 
-    max-width: 300px;
-}
-@media (max-width:640px){
-    .cl-slide {
-        width: 86vw; 
-    }
-}
-.motivo-item {
-    background: var(--card); 
-    border: 1px solid rgba(2,8,23,.08); 
-    padding: 20px; 
-    border-radius: var(--radius); 
-    box-shadow: var(--shadow-base);
-    min-height: 180px; 
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.motivo-title-montserrat {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 1rem; 
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    line-height: 1.3;
-}
-.motivo-title-montserrat .emoji {
-    font-size: 1.25rem;
-    margin-right: 8px;
-}
-.motivo-text-body {
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--text-charcoal);
-}
-
-/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); 
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    background: var(--brand); 
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-}
-.carousel-nav:hover {
-    background: var(--brand-shadow);
-}
-.carousel-nav svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--text-charcoal); 
-}
-.carousel-nav.prev {
-    left: 16px; 
-}
-.carousel-nav.next {
-    right: 16px; 
-}
-@media (min-width: 1025px) { 
-    .carousel-nav.prev {
-        left: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-    .carousel-nav.next {
-        right: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-}
-@media (max-width: 1024px) {
-    .carousel-nav {
-        display: none !important; 
-    }
-}
-
-/* ESTILO DO CARD DE HOTEL */
-.hotel-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-    overflow: hidden;
-    transition: all .2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(2,8,23,.08); 
-    width: 300px; 
-    min-height: 100%;
-}
-.hotel-card:hover {
-    box-shadow: var(--shadow-hover);
-    background: var(--card-hover-bg);
-    border-color: rgba(249, 115, 22, 0.5); 
-}
-.hotel-card .content {
-    padding: 14px;
-    flex-grow: 1;
-}
-.hotel-card .category {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--brand);
-    margin-bottom: 4px;
-}
-.hotel-card .price {
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--text-charcoal);
-    margin-bottom: 8px;
-}
-.hotel-card .stars {
-    color: #FFC700; 
-    margin-left: 5px;
-}
-.hotels-section {
-    padding: 0;
-    margin: 30px 0;
-}
-.hotels-wrapper {
-    position: relative;
-    max-width: var(--wrap); 
-    margin: 0 auto; 
-    padding: 10px 0; 
-}
-
-/* --- HERO DE TELA CHEIA (FULL-SCREEN) --- */
-.full-screen-hero {
-    height: calc(100vh - 64px); 
-    min-height: 550px; 
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    background-size: cover;
-    background-position: center;
-    color: #fff; 
-    background-image: url("https://via.placeholder.com/1200x800/203040?text=Beauty+Fair+2026"); 
-}
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(50, 50, 150, 0.75) 0%, rgba(100, 50, 150, 0.85) 100%);
-}
-.hero-content {
-    position: relative;
-    z-index: 20; 
-    max-width: 800px; 
-    padding: 20px;
-}
-#heroTitle {
-    font-size: 4rem; 
-    font-weight: 900; 
-    line-height: 1.1;
-    margin-bottom: 20px; 
-    color: #fff;
-    opacity: 0; 
-    animation: fadeIn 1s ease-out 0.5s forwards;
-}
-/* Estilo para o destaque colorido no título (Cor mais clara) */
-#heroTitle .highlight {
-    font-weight: 900;
-    display: block; 
-    color: var(--highlight-color-light, #ffd8ad); 
-}
-
-#heroSubheadline {
-    font-size: 1.5rem; 
-    font-weight: 400;
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.95);
-}
-
-/* Botão do Hero */
-.btn-hero {
-    min-width: 340px;
-    font-size: 1.25rem;
-    padding: 16px 25px;
-    border-color: #fff; 
-    background: var(--wa) !important;
-}
-.btn-hero:hover {
-    background: var(--wa-hover) !important;
-}
-
-#heroMicrocopy {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 700;
-}
-
-/* Badge Categoria */
-.hero-badge {
-    font-weight: 900;
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: #fff;
-    background: var(--brand); 
-    padding: 6px 14px;
-    border-radius: 999px;
-    display: none; 
-    margin-bottom: 16px;
-    letter-spacing: 0.1em;
-}
-
-/* Animação Pulse/Glow */
-.pulse-glow {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-/* [NOVO] Wrapper para o Vídeo (70% de largura) */
-.youtube-wrapper {
-    max-width: 70%; 
-    margin: 0 auto; 
-}
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
-    .full-screen-hero {
-        height: auto; 
-        min-height: 450px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-    #heroTitle {
-        font-size: 2.5rem; 
-    }
-    #heroSubheadline {
-        font-size: 1.15rem;
-    }
-    .btn-hero {
-        min-width: 100%;
-        font-size: 1.15rem;
-    }
-    .youtube-wrapper {
-        max-width: 100%;
-    }
-}
-
-/* --- NOVO FOOTER DA PÁGINA DE EVENTO --- */
-.site-footer {
-    background: #f8f8f8;
-    padding: 40px 0 0; 
-    border-top: 1px solid rgba(2,8,23,.06);
-    color: var(--text-charcoal);
-    font-size: 14px;
-}
-/* AJUSTE SOLICITADO: REMOVE O GRADIENTE DO CTA E USA FUNDO NEUTRO */
-.footer-cta-area {
-    text-align: center;
-    padding: 30px 20px;
-    background: var(--card); /* Fundo neutro */
-    border-top: 1px solid rgba(2,8,23,.06);
-    color: var(--text-charcoal); 
-    margin-bottom: 40px;
-}
-.footer-cta-title {
-    font-size: 2rem;
-    font-weight: 900;
-    margin-bottom: 20px;
-    color: var(--text-charcoal); /* Título escuro */
-}
-.footer-cta-microcopy {
-    font-size: 14px;
-    margin-top: 15px;
-    color: var(--muted);
-    font-weight: 400; 
-}
-.footer-cta-area .btn-hero {
-    min-width: 300px;
-    font-size: 1.15rem;
-    padding: 14px 20px;
-}
-
-.footer-columns {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-.footer-col-title {
-    font-size: 1.1rem;
-    font-weight: 900;
-    margin-bottom: 15px;
-    color: var(--text-charcoal);
-}
-.footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.footer-col ul li {
-    margin-bottom: 8px;
-}
-.footer-col ul li a {
-    color: var(--muted);
-    transition: color 0.2s ease;
-}
-.footer-col ul li a:hover {
-    color: var(--brand);
-}
-.footer-col p {
-    color: var(--muted);
-    line-height: 1.6;
-}
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-.social-icons img {
-    width: 24px;
-    height: 24px;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-}
-.social-icons img:hover {
-    opacity: 1;
-}
-
-/* NOVO ESTILO SOLICITADO: NOME DA AGÊNCIA EM GRADIENTE */
-.agency-name-section {
-    text-align: center;
-    margin: 40px 0 20px;
-    padding: 0 16px; /* Adiciona padding para alinhamento */
-}
-.agency-name-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 2rem; 
-    text-transform: uppercase;
-    margin: 0;
+    const finalUrl = `evento.html?slug=${slug}`;
     
-    /* Aplica o gradiente de texto usando as cores dinâmicas */
-    background: linear-gradient(90deg, var(--highlight-color-light), var(--brand));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-}
-.agency-name-micro {
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 5px;
-}
+    const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
+    const imagePath = fixPath(rawImagePath);
 
-/* Novo container para Eventos Similares no Rodapé */
-.footer-bottom-related {
-    padding-bottom: 40px; /* Adiciona o padding inferior aqui */
-}
+    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+    const faviconPath = fixPath(faviconRawPath);
 
-@media (max-width: 768px) {
-    .site-footer {
-        padding: 30px 0 0;
-    }
-    .footer-cta-title {
-        font-size: 1.5rem;
-    }
-    .footer-columns {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .footer-col ul, .social-icons {
-        justify-content: center;
-    }
-    .footer-cta-area .btn-hero {
-        min-width: 100%;
-        max-width: 300px; 
-    }
-}
-    </style>
-</head>
-<body>
+    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
-    <div id="indexTopBar" class="topbar">
-        <div class="topbar__inner">
-            <div class="menu-area">
-                <a href="./index.html" class="menu-button">
-                    <span class="burger"><div></div></span>
-                    <span class="menu-label">WINNERS TOUR</span>
-                </a>
-            </div>
-            <div class="topbar__cta">
-                <a id="whatsappTopCta" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20em%20pacotes%20para%20eventos." target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
-                    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                    <span class="label">WHATSAPP</span>
-                </a>
-            </div>
-        </div>
-    </div>
+    return `
+      <div class="cl-slide">
+        <a href="${finalUrl}" class="card" aria-label="${title}">
+          <div class="thumb">
+            <img loading="lazy" src="${imagePath}" alt="${title}">
+          </div>
+          <div class="content">
+            <h3 class="title">
+              ${faviconHtml}
+              <span>${title}</span>
+            </h3>
+            <p class="subtitle">${subtitle}</p>
+          </div>
+        </a>
+      </div>
+    `;
+  }
+
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  function initCarousel(carouselId, wrapperId, isMotivos = false) {
+      const carousel = document.getElementById(carouselId);
+      const wrapper = document.getElementById(wrapperId);
+      if (!carousel || !wrapper) return;
+
+      let scrollInterval;
+      let isPaused = false;
+      const cardWidth = 318; 
+
+      const scrollRight = () => {
+          if (isPaused) return;
+
+          const currentScroll = carousel.scrollLeft;
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth; 
+
+          if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
+              carousel.scroll({left: 0, behavior: 'smooth'});
+          } else {
+              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
+          }
+      };
+
+      const startAutoplay = () => {
+          clearInterval(scrollInterval);
+          scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
+      };
+      
+      carousel.addEventListener('mouseover', () => { isPaused = true; });
+      carousel.addEventListener('mouseleave', () => { isPaused = false; });
+      
+      startAutoplay();
+      
+      const prevButton = wrapper.querySelector('.carousel-nav.prev');
+      const nextButton = wrapper.querySelector('.carousel-nav.next');
+
+      if (prevButton && nextButton) {
+          prevButton.addEventListener('click', () => {
+              carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
+          });
+          nextButton.addEventListener('click', () => {
+              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
+          });
+          
+          const checkScroll = () => {
+              const currentScroll = carousel.scrollLeft;
+              const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+              if (window.innerWidth > 1024) { 
+                  prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
+                  nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+              } else {
+                  prevButton.style.display = 'none';
+                  nextButton.style.display = 'none';
+              }
+          };
+          
+          carousel.addEventListener('scroll', checkScroll);
+          window.addEventListener('resize', checkScroll);
+          checkScroll(); 
+      }
+  }
+  
+  // FUNÇÃO PARA CRIAR CARDS DE HOTEL
+  function buildHotelCard(hotel) {
+      const isDayTrip = hotel.type === 'daytrip';
+      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
+      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
+      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
+      const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
+      
+      const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
+
+      return `
+          <div class="cl-slide">
+              <div class="hotel-card">
+                  <div class="thumb">
+                      <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
+                  </div>
+                  <div class="content">
+                      <div class="category">${categoryText.toUpperCase()}</div>
+                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <div class="price">A PARTIR DE ${priceHtml}</div>
+                      
+                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
+                          <span class="label">${ctaLabel}</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+  
+  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
+  async function renderHotels(venueSlug, eventTitle) {
+      if (!hotelsSection) return;
+      
+      try {
+          const venueJsonPath = fixPath(`${VENUE_DATA_PATH}${venueSlug}.json`);
+          const res = await fetch(venueJsonPath);
+          
+          if (!res.ok) throw new Error(`Venue JSON not found: ${venueSlug}`);
+          
+          const venueData = await res.json();
+          const hotels = venueData.hotels || [];
+
+          if (hotels.length === 0) {
+              hotelsSection.style.display = 'none';
+              return;
+          }
+          
+          const hotelSlides = hotels.map(buildHotelCard).join('');
+          hotelsCarouselContainer.innerHTML = hotelSlides;
+          
+          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
+          const baseWhats = 'https://wa.me/5541999450111?text=';
+          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
+          
+          initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+
+          hotelsSection.style.display = 'block';
+
+      } catch (e) {
+          console.error("Erro ao carregar ou renderizar hotéis:", e);
+          hotelsSection.style.display = 'none';
+      }
+  }
+
+
+  // Função para renderizar o Carrossel de Eventos Similares
+  async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
+    if(!footerBottomRelated) return;
     
-    <section id="eventHeroSection" class="full-screen-hero" style="display:none;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p id="heroBadge" class="hero-badge"></p>
-            
-            <h1 id="heroTitle">Sua viagem para<br><span class="highlight">[NOME DO EVENTO]</span> resolvida em minutos.</h1>
-            
-            <p id="heroSubheadline">Voos + hotéis próximos ao [LOCAL] com tarifas corporativas e suporte completo.</p>
-            
-            <a id="heroWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">RECEBA DETALHAMENTO NO WHATSAPP</span>
-            </a>
-            
-            <small id="heroMicrocopy">Enviamos PDF com hotéis, voos e todos detalhes pra viagem.</small>
-        </div>
-    </section>
+    try {
+        const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
+        const res = await fetch(finalAllEventsUrl);
+        
+        if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
+        
+        const allEvents = await res.json();
+        const relatedEvents = allEvents.filter(ev => 
+            ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
+        );
 
-    <div id="loading" class="wrap" style="text-align: center; padding: 50px;">
-        <p>Carregando detalhes do evento...</p>
-    </div>
-    <div id="error" class="wrap" hidden>
-        </div>
-
-    <main id="eventContent" class="event-page" hidden>
-
-        <div id="hotelsSection" class="hotels-section">
-            <h2 class="wrap">GARANTA SUA VIAGEM AGORA MESMO</h2>
-            <p class="wrap section-lead" style="margin-bottom: 24px;">
-              Nossos roteiros foram desenhados para quem viaja a trabalho, otimizando seu tempo e custo durante a feira. Clique 
-              <a id="hotelsWhatsLink" href="#" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 700;">aqui para receber o roteiro detalhado no WhatsApp</a>, e escolha o que mais combina com a sua agenda.
-            </p>
-
-            <div id="hotelsWrapper" class="hotels-wrapper">
-                <div id="hotelsCarouselContainer" class="cl-track">
+        if (relatedEvents.length === 0) {
+            footerBottomRelated.style.display = 'none';
+            return;
+        }
+        
+        const relatedTitleText = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
+        const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
+        
+        // NOVO: Injeta a estrutura completa do carrossel no footerBottomRelated
+        const relatedHtml = `
+            <div id="relatedEventsSection" class="motivos-section" style="margin-top: 50px;">
+                <h2 id="relatedTitle" class="wrap">${relatedTitleText}</h2>
+                <div id="relatedWrapper" class="motivos-wrapper">
+                    <div id="relatedCarouselContainer" class="cl-track">
+                        ${relatedSlides}
                     </div>
-                <button class="carousel-nav prev" id="prevHotels">
-                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-                </button>
-                <button class="carousel-nav next" id="nextHotels">
-                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                </button>
+                    <button class="carousel-nav prev" id="prevRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+                    </button>
+                    <button class="carousel-nav next" id="nextRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                    </button>
+                </div>
             </div>
-        </div>
+        `;
         
-        <div class="wrap event-details">
-            <h1 id="eventTitle" style="display:none;"></h1>
-            <p id="eventMeta" class="event-meta" style="display:none;"></p>
-            
-            <div id="eventDescription">
-                </div>
-        </div>
+        footerBottomRelated.innerHTML = relatedHtml;
+        footerBottomRelated.style.display = 'block';
+
+        // Inicializa o carrossel, usando os novos IDs injetados
+        initCarousel('relatedCarouselContainer', 'relatedWrapper', false); 
+
+    } catch (e) {
+        console.error("Erro FINAL no processo de renderização de similares:", e);
+        if(footerBottomRelated) footerBottomRelated.style.display = 'none';
+    }
+  }
+
+
+  // --- FUNÇÃO PRINCIPAL ---
+
+  async function loadEventData() {
+    const slug = getSlug();
+    if (!slug) {
+      return renderError('Nenhum evento especificado na URL.');
+    }
+    
+    try {
+      const finalJsonPath = fixPath(`${DATA_BASE_PATH}${slug}.json`);
+      const res = await fetch(finalJsonPath);
+
+      if (!res.ok) {
+        const rootPath = fixPath(`./${slug}.json`);
+        const rootRes = await fetch(rootPath);
+        if (!rootRes.ok) {
+             throw new Error(`Arquivo ${slug}.json não encontrado ou erro de rede.`);
+        }
+        var ev = await rootRes.json();
+      } else {
+        var ev = await res.json();
+      }
+      
+      const finalTitle = ev.title || 'Evento sem Título';
+      const venueSlug = ev.venue_slug || ev.venue || ev.slug;
+      
+      // Formata o slug do local: retira traços e coloca em caixa alta
+      const formattedVenueName = venueSlug
+          .replace(/-/g, ' ') 
+          .toUpperCase();
+      
+      // Pega a cor do JSON 
+      const chipColor = ev.ChipColor || ev.chip_color || 'bg-slate-700'; 
+      const colors = getHeroGradient(chipColor);
+      
+      // ******* 1. ATUALIZAÇÃO DA PÁGINA E FAVICON *******
+      if (pageTitle) pageTitle.textContent = `${finalTitle} — WinnersTour`;
+      
+      const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
+      const faviconPath = fixPath(faviconRawPath);
+      const faviconEl = document.querySelector('link[rel="icon"]'); 
+      if (faviconEl) {
+          faviconEl.href = faviconPath; 
+      }
+      
+      // ******* 2. CARREGAR E EXIBIR O NOVO HERO DE TELA CHEIA *******
+      
+      // 2.1. Caminho da Imagem de Fundo (nova convenção)
+      const categoryMacroSlug = ev.category_macro ? ev.category_macro.replace(/ /g, '-').replace(/&/g, 'e') : 'default';
+      const rawHeroBgPath = `/assets/img/banners/${categoryMacroSlug}-bannerhero.webp`;
+      const heroBgPath = fixPath(rawHeroBgPath);
+      
+      // 2.2. Preencher a Seção Hero de Tela Cheia (heroSection)
+      if(heroSection) {
+          heroSection.style.backgroundImage = `url('${heroBgPath}')`;
+          heroSection.style.display = 'flex';
+
+          // Configura a cor de destaque CLARA e a cor BRAND principal via CSS Variables
+          heroSection.style.setProperty('--highlight-color-light', colors.highlightLight);
+          document.documentElement.style.setProperty('--brand', colors.highlight);
+          
+          const overlay = heroSection.querySelector('.hero-overlay');
+          if (overlay) {
+              overlay.style.background = `linear-gradient(135deg, ${colors.gradientStart}AA 0%, ${colors.gradientEnd}DD 100%)`;
+          }
+      }
+      if(heroTitle) {
+          // Implementa a quebra de linha e o destaque (corrigido para uma quebra de linha)
+          heroTitle.innerHTML = `Sua viagem para<br><span class="highlight">${finalTitle.toUpperCase()}</span> resolvida em minutos.`;
+      }
+      if(heroSubheadline) {
+          // Usa o nome do local formatado
+          heroSubheadline.textContent = `Voos + hotéis próximos ao ${formattedVenueName} com tarifas corporativas e suporte completo.`;
+      }
+      if(heroBadge && ev.category_micro) {
+          heroBadge.textContent = ev.category_micro.toUpperCase();
+          heroBadge.style.display = 'inline-block';
+      } else if (heroBadge) {
+          heroBadge.style.display = 'none';
+      }
+
+      // Oculta elementos antigos que foram substituídos pelo Hero
+      if(eventTitle) eventTitle.style.display = 'none';
+      if(eventMeta) eventMeta.style.display = 'none';
+
+
+      // 3. CARREGAR E EXIBIR O VÍDEO (REDUZIDO PARA 70%)
+      const rawVideoInput = ev.YouTubeVideo; 
+      const youtubeVideoId = extractVideoId(rawVideoInput);
+
+      if (youtubeVideoId) {
+          const videoHtml = `
+              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
+                  <iframe 
+                      width="100%" 
+                      height="100%" 
+                      src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&amp;showinfo=0&amp;autoplay=0&amp;modestbranding=1" 
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowfullscreen 
+                      style="position: absolute; top: 0; left: 0;"
+                      title="${finalTitle}"
+                  ></iframe>
+              </div>
+          `;
+          if (youtubeVideoContainer) youtubeVideoContainer.innerHTML = videoHtml;
+      } 
+      
+      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
+      if(eventMeta) eventMeta.textContent = metaHtml;
+      
+      if(eventDescription) eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
+      
+      // CTA (WhatsApp)
+      const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
+      const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
+      if(whatsappCta) whatsappCta.href = whatsappLink;
+      if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
+      if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
+      if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
+
+      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
+      if (venueSlug) {
+          await renderHotels(venueSlug, finalTitle);
+      } else {
+          if (hotelsSection) hotelsSection.style.display = 'none';
+      }
+
+      // 5. Motivos para Visitar
+      const extractedMotivos = Object.keys(ev)
+          .filter(key => key.startsWith('motivo_titulo_'))
+          .map(titleKey => {
+            const index = titleKey.split('_')[2]; 
+            return {
+              motivo_emoji: ev[`motivo_emoji_${index}`],
+              motivo_titulo: ev[titleKey],
+              motivo_conteudo: ev[`motivo_conteudo_${index}`]
+            };
+          });
+          
+      const finalMotivos = extractedMotivos
+          .filter(m => m.motivo_titulo)
+          .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
+
+      const motivosCarouselId = 'motivosContainer';
+      const motivosWrapperId = 'motivosWrapper';
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
+
+      if (finalMotivos.length > 0) {
+        const motivoSlides = finalMotivos.map(renderMotivo).join('');
         
-        <div class="motivos-section">
-            <h2 class="wrap">Motivos para Visitar</h2>
-            
-            <div id="motivosWrapper" class="motivos-wrapper">
-                <ul id="motivosContainer" class="motivos-list">
-                    </ul>
-                </div>
-        </div>
-
-        <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 50px; margin-bottom: 50px;">
-            </div>
+        if(motivosContainer) {
+            motivosContainer.innerHTML = motivoSlides;
+            motivosContainer.classList.add('cl-track'); 
+        }
         
-        <div class="event-cta-fixed">
-            <a id="whatsappCta" href="#" target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco e reserve seu pacote">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">RESERVE AGORA</span>
-            </a>
-        </div>
-    </main>
-
-    <footer id="eventPageFooter" class="site-footer">
-        <div class="footer-cta-area">
-            <h2 id="footerCtaTitle" class="footer-cta-title">Garanta Sua Vaga no Evento!</h2>
-            <a id="footerWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">SOLICITAR PROPOSTA AGORA</span>
-            </a>
-            <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
-        </div>
-
-        <div class="footer-columns wrap">
-            <div class="footer-col about-col">
-                <h3 class="footer-col-title">Winners Tour</h3>
-                </div>
-            <div class="footer-col contact-col">
-                <h3 class="footer-col-title">Atendimento</h3>
-                <ul>
-                    <li><a href="https://wa.me/5541999450111" target="_blank">WhatsApp</a></li>
-                    <li><a href="mailto:contato@winnerstour.com.br">contato@winnerstour.com.br</a></li>
-                    <li><a href="tel:+5541999450111">41 99945-0111</a></li>
-                </ul>
-            </div>
-            <div class="footer-col social-col">
-                <h3 class="footer-col-title">Redes Sociais</h3>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/winnerstour" target="_blank" aria-label="Instagram"><img src="/assets/img/icon-instagram.svg" alt="Instagram"></a>
-                    <a href="https://www.facebook.com/winnerstour" target="_blank" aria-label="Facebook"><img src="/assets/img/icon-facebook.svg" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/company/winnerstour" target="_blank" aria-label="LinkedIn"><img src="/assets/img/icon-linkedin.svg" alt="LinkedIn"></a>
-                </div>
-            </div>
-        </div>
+        if(motivosWrapperEl) motivosWrapperEl.insertAdjacentHTML('beforeend', `
+              <button class="carousel-nav prev">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+              </button>
+              <button class="carousel-nav next">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+              </button>
+          `);
         
-        <div class="footer-bottom-info wrap">
-            <div class="agency-name-section">
-                <h3 id="agencyNameTitle" class="agency-name-title">Winners Tour</h3>
-                <p id="agencyNameMicro" class="agency-name-micro">Especializada em viagens corporativas.</p>
-            </div>
-            
-            <div class="footer-bottom wrap" style="text-align: center; border-top: 1px solid rgba(2,8,23,.03); padding-top: 20px;">
-                </div>
-        </div>
+        initCarousel(motivosCarouselId, motivosWrapperId, true); 
+        
+      } else {
+        if(document.querySelector('.motivos-section h2')) document.querySelector('.motivos-section h2').hidden = true;
+        if(motivosWrapperEl) motivosWrapperEl.hidden = true;
+      }
 
-        <div class="footer-bottom-related" id="footerBottomRelated">
-            </div>
+      // 6. Renderiza Eventos Similares (AGORA NO RODAPÉ)
+      if (ev.category_macro) {
+          renderRelatedEvents(ev.category_macro, slug); 
+      }
 
-    </footer>
+      // 7. PREENCHIMENTO DO RODAPÉ
+      if (eventPageFooter) {
 
-    <script src="./evento-page-loader.js"></script>
+          if (footerCtaTitle) {
+              footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
+          }
 
-</body>
-</html>
+          // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
+          if (agencyNameMicro) {
+              const categoryMicro = ev.category_micro ? `Especializada em viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
+              agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
+          }
+      }
+
+      if(loading) loading.hidden = true;
+      if(eventContent) eventContent.hidden = false;
+
+    } catch (e) {
+      console.error('Erro ao carregar evento:', e);
+      renderError(e.message);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadEventData);
+})();
