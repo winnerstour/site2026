@@ -27,6 +27,7 @@
     --card-hover-bg:#f5f5f5; 
     --radius:18px;
     --wrap:1024px; /* MAX-WIDTH CORRIGIDO */
+    --highlight-color: #f97316; /* Fallback para cor de destaque */
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -43,7 +44,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* BARRA SUPERIOR (TOPBAR) - Idêntica ao Index */
+/* BARRA SUPERIOR (TOPBAR) */
 .topbar{position:sticky;top:0;z-index:1000;background:var(--brand)}
 .topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
 .menu-area{display:flex;align-items:center}
@@ -95,36 +96,6 @@ h1,h2,h3{
 h1 { font-size: 2.25rem; margin-bottom: 8px;}
 h2 { font-size: 1.5rem; margin-bottom: 20px;}
 
-/* ESTILO DA IMAGEM HERO (AGORA PUXA O BANNER) */
-.hero-banner {
-    width: 100%; 
-    max-height: 400px; 
-    overflow: hidden; 
-    background: #f0f0f0;
-    /* margin-bottom: 24px; REMOVIDO */
-}
-.hero-banner img {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-}
-
-/* DETALHES DO EVENTO */
-.event-details {
-    padding: 0 16px;
-}
-.event-details p {
-    margin-bottom: 24px;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-.event-meta {
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
 /* CTA FIXO */
 .event-cta-fixed {
     position: sticky;
@@ -140,7 +111,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     max-width: 400px;
 }
 
-/* ESTILO BASE DO CARD DE EVENTO SIMILAR (COPIADO DO INDEX.HTML) */
+/* ESTILO BASE DO CARD DE EVENTO SIMILAR (CARDS E CARROSSÉIS) */
 .card {
     background: var(--card);
     border-radius: var(--radius);
@@ -151,18 +122,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     flex-direction: column;
     border: 1px solid transparent; 
-    width: 300px; /* Largura necessária para o carrossel */
+    width: 300px; 
     min-height: 100%;
 }
 .card:hover {
     box-shadow: var(--shadow-hover);
     background: var(--card-hover-bg);
-    /* Efeito de borda brand no hover */
     border-color: rgba(249, 115, 22, 0.5); 
 }
-
 .card .thumb {
-    height: 100px; /* Altura do contêiner da imagem */
+    height: 100px; 
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
@@ -190,14 +159,12 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     -webkit-line-clamp: 1; 
     -webkit-box-orient: vertical;
 }
-/* 🎯 CORREÇÃO CRÍTICA DO FAVICON */
 .card .title img.favicon {
     width: 16px; 
     height: 16px; 
     margin-right: 6px; 
     display: inline-block; 
     vertical-align: middle;
-    /* Trava o Favicon para não estourar */
     max-width: 16px !important;
     max-height: 16px !important;
 }
@@ -208,28 +175,22 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     line-height: 1.3;
 }
 
-
-/* NOVO: ESTILOS DO CARROSSEL DE MOTIVOS (Compartilhado com Sugestões) */
+/* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
 .motivos-section {
     padding: 0;
     margin: 30px 0;
 }
-
-/* Base do carrossel (Horizontal Scrolling) */
 .motivos-section h2 {
     max-width: var(--wrap);
     margin: 0 auto 20px;
     padding: 0 16px;
 }
 .motivos-wrapper {
-    /* CORREÇÃO: Devolve position: relative para que as setas flutuem APENAS dentro deste wrapper */
     position: relative; 
     max-width: var(--wrap); 
     margin: 0 auto; 
     padding: 10px 0; 
 }
-
-/* CL-TRACK: O ROLADOR */
 .cl-track {
     list-style: none; 
     padding: 0; 
@@ -239,7 +200,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    /* Padding para o primeiro card ficar alinhado com o wrap (1024px) */
     padding: 0 16px; 
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
@@ -249,8 +209,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .cl-track::-webkit-scrollbar {
     display: none;
 }
-
-/* Estilo do item do carrossel */
 .cl-slide {
     flex: 0 0 auto;
     scroll-snap-align: start;
@@ -262,7 +220,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         width: 86vw; 
     }
 }
-
 .motivo-item {
     background: var(--card); 
     border: 1px solid rgba(2,8,23,.08); 
@@ -273,43 +230,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     display: flex;
     flex-direction: column;
     height: 100%;
-}
-
-/* ESTILO DO CARD DE CONTEXTO/INTRODUÇÃO (Motivos) */
-.card.context-card {
-    box-shadow: none !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0;
-    cursor: default;
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    min-height: 180px;
-}
-.card.context-card:hover {
-    transform: none !important; 
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-.context-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    align-items: flex-start;
-    padding: 0 16px 0 0;
-}
-.context-content p {
-    font-size: 14px !important; 
-    color: var(--muted) !important; 
-    font-weight: 400 !important;
-    line-height: 1.3;
-    margin-bottom: 20px;
-    padding: 0;
-    text-align: left; 
 }
 .motivo-title-montserrat {
     font-family: 'Montserrat', sans-serif;
@@ -333,7 +253,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .carousel-nav {
     position: absolute;
     top: 50%;
-    /* Ajusta para centralizar em relação ao conteúdo do carrossel */
     transform: translateY(-50%); 
     width: 40px; 
     height: 40px;
@@ -353,32 +272,27 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     height: 24px;
     fill: var(--text-charcoal); 
 }
-/* Alinhamento para telas menores (setas flutuam no wrap) */
 .carousel-nav.prev {
     left: 16px; 
 }
 .carousel-nav.next {
     right: 16px; 
 }
-/* AJUSTE FINAL: Move as setas para a lateral externa da área útil de 1024px */
 @media (min-width: 1025px) { 
     .carousel-nav.prev {
-        /* Define a posição esquerda calculada a partir do viewport */
         left: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
     .carousel-nav.next {
-        /* Define a posição direita calculada a partir do viewport */
         right: calc((100vw - var(--wrap)) / 2 - 20px); 
     }
 }
 @media (max-width: 1024px) {
     .carousel-nav {
-        /* Garante que as setas sumam em mobile, onde a rolagem é touch */
         display: none !important; 
     }
 }
 
-/* [NOVO] ESTILO DO CARD DE HOTEL */
+/* ESTILO DO CARD DE HOTEL */
 .hotel-card {
     background: var(--card);
     border-radius: var(--radius);
@@ -388,7 +302,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(2,8,23,.08); /* Adiciona borda sutil para destaque */
+    border: 1px solid rgba(2,8,23,.08); 
     width: 300px; 
     min-height: 100%;
 }
@@ -414,10 +328,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     margin-bottom: 8px;
 }
 .hotel-card .stars {
-    color: #FFC700; /* Cor amarela para estrelas */
+    color: #FFC700; 
     margin-left: 5px;
 }
-/* [NOVO] Estilo para o Wrapper do Carrossel de Hotéis */
 .hotels-section {
     padding: 0;
     margin: 30px 0;
@@ -428,19 +341,11 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     margin: 0 auto; 
     padding: 10px 0; 
 }
-.favicon {
-    width: 16px; 
-    height: 16px; 
-    margin-right: 6px; 
-    display: inline-block; 
-    vertical-align: middle;
-}
 
 /* --- NOVO ESTILO HERO DE TELA CHEIA (FULL-SCREEN) --- */
 .full-screen-hero {
-    /* Define altura: 100vh - altura da Topbar (64px) */
     height: calc(100vh - 64px); 
-    min-height: 500px; /* Garante altura mínima em mobile */
+    min-height: 550px; 
     position: relative;
     display: flex;
     align-items: center;
@@ -450,7 +355,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     background-size: cover;
     background-position: center;
     color: #fff; 
-    /* Imagem de Fundo Padrão (será substituída pelo JS) */
     background-image: url("https://via.placeholder.com/1200x800/203040?text=Beauty+Fair+2026"); 
 }
 .hero-overlay {
@@ -459,36 +363,45 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradiente Neon Blue -> Violet */
+    /* Gradiente será definido via JS usando ChipColor */
     background: linear-gradient(135deg, rgba(50, 50, 150, 0.75) 0%, rgba(100, 50, 150, 0.85) 100%);
 }
 .hero-content {
     position: relative;
     z-index: 20; 
-    max-width: 700px;
+    max-width: 800px; 
     padding: 20px;
 }
 #heroTitle {
-    font-size: 2.5rem;
+    /* Novo: Tamanho maior e peso ExtraBold/Black (900) */
+    font-size: 3.5rem; 
+    font-weight: 900; 
     line-height: 1.1;
-    margin-bottom: 16px;
+    margin-bottom: 20px; 
     color: #fff;
-    /* Animação fade-in (será tratada no JS) */
     opacity: 0; 
     animation: fadeIn 1s ease-out 0.5s forwards;
 }
+/* Estilo para o destaque colorido no título */
+#heroTitle .highlight {
+    font-weight: 900;
+    display: block; 
+    color: var(--highlight-color, #f97316); /* Cor de destaque dinâmica via JS */
+}
+
 #heroSubheadline {
-    font-size: 1.25rem;
+    /* Novo: Tamanho maior */
+    font-size: 1.5rem; 
     font-weight: 400;
-    margin-bottom: 30px;
-    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 /* Botão do Hero */
 .btn-hero {
-    min-width: 300px;
-    font-size: 1.15rem;
-    padding: 14px 20px;
+    min-width: 340px;
+    font-size: 1.25rem;
+    padding: 16px 25px;
     border-color: #fff; 
     background: var(--wa) !important;
 }
@@ -510,10 +423,10 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     font-size: 1rem;
     text-transform: uppercase;
     color: #fff;
-    background: var(--brand); /* Laranja */
+    background: var(--brand); 
     padding: 6px 14px;
     border-radius: 999px;
-    display: none; /* Inicia oculto, mostra se tiver conteúdo via JS */
+    display: none; 
     margin-bottom: 16px;
     letter-spacing: 0.1em;
 }
@@ -537,6 +450,25 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 @keyframes fadeIn {
     to {
         opacity: 1;
+    }
+}
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .full-screen-hero {
+        height: auto; 
+        min-height: 450px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    #heroTitle {
+        font-size: 2.25rem; 
+    }
+    #heroSubheadline {
+        font-size: 1.15rem;
+    }
+    .btn-hero {
+        min-width: 100%;
+        font-size: 1.15rem;
     }
 }
     </style>
@@ -565,7 +497,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         <div class="hero-content">
             <p id="heroBadge" class="hero-badge"></p>
             
-            <h1 id="heroTitle">Sua viagem para a [NOME DO EVENTO] resolvida em minutos.</h1>
+            <h1 id="heroTitle">Sua viagem para<br><span class="highlight">[NOME DO EVENTO]</span> resolvida em minutos.</h1>
             
             <p id="heroSubheadline">Voos + hotéis próximos ao [LOCAL] com tarifas corporativas e suporte completo.</p>
             
@@ -613,12 +545,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                 </div>
         </div>
         
-        <div id="oldHeroContainer" class="wrap" style="margin-top: 30px; margin-bottom: 24px;">
-            <div class="hero-banner" style="max-height: 400px;">
-                <img id="eventHero" src="" alt="Banner secundário do evento" loading="lazy">
-            </div>
-        </div>
-
         <div class="motivos-section">
             <h2 class="wrap">Motivos para Visitar</h2>
             
