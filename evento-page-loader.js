@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E ATUALIZADO)
+// evento-page-loader.js (COMPLETO E FINALIZADO)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -21,8 +21,6 @@
   const heroSubheadline = document.getElementById('heroSubheadline'); 
   const heroBadge = document.getElementById('heroBadge');         
   const heroWhatsappCta = document.getElementById('heroWhatsappCta'); 
-  // const oldHeroContainer = document.getElementById('oldHeroContainer'); // REMOVIDO
-  // const eventHero = document.getElementById('eventHero'); // REMOVIDO
 
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
@@ -84,35 +82,44 @@
       return input.split('/').pop().split('=').pop();
   }
 
-  // Novo: Função auxiliar para definir cores e gradiente do Hero
+  // NOVO: Função auxiliar para definir cores e gradiente do Hero
   function getHeroGradient(chipColorClass) {
-      // Mapeamento simplificado de Tailwind CSS para cores primárias (Brand Colors)
       const colorMap = {
-          'bg-amber-500': '#fbbf24', // Laranja/Amarelo
-          'bg-red-500': '#ef4444', // Vermelho
-          'bg-green-500': '#10b981', // Verde
-          'bg-blue-500': '#3b82f6', // Azul
-          'bg-indigo-700': '#4338ca', // Indigo Escuro
-          'bg-slate-700': '#334155', // Azul/Cinza Escuro
-          'default': '#f97316' // Laranja Brand (Fallback)
+          'bg-amber-500': '#fbbf24', 
+          'bg-red-500': '#ef4444', 
+          'bg-green-500': '#10b981', 
+          'bg-blue-500': '#3b82f6', 
+          'bg-indigo-700': '#4338ca', 
+          'bg-slate-700': '#334155', 
+          'default': '#f97316' 
       };
 
       const baseColor = colorMap[chipColorClass.split(' ')[0]] || colorMap['default'];
-      
-      // Cor de fim do gradiente (Deep Violet) para manter o visual "neon"
       const gradientEnd = '#6b21a8'; 
+      
+      // Função para misturar cor com branco (50% Cor Base + 50% Branco)
+      function blendColors(c1, c2, ratio) {
+          const hexToRgb = hex => [parseInt(hex.substring(1, 3), 16), parseInt(hex.substring(3, 5), 16), parseInt(hex.substring(5, 7), 16)];
+          const rgb1 = hexToRgb(c1);
+          const rgb2 = hexToRgb(c2);
+          const r = Math.round(rgb1[0] * ratio + rgb2[0] * (1 - ratio));
+          const g = Math.round(rgb1[1] * ratio + rgb2[1] * (1 - ratio));
+          const b = Math.round(rgb1[2] * ratio + rgb2[2] * (1 - ratio));
+          return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+      }
+
+      // Cor clara para o destaque
+      const highlightLight = blendColors(baseColor, '#FFFFFF', 0.5); 
       
       return {
           highlight: baseColor,
+          highlightLight: highlightLight, 
           gradientStart: baseColor,
           gradientEnd: gradientEnd
       };
   }
 
-  // ... (funções renderMotivo, initCarousel, buildSimilarEventCard, buildHotelCard, renderHotels e renderRelatedEvents inalteradas)
-  // [Devido ao limite de tokens, estas funções são mantidas no código anterior, mas não alteradas, exceto a lógica de inicialização de hotéis/similares.]
-  
-  // Função de renderização de Motivo (mantida)
+  // Card de MOTIVO
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -131,7 +138,7 @@
     `;
   }
   
-  // Card de Evento Similar (mantido)
+  // Card de Evento Similar
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.slug; 
@@ -165,72 +172,7 @@
     `;
   }
 
-  // Card de Hotel (mantido)
-  function buildHotelCard(hotel) {
-      const isDayTrip = hotel.type === 'daytrip';
-      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
-      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
-      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
-      const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
-      
-      const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
-
-      return `
-          <div class="cl-slide">
-              <div class="hotel-card">
-                  <div class="thumb">
-                      <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
-                  </div>
-                  <div class="content">
-                      <div class="category">${categoryText.toUpperCase()}</div>
-                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
-                      <div class="price">A PARTIR DE ${priceHtml}</div>
-                      
-                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
-                          <span class="label">${ctaLabel}</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      `;
-  }
-
-  // Função para carregar e renderizar Hotéis (mantida)
-  async function renderHotels(venueSlug, eventTitle) {
-      if (!hotelsSection) return;
-      
-      try {
-          const venueJsonPath = fixPath(`${VENUE_DATA_PATH}${venueSlug}.json`);
-          const res = await fetch(venueJsonPath);
-          
-          if (!res.ok) throw new Error(`Venue JSON not found: ${venueSlug}`);
-          
-          const venueData = await res.json();
-          const hotels = venueData.hotels || [];
-
-          if (hotels.length === 0) {
-              hotelsSection.style.display = 'none';
-              return;
-          }
-          
-          const hotelSlides = hotels.map(buildHotelCard).join('');
-          hotelsCarouselContainer.innerHTML = hotelSlides;
-          
-          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
-          const baseWhats = 'https://wa.me/5541999450111?text=';
-          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
-          
-          initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
-
-          hotelsSection.style.display = 'block';
-
-      } catch (e) {
-          console.error("Erro ao carregar ou renderizar hotéis:", e);
-          hotelsSection.style.display = 'none';
-      }
-  }
-  
-  // Função de inicialização de Carrossel (mantida)
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
   function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
@@ -292,8 +234,74 @@
           checkScroll(); 
       }
   }
+  
+  // FUNÇÃO PARA CRIAR CARDS DE HOTEL
+  function buildHotelCard(hotel) {
+      const isDayTrip = hotel.type === 'daytrip';
+      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
+      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
+      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
+      const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
+      
+      const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
-  // Função para renderizar o Carrossel de Eventos Similares (mantida)
+      return `
+          <div class="cl-slide">
+              <div class="hotel-card">
+                  <div class="thumb">
+                      <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
+                  </div>
+                  <div class="content">
+                      <div class="category">${categoryText.toUpperCase()}</div>
+                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <div class="price">A PARTIR DE ${priceHtml}</div>
+                      
+                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
+                          <span class="label">${ctaLabel}</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+  
+  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
+  async function renderHotels(venueSlug, eventTitle) {
+      if (!hotelsSection) return;
+      
+      try {
+          const venueJsonPath = fixPath(`${VENUE_DATA_PATH}${venueSlug}.json`);
+          const res = await fetch(venueJsonPath);
+          
+          if (!res.ok) throw new Error(`Venue JSON not found: ${venueSlug}`);
+          
+          const venueData = await res.json();
+          const hotels = venueData.hotels || [];
+
+          if (hotels.length === 0) {
+              hotelsSection.style.display = 'none';
+              return;
+          }
+          
+          const hotelSlides = hotels.map(buildHotelCard).join('');
+          hotelsCarouselContainer.innerHTML = hotelSlides;
+          
+          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
+          const baseWhats = 'https://wa.me/5541999450111?text=';
+          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
+          
+          initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+
+          hotelsSection.style.display = 'block';
+
+      } catch (e) {
+          console.error("Erro ao carregar ou renderizar hotéis:", e);
+          hotelsSection.style.display = 'none';
+      }
+  }
+
+
+  // Função para renderizar o Carrossel de Eventos Similares
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
           if(relatedEventsSection) relatedEventsSection.hidden = false;
@@ -356,7 +364,7 @@
       const finalTitle = ev.title || 'Evento sem Título';
       const venueSlug = ev.venue_slug || ev.venue || ev.slug;
       
-      // Formata o slug para o nome do local (EXPO CENTER NORTE)
+      // Formata o slug do local: retira traços e coloca em caixa alta
       const formattedVenueName = venueSlug
           .replace(/-/g, ' ') 
           .toUpperCase();
@@ -387,8 +395,9 @@
           heroSection.style.backgroundImage = `url('${heroBgPath}')`;
           heroSection.style.display = 'flex';
 
-          // Configura a cor de destaque e o gradiente do overlay via CSS Variables
-          heroSection.style.setProperty('--highlight-color', colors.highlight);
+          // Configura a cor de destaque CLARA e o gradiente do overlay via CSS Variables
+          heroSection.style.setProperty('--highlight-color-light', colors.highlightLight);
+          
           const overlay = heroSection.querySelector('.hero-overlay');
           if (overlay) {
               // Gradiente com transparência no início (AA) e mais opaco no fim (DD)
@@ -396,10 +405,8 @@
           }
       }
       if(heroTitle) {
-          // Implementa a quebra de linha e o destaque
-          const formattedTitle = `Sua viagem para<br><span class="highlight">${finalTitle.toUpperCase()}</span><br> resolvida em minutos.`;
-              
-          heroTitle.innerHTML = formattedTitle;
+          // Implementa a quebra de linha e o destaque (corrigido para uma quebra de linha)
+          heroTitle.innerHTML = `Sua viagem para<br><span class="highlight">${finalTitle.toUpperCase()}</span> resolvida em minutos.`;
       }
       if(heroSubheadline) {
           // Usa o nome do local formatado
@@ -417,11 +424,12 @@
       if(eventMeta) eventMeta.style.display = 'none';
 
 
-      // 3. CARREGAR E EXIBIR O VÍDEO (SE HOUVER)
+      // 3. CARREGAR E EXIBIR O VÍDEO (REDUZIDO PARA 70%)
       const rawVideoInput = ev.YouTubeVideo; 
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
+          // O youtube-wrapper no HTML lida com o 70% e centraliza.
           const videoHtml = `
               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; width: 100%;">
                   <iframe 
