@@ -22,6 +22,14 @@
   const heroBadge = document.getElementById('heroBadge');         
   const heroWhatsappCta = document.getElementById('heroWhatsappCta'); 
 
+  // ELEMENTOS DO NOVO RODAPÉ
+  const eventPageFooter = document.getElementById('eventPageFooter');
+  const footerCtaTitle = document.getElementById('footerCtaTitle');
+  const footerWhatsappCta = document.getElementById('footerWhatsappCta');
+  const footerAboutText = document.getElementById('footerAboutText');
+  const currentYear = document.getElementById('currentYear');
+  const footerWinnersLogo = document.getElementById('footerWinnersLogo'); 
+
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
   const motivosContainer = document.getElementById('motivosContainer');
@@ -82,7 +90,16 @@
       return input.split('/').pop().split('=').pop();
   }
 
-  // NOVO: Função auxiliar para definir cores e gradiente do Hero
+  // Converte HEX para RGB (para variáveis CSS customizadas)
+  function hexToRgb(hex) {
+    if (!hex || hex.length < 7) return [249, 115, 22]; // Fallback RGB
+    var r = parseInt(hex.substring(1, 3), 16);
+    var g = parseInt(hex.substring(3, 5), 16);
+    var b = parseInt(hex.substring(5, 7), 16);
+    return [r, g, b];
+  }
+
+  // Função auxiliar para definir cores e gradiente do Hero/Footer
   function getHeroGradient(chipColorClass) {
       const colorMap = {
           'bg-amber-500': '#fbbf24', 
@@ -108,7 +125,6 @@
           return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
       }
 
-      // Cor clara para o destaque
       const highlightLight = blendColors(baseColor, '#FFFFFF', 0.5); 
       
       return {
@@ -119,7 +135,7 @@
       };
   }
 
-  // Card de MOTIVO
+  // Card de MOTIVO (inalterada)
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -138,7 +154,7 @@
     `;
   }
   
-  // Card de Evento Similar
+  // Card de Evento Similar (inalterada)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.slug; 
@@ -172,7 +188,7 @@
     `;
   }
 
-  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL (inalterada)
   function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
@@ -235,7 +251,7 @@
       }
   }
   
-  // FUNÇÃO PARA CRIAR CARDS DE HOTEL
+  // FUNÇÃO PARA CRIAR CARDS DE HOTEL (inalterada)
   function buildHotelCard(hotel) {
       const isDayTrip = hotel.type === 'daytrip';
       const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
@@ -265,7 +281,7 @@
       `;
   }
   
-  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
+  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS (inalterada)
   async function renderHotels(venueSlug, eventTitle) {
       if (!hotelsSection) return;
       
@@ -301,7 +317,7 @@
   }
 
 
-  // Função para renderizar o Carrossel de Eventos Similares
+  // Função para renderizar o Carrossel de Eventos Similares (inalterada)
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
       try {
           if(relatedEventsSection) relatedEventsSection.hidden = false;
@@ -400,7 +416,6 @@
           
           const overlay = heroSection.querySelector('.hero-overlay');
           if (overlay) {
-              // Gradiente com transparência no início (AA) e mais opaco no fim (DD)
               overlay.style.background = `linear-gradient(135deg, ${colors.gradientStart}AA 0%, ${colors.gradientEnd}DD 100%)`;
           }
       }
@@ -458,6 +473,7 @@
       if(whatsappCta) whatsappCta.href = whatsappLink;
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
+      if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // NOVO CTA RODAPÉ
 
       // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
       if (venueSlug) {
@@ -515,6 +531,24 @@
           renderRelatedEvents(ev.category_macro, slug); 
       } else {
           if(relatedEventsSection) relatedEventsSection.hidden = true;
+      }
+
+      // 7. PREENCHIMENTO DO RODAPÉ
+      if (eventPageFooter) {
+          // Converte cores para RGB e define no CSS
+          eventPageFooter.style.setProperty('--footer-gradient-start-rgb', hexToRgb(colors.gradientStart).join(','));
+          eventPageFooter.style.setProperty('--footer-gradient-end-rgb', hexToRgb(colors.gradientEnd).join(','));
+
+          if (footerCtaTitle) {
+              footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
+          }
+          if (footerAboutText) {
+              const categoryMicro = ev.category_micro ? `viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'viagens corporativas para eventos e feiras profissionais';
+              footerAboutText.innerHTML = `Agência especializada em ${categoryMicro}. Sua parceira de confiança para <strong>${finalTitle}</strong>.`;
+          }
+          if (currentYear) {
+              currentYear.textContent = new Date().getFullYear();
+          }
       }
 
       if(loading) loading.hidden = true;
