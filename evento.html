@@ -21,13 +21,15 @@
     --text-charcoal:#111827; 
     --muted:#6b7280;
     --bg:#fff;
-    --card:#fbfbfb; /* Fundo do Card levemente mais escuro */
+    --card:#fbfbfb; 
     --shadow-base:0 2px 5px rgba(2,8,23,.05); 
     --shadow-hover:0 4px 10px rgba(2,8,23,.10);
     --card-hover-bg:#f5f5f5; 
     --radius:18px;
-    --wrap:1024px; /* MAX-WIDTH CORRIGIDO */
+    --wrap:1024px; 
     --highlight-color-light: #f97316; /* Fallback para cor de destaque CLARA */
+    --footer-gradient-start-rgb: 249, 115, 22; /* Fallback RGB para Laranja */
+    --footer-gradient-end-rgb: 107, 33, 168; /* Fallback RGB para Violeta */
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -436,7 +438,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
     70% {
         box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
@@ -473,9 +475,132 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         min-width: 100%;
         font-size: 1.15rem;
     }
-    /* Em mobile, o vídeo deve usar toda a largura disponível */
     .youtube-wrapper {
         max-width: 100%;
+    }
+}
+
+/* --- NOVO FOOTER DA PÁGINA DE EVENTO --- */
+.site-footer {
+    background: #f8f8f8;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(2,8,23,.06);
+    color: var(--text-charcoal);
+    font-size: 14px;
+}
+.footer-cta-area {
+    text-align: center;
+    padding: 30px 20px;
+    /* Usa as variáveis RGB definidas pelo JS */
+    background: linear-gradient(135deg, rgba(var(--footer-gradient-start-rgb), 0.95) 0%, rgba(var(--footer-gradient-end-rgb), 0.95) 100%);
+    color: #fff;
+    margin-bottom: 40px;
+}
+.footer-cta-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #fff; 
+}
+.footer-cta-microcopy {
+    font-size: 14px;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+}
+.footer-cta-area .btn-hero {
+    min-width: 300px;
+    font-size: 1.15rem;
+    padding: 14px 20px;
+}
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.footer-col-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: var(--text-charcoal);
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+.footer-col ul li a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+.footer-col ul li a:hover {
+    color: var(--brand);
+}
+.footer-col p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+.social-icons img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(2,8,23,.03);
+}
+.important-notice {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.logo-rodape-wrap {
+    margin-bottom: 15px;
+}
+.logo-rodape {
+    width: 150px; 
+    height: auto;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+    transition: filter 0.3s ease-out;
+}
+.copyright {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 30px 0 15px;
+    }
+    .footer-cta-title {
+        font-size: 1.5rem;
+    }
+    .footer-columns {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-col ul, .social-icons {
+        justify-content: center;
+    }
+    .footer-cta-area .btn-hero {
+        min-width: 100%;
+        max-width: 300px; 
     }
 }
     </style>
@@ -586,6 +711,50 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </a>
         </div>
     </main>
+
+    <footer id="eventPageFooter" class="site-footer">
+        <div class="footer-cta-area">
+            <h2 id="footerCtaTitle" class="footer-cta-title">Garanta Sua Vaga no Evento!</h2>
+            <a id="footerWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
+                <span class="label">SOLICITAR PROPOSTA AGORA</span>
+            </a>
+            <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
+        </div>
+
+        <div class="footer-columns wrap">
+            <div class="footer-col about-col">
+                <h3 class="footer-col-title">Winners Tour</h3>
+                <p id="footerAboutText">Agência especializada em viagens corporativas para eventos e feiras profissionais</p>
+            </div>
+            <div class="footer-col contact-col">
+                <h3 class="footer-col-title">Atendimento</h3>
+                <ul>
+                    <li><a href="https://wa.me/5541999450111" target="_blank">WhatsApp</a></li>
+                    <li><a href="mailto:contato@winnerstour.com.br">contato@winnerstour.com.br</a></li>
+                    <li><a href="tel:+5541999450111">41 99945-0111</a></li>
+                </ul>
+            </div>
+            <div class="footer-col social-col">
+                <h3 class="footer-col-title">Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/winnerstour" target="_blank" aria-label="Instagram"><img src="/assets/img/icon-instagram.svg" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/winnerstour" target="_blank" aria-label="Facebook"><img src="/assets/img/icon-facebook.svg" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/company/winners-tour" target="_blank" aria-label="LinkedIn"><img src="/assets/img/icon-linkedin.svg" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom wrap">
+            <p class="important-notice">
+                Importante: A Winners Tour é uma agência especializada em viagens corporativas. Não somos a agência oficial do evento.
+            </p>
+            <div class="logo-rodape-wrap">
+                 <img id="footerWinnersLogo" src="/assets/img/winners-tour-logo.svg" alt="Winners Tour" class="logo-rodape">
+            </div>
+            <p class="copyright">© <span id="currentYear"></span> Winners Tour. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <script src="./evento-page-loader.js"></script>
 
