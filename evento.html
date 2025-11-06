@@ -386,7 +386,10 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 #heroTitle .highlight {
     font-weight: 900;
     display: block; 
-    /* Agora a cor é muito clara, próxima do branco, com um toque da cor do chip (definido no JS) */
+    /* Contorno Preto de 2px (para destaque em fundos claros) */
+    -webkit-text-stroke: 2px #000;
+    text-stroke: 2px #000;
+    /* Agora a cor é muito clara, próxima do branco, com um toque da cor do chip */
     color: var(--highlight-color-light, #ffd8ad); 
 }
 
@@ -573,9 +576,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     text-transform: uppercase;
     margin: 0;
     
-    /* Aplica a cor SÓLIDA do Chip Color (ajustado no JS) */
+    /* Aplica a cor SÓLIDA do Chip Color (cor brand principal) */
     background-color: var(--brand); 
-    /* Garante que o texto use a cor de fundo (para o efeito de preenchimento) */
     background-image: linear-gradient(90deg, var(--brand), var(--brand)); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -719,7 +721,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         <div class="footer-columns wrap">
             <div class="footer-col about-col">
                 <h3 class="footer-col-title">Winners Tour</h3>
-                </div>
+            </div>
             <div class="footer-col contact-col">
                 <h3 class="footer-col-title">Atendimento</h3>
                 <ul>
@@ -745,7 +747,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </div>
             
             <div class="footer-bottom wrap" style="text-align: center; border-top: 1px solid rgba(2,8,23,.03); padding-top: 20px;">
-                </div>
+            </div>
         </div>
 
         <div class="footer-bottom-related" id="footerBottomRelated">
