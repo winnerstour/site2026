@@ -1,32 +1,29 @@
-// evento-page-loader.js (FINAL - FIX CRÍTICO DE ORDEM DE FUNÇÕES)
+// evento-page-loader.js (COMPLETO E ATUALIZADO)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
-  const VENUE_DATA_PATH = './venue-data/'; // Path para os JSONs de Venue
+  const VENUE_DATA_PATH = './venue-data/'; 
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
-  const SCROLL_SPEED = 8000; // 8 segundos para autoplay
+  const SCROLL_SPEED = 8000; 
 
-  // Seleção de Elementos (Precisa estar no topo do escopo)
+  // Seleção de Elementos 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('error');
   const pageTitle = document.getElementById('pageTitle');
   const eventTitle = document.getElementById('eventTitle');
   
-  // [NOVOS ELEMENTOS DO HERO DE TELA CHEIA]
+  // ELEMENTOS DO NOVO HERO DE TELA CHEIA
   const heroSection = document.getElementById('eventHeroSection'); 
   const heroTitle = document.getElementById('heroTitle');         
   const heroSubheadline = document.getElementById('heroSubheadline'); 
   const heroBadge = document.getElementById('heroBadge');         
   const heroWhatsappCta = document.getElementById('heroWhatsappCta'); 
-  const oldHeroContainer = document.getElementById('oldHeroContainer'); // Container do banner antigo
-  
-  // [BANNER ANTIGO, AGORA SECUNDÁRIO]
-  const eventHero = document.getElementById('eventHero'); // O <img> do banner antigo
-  const heroBannerContainer = document.querySelector('.hero-banner'); 
-  
+  // const oldHeroContainer = document.getElementById('oldHeroContainer'); // REMOVIDO
+  // const eventHero = document.getElementById('eventHero'); // REMOVIDO
+
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
   const motivosContainer = document.getElementById('motivosContainer');
@@ -41,13 +38,11 @@
   const hotelsWrapper = document.getElementById('hotelsWrapper');
   const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
 
-  // --- FUNÇÕES AUXILIARES (DEFINIDAS ANTES DE loadEventData) ---
+  // --- FUNÇÕES AUXILIARES ---
 
-  // FUNÇÃO DE FIX PATH: Trata paths de dados relativos e paths de assets absolutos
   function fixPath(path) {
       if (!path) return path;
 
-      // 1. Trata paths de DADOS (que usam './' ou 'data/...')
       if (path.startsWith('./') || path.startsWith(DATA_BASE_PATH.substring(2))) {
           if (BASE_PATH) {
               return BASE_PATH + path.substring(1); 
@@ -55,7 +50,6 @@
           return path; 
       }
       
-      // 2. Trata paths de ASSETS (que usam '/')
       if (path.startsWith('/')) {
           if (BASE_PATH) {
               return BASE_PATH + path; 
@@ -72,7 +66,6 @@
   }
 
   function renderError(message) {
-    // Verifica se os elementos básicos existem antes de tentar manipulá-los
     if (loading) loading.hidden = true;
     if (errorDiv) {
         errorDiv.hidden = false;
@@ -80,25 +73,46 @@
     }
   }
 
-  // Novo: Tenta extrair o ID de uma URL completa ou usa o que foi fornecido.
   function extractVideoId(input) {
       if (!input) return null;
-
       try {
-          // Tenta tratar como URL completa para extrair o parâmetro 'v'
           const url = new URL(input);
           const urlParams = new URLSearchParams(url.search);
           const idFromQuery = urlParams.get('v');
           if (idFromQuery) return idFromQuery;
-      } catch (e) {
-          // Se falhar (não for uma URL válida), assume que é apenas o ID
-      }
-      
-      // Se for apenas o ID ou uma URL curta (sem query parameters)
+      } catch (e) {}
       return input.split('/').pop().split('=').pop();
   }
 
-  // Card de MOTIVO
+  // Novo: Função auxiliar para definir cores e gradiente do Hero
+  function getHeroGradient(chipColorClass) {
+      // Mapeamento simplificado de Tailwind CSS para cores primárias (Brand Colors)
+      const colorMap = {
+          'bg-amber-500': '#fbbf24', // Laranja/Amarelo
+          'bg-red-500': '#ef4444', // Vermelho
+          'bg-green-500': '#10b981', // Verde
+          'bg-blue-500': '#3b82f6', // Azul
+          'bg-indigo-700': '#4338ca', // Indigo Escuro
+          'bg-slate-700': '#334155', // Azul/Cinza Escuro
+          'default': '#f97316' // Laranja Brand (Fallback)
+      };
+
+      const baseColor = colorMap[chipColorClass.split(' ')[0]] || colorMap['default'];
+      
+      // Cor de fim do gradiente (Deep Violet) para manter o visual "neon"
+      const gradientEnd = '#6b21a8'; 
+      
+      return {
+          highlight: baseColor,
+          gradientStart: baseColor,
+          gradientEnd: gradientEnd
+      };
+  }
+
+  // ... (funções renderMotivo, initCarousel, buildSimilarEventCard, buildHotelCard, renderHotels e renderRelatedEvents inalteradas)
+  // [Devido ao limite de tokens, estas funções são mantidas no código anterior, mas não alteradas, exceto a lógica de inicialização de hotéis/similares.]
+  
+  // Função de renderização de Motivo (mantida)
   function renderMotivo(m) {
     const emoji = m.motivo_emoji || m.emoji || '✨';
     const title = m.motivo_titulo || m.title || 'Atração';
@@ -117,7 +131,7 @@
     `;
   }
   
-  // Card de Evento Similar (usado no carrossel de sugestões)
+  // Card de Evento Similar (mantido)
   function buildSimilarEventCard(ev) {
     const title = ev.title || 'Evento sem título';
     const subtitle = ev.slug; 
@@ -125,14 +139,12 @@
     
     const finalUrl = `evento.html?slug=${slug}`;
     
-    // Busca [slug]-hero.webp para a miniatura do carrossel
     const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
     const imagePath = fixPath(rawImagePath);
 
     const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
     const faviconPath = fixPath(faviconRawPath);
 
-    // Favicon usa a classe 'favicon' para travar o tamanho via CSS
     const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
     
     return `
@@ -153,7 +165,72 @@
     `;
   }
 
-  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL
+  // Card de Hotel (mantido)
+  function buildHotelCard(hotel) {
+      const isDayTrip = hotel.type === 'daytrip';
+      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
+      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
+      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
+      const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
+      
+      const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
+
+      return `
+          <div class="cl-slide">
+              <div class="hotel-card">
+                  <div class="thumb">
+                      <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
+                  </div>
+                  <div class="content">
+                      <div class="category">${categoryText.toUpperCase()}</div>
+                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <div class="price">A PARTIR DE ${priceHtml}</div>
+                      
+                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
+                          <span class="label">${ctaLabel}</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      `;
+  }
+
+  // Função para carregar e renderizar Hotéis (mantida)
+  async function renderHotels(venueSlug, eventTitle) {
+      if (!hotelsSection) return;
+      
+      try {
+          const venueJsonPath = fixPath(`${VENUE_DATA_PATH}${venueSlug}.json`);
+          const res = await fetch(venueJsonPath);
+          
+          if (!res.ok) throw new Error(`Venue JSON not found: ${venueSlug}`);
+          
+          const venueData = await res.json();
+          const hotels = venueData.hotels || [];
+
+          if (hotels.length === 0) {
+              hotelsSection.style.display = 'none';
+              return;
+          }
+          
+          const hotelSlides = hotels.map(buildHotelCard).join('');
+          hotelsCarouselContainer.innerHTML = hotelSlides;
+          
+          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
+          const baseWhats = 'https://wa.me/5541999450111?text=';
+          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
+          
+          initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+
+          hotelsSection.style.display = 'block';
+
+      } catch (e) {
+          console.error("Erro ao carregar ou renderizar hotéis:", e);
+          hotelsSection.style.display = 'none';
+      }
+  }
+  
+  // Função de inicialização de Carrossel (mantida)
   function initCarousel(carouselId, wrapperId, isMotivos = false) {
       const carousel = document.getElementById(carouselId);
       const wrapper = document.getElementById(wrapperId);
@@ -215,107 +292,26 @@
           checkScroll(); 
       }
   }
-  
-  // FUNÇÃO PARA CRIAR CARDS DE HOTEL
-  function buildHotelCard(hotel) {
-      const isDayTrip = hotel.type === 'daytrip';
-      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
-      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
-      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
-      const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
-      
-      // Ajuste para usar caminho do VENUE JSON (não mais /assets/hotels)
-      const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
-      return `
-          <div class="cl-slide">
-              <div class="hotel-card">
-                  <div class="thumb">
-                      <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
-                  </div>
-                  <div class="content">
-                      <div class="category">${categoryText.toUpperCase()}</div>
-                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
-                      <div class="price">A PARTIR DE ${priceHtml}</div>
-                      
-                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
-                          <span class="label">${ctaLabel}</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      `;
-  }
-  
-  // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
-  async function renderHotels(venueSlug, eventTitle) {
-      if (!hotelsSection) return;
-      
-      try {
-          // Os JSONs de Venue não estão em DATA_BASE_PATH, mas em um novo caminho
-          const venueJsonPath = fixPath(`${VENUE_DATA_PATH}${venueSlug}.json`);
-          const res = await fetch(venueJsonPath);
-          
-          if (!res.ok) throw new Error(`Venue JSON not found: ${venueSlug}`);
-          
-          const venueData = await res.json();
-          const hotels = venueData.hotels || [];
-
-          if (hotels.length === 0) {
-              hotelsSection.style.display = 'none';
-              return;
-          }
-          
-          const hotelSlides = hotels.map(buildHotelCard).join('');
-          hotelsCarouselContainer.innerHTML = hotelSlides;
-          
-          // Ajusta o link do WhatsApp para ser específico para hotéis/roteiros
-          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
-          const baseWhats = 'https://wa.me/5541999450111?text=';
-          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
-          
-          // Inicializa o carrossel de hotéis (usando o mesmo initCarousel)
-          initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
-
-          hotelsSection.style.display = 'block';
-
-      } catch (e) {
-          console.error("Erro ao carregar ou renderizar hotéis:", e);
-          hotelsSection.style.display = 'none';
-      }
-  }
-
-
-  // Função para renderizar o Carrossel de Eventos Similares
+  // Função para renderizar o Carrossel de Eventos Similares (mantida)
   async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
-      console.log(`[DEBUG RELATED] Iniciando renderização para Categoria: ${currentEventCategory}, Slug: ${currentEventSlug}`);
       try {
           if(relatedEventsSection) relatedEventsSection.hidden = false;
           
-          const relatedCarouselId = 'relatedCarouselContainer';
-          const relatedWrapperId = 'relatedWrapper';
-          
           const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
-          console.log(`[DEBUG RELATED] Tentando carregar lista de todos os eventos de: ${finalAllEventsUrl}`);
-          
           const res = await fetch(finalAllEventsUrl);
 
           if (!res.ok) {
-              console.error(`[DEBUG RELATED] Falha no FETCH! Status: ${res.status} para URL: ${finalAllEventsUrl}`);
               throw new Error("Falha ao carregar lista de eventos similares (Erro de Rede).");
           }
           
           const allEvents = await res.json();
-          console.log(`[DEBUG RELATED] Lista de eventos carregada. Total: ${allEvents.length}`);
           
           const relatedEvents = allEvents.filter(ev => 
               ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
           );
 
-          console.log(`[DEBUG RELATED] Eventos similares encontrados (após filtro): ${relatedEvents.length}`);
-          
           if (relatedEvents.length === 0) {
-              console.log("[DEBUG RELATED] NENHUM evento similar encontrado. Ocultando seção.");
               if(relatedEventsSection) relatedEventsSection.hidden = true;
               return;
           }
@@ -325,11 +321,10 @@
           const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
           if(relatedCarouselContainer) relatedCarouselContainer.innerHTML = relatedSlides;
 
-          console.log("[DEBUG RELATED] Carrossel populado e inicializado com sucesso.");
           initCarousel('relatedCarouselContainer', 'relatedWrapper', false); 
 
       } catch (e) {
-          console.error("[DEBUG RELATED] Erro FINAL no processo de renderização de similares:", e);
+          console.error("Erro FINAL no processo de renderização de similares:", e);
           if(relatedEventsSection) relatedEventsSection.hidden = true;
       }
   }
@@ -359,12 +354,20 @@
       }
       
       const finalTitle = ev.title || 'Evento sem Título';
-      const venueName = ev.venue_name || ev.venue_slug || ev.venue || 'Local do Evento'; // Nome do local para subtítulo do Hero
-
+      const venueSlug = ev.venue_slug || ev.venue || ev.slug;
+      
+      // Formata o slug para o nome do local (EXPO CENTER NORTE)
+      const formattedVenueName = venueSlug
+          .replace(/-/g, ' ') 
+          .toUpperCase();
+      
+      // Pega a cor do JSON 
+      const chipColor = ev.ChipColor || ev.chip_color || 'bg-slate-700'; 
+      const colors = getHeroGradient(chipColor);
+      
       // ******* 1. ATUALIZAÇÃO DA PÁGINA E FAVICON *******
       if (pageTitle) pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
-      // Caminho do Favicon
       const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
       const faviconPath = fixPath(faviconRawPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
@@ -374,7 +377,7 @@
       
       // ******* 2. CARREGAR E EXIBIR O NOVO HERO DE TELA CHEIA *******
       
-      // 2.1. Caminho da Imagem de Fundo (nova convenção: [category_macro]-bannerhero.webp)
+      // 2.1. Caminho da Imagem de Fundo (nova convenção)
       const categoryMacroSlug = ev.category_macro ? ev.category_macro.replace(/ /g, '-').replace(/&/g, 'e') : 'default';
       const rawHeroBgPath = `/assets/img/banners/${categoryMacroSlug}-bannerhero.webp`;
       const heroBgPath = fixPath(rawHeroBgPath);
@@ -382,39 +385,39 @@
       // 2.2. Preencher a Seção Hero de Tela Cheia (heroSection)
       if(heroSection) {
           heroSection.style.backgroundImage = `url('${heroBgPath}')`;
-          heroSection.style.display = 'flex'; // Garante que o HeroSection esteja visível
+          heroSection.style.display = 'flex';
+
+          // Configura a cor de destaque e o gradiente do overlay via CSS Variables
+          heroSection.style.setProperty('--highlight-color', colors.highlight);
+          const overlay = heroSection.querySelector('.hero-overlay');
+          if (overlay) {
+              // Gradiente com transparência no início (AA) e mais opaco no fim (DD)
+              overlay.style.background = `linear-gradient(135deg, ${colors.gradientStart}AA 0%, ${colors.gradientEnd}DD 100%)`;
+          }
       }
       if(heroTitle) {
-          heroTitle.innerHTML = `Sua viagem para o <strong>${finalTitle}</strong> resolvida em minutos.`;
+          // Implementa a quebra de linha e o destaque
+          const formattedTitle = `Sua viagem para<br><span class="highlight">${finalTitle.toUpperCase()}</span><br> resolvida em minutos.`;
+              
+          heroTitle.innerHTML = formattedTitle;
       }
       if(heroSubheadline) {
-          heroSubheadline.textContent = `Voos + hotéis próximos ao ${venueName} com tarifas corporativas e suporte completo.`;
+          // Usa o nome do local formatado
+          heroSubheadline.textContent = `Voos + hotéis próximos ao ${formattedVenueName} com tarifas corporativas e suporte completo.`;
       }
       if(heroBadge && ev.category_micro) {
           heroBadge.textContent = ev.category_micro.toUpperCase();
           heroBadge.style.display = 'inline-block';
       } else if (heroBadge) {
-          heroBadge.style.display = 'none'; // Oculta se não houver micro categoria
+          heroBadge.style.display = 'none';
       }
 
-      // Oculta o título e metadados antigos que estão no 'wrap event-details'
+      // Oculta elementos antigos que foram substituídos pelo Hero
       if(eventTitle) eventTitle.style.display = 'none';
       if(eventMeta) eventMeta.style.display = 'none';
 
 
-      // ******* 3. CARREGAR E EXIBIR O BANNER ANTIGO (AGORA SECUNDÁRIO) *******
-      
-      const rawHeroPath = `/assets/img/banners/${slug}-banner.webp`;
-      const heroPath = fixPath(rawHeroPath);
-      
-      if(eventHero) {
-          eventHero.src = heroPath;
-          eventHero.alt = `Banner secundário do evento ${finalTitle}`;
-          eventHero.style.display = 'block';
-      }
-      if(oldHeroContainer) oldHeroContainer.style.display = 'block'; 
-
-      // 4. CARREGAR E EXIBIR O VÍDEO (SE HOUVER)
+      // 3. CARREGAR E EXIBIR O VÍDEO (SE HOUVER)
       const rawVideoInput = ev.YouTubeVideo; 
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
@@ -441,22 +444,21 @@
       
       if(eventDescription) eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
       
-      // CTA (WhatsApp) - Garante que todos os CTAs usem o mesmo link
+      // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
       const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
       if(whatsappCta) whatsappCta.href = whatsappLink;
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
-      if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; // NOVO CTA HERO
+      if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
 
-      // 5. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
-      const venueSlug = ev.venue_slug || ev.venue || ev.slug; // Tenta usar slug como fallback
+      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
       if (venueSlug) {
           await renderHotels(venueSlug, finalTitle);
       } else {
           if (hotelsSection) hotelsSection.style.display = 'none';
       }
 
-      // 6. Motivos para Visitar (Carrossel Principal)
+      // 5. Motivos para Visitar
       const extractedMotivos = Object.keys(ev)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
@@ -481,10 +483,9 @@
         
         if(motivosContainer) {
             motivosContainer.innerHTML = motivoSlides;
-            motivosContainer.classList.add('cl-track'); // Garante que o container use o cl-track
+            motivosContainer.classList.add('cl-track'); 
         }
         
-        // Renderiza as setas de navegação (HTML) no wrapper
         if(motivosWrapperEl) motivosWrapperEl.insertAdjacentHTML('beforeend', `
               <button class="carousel-nav prev">
                   <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
@@ -494,14 +495,14 @@
               </button>
           `);
         
-        initCarousel(motivosCarouselId, motivosWrapperId, true); // Inicializa Motivos
+        initCarousel(motivosCarouselId, motivosWrapperId, true); 
         
       } else {
         if(document.querySelector('.motivos-section h2')) document.querySelector('.motivos-section h2').hidden = true;
         if(motivosWrapperEl) motivosWrapperEl.hidden = true;
       }
 
-      // 7. Renderiza Eventos Similares
+      // 6. Renderiza Eventos Similares
       if (ev.category_macro) {
           renderRelatedEvents(ev.category_macro, slug); 
       } else {
