@@ -178,11 +178,12 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
 .motivos-section {
     padding: 0;
-    margin: 30px 0;
+    /* Margem superior reduzida para compactar */
+    margin: 20px 0 0; 
 }
 .motivos-section h2 {
     max-width: var(--wrap);
-    margin: 0 auto 20px;
+    margin: 0 auto 15px; /* Reduz espaço abaixo do título do carrossel */
     padding: 0 16px;
 }
 .motivos-wrapper {
@@ -336,7 +337,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     margin: 30px 0;
 }
 .hotels-wrapper {
-    position: relative;
+    position: relative; 
     max-width: var(--wrap); 
     margin: 0 auto; 
     padding: 10px 0; 
@@ -497,7 +498,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* --- NOVO FOOTER DA PÁGINA DE EVENTO --- */
 .site-footer {
     background: #f8f8f8;
-    padding: 40px 0 0; 
+    padding: 20px 0 0; /* Ajustado para compactar */
     border-top: 1px solid rgba(2,8,23,.06);
     color: var(--text-charcoal);
     font-size: 14px;
@@ -505,16 +506,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* CTA do Rodapé */
 .footer-cta-area {
     text-align: center;
-    padding: 30px 20px;
+    padding: 20px; /* Ajustado para compactar */
     background: var(--card); /* Fundo neutro */
     border-top: 1px solid rgba(2,8,23,.06);
     color: var(--text-charcoal); 
-    margin-bottom: 40px;
+    margin-bottom: 20px; /* Ajustado para compactar */
 }
 .footer-cta-title {
     font-size: 2rem;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Ajustado para compactar */
     color: var(--text-charcoal); /* Título escuro */
 }
 .footer-cta-microcopy {
@@ -528,8 +529,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     font-size: 1.15rem;
     padding: 14px 20px;
 }
-
-/* REMOVIDO: footer-columns CSS e suas colunas (about-col, contact-col, social-col) */
 
 /* NOME DA AGÊNCIA EM GRADIENTE (Cor exata do chip) */
 .agency-name-section {
@@ -569,9 +568,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     }
     .footer-cta-title {
         font-size: 1.5rem;
-    }
-    .footer-col ul, .social-icons {
-        justify-content: center;
     }
     .footer-cta-area .btn-hero {
         min-width: 100%;
