@@ -11,11 +11,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-/* ... (Seção VARIÁVEIS DE COR E ESTILO inalterada) ... */
-/* ... (Seção CSS universal inalterada) ... */
+/* VARIÁVEIS DE COR E ESTILO */
+:root{
+    --brand:#f97316; 
+    --brand-shadow:#C2410C; 
+    --wa:#25D366; 
+    --wa-hover:#1AC656; 
+    --wa-ring:#128C7E; 
+    --text-charcoal:#111827; 
+    --muted:#6b7280;
+    --bg:#fff;
+    --card:#fbfbfb; 
+    --shadow-base:0 2px 5px rgba(2,8,23,.05); 
+    --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+    --card-hover-bg:#f5f5f5; 
+    --radius:18px;
+    --wrap:1024px; 
+    --highlight-color-light: #f97316; /* Fallback para cor de destaque CLARA */
+    --footer-gradient-start-rgb: 249, 115, 22; /* Fallback RGB para Laranja */
+    --footer-gradient-end-rgb: 107, 33, 168; /* Fallback RGB para Violeta */
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
 
-/* BOTÃO WHATSAPP */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:900;line-height:1; transition: all .2s ease;}
+/* APLICAÇÃO DA FONTE MONTSERRAT */
+body{
+    font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    color:var(--text-charcoal);
+    background:var(--bg);
+    overflow-x: hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* BARRA SUPERIOR (TOPBAR) - REMOVIDA PARA MAXIMIZAR HERO */
+.topbar{position:sticky;top:0;z-index:1000;background:var(--brand); height: 0; overflow: hidden;} /* Oculta o Topbar */
+.topbar__inner{max-width:var(--wrap);margin:0 auto;height:0;display:none} 
 .btn.btn-whatsapp{
     display: inline-flex;
     align-items: center;
@@ -48,11 +81,296 @@
 }
 .btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
 
-/* ... (Layout Principal, CTA Fixo, Cards e Carrosséis inalterados) ... */
+/* LAYOUT PRINCIPAL */
+.wrap{
+    max-width:var(--wrap);
+    margin:16px auto; 
+    padding:0 16px;
+}
+h1,h2,h3{
+    font-weight:900;
+    margin:0 0 16px;
+    line-height: 1.1;
+    color: var(--text-charcoal);
+}
+h1 { font-size: 2.25rem; margin-bottom: 8px;}
+h2 { font-size: 1.5rem; margin-bottom: 20px;}
+
+/* CTA FIXO */
+.event-cta-fixed {
+    position: sticky;
+    bottom: 0;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid rgba(2,8,23,.06);
+    z-index: 900;
+    text-align: center;
+}
+.event-cta-fixed .btn {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ESTILO BASE DO CARD DE EVENTO SIMILAR (CARDS E CARROSSÉIS) */
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    transition: all .2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent; 
+    width: 300px; 
+    min-height: 100%;
+}
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    background: var(--card-hover-bg);
+    border-color: rgba(249, 115, 22, 0.5); 
+}
+.card .thumb {
+    height: 100px; 
+    overflow: hidden;
+    border-bottom: 1px solid rgba(2,8,23,.06);
+    background: #f4f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card .thumb img {
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+}
+.card .content {
+    padding: 14px;
+}
+.card .title {
+    font-weight: 900;
+    font-size: 1rem;
+    line-height: 1.3;
+    text-transform: uppercase;
+    max-height: 1.3em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+}
+.card .title img.favicon {
+    width: 16px; 
+    height: 16px; 
+    margin-right: 6px; 
+    display: inline-block; 
+    vertical-align: middle;
+    max-width: 16px !important;
+    max-height: 16px !important;
+}
+.card .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
+.motivos-section {
+    padding: 0;
+    margin: 30px 0;
+}
+.motivos-section h2 {
+    max-width: var(--wrap);
+    margin: 0 auto 20px;
+    padding: 0 16px;
+}
+.motivos-wrapper {
+    position: relative; 
+    max-width: var(--wrap); 
+    margin: 0 auto; 
+    padding: 10px 0; 
+}
+.cl-track {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    gap: 18px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px; 
+    scroll-padding-inline: 16px;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.cl-track::-webkit-scrollbar {
+    display: none;
+}
+.cl-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 300px; 
+    max-width: 300px;
+}
+@media (max-width:640px){
+    .cl-slide {
+        width: 86vw; 
+    }
+}
+.motivo-item {
+    background: var(--card); 
+    border: 1px solid rgba(2,8,23,.08); 
+    padding: 20px; 
+    border-radius: var(--radius); 
+    box-shadow: var(--shadow-base);
+    min-height: 180px; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.motivo-title-montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem; 
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+.motivo-title-montserrat .emoji {
+    font-size: 1.25rem;
+    margin-right: 8px;
+}
+.motivo-text-body {
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-charcoal);
+}
+
+/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand); 
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+.carousel-nav:hover {
+    background: var(--brand-shadow);
+}
+.carousel-nav svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-charcoal); 
+}
+.carousel-nav.prev {
+    left: 16px; 
+}
+.carousel-nav.next {
+    right: 16px; 
+}
+@media (min-width: 1025px) { 
+    .carousel-nav.prev {
+        left: calc((100vw - var(--wrap)) / 2 - 20px); 
+    }
+    .carousel-nav.next {
+        right: calc((100vw - var(--wrap)) / 2 - 20px); 
+    }
+}
+@media (max-width: 1024px) {
+    .carousel-nav {
+        display: none !important; 
+    }
+}
+
+/* ESTILO DO CARD DE HOTEL */
+.hotel-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    transition: all .2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(2,8,23,.08); 
+    width: 300px; 
+    min-height: 100%;
+}
+.hotel-card:hover {
+    box-shadow: var(--shadow-hover);
+    background: var(--card-hover-bg);
+    border-color: rgba(249, 115, 22, 0.5); 
+}
+.hotel-card .content {
+    padding: 14px;
+    flex-grow: 1;
+}
+.hotel-card .category {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--brand);
+    margin-bottom: 4px;
+}
+.hotel-card .price {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--text-charcoal);
+    margin-bottom: 8px;
+}
+.hotel-card .stars {
+    color: #FFC700; 
+    margin-left: 5px;
+}
+.hotels-section {
+    padding: 0;
+    margin: 30px 0;
+}
+.hotels-wrapper {
+    position: relative;
+    max-width: var(--wrap); 
+    margin: 0 auto; 
+    padding: 10px 0; 
+}
 
 /* --- HERO DE TELA CHEIA (FULL-SCREEN) --- */
-/* ... (full-screen-hero, hero-overlay, hero-content inalterados) ... */
-
+.full-screen-hero {
+    height: 100vh; 
+    min-height: 550px; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    color: #fff; 
+    background-image: url("https://via.placeholder.com/1200x800/203040?text=Beauty+Fair+2026"); 
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(50, 50, 150, 0.75) 0%, rgba(100, 50, 150, 0.85) 100%);
+}
+.hero-content {
+    position: relative;
+    z-index: 20; 
+    max-width: 800px; 
+    padding: 20px;
+}
 #heroTitle {
     font-size: 4rem; 
     font-weight: 900; 
@@ -66,7 +384,11 @@
 #heroTitle .highlight {
     font-weight: 900;
     display: block; 
+    
+    /* Sombra preta forte para borda/halo sem falhas */
     text-shadow: 0 0 6px #000000, 0 0 10px #000000, 0 0 16px rgba(0, 0, 0, 0.7); 
+    
+    /* A cor será definida como muito clara pelo JS */
     color: var(--highlight-color-light, #ffd8ad); 
 }
 
@@ -82,13 +404,228 @@
 
 #heroSubheadline {
     font-size: 1.5rem; 
-    font-weight: 700; 
+    font-weight: 700; /* Negrito adicionado */
     margin-bottom: 40px;
     color: rgba(255, 255, 255, 0.95);
+    /* Adiciona sombra sutil para melhor contraste em fundos escuros */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
-/* ... (Resto do CSS inalterado) ... */
-</style>
+
+/* Botão do Hero */
+.btn-hero {
+    min-width: 340px;
+    font-size: 1.25rem;
+    padding: 16px 25px;
+    border-color: #fff; 
+    background: var(--wa) !important;
+}
+.btn-hero:hover {
+    background: var(--wa-hover) !important;
+}
+
+#heroMicrocopy {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+}
+
+/* Badge Categoria */
+.hero-badge {
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--brand); 
+    padding: 6px 14px;
+    border-radius: 999px;
+    display: none; 
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+}
+
+/* Animação Pulse/Glow */
+.pulse-glow {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+/* [NOVO] Wrapper para o Vídeo (70% de largura) */
+.youtube-wrapper {
+    max-width: 70%; 
+    margin: 0 auto; 
+}
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .full-screen-hero {
+        height: auto; 
+        min-height: 450px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    #heroTitle {
+        font-size: 2.5rem; 
+    }
+    #heroSubheadline {
+        font-size: 1.15rem;
+    }
+    .btn-hero {
+        min-width: 100%;
+        font-size: 1.15rem;
+    }
+    .youtube-wrapper {
+        max-width: 100%;
+    }
+}
+
+/* --- NOVO FOOTER DA PÁGINA DE EVENTO --- */
+.site-footer {
+    background: #f8f8f8;
+    padding: 40px 0 0; 
+    border-top: 1px solid rgba(2,8,23,.06);
+    color: var(--text-charcoal);
+    font-size: 14px;
+}
+/* CTA do Rodapé */
+.footer-cta-area {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--card); /* Fundo neutro */
+    border-top: 1px solid rgba(2,8,23,.06);
+    color: var(--text-charcoal); 
+    margin-bottom: 40px;
+}
+.footer-cta-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--text-charcoal); /* Título escuro */
+}
+.footer-cta-microcopy {
+    font-size: 14px;
+    margin-top: 15px;
+    color: var(--muted);
+    font-weight: 400; 
+}
+.footer-cta-area .btn-hero {
+    min-width: 300px;
+    font-size: 1.15rem;
+    padding: 14px 20px;
+}
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.footer-col-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: var(--text-charcoal);
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+.footer-col ul li a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+.footer-col ul li a:hover {
+    color: var(--brand);
+}
+.footer-col p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+.social-icons img:hover {
+    opacity: 1;
+}
+
+/* NOME DA AGÊNCIA EM GRADIENTE (Cor exata do chip) */
+.agency-name-section {
+    text-align: center;
+    margin: 40px 0 20px;
+    padding: 0 16px; 
+}
+.agency-name-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2rem; 
+    text-transform: uppercase;
+    margin: 0;
+    
+    /* Usa a cor exata do Chip Color (var(--brand)) */
+    background-color: var(--brand); 
+    background-image: linear-gradient(90deg, var(--brand), var(--brand)); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.agency-name-micro {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* Novo container para Eventos Similares no Rodapé */
+.footer-bottom-related {
+    padding-bottom: 40px; 
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 30px 0 0;
+    }
+    .footer-cta-title {
+        font-size: 1.5rem;
+    }
+    .footer-columns {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-col ul, .social-icons {
+        justify-content: center;
+    }
+    .footer-cta-area .btn-hero {
+        min-width: 100%;
+        max-width: 300px; 
+    }
+}
+    </style>
 </head>
 <body>
     
@@ -97,7 +634,11 @@
         <div class="hero-content">
             <p id="heroBadge" class="hero-badge"></p>
             
-            <h1 id="heroTitle">Sua viagem para<br><span class="highlight">[NOME DO EVENTO]</span> resolvida em minutos.</h1>
+            <h1 id="heroTitle">
+                <small>Sua viagem para</small><br>
+                <span class="highlight">[NOME DO EVENTO]</span> 
+                <small>resolvida em minutos.</small>
+            </h1>
             
             <p id="heroSubheadline">Voos + hotéis próximos ao [LOCAL] com tarifas corporativas e suporte completo.</p>
             
@@ -109,6 +650,12 @@
             <small id="heroMicrocopy">Enviamos PDF com hotéis, voos e todos detalhes pra viagem.</small>
         </div>
     </section>
+
+    <div id="loading" class="wrap" style="text-align: center; padding: 50px;">
+        <p>Carregando detalhes do evento...</p>
+    </div>
+    <div id="error" class="wrap" hidden>
+        </div>
 
     <main id="eventContent" class="event-page" hidden>
 
@@ -174,7 +721,7 @@
                 <h3 class="footer-col-title">Winners Tour</h3>
             </div>
             <div class="footer-col contact-col">
-                <h3 class="footer-col-title">Atendimento">
+                <h3 class="footer-col-title">Atendimento</h3>
                 <ul>
                     <li><a href="https://wa.me/5541999450111" target="_blank">WhatsApp</a></li>
                     <li><a href="mailto:contato@winnerstour.com.br">contato@winnerstour.com.br</a></li>
