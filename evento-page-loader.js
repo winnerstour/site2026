@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -39,6 +39,8 @@
   const whatsappTopCta = document.getElementById('whatsappTopCta');
 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
+  
+  // ELEMENTOS DO CARROSSEL DE HOTÉIS
   const hotelsSection = document.getElementById('hotelsSection');
   const hotelsCarouselContainer = document.getElementById('hotelsCarouselContainer');
   const hotelsWrapper = document.getElementById('hotelsWrapper');
@@ -251,25 +253,36 @@
       }
   }
   
+  // Mapeamento de cor da borda do hotel baseado na Categoria (1 a 4)
+  const hotelCategoryColors = {
+      1: 'border: 2px solid #3b82f6;', // Bate e Volta (Azul)
+      2: 'border: 2px solid #10b981;', // Econômico (Verde)
+      3: 'border: 2px solid #f97316;', // Conforto/Produtividade (Laranja)
+      4: 'border: 2px solid #ef4444;', // VIP/Diretoria (Vermelho)
+  };
+
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel) {
       const isDayTrip = hotel.type === 'daytrip';
-      const categoryText = hotel.category || (isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || 'Opção');
+      const category = hotel.category || (isDayTrip ? 1 : 2); // Usa 1 p/ daytrip, fallback 2
+      const categoryText = isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || `Opção ${category}`;
       const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
       const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
+      const coverStyleInline = hotelCategoryColors[category] || hotelCategoryColors[2];
 
       return `
           <div class="cl-slide">
-              <div class="hotel-card">
+              <div class="hotel-card" style="${coverStyleInline}">
                   <div class="thumb">
                       <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
                   </div>
                   <div class="content">
                       <div class="category">${categoryText.toUpperCase()}</div>
                       <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <p>${hotel.description}</p>
                       <div class="price">A PARTIR DE ${priceHtml}</div>
                       
                       <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
@@ -299,7 +312,10 @@
               return;
           }
           
-          const hotelSlides = hotels.map(buildHotelCard).join('');
+          // Filtra e pega até 8 hotéis/daytrips
+          const filteredHotels = hotels.filter(h => h.type === 'hotel' || h.type === 'daytrip').slice(0, 8);
+          
+          const hotelSlides = filteredHotels.map(buildHotelCard).join('');
           hotelsCarouselContainer.innerHTML = hotelSlides;
           
           const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
