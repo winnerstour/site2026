@@ -1,6 +1,7 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE URL E PARÂMETROS)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO E LINKS DE VOO)
 
 (function () {
+  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -46,6 +47,17 @@
   const hotelsCarouselContainer = document.getElementById('hotelsCarouselContainer');
   const hotelsWrapper = document.getElementById('hotelsWrapper');
   const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
+
+  // --- CONFIGURAÇÕES PADRÃO DE PAX ---
+  const PAX_CONFIG = {
+      adults: 1,
+      children: 0,
+      infants: 0,
+      teenagers: 0,
+      isRoundTrip: true,
+      departureIata: "CWB" // Fixado para Curitiba
+  };
+  const DEFAULT_ROOMS_COUNT = 1;
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -316,15 +328,11 @@
   const ROOM_ICON = '🏠'; 
   
   // ***************************************************************
-  // NOVO: Funções de Geração de Links Dinâmicos da ComprarViagem
+  // Funções de Geração de Links Dinâmicos da ComprarViagem
   // ***************************************************************
-  
-  const DEFAULT_ADULTS = 2;
-  const DEFAULT_ROOMS_COUNT = 1;
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
-      // Assumindo 1 quarto com a ocupação total padrão de 2 adultos.
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -333,46 +341,66 @@
               "agesOfChild": childrenAges || [],
               "roomNum": i
           });
-          break; // Garante apenas 1 quarto
+          break; // Garante apenas 1 quarto no JSON rooms
       }
       return JSON.stringify(rooms);
   }
   
+  /**
+   * Monta o link para a tela de Seleção de Voos (Passo 1 do fluxo combinado).
+   */
+  function buildCombinedFlightUrl(eventData, paxConfig) {
+      const BASE_URL = DOMAIN_BASE;
+      
+      // Formato ISO: YYYY-MM-DDT00:00:00Z
+      const departureDate = eventData.start_date ? `${eventData.start_date}T00:00:00Z` : '';
+      const returnDate = eventData.end_date ? `${eventData.end_date}T00:00:00Z` : '';
+
+      const params = new URLSearchParams({
+          departureDate: departureDate,
+          returnDate: returnDate,
+          departureIata: paxConfig.departureIata,
+          arrivalIata: eventData.destinationIata,
+          adultsCount: paxConfig.adults,
+          childCount: paxConfig.children,
+          infantCount: paxConfig.infants,
+          teenagerCount: paxConfig.teenagers,
+          isRoundTrip: paxConfig.isRoundTrip,
+          isPackage: 'false',
+          source: 'f'
+      }).toString();
+
+      return `${BASE_URL}/public/combined/flight?${params}`;
+  }
+
+
   function buildHotelLinks(hotel, theme, evData) {
       const BASE_URL = DOMAIN_BASE;
       
-      // Dados de ocupação padrão (para o evento corporativo, geralmente 2 adultos/quarto)
-      const adults = DEFAULT_ADULTS;
-      const children = 0;
-      const infants = 0;
+      // Ocupação padrão: 1 Adulto (como solicitado)
+      const adults = PAX_CONFIG.adults;
+      const children = PAX_CONFIG.children;
+      const infants = PAX_CONFIG.infants;
       const roomsCount = DEFAULT_ROOMS_COUNT; 
       
-      // Datas: Puxadas dos dados do evento
       const checkInDate = evData.start_date; 
-      const checkOutDate = evData.end_date || evData.start_date; 
+      const checkOutDate = evData.end_date || evData.start_date;
       
-      // Conversão para ISO 8601 (os endpoints são sensíveis ao formato)
+      // Formatos ISO
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
-      
-      const startDatePackage = checkInDate ? `${checkInDate}T00:00:00Z` : '';
-      const endDatePackage = checkOutDate ? `${checkOutDate}T00:00:00Z` : '';
-
-      const roomsJson = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
-      // CORREÇÃO CRÍTICA: Não codificamos aqui. O URLSearchParams faz a codificação correta.
-      const encodedRooms = roomsJson;
+      const encodedRooms = generateRoomsJson(adults, children, infants, [], roomsCount);
       
       // Obtém o ID interno do hotel (usa 'id' ou 'id-name' do JSON do hotel)
       const hotelIdLink = hotel.id || hotel['id-name'] || 'N/A';
       
       // --- ENDPOINT 1: DETALHES DO HOTEL ---
       const detailParams = new URLSearchParams({
-          rooms: encodedRooms, // Rooms JSON (será codificado pela URLSearchParams)
+          rooms: encodedRooms,
           numberOfAdults: adults,
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          // REMOVIDO: id: hotelIdLink, 
           hotelId: hotelIdLink, // Parâmetro CORRETO
           type: 3, 
           startDate: startDateDetail,
@@ -383,23 +411,22 @@
 
       const hotelDetailUrl = `${BASE_URL}/hotel-detail?${detailParams}`;
       
-      // --- ENDPOINT 2: PACOTE / VOO + HOTEL ---
-      const packageParams = new URLSearchParams({
-          type: 1, // Fixo para pacote
-          id: hotelIdLink, // Mantendo 'id' aqui, pois o endpoint combinado pode usá-lo como o ID principal
-          startDate: startDatePackage,
-          endDate: endDatePackage,
-          isPackage: 'false',
-          rooms: encodedRooms, // Rooms JSON
-          source: 'h'
-      }).toString();
-
-      const hotelPackageUrl = `${BASE_URL}/public/combined/hotel?${packageParams}`;
+      // --- ENDPOINT 2: PACOTE / VOO + HOTEL (AGORA ROTA DE VOO) ---
+      
+      // Adiciona IATA de destino (SAO por exemplo - deve ser mapeado futuramente)
+      const destinationIata = evData.destinationIata || evData.cityIata || 'SAO';
+      
+      const hotelPackageUrl = buildCombinedFlightUrl({
+          start_date: checkInDate,
+          end_date: checkOutDate,
+          destinationIata: destinationIata
+      }, PAX_CONFIG);
       
       // Botões HTML (Usando as classes de tema dinâmicas)
       const hotelDetailButtonHtml = `
           <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
       `;
+      // O botão principal de pacote AGORA USA A COR DA BORDA DO CARD (theme.button)
       const hotelPackageButtonHtml = `
           <a href="${hotelPackageUrl}" target="_blank" rel="noopener noreferrer" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
       `;
@@ -467,12 +494,14 @@
                           ${hotel.name}
                       </h3>
                       
+                      <!-- BLOCO DE INFORMAÇÕES SECUNDÁRIAS (Room, Price Level, Stars) -->
                       <div class="secondary-info">
                           ${infoLine}
                       </div>
 
                       <p class="text-slate-600">${hotel.description}</p>
                       
+                      <!-- BOTÕES DE DETALHES E PACOTE -->
                       <div class="btn-group">
                           ${links.hotelPackageButtonHtml}
                           ${links.hotelDetailButtonHtml}
