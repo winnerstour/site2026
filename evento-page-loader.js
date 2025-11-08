@@ -1,7 +1,6 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM LINKS DE RESERVA REAIS)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE URL E PARÂMETROS)
 
 (function () {
-  // CORREÇÃO: DOMAIN_BASE definido como const global no escopo IIFE
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -349,9 +348,8 @@
       const roomsCount = DEFAULT_ROOMS_COUNT; 
       
       // Datas: Puxadas dos dados do evento
-      // Usamos start_date e end_date do JSON do evento
       const checkInDate = evData.start_date; 
-      const checkOutDate = evData.end_date || evData.start_date; // Fallback para 1 dia se não houver end_date.
+      const checkOutDate = evData.end_date || evData.start_date; 
       
       // Conversão para ISO 8601 (os endpoints são sensíveis ao formato)
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
@@ -361,21 +359,22 @@
       const endDatePackage = checkOutDate ? `${checkOutDate}T00:00:00Z` : '';
 
       const roomsJson = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
-      const encodedRooms = encodeURIComponent(roomsJson);
+      // CORREÇÃO CRÍTICA: Não codificamos aqui. O URLSearchParams faz a codificação correta.
+      const encodedRooms = roomsJson;
       
-      // --- ENDPOINT 1: DETALHES DO HOTEL ---
-      // id: HOTEL_ID (hotel.id ou hotel['id-name'])
+      // Obtém o ID interno do hotel (usa 'id' ou 'id-name' do JSON do hotel)
       const hotelIdLink = hotel.id || hotel['id-name'] || 'N/A';
       
+      // --- ENDPOINT 1: DETALHES DO HOTEL ---
       const detailParams = new URLSearchParams({
-          rooms: encodedRooms,
+          rooms: encodedRooms, // Rooms JSON (será codificado pela URLSearchParams)
           numberOfAdults: adults,
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          id: hotelIdLink,
-          hotelId: hotelIdLink,
-          type: 3, // Fixo para detalhe de hotel
+          // REMOVIDO: id: hotelIdLink, 
+          hotelId: hotelIdLink, // Parâmetro CORRETO
+          type: 3, 
           startDate: startDateDetail,
           endDate: endDateDetail,
           source: 'h',
@@ -387,11 +386,11 @@
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL ---
       const packageParams = new URLSearchParams({
           type: 1, // Fixo para pacote
-          id: hotelIdLink,
+          id: hotelIdLink, // Mantendo 'id' aqui, pois o endpoint combinado pode usá-lo como o ID principal
           startDate: startDatePackage,
           endDate: endDatePackage,
           isPackage: 'false',
-          rooms: encodedRooms,
+          rooms: encodedRooms, // Rooms JSON
           source: 'h'
       }).toString();
 
