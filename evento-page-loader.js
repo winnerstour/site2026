@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM ROOMSPACE E QUEBRA DE LINHA NO TÍTULO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS E NOVA PALETA DE CORES)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -286,20 +286,31 @@
   }
 
   // Lógica para determinar o nível de preço dinâmico ($$$, $$$$, etc.)
-  function calculatePriceLevel(price, min, q1, median, q3, max) {
-      if (typeof price !== 'number') return '';
+  function calculatePriceLevel(price, priceData) {
+      if (typeof price !== 'number' || priceData.prices.length === 0) return '';
       
-      // Simplificado para 4 tiers, garantindo uma distribuição visual
-      const range = max - min;
-      const tierSize = range / 4;
+      const prices = priceData.prices;
       
-      if (price <= min + tierSize) return '$$';
-      if (price <= min + 2 * tierSize) return '$$$';
-      if (price <= min + 3 * tierSize) return '$$$$';
-      return '$$$$$'; 
+      const getPercentile = (arr, p) => {
+          if (arr.length === 0) return 0;
+          const pos = (arr.length - 1) * p;
+          const base = Math.floor(pos);
+          const rest = pos - base;
+          if (base >= arr.length - 1) return arr[arr.length - 1];
+          return arr[base] + rest * (arr[base + 1] - arr[base]);
+      };
+
+      const q25 = getPercentile(prices, 0.25);
+      const q50 = getPercentile(prices, 0.50);
+      const q75 = getPercentile(prices, 0.75);
+
+      // Mapeamento para 2, 3, 4, 6 cifrões
+      if (price <= q25) return '$$';
+      if (price <= q50) return '$$$';
+      if (price <= q75) return '$$$$';
+      return '$$$$$$'; 
   }
 
-  // Ícone de Planta Baixa para tamanho do quarto (simplificado com emoji)
   const ROOM_ICON = '🏠'; 
 
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
@@ -311,10 +322,24 @@
       // NOVO: Usa distance_min para o chip
       const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
       
-      const priceLevel = calculatePriceLevel(hotel.nightly_from_brl, priceData.min, priceData.q1, priceData.median, priceData.q3, priceData.max);
+      const priceLevel = calculatePriceLevel(hotel.nightly_from_brl, priceData);
       
+      // Monta as partes da linha secundária
       const starsHtml = isDayTrip ? '' : `<span class="stars">${'★'.repeat(hotel.stars)}</span>`;
-      const roomSpaceHtml = hotel.roomspace ? `${ROOM_ICON} ${hotel.roomspace}m²` : '';
+      const roomSpaceHtml = hotel.roomspace ? 
+          `<span class="room-info">${ROOM_ICON} ${hotel.roomspace}m²</span>` : '';
+      
+      // Separadores (pipe |)
+      const separator = `<span class="info-separator">|</span>`;
+      
+      let secondaryInfoHtml = [];
+      if (roomSpaceHtml) secondaryInfoHtml.push(roomSpaceHtml);
+      if (priceLevel) secondaryInfoHtml.push(`<span class="price-level">${priceLevel}</span>`);
+      if (starsHtml) secondaryInfoHtml.push(starsHtml);
+      
+      // Constrói a linha de infos secundárias separando por pipe
+      const infoLine = secondaryInfoHtml.join(separator);
+
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
@@ -335,10 +360,8 @@
                           ${hotel.name}
                       </h3>
                       
-                      <div class="text-sm font-bold text-gray-700 mb-3">
-                          ${roomSpaceHtml}
-                          <span class="price-level">${priceLevel}</span>
-                          ${starsHtml}
+                      <div class="secondary-info">
+                          ${infoLine}
                       </div>
 
                       <p class="text-slate-600">${hotel.description}</p>
@@ -376,25 +399,7 @@
               .filter(p => typeof p === 'number' && p > 0)
               .sort((a, b) => a - b);
               
-          let priceData = {min: 0, q1: 0, median: 0, q3: 0, max: 0};
-
-          if (prices.length > 0) {
-              // Calcula quartis e extremos
-              const getPercentile = (arr, p) => {
-                  if (!arr || arr.length === 0) return 0;
-                  const pos = (arr.length - 1) * p;
-                  const base = Math.floor(pos);
-                  const rest = pos - base;
-                  if (base >= arr.length - 1) return arr[arr.length - 1];
-                  return arr[base] + rest * (arr[base + 1] - arr[base]);
-              };
-
-              priceData.min = prices[0];
-              priceData.max = prices[prices.length - 1];
-              priceData.q1 = getPercentile(prices, 0.25);
-              priceData.median = getPercentile(prices, 0.5);
-              priceData.q3 = getPercentile(prices, 0.75);
-          }
+          let priceData = { prices: prices }; // Passamos o array ordenado completo
           
           // 2. Filtra e constrói os cards
           const filteredHotels = hotels.filter(h => h.type === 'hotel' || h.type === 'daytrip').slice(0, 8);
