@@ -1,6 +1,7 @@
 // evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE URL ENCODING E PAX)
 
 (function () {
+  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -333,7 +334,6 @@
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
-      // CORRIGIDO: Assume 1 quarto com 1 adulto (PAX_CONFIG)
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -388,7 +388,7 @@
       const BASE_URL = DOMAIN_BASE;
       
       // Ocupação padrão: 1 Adulto (como solicitado)
-      const adults = PAX_CONFIG.adults;
+      const adults = PAX_CONFIG.adults; // 1
       const children = PAX_CONFIG.children;
       const infants = PAX_CONFIG.infants;
       const roomsCount = DEFAULT_ROOMS_COUNT; 
@@ -397,6 +397,7 @@
       const checkOutDate = evData.end_date || evData.start_date;
       
       // Formatos ISO
+      // CORRIGIDO: Garante que só anexe T00:00:00.000Z se a data existir
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
@@ -758,70 +759,4 @@
             const index = titleKey.split('_')[2]; 
             return {
               motivo_emoji: evData[`motivo_emoji_${index}`],
-              motivo_titulo: evData[titleKey],
-              motivo_conteudo: evData[`motivo_conteudo_${index}`]
-            };
-          });
-          
-      const finalMotivos = extractedMotivos
-          .filter(m => m.motivo_titulo)
-          .concat(Array.isArray(evData.motivos) ? evData.motivos : []);
-
-      const motivosCarouselId = 'motivosContainer';
-      const motivosWrapperId = 'motivosWrapper';
-      const motivosWrapperEl = document.getElementById('motivosWrapper');
-
-      if (finalMotivos.length > 0) {
-        const motivoSlides = finalMotivos.map(renderMotivo).join('');
-        
-        if(motivosContainer) {
-            motivosContainer.innerHTML = motivoSlides;
-            motivosContainer.classList.add('cl-track'); 
-        }
-        
-        if(motivosWrapperEl) motivosWrapperEl.insertAdjacentHTML('beforeend', `
-              <button class="carousel-nav prev">
-                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-              </button>
-              <button class="carousel-nav next">
-                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-              </button>
-          `);
-        
-        initCarousel(motivosCarouselId, motivosWrapperId, true); 
-        
-      } else {
-        if(document.querySelector('.motivos-section h2')) document.querySelector('.motivos-section h2').hidden = true;
-        if(motivosWrapperEl) motivosWrapperEl.hidden = true;
-      }
-
-      // 6. Renderiza Eventos Similares (AGORA NO RODAPÉ)
-      if (evData.category_macro) {
-          renderRelatedEvents(evData.category_macro, slug); 
-      }
-
-      // 7. PREENCHIMENTO DO RODAPÉ
-      if (eventPageFooter) {
-
-          if (footerCtaTitle) {
-              footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
-          }
-
-          // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
-          if (agencyNameMicro) {
-              const categoryMicro = evData.category_micro ? `Especializada em viagens corporativas para profissionais de ${evData.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
-              agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
-          }
-      }
-
-      if(loading) loading.hidden = true;
-      if(eventContent) eventContent.hidden = false;
-
-    } catch (e) {
-      console.error('Erro ao carregar evento:', e);
-      renderError(e.message);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', loadEventData);
-})();
+              mo
