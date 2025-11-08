@@ -327,7 +327,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     text-align: center;
 }
 .hotel-card .thumb {
-    height: 240px; /* CORRIGIDO: Aumentado para 240px para exibir 100% da imagem */
+    height: 240px; /* CORRIGIDO: Aumentado para 240px */
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
@@ -339,7 +339,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .hotel-card .category {
     font-weight: 700;
     font-size: 13px; /* Reduzido o tamanho */
-    color: var(--brand); /* Cor da marca para destaque (pode ser ajustada no JS) */
+    /* Cor do chip será definida pelo Tailwind via JS */
     margin-bottom: 4px;
     text-transform: uppercase;
 }
@@ -351,20 +351,22 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     margin-bottom: 8px;
     line-height: 1.2;
 }
+/* NOVO: Estilo para o nível de preço */
+.hotel-card .price-level {
+    font-size: 0.9em; /* 0.9em do 1rem (title) */
+    font-weight: 900;
+    color: var(--brand); /* Cor do Chip/Brand (dinâmico) */
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
 .hotel-card .stars {
     color: #FFC700; 
     margin-left: 5px;
+    font-size: 0.9em; /* Match size */
+    vertical-align: middle;
 }
-.hotel-card .price {
-    font-weight: 900;
-    font-size: 1.25rem;
-    color: #111827;
-    margin-bottom: 8px;
-}
-.hotel-card .price small {
-    font-size: 65%; 
-    font-weight: 400;
-}
+/* REMOVIDO: .hotel-card .price CSS */
 .hotel-card p {
     font-size: 14px;
     color: #4b5563; /* text-slate-600 */
