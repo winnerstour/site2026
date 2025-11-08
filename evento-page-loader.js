@@ -1,6 +1,7 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE DATA E PAX)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO E LINKS DE VOO)
 
 (function () {
+  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -332,6 +333,7 @@
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
+      // CORRIGIDO: Assume que 1 quarto sempre tem 1 adulto (PAX_CONFIG)
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -347,7 +349,7 @@
   
   /**
    * Monta o link para a tela de Seleção de Voos (Passo 1 do fluxo combinado).
-   * @param {object} eventData - Contém start_date, end_date.
+   * @param {object} eventData - Contém start_date, end_date, cityIata.
    * @param {object} paxConfig - Contém adults, departureIata, isRoundTrip, etc.
    * @returns {string} URL completa.
    */
@@ -383,7 +385,7 @@
       const BASE_URL = DOMAIN_BASE;
       
       // Ocupação padrão: 1 Adulto (como solicitado)
-      const adults = PAX_CONFIG.adults;
+      const adults = PAX_CONFIG.adults; // 1
       const children = PAX_CONFIG.children;
       const infants = PAX_CONFIG.infants;
       const roomsCount = DEFAULT_ROOMS_COUNT; 
@@ -392,6 +394,7 @@
       const checkOutDate = evData.end_date || evData.start_date;
       
       // Formatos ISO
+      // CORRIGIDO: Garante que só anexe T00:00:00.000Z se a data existir
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
@@ -419,16 +422,12 @@
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL (FLIGHT STEP) ---
       const destinationIata = evData.cityIata || 'SAO';
 
-      const hotelPackageUrl = buildCombinedFlightUrl({
-          start_date: checkInDate,
-          end_date: checkOutDate,
-          destinationIata: destinationIata
-      }, PAX_CONFIG);
+      const hotelPackageUrl = buildCombinedFlightUrl(evData, PAX_CONFIG);
       
       // Botões HTML (Usando as classes de tema dinâmicas)
       
       // Botão Detalhes: Usa a cor da borda do card (theme.cardBorder) como cor do texto
-      // Nota: As classes text-{color}-700 devem estar disponíveis no Tailwind compilado.
+      // A classe text-{color}-500/700 deve estar disponível via Tailwind
       const detailTextColor = theme.cardBorder.replace('border-', 'text-');
 
       const hotelDetailButtonHtml = `
@@ -479,7 +478,7 @@
       if (starsHtml) infoParts.push(starsHtml);
       
       const infoLine = infoParts.join(separator); // Junta as partes com o pipe
-      
+
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Geração de links e botões dinâmicos
@@ -661,7 +660,7 @@
       if (pageTitle) pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
       const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-      const faviconPath = fixPath(faviconRawPath);
+      const faviconPath = fixPath(rawHeroPath);
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
           faviconEl.href = faviconPath; 
