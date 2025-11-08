@@ -338,7 +338,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .hotel-card .category {
     font-weight: 700;
-    font-size: 13px; /* Reduzido o tamanho */
+    font-size: 13px;
     /* Cor do chip será definida pelo Tailwind via JS */
     margin-bottom: 4px;
     text-transform: uppercase;
@@ -348,25 +348,47 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     font-weight: 900;
     font-size: 1rem;
     color: #111827; /* text-slate-900 */
-    margin-bottom: 8px;
+    /* Removendo margin-bottom para que a secondary-info fique logo abaixo */
+    margin-bottom: 0; 
     line-height: 1.2;
 }
-/* NOVO: Estilo para o nível de preço */
+/* NOVO: Estilo para a linha de infos secundárias */
+.hotel-card .secondary-info {
+    font-size: 14px; /* Tamanho da fonte compacto */
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-top: 5px; 
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    line-height: 1.1;
+}
+
+/* Estilo para o nível de preço e estrelas */
 .hotel-card .price-level {
-    font-size: 0.9em; /* 0.9em do 1rem (title) */
     font-weight: 900;
-    color: var(--brand); /* Cor do Chip/Brand (dinâmico) */
-    margin-right: 5px;
-    display: inline-block;
-    vertical-align: middle;
+    color: var(--brand); /* Cor da marca para destaque */
+    margin: 0; 
 }
 .hotel-card .stars {
     color: #FFC700; 
-    margin-left: 5px;
-    font-size: 0.9em; /* Match size */
-    vertical-align: middle;
+    font-size: 100%; /* Match size */
 }
-/* REMOVIDO: .hotel-card .price CSS */
+.hotel-card .room-info {
+    display: flex;
+    align-items: center;
+    /* Reduzindo o tamanho do emoji/texto para compactar */
+    font-size: 14px; 
+    line-height: 1;
+}
+.hotel-card .info-separator {
+    color: var(--muted);
+    padding: 0 5px;
+    font-weight: 400; /* Separador mais discreto */
+}
+
 .hotel-card p {
     font-size: 14px;
     color: #4b5563; /* text-slate-600 */
@@ -695,7 +717,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </a>
             <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
         </div>
-
+        
         <div class="footer-bottom-info wrap">
             <div class="agency-name-section">
                 <h3 id="agencyNameTitle" class="agency-name-title">Winners Tour</h3>
