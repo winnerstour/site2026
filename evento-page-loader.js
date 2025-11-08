@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS E SEM COLUNAS)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
