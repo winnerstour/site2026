@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -405,20 +407,23 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 /* Estilos de botão secundário (Ver Detalhes) */
 .btn-secondary {
-    background: #e5e7eb; /* Cinza Claro */
+    /* CORRIGIDO: Agora usa o esquema de cor da borda/ring */
+    background: transparent; /* Fundo transparente */
+    border: 2px solid currentColor; /* Cor da borda será definida pela classe text-{color} */
     color: var(--text-charcoal) !important;
     font-weight: 700 !important;
     padding: 8px 12px !important;
     border-radius: 999px;
     font-size: 14px;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
     box-shadow: none !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
+/* Estilos de botão secundário (hover) */
 .btn-secondary:hover {
-    background: #d1d5db; /* Cinza um pouco mais escuro no hover */
+    background: #e5e7eb; /* Cinza Claro no hover */
 }
 
 
@@ -708,7 +713,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         
         <div class="wrap event-details">
             <h1 id="eventTitle" style="display:none;"></h1>
-            <p id="eventMeta" class="event-meta" style="display:none;"></p>
+            <p id="eventMeta" style="display:none;"></p>
             
             <div id="eventDescription">
                 </div>
