@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -327,7 +325,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     text-align: center;
 }
 .hotel-card .thumb {
-    height: 240px; /* CORRIGIDO: 100% da imagem */
+    height: 240px; /* CORRIGIDO: Aumentado para 240px */
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
@@ -338,7 +336,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .hotel-card .category {
     font-weight: 700;
-    font-size: 13px; 
+    font-size: 13px;
+    /* Cor do chip será definida pelo Tailwind via JS */
     margin-bottom: 4px;
     text-transform: uppercase;
 }
@@ -346,7 +345,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .hotel-card .title {
     font-weight: 900;
     font-size: 1rem;
-    color: #111827; 
+    color: #111827; /* text-slate-900 */
     /* Margem removida e adicionada ao bloco de info para separação */
     margin-bottom: 0; 
     line-height: 1.2;
@@ -370,15 +369,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     font-weight: 900;
     color: var(--brand); /* Cor da marca para destaque */
     margin: 0; 
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
 }
 .hotel-card .stars {
     color: #FFC700; 
-    font-size: 14px; 
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
 }
 .hotel-card .room-info {
     display: flex;
     align-items: center;
-    font-size: 14px; 
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
     line-height: 1;
 }
 .hotel-card .room-info .emoji {
@@ -413,6 +413,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     font-size: 14px;
     transition: background 0.2s ease;
     box-shadow: none !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn-secondary:hover {
     background: #d1d5db; /* Cinza um pouco mais escuro no hover */
