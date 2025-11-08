@@ -285,14 +285,35 @@
       return HOTEL_THEME[category] || HOTEL_THEME[2]; 
   }
 
+  // Lógica para determinar o nível de preço dinâmico ($$$, $$$$, etc.)
+  function calculatePriceLevel(price, min, q1, median, q3, max) {
+      if (typeof price !== 'number') return 'N/A';
+      
+      if (price <= q1) return '$';
+      if (price <= median) return '$$';
+      if (price <= q3) return '$$$';
+      
+      // Se estiver acima de Q3, usamos 4 cifrões. Se for o preço máximo, usamos 5, mas faremos uma divisão simples de 5 tiers
+      const priceRange = max - min;
+      const tierSize = priceRange / 5;
+      
+      if (price <= min + tierSize) return '$';
+      if (price <= min + 2 * tierSize) return '$$';
+      if (price <= min + 3 * tierSize) return '$$$';
+      if (price <= min + 4 * tierSize) return '$$$$';
+      return '$$$$$'; // 5 ou mais
+  }
+
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
-  function buildHotelCard(hotel) {
+  function buildHotelCard(hotel, priceData) {
       const isDayTrip = hotel.type === 'daytrip';
       const category = hotel.category || (isDayTrip ? 1 : 2);
       const theme = getHotelTheme(category);
       
       // NOVO: Usa distance_min para o chip
       const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
+      
+      const priceLevel = calculatePriceLevel(hotel.nightly_from_brl, priceData.min, priceData.q1, priceData.median, priceData.q3, priceData.max);
       
       const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
       const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
@@ -301,7 +322,6 @@
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
-      // Base: rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white
       const cardClasses = `hotel-card rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white ${theme.cardBorder} ${theme.cardRing}`;
 
       return `
@@ -312,9 +332,12 @@
                   </div>
                   <div class="content">
                       <div class="category ${theme.chip}">${distanceMin.toUpperCase()}</div>
-                      <h3 class="title text-slate-900">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <h3 class="title text-slate-900">
+                          ${hotel.name} 
+                          <span class="price-level">${priceLevel}</span>
+                          <span class="stars">${starsHtml}</span>
+                      </h3>
                       <p class="text-slate-600">${hotel.description}</p>
-                      <div class="price text-slate-900">A PARTIR DE ${priceHtml}</div>
                       
                       <a href="${whatsappCta.href}" target="_blank" class="btn text-white font-semibold transition mt-3 w-full ${theme.button}" style="font-weight: 700;">
                           <span class="label">${ctaLabel}</span>
@@ -343,10 +366,37 @@
               return;
           }
           
-          // Filtra e pega até 8 hotéis/daytrips
+          // 1. Coleta e ordena os preços dos hotéis
+          const prices = hotels
+              .map(h => h.nightly_from_brl)
+              .filter(p => typeof p === 'number' && p > 0)
+              .sort((a, b) => a - b);
+              
+          let priceData = {min: 0, q1: 0, median: 0, q3: 0, max: 0};
+
+          if (prices.length > 0) {
+              // Calcula quartis e extremos
+              const getPercentile = (arr, p) => {
+                  if (!arr || arr.length === 0) return 0;
+                  const pos = (arr.length - 1) * p;
+                  const base = Math.floor(pos);
+                  const rest = pos - base;
+                  if (base >= arr.length - 1) return arr[arr.length - 1];
+                  return arr[base] + rest * (arr[base + 1] - arr[base]);
+              };
+
+              priceData.min = prices[0];
+              priceData.max = prices[prices.length - 1];
+              priceData.q1 = getPercentile(prices, 0.25);
+              priceData.median = getPercentile(prices, 0.5);
+              priceData.q3 = getPercentile(prices, 0.75);
+          }
+          
+          // 2. Filtra e constrói os cards
           const filteredHotels = hotels.filter(h => h.type === 'hotel' || h.type === 'daytrip').slice(0, 8);
           
-          const hotelSlides = filteredHotels.map(buildHotelCard).join('');
+          // Passa priceData para buildHotelCard
+          const hotelSlides = filteredHotels.map(hotel => buildHotelCard(hotel, priceData)).join('');
           hotelsCarouselContainer.innerHTML = hotelSlides;
           
           const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
