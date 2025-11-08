@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS E SEM COLUNAS)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS E NOVA PALETA DE CORES)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -253,39 +253,68 @@
       }
   }
   
-  // Mapeamento de cor da borda do hotel baseado na Categoria (1 a 4)
-  const hotelCategoryColors = {
-      1: 'border: 2px solid #3b82f6;', // Bate e Volta (Azul)
-      2: 'border: 2px solid #10b981;', // Econômico (Verde)
-      3: 'border: 2px solid #f97316;', // Conforto/Produtividade (Laranja)
-      4: 'border: 2px solid #ef4444;', // VIP/Diretoria (Vermelho)
+  // NOVO OBJETO DE TEMA PARA HOTÉIS (Tailwind Classes)
+  const HOTEL_THEME = {
+      1: {
+          cardBorder: "border-amber-500",
+          cardRing: "focus-within:ring-amber-500",
+          button: "bg-amber-500 hover:bg-amber-600 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+          chip: "bg-amber-100 text-amber-800",
+      },
+      2: {
+          cardBorder: "border-orange-500",
+          cardRing: "focus-within:ring-orange-500",
+          button: "bg-orange-500 hover:bg-orange-600 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+          chip: "bg-orange-100 text-orange-800",
+      },
+      3: {
+          cardBorder: "border-orange-700",
+          cardRing: "focus-within:ring-orange-700",
+          button: "bg-orange-700 hover:bg-orange-800 focus-visible:ring-orange-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+          chip: "bg-orange-100 text-orange-900",
+      },
+      4: {
+          cardBorder: "border-rose-600",
+          cardRing: "focus-within:ring-rose-600",
+          button: "bg-rose-600 hover:bg-rose-700 focus-visible:ring-rose-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+          chip: "bg-rose-100 text-rose-800",
+      },
   };
+  function getHotelTheme(category) {
+      // Fallback para Categoria 2 (Econômico)
+      return HOTEL_THEME[category] || HOTEL_THEME[2]; 
+  }
 
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel) {
       const isDayTrip = hotel.type === 'daytrip';
-      const category = hotel.category || (isDayTrip ? 1 : 2); // Usa 1 p/ daytrip, fallback 2
+      const category = hotel.category || (isDayTrip ? 1 : 2);
+      const theme = getHotelTheme(category);
+      
+      // Texto da Categoria
       const categoryText = isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || `Opção ${category}`;
       const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
       const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
-      const coverStyleInline = hotelCategoryColors[category] || hotelCategoryColors[2];
+
+      // Classes do Card: Base + Borda/Ring Dinâmicos
+      const cardClasses = `hotel-card rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white ${theme.cardBorder} ${theme.cardRing}`;
 
       return `
           <div class="cl-slide">
-              <div class="hotel-card" style="${coverStyleInline}">
+              <div class="${cardClasses}">
                   <div class="thumb">
                       <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
                   </div>
                   <div class="content">
-                      <div class="category">${categoryText.toUpperCase()}</div>
-                      <h3 class="title">${hotel.name} <span class="stars">${starsHtml}</span></h3>
-                      <p>${hotel.description}</p>
-                      <div class="price">A PARTIR DE ${priceHtml}</div>
+                      <div class="category ${theme.chip}">${categoryText.toUpperCase()}</div>
+                      <h3 class="title text-slate-900">${hotel.name} <span class="stars">${starsHtml}</span></h3>
+                      <p class="text-slate-600">${hotel.description}</p>
+                      <div class="price text-slate-900">A PARTIR DE ${priceHtml}</div>
                       
-                      <a href="${whatsappCta.href}" target="_blank" class="btn btn-whatsapp" style="margin-top: 10px; width: 100%;">
+                      <a href="${whatsappCta.href}" target="_blank" class="btn text-white font-semibold transition mt-3 w-full ${theme.button}" style="font-weight: 700;">
                           <span class="label">${ctaLabel}</span>
                       </a>
                   </div>
@@ -324,7 +353,7 @@
           
           initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
 
-          hotelsSection.style.display = 'block';
+          hotelsSection.style.display = 'block'; // TORNA VISÍVEL APÓS O CARREGAMENTO
 
       } catch (e) {
           console.error("Erro ao carregar ou renderizar hotéis:", e);
