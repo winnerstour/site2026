@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
+    <!-- Incluindo Tailwind CSS para que as novas classes funcionem -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -311,6 +314,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 /* Estilo do Card de Hotel */
 .hotel-card {
+    /* CLASSE BASE TAILWIND SERÁ INJETADA PELO JS, AQUI ESTILOS BASE */
     background: var(--card);
     border-radius: var(--radius);
     box-shadow: var(--shadow-base);
@@ -319,7 +323,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(2,8,23,.08); 
+    /* BORDA DINÂMICA SERÁ INJETADA INLINE */
     width: 300px; 
     min-height: 100%;
     text-align: center;
@@ -336,15 +340,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .hotel-card .category {
     font-weight: 700;
-    font-size: 13px; /* Reduzido o tamanho */
-    color: var(--brand);
+    font-size: 13px;
+    color: var(--brand); /* Cor da marca para destaque (pode ser ajustada no JS) */
     margin-bottom: 4px;
     text-transform: uppercase;
 }
+/* Estilos neutros para tipografia */
 .hotel-card .title {
     font-weight: 900;
     font-size: 1rem;
-    color: var(--text-charcoal);
+    color: #111827; /* text-slate-900 */
     margin-bottom: 8px;
     line-height: 1.2;
 }
@@ -354,8 +359,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .hotel-card .price {
     font-weight: 900;
-    font-size: 1.25rem; /* Reduzido o tamanho */
-    color: var(--text-charcoal);
+    font-size: 1.25rem;
+    color: #111827;
     margin-bottom: 8px;
 }
 .hotel-card .price small {
@@ -364,7 +369,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .hotel-card p {
     font-size: 14px;
-    color: var(--muted);
+    color: #4b5563; /* text-slate-600 */
     margin-bottom: 12px;
 }
 
@@ -604,24 +609,34 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 </head>
 <body>
     
+    <!-- TOPBAR REMOVIDA -->
+    
+    <!-- NOVO HERO DE TELA CHEIA (FULL-SCREEN) -->
     <section id="eventHeroSection" class="full-screen-hero" style="display:none;">
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <!-- Badge da categoria (será preenchido via JS) -->
             <p id="heroBadge" class="hero-badge"></p>
             
+            <!-- Titulo principal do evento (será preenchido via JS) -->
             <h1 id="heroTitle">
+                <!-- O JS preenche estas partes com <small> -->
                 <small>Sua viagem para</small><br>
                 <span class="highlight">[NOME DO EVENTO]</span> 
                 <small>resolvida em minutos.</small>
             </h1>
             
+            <!-- Subtítulo dinâmico (será preenchido via JS) -->
             <p id="heroSubheadline">Voos + hotéis próximos ao [LOCAL] com tarifas corporativas e suporte completo.</p>
             
+            <!-- CTA Principal de WhatsApp (usa o mesmo link do CTA fixo) -->
             <a id="heroWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
+                <!-- ÍCONE OFICIAL WHATSAPP -->
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
                 <span class="label">RECEBA DETALHAMENTO NO WHATSAPP</span>
             </a>
             
+            <!-- Microcopy -->
             <small id="heroMicrocopy">Enviamos PDF com hotéis, voos e todos detalhes pra viagem.</small>
         </div>
     </section>
@@ -634,6 +649,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 
     <main id="eventContent" class="event-page" hidden>
 
+        <!-- NOVO: SEÇÃO DE HOTÉIS INTEGRADA AO MAIN -->
         <div id="hotelsSection" class="hotels-section" style="display:none;">
             <h2 class="wrap">GARANTA SUA VIAGEM AGORA MESMO</h2>
             <p class="wrap section-lead" style="margin-bottom: 24px;">
@@ -643,6 +659,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 
             <div id="hotelsWrapper" class="hotels-wrapper">
                 <div id="hotelsCarouselContainer" class="cl-track">
+                    <!-- Cards de Hotéis serão injetados aqui -->
                     </div>
                 <button class="carousel-nav prev" id="prevHotels">
                     <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
@@ -675,6 +692,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         
         <div class="event-cta-fixed">
             <a id="whatsappCta" href="#" target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco e reserve seu pacote">
+                <!-- ÍCONE OFICIAL WHATSAPP -->
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
                 <span class="label">RESERVE AGORA</span>
             </a>
@@ -685,12 +703,14 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         <div class="footer-cta-area">
             <h2 id="footerCtaTitle" class="footer-cta-title">Garanta Sua Vaga no Evento!</h2>
             <a id="footerWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
+                <!-- ÍCONE OFICIAL WHATSAPP -->
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
                 <span class="label">SOLICITAR PROPOSTA AGORA</span>
             </a>
             <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
         </div>
 
+        <!-- BLOCO FINAL COM NOME DA AGÊNCIA EM GRADIENTE -->
         <div class="footer-bottom-info wrap">
             <div class="agency-name-section">
                 <h3 id="agencyNameTitle" class="agency-name-title">Winners Tour</h3>
@@ -701,8 +721,10 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </div>
         </div>
 
+        <!-- CONTAINER PARA EVENTOS SIMILARES (fica no final, antes de fechar o footer) -->
         <div class="footer-bottom-related" id="footerBottomRelated">
-            </div>
+            <!-- Conteúdo injetado pelo JS -->
+        </div>
 
     </footer>
 
