@@ -1,0 +1,96 @@
+{
+  "name": "Distrito Anhembi",
+  "slug": "distrito-anhembi",
+  "city": "São Paulo",
+  "state": "SP",
+  "banner": "/assets/venues/distrito-anhembi.webp",
+  "hotels": [
+    {
+      "type": "daytrip",
+      "id": "bate-e-volta",
+      "name": "Bate e Volta",
+      "cta": "Reservar",
+      "pillColor": "blue",
+      "category": 1,
+      "description": "A opção mais rápida para quem não precisa de pernoite. Inclui a passagem aérea de <strong>Ida e Volta no mesmo dia</strong>, permitindo maximizar o tempo dentro da feira.",
+      "image": "bate-e-volta"
+    },
+    {
+      "type": "hotel",
+      "id": "ramada-encore-tiradentes",
+      "name": "Ramada Encore",
+      "stars": 3,
+      "distance_min": 7,
+      "nightly_from_brl": 254,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "intercity-anhembi",
+      "name": "Intercity Anhembi",
+      "stars": 4,
+      "distance_min": 6,
+      "nightly_from_brl": 420,
+      "image": "/assets/hotels/default.webp",
+      "category": 3,
+      "description": "Foco na produtividade! <strong>Recomendado para Duas Diárias ou Mais</strong>. Ideal para otimizar a preparação pós-feira, com mesa de trabalho e acomodação ampla."
+    },
+    {
+      "type": "hotel",
+      "id": "holiday-inn-anhembi",
+      "name": "Holiday Inn Anhembi",
+      "stars": 4,
+      "distance_min": 1,
+      "nightly_from_brl": 607,
+      "image": "/assets/hotels/default.webp",
+      "category": 4,
+      "description": "Nível Diretoria! Garante logística zero para quem quer trabalhar e <strong>Dormir ao lado do pavilhão</strong>. Sem deslocamentos, você maximiza seu tempo."
+    },
+    {
+      "type": "hotel",
+      "id": "ibis-barra-funda",
+      "name": "Ibis SP Barra Funda",
+      "stars": 3,
+      "distance_min": 5,
+      "nightly_from_brl": 342,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "golden-tower-anhembi",
+      "name": "Golden Tower Anhembi",
+      "stars": 3,
+      "distance_min": 3,
+      "nightly_from_brl": 303,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "wyndham-nortel",
+      "name": "Wyndham Nortel",
+      "stars": 4,
+      "distance_min": 8,
+      "nightly_from_brl": 442,
+      "image": "/assets/hotels/default.webp",
+      "category": 3,
+      "description": "Foco na produtividade! <strong>Recomendado para Duas Diárias ou Mais</strong>. Ideal para otimizar a preparação pós-feira, com mesa de trabalho e acomodação ampla."
+    },
+    {
+      "type": "hotel",
+      "id": "ibis-budget-paulista",
+      "name": "Ibis Budget Paulista",
+      "stars": 2,
+      "distance_min": 19,
+      "nightly_from_brl": 243,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    }
+  ]
+}

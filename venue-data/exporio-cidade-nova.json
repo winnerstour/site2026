@@ -1,0 +1,96 @@
+{
+  "name": "ExpoRio Cidade Nova",
+  "slug": "exporio-cidade-nova",
+  "city": "Rio de Janeiro",
+  "state": "RJ",
+  "banner": "/assets/venues/exporio-cidade-nova.webp",
+  "hotels": [
+    {
+      "type": "daytrip",
+      "id": "bate-e-volta",
+      "name": "Bate e Volta",
+      "cta": "Reservar",
+      "pillColor": "blue",
+      "category": 1,
+      "description": "A opção mais rápida para quem não precisa de pernoite. Inclui a passagem aérea de <strong>Ida e Volta no mesmo dia</strong>, permitindo maximizar o tempo dentro da feira.",
+      "image": "bate-e-volta"
+    },
+    {
+      "type": "hotel",
+      "id": "hotel-saionara",
+      "name": "Hotel Saionara",
+      "stars": 3,
+      "distance_min": 6,
+      "nightly_from_brl": 339,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "arosa-rio-hotel",
+      "name": "Arosa Rio Hotel",
+      "stars": 4,
+      "distance_min": 8,
+      "nightly_from_brl": 359,
+      "image": "/assets/hotels/default.webp",
+      "category": 3,
+      "description": "Foco na produtividade! <strong>Recomendado para Duas Diárias ou Mais</strong>. Ideal para otimizar a preparação pós-feira, com mesa de trabalho e acomodação ampla."
+    },
+    {
+      "type": "hotel",
+      "id": "vila-gale-rio",
+      "name": "Vila Galé Rio",
+      "stars": 4,
+      "distance_min": 12,
+      "nightly_from_brl": 499,
+      "image": "/assets/hotels/default.webp",
+      "category": 4,
+      "description": "Nível Diretoria! A escolha para quem busca mais conforto e prioriza jantares na <strong>Lapa</strong>, facilitando o networking pós-feira."
+    },
+    {
+      "type": "hotel",
+      "id": "ibis-porto-atlantico",
+      "name": "Ibis Porto Atlantico",
+      "stars": 3,
+      "distance_min": 9,
+      "nightly_from_brl": 329,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "intercity-porto-maravilha",
+      "name": "Intercity P.Maravilha",
+      "stars": 4,
+      "distance_min": 9,
+      "nightly_from_brl": 479,
+      "image": "/assets/hotels/default.webp",
+      "category": 3,
+      "description": "Foco na produtividade! <strong>Recomendado para Duas Diárias ou Mais</strong>. Ideal para otimizar a preparação pós-feira, com mesa de trabalho e acomodação ampla."
+    },
+    {
+      "type": "hotel",
+      "id": "gallant-hotel",
+      "name": "Gallant Hotel",
+      "stars": 3,
+      "distance_min": 4,
+      "nightly_from_brl": 299,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    },
+    {
+      "type": "hotel",
+      "id": "ibis-budget-centro-rj",
+      "name": "Ibis Budget Centro",
+      "stars": 2,
+      "distance_min": 11,
+      "nightly_from_brl": 259,
+      "image": "/assets/hotels/default.webp",
+      "category": 2,
+      "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
+    }
+  ]
+}
