@@ -1,7 +1,8 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO O ERRO DE CARREGAMENTO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM LINKS DE RESERVA REAIS)
 
 (function () {
-  const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour';
+  // CORREÇÃO: DOMAIN_BASE definido como const global no escopo IIFE
+  const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
   const VENUE_DATA_PATH = './venue-data/'; 
@@ -319,7 +320,6 @@
   // NOVO: Funções de Geração de Links Dinâmicos da ComprarViagem
   // ***************************************************************
   
-  const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour';
   const DEFAULT_ADULTS = 2;
   const DEFAULT_ROOMS_COUNT = 1;
 
@@ -357,23 +357,24 @@
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       
-      // Para o combined, o endpoint do ComprarViagem pede 'Z' no final
       const startDatePackage = checkInDate ? `${checkInDate}T00:00:00Z` : '';
       const endDatePackage = checkOutDate ? `${checkOutDate}T00:00:00Z` : '';
 
-      // JSON de quartos (sempre 1 quarto por padrão corporativo)
       const roomsJson = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
       const encodedRooms = encodeURIComponent(roomsJson);
       
       // --- ENDPOINT 1: DETALHES DO HOTEL ---
+      // id: HOTEL_ID (hotel.id ou hotel['id-name'])
+      const hotelIdLink = hotel.id || hotel['id-name'] || 'N/A';
+      
       const detailParams = new URLSearchParams({
           rooms: encodedRooms,
           numberOfAdults: adults,
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          id: hotel.id || hotel['id-name'] || 'N/A', // Usamos ID ou id-name para o link
-          hotelId: hotel.id || hotel['id-name'] || 'N/A',
+          id: hotelIdLink,
+          hotelId: hotelIdLink,
           type: 3, // Fixo para detalhe de hotel
           startDate: startDateDetail,
           endDate: endDateDetail,
@@ -386,7 +387,7 @@
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL ---
       const packageParams = new URLSearchParams({
           type: 1, // Fixo para pacote
-          id: hotel.id || hotel['id-name'] || 'N/A',
+          id: hotelIdLink,
           startDate: startDatePackage,
           endDate: endDatePackage,
           isPackage: 'false',
@@ -397,7 +398,6 @@
       const hotelPackageUrl = `${BASE_URL}/public/combined/hotel?${packageParams}`;
       
       // Botões HTML (Usando as classes de tema dinâmicas)
-      // Ajustado o texto do botão
       const hotelDetailButtonHtml = `
           <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
       `;
@@ -426,22 +426,26 @@
       
       // Monta as partes da linha secundária
       const starsHtml = isDayTrip ? '' : `<span class="stars">${'★'.repeat(hotel.stars)}</span>`;
-      const roomSpaceHtml = hotel.roomspace ? 
-          `<span class="room-info"><span class="emoji">${ROOM_ICON}</span> ${hotel.roomspace}m²</span>` : '';
       
-      // Separadores (pipe |)
+      const roomSpaceText = hotel.roomspace ? `${hotel.roomspace}m²` : '';
+
+      // Constrói a linha de infos secundárias
+      const roomInfoHtml = roomSpaceText ? 
+          `<span class="room-info"><span class="emoji">${ROOM_ICON}</span> ${roomSpaceText}</span>` : '';
+      
+      const priceLevelHtml = priceLevel ? 
+          `<span class="price-level">${priceLevel}</span>` : '';
+
       const separator = `<span class="info-separator">|</span>`;
       
-      let secondaryInfoHtml = [];
-      
       // Ordem: Tamanho | Preço | Estrelas
-      if (roomSpaceHtml) secondaryInfoHtml.push(roomSpaceHtml);
-      if (priceLevel) secondaryInfoHtml.push(`<span class="price-level">${priceLevel}</span>`);
-      if (starsHtml) secondaryInfoHtml.push(starsHtml);
+      let infoParts = [];
+      if (roomInfoHtml) infoParts.push(roomInfoHtml);
+      if (priceLevelHtml) infoParts.push(priceLevelHtml);
+      if (starsHtml) infoParts.push(starsHtml);
       
-      // Constrói a linha de infos secundárias separando por pipe
-      const infoLine = secondaryInfoHtml.join(separator);
-      
+      const infoLine = infoParts.join(separator); // Junta as partes com o pipe
+
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Geração de links e botões dinâmicos
@@ -605,7 +609,6 @@
         var ev = await res.json();
       }
       
-      // OBTÉM DADOS DO EVENTO PARA PEGAR DATAS
       const evData = ev; 
       
       const finalTitle = evData.title || 'Evento sem Título';
@@ -668,7 +671,7 @@
 
       // Oculta elementos antigos que foram substituídos pelo Hero
       if(eventTitle) eventTitle.style.display = 'none';
-      if(eventMeta) eventMeta.style.display = 'none';
+      if(eventMeta) eventTitle.style.display = 'none';
 
 
       // 3. CARREGAR E EXIBIR O VÍDEO (REDUZIDO PARA 70%)
@@ -706,7 +709,7 @@
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
       if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
 
-      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES) - AGORA PASSANDO evData
+      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES) - PASSANDO evData
       if (venueSlug) {
           await renderHotels(venueSlug, finalTitle, evData); 
       } else {
