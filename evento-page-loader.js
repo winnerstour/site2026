@@ -1,7 +1,6 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO E LINKS DE VOO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE URL ENCODING E PAX)
 
 (function () {
-  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -50,13 +49,14 @@
 
   // --- CONFIGURAÇÕES PADRÃO DE PAX ---
   const PAX_CONFIG = {
-      adults: 1, // CORRIGIDO: Agora 1 adulto
+      adults: 1, // Fixado em 1 adulto
       children: 0,
       infants: 0,
       teenagers: 0,
       isRoundTrip: true,
       departureIata: "CWB" 
   };
+  const DEFAULT_ADULTS = PAX_CONFIG.adults;
   const DEFAULT_ROOMS_COUNT = 1;
 
   // --- FUNÇÕES AUXILIARES ---
@@ -333,7 +333,7 @@
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
-      // CORRIGIDO: Assume que 1 quarto sempre tem 1 adulto (PAX_CONFIG)
+      // CORRIGIDO: Assume 1 quarto com 1 adulto (PAX_CONFIG)
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -377,7 +377,10 @@
           source: 'f'
       }).toString();
 
-      return `${BASE_URL}/public/combined/flight?${params}`;
+      // CORREÇÃO CRÍTICA: Descodifica os caracteres necessários na data
+      const correctedParams = params.replace(/%3A/g, ':').replace(/%2B/g, '+').replace(/%2C/g, ',');
+
+      return `${BASE_URL}/public/combined/flight?${correctedParams}`;
   }
 
 
@@ -385,7 +388,7 @@
       const BASE_URL = DOMAIN_BASE;
       
       // Ocupação padrão: 1 Adulto (como solicitado)
-      const adults = PAX_CONFIG.adults; // 1
+      const adults = PAX_CONFIG.adults;
       const children = PAX_CONFIG.children;
       const infants = PAX_CONFIG.infants;
       const roomsCount = DEFAULT_ROOMS_COUNT; 
@@ -394,7 +397,6 @@
       const checkOutDate = evData.end_date || evData.start_date;
       
       // Formatos ISO
-      // CORRIGIDO: Garante que só anexe T00:00:00.000Z se a data existir
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
@@ -417,11 +419,11 @@
           scrollToBeds: 'true'
       }).toString();
 
-      const hotelDetailUrl = `${BASE_URL}/hotel-detail?${detailParams}`;
+      // CORREÇÃO CRÍTICA: Descodifica os caracteres necessários na data e no rooms
+      const correctedDetailParams = detailParams.replace(/%3A/g, ':').replace(/%2C/g, ',').replace(/%2B/g, '+');
+      const hotelDetailUrl = `${BASE_URL}/hotel-detail?${correctedDetailParams}`;
       
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL (FLIGHT STEP) ---
-      const destinationIata = evData.cityIata || 'SAO';
-
       const hotelPackageUrl = buildCombinedFlightUrl(evData, PAX_CONFIG);
       
       // Botões HTML (Usando as classes de tema dinâmicas)
