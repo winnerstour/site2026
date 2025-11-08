@@ -1,7 +1,6 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO E LINKS DE VOO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE DATA E PAX)
 
 (function () {
-  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -50,12 +49,12 @@
 
   // --- CONFIGURAÇÕES PADRÃO DE PAX ---
   const PAX_CONFIG = {
-      adults: 1,
+      adults: 1, // CORRIGIDO: Agora 1 adulto
       children: 0,
       infants: 0,
       teenagers: 0,
       isRoundTrip: true,
-      departureIata: "CWB" // Fixado para Curitiba
+      departureIata: "CWB" 
   };
   const DEFAULT_ROOMS_COUNT = 1;
 
@@ -348,20 +347,26 @@
   
   /**
    * Monta o link para a tela de Seleção de Voos (Passo 1 do fluxo combinado).
+   * @param {object} eventData - Contém start_date, end_date.
+   * @param {object} paxConfig - Contém adults, departureIata, isRoundTrip, etc.
+   * @returns {string} URL completa.
    */
   function buildCombinedFlightUrl(eventData, paxConfig) {
       const BASE_URL = DOMAIN_BASE;
       
-      // Formato ISO: YYYY-MM-DDT00:00:00Z
+      // CORRIGIDO: Garante que só anexe T00:00:00Z se a data existir (para evitar 0001-01-01)
       const departureDate = eventData.start_date ? `${eventData.start_date}T00:00:00Z` : '';
       const returnDate = eventData.end_date ? `${eventData.end_date}T00:00:00Z` : '';
 
+      // NOTA: O destinationIata deve vir do JSON do evento (cityIata)
+      const destinationIata = eventData.cityIata || 'SAO';
+      
       const params = new URLSearchParams({
           departureDate: departureDate,
           returnDate: returnDate,
           departureIata: paxConfig.departureIata,
-          arrivalIata: eventData.destinationIata,
-          adultsCount: paxConfig.adults,
+          arrivalIata: destinationIata,
+          adultsCount: paxConfig.adults, // CORRIGIDO: Usa 1 adulto (PAX_CONFIG)
           childCount: paxConfig.children,
           infantCount: paxConfig.infants,
           teenagerCount: paxConfig.teenagers,
@@ -389,7 +394,7 @@
       // Formatos ISO
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
-      const encodedRooms = generateRoomsJson(adults, children, infants, [], roomsCount);
+      const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
       
       // Obtém o ID interno do hotel (usa 'id' ou 'id-name' do JSON do hotel)
       const hotelIdLink = hotel.id || hotel['id-name'] || 'N/A';
@@ -397,11 +402,11 @@
       // --- ENDPOINT 1: DETALHES DO HOTEL ---
       const detailParams = new URLSearchParams({
           rooms: encodedRooms,
-          numberOfAdults: adults,
+          numberOfAdults: adults, // CORRIGIDO: 1 adulto
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          hotelId: hotelIdLink, // Parâmetro CORRETO
+          hotelId: hotelIdLink, 
           type: 3, 
           startDate: startDateDetail,
           endDate: endDateDetail,
@@ -411,11 +416,9 @@
 
       const hotelDetailUrl = `${BASE_URL}/hotel-detail?${detailParams}`;
       
-      // --- ENDPOINT 2: PACOTE / VOO + HOTEL (AGORA ROTA DE VOO) ---
-      
-      // Adiciona IATA de destino (SAO por exemplo - deve ser mapeado futuramente)
-      const destinationIata = evData.destinationIata || evData.cityIata || 'SAO';
-      
+      // --- ENDPOINT 2: PACOTE / VOO + HOTEL (FLIGHT STEP) ---
+      const destinationIata = evData.cityIata || 'SAO';
+
       const hotelPackageUrl = buildCombinedFlightUrl({
           start_date: checkInDate,
           end_date: checkOutDate,
@@ -423,10 +426,15 @@
       }, PAX_CONFIG);
       
       // Botões HTML (Usando as classes de tema dinâmicas)
+      
+      // Botão Detalhes: Usa a cor da borda do card (theme.cardBorder) como cor do texto
+      // Nota: As classes text-{color}-700 devem estar disponíveis no Tailwind compilado.
+      const detailTextColor = theme.cardBorder.replace('border-', 'text-');
+
       const hotelDetailButtonHtml = `
-          <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
+          <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full ${detailTextColor} border-2 ${theme.cardBorder}">Ver detalhes do hotel</a>
       `;
-      // O botão principal de pacote AGORA USA A COR DA BORDA DO CARD (theme.button)
+      // O botão principal de pacote AGORA USA A COR PRINCIPAL DO CARD (theme.button)
       const hotelPackageButtonHtml = `
           <a href="${hotelPackageUrl}" target="_blank" rel="noopener noreferrer" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
       `;
@@ -471,7 +479,7 @@
       if (starsHtml) infoParts.push(starsHtml);
       
       const infoLine = infoParts.join(separator); // Junta as partes com o pipe
-
+      
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Geração de links e botões dinâmicos
@@ -494,14 +502,12 @@
                           ${hotel.name}
                       </h3>
                       
-                      <!-- BLOCO DE INFORMAÇÕES SECUNDÁRIAS (Room, Price Level, Stars) -->
                       <div class="secondary-info">
                           ${infoLine}
                       </div>
 
                       <p class="text-slate-600">${hotel.description}</p>
                       
-                      <!-- BOTÕES DE DETALHES E PACOTE -->
                       <div class="btn-group">
                           ${links.hotelPackageButtonHtml}
                           ${links.hotelDetailButtonHtml}
