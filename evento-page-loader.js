@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM HOTÉIS E NOVA PALETA DE CORES)
+// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM ROOMSPACE E QUEBRA DE LINHA NO TÍTULO)
 
 (function () {
   const DATA_BASE_PATH = './data/events/'; 
@@ -287,22 +287,20 @@
 
   // Lógica para determinar o nível de preço dinâmico ($$$, $$$$, etc.)
   function calculatePriceLevel(price, min, q1, median, q3, max) {
-      if (typeof price !== 'number') return 'N/A';
+      if (typeof price !== 'number') return '';
       
-      if (price <= q1) return '$';
-      if (price <= median) return '$$';
-      if (price <= q3) return '$$$';
+      // Simplificado para 4 tiers, garantindo uma distribuição visual
+      const range = max - min;
+      const tierSize = range / 4;
       
-      // Se estiver acima de Q3, usamos 4 cifrões. Se for o preço máximo, usamos 5, mas faremos uma divisão simples de 5 tiers
-      const priceRange = max - min;
-      const tierSize = priceRange / 5;
-      
-      if (price <= min + tierSize) return '$';
-      if (price <= min + 2 * tierSize) return '$$';
-      if (price <= min + 3 * tierSize) return '$$$';
-      if (price <= min + 4 * tierSize) return '$$$$';
-      return '$$$$$'; // 5 ou mais
+      if (price <= min + tierSize) return '$$';
+      if (price <= min + 2 * tierSize) return '$$$';
+      if (price <= min + 3 * tierSize) return '$$$$';
+      return '$$$$$'; 
   }
+
+  // Ícone de Planta Baixa para tamanho do quarto (simplificado com emoji)
+  const ROOM_ICON = '🏠'; 
 
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel, priceData) {
@@ -315,8 +313,8 @@
       
       const priceLevel = calculatePriceLevel(hotel.nightly_from_brl, priceData.min, priceData.q1, priceData.median, priceData.q3, priceData.max);
       
-      const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
-      const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
+      const starsHtml = isDayTrip ? '' : `<span class="stars">${'★'.repeat(hotel.stars)}</span>`;
+      const roomSpaceHtml = hotel.roomspace ? `${ROOM_ICON} ${hotel.roomspace}m²` : '';
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
@@ -332,11 +330,17 @@
                   </div>
                   <div class="content">
                       <div class="category ${theme.chip}">${distanceMin.toUpperCase()}</div>
+                      
                       <h3 class="title text-slate-900">
-                          ${hotel.name} 
-                          <span class="price-level">${priceLevel}</span>
-                          <span class="stars">${starsHtml}</span>
+                          ${hotel.name}
                       </h3>
+                      
+                      <div class="text-sm font-bold text-gray-700 mb-3">
+                          ${roomSpaceHtml}
+                          <span class="price-level">${priceLevel}</span>
+                          ${starsHtml}
+                      </div>
+
                       <p class="text-slate-600">${hotel.description}</p>
                       
                       <a href="${whatsappCta.href}" target="_blank" class="btn text-white font-semibold transition mt-3 w-full ${theme.button}" style="font-weight: 700;">
