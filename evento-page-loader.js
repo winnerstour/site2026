@@ -291,13 +291,13 @@
       const category = hotel.category || (isDayTrip ? 1 : 2);
       const theme = getHotelTheme(category);
       
-      // Texto da Categoria
-      const categoryText = isDayTrip ? 'BATE E VOLTA' : hotel.description.match(/<strong[^>]*>([^<]+)<\/strong>/)?.[1] || `Opção ${category}`;
+      // NOVO: Usa distance_min para o chip
+      const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
+      
       const priceHtml = isDayTrip ? 'CONSULTE' : `R$ ${hotel.nightly_from_brl || '---'},00 <small>/noite</small>`;
       const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
-      // Ajuste para usar hotel.image (que já contém o caminho completo no JSON)
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
@@ -311,7 +311,7 @@
                       <img loading="lazy" src="${hotelImage}" alt="${hotel.name}">
                   </div>
                   <div class="content">
-                      <div class="category ${theme.chip}">${categoryText.toUpperCase()}</div>
+                      <div class="category ${theme.chip}">${distanceMin.toUpperCase()}</div>
                       <h3 class="title text-slate-900">${hotel.name} <span class="stars">${starsHtml}</span></h3>
                       <p class="text-slate-600">${hotel.description}</p>
                       <div class="price text-slate-900">A PARTIR DE ${priceHtml}</div>
