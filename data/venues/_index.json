@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "distrito-anhembi",
+    "name": "Distrito Anhembi",
+    "file": "distrito-anhembi.json"
+  },
+  {
+    "slug": "expo-center-norte",
+    "name": "Expo Center Norte",
+    "file": "expo-center-norte.json"
+  },
+  {
+    "slug": "expominas-bh",
+    "name": "Expominas BH",
+    "file": "expominas-bh.json"
+  },
+  {
+    "slug": "exporio-cidade-nova",
+    "name": "ExpoRio Cidade Nova",
+    "file": "exporio-cidade-nova.json"
+  },
+  {
+    "slug": "expotrade-pinhais",
+    "name": "ExpoTrade Pinhais",
+    "file": "expotrade-pinhais.json"
+  },
+  {
+    "slug": "sao-paulo-expo",
+    "name": "São Paulo Expo",
+    "file": "sao-paulo-expo.json"
+  }
+]
