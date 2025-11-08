@@ -297,10 +297,11 @@
       const starsHtml = isDayTrip ? '' : '★'.repeat(hotel.stars);
       const ctaLabel = hotel.cta || (isDayTrip ? 'RESERVAR VOO' : 'RESERVAR HOTEL');
       
+      // Ajuste para usar hotel.image (que já contém o caminho completo no JSON)
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
-      // Adicionando classes Tailwind para focar na borda/ring e manter o BG-WHITE
+      // Base: rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white
       const cardClasses = `hotel-card rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white ${theme.cardBorder} ${theme.cardRing}`;
 
       return `
