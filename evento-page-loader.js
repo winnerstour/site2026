@@ -291,6 +291,7 @@
       
       const prices = priceData.prices;
       
+      // Funcao para calcular o percentil
       const getPercentile = (arr, p) => {
           if (arr.length === 0) return 0;
           const pos = (arr.length - 1) * p;
@@ -304,7 +305,7 @@
       const q50 = getPercentile(prices, 0.50);
       const q75 = getPercentile(prices, 0.75);
 
-      // Mapeamento para 2, 3, 4, 6 cifrões
+      // Mapeamento para 2, 3, 4, 6 cifrões baseados em quartis
       if (price <= q25) return '$$';
       if (price <= q50) return '$$$';
       if (price <= q75) return '$$$$';
@@ -327,12 +328,14 @@
       // Monta as partes da linha secundária
       const starsHtml = isDayTrip ? '' : `<span class="stars">${'★'.repeat(hotel.stars)}</span>`;
       const roomSpaceHtml = hotel.roomspace ? 
-          `<span class="room-info">${ROOM_ICON} ${hotel.roomspace}m²</span>` : '';
+          `<span class="room-info"><span class="emoji">${ROOM_ICON}</span> ${hotel.roomspace}m²</span>` : '';
       
       // Separadores (pipe |)
       const separator = `<span class="info-separator">|</span>`;
       
       let secondaryInfoHtml = [];
+      
+      // Ordem: Tamanho | Preço | Estrelas
       if (roomSpaceHtml) secondaryInfoHtml.push(roomSpaceHtml);
       if (priceLevel) secondaryInfoHtml.push(`<span class="price-level">${priceLevel}</span>`);
       if (starsHtml) secondaryInfoHtml.push(starsHtml);
@@ -360,6 +363,7 @@
                           ${hotel.name}
                       </h3>
                       
+                      <!-- BLOCO DE INFORMAÇÕES SECUNDÁRIAS (Room, Price Level, Stars) -->
                       <div class="secondary-info">
                           ${infoLine}
                       </div>
