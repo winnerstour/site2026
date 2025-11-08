@@ -57,7 +57,6 @@
       isRoundTrip: true,
       departureIata: "CWB" 
   };
-  const DEFAULT_ADULTS = PAX_CONFIG.adults;
   const DEFAULT_ROOMS_COUNT = 1;
 
   // --- FUNÇÕES AUXILIARES ---
@@ -334,6 +333,7 @@
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
+      // CORRIGIDO: Assume 1 quarto com 1 adulto (PAX_CONFIG)
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -397,7 +397,6 @@
       const checkOutDate = evData.end_date || evData.start_date;
       
       // Formatos ISO
-      // CORRIGIDO: Garante que só anexe T00:00:00.000Z se a data existir
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
@@ -412,6 +411,7 @@
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
+          // REMOVIDO 'id'
           hotelId: hotelIdLink, 
           type: 3, 
           startDate: startDateDetail,
@@ -421,7 +421,7 @@
       }).toString();
 
       // CORREÇÃO CRÍTICA: Descodifica os caracteres necessários na data e no rooms
-      const correctedDetailParams = detailParams.replace(/%3A/g, ':').replace(/%2C/g, ',').replace(/%2B/g, '+');
+      const correctedDetailParams = detailParams.replace(/%3A/g, ':').replace(/%2B/g, '+').replace(/%2C/g, ',');
       const hotelDetailUrl = `${BASE_URL}/hotel-detail?${correctedDetailParams}`;
       
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL (FLIGHT STEP) ---
@@ -663,7 +663,8 @@
       if (pageTitle) pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
       const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-      const faviconPath = fixPath(rawHeroPath);
+      // CORRIGIDO: Referência à variável correta 'faviconPath' (agora construída dentro do escopo)
+      const faviconPath = fixPath(faviconRawPath); 
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
           faviconEl.href = faviconPath; 
@@ -759,4 +760,70 @@
             const index = titleKey.split('_')[2]; 
             return {
               motivo_emoji: evData[`motivo_emoji_${index}`],
-              mo
+              motivo_titulo: evData[titleKey],
+              motivo_conteudo: evData[`motivo_conteudo_${index}`]
+            };
+          });
+          
+      const finalMotivos = extractedMotivos
+          .filter(m => m.motivo_titulo)
+          .concat(Array.isArray(evData.motivos) ? evData.motivos : []);
+
+      const motivosCarouselId = 'motivosContainer';
+      const motivosWrapperId = 'motivosWrapper';
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
+
+      if (finalMotivos.length > 0) {
+        const motivoSlides = finalMotivos.map(renderMotivo).join('');
+        
+        if(motivosContainer) {
+            motivosContainer.innerHTML = motivoSlides;
+            motivosContainer.classList.add('cl-track'); 
+        }
+        
+        if(motivosWrapperEl) motivosWrapperEl.insertAdjacentHTML('beforeend', `
+              <button class="carousel-nav prev">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+              </button>
+              <button class="carousel-nav next">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+              </button>
+          `);
+        
+        initCarousel(motivosCarouselId, motivosWrapperId, true); 
+        
+      } else {
+        if(document.querySelector('.motivos-section h2')) document.querySelector('.motivos-section h2').hidden = true;
+        if(motivosWrapperEl) motivosWrapperEl.hidden = true;
+      }
+
+      // 6. Renderiza Eventos Similares (AGORA NO RODAPÉ)
+      if (evData.category_macro) {
+          renderRelatedEvents(evData.category_macro, slug); 
+      }
+
+      // 7. PREENCHIMENTO DO RODAPÉ
+      if (eventPageFooter) {
+
+          if (footerCtaTitle) {
+              footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
+          }
+
+          // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
+          if (agencyNameMicro) {
+              const categoryMicro = evData.category_micro ? `Especializada em viagens corporativas para profissionais de ${evData.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
+              agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
+          }
+      }
+
+      if(loading) loading.hidden = true;
+      if(eventContent) eventContent.hidden = false;
+
+    } catch (e) {
+      console.error('Erro ao carregar evento:', e);
+      renderError(e.message);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadEventData);
+})();
