@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - AGORA COM LINKS DE RESERVA REAIS)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO O ERRO DE CARREGAMENTO)
 
 (function () {
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour';
@@ -319,14 +319,13 @@
   // NOVO: Funções de Geração de Links Dinâmicos da ComprarViagem
   // ***************************************************************
   
-  // Modelo de ocupação simplificado (assumindo 1 quarto, 2 adultos, sem crianças/bebês - Padrão Corporativo)
+  const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour';
   const DEFAULT_ADULTS = 2;
   const DEFAULT_ROOMS_COUNT = 1;
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
-      // Simplificamos, assumindo que a ocupação total se divide uniformemente,
-      // mas para o cenário corporativo, forçamos 1 quarto com a ocupação total (2 adultos)
+      // Assumindo 1 quarto com a ocupação total padrão de 2 adultos.
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -335,14 +334,12 @@
               "agesOfChild": childrenAges || [],
               "roomNum": i
           });
-          // Se fosse mais complexo, a lógica de distribuição precisaria estar nos dados JSON do evento/venue.
-          // Aqui, assumimos que todos os totais (adults, children, etc.) cabem no roomNum 0.
-          break; // Garante apenas 1 quarto na estrutura rooms, para não ter arrays vazios.
+          break; // Garante apenas 1 quarto
       }
       return JSON.stringify(rooms);
   }
-
-  function buildHotelLinks(hotel, evData) {
+  
+  function buildHotelLinks(hotel, theme, evData) {
       const BASE_URL = DOMAIN_BASE;
       
       // Dados de ocupação padrão (para o evento corporativo, geralmente 2 adultos/quarto)
@@ -352,10 +349,9 @@
       const roomsCount = DEFAULT_ROOMS_COUNT; 
       
       // Datas: Puxadas dos dados do evento
+      // Usamos start_date e end_date do JSON do evento
       const checkInDate = evData.start_date; 
-      // Assumindo uma diária mínima de 1 noite para o checkout, se não houver end_date. 
-      // Se o evento tem start/end date, idealmente o checkout seria o dia seguinte ao end_date.
-      const checkOutDate = evData.end_date || evData.start_date; 
+      const checkOutDate = evData.end_date || evData.start_date; // Fallback para 1 dia se não houver end_date.
       
       // Conversão para ISO 8601 (os endpoints são sensíveis ao formato)
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
@@ -366,7 +362,7 @@
       const endDatePackage = checkOutDate ? `${checkOutDate}T00:00:00Z` : '';
 
       // JSON de quartos (sempre 1 quarto por padrão corporativo)
-      const roomsJson = generateRoomsJson(adults, children, infants, [], roomsCount);
+      const roomsJson = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
       const encodedRooms = encodeURIComponent(roomsJson);
       
       // --- ENDPOINT 1: DETALHES DO HOTEL ---
@@ -376,8 +372,8 @@
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          id: hotel.id,
-          hotelId: hotel.id,
+          id: hotel.id || hotel['id-name'] || 'N/A', // Usamos ID ou id-name para o link
+          hotelId: hotel.id || hotel['id-name'] || 'N/A',
           type: 3, // Fixo para detalhe de hotel
           startDate: startDateDetail,
           endDate: endDateDetail,
@@ -390,7 +386,7 @@
       // --- ENDPOINT 2: PACOTE / VOO + HOTEL ---
       const packageParams = new URLSearchParams({
           type: 1, // Fixo para pacote
-          id: hotel.id,
+          id: hotel.id || hotel['id-name'] || 'N/A',
           startDate: startDatePackage,
           endDate: endDatePackage,
           isPackage: 'false',
@@ -401,13 +397,12 @@
       const hotelPackageUrl = `${BASE_URL}/public/combined/hotel?${packageParams}`;
       
       // Botões HTML (Usando as classes de tema dinâmicas)
-      const theme = getHotelTheme(hotel.category || DEFAULT_ROOMS_COUNT);
-      
+      // Ajustado o texto do botão
       const hotelDetailButtonHtml = `
-          <a href="${hotelDetailUrl}" target="_blank" rel="noopener" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
+          <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
       `;
       const hotelPackageButtonHtml = `
-          <a href="${hotelPackageUrl}" target="_blank" rel="noopener" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
+          <a href="${hotelPackageUrl}" target="_blank" rel="noopener noreferrer" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
       `;
 
       return {
@@ -417,183 +412,6 @@
           hotelPackageButtonHtml
       };
   }
-
-  // Card de MOTIVO (inalterada)
-  function renderMotivo(m) {
-    const emoji = m.motivo_emoji || m.emoji || '✨';
-    const title = m.motivo_titulo || m.title || 'Atração';
-    const text = m.motivo_conteudo || m.content || '';
-    
-    return `
-      <div class="cl-slide">
-        <li class="motivo-item">
-          <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
-            <span class="emoji" aria-hidden="true">${emoji}</span>
-            ${title.toUpperCase()}
-          </strong>
-          <p class="motivo-text-body">${text}</p>
-        </li>
-      </div>
-    `;
-  }
-  
-  // Card de Evento Similar (inalterada)
-  function buildSimilarEventCard(ev) {
-    const title = ev.title || 'Evento sem título';
-    const subtitle = ev.slug; 
-    const slug = ev.slug; 
-    
-    const finalUrl = `evento.html?slug=${slug}`;
-    
-    const rawImagePath = `/assets/img/banners/${slug}-hero.webp`; 
-    const imagePath = fixPath(rawImagePath);
-
-    const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-    const faviconPath = fixPath(faviconRawPath);
-
-    const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
-    
-    return `
-      <div class="cl-slide">
-        <a href="${finalUrl}" class="card" aria-label="${title}">
-          <div class="thumb">
-            <img loading="lazy" src="${imagePath}" alt="${title}">
-          </div>
-          <div class="content">
-            <h3 class="title">
-              ${faviconHtml}
-              <span>${title}</span>
-            </h3>
-            <p class="subtitle">${subtitle}</p>
-          </div>
-        </a>
-      </div>
-    `;
-  }
-
-  // FUNÇÃO DE INICIALIZAÇÃO UNIVERSAL DE CARROSSEL (inalterada)
-  function initCarousel(carouselId, wrapperId, isMotivos = false) {
-      const carousel = document.getElementById(carouselId);
-      const wrapper = document.getElementById(wrapperId);
-      if (!carousel || !wrapper) return;
-
-      let scrollInterval;
-      let isPaused = false;
-      const cardWidth = 318; 
-
-      const scrollRight = () => {
-          if (isPaused) return;
-
-          const currentScroll = carousel.scrollLeft;
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth; 
-
-          if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
-              carousel.scroll({left: 0, behavior: 'smooth'});
-          } else {
-              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
-          }
-      };
-
-      const startAutoplay = () => {
-          clearInterval(scrollInterval);
-          scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
-      };
-      
-      carousel.addEventListener('mouseover', () => { isPaused = true; });
-      carousel.addEventListener('mouseleave', () => { isPaused = false; });
-      
-      startAutoplay();
-      
-      const prevButton = wrapper.querySelector('.carousel-nav.prev');
-      const nextButton = wrapper.querySelector('.carousel-nav.next');
-
-      if (prevButton && nextButton) {
-          prevButton.addEventListener('click', () => {
-              carousel.scrollBy({left: -cardWidth, behavior: 'smooth'});
-          });
-          nextButton.addEventListener('click', () => {
-              carousel.scrollBy({left: cardWidth, behavior: 'smooth'});
-          });
-          
-          const checkScroll = () => {
-              const currentScroll = carousel.scrollLeft;
-              const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-
-              if (window.innerWidth > 1024) { 
-                  prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
-                  nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
-              } else {
-                  prevButton.style.display = 'none';
-                  nextButton.style.display = 'none';
-              }
-          };
-          
-          carousel.addEventListener('scroll', checkScroll);
-          window.addEventListener('resize', checkScroll);
-          checkScroll(); 
-      }
-  }
-  
-  // NOVO OBJETO DE TEMA PARA HOTÉIS (Tailwind Classes)
-  const HOTEL_THEME = {
-      1: {
-          cardBorder: "border-amber-500",
-          cardRing: "focus-within:ring-amber-500",
-          button: "bg-amber-500 hover:bg-amber-600 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-          chip: "bg-amber-100 text-amber-800",
-      },
-      2: {
-          cardBorder: "border-orange-500",
-          cardRing: "focus-within:ring-orange-500",
-          button: "bg-orange-500 hover:bg-orange-600 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-          chip: "bg-orange-100 text-orange-800",
-      },
-      3: {
-          cardBorder: "border-orange-700",
-          cardRing: "focus-within:ring-orange-700",
-          button: "bg-orange-700 hover:bg-orange-800 focus-visible:ring-orange-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-          chip: "bg-orange-100 text-orange-900",
-      },
-      4: {
-          cardBorder: "border-rose-600",
-          cardRing: "focus-within:ring-rose-600",
-          button: "bg-rose-600 hover:bg-rose-700 focus-visible:ring-rose-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-          chip: "bg-rose-100 text-rose-800",
-      },
-  };
-  function getHotelTheme(category) {
-      // Fallback para Categoria 2 (Econômico)
-      return HOTEL_THEME[category] || HOTEL_THEME[2]; 
-  }
-
-  // Lógica para determinar o nível de preço dinâmico ($$, $$$, $$$$, $$$$$$)
-  function calculatePriceLevel(price, priceData) {
-      if (typeof price !== 'number' || priceData.prices.length === 0) return '';
-      
-      const prices = priceData.prices;
-      
-      // Funcao para calcular o percentil
-      const getPercentile = (arr, p) => {
-          if (arr.length === 0) return 0;
-          const pos = (arr.length - 1) * p;
-          const base = Math.floor(pos);
-          const rest = pos - base;
-          if (base >= arr.length - 1) return arr[arr.length - 1];
-          return arr[base] + rest * (arr[base + 1] - arr[base]);
-      };
-
-      const q25 = getPercentile(prices, 0.25);
-      const q50 = getPercentile(prices, 0.50);
-      const q75 = getPercentile(prices, 0.75);
-
-      // Mapeamento para 2, 3, 4, 6 cifrões baseados em quartis
-      if (price <= q25) return '$$';
-      if (price <= q50) return '$$$';
-      if (price <= q75) return '$$$$';
-      return '$$$$$$'; 
-  }
-
-  const ROOM_ICON = '🏠'; 
 
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel, priceData, evData) {
@@ -626,17 +444,8 @@
       
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
-      // NOVO: Geração de links e botões dinâmicos
-      const links = buildHotelLinks({
-          hotelId: hotel.id || hotel['id-name'] || 'N/A', // Usamos ID para o link
-          checkIn: evData.start_date,
-          checkOut: evData.end_date || evData.start_date, // Fallback para 1 dia se não houver end_date
-          adults: 2, 
-          children: 0,
-          infants: 0,
-          childrenAges: [],
-          roomsCount: 1
-      }, theme);
+      // Geração de links e botões dinâmicos
+      const links = buildHotelLinks(hotel, theme, evData);
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
@@ -670,99 +479,9 @@
           </div>
       `;
   }
-
-  // ***************************************************************
-  // NOVO: Funções de Geração de Links Dinâmicos da ComprarViagem
-  // ***************************************************************
-  
-  const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour';
-  const DEFAULT_ADULTS = 2;
-  const DEFAULT_ROOMS_COUNT = 1;
-
-  function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
-      const rooms = [];
-      // Assumindo 1 quarto com a ocupação total padrão de 2 adultos.
-      for (let i = 0; i < roomsCount; i++) {
-          rooms.push({
-              "numberOfAdults": adults,
-              "numberOfInfant": infants,
-              "numberOfChilds": children,
-              "agesOfChild": childrenAges || [],
-              "roomNum": i
-          });
-          break; // Garante apenas 1 quarto
-      }
-      return JSON.stringify(rooms);
-  }
-  
-  function buildHotelLinks(hotel, theme) {
-      const BASE_URL = DOMAIN_BASE;
-      
-      const adults = hotel.adults || DEFAULT_ADULTS;
-      const children = hotel.children || 0;
-      const infants = hotel.infants || 0;
-      const roomsCount = hotel.roomsCount || DEFAULT_ROOMS_COUNT; 
-      
-      // Conversão para ISO 8601 (Formato YYYY-MM-DDT00:00:00.000Z ou YYYY-MM-DDT00:00:00Z)
-      const startDateDetail = hotel.checkIn ? `${hotel.checkIn}T00:00:00.000Z` : '';
-      const endDateDetail = hotel.checkOut ? `${hotel.checkOut}T00:00:00.000Z` : '';
-      
-      const startDatePackage = hotel.checkIn ? `${hotel.checkIn}T00:00:00Z` : '';
-      const endDatePackage = hotel.checkOut ? `${hotel.checkOut}T00:00:00Z` : '';
-
-      const roomsJson = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
-      const encodedRooms = encodeURIComponent(roomsJson);
-      
-      // --- ENDPOINT 1: DETALHES DO HOTEL ---
-      const detailParams = new URLSearchParams({
-          rooms: encodedRooms,
-          numberOfAdults: adults,
-          numberOfChild: children,
-          numberOfInfant: infants,
-          numberOfRooms: roomsCount,
-          id: hotel.hotelId,
-          hotelId: hotel.hotelId,
-          type: 3, 
-          startDate: startDateDetail,
-          endDate: endDateDetail,
-          source: 'h',
-          scrollToBeds: 'true'
-      }).toString();
-
-      const hotelDetailUrl = `${BASE_URL}/hotel-detail?${detailParams}`;
-      
-      // --- ENDPOINT 2: PACOTE / VOO + HOTEL ---
-      const packageParams = new URLSearchParams({
-          type: 1, 
-          id: hotel.hotelId,
-          startDate: startDatePackage,
-          endDate: endDatePackage,
-          isPackage: 'false',
-          rooms: encodedRooms,
-          source: 'h'
-      }).toString();
-
-      const hotelPackageUrl = `${BASE_URL}/public/combined/hotel?${packageParams}`;
-      
-      // Botões HTML (Usando as classes de tema dinâmicas)
-      const hotelDetailButtonHtml = `
-          <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full">Ver detalhes do hotel</a>
-      `;
-      const hotelPackageButtonHtml = `
-          <a href="${hotelPackageUrl}" target="_blank" rel="noopener noreferrer" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
-      `;
-
-      return {
-          hotelDetailUrl,
-          hotelPackageUrl,
-          hotelDetailButtonHtml,
-          hotelPackageButtonHtml
-      };
-  }
-
   
   // FUNÇÃO PARA CARREGAR E RENDERIZAR HOTÉIS
-  async function renderHotels(venueSlug, eventTitle) {
+  async function renderHotels(venueSlug, eventTitle, evData) {
       if (!hotelsSection) return;
       
       try {
@@ -790,10 +509,6 @@
           // 2. Filtra e constrói os cards
           const filteredHotels = hotels.filter(h => h.type === 'hotel' || h.type === 'daytrip').slice(0, 8);
           
-          // Obtém dados do evento (evData) do escopo principal para pegar start_date/end_date
-          const eventRes = await fetch(fixPath(`${DATA_BASE_PATH}${getSlug()}.json`));
-          const evData = eventRes.ok ? await eventRes.json() : {};
-
           // Passa priceData e evData para buildHotelCard
           const hotelSlides = filteredHotels.map(hotel => buildHotelCard(hotel, priceData, evData)).join('');
           hotelsCarouselContainer.innerHTML = hotelSlides;
@@ -814,11 +529,56 @@
 
 
   // Função para renderizar o Carrossel de Eventos Similares
-  function renderRelatedEvents(currentEventCategory, currentEventSlug) {
+  async function renderRelatedEvents(currentEventCategory, currentEventSlug) {
     if(!footerBottomRelated) return;
     
-    // ... (Lógica de renderização de eventos similares inalterada)
-    // [Mantido para brevidade]
+    try {
+        const finalAllEventsUrl = fixPath(ALL_EVENTS_URL);
+        const res = await fetch(finalAllEventsUrl);
+        
+        if (!res.ok) throw new Error("Falha ao carregar lista de eventos similares.");
+        
+        const allEvents = await res.json();
+        const relatedEvents = allEvents.filter(ev => 
+            ev.category_macro === currentEventCategory && ev.slug !== currentEventSlug
+        );
+
+        if (relatedEvents.length === 0) {
+            footerBottomRelated.style.display = 'none';
+            return;
+        }
+        
+        const relatedTitleText = `Mais Eventos em ${currentEventCategory.toUpperCase()}`;
+        const relatedSlides = relatedEvents.map(buildSimilarEventCard).join('');
+        
+        // NOVO: Injeta a estrutura completa do carrossel no footerBottomRelated
+        const relatedHtml = `
+            <div id="relatedEventsSection" class="motivos-section" style="margin-top: 30px !important;">
+                <h2 id="relatedTitle" class="wrap">${relatedTitleText}</h2>
+                <div id="relatedWrapper" class="motivos-wrapper">
+                    <div id="relatedCarouselContainer" class="cl-track">
+                        ${relatedSlides}
+                    </div>
+                    <button class="carousel-nav prev" id="prevRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+                    </button>
+                    <button class="carousel-nav next" id="nextRelated">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        footerBottomRelated.innerHTML = relatedHtml;
+        footerBottomRelated.style.display = 'block';
+
+        // Inicializa o carrossel, usando os novos IDs injetados
+        initCarousel('relatedCarouselContainer', 'relatedWrapper', false); 
+
+    } catch (e) {
+        console.error("Erro FINAL no processo de renderização de similares:", e);
+        if(footerBottomRelated) footerBottomRelated.style.display = 'none';
+    }
   }
 
 
@@ -845,8 +605,11 @@
         var ev = await res.json();
       }
       
-      const finalTitle = ev.title || 'Evento sem Título';
-      const venueSlug = ev.venue_slug || ev.venue || ev.slug;
+      // OBTÉM DADOS DO EVENTO PARA PEGAR DATAS
+      const evData = ev; 
+      
+      const finalTitle = evData.title || 'Evento sem Título';
+      const venueSlug = evData.venue_slug || evData.venue || evData.slug;
       
       // Formata o slug do local: retira traços e coloca em caixa alta
       const formattedVenueName = venueSlug
@@ -854,7 +617,7 @@
           .toUpperCase();
       
       // Pega a cor do JSON 
-      const chipColor = ev.ChipColor || ev.chip_color || 'bg-slate-700'; 
+      const chipColor = evData.ChipColor || evData.chip_color || 'bg-slate-700'; 
       const colors = getHeroGradient(chipColor);
       
       // ******* 1. ATUALIZAÇÃO DA PÁGINA E FAVICON *******
@@ -870,7 +633,7 @@
       // ******* 2. CARREGAR E EXIBIR O NOVO HERO DE TELA CHEIA *******
       
       // 2.1. Caminho da Imagem de Fundo (nova convenção)
-      const categoryMacroSlug = ev.category_macro ? ev.category_macro.replace(/ /g, '-').replace(/&/g, 'e') : 'default';
+      const categoryMacroSlug = evData.category_macro ? evData.category_macro.replace(/ /g, '-').replace(/&/g, 'e') : 'default';
       const rawHeroBgPath = `/assets/img/banners/${categoryMacroSlug}-bannerhero.webp`;
       const heroBgPath = fixPath(rawHeroBgPath);
       
@@ -897,8 +660,8 @@
           // Usa o nome do local formatado
           heroSubheadline.textContent = `Voos + hotéis próximos ao ${formattedVenueName} com tarifas corporativas e suporte completo.`;
       }
-      if(heroBadge && ev.category_micro) {
-          heroBadge.textContent = ev.category_micro.toUpperCase();
+      if(heroBadge && evData.category_micro) {
+          heroBadge.textContent = evData.category_micro.toUpperCase();
       } else if (heroBadge) {
           heroBadge.style.display = 'none';
       }
@@ -909,7 +672,7 @@
 
 
       // 3. CARREGAR E EXIBIR O VÍDEO (REDUZIDO PARA 70%)
-      const rawVideoInput = ev.YouTubeVideo; 
+      const rawVideoInput = evData.YouTubeVideo; 
       const youtubeVideoId = extractVideoId(rawVideoInput);
 
       if (youtubeVideoId) {
@@ -930,41 +693,41 @@
           if (youtubeVideoContainer) youtubeVideoContainer.innerHTML = videoHtml;
       } 
       
-      const metaHtml = [ev.city_state, ev.start_date, ev.category_macro].filter(Boolean).join(' | ');
+      const metaHtml = [evData.city_state, evData.start_date, evData.category_macro].filter(Boolean).join(' | ');
       if(eventMeta) eventMeta.textContent = metaHtml;
       
-      if(eventDescription) eventDescription.innerHTML = ev.initial_description ? `<p>${ev.initial_description}</p>` : `<p>${ev.subtitle || 'Descrição não disponível.'}</p>`;
+      if(eventDescription) eventDescription.innerHTML = evData.initial_description ? `<p>${evData.initial_description}</p>` : `<p>${evData.subtitle || 'Descrição não disponível.'}</p>`;
       
       // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
-      const whatsappLink = ev.whatsapp_url || defaultWhatsapp;
+      const whatsappLink = evData.whatsapp_url || defaultWhatsapp;
       if(whatsappCta) whatsappCta.href = whatsappLink;
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
       if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
 
-      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES)
+      // 4. CARREGAR E RENDERIZAR HOTÉIS (VENUES) - AGORA PASSANDO evData
       if (venueSlug) {
-          await renderHotels(venueSlug, finalTitle);
+          await renderHotels(venueSlug, finalTitle, evData); 
       } else {
           if (hotelsSection) hotelsSection.style.display = 'none';
       }
 
       // 5. Motivos para Visitar
-      const extractedMotivos = Object.keys(ev)
+      const extractedMotivos = Object.keys(evData)
           .filter(key => key.startsWith('motivo_titulo_'))
           .map(titleKey => {
             const index = titleKey.split('_')[2]; 
             return {
-              motivo_emoji: ev[`motivo_emoji_${index}`],
-              motivo_titulo: ev[titleKey],
-              motivo_conteudo: ev[`motivo_conteudo_${index}`]
+              motivo_emoji: evData[`motivo_emoji_${index}`],
+              motivo_titulo: evData[titleKey],
+              motivo_conteudo: evData[`motivo_conteudo_${index}`]
             };
           });
           
       const finalMotivos = extractedMotivos
           .filter(m => m.motivo_titulo)
-          .concat(Array.isArray(ev.motivos) ? ev.motivos : []);
+          .concat(Array.isArray(evData.motivos) ? evData.motivos : []);
 
       const motivosCarouselId = 'motivosContainer';
       const motivosWrapperId = 'motivosWrapper';
@@ -995,8 +758,8 @@
       }
 
       // 6. Renderiza Eventos Similares (AGORA NO RODAPÉ)
-      if (ev.category_macro) {
-          renderRelatedEvents(ev.category_macro, slug); 
+      if (evData.category_macro) {
+          renderRelatedEvents(evData.category_macro, slug); 
       }
 
       // 7. PREENCHIMENTO DO RODAPÉ
@@ -1008,7 +771,7 @@
 
           // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
           if (agencyNameMicro) {
-              const categoryMicro = ev.category_micro ? `Especializada em viagens corporativas para profissionais de ${ev.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
+              const categoryMicro = evData.category_micro ? `Especializada em viagens corporativas para profissionais de ${evData.category_micro.toLowerCase()}` : 'Especializada em viagens corporativas';
               agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
           }
       }
