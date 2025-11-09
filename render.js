@@ -1,4 +1,4 @@
-// render.js (Adaptado para Layout Grid/Sidebar com Filtro, Ordenação e Chip de Data)
+// render.js (Adaptado para Layout Grid/Sidebar com Filtro, Ordenação CORRIGIDA e Chip de Data/Cor)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -32,8 +32,9 @@
     function formatEventDateRange(startDate, endDate) {
         if (!startDate || !endDate) return '';
 
-        const d1 = new Date(startDate + 'T00:00:00'); // Adiciona T00:00:00 para evitar fuso horário
-        const d2 = new Date(endDate + 'T00:00:00'); 
+        // Corrigido para garantir que as datas sejam tratadas como UTC para evitar problemas de fuso horário
+        const d1 = new Date(startDate.replace(/-/g, '/') + 'T00:00:00'); 
+        const d2 = new Date(endDate.replace(/-/g, '/') + 'T00:00:00'); 
 
         const day1 = d1.getDate();
         const day2 = d2.getDate();
@@ -55,36 +56,41 @@
             dateString = `${day1}/${month1Str} - ${day2}/${month2Str}`;
         }
         
-        // RETORNA EM CAIXA ALTA CONFORME SOLICITADO
         return dateString.toUpperCase();
     }
 
     /**
      * Constrói o HTML para o card de evento no Grid.
-     * Implementa: hero_image, category_micro, e o novo chip de data.
      * @param {object} ev - Dados do evento.
      * @returns {string} HTML do card.
      */
     function buildEventCard(ev) {
-        const title = ev.title || 'Evento sem título';
+        // 1. TÍTULO EM CAIXA ALTA
+        const title = (ev.title || 'Evento sem título').toUpperCase();
         const subtitle = ev.subtitle || 'Detalhes do evento...';
         const slug = ev.slug; 
         const finalUrl = `evento.html?slug=${slug}`;
         
-        // 1. IMAGEM: Prioriza hero_image_path (hero.webp) - CORRIGIDO
+        // 2. IMAGEM: Prioriza hero_image_path (hero.webp)
         const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
         const imagePath = fixPath(rawImagePath);
 
-        // 2. CHIP DE CATEGORIA: Usa category_micro
+        // 3. CHIP DE CATEGORIA: Usa category_micro com COR CORRIGIDA
         const categoryText = (ev.category_micro || ev.category_macro || 'EVENTOS').toUpperCase();
         const chipColor = ev.chip_color || 'bg-gray-700 text-white';
-        const chipStyle = `style="background: ${chipColor.split(' ')[0]}; color: ${chipColor.split(' ')[1]};"`;
+        // Extrai a cor HEX/Class do JSON. O formato é 'bg-cor-NUM text-cor-NUM'
+        const colorClass = chipColor.split(' ')[0]; // Ex: bg-rose-600
+        const textColor = chipColor.split(' ')[1] || 'white'; // Ex: text-white
         
-        // 3. CHIP DE DATA: Usa a nova função de formatação
+        // Aplica o estilo in-line para que o CSS do index.html não quebre a cor
+        const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
+
+
+        // 4. CHIP DE DATA: Usa a função de formatação
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip" style="background: var(--brand-shadow); color: #fff;">${dateRangeText}</span>` : '';
         
-        const categoryChipHTML = `<span class="card-chip category-chip" ${chipStyle}>${categoryText}</span>`;
+        const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
 
 
         return `
@@ -119,8 +125,7 @@
     }
 
     /**
-     * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação.
-     * Implementa: Ordenação por start_date.
+     * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação CORRIGIDA.
      * @param {string} categoryFilter - Categoria macro para filtrar.
      */
     function renderEventsGrid(categoryFilter) {
@@ -131,12 +136,14 @@
             eventsToDisplay = allEventsData.filter(event => event.category_macro === categoryFilter);
         }
         
-        // ORDENAÇÃO: Mais recente (maior start_date) primeiro.
+        // ORDENAÇÃO CORRIGIDA: Crescente por data (evento mais próximo primeiro).
         eventsToDisplay.sort((a, b) => {
-            const dateA = a.start_date ? new Date(a.start_date + 'T00:00:00').getTime() : 0;
-            const dateB = b.start_date ? new Date(b.start_date + 'T00:00:00').getTime() : 0;
-            // Ordem decrescente (mais recente primeiro: B - A)
-            return dateB - dateA;
+            // Usa .replace(/-/g, '/') para garantir que o Date() interprete corretamente no Chrome/Safari
+            const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
+            const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
+            
+            // Ordem crescente (mais antigo primeiro: A - B). Se A for menor que B, A vem antes.
+            return dateA - dateB;
         });
 
 
