@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO E LÓGICA DO BOTÃO BATE-VOLTA)
 
 (function () {
   // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
@@ -68,7 +68,7 @@
   };
   const DEFAULT_ROOMS_COUNT = 1;
   const DEFAULT_ADULTS = PAX_CONFIG.adults; // 1
-  const ROOM_ICON = '🏠'; // ÚNICA DECLARAÇÃO DA CONSTANTE
+  const ROOM_ICON = '🏠'; // ÚNICA DECLARAÇÃO VÁLIDA MANTIDA
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -336,8 +336,6 @@
       return '$$$$$$'; 
   }
 
-  const ROOM_ICON = '🏠'; 
-  
   // ***************************************************************
   // Funções de Geração de Links Dinâmicos da ComprarViagem
   // ***************************************************************
@@ -446,8 +444,7 @@
   }
   
   /**
-   * Monta o botão de WhatsApp para solicitação de pacote (substitui Ver Voos + Hotel).
-   * AGORA COM O MESMO ESTILO DO SEGUNDO BOTÃO E ÍCONE OFICIAL.
+   * Monta o botão de WhatsApp para solicitação de pacote.
    */
   function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor) {
       const hotelName = hotel.name || 'Hotel Selecionado';
@@ -484,6 +481,24 @@
               <span class="label">Receber pacote no WhatsApp</span>
           </a>
       `;
+  }
+  
+  /**
+   * Monta o botão de voo para o Card Bate e Volta.
+   */
+  function buildDayTripFlightButton(evData, theme, themeHexColor) {
+    const flightUrl = buildCombinedFlightUrl(evData, PAX_CONFIG); 
+    
+    // Ícone de Avião
+    const planeSvg = `<svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="currentColor" d="M10 19l-2-2h-3l-2 2h7zm0-15l-2 2h-3l-2-2h7zm14 15l-2-2h-3l-2 2h7zm0-15l-2 2h-3l-2-2h7zm-14 7l-2 2h-3l-2-2h7zm0-15l-2 2h-3l-2-2h7zm14 7l-2 2h-3l-2-2h7zm0-15l-2 2h-3l-2-2h7zm-14 7l-2 2h-3l-2-2h7zm0-15l-2 2h-3l-2-2h7zm14 7l-2 2h-3l-2-2h7zm0-15l-2 2h-3l-2-2h7zM3 17l10-8-10-8 1.5-1 10 8 7-6v4l-7 6-10 8z" transform="scale(0.85) translate(1,1)"/></svg>`;
+
+    return `
+        <a href="${flightUrl}" target="_blank" rel="noopener noreferrer" 
+           class="btn btn-primary w-full" style="background-color: ${themeHexColor}; border-color: ${themeHexColor}; color: white;">
+            ${planeSvg}
+            <span class="label">Ver Voos Disponíveis</span>
+        </a>
+    `;
   }
   
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
@@ -527,7 +542,17 @@
 
       // Geração de links e botões dinâmicos
       const detailLink = buildHotelDetailUrl(hotel, theme, evData);
-      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+      
+      let primaryButtonHtml;
+      let secondaryButtonHtml = detailLink.hotelDetailButtonHtml; // Sempre o botão de Detalhes como secundário
+
+      if (isDayTrip) {
+          // Card Bate e Volta: Botão PRIMÁRIO é o de Voo
+          primaryButtonHtml = buildDayTripFlightButton(evData, theme, themeHexColor);
+      } else {
+          // Card de Hotel: Botão PRIMÁRIO é o de WhatsApp (pacote)
+          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+      }
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
@@ -553,8 +578,8 @@
                       <p class="text-slate-600">${hotel.description}</p>
                       
                       <div class="btn-group">
-                          ${whatsappButtonHtml}
-                          ${detailLink.hotelDetailButtonHtml}
+                          ${primaryButtonHtml}
+                          ${secondaryButtonHtml}
                       </div>
                   </div>
               </div>
