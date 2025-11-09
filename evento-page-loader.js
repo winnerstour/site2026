@@ -802,6 +802,7 @@
       }
       if(heroTitle) {
           // CORRIGIDO: Força três linhas separadas para "Sua viagem para", [EVENTO] e "resolvida em minutos."
+          // Depende do display: block no CSS para <small> e .highlight (que foi corrigido no HTML)
           const formattedTitle = `<small>Sua viagem para</small><span class="highlight">${finalTitle.toUpperCase()}</span><small>resolvida em minutos.</small>`;
           heroTitle.innerHTML = formattedTitle;
       }
