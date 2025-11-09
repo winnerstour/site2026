@@ -52,7 +52,7 @@
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
   const motivosContainer = document.getElementById('motivosContainer');
-  const whatsappCta = document.getElementById('whatsappCta');
+  // const whatsappCta = document.getElementById('whatsappCta'); // Removido, pois o botão fixo será ocultado/removido.
   const whatsappTopCta = document.getElementById('whatsappTopCta');
 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
@@ -517,7 +517,6 @@
    * Este botão se torna o SECUNDÁRIO, com link fixo e estilo de borda.
    */
   function buildDayTripFlightButtonFixedUrl(theme, themeHexColor) {
-    // Link Fixo para a Home da Loja Virtual
     const fixedFlightUrl = 'https://www.comprarviagem.com.br/winnerstour/home'; 
     
     // A classe text-{color}-500/700 deve estar disponível via Tailwind
@@ -662,20 +661,11 @@
           hotelsCarouselContainer.innerHTML = hotelSlides;
           
           // Configura o link de simulação na sub-headline da seção de hotéis (NOVA LÓGICA)
-          const simulationLink = document.querySelector('#hotelsSection .section-lead a');
+          // O elemento no HTML tem o ID hotelsWhatsLink, mas agora é usado para simulação
+          const simulationLink = document.getElementById('hotelsWhatsLink');
           if(simulationLink) {
              simulationLink.href = 'https://www.comprarviagem.com.br/winnerstour/home';
              simulationLink.innerHTML = '<strong>clique aqui para simular voos + outros hotéis disponíveis na nossa loja virtual</strong>';
-          }
-          
-          // O link do WhatsApp (hotelsWhatsLink) que era o anterior será atualizado no JS:
-          const whatsLinkElement = document.getElementById('hotelsWhatsLink');
-          if (whatsLinkElement && !simulationLink) { // Se o novo link de simulação foi criado, ignoramos o antigo hotelsWhatsLink (que é o mesmo elemento no HTML atual)
-             // Manter o link do roteiro detalhado, mas garantir que a URL do Simular Voos esteja definida
-             const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
-             const baseWhats = 'https://wa.me/5541999450111?text=';
-             whatsLinkElement.href = baseWhats + whatsText;
-             // Nota: O HTML foi atualizado para que este elemento seja o link de simulação.
           }
           
           initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
@@ -861,8 +851,9 @@
       
       // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
+      // Os botões fixos e de rodapé agora usam o mesmo link de WhatsApp
       const whatsappLink = evData.whatsapp_url || defaultWhatsapp;
-      if(whatsappCta) whatsappCta.href = whatsappLink;
+      // if(whatsappCta) whatsappCta.href = whatsappLink; // Removido, pois o CTA fixo será ocultado/removido.
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
       if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
@@ -874,8 +865,6 @@
           if (hotelsSection) hotelsSection.style.display = 'none';
       }
       
-      // Lógica do botão de simulação removida, apenas garantindo que o link do subtítulo seja configurado na renderHotels()
-
       // 5. Motivos para Visitar
       const extractedMotivos = Object.keys(evData)
           .filter(key => key.startsWith('motivo_titulo_'))
