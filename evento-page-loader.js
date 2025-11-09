@@ -74,7 +74,7 @@
       
       if (path.startsWith('/')) {
           if (BASE_PATH) {
-              return BASE_BASE + path; 
+              return BASE_PATH + path; 
           }
           return path;
       }
@@ -398,6 +398,7 @@
       const checkOutDate = evData.end_date || evData.start_date;
       
       // Formatos ISO
+      // CORRIGIDO: Garante que só anexe T00:00:00.000Z se a data existir
       const startDateDetail = checkInDate ? `${checkInDate}T00:00:00.000Z` : '';
       const endDateDetail = checkOutDate ? `${checkOutDate}T00:00:00.000Z` : '';
       const encodedRooms = generateRoomsJson(adults, children, infants, hotel.childrenAges, roomsCount);
@@ -424,8 +425,6 @@
       const correctedDetailParams = detailParams.replace(/%3A/g, ':').replace(/%2B/g, '+').replace(/%2C/g, ',');
       const hotelDetailUrl = `${BASE_URL}/hotel-detail?${correctedDetailParams}`;
       
-      // Botões HTML (Usando as classes de tema dinâmicas)
-      
       // Botão Detalhes: Usa a cor da borda do card (theme.cardBorder) como cor do texto
       // A classe text-{color}-500/700 deve estar disponível via Tailwind
       const detailTextColor = theme.cardBorder.replace('border-', 'text-');
@@ -436,12 +435,9 @@
 
       return { hotelDetailUrl, hotelDetailButtonHtml };
   }
-
+  
   /**
-   * Monta o link de WhatsApp para solicitação de pacote.
-   * @param {object} hotel - Dados do hotel (name, etc.).
-   * @param {object} evData - Dados do evento (title, start_date, end_date).
-   * @returns {string} HTML do botão WhatsApp.
+   * Monta o botão de WhatsApp para solicitação de pacote (substitui Ver Voos + Hotel).
    */
   function buildWhatsAppPackageButton(hotel, evData) {
       const hotelName = hotel.name || 'Hotel Selecionado';
@@ -449,13 +445,15 @@
       
       // Função simples para converter YYYY-MM-DD para DD/MM/AAAA (para mensagem BR)
       const formatDateBR = (dateStr) => {
-          if (!dateStr || dateStr.length !== 10) return "DATA INDEFINIDA";
+          if (!dateStr || dateStr.length !== 10) return "[DATA DE ENTRADA/SAÍDA]";
           const [year, month, day] = dateStr.split('-');
           return `${day}/${month}/${year}`;
       };
 
       const checkInBR = evData.start_date ? formatDateBR(evData.start_date) : '[DATA DE ENTRADA]';
       const checkOutBR = evData.end_date ? formatDateBR(evData.end_date) : '[DATA DE SAÍDA]';
+      const departureIata = PAX_CONFIG.departureIata;
+
 
       const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
 
@@ -473,7 +471,6 @@
       `;
   }
   
-
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel, priceData, evData) {
       const isDayTrip = hotel.type === 'daytrip';
@@ -537,7 +534,7 @@
                       <p class="text-slate-600">${hotel.description}</p>
                       
                       <div class="btn-group">
-                          ${whatsappButtonHtml} 
+                          ${whatsappButtonHtml}
                           ${detailLink.hotelDetailButtonHtml}
                       </div>
                   </div>
