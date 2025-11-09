@@ -1,4 +1,4 @@
-// render.js (FINAL - Corrigido bug do Chip de Data)
+// render.js (FINAL - Corrigido bug do Chip de Data e Imagem)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -49,7 +49,6 @@
 
     /**
      * Formata a exibição da data do evento do evento de acordo com a regra.
-     * CORREÇÃO: Utiliza o formato T12:00:00Z para garantir a interpretação correta do dia (UTC/Meio dia).
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -61,10 +60,13 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        // Adicionada verificação extra de segurança para a data.
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
-             console.error("Data inválida para formatEventDateRange:", startDate, endDate);
-             return '';
+             // Fallback: se a data for inválida, exibe as datas originais no formato DD/MM
+             const day1Fallback = startDate.split('-').reverse()[0];
+             const month1Fallback = startDate.split('-')[1];
+             const day2Fallback = endDate.split('-').reverse()[0];
+             const month2Fallback = endDate.split('-')[1];
+             return `${day1Fallback}/${month1Fallback} - ${day2Fallback}/${month2Fallback}`;
         }
         
         // Puxamos a data no formato UTC para consistência
