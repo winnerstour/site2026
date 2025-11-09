@@ -330,6 +330,11 @@ h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos reba
     min-height: 100%;
     text-align: center;
 }
+.hotel-card:hover {
+    box-shadow: var(--shadow-hover);
+    background: var(--card-hover-bg);
+    border-color: rgba(249, 115, 22, 0.5); 
+}
 .hotel-card .thumb {
     height: 240px; /* CORRIGIDO: Aumentado para 240px */
     overflow: hidden;
@@ -713,40 +718,41 @@ h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos reba
 .menu-w-button {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.9);
+    background: none; /* ALTERADO: Remove o fundo para ser flutuante */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+    box-shadow: none; /* REMOVIDO: Sombra/Borda */
     transition: all 0.3s ease;
 }
 .menu-line {
-    width: 24px;
+    width: 28px; /* ALTERADO: Todas as linhas iguais */
     height: 3px;
-    background: var(--text-charcoal);
-    margin: 3px 0;
+    background: #fff; /* ALTERADO: Linhas brancas */
+    margin: 4px 0; /* Aumentado espaçamento vertical */
+    border-radius: 999px; /* ADICIONADO: Pontas arredondadas */
     transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.3s ease;
 }
 
-/* ANIMAÇÃO HOVER (HAMBÚRGUER PARA W) */
+/* ANIMAÇÃO HOVER (HAMBÚRGUER PARA W) - CORRIGIDA */
 .menu-w-button:hover .line-1 {
-    transform: translateY(12px) rotate(35deg) translateX(4px); 
-    width: 20px;
+    transform: translateY(10px) rotate(25deg); /* Forma o topo esquerdo do W */
+    width: 28px;
 }
 .menu-w-button:hover .line-2 {
-    transform: translateY(6px) rotate(-35deg) translateX(4px);
-    width: 20px;
+    transform: translateY(5px) rotate(-25deg); /* Forma o centro esquerdo do W */
+    width: 28px;
 }
 .menu-w-button:hover .line-3 {
-    transform: translateY(-6px) rotate(35deg) translateX(-4px); 
-    width: 20px;
+    transform: translateY(-5px) rotate(25deg); /* Forma o centro direito do W */
+    width: 28px;
 }
 .menu-w-button:hover .line-4 {
-    transform: translateY(-12px) rotate(-35deg) translateX(-4px); 
-    width: 20px;
+    transform: translateY(-10px) rotate(-25deg); /* Forma o topo direito do W */
+    width: 28px;
 }
 /* --- FIM DOS ESTILOS DO BOTÃO --- */
 
