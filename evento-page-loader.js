@@ -451,13 +451,12 @@
   }
   
   /**
-   * Monta o botão de WhatsApp para solicitação de pacote.
+   * Monta o botão de WhatsApp para solicitação de pacote. (MODIFICADA)
    */
-  function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor) {
-      const hotelName = hotel.name || 'Hotel Selecionado';
+  function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, isDayTrip = false) {
       const eventTitle = evData.title || 'Evento';
       
-      // Função simples para converter YYYY-MM-DD para DD/MM/AAAA (para mensagem BR)
+      // Função para formatar a data
       const formatDateBR = (dateStr) => {
           if (!dateStr || dateStr.length !== 10) return "[DATA INDEFINIDA]";
           const [year, month, day] = dateStr.split('-');
@@ -467,15 +466,23 @@
       const checkInBR = evData.start_date ? formatDateBR(evData.start_date) : '[DATA DE ENTRADA]';
       const checkOutBR = evData.end_date ? formatDateBR(evData.end_date) : '[DATA DE SAÍDA]';
 
-      const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
+      let message, label;
+
+      if (isDayTrip) {
+          // Lógica para Bate e Volta (Somente Voo)
+          label = 'Receber Voos no WhatsApp';
+          message = `Olá! Quero um orçamento de Voos bate e volta para o evento ${eventTitle}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
+      } else {
+          // Lógica para Hotel Padrão (Voo + Hotel)
+          const hotelName = hotel.name || 'Hotel Selecionado';
+          label = 'Receber pacote no WhatsApp';
+          message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
+      }
 
       const whatsappUrl = `https://wa.me/5541999450111?text=${encodeURIComponent(message)}`;
 
-      // Ícone OFICIAL do WhatsApp (mais detalhado)
-      const whatsappSvg = '<svg class="w-5 h-5" viewBox="0 0 32 32"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>';
-
-      // A cor do texto e da borda será a cor da categoria do hotel (themeHexColor)
       // O estilo primário (fundo sólido) é forçado aqui
+      // Adicionado justify-content: center para centralizar o texto do botão
       const style = `
           background-color: ${themeHexColor} !important;
           border-color: ${themeHexColor} !important;
@@ -484,21 +491,24 @@
           padding: 8px 12px !important;
           border-radius: 999px;
           font-size: 14px;
+          display: flex; /* Garante que o display seja flexível para alinhamento */
+          justify-content: center; /* Centraliza o conteúdo horizontalmente */
       `;
-      // Remove o ícone do WhatsApp para ser o botão principal sem o ícone verde
+
+      // Ícone removido para manter o alinhamento centralizado
       const whatsappSvgOnlyText = '';
 
       return `
           <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
              class="btn btn-primary w-full" style="${style}">
               ${whatsappSvgOnlyText}
-              <span class="label">Receber pacote no WhatsApp</span>
+              <span class="label">${label}</span>
           </a>
       `;
   }
   
   /**
-   * Monta o botão de voo para o Card Bate e Volta com URL FIXA. (NOVA FUNÇÃO)
+   * Monta o botão de voo para o Card Bate e Volta com URL FIXA.
    * Este botão se torna o SECUNDÁRIO, com link fixo e estilo de borda.
    */
   function buildDayTripFlightButtonFixedUrl(theme, themeHexColor) {
@@ -566,14 +576,14 @@
 
       if (isDayTrip) {
           // Card Bate e Volta (Comportamento INVERTIDO):
-          // 1. Botão PRIMÁRIO (sólido) é o de WhatsApp (igual aos demais cards)
-          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+          // 1. Botão PRIMÁRIO (sólido) é o de WhatsApp (com texto 'Voos')
+          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, true); // Passa isDayTrip=true
           // 2. Botão SECUNDÁRIO (borda) é o de Voo com URL Fixa
           secondaryButtonHtml = buildDayTripFlightButtonFixedUrl(theme, themeHexColor);
       } else {
           // Card de Hotel Padrão:
           // 1. Botão PRIMÁRIO (sólido) é o de WhatsApp (pacote)
-          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, false); // Passa isDayTrip=false
           // 2. Botão SECUNDÁRIO (borda) é o de Detalhes do Hotel
           secondaryButtonHtml = detailLink.hotelDetailButtonHtml;
       }
