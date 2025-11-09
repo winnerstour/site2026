@@ -49,6 +49,7 @@
 
     /**
      * Formata a exibição da data do evento do evento de acordo com a regra.
+     * CORREÇÃO: Utiliza o formato T12:00:00Z para garantir a interpretação correta do dia (UTC/Meio dia).
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -60,7 +61,11 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return '';
+        // Adicionada verificação extra de segurança para a data.
+        if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
+             console.error("Data inválida para formatEventDateRange:", startDate, endDate);
+             return '';
+        }
         
         // Puxamos a data no formato UTC para consistência
         const day1 = d1.getUTCDate();
@@ -114,9 +119,9 @@
         const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
 
 
-        // 4. CHIP DE DATA: Usa a função de formatação
+        // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        // O estilo do chip de data é herdado do CSS (.card-chip.date-chip)
+        // Garante que o HTML do chip de data seja inserido
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
@@ -132,7 +137,8 @@
             </div>
             <div class="card-content">
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    ${dateChipHTML} ${categoryChipHTML}
+                    ${dateChipHTML} 
+                    ${categoryChipHTML}
                 </div>
                 <p class="card-title">
                   ${title}
