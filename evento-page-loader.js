@@ -68,7 +68,7 @@
   };
   const DEFAULT_ROOMS_COUNT = 1;
   const DEFAULT_ADULTS = PAX_CONFIG.adults; // 1
-  const ROOM_ICON = '🏠'; // ÚNICA DECLARAÇÃO VÁLIDA MANTIDA
+  const ROOM_ICON = '🏠'; // Declaração ÚNICA VÁLIDA MANTIDA
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -490,7 +490,7 @@
   function buildDayTripFlightButton(evData, theme, themeHexColor) {
     const flightUrl = buildCombinedFlightUrl(evData, PAX_CONFIG); 
     
-    // Ícone de Avião/WhatsApp REMOVIDO
+    // Ícone de Avião/WhatsApp REMOVIDO para seguir o estilo compacto
     const planeSvg = ''; 
 
     // NOVO ESTILO: Cor de Fundo = themeHexColor, Cor do Texto = Branco, Estilo Primário
