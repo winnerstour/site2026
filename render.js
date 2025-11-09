@@ -1,4 +1,4 @@
-// render.js (FINAL - Corrigido bug do Chip de Data e Imagem)
+// render.js (FINAL - Corrigido bug do Chip de Data e Altura da Imagem)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -11,7 +11,10 @@
     let allEventsData = []; // Armazena todos os eventos carregados
 
     // Mapeamento de meses para abreviação em Português
+    // Nomes com 4 letras (ABR, MAI, JUN, JUL) são mantidos, o resto é abreviado para 3.
     const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+    const MONTH_FULL_NAMES = ['JAN', 'FEV', 'MAR', 'ABRIL', 'MAIO', 'JUN', 'JULHO', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
 
     // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
     function mapToSimplifiedCategory(macroCategory) {
@@ -48,7 +51,7 @@
     }
 
     /**
-     * Formata a exibição da data do evento do evento de acordo com a regra.
+     * Formata a exibição da data do evento, implementando a lógica de abreviação/nome completo.
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -60,34 +63,45 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
+        // Se a data for inválida, retorna formato simples DD/MM - DD/MM
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
-             // Fallback: se a data for inválida, exibe as datas originais no formato DD/MM
-             const day1Fallback = startDate.split('-').reverse()[0];
-             const month1Fallback = startDate.split('-')[1];
-             const day2Fallback = endDate.split('-').reverse()[0];
-             const month2Fallback = endDate.split('-')[1];
-             return `${day1Fallback}/${month1Fallback} - ${day2Fallback}/${month2Fallback}`;
+             const [y1, m1, d1_day] = startDate.split('-');
+             const [y2, m2, d2_day] = endDate.split('-');
+             return `${d1_day}/${m1} - ${d2_day}/${m2}`.toUpperCase();
         }
         
-        // Puxamos a data no formato UTC para consistência
         const day1 = d1.getUTCDate();
         const day2 = d2.getUTCDate();
         const month1 = d1.getUTCMonth();
         const month2 = d2.getUTCMonth();
         const year1 = d1.getUTCFullYear();
         const year2 = d2.getUTCFullYear();
-
+        
         let dateString;
         
-        // 1. Evento em dias no mesmo mês/ano
+        // Função auxiliar para obter a abreviação/nome
+        const getMonthName = (monthIndex) => {
+            const name = MONTH_FULL_NAMES[monthIndex];
+            // Mantém completo se tiver 4 letras (ABR, MAI, JUL, AGO) ou menos.
+            if (name.length <= 4) {
+                 return name;
+            }
+            // Reduz para 3 letras (JAN, FEV, MAR, JUN, SET, OUT, NOV, DEZ)
+            return MONTH_ABBREVIATIONS[monthIndex];
+        };
+
+        // 1. Evento NO MESMO MÊS/ANO: "11 a 14 AGO"
         if (month1 === month2 && year1 === year2) {
-            const monthAbbrev = MONTH_ABBREVIATIONS[month1];
-            dateString = `${day1} a ${day2} de ${monthAbbrev}`;
+            const monthName = getMonthName(month1);
+            dateString = `${day1} a ${day2} ${monthName}`;
         } else {
-            // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
+            // 2. Evento COM QUEBRA DE MÊS/ANO: "29/11 - 02/12"
             const month1Str = String(month1 + 1).padStart(2, '0');
             const month2Str = String(month2 + 1).padStart(2, '0');
-            dateString = `${day1}/${month1Str} - ${day2}/${month2Str}`;
+            const day1Str = String(day1).padStart(2, '0');
+            const day2Str = String(day2).padStart(2, '0');
+
+            dateString = `${day1Str}/${month1Str} - ${day2Str}/${month2Str}`;
         }
         
         return dateString.toUpperCase();
