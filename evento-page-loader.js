@@ -19,6 +19,12 @@
       'default': '#10b981', // Fallback
   };
 
+  // --- TEXTOS FIXOS PARA CATEGORIAS 2 E 3 (NOVO BLOCO) ---
+  const CATEGORY_TEXT_OVERRIDES = {
+      2: '<strong>Só pra dormir e economizar?</strong> Opção enxuta para descansar bem entre um dia e outro de feira, com ótimo custo-benefício. Ideal para quem quer praticidade e foco total no evento.',
+      3: '<strong>Mais conforto para estadias de duas noites ou mais.</strong> Categoria superior, com quartos aconchegantes, pensada para quem quer descansar melhor e aproveitar cada dia de feira.'
+  };
+
   // Seleção de Elementos 
   const eventContent = document.getElementById('eventContent');
   const loading = document.getElementById('loading');
@@ -517,6 +523,12 @@
       const themeColorName = theme.cardBorder.replace('border-', ''); 
       const themeHexColor = TAILWIND_HEX_MAP[themeColorName] || TAILWIND_HEX_MAP['default']; 
       
+      // NOVO: Aplica a SOBRESCRITA do texto se for Categoria 2 ou 3
+      let hotelDescription = hotel.description;
+      if (CATEGORY_TEXT_OVERRIDES[category]) {
+          hotelDescription = CATEGORY_TEXT_OVERRIDES[category];
+      }
+      
       // NOVO: Usa distance_min para o chip
       const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
       
@@ -570,6 +582,7 @@
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
       const cardClasses = `hotel-card rounded-2xl border-2 bg-white hover:shadow-lg transition focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white ${theme.cardBorder} ${theme.cardRing}`;
 
+      // Usa a nova variável hotelDescription, que pode conter o override
       return `
           <div class="cl-slide">
               <div class="${cardClasses}">
@@ -587,7 +600,7 @@
                           ${infoLine}
                       </div>
 
-                      <p class="text-slate-600">${hotel.description}</p>
+                      <p class="text-slate-600">${hotelDescription}</p>
                       
                       <div class="btn-group">
                           ${primaryButtonHtml}
