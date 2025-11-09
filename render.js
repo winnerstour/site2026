@@ -1,4 +1,4 @@
-// render.js (FINAL - Corrigido problema de data e mantido imagem hero)
+// render.js (FINAL - Corrigido bug do Chip de Data)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -49,7 +49,6 @@
 
     /**
      * Formata a exibição da data do evento do evento de acordo com a regra.
-     * CORREÇÃO: Utiliza o formato T12:00:00Z para garantir a interpretação correta do dia (UTC/Meio dia).
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
