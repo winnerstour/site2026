@@ -101,7 +101,7 @@ h1,h2,h3{
 h1 { font-size: 2.25rem; margin-bottom: 8px;}
 h2 { font-size: 1.5rem; margin-bottom: 20px;}
 
-/* CTA FIXO */
+/* CTA FIXO (MODIFICADO PARA OCULTAR) */
 .event-cta-fixed {
     position: sticky;
     bottom: 0;
@@ -110,6 +110,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     border-top: 1px solid rgba(2,8,23,.06);
     z-index: 900;
     text-align: center;
+    display: none !important; /* OCULTA O BOTÃO FIXO DUPLICADO */
 }
 .event-cta-fixed .btn {
     width: 100%;
@@ -769,20 +770,14 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 50px; margin-bottom: 50px;">
             </div>
         
-        <div class="event-cta-fixed">
-            <a id="whatsappCta" href="#" target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco e reserve seu pacote">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">RESERVE AGORA</span>
-            </a>
-        </div>
-    </main>
+        </main>
 
     <footer id="eventPageFooter" class="site-footer">
         <div class="footer-cta-area">
             <h2 id="footerCtaTitle" class="footer-cta-title">Garanta Sua Vaga no Evento!</h2>
             <a id="footerWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">SOLICITAR PROPOSTA AGORA</span>
+                <span class="label">RESERVE AGORA NO WHATSAPP</span>
             </a>
             <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
         </div>
