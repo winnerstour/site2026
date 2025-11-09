@@ -1,4 +1,4 @@
-// render.js (Adaptado para Layout Grid/Sidebar com Filtro, Ordenação CORRIGIDA e Chip de Data/Cor)
+// render.js (Adaptado para Layout Grid/Sidebar com Consolidação de Categorias)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -11,7 +11,33 @@
     let allEventsData = []; // Armazena todos os eventos carregados
 
     // Mapeamento de meses para abreviação em Português
-    const MONTH_ABBREVIATIONS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+    // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
+    function mapToSimplifiedCategory(macroCategory) {
+        switch (macroCategory) {
+            case 'Automotivo & Autopeças & Motos':
+                return 'AUTOMOTIVO';
+            case 'Beleza & Estética':
+                return 'ESTÉTICA';
+            case 'Construção & Arquitetura':
+                return 'CONSTRUÇÃO';
+            case 'Entretenimento & Cultura':
+                return 'CULTURA';
+            case 'Outros/Nichados':
+                return 'NICHADOS';
+            case 'Saúde & Medicina & Farma':
+            case 'Pets & Veterinária':
+                return 'MEDICINA';
+            case 'Tecnologia & Telecom':
+            case 'Logística & Supply Chain':
+                return 'TEC';
+            // Todas as demais categorias (Foodservice, Agro, Franquias, Turismo, etc.)
+            default:
+                return 'OUTROS';
+        }
+    }
+    // --- FIM DO MAPA DE CONSOLIDAÇÃO ---
 
     // Função que corrige o caminho absoluto para GitHub/Netlify
     function fixPath(path) {
@@ -22,9 +48,7 @@
     }
 
     /**
-     * Formata a exibição da data do evento do evento de acordo com a regra:
-     * - Mesmo mês: "29 A 30 DE NOV"
-     * - Meses diferentes: "29/11 - 2/12"
+     * Formata a exibição da data do evento do evento de acordo com a regra.
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -32,7 +56,6 @@
     function formatEventDateRange(startDate, endDate) {
         if (!startDate || !endDate) return '';
 
-        // Corrigido para garantir que as datas sejam tratadas como UTC para evitar problemas de fuso horário
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T00:00:00'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T00:00:00'); 
 
@@ -78,11 +101,13 @@
         // 3. CHIP DE CATEGORIA: Usa category_micro com COR CORRIGIDA
         const categoryText = (ev.category_micro || ev.category_macro || 'EVENTOS').toUpperCase();
         const chipColor = ev.chip_color || 'bg-gray-700 text-white';
-        // Extrai a cor HEX/Class do JSON. O formato é 'bg-cor-NUM text-cor-NUM'
+        
+        // Mapeamento para variáveis CSS injetadas no index.html
         const colorClass = chipColor.split(' ')[0]; // Ex: bg-rose-600
         const textColor = chipColor.split(' ')[1] || 'white'; // Ex: text-white
         
         // Aplica o estilo in-line para que o CSS do index.html não quebre a cor
+        // Adiciona a fallback #333 caso a variável não exista
         const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
 
 
@@ -92,9 +117,12 @@
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
 
+        // 5. Mapeia a categoria macro para a categoria simplificada para o filtro
+        const simplifiedCategory = mapToSimplifiedCategory(ev.category_macro);
+
 
         return `
-          <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${ev.category_macro}">
+          <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${simplifiedCategory}">
             <div class="card-media">
               <img loading="lazy" src="${imagePath}" alt="${title}">
             </div>
@@ -112,28 +140,37 @@
         `;
     }
     
+    /**
+     * Obtém as categorias únicas simplificadas a serem exibidas nas abas.
+     */
     function getUniqueCategories(events) {
         const categories = new Set();
         events.forEach(event => {
             if (event.category_macro) {
-                categories.add(event.category_macro);
+                categories.add(mapToSimplifiedCategory(event.category_macro));
             }
         });
-        // Inclui "Todos" e ordena o resto
-        const sortedCategories = ['Todos'].concat(Array.from(categories).sort());
-        return sortedCategories;
+        
+        // Define a ordem das abas conforme solicitado
+        const finalOrder = ['TODOS', 'AUTOMOTIVO', 'ESTÉTICA', 'CONSTRUÇÃO', 'CULTURA', 'NICHADOS', 'MEDICINA', 'TEC', 'OUTROS'];
+        
+        // Filtra a lista final para incluir apenas as categorias mapeadas que realmente existem
+        const uniqueAndOrderedCategories = finalOrder.filter(cat => cat === 'TODOS' || categories.has(cat));
+
+        return uniqueAndOrderedCategories;
     }
 
     /**
      * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação CORRIGIDA.
-     * @param {string} categoryFilter - Categoria macro para filtrar.
+     * @param {string} categoryFilter - Categoria simplificada para filtrar (ex: 'CONSTRUÇÃO').
      */
     function renderEventsGrid(categoryFilter) {
         eventsGrid.innerHTML = ''; // Limpa o grid
         let eventsToDisplay = allEventsData;
 
-        if (categoryFilter !== 'Todos') {
-            eventsToDisplay = allEventsData.filter(event => event.category_macro === categoryFilter);
+        // Filtra usando a categoria simplificada (o card armazena 'data-category' com a versão simplificada)
+        if (categoryFilter !== 'TODOS') {
+            eventsToDisplay = allEventsData.filter(event => mapToSimplifiedCategory(event.category_macro) === categoryFilter);
         }
         
         // ORDENAÇÃO CORRIGIDA: Crescente por data (evento mais próximo primeiro).
@@ -142,7 +179,7 @@
             const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
             const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
             
-            // Ordem crescente (mais antigo primeiro: A - B). Se A for menor que B, A vem antes.
+            // Ordem crescente (mais próximo primeiro: A - B)
             return dateA - dateB;
         });
 
@@ -162,6 +199,7 @@
             const link = document.createElement('a');
             link.href = '#';
             link.classList.add('tab-link');
+            // O texto do link é a categoria simplificada (ex: AUTOMOTIVO)
             link.textContent = category.toUpperCase();
             
             // Define o primeiro como ativo e renderiza o grid inicial
