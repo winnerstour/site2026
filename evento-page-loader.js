@@ -58,6 +58,7 @@
       departureIata: "CWB" 
   };
   const DEFAULT_ROOMS_COUNT = 1;
+  const DEFAULT_ADULTS = PAX_CONFIG.adults; // 1
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -73,7 +74,7 @@
       
       if (path.startsWith('/')) {
           if (BASE_PATH) {
-              return BASE_PATH + path; 
+              return BASE_BASE + path; 
           }
           return path;
       }
@@ -384,7 +385,7 @@
   }
 
 
-  function buildHotelLinks(hotel, theme, evData) {
+  function buildHotelDetailUrl(hotel, theme, evData) {
       const BASE_URL = DOMAIN_BASE;
       
       // Ocupação padrão: 1 Adulto (como solicitado)
@@ -411,7 +412,6 @@
           numberOfChild: children,
           numberOfInfant: infants,
           numberOfRooms: roomsCount,
-          // REMOVIDO 'id'
           hotelId: hotelIdLink, 
           type: 3, 
           startDate: startDateDetail,
@@ -424,9 +424,6 @@
       const correctedDetailParams = detailParams.replace(/%3A/g, ':').replace(/%2B/g, '+').replace(/%2C/g, ',');
       const hotelDetailUrl = `${BASE_URL}/hotel-detail?${correctedDetailParams}`;
       
-      // --- ENDPOINT 2: PACOTE / VOO + HOTEL (FLIGHT STEP) ---
-      const hotelPackageUrl = buildCombinedFlightUrl(evData, PAX_CONFIG);
-      
       // Botões HTML (Usando as classes de tema dinâmicas)
       
       // Botão Detalhes: Usa a cor da borda do card (theme.cardBorder) como cor do texto
@@ -436,18 +433,46 @@
       const hotelDetailButtonHtml = `
           <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full ${detailTextColor} border-2 ${theme.cardBorder}">Ver detalhes do hotel</a>
       `;
-      // O botão principal de pacote AGORA USA A COR PRINCIPAL DO CARD (theme.button)
-      const hotelPackageButtonHtml = `
-          <a href="${hotelPackageUrl}" target="_blank" rel="noopener noreferrer" class="btn text-white font-semibold transition w-full ${theme.button}" style="padding: 8px 12px; font-weight: 700;">Ver voos + hotel</a>
-      `;
 
-      return {
-          hotelDetailUrl,
-          hotelPackageUrl,
-          hotelDetailButtonHtml,
-          hotelPackageButtonHtml
-      };
+      return { hotelDetailUrl, hotelDetailButtonHtml };
   }
+
+  /**
+   * Monta o link de WhatsApp para solicitação de pacote.
+   * @param {object} hotel - Dados do hotel (name, etc.).
+   * @param {object} evData - Dados do evento (title, start_date, end_date).
+   * @returns {string} HTML do botão WhatsApp.
+   */
+  function buildWhatsAppPackageButton(hotel, evData) {
+      const hotelName = hotel.name || 'Hotel Selecionado';
+      const eventTitle = evData.title || 'Evento';
+      
+      // Função simples para converter YYYY-MM-DD para DD/MM/AAAA (para mensagem BR)
+      const formatDateBR = (dateStr) => {
+          if (!dateStr || dateStr.length !== 10) return "DATA INDEFINIDA";
+          const [year, month, day] = dateStr.split('-');
+          return `${day}/${month}/${year}`;
+      };
+
+      const checkInBR = evData.start_date ? formatDateBR(evData.start_date) : '[DATA DE ENTRADA]';
+      const checkOutBR = evData.end_date ? formatDateBR(evData.end_date) : '[DATA DE SAÍDA]';
+
+      const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
+
+      const whatsappUrl = `https://wa.me/5541999450111?text=${encodeURIComponent(message)}`;
+
+      // Ícone WhatsApp SVG (mesmo usado em outros botões)
+      const whatsappSvg = '<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>';
+
+
+      return `
+          <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp w-full" style="padding: 8px 12px; font-weight: 700;">
+              ${whatsappSvg}
+              <span class="label">Receber pacote no WhatsApp</span>
+          </a>
+      `;
+  }
+  
 
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
   function buildHotelCard(hotel, priceData, evData) {
@@ -485,7 +510,8 @@
       const hotelImage = fixPath(hotel.image || `/assets/hotels/default.webp`); 
 
       // Geração de links e botões dinâmicos
-      const links = buildHotelLinks(hotel, theme, evData);
+      const detailLink = buildHotelDetailUrl(hotel, theme, evData);
+      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData);
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
@@ -511,8 +537,8 @@
                       <p class="text-slate-600">${hotel.description}</p>
                       
                       <div class="btn-group">
-                          ${links.hotelPackageButtonHtml}
-                          ${links.hotelDetailButtonHtml}
+                          ${whatsappButtonHtml} 
+                          ${detailLink.hotelDetailButtonHtml}
                       </div>
                   </div>
               </div>
@@ -663,7 +689,6 @@
       if (pageTitle) pageTitle.textContent = `${finalTitle} — WinnersTour`;
       
       const faviconRawPath = `/assets/img/banners/${slug}-favicon.webp`;
-      // CORRIGIDO: Referência à variável correta 'faviconPath' (agora construída dentro do escopo)
       const faviconPath = fixPath(faviconRawPath); 
       const faviconEl = document.querySelector('link[rel="icon"]'); 
       if (faviconEl) {
