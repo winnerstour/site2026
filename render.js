@@ -22,12 +22,12 @@
     }
 
     /**
-     * Formata a exibição da data do evento (start_date e end_date) de acordo com a regra:
-     * - Mesmo mês: "29 a 30 de Nov"
+     * Formata a exibição da data do evento do evento de acordo com a regra:
+     * - Mesmo mês: "29 A 30 DE NOV"
      * - Meses diferentes: "29/11 - 2/12"
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
-     * @returns {string} String formatada para o chip de data.
+     * @returns {string} String formatada para o chip de data, em caixa alta.
      */
     function formatEventDateRange(startDate, endDate) {
         if (!startDate || !endDate) return '';
@@ -42,17 +42,21 @@
         const year1 = d1.getFullYear();
         const year2 = d2.getFullYear();
 
+        let dateString;
+        
         // 1. Evento em dias no mesmo mês/ano
         if (month1 === month2 && year1 === year2) {
             const monthAbbrev = MONTH_ABBREVIATIONS[month1];
-            return `${day1} a ${day2} de ${monthAbbrev}`;
+            dateString = `${day1} a ${day2} de ${monthAbbrev}`;
+        } else {
+            // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
+            const month1Str = String(month1 + 1).padStart(2, '0');
+            const month2Str = String(month2 + 1).padStart(2, '0');
+            dateString = `${day1}/${month1Str} - ${day2}/${month2Str}`;
         }
         
-        // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
-        const month1Str = String(month1 + 1).padStart(2, '0');
-        const month2Str = String(month2 + 1).padStart(2, '0');
-        
-        return `${day1}/${month1Str} - ${day2}/${month2Str}`;
+        // RETORNA EM CAIXA ALTA CONFORME SOLICITADO
+        return dateString.toUpperCase();
     }
 
     /**
@@ -67,21 +71,20 @@
         const slug = ev.slug; 
         const finalUrl = `evento.html?slug=${slug}`;
         
-        // 1. IMAGEM: Prioriza hero_image_path (hero.webp)
+        // 1. IMAGEM: Prioriza hero_image_path (hero.webp) - CORRIGIDO
         const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
         const imagePath = fixPath(rawImagePath);
 
         // 2. CHIP DE CATEGORIA: Usa category_micro
-        const categoryText = ev.category_micro || ev.category_macro || 'EVENTOS';
-        // Determina a cor do chip (Usando a lógica de chip_color do JSON, senão usa padrão)
-        const chipClass = ev.chip_color ? `style="background: ${ev.chip_color.split(' ')[0]}; color: ${ev.chip_color.split(' ')[1]};"` : '';
+        const categoryText = (ev.category_micro || ev.category_macro || 'EVENTOS').toUpperCase();
+        const chipColor = ev.chip_color || 'bg-gray-700 text-white';
+        const chipStyle = `style="background: ${chipColor.split(' ')[0]}; color: ${chipColor.split(' ')[1]};"`;
         
         // 3. CHIP DE DATA: Usa a nova função de formatação
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip" style="background: var(--brand-shadow); color: #fff;">${dateRangeText}</span>` : '';
         
-        // Estilo especial para o chip de data, para ser visivelmente diferente
-        const categoryChipHTML = `<span class="card-chip category-chip" ${chipClass}>${categoryText.toUpperCase()}</span>`;
+        const categoryChipHTML = `<span class="card-chip category-chip" ${chipStyle}>${categoryText}</span>`;
 
 
         return `
