@@ -63,7 +63,7 @@
   const hotelsWrapper = document.getElementById('hotelsWrapper');
   const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
   
-  // NOVO ELEMENTO DO BOTÃO DE SIMULAÇÃO
+  // NOVO ELEMENTO DO BOTÃO DE SIMULAÇÃO (Mantido no JS para referência, mas ignorado no DOM)
   const simulationCta = document.getElementById('simulationCta');
 
 
@@ -455,7 +455,7 @@
   }
   
   /**
-   * Monta o botão de WhatsApp para solicitação de pacote. (MODIFICADA)
+   * Monta o botão de WhatsApp para solicitação de pacote.
    */
   function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, isDayTrip = false) {
       const eventTitle = evData.title || 'Evento';
@@ -517,6 +517,7 @@
    * Este botão se torna o SECUNDÁRIO, com link fixo e estilo de borda.
    */
   function buildDayTripFlightButtonFixedUrl(theme, themeHexColor) {
+    // Link Fixo para a Home da Loja Virtual
     const fixedFlightUrl = 'https://www.comprarviagem.com.br/winnerstour/home'; 
     
     // A classe text-{color}-500/700 deve estar disponível via Tailwind
@@ -583,7 +584,7 @@
           // Card Bate e Volta:
           // 1. Botão PRIMÁRIO (sólido) é o de WhatsApp (com texto 'Voos')
           primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, true); // Passa isDayTrip=true
-          // 2. Botão SECUNDÁRIO (borda) é o de Voo com URL Fixa
+          // 2. Botão SECUNDÁRIO (borda) é o de Voo com URL Fixa (apontando para a Home)
           secondaryButtonHtml = buildDayTripFlightButtonFixedUrl(theme, themeHexColor);
       } else {
           // Card de Hotel Padrão:
@@ -660,9 +661,22 @@
           const hotelSlides = filteredHotels.map(hotel => buildHotelCard(hotel, priceData, evData)).join('');
           hotelsCarouselContainer.innerHTML = hotelSlides;
           
-          const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
-          const baseWhats = 'https://wa.me/5541999450111?text=';
-          if(hotelsWhatsLink) hotelsWhatsLink.href = baseWhats + whatsText;
+          // Configura o link de simulação na sub-headline da seção de hotéis (NOVA LÓGICA)
+          const simulationLink = document.querySelector('#hotelsSection .section-lead a');
+          if(simulationLink) {
+             simulationLink.href = 'https://www.comprarviagem.com.br/winnerstour/home';
+             simulationLink.innerHTML = '<strong>clique aqui para simular voos + outros hotéis disponíveis na nossa loja virtual</strong>';
+          }
+          
+          // O link do WhatsApp (hotelsWhatsLink) que era o anterior será atualizado no JS:
+          const whatsLinkElement = document.getElementById('hotelsWhatsLink');
+          if (whatsLinkElement && !simulationLink) { // Se o novo link de simulação foi criado, ignoramos o antigo hotelsWhatsLink (que é o mesmo elemento no HTML atual)
+             // Manter o link do roteiro detalhado, mas garantir que a URL do Simular Voos esteja definida
+             const whatsText = encodeURIComponent(`Olá! Gostaria de receber a proposta detalhada de roteiros de viagem para o evento ${eventTitle} (${venueData.name}).`);
+             const baseWhats = 'https://wa.me/5541999450111?text=';
+             whatsLinkElement.href = baseWhats + whatsText;
+             // Nota: O HTML foi atualizado para que este elemento seja o link de simulação.
+          }
           
           initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
 
@@ -860,12 +874,7 @@
           if (hotelsSection) hotelsSection.style.display = 'none';
       }
       
-      // NOVO: 8. Configurar Botão de Simulação Global (Laranja)
-      const simulationCta = document.getElementById('simulationCta');
-      if (simulationCta) {
-          simulationCta.href = 'https://www.comprarviagem.com.br/winnerstour/home';
-      }
-
+      // Lógica do botão de simulação removida, apenas garantindo que o link do subtítulo seja configurado na renderHotels()
 
       // 5. Motivos para Visitar
       const extractedMotivos = Object.keys(evData)
