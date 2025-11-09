@@ -111,7 +111,7 @@ a{text-decoration:none;color:inherit}
     flex-direction: column;
     gap: 8px; /* Espaço entre os links */
 }
-/* Estilo Base dos Links Laranja (Exceto o WhatsApp) */
+/* Estilo Base dos Links Laranja (Todos os novos CTAs) */
 .cta-link-sidebar {
     display: flex;
     align-items: center;
@@ -132,39 +132,7 @@ a{text-decoration:none;color:inherit}
     line-height: 1;
 }
 
-/* BOTÃO WHATSAPP */
-.btn-sidebar {
-    width: 100%;
-    text-align: center;
-    font-weight: 700;
-    border-radius: 999px;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.btn-sidebar.btn-whatsapp {
-    background: var(--wa);
-    border: 2px solid var(--wa-ring);
-    color: #fff;
-    padding: 12px 14px;
-    font-size: 1rem;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.5);
-}
-.btn-sidebar.btn-whatsapp:hover {
-    background: var(--wa-hover);
-}
-.btn-sidebar.btn-whatsapp svg {
-    width: 20px;
-    height: 20px;
-    fill: #fff;
-}
-.btn-sidebar .label {
-    font-weight: 900;
-    text-transform: uppercase;
-}
+/* Estilos de Botão não utilizados removidos para limpeza */
 
 
 /* CONTEÚDO PRINCIPAL (Direita - Rolável) */
@@ -294,16 +262,15 @@ h1,h2{font-weight:900 !important; line-height: 1.1;}
         <div class="agency-info">
             <h1>Winners Tour</h1>
             <p>
-                Curating the best trips for professionals and startups. Top companies, transparent compensation.
-                <br><br>
-                Parte-time or full-time. Remote or onsite. Salary must be disclosed.
+                Curating the best trips for professionals and startups. We are a specialized travel agency focused on corporate travel and MICE (Meetings, Incentives, Conferences, and Exhibitions), serving top companies with transparent compensation since 2003.
             </p>
-            <a href="#" target="_blank">Submit a request</a>
             
             <div class="whatsapp-cta">
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="btn-sidebar btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
-                    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                    <span class="label">FALE COM NOSSA EQUIPE AGORA</span>
+                <p style="font-size: 14px; margin: 0 0 10px; font-weight: 700; color: var(--muted);">
+                    Precisa de suporte completo, dúvidas ou orçamentos?
+                </p>
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
                  </a>
 
                  <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
