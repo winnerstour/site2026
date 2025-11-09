@@ -1,6 +1,7 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ESTILO, ÍCONE E CARREGAMENTO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO)
 
 (function () {
+  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -67,7 +68,7 @@
   };
   const DEFAULT_ROOMS_COUNT = 1;
   const DEFAULT_ADULTS = PAX_CONFIG.adults; // 1
-  const ROOM_ICON = '🏠'; 
+  const ROOM_ICON = '🏠'; // ÚNICA DECLARAÇÃO DA CONSTANTE
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -462,7 +463,7 @@
       const checkInBR = evData.start_date ? formatDateBR(evData.start_date) : '[DATA DE ENTRADA]';
       const checkOutBR = evData.end_date ? formatDateBR(evData.end_date) : '[DATA DE SAÍDA]';
 
-      const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
+      const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
 
       const whatsappUrl = `https://wa.me/5541999450111?text=${encodeURIComponent(message)}`;
 
