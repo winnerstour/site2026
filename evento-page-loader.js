@@ -1,7 +1,6 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE CARREGAMENTO E INCLUSÃO DE WHATSAPP)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ESTILO, ÍCONE E CARREGAMENTO)
 
 (function () {
-  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -9,6 +8,15 @@
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
   const SCROLL_SPEED = 8000; 
+
+  // Mapeamento Tailwind para HEX (necessário para aplicar a cor do botão via CSS inline)
+  const TAILWIND_HEX_MAP = {
+      'amber-500': '#fbbf24', 
+      'orange-500': '#f97316', 
+      'orange-700': '#c2410c',
+      'rose-600': '#e11d48',
+      'default': '#10b981', // Fallback
+  };
 
   // Seleção de Elementos 
   const eventContent = document.getElementById('eventContent');
@@ -437,16 +445,16 @@
   }
   
   /**
-   * Monta o botão de WhatsApp para solicitação de pacote.
+   * Monta o botão de WhatsApp para solicitação de pacote (substitui Ver Voos + Hotel).
    * AGORA COM O MESMO ESTILO DO SEGUNDO BOTÃO E ÍCONE OFICIAL.
    */
-  function buildWhatsAppPackageButton(hotel, evData, theme) {
+  function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor) {
       const hotelName = hotel.name || 'Hotel Selecionado';
       const eventTitle = evData.title || 'Evento';
       
       // Função simples para converter YYYY-MM-DD para DD/MM/AAAA (para mensagem BR)
       const formatDateBR = (dateStr) => {
-          if (!dateStr || dateStr.length !== 10) return "[DATA DE ENTRADA/SAÍDA]";
+          if (!dateStr || dateStr.length !== 10) return "[DATA INDEFINIDA]";
           const [year, month, day] = dateStr.split('-');
           return `${day}/${month}/${year}`;
       };
@@ -459,12 +467,18 @@
       const whatsappUrl = `https://wa.me/5541999450111?text=${encodeURIComponent(message)}`;
 
       // Ícone OFICIAL do WhatsApp (mais detalhado)
-      const whatsappSvg = '<svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 2.213.786 4.254 2.102 5.861L3 22l4.139-1.102C8.746 21.214 10.787 22 13 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm3.608 13.924c-.05.127-.134.22-.24.283-.106.063-.223.095-.35.095-.127 0-.244-.032-.35-.095-.106-.063-.19-.156-.24-.283l-.134-.35c-.05-.127-.063-.22-.032-.283.032-.063.116-.146.252-.252.136-.106.27-.2.404-.283.134-.083.25-.137.35-.169.1-.032.19-.02.264.032.073.05.18.156.32.32.14.16.24.283.303.35.063.063.106.127.137.19.032.063.032.095.006.19l-.025.044c-.063.095-.11.16-.137.19zM12.002 8.017c-.328 0-.629.117-.902.35-.273.233-.483.567-.63.993-.147.426-.22.883-.22 1.371 0 .584.093 1.137.28 1.66.187.523.473.97.858 1.341.386.37.833.655 1.341.856.508.201 1.056.302 1.644.302.587 0 1.14-.101 1.65-.302.51-.201.956-.486 1.342-.856.386-.37.672-.818.858-1.341.187-.523.28-1.076.28-1.66 0-.488-.073-.945-.22-1.371-.147-.426-.357-.76-.63-.993-.273-.233-.574-.35-.902-.35-.328 0-.629.117-.902.35-.273.233-.483.567-.63.993-.147.426-.22.883-.22 1.371 0 .584.093 1.137.28 1.66.187.523.473.97.858 1.341.386.37.833.655 1.341.856.508.201 1.056.302 1.644.302.587 0 1.14-.101 1.65-.302.51-.201.956-.486 1.342-.856.386-.37.672-.818.858-1.341.187-.523.28-1.076.28-1.66 0-.488-.073-.945-.22-1.371-.147-.426-.357-.76-.63-.993-.273-.233-.574-.35-.902-.35z"></path></svg>';
+      const whatsappSvg = '<svg class="w-5 h-5" viewBox="0 0 32 32"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>';
 
-
+      // A cor do texto e da borda será a cor da categoria do hotel (themeHexColor)
+      const style = `
+          color: ${themeHexColor} !important;
+          border-color: ${themeHexColor} !important;
+          background-color: transparent !important;
+      `;
+      
       return `
           <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
-             class="btn btn-whatsapp-custom w-full">
+             class="btn btn-secondary w-full" style="${style}">
               ${whatsappSvg}
               <span class="label">Receber pacote no WhatsApp</span>
           </a>
@@ -476,6 +490,10 @@
       const isDayTrip = hotel.type === 'daytrip';
       const category = hotel.category || (isDayTrip ? 1 : 2);
       const theme = getHotelTheme(category);
+      
+      // NOVO: Mapeia a classe da borda (Ex: border-amber-500) para o HEX
+      const themeColorName = theme.cardBorder.replace('border-', ''); 
+      const themeHexColor = TAILWIND_HEX_MAP[themeColorName] || TAILWIND_HEX_MAP['default']; 
       
       // NOVO: Usa distance_min para o chip
       const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
@@ -508,7 +526,7 @@
 
       // Geração de links e botões dinâmicos
       const detailLink = buildHotelDetailUrl(hotel, theme, evData);
-      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme);
+      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
