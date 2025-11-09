@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CÓDIGO FINAL)
 
 (function () {
   // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
