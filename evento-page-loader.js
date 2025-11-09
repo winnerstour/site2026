@@ -471,6 +471,7 @@
       if (isDayTrip) {
           // Lógica para Bate e Volta (Somente Voo)
           label = 'Receber Voos no WhatsApp';
+          // NOVO TEXTO: Exclui menção ao hotel
           message = `Olá! Quero um orçamento de Voos bate e volta para o evento ${eventTitle}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
       } else {
           // Lógica para Hotel Padrão (Voo + Hotel)
@@ -575,7 +576,7 @@
       let secondaryButtonHtml; 
 
       if (isDayTrip) {
-          // Card Bate e Volta (Comportamento INVERTIDO):
+          // Card Bate e Volta:
           // 1. Botão PRIMÁRIO (sólido) é o de WhatsApp (com texto 'Voos')
           primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor, true); // Passa isDayTrip=true
           // 2. Botão SECUNDÁRIO (borda) é o de Voo com URL Fixa
@@ -793,8 +794,9 @@
           }
       }
       if(heroTitle) {
-          // NOVO: Aplica a tag <small> para as partes que devem ter o tamanho reduzido (75%)
-          const formattedTitle = `<small>Sua viagem para</small><br><span class="highlight">${finalTitle.toUpperCase()}</span> <small>resolvida em minutos.</small>`;
+          // CORRIGIDO: Removida a tag <br> para evitar quebra de linha indesejada.
+          // Adicionado espaço antes do "resolvida" para evitar que fique grudado no nome do evento.
+          const formattedTitle = `<small>Sua viagem para </small><span class="highlight">${finalTitle.toUpperCase()}</span> <small> resolvida em minutos.</small>`;
           heroTitle.innerHTML = formattedTitle;
       }
       if(heroSubheadline) {
