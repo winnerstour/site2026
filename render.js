@@ -114,7 +114,7 @@
         const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
 
 
-        // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
+        // 4. CHIP DE DATA: Usa a função de formatação
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
         // O estilo do chip de data é herdado do CSS (.card-chip.date-chip)
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
@@ -132,8 +132,7 @@
             </div>
             <div class="card-content">
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    ${dateChipHTML}
-                    ${categoryChipHTML}
+                    ${dateChipHTML} ${categoryChipHTML}
                 </div>
                 <p class="card-title">
                   ${title}
