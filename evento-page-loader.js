@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE URL ENCODING E PAX)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO DE CARREGAMENTO E LINKS DE HOTEL)
 
 (function () {
   // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
@@ -334,7 +334,6 @@
 
   function generateRoomsJson(adults, children, infants, childrenAges, roomsCount) {
       const rooms = [];
-      // CORRIGIDO: Assume 1 quarto com 1 adulto (PAX_CONFIG)
       for (let i = 0; i < roomsCount; i++) {
           rooms.push({
               "numberOfAdults": adults,
@@ -439,7 +438,7 @@
   /**
    * Monta o botão de WhatsApp para solicitação de pacote (substitui Ver Voos + Hotel).
    */
-  function buildWhatsAppPackageButton(hotel, evData) {
+  function buildWhatsAppPackageButton(hotel, evData, theme) {
       const hotelName = hotel.name || 'Hotel Selecionado';
       const eventTitle = evData.title || 'Evento';
       
@@ -452,8 +451,6 @@
 
       const checkInBR = evData.start_date ? formatDateBR(evData.start_date) : '[DATA DE ENTRADA]';
       const checkOutBR = evData.end_date ? formatDateBR(evData.end_date) : '[DATA DE SAÍDA]';
-      const departureIata = PAX_CONFIG.departureIata;
-
 
       const message = `Olá! Quero um orçamento de voo + hotel para o evento ${eventTitle}, no hotel ${hotelName}, de ${checkInBR} a ${checkOutBR}. Saindo do aeroporto mais próximo da minha cidade.`;
 
@@ -508,7 +505,7 @@
 
       // Geração de links e botões dinâmicos
       const detailLink = buildHotelDetailUrl(hotel, theme, evData);
-      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData);
+      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme);
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
