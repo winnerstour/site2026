@@ -500,7 +500,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* Estilo para o destaque colorido no título (Cor mais clara) */
 #heroTitle .highlight {
     font-weight: 900;
-    /* Removido display: block */
     
     /* Sombra preta forte para borda/halo sem falhas */
     text-shadow: 0 0 6px #000000, 0 0 10px #000000, 0 0 16px rgba(0, 0, 0, 0.7); 
@@ -513,7 +512,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 #heroTitle small {
     font-size: 75%; /* 100% - 25% = 75% */
     font-weight: 900;
-    /* Removido display: block; */
     line-height: 1.1;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -590,9 +588,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         opacity: 1;
     }
 }
-/* [NOVO] Wrapper para o Vídeo (70% de largura) */
+/* [MODIFICADO] Wrapper para o Vídeo (50% de largura) */
 .youtube-wrapper {
-    max-width: 70%; 
+    max-width: 50%; /* REDUZIDO de 70% para 50% */
     margin: 0 auto; 
 }
 /* Media Queries para Responsividade */
@@ -614,7 +612,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         font-size: 1.15rem;
     }
     .youtube-wrapper {
-        max-width: 100%;
+        max-width: 100%; /* Mantido 100% no mobile */
     }
 }
 
@@ -750,6 +748,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </div>
         </div>
         
+        <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 50px; margin-bottom: 50px;">
+        </div>
+        
         <div class="wrap event-details">
             <h1 id="eventTitle" style="display:none;"></h1>
             <p id="eventMeta" style="display:none;"></p>
@@ -767,10 +768,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                 </div>
         </div>
 
-        <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 50px; margin-bottom: 50px;">
-            </div>
         
-        </main>
+        
+    </main>
 
     <footer id="eventPageFooter" class="site-footer">
         <div class="footer-cta-area">
