@@ -29,6 +29,12 @@
   --card-hover-bg:#f5f5f5; 
   --radius:18px;
   --wrap:1280px; /* MANTIDO PARA O MAX-WIDTH DA PÁGINA */
+  
+  /* CORES PARA BOTOES PERSONALIZADOS */
+  --color-red: #e11d48; /* Rose 600 - Cat 4 */
+  --color-red-shadow: #9f1239; /* Rose 900 */
+  --color-amber: #fbbf24; /* Amber 500 - Cat 3 */
+  --color-amber-shadow: #b45309; /* Amber 700 */
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
@@ -60,7 +66,7 @@ a{text-decoration:none;color:inherit}
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    padding: 30px 40px 30px 0;
+    padding: 30px 40px 30px 0; /* Ajusta o padding para a direita */
     border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .agency-info {
@@ -85,9 +91,69 @@ a{text-decoration:none;color:inherit}
     color: var(--brand);
     text-decoration: none;
 }
+
+/* CTAS NOVOS NA SIDEBAR */
 .whatsapp-cta {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaço entre os botões */
 }
+.btn-sidebar {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-sidebar .label {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+/* BOTÃO WHATSAPP */
+.btn-sidebar.btn-whatsapp {
+    background: var(--wa);
+    border: 2px solid var(--wa-ring);
+    color: #fff;
+    padding: 12px 14px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.5);
+}
+.btn-sidebar.btn-whatsapp:hover {
+    background: var(--wa-hover);
+}
+.btn-sidebar.btn-whatsapp svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+/* Botão Vermelho (Loja Virtual - Cat 4) */
+.btn-custom-red {
+    background: var(--color-red);
+    color: #fff;
+    border: 2px solid var(--color-red-shadow);
+}
+.btn-custom-red:hover {
+    background: var(--color-red-shadow);
+}
+
+/* Botão Laranja/Amarelo (Ferramentas/Lazer - Cat 3) */
+.btn-custom-amber {
+    background: var(--color-amber);
+    color: var(--text-charcoal);
+    border: 2px solid var(--color-amber-shadow);
+}
+.btn-custom-amber:hover {
+    background: var(--color-amber-shadow);
+    color: #fff; 
+}
+
 
 /* CONTEÚDO PRINCIPAL (Direita - Rolável) */
 #main-content {
@@ -122,9 +188,9 @@ a{text-decoration:none;color:inherit}
     gap: 20px;
     padding: 0 16px 0 0; 
 }
-/* Grid no Desktop (AGORA 3 COLUNAS) */
+/* Grid no Desktop (3 COLUNAS) */
 #events-grid {
-    grid-template-columns: repeat(3, 1fr); /* CORRIGIDO: 3 COLUNAS */
+    grid-template-columns: repeat(3, 1fr); 
 }
 
 /* Estilo Básico do Card */
@@ -145,7 +211,7 @@ a{text-decoration:none;color:inherit}
     background: var(--card-hover-bg); 
 }
 .card-media {
-    height: 160px;
+    height: 160px; /* Altura da imagem */
     background: #ccc;
     overflow: hidden;
     flex-shrink: 0;
@@ -153,7 +219,7 @@ a{text-decoration:none;color:inherit}
 .card-media img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    object-fit: cover; 
 }
 .card-content {
     padding: 15px;
@@ -179,279 +245,14 @@ a{text-decoration:none;color:inherit}
     border-radius: 4px;
     display: inline-block;
 }
-/* Estilo para o chip de data */
-.card-chip.date-chip {
-    background: var(--brand-shadow) !important;
-    color: #fff !important;
-}
 
 
-/* BOTÃO WHATSAPP (Estilos mantidos) */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:900;line-height:1; transition: all .2s ease;}
-.btn.btn-whatsapp{
-  background:var(--wa);
-  border:2px solid var(--wa-ring); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  color: #fff;
-}
-.btn.btn-whatsapp:hover {
-  background: var(--wa-hover);
-  border-color: var(--wa-ring);
-}
-.btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
-.btn.btn-whatsapp svg{width:18px;height:18px;color:#fff;fill:currentColor}
+/* ESTILOS LEGADOS (REMOVIDOS/SUBSTITUÍDOS) */
+.topbar{display:none}
+h1,h2{font-weight:900 !important; line-height: 1.1;}
 
 
-/* REMOVIDO: Estilos da Topbar Antiga */
-.topbar{position:sticky;top:0;z-index:1000;background:var(--brand); height: 0; overflow: hidden;}
-.topbar__inner{max-width:var(--wrap);margin:0 auto;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px}
-.menu-area{display:flex;align-items:center}
-.menu-button{display:inline-flex;align-items:center;gap:10px;cursor:pointer;color:var(--text-charcoal);font-weight:900}
-.menu-label{
-  color:var(--text-charcoal);
-  font-weight:900;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  -webkit-text-stroke:0; 
-  text-stroke:0; 
-}
-.burger{width:24px;height:18px;position:relative}
-.burger div,.burger::before,.burger::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--text-charcoal);border-radius:2px}
-.burger div{top:50%;transform:translateY(-50%)}.burger::before{top:0}.burger::after{bottom:0}
-.logo-center{display:none!important}.topbar__cta{justify-self:end}
-
-
-/* ESTILOS LEGADOS DO CARROSSEL (Removidos no novo JS) */
-.wrap{
-    max-width:var(--wrap);
-    margin:16px auto; 
-    padding:0 16px;
-}
-h1,h2{
-  font-weight:900;
-  margin:0 0 16px;
-  margin-bottom: .25rem; 
-  line-height: 1.1;
-}
-.cat-section{
-  margin:16px 0 8px; 
-  padding-top: 4px; 
-}
-.cat-title{
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 900;
-  color: var(--text-charcoal);
-  text-transform: uppercase;
-  font-size: 1rem;
-  margin:0 auto 10px;
-  max-width: var(--wrap);
-  padding: 0 16px;
-  display: block; 
-}
-.carousel-wrapper-container {
-    position: relative; 
-}
-.cl-track{
-  display:flex;
-  gap:18px;
-  overflow-x:auto; 
-  overflow-y:hidden; 
-  padding:0 16px 20px; 
-  scroll-snap-type:x mandatory;
-  scroll-padding-inline:16px;
-  -webkit-overflow-scrolling: touch;
-}
-.cl-track::-webkit-scrollbar {
-  display: none;
-}
-.cl-track {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.cl-slide{
-  flex:0 0 auto;
-  scroll-snap-align:start;
-  height: 100%; 
-}
-.cl-slide .card{
-  width: 300px;
-  min-height: 100%;
-  max-height: none;
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow-base); 
-  overflow:hidden;
-  transition: all .2s ease; 
-  cursor:pointer;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid transparent; 
-}
-.card:hover{
-    box-shadow:var(--shadow-hover);
-    background: var(--card-hover-bg); 
-    border-color: rgba(249, 115, 22, 0.5); 
-    transform: none; 
-}
-.card:active {
-    box-shadow: 0 2px 5px rgba(2,8,23,.10);
-    transform: scale(0.99);
-}
-.card .thumb{
-  height: 100px; 
-  overflow:hidden;
-  border-bottom:1px solid rgba(2,8,23,.06);
-  background:#f4f4f5;
-  flex-shrink: 0; 
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.card .thumb img {
-    width:100%; 
-    height:auto; 
-    object-fit: contain; 
-    padding: 0; 
-    max-height: 100%; 
-}
-.card .content{
-  padding:14px; 
-  flex-grow: 1; 
-}
-.card .title{
-  font-weight:900;
-  font-size: 1rem; 
-  margin:0 0 4px; 
-  line-height: 1.3;
-  text-transform: uppercase; 
-  max-height: 1.3em; 
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1; 
-  -webkit-box-orient: vertical;
-  filter: none; 
-  transition: none;
-}
-.card .subtitle {
-  color: var(--muted);
-  font-size: 14px; 
-  font-weight: 400; 
-  line-height: 1.3;
-  overflow: visible;
-  text-overflow: clip; 
-  display: block; 
-  margin: 0;
-  filter: none;
-  transition: none;
-}
-.card.context-card {
-    min-height: 100%; 
-    box-shadow: none !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0;
-    cursor: default;
-}
-.card.context-card:hover {
-    transform: none !important; 
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-.context-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    text-align: left; 
-    align-items: flex-start; 
-    padding: 0 16px 0 0; 
-}
-.context-content p {
-    font-size: 14px !important; 
-    color: var(--muted) !important; 
-    font-weight: 400 !important;
-    line-height: 1.3;
-    margin-bottom: 20px;
-    padding: 0; 
-    text-align: left; 
-}
-.btn-ver-mais {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px; 
-    padding: 8px 14px; 
-    border-radius: 999px; 
-    background: var(--brand);
-    border: 1px solid var(--brand-shadow);
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px; 
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    width: auto; 
-}
-.btn-ver-mais:hover {
-    background: var(--brand-shadow); 
-    color: #fff; 
-    border-color: var(--brand-shadow);
-}
-.btn-ver-mais svg {
-    width: 16px; 
-    height: 16px;
-    fill: var(--text-charcoal); 
-}
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); 
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    background: var(--brand); 
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-}
-.carousel-nav:hover {
-    background: var(--brand-shadow);
-}
-.carousel-nav svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--text-charcoal); 
-}
-.carousel-nav.prev {
-    left: 0; 
-    transform: translateY(-50%) translateX(-50%); 
-}
-.carousel-nav.next {
-    right: 0; 
-    transform: translateY(-50%) translateX(50%); 
-}
-@media (max-width: 1024px) {
-    .carousel-nav {
-        display: none !important; 
-    }
-}
-.favicon {
-    width: 16px; 
-    height: 16px; 
-    margin-right: 6px; 
-    display: inline-block; 
-    vertical-align: middle;
-}
-.wrap-widget {
-  max-width: var(--wrap);
-  margin: 16px auto 0;
-  padding: 0 16px;
-}
-
-/* RESPONSIVIDADE ESPECÍFICA */
+/* RESPONSIVIDADE */
 @media (max-width: 1024px) {
     #events-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
@@ -461,8 +262,8 @@ h1,h2{
     #events-grid {
         grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
     }
-    .agency-info h1 {
-        font-size: 1.25rem;
+    #main-content {
+        padding: 20px;
     }
 }
   </style>
@@ -481,10 +282,22 @@ h1,h2{
             <a href="#" target="_blank">Submit a request</a>
             
             <div class="whatsapp-cta">
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20em%20pacotes%20para%20eventos." target="_blank" class="btn btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="btn-sidebar btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
                     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                    <span class="label">FALE AGORA</span>
-                </a>
+                    <span class="label">FALE COM NOSSA EQUIPE AGORA</span>
+                 </a>
+
+                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="btn-sidebar btn-custom-red" aria-label="Ver a loja virtual para simular voos e pacotes.">
+                    VER LOJA VIRTUAL
+                 </a>
+
+                 <a href="#" onclick="event.preventDefault();" class="btn-sidebar btn-custom-amber" aria-label="Ver ferramentas e aplicativos da Winners Tour.">
+                    VER FERRAMENTAS E APPS
+                 </a>
+                 
+                 <a href="#" onclick="event.preventDefault();" class="btn-sidebar btn-custom-amber" aria-label="Ver pacotes de viagens de lazer.">
+                    VER VIAGENS DE LAZER
+                 </a>
             </div>
         </div>
     </div>
