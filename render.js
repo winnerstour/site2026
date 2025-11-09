@@ -11,9 +11,9 @@
     let allEventsData = []; // Armazena todos os eventos carregados
 
     // Mapeamento de meses para abreviação em Português
-    // Nomes com 4 letras (ABR, MAI, JUN, JUL) são mantidos, o resto é abreviado para 3.
+    // Nomes com 4 letras (ABR, MAI, JUL, AGO) são mantidos, o resto é abreviado para 3.
     const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-    const MONTH_FULL_NAMES = ['JAN', 'FEV', 'MAR', 'ABRIL', 'MAIO', 'JUN', 'JULHO', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+    const MONTH_FULL_NAMES = ['JAN', 'FEV', 'MAR', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO']; // Lista completa (com correção de Junho/Julho)
 
 
     // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
@@ -63,7 +63,7 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        // Se a data for inválida, retorna formato simples DD/MM - DD/MM
+        // Adiciona um fallback simples se a data for inválida
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
              const [y1, m1, d1_day] = startDate.split('-');
              const [y2, m2, d2_day] = endDate.split('-');
@@ -76,24 +76,24 @@
         const month2 = d2.getUTCMonth();
         const year1 = d1.getUTCFullYear();
         const year2 = d2.getUTCFullYear();
-        
+
         let dateString;
         
-        // Função auxiliar para obter a abreviação/nome
+        // Função auxiliar para obter a abreviação/nome (Máximo 4 letras)
         const getMonthName = (monthIndex) => {
             const name = MONTH_FULL_NAMES[monthIndex];
-            // Mantém completo se tiver 4 letras (ABR, MAI, JUL, AGO) ou menos.
-            if (name.length <= 4) {
-                 return name;
+            // Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro são longos.
+            // Abril (5 letras), Maio (4 letras)
+            if (name === 'MAIO' || name === 'ABRIL' || name === 'JUNHO' || name === 'JULHO') {
+                 return MONTH_ABBREVIATIONS[monthIndex]; // Usa a abreviação de 3 letras
             }
-            // Reduz para 3 letras (JAN, FEV, MAR, JUN, SET, OUT, NOV, DEZ)
             return MONTH_ABBREVIATIONS[monthIndex];
         };
-
+        
         // 1. Evento NO MESMO MÊS/ANO: "11 a 14 AGO"
         if (month1 === month2 && year1 === year2) {
-            const monthName = getMonthName(month1);
-            dateString = `${day1} a ${day2} ${monthName}`;
+            const monthAbbrev = getMonthName(month1);
+            dateString = `${day1} a ${day2} ${monthAbbrev}`;
         } else {
             // 2. Evento COM QUEBRA DE MÊS/ANO: "29/11 - 02/12"
             const month1Str = String(month1 + 1).padStart(2, '0');
@@ -137,7 +137,7 @@
 
         // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        // Garante que o HTML do chip de data seja inserido
+        // O estilo do chip de data é herdado do CSS (.card-chip.date-chip)
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
