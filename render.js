@@ -1,4 +1,4 @@
-// render.js (Adaptado para Layout Grid/Sidebar com Consolidação de Categorias)
+// render.js (FINAL - Corrigido problema de data e mantido imagem hero)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -49,7 +49,7 @@
 
     /**
      * Formata a exibição da data do evento do evento de acordo com a regra.
-     * CORREÇÃO: Utiliza o formato UTC (Z) para evitar problemas de fuso horário que alteram o dia.
+     * CORREÇÃO: Utiliza o formato T12:00:00Z para garantir a interpretação correta do dia (UTC/Meio dia).
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -57,14 +57,13 @@
     function formatEventDateRange(startDate, endDate) {
         if (!startDate || !endDate) return '';
 
-        // Corrigido para interpretar a data no formato UTC (Z) ou forçando meia-noite (T00:00:00)
-        // Usamos T12:00:00Z para evitar que o fuso horário local jogue a data para o dia anterior.
+        // Usamos T12:00:00Z para garantir que a data seja interpretada consistentemente (UTC).
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        // Se a data for inválida após a conversão, retorna vazio.
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return '';
         
+        // Puxamos a data no formato UTC para consistência
         const day1 = d1.getUTCDate();
         const day2 = d2.getUTCDate();
         const month1 = d1.getUTCMonth();
@@ -113,13 +112,12 @@
         const textColor = chipColor.split(' ')[1] || 'white'; // Ex: text-white
         
         // Aplica o estilo in-line para que o CSS do index.html não quebre a cor
-        // Adiciona a fallback #333 caso a variável não exista
         const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
 
 
         // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        // Exibe o chip de data se houver texto
+        // O estilo do chip de data é herdado do CSS.
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
