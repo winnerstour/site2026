@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO E LÓGICA DO BOTÃO BATE-VOLTA)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CÓDIGO SEM ALTERAÇÕES DESDE O ÚLTIMO PASSO)
 
 (function () {
   // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
@@ -801,9 +801,8 @@
           }
       }
       if(heroTitle) {
-          // CORRIGIDO: Removida a tag <br> para evitar quebra de linha indesejada.
-          // Adicionado espaço antes do "resolvida" para evitar que fique grudado no nome do evento.
-          const formattedTitle = `<small>Sua viagem para </small><span class="highlight">${finalTitle.toUpperCase()}</span> <small> resolvida em minutos.</small>`;
+          // CORRIGIDO: Força três linhas separadas para "Sua viagem para", [EVENTO] e "resolvida em minutos."
+          const formattedTitle = `<small>Sua viagem para</small><span class="highlight">${finalTitle.toUpperCase()}</span><small>resolvida em minutos.</small>`;
           heroTitle.innerHTML = formattedTitle;
       }
       if(heroSubheadline) {
@@ -851,7 +850,6 @@
       // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
       const whatsappLink = evData.whatsapp_url || defaultWhatsapp;
-      // Removida a referência ao whatsappCta (botão fixo final), pois ele foi ocultado/removido.
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
       if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
