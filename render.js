@@ -1,13 +1,17 @@
-// render.js (Adaptado para Layout Grid/Sidebar com Filtro de Categoria)
+// render.js (Adaptado para Layout Grid/Sidebar com Filtro, Ordenação e Chip de Data)
 
 (function () {
     const mainContent = document.getElementById('main-content');
     const categoryTabsContainer = document.getElementById('category-tabs');
     const eventsGrid = document.getElementById('events-grid');
     
+    // DATA_URL: Usamos o arquivo principal 'events.json' como índice e fonte de dados completa para a INDEX.
     const DATA_URL = './events.json'; 
     const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
     let allEventsData = []; // Armazena todos os eventos carregados
+
+    // Mapeamento de meses para abreviação em Português
+    const MONTH_ABBREVIATIONS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
     // Função que corrige o caminho absoluto para GitHub/Netlify
     function fixPath(path) {
@@ -17,23 +21,67 @@
         return path;
     }
 
+    /**
+     * Formata a exibição da data do evento (start_date e end_date) de acordo com a regra:
+     * - Mesmo mês: "29 a 30 de Nov"
+     * - Meses diferentes: "29/11 - 2/12"
+     * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
+     * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
+     * @returns {string} String formatada para o chip de data.
+     */
+    function formatEventDateRange(startDate, endDate) {
+        if (!startDate || !endDate) return '';
+
+        const d1 = new Date(startDate + 'T00:00:00'); // Adiciona T00:00:00 para evitar fuso horário
+        const d2 = new Date(endDate + 'T00:00:00'); 
+
+        const day1 = d1.getDate();
+        const day2 = d2.getDate();
+        const month1 = d1.getMonth();
+        const month2 = d2.getMonth();
+        const year1 = d1.getFullYear();
+        const year2 = d2.getFullYear();
+
+        // 1. Evento em dias no mesmo mês/ano
+        if (month1 === month2 && year1 === year2) {
+            const monthAbbrev = MONTH_ABBREVIATIONS[month1];
+            return `${day1} a ${day2} de ${monthAbbrev}`;
+        }
+        
+        // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
+        const month1Str = String(month1 + 1).padStart(2, '0');
+        const month2Str = String(month2 + 1).padStart(2, '0');
+        
+        return `${day1}/${month1Str} - ${day2}/${month2Str}`;
+    }
+
+    /**
+     * Constrói o HTML para o card de evento no Grid.
+     * Implementa: hero_image, category_micro, e o novo chip de data.
+     * @param {object} ev - Dados do evento.
+     * @returns {string} HTML do card.
+     */
     function buildEventCard(ev) {
         const title = ev.title || 'Evento sem título';
         const subtitle = ev.subtitle || 'Detalhes do evento...';
         const slug = ev.slug; 
         const finalUrl = `evento.html?slug=${slug}`;
         
-        const rawImagePath = ev.banner_path || ev.hero_image_path || '/assets/img/banners/placeholder.webp';
+        // 1. IMAGEM: Prioriza hero_image_path (hero.webp)
+        const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
         const imagePath = fixPath(rawImagePath);
 
-        const faviconRawPath = ev.favicon_image_path || `/assets/img/banners/${slug}-favicon.webp`;
-        const faviconPath = fixPath(faviconRawPath);
-
-        const faviconHtml = `<img class="favicon" src="${faviconPath}" alt="" aria-hidden="true" onerror="this.style.display='none';">`;
-        
+        // 2. CHIP DE CATEGORIA: Usa category_micro
+        const categoryText = ev.category_micro || ev.category_macro || 'EVENTOS';
         // Determina a cor do chip (Usando a lógica de chip_color do JSON, senão usa padrão)
-        const chipText = ev.category_macro || 'EVENTOS';
         const chipClass = ev.chip_color ? `style="background: ${ev.chip_color.split(' ')[0]}; color: ${ev.chip_color.split(' ')[1]};"` : '';
+        
+        // 3. CHIP DE DATA: Usa a nova função de formatação
+        const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
+        const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip" style="background: var(--brand-shadow); color: #fff;">${dateRangeText}</span>` : '';
+        
+        // Estilo especial para o chip de data, para ser visivelmente diferente
+        const categoryChipHTML = `<span class="card-chip category-chip" ${chipClass}>${categoryText.toUpperCase()}</span>`;
 
 
         return `
@@ -42,7 +90,10 @@
               <img loading="lazy" src="${imagePath}" alt="${title}">
             </div>
             <div class="card-content">
-                <span class="card-chip" ${chipClass}>${chipText.toUpperCase()}</span>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    ${dateChipHTML}
+                    ${categoryChipHTML}
+                </div>
                 <p class="card-title">
                   ${title}
                 </p>
@@ -64,6 +115,11 @@
         return sortedCategories;
     }
 
+    /**
+     * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação.
+     * Implementa: Ordenação por start_date.
+     * @param {string} categoryFilter - Categoria macro para filtrar.
+     */
     function renderEventsGrid(categoryFilter) {
         eventsGrid.innerHTML = ''; // Limpa o grid
         let eventsToDisplay = allEventsData;
@@ -72,8 +128,13 @@
             eventsToDisplay = allEventsData.filter(event => event.category_macro === categoryFilter);
         }
         
-        // Ordena por data (mais recente primeiro)
-        eventsToDisplay.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+        // ORDENAÇÃO: Mais recente (maior start_date) primeiro.
+        eventsToDisplay.sort((a, b) => {
+            const dateA = a.start_date ? new Date(a.start_date + 'T00:00:00').getTime() : 0;
+            const dateB = b.start_date ? new Date(b.start_date + 'T00:00:00').getTime() : 0;
+            // Ordem decrescente (mais recente primeiro: B - A)
+            return dateB - dateA;
+        });
 
 
         if (eventsToDisplay.length === 0) {
