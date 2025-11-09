@@ -117,7 +117,7 @@
 
         // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        // O estilo do chip de data é herdado do CSS.
+        // O estilo do chip de data é herdado do CSS (.card-chip.date-chip)
         const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
