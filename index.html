@@ -191,7 +191,7 @@ a{text-decoration:none;color:inherit}
     background: var(--card-hover-bg); 
 }
 .card-media {
-    height: 120px; /* REDUZIDO PARA ENQUADRAR A IMAGEM WIDE (846x282) */
+    height: 100px; /* AJUSTADO PARA MINIMIZAR BORDAS BRANCAS */
     background: #fff; /* Fundo branco para imagens com contain */
     overflow: hidden;
     flex-shrink: 0;
@@ -199,8 +199,7 @@ a{text-decoration:none;color:inherit}
 .card-media img {
     width: 100%;
     height: 100%;
-    /* MANTIDO CONTAIN para não cortar a imagem */
-    object-fit: contain; 
+    object-fit: contain; /* Garante que a imagem inteira seja exibida */
 }
 .card-content {
     padding: 15px;
