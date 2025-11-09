@@ -9,6 +9,9 @@
   
   const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
   const SCROLL_SPEED = 8000; 
+  
+  // URL da Home para redirecionamento
+  const HOME_URL = 'https://www.comprarviagem.com.br/winnerstour/'; 
 
   // Mapeamento Tailwind para HEX (necessário para aplicar a cor do botão via CSS inline)
   const TAILWIND_HEX_MAP = {
@@ -47,7 +50,7 @@
   const agencyNameTitle = document.getElementById('agencyNameTitle'); 
   const agencyNameMicro = document.getElementById('agencyNameMicro'); 
   const currentYear = document.getElementById('currentYear'); 
-  const footerCtaMessage = document.getElementById('footerCtaMessage'); // NOVO ELEMENTO (Pág 5)
+  const footerCtaMessage = document.getElementById('footerCtaMessage');
 
   // OUTROS ELEMENTOS
   const eventMeta = document.getElementById('eventMeta');
@@ -63,8 +66,8 @@
   const hotelsWrapper = document.getElementById('hotelsWrapper');
   const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
   
-  // NOVO ELEMENTO DO BOTÃO DE SIMULAÇÃO (Mantido no JS para referência, mas ignorado no DOM)
-  const simulationCta = document.getElementById('simulationCta');
+  // Elemento do Botão Home/W
+  const homeButton = document.getElementById('homeButton');
 
 
   // --- CONFIGURAÇÕES PADRÃO DE PAX ---
@@ -81,6 +84,17 @@
   const ROOM_ICON = '🏠'; // Declaração ÚNICA VÁLIDA MANTIDA
 
   // --- FUNÇÕES AUXILIARES ---
+  
+  // NOVO: Adiciona a funcionalidade de redirecionamento
+  function initHomeRedirection() {
+      if (homeButton) {
+          homeButton.addEventListener('click', (e) => {
+              e.preventDefault();
+              window.location.href = HOME_URL;
+          });
+      }
+  }
+
 
   function fixPath(path) {
       if (!path) return path;
@@ -932,6 +946,9 @@
               agencyNameMicro.textContent = `${categoryMicro}. Sua parceira de confiança para ${finalTitle}.`;
           }
       }
+      
+      // NOVO: Inicializa o redirecionamento do botão Home/W
+      initHomeRedirection();
 
       if(loading) loading.hidden = true;
       if(eventContent) eventContent.hidden = false;
