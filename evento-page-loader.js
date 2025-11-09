@@ -62,6 +62,10 @@
   const hotelsCarouselContainer = document.getElementById('hotelsCarouselContainer');
   const hotelsWrapper = document.getElementById('hotelsWrapper');
   const hotelsWhatsLink = document.getElementById('hotelsWhatsLink');
+  
+  // NOVO ELEMENTO DO BOTÃO DE SIMULAÇÃO
+  const simulationCta = document.getElementById('simulationCta');
+
 
   // --- CONFIGURAÇÕES PADRÃO DE PAX ---
   const PAX_CONFIG = {
@@ -513,7 +517,7 @@
    * Este botão se torna o SECUNDÁRIO, com link fixo e estilo de borda.
    */
   function buildDayTripFlightButtonFixedUrl(theme, themeHexColor) {
-    const fixedFlightUrl = 'https://www.comprarviagem.com.br/winnerstour/'; 
+    const fixedFlightUrl = 'https://www.comprarviagem.com.br/winnerstour/home'; 
     
     // A classe text-{color}-500/700 deve estar disponível via Tailwind
     const detailTextColor = theme.cardBorder.replace('border-', 'text-');
@@ -855,6 +859,13 @@
       } else {
           if (hotelsSection) hotelsSection.style.display = 'none';
       }
+      
+      // NOVO: 8. Configurar Botão de Simulação Global (Laranja)
+      const simulationCta = document.getElementById('simulationCta');
+      if (simulationCta) {
+          simulationCta.href = 'https://www.comprarviagem.com.br/winnerstour/home';
+      }
+
 
       // 5. Motivos para Visitar
       const extractedMotivos = Object.keys(evData)
