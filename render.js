@@ -49,6 +49,7 @@
 
     /**
      * Formata a exibição da data do evento do evento de acordo com a regra.
+     * CORREÇÃO: Utiliza o formato UTC (Z) para evitar problemas de fuso horário que alteram o dia.
      * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
      * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
      * @returns {string} String formatada para o chip de data, em caixa alta.
@@ -56,15 +57,20 @@
     function formatEventDateRange(startDate, endDate) {
         if (!startDate || !endDate) return '';
 
-        const d1 = new Date(startDate.replace(/-/g, '/') + 'T00:00:00'); 
-        const d2 = new Date(endDate.replace(/-/g, '/') + 'T00:00:00'); 
+        // Corrigido para interpretar a data no formato UTC (Z) ou forçando meia-noite (T00:00:00)
+        // Usamos T12:00:00Z para evitar que o fuso horário local jogue a data para o dia anterior.
+        const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
+        const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        const day1 = d1.getDate();
-        const day2 = d2.getDate();
-        const month1 = d1.getMonth();
-        const month2 = d2.getMonth();
-        const year1 = d1.getFullYear();
-        const year2 = d2.getFullYear();
+        // Se a data for inválida após a conversão, retorna vazio.
+        if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return '';
+        
+        const day1 = d1.getUTCDate();
+        const day2 = d2.getUTCDate();
+        const month1 = d1.getUTCMonth();
+        const month2 = d2.getUTCMonth();
+        const year1 = d1.getUTCFullYear();
+        const year2 = d2.getUTCFullYear();
 
         let dateString;
         
@@ -111,9 +117,10 @@
         const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
 
 
-        // 4. CHIP DE DATA: Usa a função de formatação
+        // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
         const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip" style="background: var(--brand-shadow); color: #fff;">${dateRangeText}</span>` : '';
+        // Exibe o chip de data se houver texto
+        const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
         
         const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
 
@@ -173,11 +180,11 @@
             eventsToDisplay = allEventsData.filter(event => mapToSimplifiedCategory(event.category_macro) === categoryFilter);
         }
         
-        // ORDENAÇÃO CORRIGIDA: Crescente por data (evento mais próximo primeiro).
+        // ORDENAÇÃO: Crescente por data (evento mais próximo primeiro).
         eventsToDisplay.sort((a, b) => {
-            // Usa .replace(/-/g, '/') para garantir que o Date() interprete corretamente no Chrome/Safari
-            const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
-            const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T00:00:00').getTime() : 0;
+            // Usa T12:00:00Z para mitigar erros de fuso horário na ordenação.
+            const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
+            const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
             
             // Ordem crescente (mais próximo primeiro: A - B)
             return dateA - dateB;
