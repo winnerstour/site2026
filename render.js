@@ -1,323 +1,266 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Eventos e Feiras</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://static.onertravel.com/widget/search/production/styles.css">
-  
-  <style>
-/* VARIÁVEIS DE COR E ESTILO */
-:root{
-  --brand:#f97316; 
-  --brand-shadow:#C2410C; 
-  --wa:#25D366; 
-  --wa-hover:#1AC656; 
-  --wa-ring:#128C7E; 
-  --text-charcoal:#111827; 
-  --muted:#6b7280;
-  --bg:#fff;
-  --card:#fff;
-  --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  --card-hover-bg:#f5f5f5; 
-  --radius:18px;
-  --wrap:1280px; 
-  
-  /* CORES MAPEADAS DO JSON (Tailwind HEX) */
-  --color-rose-600: #e11d48;
-  --color-teal-600: #0d9488;
-  --color-indigo-600: #4f46e5;
-  --color-emerald-600: #059669;
-  --color-zinc-700: #475569;
-  --color-amber-600: #fbbf24;
-  --color-blue-700: #1d4ed8;
-  --color-gray-700: #4b5563; 
-  --color-purple-700: #6d28d9;
-  --color-neutral-700: #4b5563;
-  --color-slate-700: #334155;
-  --color-blue-600: #2563eb;
-  --color-stone-700: #44403c;
-  --color-cyan-700: #0e7490;
-  --color-pink-600: #db2777;
-  --color-blue-800: #1e40af;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height: 100vh;}
+// render.js (FINAL - Corrigido bug do Chip de Data e Imagem)
 
-/* APLICAÇÃO DA FONTE MONTSERRAT */
-body{
-  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size:16px;
-  line-height:1.5;
-  color:var(--text-charcoal);
-  background:var(--bg);
-  overflow-x: hidden;
-}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-
-/* LAYOUT PRINCIPAL DO GRID */
-#main-grid {
-    display: grid;
-    grid-template-columns: 320px 1fr; /* Sidebar fixa em 320px, Conteúdo Principal no resto */
-    min-height: 100vh;
-    max-width: var(--wrap);
-    margin: 0 auto;
-}
-
-/* SIDEBAR FIXA (Esquerda) */
-#main-sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 30px 40px 30px 0; /* Ajusta o padding para a direita */
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-.agency-info {
-    max-width: 280px; 
-    padding-right: 20px;
-}
-.agency-info h1 {
-    font-weight: 900;
-    font-size: 1.5rem; 
-    margin-bottom: 5px;
-    line-height: 1.1;
-    color: var(--brand);
-}
-.agency-info p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-.agency-info a {
-    font-weight: 700;
-    color: var(--brand);
-    text-decoration: none;
-}
-
-/* CTAS NOVOS NA SIDEBAR */
-.whatsapp-cta {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* Espaço entre os links */
-}
-/* Estilo Base dos Links Laranja (Todos os novos CTAs) */
-.cta-link-sidebar {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--brand); /* Cor Laranja */
-    transition: all 0.2s ease;
-    text-decoration: none;
-    padding: 2px 0;
-}
-.cta-link-sidebar:hover {
-    color: var(--brand-shadow); /* Laranja mais escuro no hover */
-    transform: translateX(3px); /* Efeito sutil de movimento */
-}
-.cta-link-sidebar .arrow-icon {
-    font-size: 1.2rem;
-    margin-right: 5px;
-    line-height: 1;
-}
-
-
-/* CONTEÚDO PRINCIPAL (Direita - Rolável) */
-#main-content {
-    padding: 20px 0 20px 40px;
-}
-
-/* ABAS DE CATEGORIA (Topo do Conteúdo Principal) */
-#category-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
-    padding: 0 16px 0 0;
-}
-.tab-link {
-    font-weight: 700;
-    color: var(--muted);
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 1rem;
-}
-.tab-link.active {
-    color: var(--text-charcoal);
-    border-bottom: 2px solid var(--brand);
-}
-
-/* GRID DE EVENTOS */
-#events-grid {
-    display: grid;
-    gap: 20px;
-    padding: 0 16px 0 0; 
-}
-/* Grid no Desktop (3 COLUNAS) */
-#events-grid {
-    grid-template-columns: repeat(3, 1fr); 
-}
-
-/* Estilo Básico do Card */
-.event-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-    overflow: hidden;
-    transition: all .2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    height: 100%;
-}
-.event-card:hover{
-    box-shadow:var(--shadow-hover);
-    background: var(--card-hover-bg); 
-}
-.card-media {
-    height: 120px; /* AJUSTADO PARA 120PX (MAIS PRÓXIMO DA PROPORÇÃO 3:1) */
-    background: #fff; /* Fundo branco para imagens com contain */
-    overflow: hidden;
-    flex-shrink: 0;
-}
-.card-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Garante que a imagem inteira seja exibida */
-}
-.card-content {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-.card-title {
-    font-weight: 900 !important;
-    font-size: 1rem;
-    line-height: 1.3;
-    margin-bottom: 5px;
-    color: var(--text-charcoal) !important;
-    text-transform: uppercase; 
-}
-.card-subtitle {
-    font-size: 14px;
-    color: var(--muted);
-}
-.card-chip {
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    text-transform: uppercase; 
-}
-/* Estilo para o chip de data */
-.card-chip.date-chip {
-    background: var(--brand-shadow) !important;
-    color: #fff !important;
-}
-
-
-/* ESTILOS LEGADOS (REMOVIDOS/SUBSTITUÍDOS) */
-.topbar{display:none}
-h1,h2{font-weight:900 !important; line-height: 1.1;}
-
-
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    #events-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
-    }
-}
-@media (max-width: 640px) {
-    #events-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
-    }
-    #main-content {
-        padding: 20px;
-    }
-}
-  </style>
-</head>
-<body>
-<div id="main-grid">
+(function () {
+    const mainContent = document.getElementById('main-content');
+    const categoryTabsContainer = document.getElementById('category-tabs');
+    const eventsGrid = document.getElementById('events-grid');
     
-    <div id="main-sidebar">
-        <div class="agency-info">
-            <h1>Winners Tour</h1>
-            <p>
-                Fazemos a curadoria das melhores viagens para profissionais e startups. Somos uma agência de viagens especializada, focada em viagens corporativas e MICE (Meetings, Incentives, Conferences, and Exhibitions), atendendo grandes empresas com remuneração transparente desde 2003.
-            </p>
-            
-            <div class="whatsapp-cta">
-                <p style="font-size: 14px; margin: 0 0 10px; font-weight: 700; color: var(--muted);">
-                    Precisa de suporte completo, dúvidas ou orçamentos?
-                </p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
-                 </a>
+    // DATA_URL: Usamos o arquivo principal 'events.json' como índice e fonte de dados completa para a INDEX.
+    const DATA_URL = './events.json'; 
+    const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
+    let allEventsData = []; // Armazena todos os eventos carregados
 
-                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
-                    <span class="arrow-icon">▷</span> FAZER ORÇAMENTO NA LOJA VIRTUAL
-                 </a>
+    // Mapeamento de meses para abreviação em Português
+    const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
 
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver ferramentas e aplicativos da Winners Tour.">
-                    <span class="arrow-icon">▷</span> VER FERRAMENTAS E APLICATIVOS
-                 </a>
-                 
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-                    <span class="arrow-icon">▷</span> VER VIAGENS DE LAZER
-                 </a>
-                 
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver convênio corporativo e benefícios.">
-                    <span class="arrow-icon">▷</span> VER CONVÊNIO CORPORATIVO
-                 </a>
-            </div>
-        </div>
-    </div>
-    
-    <div id="main-content">
+    // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
+    function mapToSimplifiedCategory(macroCategory) {
+        switch (macroCategory) {
+            case 'Automotivo & Autopeças & Motos':
+                return 'AUTOMOTIVO';
+            case 'Beleza & Estética':
+                return 'ESTÉTICA';
+            case 'Construção & Arquitetura':
+                return 'CONSTRUÇÃO';
+            case 'Entretenimento & Cultura':
+                return 'CULTURA';
+            case 'Outros/Nichados':
+                return 'NICHADOS';
+            case 'Saúde & Medicina & Farma':
+            case 'Pets & Veterinária':
+                return 'MEDICINA';
+            case 'Tecnologia & Telecom':
+            case 'Logística & Supply Chain':
+                return 'TEC';
+            // Todas as demais categorias (Foodservice, Agro, Franquias, Turismo, etc.)
+            default:
+                return 'OUTROS';
+        }
+    }
+    // --- FIM DO MAPA DE CONSOLIDAÇÃO ---
+
+    // Função que corrige o caminho absoluto para GitHub/Netlify
+    function fixPath(path) {
+        if (path && path.startsWith('/assets')) {
+            return BASE_PATH + path;
+        }
+        return path;
+    }
+
+    /**
+     * Formata a exibição da data do evento do evento de acordo com a regra.
+     * @param {string} startDate - Data de início (ISO string: YYYY-MM-DD).
+     * @param {string} endDate - Data de fim (ISO string: YYYY-MM-DD).
+     * @returns {string} String formatada para o chip de data, em caixa alta.
+     */
+    function formatEventDateRange(startDate, endDate) {
+        if (!startDate || !endDate) return '';
+
+        // Usamos T12:00:00Z para garantir que a data seja interpretada consistentemente (UTC).
+        const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
+        const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
+
+        if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
+             // Fallback: se a data for inválida, exibe as datas originais no formato DD/MM
+             const day1Fallback = startDate.split('-').reverse()[0];
+             const month1Fallback = startDate.split('-')[1];
+             const day2Fallback = endDate.split('-').reverse()[0];
+             const month2Fallback = endDate.split('-')[1];
+             return `${day1Fallback}/${month1Fallback} - ${day2Fallback}/${month2Fallback}`;
+        }
         
-        <div id="category-tabs">
-            </div>
+        // Puxamos a data no formato UTC para consistência
+        const day1 = d1.getUTCDate();
+        const day2 = d2.getUTCDate();
+        const month1 = d1.getUTCMonth();
+        const month2 = d2.getUTCMonth();
+        const year1 = d1.getUTCFullYear();
+        const year2 = d2.getUTCFullYear();
+
+        let dateString;
         
-        <div id="events-grid">
-            <div class="event-card">
-                <div class="card-media"></div>
-                <div class="card-content">
-                    <span class="card-chip">Carregando...</span>
-                    <p class="card-title">Eventos</p>
-                    <p class="card-subtitle">Carregando eventos...</p>
+        // 1. Evento em dias no mesmo mês/ano
+        if (month1 === month2 && year1 === year2) {
+            const monthAbbrev = MONTH_ABBREVIATIONS[month1];
+            dateString = `${day1} a ${day2} de ${monthAbbrev}`;
+        } else {
+            // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
+            const month1Str = String(month1 + 1).padStart(2, '0');
+            const month2Str = String(month2 + 1).padStart(2, '0');
+            dateString = `${day1}/${month1Str} - ${day2}/${month2Str}`;
+        }
+        
+        return dateString.toUpperCase();
+    }
+
+    /**
+     * Constrói o HTML para o card de evento no Grid.
+     * @param {object} ev - Dados do evento.
+     * @returns {string} HTML do card.
+     */
+    function buildEventCard(ev) {
+        // 1. TÍTULO EM CAIXA ALTA
+        const title = (ev.title || 'Evento sem título').toUpperCase();
+        const subtitle = ev.subtitle || 'Detalhes do evento...';
+        const slug = ev.slug; 
+        const finalUrl = `evento.html?slug=${slug}`;
+        
+        // 2. IMAGEM: Prioriza hero_image_path (hero.webp)
+        const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
+        const imagePath = fixPath(rawImagePath);
+
+        // 3. CHIP DE CATEGORIA: Usa category_micro com COR CORRIGIDA
+        const categoryText = (ev.category_micro || ev.category_macro || 'EVENTOS').toUpperCase();
+        const chipColor = ev.chip_color || 'bg-gray-700 text-white';
+        
+        // Mapeamento para variáveis CSS injetadas no index.html
+        const colorClass = chipColor.split(' ')[0]; // Ex: bg-rose-600
+        const textColor = chipColor.split(' ')[1] || 'white'; // Ex: text-white
+        
+        // Aplica o estilo in-line para que o CSS do index.html não quebre a cor
+        const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
+
+
+        // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
+        const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
+        // Garante que o HTML do chip de data seja inserido
+        const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
+        
+        const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
+
+        // 5. Mapeia a categoria macro para a categoria simplificada para o filtro
+        const simplifiedCategory = mapToSimplifiedCategory(ev.category_macro);
+
+
+        return `
+          <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${simplifiedCategory}">
+            <div class="card-media">
+              <img loading="lazy" src="${imagePath}" alt="${title}">
+            </div>
+            <div class="card-content">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    ${dateChipHTML} 
+                    ${categoryChipHTML}
                 </div>
+                <p class="card-title">
+                  ${title}
+                </p>
+                <p class="card-subtitle">${subtitle}</p>
             </div>
-        </div>
+          </a>
+        `;
+    }
+    
+    /**
+     * Obtém as categorias únicas simplificadas a serem exibidas nas abas.
+     */
+    function getUniqueCategories(events) {
+        const categories = new Set();
+        events.forEach(event => {
+            if (event.category_macro) {
+                categories.add(mapToSimplifiedCategory(event.category_macro));
+            }
+        });
         
-        <div class="wrap-widget" style="margin-top: 40px; display: none;">
-            <div id="wrapper">
-                <befly-widget language="pt-br" new-tab="true">
-                </befly-widget>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="https://static.onertravel.com/widget/search/production/widget-befly.js">
-</script>
+        // Define a ordem das abas conforme solicitado
+        const finalOrder = ['TODOS', 'AUTOMOTIVO', 'ESTÉTICA', 'CONSTRUÇÃO', 'CULTURA', 'NICHADOS', 'MEDICINA', 'TEC', 'OUTROS'];
+        
+        // Filtra a lista final para incluir apenas as categorias mapeadas que realmente existem
+        const uniqueAndOrderedCategories = finalOrder.filter(cat => cat === 'TODOS' || categories.has(cat));
 
-<script src="./render.js"></script>
+        return uniqueAndOrderedCategories;
+    }
 
-</body>
-</html>
+    /**
+     * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação CORRIGIDA.
+     * @param {string} categoryFilter - Categoria simplificada para filtrar (ex: 'CONSTRUÇÃO').
+     */
+    function renderEventsGrid(categoryFilter) {
+        eventsGrid.innerHTML = ''; // Limpa o grid
+        let eventsToDisplay = allEventsData;
+
+        // Filtra usando a categoria simplificada (o card armazena 'data-category' com a versão simplificada)
+        if (categoryFilter !== 'TODOS') {
+            eventsToDisplay = allEventsData.filter(event => mapToSimplifiedCategory(event.category_macro) === categoryFilter);
+        }
+        
+        // ORDENAÇÃO: Crescente por data (evento mais próximo primeiro).
+        eventsToDisplay.sort((a, b) => {
+            // Usa T12:00:00Z para mitigar erros de fuso horário na ordenação.
+            const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
+            const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
+            
+            // Ordem crescente (mais próximo primeiro: A - B)
+            return dateA - dateB;
+        });
+
+
+        if (eventsToDisplay.length === 0) {
+            eventsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: var(--muted);">Nenhum evento encontrado nesta categoria.</p>';
+            return;
+        }
+
+        const cardsHTML = eventsToDisplay.map(buildEventCard).join('');
+        eventsGrid.innerHTML = cardsHTML;
+    }
+
+    function renderCategories(categories) {
+        categoryTabsContainer.innerHTML = '';
+        categories.forEach((category, index) => {
+            const link = document.createElement('a');
+            link.href = '#';
+            link.classList.add('tab-link');
+            // O texto do link é a categoria simplificada (ex: AUTOMOTIVO)
+            link.textContent = category.toUpperCase();
+            
+            // Define o primeiro como ativo e renderiza o grid inicial
+            if (index === 0) {
+                link.classList.add('active');
+                renderEventsGrid(category);
+            }
+            
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove a classe ativa de todos
+                document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+                // Adiciona a classe ativa no clicado
+                link.classList.add('active');
+                // Filtra e renderiza o grid
+                renderEventsGrid(category);
+                
+                // Rola para o topo do conteúdo principal em telas menores, se necessário
+                if (window.innerWidth < 1024) {
+                    mainContent.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            categoryTabsContainer.appendChild(link);
+        });
+    }
+
+
+    async function loadDataAndRender() {
+        try {
+            const res = await fetch(DATA_URL);
+            if (!res.ok) {
+                throw new Error(`Falha ao carregar eventos. Status: ${res.statusText}`);
+            }
+            
+            allEventsData = await res.json(); 
+            
+            if (!Array.isArray(allEventsData) || allEventsData.length === 0) {
+                eventsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: red;">Nenhum evento encontrado.</p>';
+                return;
+            }
+            
+            const categories = getUniqueCategories(allEventsData);
+            renderCategories(categories);
+            
+        } catch (error) {
+            console.error('Erro ao carregar dados:', error);
+            eventsGrid.innerHTML = `<p style="grid-column: 1 / -1; color: red;">Erro ao carregar os dados dos eventos: ${error.message}</p>`;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDataAndRender);
+})();
