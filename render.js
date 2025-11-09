@@ -1,4 +1,4 @@
-// render.js (FINAL - Corrigido bug do Chip de Data e Imagem)
+// render.js (FINAL - Corrigida a lógica de abreviação de MÊS)
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -10,8 +10,22 @@
     const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
     let allEventsData = []; // Armazena todos os eventos carregados
 
-    // Mapeamento de meses para abreviação em Português
+    // Mapeamento de meses para abreviação em Português (Três letras para meses longos, nome completo para curtos)
+    const MONTH_NAMES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    
+    // Lista de abreviações (3 letras) para meses com nome longo
     const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+    // Função auxiliar para abreviar o nome do mês
+    function getAbbreviatedMonth(monthIndex) {
+        const name = MONTH_NAMES[monthIndex];
+        // Se o nome tiver mais de 4 letras, abrevie
+        if (name.length > 4) {
+            return MONTH_ABBREVIATIONS[monthIndex];
+        }
+        return name.toUpperCase();
+    }
+
 
     // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
     function mapToSimplifiedCategory(macroCategory) {
@@ -81,8 +95,8 @@
         
         // 1. Evento em dias no mesmo mês/ano
         if (month1 === month2 && year1 === year2) {
-            const monthAbbrev = MONTH_ABBREVIATIONS[month1];
-            dateString = `${day1} a ${day2} de ${monthAbbrev}`;
+            const monthAbbrev = getAbbreviatedMonth(month1); // Usa a lógica condicional
+            dateString = `${day1} A ${day2} DE ${monthAbbrev}`;
         } else {
             // 2. Evento com quebra de mês ou ano (Formato reduzido: DD/MM - DD/MM)
             const month1Str = String(month1 + 1).padStart(2, '0');
@@ -111,156 +125,4 @@
 
         // 3. CHIP DE CATEGORIA: Usa category_micro com COR CORRIGIDA
         const categoryText = (ev.category_micro || ev.category_macro || 'EVENTOS').toUpperCase();
-        const chipColor = ev.chip_color || 'bg-gray-700 text-white';
-        
-        // Mapeamento para variáveis CSS injetadas no index.html
-        const colorClass = chipColor.split(' ')[0]; // Ex: bg-rose-600
-        const textColor = chipColor.split(' ')[1] || 'white'; // Ex: text-white
-        
-        // Aplica o estilo in-line para que o CSS do index.html não quebre a cor
-        const categoryChipStyle = `style="background-color: var(--${colorClass.replace('bg-', 'color-')}, #333); color: ${textColor.includes('text-') ? '#fff' : textColor};"`;
-
-
-        // 4. CHIP DE DATA: Usa a função de formatação (CORRIGIDA)
-        const dateRangeText = formatEventDateRange(ev.start_date, ev.end_date);
-        // Garante que o HTML do chip de data seja inserido
-        const dateChipHTML = dateRangeText ? `<span class="card-chip date-chip">${dateRangeText}</span>` : '';
-        
-        const categoryChipHTML = `<span class="card-chip category-chip" ${categoryChipStyle}>${categoryText}</span>`;
-
-        // 5. Mapeia a categoria macro para a categoria simplificada para o filtro
-        const simplifiedCategory = mapToSimplifiedCategory(ev.category_macro);
-
-
-        return `
-          <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${simplifiedCategory}">
-            <div class="card-media">
-              <img loading="lazy" src="${imagePath}" alt="${title}">
-            </div>
-            <div class="card-content">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    ${dateChipHTML} 
-                    ${categoryChipHTML}
-                </div>
-                <p class="card-title">
-                  ${title}
-                </p>
-                <p class="card-subtitle">${subtitle}</p>
-            </div>
-          </a>
-        `;
-    }
-    
-    /**
-     * Obtém as categorias únicas simplificadas a serem exibidas nas abas.
-     */
-    function getUniqueCategories(events) {
-        const categories = new Set();
-        events.forEach(event => {
-            if (event.category_macro) {
-                categories.add(mapToSimplifiedCategory(event.category_macro));
-            }
-        });
-        
-        // Define a ordem das abas conforme solicitado
-        const finalOrder = ['TODOS', 'AUTOMOTIVO', 'ESTÉTICA', 'CONSTRUÇÃO', 'CULTURA', 'NICHADOS', 'MEDICINA', 'TEC', 'OUTROS'];
-        
-        // Filtra a lista final para incluir apenas as categorias mapeadas que realmente existem
-        const uniqueAndOrderedCategories = finalOrder.filter(cat => cat === 'TODOS' || categories.has(cat));
-
-        return uniqueAndOrderedCategories;
-    }
-
-    /**
-     * Renderiza os cards de eventos no Grid, aplicando filtro e ordenação CORRIGIDA.
-     * @param {string} categoryFilter - Categoria simplificada para filtrar (ex: 'CONSTRUÇÃO').
-     */
-    function renderEventsGrid(categoryFilter) {
-        eventsGrid.innerHTML = ''; // Limpa o grid
-        let eventsToDisplay = allEventsData;
-
-        // Filtra usando a categoria simplificada (o card armazena 'data-category' com a versão simplificada)
-        if (categoryFilter !== 'TODOS') {
-            eventsToDisplay = allEventsData.filter(event => mapToSimplifiedCategory(event.category_macro) === categoryFilter);
-        }
-        
-        // ORDENAÇÃO: Crescente por data (evento mais próximo primeiro).
-        eventsToDisplay.sort((a, b) => {
-            // Usa T12:00:00Z para mitigar erros de fuso horário na ordenação.
-            const dateA = a.start_date ? new Date(a.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
-            const dateB = b.start_date ? new Date(b.start_date.replace(/-/g, '/') + 'T12:00:00Z').getTime() : 0;
-            
-            // Ordem crescente (mais próximo primeiro: A - B)
-            return dateA - dateB;
-        });
-
-
-        if (eventsToDisplay.length === 0) {
-            eventsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: var(--muted);">Nenhum evento encontrado nesta categoria.</p>';
-            return;
-        }
-
-        const cardsHTML = eventsToDisplay.map(buildEventCard).join('');
-        eventsGrid.innerHTML = cardsHTML;
-    }
-
-    function renderCategories(categories) {
-        categoryTabsContainer.innerHTML = '';
-        categories.forEach((category, index) => {
-            const link = document.createElement('a');
-            link.href = '#';
-            link.classList.add('tab-link');
-            // O texto do link é a categoria simplificada (ex: AUTOMOTIVO)
-            link.textContent = category.toUpperCase();
-            
-            // Define o primeiro como ativo e renderiza o grid inicial
-            if (index === 0) {
-                link.classList.add('active');
-                renderEventsGrid(category);
-            }
-            
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Remove a classe ativa de todos
-                document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
-                // Adiciona a classe ativa no clicado
-                link.classList.add('active');
-                // Filtra e renderiza o grid
-                renderEventsGrid(category);
-                
-                // Rola para o topo do conteúdo principal em telas menores, se necessário
-                if (window.innerWidth < 1024) {
-                    mainContent.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-            
-            categoryTabsContainer.appendChild(link);
-        });
-    }
-
-
-    async function loadDataAndRender() {
-        try {
-            const res = await fetch(DATA_URL);
-            if (!res.ok) {
-                throw new Error(`Falha ao carregar eventos. Status: ${res.statusText}`);
-            }
-            
-            allEventsData = await res.json(); 
-            
-            if (!Array.isArray(allEventsData) || allEventsData.length === 0) {
-                eventsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: red;">Nenhum evento encontrado.</p>';
-                return;
-            }
-            
-            const categories = getUniqueCategories(allEventsData);
-            renderCategories(categories);
-            
-        } catch (error) {
-            console.error('Erro ao carregar dados:', error);
-            eventsGrid.innerHTML = `<p style="grid-column: 1 / -1; color: red;">Erro ao carregar os dados dos eventos: ${error.message}</p>`;
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', loadDataAndRender);
-})();
+        const chipColor = ev.chip_color || 'bg-gray-700
