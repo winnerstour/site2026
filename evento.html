@@ -562,25 +562,9 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 
 /* ESTILOS ESPECÍFICOS PARA O BOTÃO DE SIMULAÇÃO GLOBAL (Laranja) */
+/* REMOVIDO PARA O NOVO REQUISITO DE LINK NO SUBTÍTULO */
 .btn.btn-simulation {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px 25px; /* Tamanho grande */
-    border-radius: 999px;
-    font-weight: 900;
-    line-height: 1.2;
-    transition: all .2s ease;
-    background: var(--brand); /* Cor Laranja da marca */
-    color: #fff;
-    text-align: center;
-    border: none;
-    min-width: 340px;
-    font-size: 1.25rem;
-}
-.btn.btn-simulation:hover {
-    background: var(--brand-shadow); /* Laranja mais escuro no hover */
+    display: none !important;
 }
 
 
@@ -626,11 +610,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     }
     .btn-hero {
         min-width: 100%;
-        font-size: 1.15rem;
-    }
-    .btn.btn-simulation {
-        min-width: 100%;
-        max-width: 300px;
         font-size: 1.15rem;
     }
     .youtube-wrapper {
@@ -754,8 +733,8 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
         <div id="hotelsSection" class="hotels-section" style="display:none;">
             <h2 class="wrap">GARANTA SUA VIAGEM AGORA MESMO</h2>
             <p class="wrap section-lead" style="margin-bottom: 24px;">
-              Nossos roteiros foram desenhados para quem viaja a trabalho, otimizando seu tempo e custo durante a feira. Clique 
-              <a id="hotelsWhatsLink" href="#" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 700;">aqui para receber o roteiro detalhado no WhatsApp</a>, e escolha o que mais combina com a sua agenda.
+              Nossos roteiros e hotéis recomendados foram desenhados para quem viaja a trabalho, otimizando seu tempo e custo durante a feira. Veja mais detalhes abaixo e escolha o que mais combina com a sua agenda, fale com nossa equipe para mais informações ou então 
+              <a id="hotelsWhatsLink" href="#" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 700;">clique aqui para simular voos + outros hotéis disponíveis na nossa loja virtual</a>.
             </p>
 
             <div id="hotelsWrapper" class="hotels-wrapper">
@@ -768,12 +747,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                     <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                 </button>
             </div>
-        </div>
-        
-        <div id="simulationCtaWrapper" class="wrap" style="padding-top: 10px; padding-bottom: 30px; text-align: center;">
-            <a id="simulationCta" href="#" target="_blank" rel="noopener" class="btn btn-simulation pulse-glow">
-                <span class="label">Simular voos e outros hotéis online</span>
-            </a>
         </div>
         
         <div class="wrap event-details">
