@@ -34,6 +34,9 @@
     --footer-gradient-end-rgb: 107, 33, 168; /* Fallback RGB para Violeta */
 }
 *{box-sizing:border-box}
+html{
+    scroll-behavior: smooth; /* ADICIONADO: Scroll Suave */
+}
 html,body{margin:0;padding:0}
 
 /* APLICAÇÃO DA FONTE MONTSERRAT */
@@ -93,7 +96,7 @@ a{text-decoration:none;color:inherit}
     padding:0 16px;
 }
 h1,h2,h3{
-    font-weight:900;
+    font-weight:900; /* Garante o peso 900 para Montserrat */
     margin:0 0 16px;
     line-height: 1.1;
     color: var(--text-charcoal);
@@ -637,7 +640,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 }
 .footer-cta-title {
     font-size: 2rem;
-    font-weight: 900;
+    font-weight: 900; /* Garantindo o peso aqui também */
     margin-bottom: 15px; 
     color: var(--text-charcoal); /* Título escuro */
 }
@@ -684,6 +687,16 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 .footer-bottom-related {
     padding-bottom: 40px; 
 }
+
+/* NOVO: Força a cor branca para todo o conteúdo da seção laranja */
+#eventDetailsSection * {
+    color: #fff !important; 
+}
+/* Re-aplica a cor do link (se houver links dentro) */
+#eventDetailsSection a {
+    color: #ffd8ad !important; /* Cor clara para links sobre fundo escuro (Fallback) */
+}
+
 
 @media (max-width: 768px) {
     .site-footer {
@@ -750,17 +763,19 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
             </div>
         </div>
         
-        <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 50px; margin-bottom: 50px;">
-        </div>
-        
-        <div class="wrap event-details">
-            <h1 id="eventTitle" style="display:none;"></h1>
-            <p id="eventMeta" style="display:none;"></p>
+        <div id="eventDetailsSection" style="background: var(--brand); color: #fff; padding: 50px 0;">
             
-            <div id="eventDescription">
-                </div>
+            <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 0; margin-bottom: 50px;">
+            </div>
+            
+            <div class="wrap event-details">
+                <h1 id="eventTitle" style="display:none;"></h1>
+                <p id="eventMeta" style="display:none;"></p>
+                
+                <div id="eventDescription">
+                    </div>
+            </div>
         </div>
-        
         <div class="motivos-section">
             <h2 class="wrap font-black">Motivos para Visitar</h2>
             
@@ -770,8 +785,6 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                 </div>
         </div>
 
-        
-        
     </main>
 
     <footer id="eventPageFooter" class="site-footer">
