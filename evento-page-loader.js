@@ -1,7 +1,7 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO E LÓGICA DE CONTEÚDO)
+// evento-page-loader.js (COMPLETO E FINALIZADO - CORRIGIDO ERRO CRÍTICO DE DECLARAÇÃO E LÓGICA DO BOTÃO BATE-VOLTA)
 
 (function () {
-  // DOMAIN_BASE: Definido no escopo da IIFE
+  // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
   const DOMAIN_BASE = 'https://www.comprarviagem.com.br/winnerstour'; 
   const DATA_BASE_PATH = './data/events/'; 
   const ALL_EVENTS_URL = './event.json'; 
@@ -68,7 +68,7 @@
   };
   const DEFAULT_ROOMS_COUNT = 1;
   const DEFAULT_ADULTS = PAX_CONFIG.adults; // 1
-  const ROOM_ICON = '🏠'; // Declaração ÚNICA da constante
+  const ROOM_ICON = '🏠'; // ÚNICA DECLARAÇÃO VÁLIDA MANTIDA
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -336,8 +336,6 @@
       return '$$$$$$'; 
   }
 
-  const ROOM_ICON = '🏠'; 
-  
   // ***************************************************************
   // Funções de Geração de Links Dinâmicos da ComprarViagem
   // ***************************************************************
@@ -438,6 +436,7 @@
       // A classe text-{color}-500/700 deve estar disponível via Tailwind
       const detailTextColor = theme.cardBorder.replace('border-', 'text-');
 
+      // Botão Secundário: Ver Detalhes do Hotel
       const hotelDetailButtonHtml = `
           <a href="${hotelDetailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full ${detailTextColor} border-2 ${theme.cardBorder}">Ver detalhes do hotel</a>
       `;
@@ -447,7 +446,6 @@
   
   /**
    * Monta o botão de WhatsApp para solicitação de pacote.
-   * AGORA COM O MESMO ESTILO DO SEGUNDO BOTÃO E ÍCONE OFICIAL.
    */
   function buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor) {
       const hotelName = hotel.name || 'Hotel Selecionado';
@@ -470,20 +468,39 @@
       // Ícone OFICIAL do WhatsApp (mais detalhado)
       const whatsappSvg = '<svg class="w-5 h-5" viewBox="0 0 32 32"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>';
 
-      // Botão WhatsApp SÓLIDO (Cor Verde)
+      // A cor do texto e da borda será a cor da categoria do hotel (themeHexColor)
       const style = `
-          background-color: var(--wa) !important;
-          border-color: var(--wa-ring) !important;
-          color: white !important; /* Cor do texto fixada em branco */
+          color: ${themeHexColor} !important;
+          border-color: ${themeHexColor} !important;
+          background-color: transparent !important;
       `;
       
       return `
           <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" 
-             class="btn btn-whatsapp w-full" style="padding: 8px 12px; font-weight: 700;">
+             class="btn btn-secondary w-full" style="${style}">
               ${whatsappSvg}
               <span class="label">Receber pacote no WhatsApp</span>
           </a>
       `;
+  }
+  
+  /**
+   * Monta o botão de voo para o Card Bate e Volta. (MODIFICADO)
+   */
+  function buildDayTripFlightButton(evData, theme, themeHexColor) {
+    const flightUrl = buildCombinedFlightUrl(evData, PAX_CONFIG); 
+    
+    // Ícone de Avião/WhatsApp REMOVIDO
+    const planeSvg = ''; 
+
+    // NOVO ESTILO: Cor de Fundo = themeHexColor, Cor do Texto = Branco, Estilo Primário
+    return `
+        <a href="${flightUrl}" target="_blank" rel="noopener noreferrer" 
+           class="btn btn-primary w-full" style="background-color: ${themeHexColor}; border-color: ${themeHexColor}; color: white; font-weight: 700; padding: 8px 12px; border-radius: 999px; font-size: 14px;">
+            ${planeSvg}
+            <span class="label">Ver Voos Disponíveis</span>
+        </a>
+    `;
   }
   
   // FUNÇÃO PARA CRIAR CARDS DE HOTEL
@@ -495,15 +512,6 @@
       // NOVO: Mapeia a classe da borda (Ex: border-amber-500) para o HEX
       const themeColorName = theme.cardBorder.replace('border-', ''); 
       const themeHexColor = TAILWIND_HEX_MAP[themeColorName] || TAILWIND_HEX_MAP['default']; 
-      
-      // --- Lógica das Descrições Fixas ---
-      let hotelDescription = hotel.description;
-      if (category === 2) {
-          hotelDescription = `<strong>Só pra dormir e economizar?</strong> Opção enxuta para descansar bem entre um dia e outro de feira, com ótimo custo-benefício. Ideal para quem quer praticidade e foco total no evento.`;
-      } else if (category === 3) {
-          hotelDescription = `<strong>Mais conforto para estadias de duas noites ou mais.</strong> Categoria superior, com quartos aconchegantes, pensada para quem quer descansar melhor e aproveitar cada dia de feira.`;
-      }
-      // --- FIM Lógica das Descrições Fixas ---
       
       // NOVO: Usa distance_min para o chip
       const distanceMin = hotel.distance_min ? `${hotel.distance_min} MIN DE DISTÂNCIA` : 'OPÇÃO DE VIAGEM';
@@ -536,7 +544,17 @@
 
       // Geração de links e botões dinâmicos
       const detailLink = buildHotelDetailUrl(hotel, theme, evData);
-      const whatsappButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+      
+      let primaryButtonHtml;
+      let secondaryButtonHtml = detailLink.hotelDetailButtonHtml; // Sempre o botão de Detalhes como secundário
+
+      if (isDayTrip) {
+          // Card Bate e Volta: Botão PRIMÁRIO é o de Voo (Com novo estilo sólido)
+          primaryButtonHtml = buildDayTripFlightButton(evData, theme, themeHexColor);
+      } else {
+          // Card de Hotel: Botão PRIMÁRIO é o de WhatsApp (pacote)
+          primaryButtonHtml = buildWhatsAppPackageButton(hotel, evData, theme, themeHexColor);
+      }
 
 
       // Classes do Card: Base + Borda/Ring Dinâmicos (Tailwind)
@@ -559,11 +577,11 @@
                           ${infoLine}
                       </div>
 
-                      <p class="text-slate-600">${hotelDescription}</p>
+                      <p class="text-slate-600">${hotel.description}</p>
                       
                       <div class="btn-group">
-                          ${whatsappButtonHtml}
-                          ${detailLink.hotelDetailButtonHtml}
+                          ${primaryButtonHtml}
+                          ${secondaryButtonHtml}
                       </div>
                   </div>
               </div>
