@@ -52,7 +52,6 @@
   const eventMeta = document.getElementById('eventMeta');
   const eventDescription = document.getElementById('eventDescription');
   const motivosContainer = document.getElementById('motivosContainer');
-  // const whatsappCta = document.getElementById('whatsappCta'); // Removido, pois o botão fixo será ocultado/removido.
   const whatsappTopCta = document.getElementById('whatsappTopCta');
 
   const youtubeVideoContainer = document.getElementById('youtubeVideoContainer');
@@ -851,9 +850,8 @@
       
       // CTA (WhatsApp)
       const defaultWhatsapp = "https://wa.me/5541999450111?text=Ol%C3%A1!%20Tenho%20interesse%20no%20pacote%20completo%20para%20" + encodeURIComponent(finalTitle);
-      // Os botões fixos e de rodapé agora usam o mesmo link de WhatsApp
       const whatsappLink = evData.whatsapp_url || defaultWhatsapp;
-      // if(whatsappCta) whatsappCta.href = whatsappLink; // Removido, pois o CTA fixo será ocultado/removido.
+      // Removida a referência ao whatsappCta (botão fixo final), pois ele foi ocultado/removido.
       if(whatsappTopCta) whatsappTopCta.href = whatsappLink;
       if(heroWhatsappCta) heroWhatsappCta.href = whatsappLink; 
       if(footerWhatsappCta) footerWhatsappCta.href = whatsappLink; // CTA RODAPÉ
