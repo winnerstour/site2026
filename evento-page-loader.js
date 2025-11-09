@@ -719,7 +719,7 @@
         // NOVO: Injeta a estrutura completa do carrossel no footerBottomRelated
         const relatedHtml = `
             <div id="relatedEventsSection" class="motivos-section" style="margin-top: 30px !important;">
-                <h2 id="relatedTitle" class="wrap">${relatedTitleText}</h2>
+                <h3 id="relatedTitle" class="wrap">${relatedTitleText}</h3>
                 <div id="relatedWrapper" class="motivos-wrapper">
                     <div id="relatedCarouselContainer" class="cl-track">
                         ${relatedSlides}
@@ -917,7 +917,7 @@
         initCarousel(motivosCarouselId, motivosWrapperId, true); 
         
       } else {
-        if(document.querySelector('.motivos-section h2')) document.querySelector('.motivos-section h2').hidden = true;
+        if(document.querySelector('.motivos-section h3')) document.querySelector('.motivos-section h3').hidden = true;
         if(motivosWrapperEl) motivosWrapperEl.hidden = true;
       }
 
