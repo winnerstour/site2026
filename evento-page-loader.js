@@ -1,4 +1,4 @@
-// evento-page-loader.js (COMPLETO E FINALIZADO - CÓDIGO SEM ALTERAÇÕES DESDE O ÚLTIMO PASSO)
+// evento-page-loader.js (COMPLETO E FINALIZADO)
 
 (function () {
   // DOMAIN_BASE: Definido no escopo da IIFE para evitar erro de declaração dupla.
@@ -47,6 +47,7 @@
   const agencyNameTitle = document.getElementById('agencyNameTitle'); 
   const agencyNameMicro = document.getElementById('agencyNameMicro'); 
   const currentYear = document.getElementById('currentYear'); 
+  const footerCtaMessage = document.getElementById('footerCtaMessage'); // NOVO ELEMENTO (Pág 5)
 
   // OUTROS ELEMENTOS
   const eventMeta = document.getElementById('eventMeta');
@@ -916,6 +917,13 @@
 
           if (footerCtaTitle) {
               footerCtaTitle.textContent = `Garanta Sua Vaga na ${finalTitle}!`;
+          }
+          
+          // NOVO: Atualiza a mensagem do CTA do rodapé com o nome do evento
+          if (footerCtaMessage) {
+               // Verifica se evData.category_micro existe antes de usar. Caso contrário, usa fallback.
+               const category = evData.category_micro ? evData.category_micro.toLowerCase() : 'feira';
+               footerCtaMessage.innerHTML = `Não perca a oportunidade de participar do maior evento de ${category} das Américas com todo o conforto e o suporte da Winners Tour.`;
           }
 
           // PREENCHIMENTO DA SEÇÃO AGENCY NAME (LOGO GRADIENTE)
