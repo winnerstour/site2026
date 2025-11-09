@@ -499,7 +499,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 /* Estilo para o destaque colorido no título (Cor mais clara) */
 #heroTitle .highlight {
     font-weight: 900;
-    display: block; 
+    /* Removido display: block */
     
     /* Sombra preta forte para borda/halo sem falhas */
     text-shadow: 0 0 6px #000000, 0 0 10px #000000, 0 0 16px rgba(0, 0, 0, 0.7); 
@@ -512,7 +512,7 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
 #heroTitle small {
     font-size: 75%; /* 100% - 25% = 75% */
     font-weight: 900;
-    display: block; /* Mantém a quebra de linha */
+    /* Removido display: block; */
     line-height: 1.1;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -561,6 +561,29 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     letter-spacing: 0.1em;
 }
 
+/* ESTILOS ESPECÍFICOS PARA O BOTÃO DE SIMULAÇÃO GLOBAL (Laranja) */
+.btn.btn-simulation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 25px; /* Tamanho grande */
+    border-radius: 999px;
+    font-weight: 900;
+    line-height: 1.2;
+    transition: all .2s ease;
+    background: var(--brand); /* Cor Laranja da marca */
+    color: #fff;
+    text-align: center;
+    border: none;
+    min-width: 340px;
+    font-size: 1.25rem;
+}
+.btn.btn-simulation:hover {
+    background: var(--brand-shadow); /* Laranja mais escuro no hover */
+}
+
+
 /* Animação Pulse/Glow */
 .pulse-glow {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
@@ -603,6 +626,11 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
     }
     .btn-hero {
         min-width: 100%;
+        font-size: 1.15rem;
+    }
+    .btn.btn-simulation {
+        min-width: 100%;
+        max-width: 300px;
         font-size: 1.15rem;
     }
     .youtube-wrapper {
@@ -740,6 +768,12 @@ h2 { font-size: 1.5rem; margin-bottom: 20px;}
                     <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                 </button>
             </div>
+        </div>
+        
+        <div id="simulationCtaWrapper" class="wrap" style="padding-top: 10px; padding-bottom: 30px; text-align: center;">
+            <a id="simulationCta" href="#" target="_blank" rel="noopener" class="btn btn-simulation pulse-glow">
+                <span class="label">Simular voos e outros hotéis online</span>
+            </a>
         </div>
         
         <div class="wrap event-details">
