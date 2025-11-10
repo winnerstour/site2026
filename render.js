@@ -62,7 +62,7 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        // Se a data for inválida (FALLBACK SIMPLES)
+        // Adiciona um fallback simples se a data for inválida
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
              const [y1, m1, d1_day] = startDate.split('-');
              const [y2, m2, d2_day] = endDate.split('-');
@@ -80,12 +80,8 @@
         
         // Função auxiliar para obter a abreviação/nome (Máximo 3 letras para meses longos)
         const getMonthName = (monthIndex) => {
-            const fullName = MONTH_FULL_NAMES[monthIndex];
-            // Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro, Janeiro, Fevereiro, Março
-            if (fullName.length > 4) {
-                 return MONTH_ABBREVIATIONS[monthIndex]; // Usa a abreviação de 3 letras
-            }
-            return MONTH_ABBREVIATIONS[monthIndex]; // Usa abreviação de 3 letras para ABR, MAI
+            // A regra é exibir a abreviação de 3 letras para todos para máximo controle de espaço
+            return MONTH_ABBREVIATIONS[monthIndex];
         };
         
         // 1. Evento NO MESMO MÊS/ANO: "11 A 14 AGO"
