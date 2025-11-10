@@ -10,10 +10,9 @@
     const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
     let allEventsData = []; // Armazena todos os eventos carregados
 
-    // Mapeamento de meses para abreviação em Português
-    // Nomes com 4 letras (ABR, MAI, JUL, AGO) são mantidos, o resto é abreviado para 3.
+    // Nomes longos serão abreviados (JAN, FEV, MAR, AGO, SET, OUT, NOV, DEZ)
     const MONTH_ABBREVIATIONS = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-    const MONTH_FULL_NAMES = ['JAN', 'FEV', 'MAR', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO']; // Lista completa (com correção de Junho/Julho)
+    const MONTH_FULL_NAMES = ['JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO']; 
 
 
     // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
@@ -63,7 +62,7 @@
         const d1 = new Date(startDate.replace(/-/g, '/') + 'T12:00:00Z'); 
         const d2 = new Date(endDate.replace(/-/g, '/') + 'T12:00:00Z'); 
 
-        // Adiciona um fallback simples se a data for inválida
+        // Se a data for inválida (FALLBACK SIMPLES)
         if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
              const [y1, m1, d1_day] = startDate.split('-');
              const [y2, m2, d2_day] = endDate.split('-');
@@ -76,24 +75,23 @@
         const month2 = d2.getUTCMonth();
         const year1 = d1.getUTCFullYear();
         const year2 = d2.getUTCFullYear();
-
+        
         let dateString;
         
-        // Função auxiliar para obter a abreviação/nome (Máximo 4 letras)
+        // Função auxiliar para obter a abreviação/nome (Máximo 3 letras para meses longos)
         const getMonthName = (monthIndex) => {
-            const name = MONTH_FULL_NAMES[monthIndex];
-            // Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro são longos.
-            // Abril (5 letras), Maio (4 letras)
-            if (name === 'MAIO' || name === 'ABRIL' || name === 'JUNHO' || name === 'JULHO') {
+            const fullName = MONTH_FULL_NAMES[monthIndex];
+            // Define meses a abreviar (JAN, FEV, MAR, AGO, SET, OUT, NOV, DEZ)
+            if (fullName.length > 4) {
                  return MONTH_ABBREVIATIONS[monthIndex]; // Usa a abreviação de 3 letras
             }
-            return MONTH_ABBREVIATIONS[monthIndex];
+            return fullName; // Mantém ABR, MAIO, JUNHO, JULHO completos se quiser
         };
-        
+
         // 1. Evento NO MESMO MÊS/ANO: "11 a 14 AGO"
         if (month1 === month2 && year1 === year2) {
             const monthAbbrev = getMonthName(month1);
-            dateString = `${day1} a ${day2} ${monthAbbrev}`;
+            dateString = `${day1} A ${day2} ${monthAbbrev}`;
         } else {
             // 2. Evento COM QUEBRA DE MÊS/ANO: "29/11 - 02/12"
             const month1Str = String(month1 + 1).padStart(2, '0');
