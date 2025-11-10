@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title>WinnersTour — Ferramentas e Apps</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+/* VARIÁVEIS DE COR E ESTILO */
+:root{
+  --brand:#f97316; 
+  --brand-shadow:#C2410C; 
+  --wa:#25D366; 
+  --wa-hover:#1AC656; 
+  --wa-ring:#128C7E; 
+  --text-charcoal:#111827; 
+  --muted:#6b7280;
+  --bg:#fff;
+  --card:#fff;
+  --shadow-base:0 2px 5px rgba(2,8,23,.05); 
+  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+  --card-hover-bg:#f5f5f5; 
+  --radius:18px;
+  --wrap:1280px; 
+  
+  /* CORES MAPEADAS DO JSON (Tailwind HEX) */
+  --color-rose-600: #e11d48;
+  --color-teal-600: #0d9488;
+  --color-indigo-600: #4f46e5;
+  --color-emerald-600: #059669;
+  --color-zinc-700: #475569;
+  --color-amber-600: #fbbf24;
+  --color-blue-700: #1d4ed8;
+  --color-gray-700: #4b5563; 
+  --color-purple-700: #6d28d9;
+  --color-neutral-700: #4b5563;
+  --color-slate-700: #334155;
+  --color-blue-600: #2563eb;
+  --color-stone-700: #44403c;
+  --color-cyan-700: #0e7490;
+  --color-pink-600: #db2777;
+  --color-blue-800: #1e40af;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height: 100vh;}
+
+/* APLICAÇÃO DA FONTE MONTSERRAT */
+body{
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text-charcoal);
+  background:var(--bg);
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* LAYOUT PRINCIPAL DO GRID */
+#main-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Sidebar fixa em 320px, Conteúdo Principal no resto */
+    min-height: 100vh;
+    max-width: var(--wrap);
+    margin: 0 auto;
+}
+
+/* SIDEBAR FIXA (Esquerda) */
+#main-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px 40px 30px 0; /* Ajusta o padding para a direita */
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.agency-info {
+    max-width: 280px; 
+    padding-right: 20px;
+}
+.agency-info h1 {
+    font-weight: 900;
+    font-size: 1.5rem; 
+    margin-bottom: 5px;
+    line-height: 1.1;
+    color: var(--brand);
+}
+.agency-info p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+.agency-info a {
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: none;
+}
+
+/* CTAS NOVOS NA SIDEBAR */
+.whatsapp-cta {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre os links */
+}
+/* Estilo Base dos Links Laranja (Todos os novos CTAs) */
+.cta-link-sidebar {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand); /* Cor Laranja */
+    transition: all 0.2s ease;
+    text-decoration: none;
+    padding: 2px 0;
+}
+.cta-link-sidebar:hover {
+    color: var(--brand-shadow); /* Laranja mais escuro no hover */
+    transform: translateX(3px); /* Efeito sutil de movimento */
+}
+.cta-link-sidebar .arrow-icon {
+    font-size: 1.2rem;
+    margin-right: 5px;
+    line-height: 1;
+}
+
+
+/* CONTEÚDO PRINCIPAL (Direita - Rolável) */
+#main-content {
+    padding: 20px 0 20px 40px;
+}
+
+/* GRID DE EVENTOS/APPS */
+#events-grid { /* Reutilizando ID do Grid, renomeado para apps-grid em alguns projetos, mas mantido aqui para reuso do CSS */
+    display: grid;
+    gap: 20px;
+    padding: 0 16px 0 0; 
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+/* Estilo Básico do Card (Reaproveitado) */
+.event-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    transition: all .2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+.event-card:hover{
+    box-shadow:var(--shadow-hover);
+    background: var(--card-hover-bg); 
+}
+.card-media {
+    height: 100px; /* MANTIDO EM 100PX */
+    background: #fff; 
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* MANTIDO COMO COVER */
+}
+.card-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.card-title {
+    font-weight: 900 !important;
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    color: var(--text-charcoal) !important;
+    text-transform: uppercase; 
+}
+.card-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+}
+/* REMOVENDO ESTILOS DE CHIP (não serão usados) */
+.card-chip.date-chip, .card-chip {display: none;}
+
+
+h1,h2{font-weight:900 !important; line-height: 1.1;}
+
+
+/* RESPONSIVIDADE (Reaproveitado) */
+@media (max-width: 1024px) {
+    #events-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
+    }
+}
+@media (max-width: 640px) {
+    #events-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
+    }
+    #main-content {
+        padding: 20px;
+    }
+}
+  </style>
+</head>
+<body>
+<div id="main-grid">
+    
+    <div id="main-sidebar">
+        <div class="agency-info">
+            <h1>WINNERS TOUR</h1>
+            <p>
+                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
+            </p>
+            
+            <div class="whatsapp-cta">
+                 <a href="index.html" class="cta-link-sidebar" aria-label="Voltar para a página de eventos">
+                    <span class="arrow-icon">◁</span> VOLTAR PARA EVENTOS E FEIRAS
+                 </a>
+
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
+                 </a>
+
+                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+                    <span class="arrow-icon">▷</span> FAZER ORÇAMENTO NA NOSSA LOJA VIRTUAL
+                 </a>
+
+                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+                    <span class="arrow-icon">▷</span> VER VIAGENS DE LAZER
+                 </a>
+                 
+                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver convênio corporativo e benefícios.">
+                    <span class="arrow-icon">▷</span> CONVÊNIO CORPORATIVO
+                 </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        
+        <h2 style="margin-bottom: 20px; font-size: 1.8rem;">
+            FERRAMENTAS E APPS
+        </h2>
+        
+        <div id="events-grid">
+            
+            <a href="https://www.exemploapp1.com.br" target="_blank" class="event-card" aria-label="Nome do App 1">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 1" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">
+                      NOME DO APP 1
+                    </p>
+                    <p class="card-subtitle">Descrição concisa da ferramenta e seus benefícios para o viajante ou o profissional.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.exemploapp2.com.br" target="_blank" class="event-card" aria-label="Nome do App 2">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 2" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">
+                      NOME DO APP 2
+                    </p>
+                    <p class="card-subtitle">Outra ferramenta útil para otimizar tempo, converter moedas ou gerenciar itinerários.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.exemploapp3.com.br" target="_blank" class="event-card" aria-label="Nome do App 3">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 3" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">
+                      NOME DO APP 3
+                    </p>
+                    <p class="card-subtitle">Um terceiro exemplo de aplicativo focado em produtividade ou lazer durante a viagem.</p>
+                </div>
+            </a>
+
+            </div>
+        
+    </div>
+</div>
+</body>
+</html>
