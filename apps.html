@@ -137,7 +137,7 @@ a{text-decoration:none;color:inherit}
 }
 
 /* GRID DE EVENTOS/APPS */
-#events-grid { /* Reutilizando ID do Grid, renomeado para apps-grid em alguns projetos, mas mantido aqui para reuso do CSS */
+#events-grid { /* Reutilizando ID do Grid */
     display: grid;
     gap: 20px;
     padding: 0 16px 0 0; 
@@ -170,7 +170,7 @@ a{text-decoration:none;color:inherit}
 .card-media img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* MANTIDO COMO COVER */
+    object-fit: cover; /* Mantido em cover no CSS global. Individualmente, usamos contain para logotipos */
 }
 .card-content {
     padding: 15px;
@@ -255,43 +255,157 @@ h1,h2{font-weight:900 !important; line-height: 1.1;}
         
         <div id="events-grid">
             
-            <a href="https://www.exemploapp1.com.br" target="_blank" class="event-card" aria-label="Nome do App 1">
+            <a href="https://wanderlog.com" target="_blank" class="event-card" aria-label="Wanderlog - Planejador de Viagens">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 1" style="object-fit: contain;"> 
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Wanderlog Logo" style="object-fit: contain;"> 
                 </div>
                 <div class="card-content">
-                    <p class="card-title">
-                      NOME DO APP 1
-                    </p>
-                    <p class="card-subtitle">Descrição concisa da ferramenta e seus benefícios para o viajante ou o profissional.</p>
+                    <p class="card-title">WANDERLOG – PLANEJADOR DE VIAGENS</p>
+                    <p class="card-subtitle">Planejador de viagens gratuito para montar roteiro dia a dia, salvar reservas e marcar pontos de interesse no mapa. Ideal para road trips e férias mais longas.</p>
                 </div>
             </a>
             
-            <a href="https://www.exemploapp2.com.br" target="_blank" class="event-card" aria-label="Nome do App 2">
+            <a href="https://www.flightradar24.com/" target="_blank" class="event-card" aria-label="Flightradar24 – Rastreador de Voos">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 2" style="object-fit: contain;"> 
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Flightradar24 Logo" style="object-fit: contain;"> 
                 </div>
                 <div class="card-content">
-                    <p class="card-title">
-                      NOME DO APP 2
-                    </p>
-                    <p class="card-subtitle">Outra ferramenta útil para otimizar tempo, converter moedas ou gerenciar itinerários.</p>
+                    <p class="card-title">FLIGHTRADAR24 – RASTREADOR DE VOOS</p>
+                    <p class="card-subtitle">Mostra em tempo real a posição do seu voo e o status de chegada/partida no mapa. Útil para acompanhar conexões e checar atrasos.</p>
                 </div>
             </a>
             
-            <a href="https://www.exemploapp3.com.br" target="_blank" class="event-card" aria-label="Nome do App 3">
+            <a href="https://www.google.com/travel/flights" target="_blank" class="event-card" aria-label="Google Voos – Comparador de tarifas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Logo App 3" style="object-fit: contain;"> 
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Google Voos Logo" style="object-fit: contain;"> 
                 </div>
                 <div class="card-content">
-                    <p class="card-title">
-                      NOME DO APP 3
-                    </p>
-                    <p class="card-subtitle">Um terceiro exemplo de aplicativo focado em produtividade ou lazer durante a viagem.</p>
+                    <p class="card-title">GOOGLE VOOS – COMPARADOR DE DATAS E TARIFAS</p>
+                    <p class="card-subtitle">Ferramenta do Google para pesquisar voos, testar datas flexíveis e acompanhar variação de preços. Ideal para viagens de lazer com maior antecedência.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.rome2rio.com" target="_blank" class="event-card" aria-label="Rome2Rio – Como ir de A até B">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Rome2Rio Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">ROME2RIO – COMO IR DE A ATÉ B</p>
+                    <p class="card-subtitle">Mostra combinações de transporte (avião, trem, ônibus, balsa e carro) entre duas cidades ou endereços. Ajuda a planejar o trajeto completo.</p>
                 </div>
             </a>
 
-            </div>
+            <a href="https://www.melhoresdestinos.com.br/" target="_blank" class="event-card" aria-label="Melhores Destinos – Alertas de Promoções">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Melhores Destinos Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">MELHORES DESTINOS – ALERTAS DE PROMOÇÕES</p>
+                    <p class="card-subtitle">Site e app brasileiro focado em divulgar promoções de passagens, pacotes e serviços de viagem. Bom para acompanhar oportunidades e alinhar com nossa equipe.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.airbnb.com.br" target="_blank" class="event-card" aria-label="Airbnb – Hospedagens alternativas">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Airbnb Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">AIRBNB – CASAS, APARTAMENTOS E HOSPEDAGENS</p>
+                    <p class="card-subtitle">Plataforma de aluguel de casas e apartamentos em mais de 190 países. Útil para quem prefere ficar em bairro residencial ou dividir acomodação com o time.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.getyourguide.com" target="_blank" class="event-card" aria-label="GetYourGuide – Reservar passeios e atividades">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="GetYourGuide Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">GETYOURGUIDE – PASSEIOS E ATIVIDADES</p>
+                    <p class="card-subtitle">Plataforma para pesquisar e reservar passeios, ingressos e atividades no mundo todo. Ajuda a organizar o roteiro com antecedência e evitar filas no destino.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.viator.com" target="_blank" class="event-card" aria-label="Viator – Atividades Turísticas">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Viator Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">VIATOR – ATIVIDADES TURÍSTICAS</p>
+                    <p class="card-subtitle">Plataforma com grande variedade de tours, transfers e experiências locais. Oferece desde caminhadas guiadas até roteiros completos de vários dias.</p>
+                </div>
+            </a>
+
+            <a href="https://www.tripadvisor.com/" target="_blank" class="event-card" aria-label="Tripadvisor – Avaliações de Hotéis e Restaurantes">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Tripadvisor Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">TRIPADVISOR – AVALIAÇÕES DE HOTÉIS E PASSEIOS</p>
+                    <p class="card-subtitle">Maior comunidade de reviews de viagem do mundo, com notas e comentários sobre hotéis, restaurantes e atrações. Serve como “segunda opinião”.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.prioritypass.com/pt" target="_blank" class="event-card" aria-label="Priority Pass – Salas VIP">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="Priority Pass Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">PRIORITY PASS – SALAS VIP</p>
+                    <p class="card-subtitle">Localiza salas VIP e experiências em mais de 1.800 espaços de aeroporto pelo mundo. Excelente para diretores e executivos que querem trabalhar entre conexões.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.awardtool.com" target="_blank" class="event-card" aria-label="AwardTool – Busca de passagens com milhas">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="AwardTool Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">AWARDTOOL – BUSCA DE PASSAGENS COM MILHAS</p>
+                    <p class="card-subtitle">Motor de busca especializado em disponibilidade de passagens com milhas em diversas companhias e programas. Ajuda a enxergar onde vale usar pontos.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.expertflyer.com" target="_blank" class="event-card" aria-label="ExpertFlyer – Assentos, upgrades e disponibilidade prêmio">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="ExpertFlyer Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">EXPERTFLYER – ASSENTOS E UPGRADES</p>
+                    <p class="card-subtitle">Ferramenta avançada: mostra mapas de assentos, disponibilidade para upgrade e lugares prêmio em várias cias aéreas. Indicado para viajantes frequentes e executivos.</p>
+                </div>
+            </a>
+
+            <a href="https://www.alltrails.com" target="_blank" class="event-card" aria-label="AllTrails – Guia de trilhas e rotas outdoor">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="AllTrails Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">ALLTRAILS – GUIA DE TRILHAS E ROTAS OUTDOOR</p>
+                    <p class="card-subtitle">Guia de trilhas e rotas outdoor com mapas detalhados, nível de dificuldade e comentários da comunidade. Útil para planejar caminhadas ou pedal em destinos.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.flightconnections.com" target="_blank" class="event-card" aria-label="FlightConnections – Rotas e conexões em mapa">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="FlightConnections Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">FLIGHTCONNECTIONS – ROTAS E CONEXÕES EM MAPA</p>
+                    <p class="card-subtitle">Mapa interativo com rotas diretas e conexões entre milhares de aeroportos e companhias. Ótimo para visualizar caminhos possíveis entre a cidade do cliente e o destino.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.blablacar.com" target="_blank" class="event-card" aria-label="BlaBlaCar – Caronas Compartilhadas">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/img/banners/placeholder.webp" alt="BlaBlaCar Logo" style="object-fit: contain;"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">BLABLACAR – CARONAS COMPARTILHADAS</p>
+                    <p class="card-subtitle">Plataforma de caronas compartilhadas em trajetos entre cidades. Opção econômica quando não há voo ou trem conveniente.</p>
+                </div>
+            </a>
+            
+        </div>
         
     </div>
 </div>
