@@ -78,19 +78,17 @@
 
         let dateString;
         
-        // Função auxiliar para obter a abreviação/nome (Máximo 3 letras para meses longos)
-        const getMonthName = (monthIndex) => {
-            // A regra é exibir a abreviação de 3 letras para todos para máximo controle de espaço
+        // Função auxiliar para obter a abreviação (sempre 3 letras)
+        const getMonthAbbreviation = (monthIndex) => {
             return MONTH_ABBREVIATIONS[monthIndex];
         };
         
-        // 1. Evento NO MESMO MÊS/ANO: "11 A 14 AGO"
+        // 1. Evento NO MESMO MÊS/ANO: Formato "DD A DD MÊS" (com abreviação)
         if (month1 === month2 && year1 === year2) {
-            const monthAbbrev = getMonthName(month1);
-            // Retorna o formato: DD A DD MÊS
+            const monthAbbrev = getMonthAbbreviation(month1);
             dateString = `${day1} A ${day2} ${monthAbbrev}`;
         } else {
-            // 2. Evento COM QUEBRA DE MÊS/ANO: "DD/MM - DD/MM"
+            // 2. Evento COM QUEBRA DE MÊS/ANO: Formato "DD/MM - DD/MM" (MANTIDO)
             const month1Str = String(month1 + 1).padStart(2, '0');
             const month2Str = String(month2 + 1).padStart(2, '0');
             const day1Str = String(day1).padStart(2, '0');
