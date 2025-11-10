@@ -75,25 +75,26 @@
         const month2 = d2.getUTCMonth();
         const year1 = d1.getUTCFullYear();
         const year2 = d2.getUTCFullYear();
-        
+
         let dateString;
         
         // Função auxiliar para obter a abreviação/nome (Máximo 3 letras para meses longos)
         const getMonthName = (monthIndex) => {
             const fullName = MONTH_FULL_NAMES[monthIndex];
-            // Define meses a abreviar (JAN, FEV, MAR, AGO, SET, OUT, NOV, DEZ)
+            // Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro, Janeiro, Fevereiro, Março
             if (fullName.length > 4) {
                  return MONTH_ABBREVIATIONS[monthIndex]; // Usa a abreviação de 3 letras
             }
-            return fullName; // Mantém ABR, MAIO, JUNHO, JULHO completos se quiser
+            return MONTH_ABBREVIATIONS[monthIndex]; // Usa abreviação de 3 letras para ABR, MAI
         };
-
-        // 1. Evento NO MESMO MÊS/ANO: "11 a 14 AGO"
+        
+        // 1. Evento NO MESMO MÊS/ANO: "11 A 14 AGO"
         if (month1 === month2 && year1 === year2) {
             const monthAbbrev = getMonthName(month1);
+            // Retorna o formato: DD A DD MÊS
             dateString = `${day1} A ${day2} ${monthAbbrev}`;
         } else {
-            // 2. Evento COM QUEBRA DE MÊS/ANO: "29/11 - 02/12"
+            // 2. Evento COM QUEBRA DE MÊS/ANO: "DD/MM - DD/MM"
             const month1Str = String(month1 + 1).padStart(2, '0');
             const month2Str = String(month2 + 1).padStart(2, '0');
             const day1Str = String(day1).padStart(2, '0');
