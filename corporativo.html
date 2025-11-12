@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Garante que o navegador sempre busque a versão mais recente -->
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Consultoria Corporativa e BTM</title>
+  <title>WinnersTour — Consultoria Estratégica Corporativa</title>
   
   <!-- Fonts: Mantendo a consistência com Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
-  <!-- Estilos CSS embutidos para manter o arquivo único, seguindo o padrão de index.html/apps.html -->
+  <!-- Estilos CSS embutidos para manter o arquivo único -->
   <style>
 /* VARIÁVEIS DE COR E ESTILO - CONSISTENTE COM O SITE */
 :root{
@@ -27,7 +27,7 @@
   --card:#fff;
   --shadow-base:0 2px 5px rgba(2,8,23,.05); 
   --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  --card-hover-bg:#f5f5f5; 
+  --card-hover-bg:#fff; 
   --transition: all 0.3s ease;
 }
 
@@ -107,11 +107,12 @@ body {
     margin-left: 250px; /* Offset da sidebar */
     padding: 30px;
     box-sizing: border-box;
+    max-width: 900px; /* Limita largura do texto para melhor leitura */
 }
 
 /* TÍTULO DA PÁGINA (CORPORATIVO) */
 .page-title {
-    font-size: 32px;
+    font-size: 36px; 
     font-weight: 900;
     color: var(--text-charcoal);
     margin-bottom: 5px;
@@ -119,77 +120,77 @@ body {
 }
 
 .page-subtitle {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--muted);
+    font-size: 20px; 
+    font-weight: 700;
+    color: var(--brand); 
     margin-bottom: 40px;
     line-height: 1.4;
 }
 
-/* GRID DE CARDS */
-#corporativo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-/* ESTILO DO CARD (INSPIRADO NO apps.html/index.html) */
-.info-card {
+/* NOVO ESTILO: Bloco de Introdução/Editorial */
+.editorial-block {
     background-color: var(--card);
+    padding: 25px;
     border-radius: 12px;
     box-shadow: var(--shadow-base);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--brand);
+}
+
+.editorial-block p {
+    font-size: 17px;
+    line-height: 1.7;
     color: var(--text-charcoal);
-    transition: var(--transition);
-    border: 1px solid #e5e7eb;
-    padding: 20px;
+    margin-bottom: 15px;
+    text-align: justify;
 }
 
-.info-card:hover {
-    box-shadow: var(--shadow-hover);
-    background-color: var(--card-hover-bg);
-    transform: translateY(-2px);
-}
-
-.card-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    color: var(--brand); /* Cor de destaque para o título principal do card */
-}
-
-.card-subtitle {
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 0;
-}
-
-/* ESTILO PARA AS SEÇÕES DE CONTEÚDO (PARA ORGANIZAR OS CARDS POR PILAR) */
-.content-section {
-    margin-bottom: 50px;
-}
-
-.section-header {
-    font-size: 24px;
-    font-weight: 700;
+/* ESTILO DO ARTIGO (Texto Corrido) */
+.article-text {
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--text-charcoal);
     margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--brand);
-    display: flex;
-    align-items: center;
+    text-align: justify;
 }
 
-.section-icon {
-    font-size: 28px;
-    margin-right: 10px;
-    color: var(--brand);
+.article-text strong {
+    font-weight: 700;
+    color: var(--brand-shadow);
+}
+
+.article-text h3 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text-charcoal);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* NOVO ESTILO: Bloco de Destaque Estratégico (Substitui o Card Grid) */
+.strategic-highlight {
+    background-color: #ffe8d6; /* Fundo mais claro que o brand */
+    color: var(--text-charcoal);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px 0;
+    border: 1px solid var(--brand);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.strategic-highlight strong {
+    color: var(--brand-shadow);
+    font-weight: 900;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+.strategic-highlight p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* SEÇÃO FINAL DE CHAMADA PARA AÇÃO */
@@ -243,6 +244,7 @@ body {
     #main-content {
         margin-left: 0;
         padding: 20px;
+        max-width: 100%;
     }
 
     .main-wrapper {
@@ -258,7 +260,7 @@ body {
 <body>
 
 <div class="main-wrapper">
-    <!-- SIDEBAR (Menu Fixo Esquerdo) - Replicando a estrutura do index/apps -->
+    <!-- SIDEBAR (Menu Fixo Esquerdo) - Replicando a estrutura -->
     <div class="sidebar">
         <a href="index.html" class="winners-logo">WINNERS TOUR</a>
         <div class="sidebar-content">
@@ -283,101 +285,82 @@ body {
                  <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" style="color: var(--brand-shadow);" aria-label="Página atual: Corporativo.">
                     <span class="arrow-icon">►</span> CORPORATIVO
                  </a>
+                 <a href="faq.html" class="cta-link-sidebar" aria-label="Ir para a página Perguntas Frequentes.">
+                    <span class="arrow-icon">▷</span> PERGUNTAS FREQUENTES (FAQ)
+                 </a>
             </div>
         </div>
     </div>
     
-    <!-- CONTEÚDO PRINCIPAL DA LANDING PAGE CORPORATIVA -->
+    <!-- CONTEÚDO PRINCIPAL DA LANDING PAGE CORPORATIVA - FORMATO ARTIGO/REPORTAGEM -->
     <div id="main-content">
         
-        <!-- Título e Subtítulo Chamativos -->
-        <h1 class="page-title">CONSULTORIA DE VIAGENS CORPORATIVAS ESTRATÉGICAS</h1>
-        <p class="page-subtitle">Sua empresa busca mais do que passagens. Ela busca a certeza de que cada viagem será eficiente, segura e, acima de tudo, **financeiramente inteligente**.</p>
+        <!-- A: ATENÇÃO & INTERESSE (Hero Section) -->
+        <h1 class="page-title">CONSULTORIA ESTRATÉGICA: A NOVA GESTÃO DE VIAGENS CORPORATIVAS</h1>
+        <p class="page-subtitle">Sua empresa busca a transformação: deixar de tratar a viagem como um custo imprevisível e passá-la a gerir como um investimento otimizado. Nossa consultoria é o caminho para este controle.</p>
         
-        <!-- Seção 1: Otimização Financeira -->
-        <div class="content-section">
-            <h2 class="section-header"><span class="section-icon">💰</span> OTIMIZAÇÃO FINANCEIRA: A REGRA DE OURO DA ECONOMIA</h2>
-            <div id="corporativo-grid">
-                
-                <!-- CARD 1: Antecedência como Tática Vencedora -->
-                <div class="info-card">
-                    <p class="card-title">ANTECEDÊNCIA: A TÁTICA VENCEDORA</p>
-                    <p class="card-subtitle">A regra de ouro que supera qualquer desconto. Nossa consultoria garante a compra no período ideal (45 a 30 dias) para acesso às melhores tarifas corporativas, economizando até R$ 2.000 por bilhete em rotas críticas.</p>
-                </div>
-                
-                <!-- CARD 2: Custo Total da Viagem (TTC) -->
-                <div class="info-card">
-                    <p class="card-title">CUSTO TOTAL DA VIAGEM (TTC)</p>
-                    <p class="card-subtitle">Analisamos o Custo Total (TTC), que inclui multas por alteração e perda de produtividade. Vendemos flexibilidade: as tarifas negociadas evitam o TTC alto, protegendo seu orçamento contra imprevistos.</p>
-                </div>
-
-                <!-- CARD 3: Curadoria e Orçamento Alinhado -->
-                <div class="info-card">
-                    <p class="card-title">CURADORIA E ORÇAMENTO ALINHADO</p>
-                    <p class="card-subtitle">Não entregamos apenas cotações. Fazemos a curadoria de voos, hotéis e serviços (salas de reunião), garantindo que a proposta esteja 100% alinhada com a sua política e o melhor custo-benefício. </p>
-                </div>
-
-            </div>
+        <!-- Bloco de Introdução/Editorial - Constrói a narrativa de necessidade -->
+        <div class="editorial-block">
+            <p><strong>A era da emissão simples de bilhetes acabou.</strong> O mercado exige que o comprador ou gestor de viagens não seja apenas um agente de reservas, mas um estrategista financeiro e de *compliance*. A Winners Tour oferece esta expertise de ponta, transformando o complexo ecossistema de viagens corporativas em um manual de controle total e economia substancial. O foco não está em dicas superficiais, mas na arquitetura da decisão de compra.</p>
+            <p>Com base na análise de milhares de transações e regras tarifárias, concentramos nossa consultoria em três pilares fundamentais: a **disciplina financeira**, a **governança** e o **cuidado** com o viajante. Esteja você começando ou buscando otimizar uma operação existente, este é o guia aprofundado para alavancar sua performance.</p>
         </div>
         
-        <!-- Seção 2: Compliance e Governança -->
+        <!-- D: DESEJO (Pilar I - Financeiro e a Cadência do Artigo) -->
         <div class="content-section">
-            <h2 class="section-header"><span class="section-icon">📑</span> COMPLIANCE E GOVERNANÇA: ELIMINE O RUÍDO ADMINISTRATIVO</h2>
-            <div id="corporativo-grid">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR I: DISCIPLINA FINANCEIRA E O CUSTO OCULTO</h2>
+            
+            <div class="article-text">
+                <h3>A Tática Vencedora: Por Que a Antecedência Supera o Desconto</h3>
+                <p>O maior erro na gestão de viagens é acreditar que a economia reside em procurar freneticamente por descontos de última hora ou em voos com múltiplas pernas. Na verdade, o controle de custos começa no **planejamento**. O preço de uma passagem não é determinado pela ocupação do voo, mas sim pelo sistema de *Revenue Management* (Gestão de Receita) das companhias aéreas, que penaliza a compra tardia.</p>
+                <p>A Winners Tour foca na **Regra de Ouro da Antecedência** (<a href="antecedencia.html" style="color: var(--brand-shadow); text-decoration: underline;">clique para ver o detalhamento do algoritmo</a>). Nossa consultoria visa garantir que o planejamento inicie com **45 dias** e a efetivação da compra (emissão) ocorra **antes dos 30 dias** da data de embarque. Cruzar esta barreira de 30 dias significa, invariavelmente, que o algoritmo irá forçar a tarifa para uma classe mais cara, resultando em um aumento de até 200% no custo final.</p>
+            </div>
+            
+            <div class="strategic-highlight">
+                <strong>O RISCO DO CUSTO TOTAL DA VIAGEM (TTC)</strong>
+                <p>Buscar a "tarifa mais barata" é uma falsa economia. A tarifa mais baixa é a mais restritiva e impõe multas altíssimas por cancelamento e remarcação. Trabalhamos com o conceito de **Custo Total da Viagem (TTC)**: a soma do custo do bilhete + o custo de imprevistos e multas. Nossas tarifas corporativas negociadas oferecem flexibilidade superior, que é o seu seguro contra o TTC, protegendo o orçamento de surpresas e multas desnecessárias.</p>
+            </div>
+            
+            <div class="article-text">
+                <h3>Curadoria vs. Caos e o Rastreamento de Gastos</h3>
+                <p>Nossa função vai além da cotação. Fazemos a **curadoria** de cada roteiro, garantindo que a proposta esteja alinhada com a Regra de Ouro. Em vez de sua equipe perder tempo buscando em múltiplos sites, nós entregamos a solução otimizada. Isso elimina o risco da compra *off-channel* (fora dos canais homologados), que é o inimigo número um do controle orçamentário e da rastreabilidade.</p>
+            </div>
+        </div>
+        
+        <!-- D: DESEJO (Pilar II - Governança e Compliance) -->
+        <div class="content-section">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR II: GOVERNANÇA E SEGURANÇA REGULATÓRIA</h2>
+            
+            <div class="article-text">
+                <p>No ambiente corporativo, a política de viagens é um documento de governança. Uma política ineficiente gera ruído administrativo e despesas desalinhadas. Nossa consultoria se baseia na **simplicidade**. Auxiliamos na definição de diretrizes claras que, quando seguidas, garantem a aprovação imediata da compra, aproveitando o momento de melhor preço e evitando a morosidade administrativa que custa dinheiro.</p>
                 
-                <!-- CARD 4: Política Enxuta -->
-                <div class="info-card">
-                    <p class="card-title">POLÍTICA DE VIAGEM ENXUTA E EFICAZ</p>
-                    <p class="card-subtitle">Auxiliamos na criação de uma política clara e simples, que evita discussões e agiliza o processo de aprovação de compras. Foco na regra essencial para facilitar a adesão dos colaboradores.</p>
-                </div>
+                <h3>Segurança Jurídica: A Winners Tour e a ANAC 400</h3>
+                <p>O gestor precisa de segurança jurídica. A **Resolução ANAC nº 400** define os direitos do passageiro em caso de atraso, cancelamento e preterição. Nossa expertise garante que sua empresa e seus viajantes conheçam e tenham seus direitos de assistência material (alimentação, hospedagem) e, mais importante, o **reembolso integral** no prazo legal de **7 dias** em caso de falha da companhia aérea. Nós assumimos essa complexidade, garantindo que sua equipe se concentre no negócio.</p>
+            </div>
+            
+            <div class="strategic-highlight">
+                <strong>GOVERNANÇA: ELIMINE O CAOS ADMINISTRATIVO</strong>
+                <p>Nossa parceria transforma a gestão de viagens em um setor transparente. Fornecemos relatórios customizados que garantem a rastreabilidade de cada real gasto, facilitando a auditoria interna. Isso assegura que sua política seja cumprida, **eliminando a necessidade de discussões e ruídos** com colaboradores que buscam tarifas inadequadas.</p>
+            </div>
+        </div>
+        
+        <!-- D: DESEJO (Pilar III - Fator Humano e Crise) -->
+        <div class="content-section">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR III: BEM-ESTAR E O DEVER DE CUIDADO (*DUTY OF CARE*)</h2>
+            
+            <div class="article-text">
+                <p>Sua obrigação ética e legal é proteger o viajante: o *Duty of Care* (Dever de Cuidado). A diferença de contratar uma TMC como a Winners Tour é o suporte humano que **de fato gerencia a crise**. Em situações de risco, nossa equipe 24/7 assume a linha de frente: em atrasos de 6 horas em um aeroporto ou em crises internacionais, garantimos a reacomodação e a segurança do colaborador sem que o *Travel Manager* precise sair da sua rotina.</p>
                 
-                <!-- CARD 5: Combate ao Off-Channel -->
-                <div class="info-card">
-                    <p class="card-title">CONTROLE DE GASTOS E OFF-CHANNEL</p>
-                    <p class="card-subtitle">Garantimos que todas as reservas permaneçam 'in-policy'. Centralizamos as reservas para dar visibilidade e controle total sobre as despesas, combatendo as compras fora dos canais oficiais.</p>
-                </div>
-
-                <!-- CARD 6: Direitos ANAC 400 -->
-                <div class="info-card">
-                    <p class="card-title">SEUS DIREITOS GARANTIDOS (ANAC 400)</p>
-                    <p class="card-subtitle">Atuamos para que sua empresa cumpra a Resolução ANAC nº 400. Em caso de reembolso por cancelamento, garantimos que o prazo legal de 7 dias seja cumprido e que o viajante receba a assistência devida.</p>
-                </div>
-
+                <h3>Flexibilidade para Retenção de Talentos (*Bleisure*)</h3>
+                <p>O bem-estar é um diferencial de RH. A inclusão de dias de lazer (*Bleisure*) na política é uma estratégia que demonstra cuidado com o colaborador, reduz o *burnout* e, surpreendentemente, pode **reduzir o custo final** da passagem ao permitir a compra de bilhetes em dias mais baratos. Posicionar o *Duty of Care* como um benefício humanizado fortalece a cultura organizacional e auxilia na atração e retenção de talentos.</p>
             </div>
         </div>
 
-        <!-- Seção 3: Segurança e Suporte -->
-        <div class="content-section">
-            <h2 class="section-header"><span class="section-icon">🛡️</span> SEGURANÇA E SUPORTE: NOSSO DEVER DE CUIDADO</h2>
-            <div id="corporativo-grid">
-                
-                <!-- CARD 7: Duty of Care -->
-                <div class="info-card">
-                    <p class="card-title">ASSUMIMOS O DUTY OF CARE</p>
-                    <p class="card-subtitle">É nossa obrigação ética garantir o bem-estar e a segurança do seu colaborador. Em situações de risco, a Winners Tour assume a gestão imediata, protegendo o viajante corporativo.</p>
-                </div>
-                
-                <!-- CARD 8: Suporte Humano 24/7 -->
-                <div class="info-card">
-                    <p class="card-title">SUPORTE HUMANO 24/7 EM CRISE</p>
-                    <p class="card-subtitle">Esqueça chatbots. Em caso de imprevisto, nossa equipe assume a reacomodação e negociação com companhias aéreas, garantindo a chegada ao compromisso com interrupção mínima.</p>
-                </div>
-
-                <!-- CARD 9: Bleisure -->
-                <div class="info-card">
-                    <p class="card-title">FLEXIBILIDADE E RETENÇÃO (*BLEISURE*)</p>
-                    <p class="card-subtitle">Aconselhamos a inclusão do *Bleisure* (lazer junto aos negócios) na política. Uma estratégia de RH que reduz o estresse do colaborador e pode gerar economia com tarifas de fim de semana.</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Chamada Final para Ação -->
+        <!-- A: AÇÃO (Chamada Final) -->
         <div class="final-cta">
-            <h2>PRONTO PARA O PRÓXIMO NÍVEL DA GESTÃO DE VIAGENS?</h2>
-            <p>Fale agora com um consultor da Winners Tour e descubra como transformar sua política de viagens em uma ferramenta de economia e produtividade.</p>
+            <h2>CHEGA DE CUSTOS OCULTOS. SOLICITE SUA CONSULTORIA.</h2>
+            <p>Fale agora com um consultor da Winners Tour e descubra como transformar sua política de viagens em uma ferramenta de economia e produtividade. É hora de otimizar seu orçamento.</p>
             <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20uma%20consultoria%20corporativa." target="_blank" class="cta-button">
-                SOLICITE UMA CONSULTORIA AGORA
+                SOLICITE UM DIAGNÓSTICO AGORA
             </a>
         </div>
         
