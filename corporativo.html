@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Garante que o navegador sempre busque a versão mais recente -->
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title>WinnersTour — Consultoria Corporativa e BTM</title>
+  
+  <!-- Fonts: Mantendo a consistência com Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS embutidos para manter o arquivo único, seguindo o padrão de index.html/apps.html -->
+  <style>
+/* VARIÁVEIS DE COR E ESTILO - CONSISTENTE COM O SITE */
+:root{
+  --brand:#f97316; /* Laranja da Winners */
+  --brand-shadow:#C2410C; 
+  --wa:#25D366; /* Verde WhatsApp */
+  --wa-hover:#1AC656; 
+  --wa-ring:#128C7E; 
+  --text-charcoal:#111827; 
+  --muted:#6b7280;
+  --bg:#f5f5f5; /* Fundo levemente cinza */
+  --card:#fff;
+  --shadow-base:0 2px 5px rgba(2,8,23,.05); 
+  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+  --card-hover-bg:#f5f5f5; 
+  --transition: all 0.3s ease;
+}
+
+/* BASE GLOBAL */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text-charcoal);
+}
+
+/* LAYOUT PRINCIPAL (SIDEBAR + CONTEÚDO) */
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR - LAYOUT E ESTILO */
+.sidebar {
+    width: 250px;
+    background-color: var(--card);
+    padding: 20px;
+    box-shadow: var(--shadow-base);
+    position: fixed; /* Fixo para scrolls longos */
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.winners-logo {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.sidebar-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.cta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cta-link-sidebar {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--brand);
+    transition: color 0.2s ease;
+}
+
+.cta-link-sidebar:hover {
+    color: var(--brand-shadow);
+}
+
+.cta-link-sidebar .arrow-icon {
+    margin-right: 5px;
+    font-size: 10px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+#main-content {
+    flex-grow: 1;
+    margin-left: 250px; /* Offset da sidebar */
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* TÍTULO DA PÁGINA (CORPORATIVO) */
+.page-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-charcoal);
+    margin-bottom: 5px;
+    padding-top: 10px;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+/* GRID DE CARDS */
+#corporativo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* ESTILO DO CARD (INSPIRADO NO apps.html/index.html) */
+.info-card {
+    background-color: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-charcoal);
+    transition: var(--transition);
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+}
+
+.info-card:hover {
+    box-shadow: var(--shadow-hover);
+    background-color: var(--card-hover-bg);
+    transform: translateY(-2px);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: var(--brand); /* Cor de destaque para o título principal do card */
+}
+
+.card-subtitle {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* ESTILO PARA AS SEÇÕES DE CONTEÚDO (PARA ORGANIZAR OS CARDS POR PILAR) */
+.content-section {
+    margin-bottom: 50px;
+}
+
+.section-header {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--brand);
+    display: flex;
+    align-items: center;
+}
+
+.section-icon {
+    font-size: 28px;
+    margin-right: 10px;
+    color: var(--brand);
+}
+
+/* SEÇÃO FINAL DE CHAMADA PARA AÇÃO */
+.final-cta {
+    background-color: var(--brand);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.final-cta h2 {
+    font-size: 28px;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+}
+
+.final-cta p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.cta-button {
+    background-color: white;
+    color: var(--brand-shadow);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static; /* Não fixo em mobile */
+        box-shadow: none;
+        padding-bottom: 0;
+    }
+
+    #main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .main-wrapper {
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+}
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <!-- SIDEBAR (Menu Fixo Esquerdo) - Replicando a estrutura do index/apps -->
+    <div class="sidebar">
+        <a href="index.html" class="winners-logo">WINNERS TOUR</a>
+        <div class="sidebar-content">
+            <p>Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.</p>
+            
+            <div class="cta-links">
+                <a href="index.html" class="cta-link-sidebar" aria-label="Voltar para a página inicial de eventos e feiras.">
+                    <span class="arrow-icon">▷</span> VOLTAR PARA EVENTOS, CONGRESSOS E FEIRAS
+                </a>
+                 <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="cta-link-sidebar" aria-label="Chame-nos no WhatsApp para atendimento imediato.">
+                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
+                 </a>
+                 <a href="https://linkdasualojavirtual" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na loja virtual.">
+                    <span class="arrow-icon">▷</span> FAZER ORÇAMENTO NA NOSSA LOJA VIRTUAL
+                 </a>
+                 <a href="apps.html" class="cta-link-sidebar" aria-label="Ver ferramentas e aplicativos recomendados.">
+                    <span class="arrow-icon">▷</span> VER FERRAMENTAS E APPS
+                 </a>
+                 <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+                    <span class="arrow-icon">▷</span> VER VIAGENS DE LAZER
+                 </a>
+                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" style="color: var(--brand-shadow);" aria-label="Página atual: Corporativo.">
+                    <span class="arrow-icon">►</span> CORPORATIVO
+                 </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CONTEÚDO PRINCIPAL DA LANDING PAGE CORPORATIVA -->
+    <div id="main-content">
+        
+        <!-- Título e Subtítulo Chamativos -->
+        <h1 class="page-title">CONSULTORIA DE VIAGENS CORPORATIVAS ESTRATÉGICAS</h1>
+        <p class="page-subtitle">Sua empresa busca mais do que passagens. Ela busca a certeza de que cada viagem será eficiente, segura e, acima de tudo, **financeiramente inteligente**.</p>
+        
+        <!-- Seção 1: Otimização Financeira -->
+        <div class="content-section">
+            <h2 class="section-header"><span class="section-icon">💰</span> OTIMIZAÇÃO FINANCEIRA: A REGRA DE OURO DA ECONOMIA</h2>
+            <div id="corporativo-grid">
+                
+                <!-- CARD 1: Antecedência como Tática Vencedora -->
+                <div class="info-card">
+                    <p class="card-title">ANTECEDÊNCIA: A TÁTICA VENCEDORA</p>
+                    <p class="card-subtitle">A regra de ouro que supera qualquer desconto. Nossa consultoria garante a compra no período ideal (45 a 30 dias) para acesso às melhores tarifas corporativas, economizando até R$ 2.000 por bilhete em rotas críticas.</p>
+                </div>
+                
+                <!-- CARD 2: Custo Total da Viagem (TTC) -->
+                <div class="info-card">
+                    <p class="card-title">CUSTO TOTAL DA VIAGEM (TTC)</p>
+                    <p class="card-subtitle">Analisamos o Custo Total (TTC), que inclui multas por alteração e perda de produtividade. Vendemos flexibilidade: as tarifas negociadas evitam o TTC alto, protegendo seu orçamento contra imprevistos.</p>
+                </div>
+
+                <!-- CARD 3: Curadoria e Orçamento Alinhado -->
+                <div class="info-card">
+                    <p class="card-title">CURADORIA E ORÇAMENTO ALINHADO</p>
+                    <p class="card-subtitle">Não entregamos apenas cotações. Fazemos a curadoria de voos, hotéis e serviços (salas de reunião), garantindo que a proposta esteja 100% alinhada com a sua política e o melhor custo-benefício. </p>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Seção 2: Compliance e Governança -->
+        <div class="content-section">
+            <h2 class="section-header"><span class="section-icon">📑</span> COMPLIANCE E GOVERNANÇA: ELIMINE O RUÍDO ADMINISTRATIVO</h2>
+            <div id="corporativo-grid">
+                
+                <!-- CARD 4: Política Enxuta -->
+                <div class="info-card">
+                    <p class="card-title">POLÍTICA DE VIAGEM ENXUTA E EFICAZ</p>
+                    <p class="card-subtitle">Auxiliamos na criação de uma política clara e simples, que evita discussões e agiliza o processo de aprovação de compras. Foco na regra essencial para facilitar a adesão dos colaboradores.</p>
+                </div>
+                
+                <!-- CARD 5: Combate ao Off-Channel -->
+                <div class="info-card">
+                    <p class="card-title">CONTROLE DE GASTOS E OFF-CHANNEL</p>
+                    <p class="card-subtitle">Garantimos que todas as reservas permaneçam 'in-policy'. Centralizamos as reservas para dar visibilidade e controle total sobre as despesas, combatendo as compras fora dos canais oficiais.</p>
+                </div>
+
+                <!-- CARD 6: Direitos ANAC 400 -->
+                <div class="info-card">
+                    <p class="card-title">SEUS DIREITOS GARANTIDOS (ANAC 400)</p>
+                    <p class="card-subtitle">Atuamos para que sua empresa cumpra a Resolução ANAC nº 400. Em caso de reembolso por cancelamento, garantimos que o prazo legal de 7 dias seja cumprido e que o viajante receba a assistência devida.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Seção 3: Segurança e Suporte -->
+        <div class="content-section">
+            <h2 class="section-header"><span class="section-icon">🛡️</span> SEGURANÇA E SUPORTE: NOSSO DEVER DE CUIDADO</h2>
+            <div id="corporativo-grid">
+                
+                <!-- CARD 7: Duty of Care -->
+                <div class="info-card">
+                    <p class="card-title">ASSUMIMOS O DUTY OF CARE</p>
+                    <p class="card-subtitle">É nossa obrigação ética garantir o bem-estar e a segurança do seu colaborador. Em situações de risco, a Winners Tour assume a gestão imediata, protegendo o viajante corporativo.</p>
+                </div>
+                
+                <!-- CARD 8: Suporte Humano 24/7 -->
+                <div class="info-card">
+                    <p class="card-title">SUPORTE HUMANO 24/7 EM CRISE</p>
+                    <p class="card-subtitle">Esqueça chatbots. Em caso de imprevisto, nossa equipe assume a reacomodação e negociação com companhias aéreas, garantindo a chegada ao compromisso com interrupção mínima.</p>
+                </div>
+
+                <!-- CARD 9: Bleisure -->
+                <div class="info-card">
+                    <p class="card-title">FLEXIBILIDADE E RETENÇÃO (*BLEISURE*)</p>
+                    <p class="card-subtitle">Aconselhamos a inclusão do *Bleisure* (lazer junto aos negócios) na política. Uma estratégia de RH que reduz o estresse do colaborador e pode gerar economia com tarifas de fim de semana.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chamada Final para Ação -->
+        <div class="final-cta">
+            <h2>PRONTO PARA O PRÓXIMO NÍVEL DA GESTÃO DE VIAGENS?</h2>
+            <p>Fale agora com um consultor da Winners Tour e descubra como transformar sua política de viagens em uma ferramenta de economia e produtividade.</p>
+            <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20uma%20consultoria%20corporativa." target="_blank" class="cta-button">
+                SOLICITE UMA CONSULTORIA AGORA
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
