@@ -101,13 +101,14 @@ body {
     font-size: 10px;
 }
 
-/* CONTEÚDO PRINCIPAL */
+/* CONTEÚDO PRINCIPAL (REMOVENDO MAX-WIDTH) */
 #main-content {
     flex-grow: 1;
     margin-left: 250px; /* Offset da sidebar */
     padding: 30px;
     box-sizing: border-box;
-    max-width: 900px; /* Limita largura do texto para melhor leitura */
+    /* max-width: 900px; <-- REMOVIDO PARA USAR A LARGURA TOTAL DISPONÍVEL */
+    padding-right: 50px; /* Adiciona padding na direita para respiro em desktop */
 }
 
 /* TÍTULO DA PÁGINA (CORPORATIVO) */
@@ -169,7 +170,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-/* NOVO ESTILO: Bloco de Destaque Estratégico (Substitui o Card Grid) */
+/* NOVO ESTILO: Bloco de Destaque Estratégico (Simula o Card para destaque) */
 .strategic-highlight {
     background-color: #ffe8d6; /* Fundo mais claro que o brand */
     color: var(--text-charcoal);
@@ -178,6 +179,8 @@ body {
     margin: 30px 0;
     border: 1px solid var(--brand);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    /* Garante que o destaque ocupe a largura total */
+    width: 100%; 
 }
 
 .strategic-highlight strong {
@@ -201,6 +204,7 @@ body {
     border-radius: 12px;
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .final-cta h2 {
@@ -244,7 +248,7 @@ body {
     #main-content {
         margin-left: 0;
         padding: 20px;
-        max-width: 100%;
+        padding-right: 20px; /* Ajusta padding para mobile */
     }
 
     .main-wrapper {
