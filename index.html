@@ -132,6 +132,18 @@ a{text-decoration:none;color:inherit}
     line-height: 1;
 }
 
+/* NOVO ESTILO: Links 'Em Breve' */
+.cta-link-sidebar.coming-soon {
+    color: var(--muted) !important; /* Cor Cinza */
+    text-decoration: line-through; /* Riscado */
+    pointer-events: none; /* Desabilita clique */
+    cursor: default;
+}
+/* Remove o hover para links 'Em Breve' */
+.cta-link-sidebar.coming-soon:hover {
+    color: var(--muted) !important;
+    transform: none;
+}
 
 /* CONTEÚDO PRINCIPAL (Direita - Rolável) */
 #main-content {
@@ -265,23 +277,23 @@ h1,h2{font-weight:900 !important; line-height: 1.1;}
             
             <div class="whatsapp-cta">
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
+                    <span class="arrow-icon">👉</span> NOS CHAME NO WHATSAPP
                  </a>
 
                  <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
-                    <span class="arrow-icon">▷</span> FAZER ORÇAMENTO NA NOSSA LOJA VIRTUAL
+                    <span class="arrow-icon">👉</span> FAZER ORÇAMENTO NA NOSSA LOJA VIRTUAL
                  </a>
 
                  <a href="apps.html" class="cta-link-sidebar" aria-label="Ver ferramentas e aplicativos recomendados.">
-                    <span class="arrow-icon">▷</span> VER FERRAMENTAS E APPS
+                    <span class="arrow-icon">👉</span> VER FERRAMENTAS E APPS
                  </a>
                  
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-                    <span class="arrow-icon">▷</span> VER VIAGENS DE LAZER
+                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar coming-soon" aria-label="Ver pacotes de viagens de lazer. (Disponível em breve)">
+                    <span class="arrow-icon">👉</span> VER VIAGENS DE LAZER
                  </a>
                  
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" aria-label="Ver convênio corporativo e benefícios.">
-                    <span class="arrow-icon">▷</span> CONVÊNIO CORPORATIVO
+                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar coming-soon" aria-label="Ver convênio corporativo e benefícios. (Disponível em breve)">
+                    <span class="arrow-icon">👉</span> CONVÊNIO CORPORATIVO
                  </a>
             </div>
         </div>
