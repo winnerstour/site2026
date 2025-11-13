@@ -3,156 +3,175 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Garante que o navegador sempre busque a versão mais recente -->
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Consultoria Estratégica Corporativa</title>
+  <title>WinnersTour — Saiba Mais: Viagens Corporativas Estratégicas</title>
   
-  <!-- Fonts: Mantendo a consistência com Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   
-  <!-- Estilos CSS embutidos para manter o arquivo único -->
   <style>
-/* VARIÁVEIS DE COR E ESTILO - CONSISTENTE COM O SITE */
+/* VARIÁVEIS DE COR E ESTILO */
 :root{
   --brand:#f97316; /* Laranja da Winners */
   --brand-shadow:#C2410C; 
   --wa:#25D366; /* Verde WhatsApp */
-  --wa-hover:#1AC656; 
-  --wa-ring:#128C7E; 
   --text-charcoal:#111827; 
   --muted:#6b7280;
-  --bg:#f5f5f5; /* Fundo levemente cinza */
+  --bg:#f8f9fa; /* Fundo suave */
   --card:#fff;
   --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  --card-hover-bg:#fff; 
   --transition: all 0.3s ease;
+  
+  /* Cor do Hero Section - Inspiração B2B */
+  --hero-bg-color: #3f51b5; /* Um azul mais estratégico */
 }
 
 /* BASE GLOBAL */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Open Sans para o corpo */
+    font-size: 1rem; /* 1rem = 16px por padrão */
     margin: 0;
     padding: 0;
     background-color: var(--bg);
     color: var(--text-charcoal);
+    line-height: 1.6;
 }
 
-/* LAYOUT PRINCIPAL (SIDEBAR + CONTEÚDO) */
-.main-wrapper {
-    display: flex;
-    min-height: 100vh;
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif; /* Montserrat para títulos */
+    color: var(--text-charcoal);
+    line-height: 1.2;
 }
 
-/* SIDEBAR - LAYOUT E ESTILO */
-.sidebar {
-    width: 250px;
+/* 1. NAVBAR SUPERIOR */
+.navbar {
     background-color: var(--card);
-    padding: 20px;
     box-shadow: var(--shadow-base);
-    position: fixed; /* Fixo para scrolls longos */
+    position: sticky;
     top: 0;
-    left: 0;
-    height: 100%;
-    overflow-y: auto;
     z-index: 1000;
-}
-
-.winners-logo {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--brand);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.sidebar-content p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--muted);
-    margin-bottom: 25px;
-}
-
-.cta-links {
+    padding: 15px 30px;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.cta-link-sidebar {
-    display: block;
-    font-size: 13px;
+.navbar-logo {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--brand-shadow);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar-menu a {
+    font-size: 14px;
     font-weight: 700;
+    color: var(--text-charcoal);
     text-decoration: none;
     text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.navbar-menu a:hover {
     color: var(--brand);
-    transition: color 0.2s ease;
 }
 
-.cta-link-sidebar:hover {
-    color: var(--brand-shadow);
+/* Estilo para WhatsApp no Menu (Destaque) */
+.navbar-menu .whatsapp-link {
+    color: var(--wa);
+    border: 1px solid var(--wa);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
 }
 
-.cta-link-sidebar .arrow-icon {
-    margin-right: 5px;
-    font-size: 10px;
+.navbar-menu .whatsapp-link:hover {
+    background-color: var(--wa);
+    color: white;
 }
 
-/* CONTEÚDO PRINCIPAL (REMOVENDO MAX-WIDTH) */
-#main-content {
-    flex-grow: 1;
-    margin-left: 250px; /* Offset da sidebar */
-    padding: 30px;
-    box-sizing: border-box;
-    /* max-width: 900px; <-- REMOVIDO PARA USAR A LARGURA TOTAL DISPONÍVEL */
-    padding-right: 50px; /* Adiciona padding na direita para respiro em desktop */
+/* 2. HERO SECTION DE ALTO IMPACTO */
+.hero-section {
+    background-color: var(--hero-bg-color); 
+    color: white;
+    padding: 100px 30px;
+    text-align: center;
 }
 
-/* TÍTULO DA PÁGINA (CORPORATIVO) */
-.page-title {
-    font-size: 36px; 
+.hero-section h1 {
+    font-size: 44px;
     font-weight: 900;
-    color: var(--text-charcoal);
-    margin-bottom: 5px;
-    padding-top: 10px;
+    color: white;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.page-subtitle {
-    font-size: 20px; 
+.hero-section p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #e0e0e0;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta {
+    background-color: var(--brand);
+    color: white;
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 8px;
     font-weight: 700;
-    color: var(--brand); 
-    margin-bottom: 40px;
-    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: inline-block;
 }
 
-/* NOVO ESTILO: Bloco de Introdução/Editorial */
-.editorial-block {
-    background-color: var(--card);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: var(--shadow-base);
-    margin-bottom: 40px;
+.hero-cta:hover {
+    background-color: var(--brand-shadow);
+    transform: translateY(-2px);
+}
+
+/* 3. CONTEÚDO PRINCIPAL (ARTIGO) */
+.content-area {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.content-area h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--brand-shadow);
+    margin-top: 40px;
+    margin-bottom: 20px;
     border-left: 5px solid var(--brand);
+    padding-left: 15px;
 }
 
-.editorial-block p {
-    font-size: 17px;
-    line-height: 1.7;
+.content-area h3 {
+    font-size: 22px;
+    font-weight: 700;
     color: var(--text-charcoal);
+    margin-top: 30px;
     margin-bottom: 15px;
-    text-align: justify;
 }
 
-/* ESTILO DO ARTIGO (Texto Corrido) */
-.article-text {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text-charcoal);
-    margin-bottom: 25px;
+.article-text p {
+    margin-bottom: 20px;
     text-align: justify;
+    font-size: 1rem; /* Garantindo o tamanho */
 }
 
 .article-text strong {
@@ -160,216 +179,147 @@ body {
     color: var(--brand-shadow);
 }
 
-.article-text h3 {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--text-charcoal);
-    margin-top: 30px;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* NOVO ESTILO: Bloco de Destaque Estratégico (Simula o Card para destaque) */
+/* Estilo para o Bloco de Destaque Estratégico (Inspirado no artigo de blog) */
 .strategic-highlight {
-    background-color: #ffe8d6; /* Fundo mais claro que o brand */
-    color: var(--text-charcoal);
-    padding: 25px;
-    border-radius: 12px;
+    background-color: #f7f7f7; 
+    border-left: 5px solid var(--hero-bg-color); 
+    padding: 20px 25px;
+    border-radius: 4px;
     margin: 30px 0;
-    border: 1px solid var(--brand);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    /* Garante que o destaque ocupe a largura total */
-    width: 100%; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .strategic-highlight strong {
-    color: var(--brand-shadow);
-    font-weight: 900;
-    font-size: 20px;
+    font-size: 18px;
+    color: var(--hero-bg-color);
     display: block;
     margin-bottom: 10px;
 }
 .strategic-highlight p {
-    font-size: 16px;
-    line-height: 1.6;
     margin: 0;
 }
 
-/* SEÇÃO FINAL DE CHAMADA PARA AÇÃO */
-.final-cta {
-    background-color: var(--brand);
+/* FINAL CTA / FOOTER SIMPLIFICADO */
+.final-cta-area {
+    background-color: var(--text-charcoal);
     color: white;
-    padding: 40px;
-    border-radius: 12px;
     text-align: center;
+    padding: 60px 20px;
     margin-top: 50px;
-    margin-bottom: 50px;
 }
 
-.final-cta h2 {
-    font-size: 28px;
-    font-weight: 900;
-    margin: 0 0 10px 0;
-}
-
-.final-cta p {
-    font-size: 16px;
-    margin-bottom: 25px;
-    opacity: 0.9;
-}
-
-.cta-button {
-    background-color: white;
-    color: var(--brand-shadow);
-    text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-weight: 700;
-    transition: var(--transition);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.cta-button:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-1px);
+.final-cta-area h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 15px;
 }
 
 /* MEDIA QUERIES PARA RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: static; /* Não fixo em mobile */
-        box-shadow: none;
-        padding-bottom: 0;
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
     }
-
-    #main-content {
-        margin-left: 0;
-        padding: 20px;
-        padding-right: 20px; /* Ajusta padding para mobile */
+    .navbar-menu {
+        gap: 15px;
     }
-
-    .main-wrapper {
+    .navbar-menu a {
+        font-size: 12px;
+    }
+    .hero-section {
+        padding: 80px 20px;
+    }
+    .hero-section h1 {
+        font-size: 32px;
+    }
+    .hero-section p {
+        font-size: 16px;
+    }
+    .content-area h2 {
+        font-size: 24px;
+    }
+    .article-text p {
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
         flex-direction: column;
+        align-items: flex-start;
     }
-
-    .page-title {
-        font-size: 28px;
+    .navbar-menu {
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    .navbar-logo {
+        margin-bottom: 10px;
     }
 }
   </style>
 </head>
 <body>
 
-<div class="main-wrapper">
-    <!-- SIDEBAR (Menu Fixo Esquerdo) - Replicando a estrutura -->
-    <div class="sidebar">
-        <a href="index.html" class="winners-logo">WINNERS TOUR</a>
-        <div class="sidebar-content">
-            <p>Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.</p>
-            
-            <div class="cta-links">
-                <a href="index.html" class="cta-link-sidebar" aria-label="Voltar para a página inicial de eventos e feiras.">
-                    <span class="arrow-icon">▷</span> VOLTAR PARA EVENTOS, CONGRESSOS E FEIRAS
-                </a>
-                 <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="cta-link-sidebar" aria-label="Chame-nos no WhatsApp para atendimento imediato.">
-                    <span class="arrow-icon">▷</span> NOS CHAME NO WHATSAPP
-                 </a>
-                 <a href="https://linkdasualojavirtual" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na loja virtual.">
-                    <span class="arrow-icon">▷</span> FAZER ORÇAMENTO NA NOSSA LOJA VIRTUAL
-                 </a>
-                 <a href="apps.html" class="cta-link-sidebar" aria-label="Ver ferramentas e aplicativos recomendados.">
-                    <span class="arrow-icon">▷</span> VER FERRAMENTAS E APPS
-                 </a>
-                 <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-                    <span class="arrow-icon">▷</span> VER VIAGENS DE LAZER
-                 </a>
-                 <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar" style="color: var(--brand-shadow);" aria-label="Página atual: Corporativo.">
-                    <span class="arrow-icon">►</span> CORPORATIVO
-                 </a>
-                 <a href="faq.html" class="cta-link-sidebar" aria-label="Ir para a página Perguntas Frequentes.">
-                    <span class="arrow-icon">▷</span> PERGUNTAS FREQUENTES (FAQ)
-                 </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- CONTEÚDO PRINCIPAL DA LANDING PAGE CORPORATIVA - FORMATO ARTIGO/REPORTAGEM -->
-    <div id="main-content">
-        
-        <!-- A: ATENÇÃO & INTERESSE (Hero Section) -->
-        <h1 class="page-title">CONSULTORIA ESTRATÉGICA: A NOVA GESTÃO DE VIAGENS CORPORATIVAS</h1>
-        <p class="page-subtitle">Sua empresa busca a transformação: deixar de tratar a viagem como um custo imprevisível e passá-la a gerir como um investimento otimizado. Nossa consultoria é o caminho para este controle.</p>
-        
-        <!-- Bloco de Introdução/Editorial - Constrói a narrativa de necessidade -->
-        <div class="editorial-block">
-            <p><strong>A era da emissão simples de bilhetes acabou.</strong> O mercado exige que o comprador ou gestor de viagens não seja apenas um agente de reservas, mas um estrategista financeiro e de *compliance*. A Winners Tour oferece esta expertise de ponta, transformando o complexo ecossistema de viagens corporativas em um manual de controle total e economia substancial. O foco não está em dicas superficiais, mas na arquitetura da decisão de compra.</p>
-            <p>Com base na análise de milhares de transações e regras tarifárias, concentramos nossa consultoria em três pilares fundamentais: a **disciplina financeira**, a **governança** e o **cuidado** com o viajante. Esteja você começando ou buscando otimizar uma operação existente, este é o guia aprofundado para alavancar sua performance.</p>
-        </div>
-        
-        <!-- D: DESEJO (Pilar I - Financeiro e a Cadência do Artigo) -->
-        <div class="content-section">
-            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR I: DISCIPLINA FINANCEIRA E O CUSTO OCULTO</h2>
-            
-            <div class="article-text">
-                <h3>A Tática Vencedora: Por Que a Antecedência Supera o Desconto</h3>
-                <p>O maior erro na gestão de viagens é acreditar que a economia reside em procurar freneticamente por descontos de última hora ou em voos com múltiplas pernas. Na verdade, o controle de custos começa no **planejamento**. O preço de uma passagem não é determinado pela ocupação do voo, mas sim pelo sistema de *Revenue Management* (Gestão de Receita) das companhias aéreas, que penaliza a compra tardia.</p>
-                <p>A Winners Tour foca na **Regra de Ouro da Antecedência** (<a href="antecedencia.html" style="color: var(--brand-shadow); text-decoration: underline;">clique para ver o detalhamento do algoritmo</a>). Nossa consultoria visa garantir que o planejamento inicie com **45 dias** e a efetivação da compra (emissão) ocorra **antes dos 30 dias** da data de embarque. Cruzar esta barreira de 30 dias significa, invariavelmente, que o algoritmo irá forçar a tarifa para uma classe mais cara, resultando em um aumento de até 200% no custo final.</p>
-            </div>
-            
-            <div class="strategic-highlight">
-                <strong>O RISCO DO CUSTO TOTAL DA VIAGEM (TTC)</strong>
-                <p>Buscar a "tarifa mais barata" é uma falsa economia. A tarifa mais baixa é a mais restritiva e impõe multas altíssimas por cancelamento e remarcação. Trabalhamos com o conceito de **Custo Total da Viagem (TTC)**: a soma do custo do bilhete + o custo de imprevistos e multas. Nossas tarifas corporativas negociadas oferecem flexibilidade superior, que é o seu seguro contra o TTC, protegendo o orçamento de surpresas e multas desnecessárias.</p>
-            </div>
-            
-            <div class="article-text">
-                <h3>Curadoria vs. Caos e o Rastreamento de Gastos</h3>
-                <p>Nossa função vai além da cotação. Fazemos a **curadoria** de cada roteiro, garantindo que a proposta esteja alinhada com a Regra de Ouro. Em vez de sua equipe perder tempo buscando em múltiplos sites, nós entregamos a solução otimizada. Isso elimina o risco da compra *off-channel* (fora dos canais homologados), que é o inimigo número um do controle orçamentário e da rastreabilidade.</p>
-            </div>
-        </div>
-        
-        <!-- D: DESEJO (Pilar II - Governança e Compliance) -->
-        <div class="content-section">
-            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR II: GOVERNANÇA E SEGURANÇA REGULATÓRIA</h2>
-            
-            <div class="article-text">
-                <p>No ambiente corporativo, a política de viagens é um documento de governança. Uma política ineficiente gera ruído administrativo e despesas desalinhadas. Nossa consultoria se baseia na **simplicidade**. Auxiliamos na definição de diretrizes claras que, quando seguidas, garantem a aprovação imediata da compra, aproveitando o momento de melhor preço e evitando a morosidade administrativa que custa dinheiro.</p>
-                
-                <h3>Segurança Jurídica: A Winners Tour e a ANAC 400</h3>
-                <p>O gestor precisa de segurança jurídica. A **Resolução ANAC nº 400** define os direitos do passageiro em caso de atraso, cancelamento e preterição. Nossa expertise garante que sua empresa e seus viajantes conheçam e tenham seus direitos de assistência material (alimentação, hospedagem) e, mais importante, o **reembolso integral** no prazo legal de **7 dias** em caso de falha da companhia aérea. Nós assumimos essa complexidade, garantindo que sua equipe se concentre no negócio.</p>
-            </div>
-            
-            <div class="strategic-highlight">
-                <strong>GOVERNANÇA: ELIMINE O CAOS ADMINISTRATIVO</strong>
-                <p>Nossa parceria transforma a gestão de viagens em um setor transparente. Fornecemos relatórios customizados que garantem a rastreabilidade de cada real gasto, facilitando a auditoria interna. Isso assegura que sua política seja cumprida, **eliminando a necessidade de discussões e ruídos** com colaboradores que buscam tarifas inadequadas.</p>
-            </div>
-        </div>
-        
-        <!-- D: DESEJO (Pilar III - Fator Humano e Crise) -->
-        <div class="content-section">
-            <h2 style="font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 25px;">PILAR III: BEM-ESTAR E O DEVER DE CUIDADO (*DUTY OF CARE*)</h2>
-            
-            <div class="article-text">
-                <p>Sua obrigação ética e legal é proteger o viajante: o *Duty of Care* (Dever de Cuidado). A diferença de contratar uma TMC como a Winners Tour é o suporte humano que **de fato gerencia a crise**. Em situações de risco, nossa equipe 24/7 assume a linha de frente: em atrasos de 6 horas em um aeroporto ou em crises internacionais, garantimos a reacomodação e a segurança do colaborador sem que o *Travel Manager* precise sair da sua rotina.</p>
-                
-                <h3>Flexibilidade para Retenção de Talentos (*Bleisure*)</h3>
-                <p>O bem-estar é um diferencial de RH. A inclusão de dias de lazer (*Bleisure*) na política é uma estratégia que demonstra cuidado com o colaborador, reduz o *burnout* e, surpreendentemente, pode **reduzir o custo final** da passagem ao permitir a compra de bilhetes em dias mais baratos. Posicionar o *Duty of Care* como um benefício humanizado fortalece a cultura organizacional e auxilia na atração e retenção de talentos.</p>
-            </div>
-        </div>
-
-        <!-- A: AÇÃO (Chamada Final) -->
-        <div class="final-cta">
-            <h2>CHEGA DE CUSTOS OCULTOS. SOLICITE SUA CONSULTORIA.</h2>
-            <p>Fale agora com um consultor da Winners Tour e descubra como transformar sua política de viagens em uma ferramenta de economia e produtividade. É hora de otimizar seu orçamento.</p>
-            <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20uma%20consultoria%20corporativa." target="_blank" class="cta-button">
-                SOLICITE UM DIAGNÓSTICO AGORA
-            </a>
-        </div>
-        
+<div class="navbar">
+    <a href="index.html" class="navbar-logo">WinnersTour</a>
+    <div class="navbar-menu">
+        <a href="index.html">Eventos</a>
+        <a href="lazer.html">Lazer</a>
+        <a href="apps.html">Apps</a>
+        <a href="https://linkdasualojavirtual" target="_blank">Loja</a>
+        <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="whatsapp-link">WhatsApp</a>
     </div>
 </div>
+
+<header class="hero-section">
+    <h1>20 Anos de Estratégia B2B: Sua Viagem Corporativa Elevada a Investimento</h1>
+    <p>Somos uma Travel Management Company (TMC) com duas décadas de atuação, transformando a despesa operacional de viagens em um processo eficiente, transparente e alinhado aos seus objetivos de negócio.</p>
+    <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20quero%20um%20diagn%C3%B3stico%20gratuito%20da%20minha%20pol%C3%ADtica%20de%20viagens." target="_blank" class="hero-cta">
+        SOLICITE SEU DIAGNÓSTICO GRATUITO
+    </a>
+</header>
+
+<div class="content-area">
+    
+    <h2>O Problema: Você Não Quer Mais uma Agência. Você Precisa de um Parceiro Estratégico.</h2>
+    
+    <div class="article-text">
+        <p>Se a sua empresa ainda trata a viagem corporativa como um **mero custo a ser cortado**, você está perdendo dinheiro. O foco na "tarifa mais barata" é uma falsa economia que ignora o **Custo Total da Viagem (TTC)**.</p>
+        <p>O mercado exige que o Gestor de Viagens seja um **estrategista de compliance e finanças**. Mas a realidade é que a maioria das agências ainda vende apenas bilhetes, deixando você **vulnerável a multas, caos administrativo e insegurança jurídica**.</p>
+    </div>
+    
+    <div class="strategic-highlight">
+        <strong>O Ceticismo Corporativo é Justificável. Nossa Resposta é a Experiência.</strong>
+        <p>A WinnersTour não promete milagres. Oferecemos a **autoridade de 20 anos** de mercado, com um posicionamento de **Travel Management Company (TMC)** focado em resultados. O que vendemos é a **mitigação de riscos e a otimização de custos mensuráveis**.</p>
+    </div>
+    
+    <h2>O Blueprint da WinnersTour: 3 Pilares para um BTM de Alto Nível</h2>
+    
+    <div class="article-text">
+        <h3>1. O Poder da Longevidade: Autoridade Incontestável</h3>
+        <p>Vinte anos no mercado B2B nos deu a **disciplina de governança e o poder de negociação** que o seu negócio precisa. Não somos novatos aprendendo a lidar com a complexidade tarifária. Somos **parceiros de longo prazo** para o seu crescimento.</p>
+        <p>Nossa expertise garante a **melhor tarifa corporativa negociada**, que é aquela que oferece **flexibilidade** e protege sua empresa do TTC (Custo Total da Viagem). O cliente corporativo prioriza **segurança e previsibilidade financeira** — e é isso que entregamos.</p>
+        
+        <h3>2. O Fim do "Achismo": Tecnologia e Autonomia (OBT)</h3>
+        <p>A gestão moderna é automatizada. Por isso, oferecemos uma **Plataforma OBT (Online Booking Tool)** desenhada para a sua empresa. Esta ferramenta permite que o colaborador **reserve de forma autônoma**, mas **sem sair do trilho**.</p>
+        <p>A OBT é configurada com **100% de compliance** à sua política de viagens. Ela acelera o processo, aproveita a melhor tarifa do dia e, crucialmente, **elimina a carga de trabalho operacional** do gestor, que pode focar no estratégico.</p>
+        
+        <h3>3. Gestão de Crises 24/7: Sua Paz de Espírito é o Nosso Atendimento</h3>
+        <p>O que acontece quando seu executivo tem um voo cancelado às 2 da manhã em outro continente? O *Duty of Care* (Dever de Cuidado) é a sua obrigação legal e ética. Nossa equipe **24/7** assume essa linha de frente.</p>
+        <p>Utilizamos um sistema de **WhatsApp Business Multi-Atendente**. Combinamos a agilidade do chatbot para dúvidas com a **intervenção humana especializada** para a crise. Você tem a **garantia de reacomodação e segurança** do seu viajante, sem que ninguém na sua empresa perca o sono.</p>
+        
+        <h3>EXTRA: Viagens de Incentivo e ROI em Capital Humano</h3>
+        <p>Somos especialistas em transformar metas alcançadas em **Viagens de Incentivo memoráveis**. Trata-se de um **investimento direto em capital humano** que combate o *burnout* e fortalece a cultura de pertencimento.</p>
+        <p>Seja um retiro executivo ou um evento de premiação, cuidamos da **logística, negociação e execução**. Transformamos a experiência em uma poderosa ferramenta de **retenção de talentos** e performance.</p>
+    </div>
+    
+</div>
+
+<footer class="final-cta-area">
+    <h2>Pronto para Ter a WinnersTour como Sua Parceira Estratégica?</h2>
+    <p>Garanta a tranquilidade de 20 anos de expertise em viagens corporativas. Fale com nossos consultores e comece a transformar despesa em investimento hoje mesmo.</p>
+    <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20quero%20um%20diagn%C3%B3stico%20gratuito%20da%20minha%20pol%C3%ADtica%20de%20viagens." target="_blank" class="hero-cta" style="background-color: var(--brand-shadow); color: white;">
+        QUERO FALAR COM UM CONSULTOR
+    </a>
+</footer>
 
 </body>
 </html>
