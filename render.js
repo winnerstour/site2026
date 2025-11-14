@@ -235,9 +235,10 @@
                 // Filtra e renderiza o grid
                 renderEventsGrid(category);
                 
-                // Rola para o topo do conteúdo principal em telas menores, se necessário
+                // Rola para o topo do CONTEÚDO PRINCIPAL (ou o topo da tela) em telas menores
                 if (window.innerWidth < 1024) {
-                    mainContent.scrollIntoView({ behavior: 'smooth' });
+                    // Rola a tela para o topo para visualização em mobile, ignorando a sidebar oculta.
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             });
             
