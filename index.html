@@ -40,13 +40,19 @@
   --color-blue-700: #1d4ed8;
   --color-gray-700: #4b5563; 
   --color-purple-700: #6d28d9;
-  --color-neutral-700: #4b5563; /* Usado como cor de fundo da sidebar */
+  --color-neutral-700: #4b5563; /* Cor de referência Tailwind */
   --color-slate-700: #334155;
   --color-blue-600: #2563eb;
   --color-stone-700: #44403c;
   --color-cyan-700: #0e7490;
   --color-pink-600: #db2777;
   --color-blue-800: #1e40af;
+
+  /* NOVA COR PARA SIDEBAR (Cinza mais claro, como o ChatGPT) */
+  --sidebar-bg-color: #f0f4f9; /* Um cinza claro suave */
+  --sidebar-text-color: var(--text-charcoal); /* Texto mais escuro para contraste */
+  --sidebar-muted-text-color: var(--muted); /* Texto muted para fundo claro */
+
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
@@ -93,15 +99,16 @@ a{text-decoration:none;color:inherit}
     margin: 0 auto;
 }
 
-/* SIDEBAR FIXA (Esquerda) - NOVO ESTILO */
+/* SIDEBAR FIXA (Esquerda) - NOVO ESTILO COM COR MAIS CLARA */
 #main-sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
     padding: 30px 20px 30px 20px; /* Padding ajustado para a nova largura */
-    background: var(--color-neutral-700); /* NOVO FUNDO ESCURO */
-    color: #fff; /* Texto Branco */
+    background: var(--sidebar-bg-color); /* NOVO FUNDO MAIS CLARO */
+    border-right: 1px solid rgba(0, 0, 0, 0.1); /* Borda sutil */
+    color: var(--sidebar-text-color); /* Texto mais escuro para contraste */
 }
 .agency-info {
     max-width: 100%; /* Ocupa a largura total da sidebar */
@@ -115,7 +122,7 @@ a{text-decoration:none;color:inherit}
 }
 .agency-info p {
     font-size: 14px;
-    color: #ccc; /* Cinza claro no fundo escuro */
+    color: var(--sidebar-muted-text-color); /* Cinza muted para fundo claro */
     line-height: 1.4;
     margin-bottom: 20px;
 }
@@ -138,7 +145,7 @@ a{text-decoration:none;color:inherit}
     align-items: center;
     font-size: 1rem;
     font-weight: 700;
-    color: #fff; /* Cor do texto padrão BRANCO na sidebar escura */
+    color: var(--sidebar-text-color); /* Cor do texto padrão para fundo claro */
     transition: all 0.2s ease;
     text-decoration: none;
     padding: 2px 0;
@@ -158,13 +165,13 @@ a{text-decoration:none;color:inherit}
 
 /* Links 'Em Breve' (Mantidos) */
 .cta-link-sidebar.coming-soon {
-    color: var(--muted) !important; /* Cinza */
+    color: var(--sidebar-muted-text-color) !important; /* Cinza para fundo claro */
     text-decoration: line-through; /* Riscado */
     pointer-events: none; 
     cursor: default;
 }
 .cta-link-sidebar.coming-soon:hover {
-    color: var(--muted) !important;
+    color: var(--sidebar-muted-text-color) !important;
     transform: none;
 }
 
@@ -327,15 +334,15 @@ a{text-decoration:none;color:inherit}
             
             <div class="whatsapp-cta">
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-                    <span class="icon">💬</span> WHATSAPP
+                    <span class="icon">🟢</span> WHATSAPP
                  </a>
 
                  <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
-                    <span class="icon">🛍️</span> LOJA VIRTUAL
+                    <span class="icon">🛒</span> LOJA VIRTUAL
                  </a>
 
                  <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
-                    <span class="icon">📱</span> APLICATIVOS
+                    <span class="icon">⚙️</span> APLICATIVOS
                  </a>
                  
                  <a href="#" onclick="event.preventDefault();" class="cta-link-sidebar coming-soon" aria-label="Ver pacotes de viagens de lazer. (Disponível em breve)">
