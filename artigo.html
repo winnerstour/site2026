@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -24,7 +24,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
 
-/* APLICAÇÃO DA FONTE MONTSERRAT */
+/* APLICAÇÃO DA FONTE MONTSERRAT para elementos gerais e títulos */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
@@ -36,7 +36,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* === MENU SUPERIOR (HEADER) - SEMPRE VISÍVEL NESSE LAYOUT === */
+/* --- MENU SUPERIOR (HEADER) --- */
 #main-header {
     display: flex; 
     background: var(--bg);
@@ -44,12 +44,37 @@ a{text-decoration:none;color:inherit}
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: space-between;
+    /* Adicionamos uma largura máxima para o header para centralizá-lo com o conteúdo */
+    max-width: calc(var(--max-content-width) + 200px); /* Título + Nav com margem de sobra */
+    margin: 0 auto; 
 }
 #main-header .logo {
     font-weight: 900;
     font-size: 1.5rem; 
     color: var(--brand);
+    /* Ajusta o espaçamento do logo */
+    padding-left: 20px; 
 }
+
+/* Navegação Desktop (Nova - substitui o hambúrguer no desktop) */
+#main-header nav.desktop-nav {
+    display: none; /* Oculto por padrão, visível no desktop */
+    margin-right: 20px;
+}
+#main-header nav.desktop-nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-left: 20px;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+#main-header nav.desktop-nav a:hover {
+    color: var(--brand);
+}
+
+/* Ícone do Hambúrguer (Oculto no Desktop) */
 #main-header .menu-icon {
     font-size: 2rem;
     cursor: pointer;
@@ -58,38 +83,38 @@ a{text-decoration:none;color:inherit}
 
 /* --- LAYOUT DO ARTIGO: Coluna Única --- */
 #main-grid {
-    display: block; /* Força layout de coluna única */
+    display: block; 
     min-height: 100vh;
 }
 
-/* Oculta a sidebar para este tipo de conteúdo */
 #main-sidebar {
     display: none !important; 
 }
 
-/* CONTEÚDO PRINCIPAL */
 #main-content {
-    padding: 0; /* O Hero terá padding próprio */
+    padding: 0; 
 }
 
 /* --- ESTILO HERO (Topo do Artigo) --- */
 .hero-article {
-    background-color: var(--sidebar-bg-color); /* Usando o cinza claro da sidebar como fundo */
+    background-color: var(--sidebar-bg-color); 
     padding: 60px 20px;
     text-align: center;
     margin-bottom: 40px;
 }
 .hero-article h1 {
-    font-size: 2.8rem; /* Título grande de destaque */
+    font-size: 2.8rem; 
     font-weight: 900;
     line-height: 1.1;
     color: var(--text-charcoal);
     max-width: 900px;
     margin: 0 auto 20px auto;
+    font-family: 'Montserrat', sans-serif; /* Garante a fonte principal */
 }
 .hero-article p.author-meta {
     font-size: 0.95rem;
     color: var(--muted);
+    font-family: 'Open Sans', sans-serif; /* Usando Open Sans para metadados */
 }
 .hero-article .cta-button {
     margin-top: 25px;
@@ -100,18 +125,19 @@ a{text-decoration:none;color:inherit}
     padding: 10px 25px;
     border-radius: 8px;
     transition: background 0.2s;
+    font-family: 'Montserrat', sans-serif;
 }
 .hero-article .cta-button:hover {
     background: var(--brand-shadow);
 }
 
-/* --- CORPO DO ARTIGO --- */
+/* --- CORPO DO ARTIGO: CORREÇÃO APLICADA --- */
 .article-body {
     max-width: var(--max-content-width);
     margin: 0 auto;
     padding: 0 20px 60px 20px;
-    /* Aplicando a tipografia solicitada */
-    font-family: sans-serif; 
+    /* Tipografia Corrigida para Open Sans 1rem/16px */
+    font-family: 'Open Sans', sans-serif; 
     font-size: 1rem; 
 }
 .article-body h2 {
@@ -119,10 +145,12 @@ a{text-decoration:none;color:inherit}
     color: var(--brand);
     margin-top: 40px;
     margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif; /* Títulos secundários mais fortes */
 }
-.article-body p {
+.article-body p, .article-body ul li {
     margin-bottom: 20px;
-    font-size: 1rem; /* Tamanho do corpo do texto */
+    font-size: 1rem; /* 16px */
+    line-height: 1.6; /* Melhora a legibilidade */
 }
 .article-body ul {
     margin: 20px 0;
@@ -130,9 +158,38 @@ a{text-decoration:none;color:inherit}
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 768px) {
+@media (min-width: 1025px) {
+    /* Exibir navegação de texto no Desktop */
+    #main-header nav.desktop-nav {
+        display: flex;
+        align-items: center;
+    }
+    /* Ocultar o ícone de hambúrguer no Desktop */
+    #main-header .menu-icon {
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    /* Ocultar navegação de texto no Mobile/Tablet */
+    #main-header nav.desktop-nav {
+        display: none;
+    }
+    /* Exibir o ícone de hambúrguer no Mobile/Tablet */
+    #main-header .menu-icon {
+        display: block;
+    }
     .hero-article h1 {
         font-size: 2rem;
+    }
+    /* Centraliza o logo do header no mobile */
+    #main-header {
+        justify-content: space-between;
+        max-width: none;
+        margin: 0;
+        padding: 10px 20px;
+    }
+    #main-header .logo {
+        padding-left: 0;
     }
 }
   </style>
@@ -141,6 +198,15 @@ a{text-decoration:none;color:inherit}
 
 <div id="main-header">
     <a href="index.html" class="logo">WINNERS TOUR</a>
+    
+    <nav class="desktop-nav">
+        <a href="index.html">EVENTOS</a>
+        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
+        <a href="apps.html">APLICATIVOS</a>
+        <a href="#" onclick="event.preventDefault();" style="color: var(--muted); pointer-events: none;">LAZER</a>
+        <a href="#" onclick="event.preventDefault();" style="color: var(--muted); pointer-events: none;">CORPORATIVO</a>
+    </nav>
+    
     <span class="menu-icon">☰</span> 
 </div>
 
@@ -173,7 +239,7 @@ a{text-decoration:none;color:inherit}
             </p>
             
             <p>
-                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. Lembre-se que o tamanho e o tipo da fonte já estão configurados no CSS para seguir a referência de 1rem sans-serif.
+                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Open Sans, com tamanho 1rem e espaçamento de linha otimizado.
             </p>
 
             <h2>Benefícios Exclusivos do Convênio</h2>
@@ -188,7 +254,7 @@ a{text-decoration:none;color:inherit}
             </p>
 
             <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700;">Pronto para simplificar a gestão de viagens da sua empresa?</p>
+                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Montserrat', sans-serif;">Pronto para simplificar a gestão de viagens da sua empresa?</p>
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Convênio%20Corporativo%20para%20minha%20empresa." target="_blank" class="cta-button">
                     SOLICITE UMA PROPOSTA AGORA
                  </a>
