@@ -44,21 +44,19 @@ a{text-decoration:none;color:inherit}
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: space-between;
-    /* Adicionamos uma largura máxima para o header para centralizá-lo com o conteúdo */
-    max-width: calc(var(--max-content-width) + 200px); /* Título + Nav com margem de sobra */
+    max-width: calc(var(--max-content-width) + 200px); 
     margin: 0 auto; 
 }
 #main-header .logo {
     font-weight: 900;
     font-size: 1.5rem; 
     color: var(--brand);
-    /* Ajusta o espaçamento do logo */
     padding-left: 20px; 
 }
 
-/* Navegação Desktop (Nova - substitui o hambúrguer no desktop) */
+/* Navegação Desktop */
 #main-header nav.desktop-nav {
-    display: none; /* Oculto por padrão, visível no desktop */
+    display: none; 
     margin-right: 20px;
 }
 #main-header nav.desktop-nav a {
@@ -74,7 +72,7 @@ a{text-decoration:none;color:inherit}
     color: var(--brand);
 }
 
-/* Ícone do Hambúrguer (Oculto no Desktop) */
+/* Ícone do Hambúrguer */
 #main-header .menu-icon {
     font-size: 2rem;
     cursor: pointer;
@@ -95,31 +93,59 @@ a{text-decoration:none;color:inherit}
     padding: 0; 
 }
 
-/* --- ESTILO HERO (Topo do Artigo) --- */
+/* --- ESTILO HERO (Topo do Artigo) - CORRIGIDO COM IMAGEM E DEGRADÊ --- */
 .hero-article {
-    background-color: var(--sidebar-bg-color); 
+    background-color: var(--brand); /* Cor base do hero */
+    background-image: url('assets/misc/comunidade-digital.png'); /* Caminho da sua imagem */
+    background-repeat: no-repeat;
+    background-position: center right; /* Posiciona a imagem no centro e à direita */
+    background-size: contain; /* Garante que a imagem se ajuste sem cortar */
+    position: relative; /* Para o overlay */
+    overflow: hidden; /* Garante que a imagem não vaze */
     padding: 60px 20px;
     text-align: center;
     margin-bottom: 40px;
+    color: white; /* Texto branco para contraste com o fundo laranja */
 }
+
+/* Overlay/Degradê sobre a imagem para escurecer e melhorar legibilidade */
+.hero-article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradê do laranja (brand) mais escuro para transparente, ou uma opacidade */
+    background: linear-gradient(to right, rgba(249, 115, 22, 0.9) 0%, rgba(249, 115, 22, 0.7) 50%, rgba(249, 115, 22, 0.5) 100%);
+    /* OU background-color: rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.7); para uma opacidade simples */
+    z-index: 1; /* Fica acima da imagem de fundo */
+}
+
+/* Garante que o conteúdo do hero fique acima do overlay */
+.hero-article > * {
+    position: relative;
+    z-index: 2;
+}
+
 .hero-article h1 {
     font-size: 2.8rem; 
     font-weight: 900;
     line-height: 1.1;
-    color: var(--text-charcoal);
+    color: white; /* Corrigido para branco */
     max-width: 900px;
     margin: 0 auto 20px auto;
-    font-family: 'Montserrat', sans-serif; /* Garante a fonte principal */
+    font-family: 'Montserrat', sans-serif; 
 }
 .hero-article p.author-meta {
     font-size: 0.95rem;
-    color: var(--muted);
-    font-family: 'Open Sans', sans-serif; /* Usando Open Sans para metadados */
+    color: rgba(255, 255, 255, 0.8); /* Branco mais suave */
+    font-family: 'Open Sans', sans-serif; 
 }
 .hero-article .cta-button {
     margin-top: 25px;
     display: inline-block;
-    background: var(--brand);
+    background: var(--brand-shadow); /* Um laranja mais escuro para o botão */
     color: white;
     font-weight: 700;
     padding: 10px 25px;
@@ -128,60 +154,65 @@ a{text-decoration:none;color:inherit}
     font-family: 'Montserrat', sans-serif;
 }
 .hero-article .cta-button:hover {
-    background: var(--brand-shadow);
+    background: #FF5722; /* Um laranja ainda mais vibrante no hover */
 }
 
-/* --- CORPO DO ARTIGO: CORREÇÃO APLICADA --- */
+/* --- CORPO DO ARTIGO: TIPOGRAFIA REFINADA --- */
 .article-body {
     max-width: var(--max-content-width);
     margin: 0 auto;
     padding: 0 20px 60px 20px;
-    /* Tipografia Corrigida para Open Sans 1rem/16px */
-    font-family: 'Open Sans', sans-serif; 
+    font-family: 'Open Sans', sans-serif; /* Corrigido para Open Sans */
     font-size: 1rem; 
 }
 .article-body h2 {
     font-size: 1.8rem;
-    color: var(--brand);
+    color: var(--brand); /* Títulos secundários com a cor da marca */
     margin-top: 40px;
     margin-bottom: 15px;
-    font-family: 'Montserrat', sans-serif; /* Títulos secundários mais fortes */
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 900; /* Garante que o h2 seja forte */
 }
 .article-body p, .article-body ul li {
     margin-bottom: 20px;
     font-size: 1rem; /* 16px */
     line-height: 1.6; /* Melhora a legibilidade */
+    color: var(--text-charcoal); /* Garante cor do texto principal */
 }
 .article-body ul {
     margin: 20px 0;
     padding-left: 20px;
+    list-style-type: disc; /* Adiciona marcadores de lista */
+}
+.article-body ul li {
+    margin-bottom: 10px; /* Menos espaço entre itens de lista */
+}
+
+/* Link para o `index.html` na sidebar do app.html */
+.cta-link-sidebar[href="index.html"] .icon {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* RESPONSIVIDADE */
 @media (min-width: 1025px) {
-    /* Exibir navegação de texto no Desktop */
     #main-header nav.desktop-nav {
         display: flex;
         align-items: center;
     }
-    /* Ocultar o ícone de hambúrguer no Desktop */
     #main-header .menu-icon {
         display: none;
     }
 }
 @media (max-width: 1024px) {
-    /* Ocultar navegação de texto no Mobile/Tablet */
     #main-header nav.desktop-nav {
         display: none;
     }
-    /* Exibir o ícone de hambúrguer no Mobile/Tablet */
     #main-header .menu-icon {
         display: block;
     }
     .hero-article h1 {
         font-size: 2rem;
     }
-    /* Centraliza o logo do header no mobile */
     #main-header {
         justify-content: space-between;
         max-width: none;
@@ -190,6 +221,14 @@ a{text-decoration:none;color:inherit}
     }
     #main-header .logo {
         padding-left: 0;
+    }
+    /* No mobile, a imagem de fundo do Hero pode ser menos proeminente ou removida se atrapalhar */
+    .hero-article {
+        background-image: none; /* Remove a imagem no mobile para foco no texto */
+        background-color: var(--brand);
+    }
+    .hero-article::before {
+        background: rgba(249, 115, 22, 0.9); /* Apenas uma cor sólida com opacidade no mobile */
     }
 }
   </style>
@@ -239,7 +278,7 @@ a{text-decoration:none;color:inherit}
             </p>
             
             <p>
-                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Open Sans, com tamanho 1rem e espaçamento de linha otimizado.
+                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Open Sans, com tamanho 1rem e espaçamento de linha otimizado, e os títulos mantêm Montserrat forte e impactante.
             </p>
 
             <h2>Benefícios Exclusivos do Convênio</h2>
