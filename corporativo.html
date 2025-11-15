@@ -183,7 +183,6 @@ a{text-decoration:none;color:inherit}
     line-height: 1.3;
     margin-bottom: 5px;
     color: var(--text-charcoal) !important;
-    /* Remover text-transform: uppercase para títulos de artigos */
 }
 .card-subtitle {
     font-size: 14px;
@@ -218,7 +217,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
     #main-content {
         padding: 20px;
     }
-    
+
     #artigos-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
     }
@@ -248,7 +247,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
             </p>
             
             <div class="whatsapp-cta">
-                 <!-- Menu Lateral Simplificado (Lógica reaproveitada do apps.html) -->
+                 <!-- Menu Lateral Completo (COM APLICATIVOS) -->
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
                     <span class="icon">🟢</span> WHATSAPP
                  </a>
@@ -259,6 +258,11 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
 
                  <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
                     <span class="icon">🗓️</span> EVENTOS
+                 </a>
+
+                 <!-- LINK DE APLICATIVOS INSERIDO -->
+                 <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
+                    <span class="icon">⚙️</span> APLICATIVOS
                  </a>
                  
                  <a href="lazer.html" class="cta-link-sidebar coming-soon" aria-label="Ver pacotes de viagens de lazer. (Disponível em breve)">
@@ -279,9 +283,55 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
         
         <div id="artigos-grid">
             
-            <!-- LISTA DE ARTIGOS (6 arquivos) -->
+            <!-- NOVOS ARTIGOS (Total de 10) -->
+
+            <!-- 1. Habilidades do gestor de viagens corporativas -->
+            <a href="habilidades_gestor_estrategico.html" class="article-card" aria-label="Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/habilidades_gestor_estrategico.webp" alt="Imagem: Habilidades do gestor de viagens corporativas">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico</p>
+                    <p class="card-subtitle">As soft e hard skills que transformam o gestor de viagens em um arquiteto de mobilidade e aliado estratégico.</p>
+                </div>
+            </a>
+
+            <!-- 2. Desafios do gestor de viagens e do viajante corporativo -->
+            <a href="desafios_gestor_viajante.html" class="article-card" aria-label="Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/desafios_gestor_viajante.webp" alt="Imagem: Desafios do gestor de viagens e do viajante corporativo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time</p>
+                    <p class="card-subtitle">Análise sobre o ruído na comunicação e o desalinhamento de expectativas entre quem viaja e quem gere o orçamento.</p>
+                </div>
+            </a>
             
-            <!-- 1. Viagens corporativas como investimento -->
+            <!-- 3. Viagens de premiação e de incentivo - você sabe qual é a diferença -->
+            <a href="viagens_de_premiacao.html" class="article-card" aria-label="Viagens de premiação e de incentivo: você sabe qual é a diferença?">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/viagens_de_premiacao.webp" alt="Imagem: Viagens de premiação e de incentivo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Viagens de premiação e de incentivo: você sabe qual é a diferença?</p>
+                    <p class="card-subtitle">Entenda a estratégia por trás dos programas de incentivo, por que funcionam e como planejar a viagem de premiação perfeita.</p>
+                </div>
+            </a>
+
+            <!-- 4. Como estruturar a área de viagens corporativas em 6 etapas -->
+            <a href="como_estruturar_viagens.html" class="article-card" aria-label="Como estruturar a área de viagens corporativas em 6 etapas">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/como_estruturar_viagens.webp" alt="Imagem: Como estruturar a área de viagens corporativas em 6 etapas">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Como estruturar a área de viagens corporativas em 6 etapas</p>
+                    <p class="card-subtitle">Metodologia clara para tirar a gestão de viagens do improviso, cobrindo pagamentos, política, reservas e Duty of Care.</p>
+                </div>
+            </a>
+
+            <!-- Artigos Originais (Mantidos) -->
+
+            <!-- 5. Viagens corporativas como investimento -->
             <a href="viagens_corporativas_investimento.html" class="article-card" aria-label="Viagens corporativas como investimento: o olhar de quem cuida das viagens">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/viagens_corporativas_investimento.webp" alt="Imagem: Viagens corporativas como investimento">
@@ -292,7 +342,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
                 </div>
             </a>
             
-            <!-- 2. Gestão Inteligente de Viagens Corporativas - o que é e como o princípio KISS simplifica a sua vida -->
+            <!-- 6. Gestão Inteligente de Viagens Corporativas - o que é e como o princípio KISS simplifica a sua vida -->
             <a href="gestao_inteligente_viagens.html" class="article-card" aria-label="Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/gestao_inteligente_viagens.webp" alt="Imagem: Gestão Inteligente de Viagens Corporativas">
@@ -303,7 +353,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
                 </div>
             </a>
             
-            <!-- 3. Regra de Ouro da Antecedência - por que esperar para comprar passagem é pedir para pagar mais caro -->
+            <!-- 7. Regra de Ouro da Antecedência - por que esperar para comprar passagem é pedir para pagar mais caro -->
             <a href="regra_de_ouro_antecedencia.html" class="article-card" aria-label="Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/regra_de_ouro_antecedencia.webp" alt="Imagem: Regra de Ouro da Antecedência">
@@ -314,7 +364,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
                 </div>
             </a>
             
-            <!-- 4. Gestão de eventos corporativos - como tirar o nó da cabeça do gestor de viagens -->
+            <!-- 8. Gestão de eventos corporativos - como tirar o nó da cabeça do gestor de viagens -->
             <a href="gestao_de_eventos_corporativos.html" class="article-card" aria-label="Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/gestao_de_eventos_corporativos.webp" alt="Imagem: Gestão de eventos corporativos">
@@ -325,7 +375,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
                 </div>
             </a>
 
-            <!-- 5. Cancelamentos e remarcações em viagens corporativas - o custo que ninguém vê, mas sempre paga -->
+            <!-- 9. Cancelamentos e remarcações em viagens corporativas - o custo que ninguém vê, mas sempre paga -->
             <a href="cancelamentos_e_remarcacoes.html" class="article-card" aria-label="Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/cancelamentos_e_remarcacoes.webp" alt="Imagem: Cancelamentos e remarcações em viagens corporativas">
@@ -336,7 +386,7 @@ h1,h2{font-weight:800 !important; line-height: 1.1;}
                 </div>
             </a>
             
-            <!-- 6. Custos adicionais em passagens aéreas - o que realmente está por trás da tarifa barata -->
+            <!-- 10. Custos adicionais em passagens aéreas - o que realmente está por trás da tarifa barata -->
             <a href="custos_adicionais_passagens.html" class="article-card" aria-label="Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa barata">
                 <div class="card-media">
                   <img loading="lazy" src="assets/artigos/custos_adicionais_passagens.webp" alt="Imagem: Custos adicionais em passagens aéreas">
