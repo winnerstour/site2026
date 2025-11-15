@@ -4,361 +4,357 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Saiba Mais: Viagens Corporativas Estratégicas</title>
+  <title>WinnersTour — Artigos Corporativos</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
-  --brand:#f97316; /* Laranja da Winners */
+  --brand:#f97316; 
   --brand-shadow:#C2410C; 
-  --wa:#25D366; /* Verde WhatsApp */
   --text-charcoal:#111827; 
   --muted:#6b7280;
-  --bg:#f8f9fa; /* Fundo suave */
+  --bg:#fff;
   --card:#fff;
   --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-  --transition: all 0.3s ease;
-  
-  /* Cor do Hero Section - Inspiração B2B */
-  --hero-bg-color: #3f51b5; /* Um azul mais estratégico */
+  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+  --card-hover-bg:#f5f5f5; 
+  --radius:18px;
+  --wrap:1280px; 
+  --sidebar-bg-color: #f0f4f9; /* Cinza claro suave */
+  --sidebar-text-color: var(--text-charcoal); 
+  --sidebar-muted-text-color: var(--muted);
 }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height: 100vh;}
 
-/* BASE GLOBAL */
-body {
-    font-family: 'Open Sans', sans-serif; /* Open Sans para o corpo */
-    font-size: 1rem; /* 1rem = 16px por padrão */
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg);
-    color: var(--text-charcoal);
-    line-height: 1.6;
+/* APLICAÇÃO DA FONTE OPEN SANS */
+body{
+  font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text-charcoal);
+  background:var(--bg);
+  overflow-x: hidden;
 }
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
-h1, h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif; /* Montserrat para títulos */
-    color: var(--text-charcoal);
-    line-height: 1.2;
-}
+/* === LAYOUT E RESPONSIVIDADE (Consistente com index/apps) === */
 
-/* 1. NAVBAR SUPERIOR */
-.navbar {
-    background-color: var(--card);
-    box-shadow: var(--shadow-base);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
+/* LAYOUT MOBILE SUPERIOR (Apenas para mobile) */
+#mobile-header {
+    display: none; 
+    background: var(--bg);
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     align-items: center;
+    justify-content: space-between;
 }
-
-.navbar-logo {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--brand-shadow);
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.navbar-menu {
-    display: flex;
-    gap: 25px;
-}
-
-.navbar-menu a {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-charcoal);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s;
-}
-
-.navbar-menu a:hover {
+#mobile-header .logo {
+    font-weight: 800;
+    font-size: 1.5rem; 
     color: var(--brand);
 }
-
-/* Estilo para WhatsApp no Menu (Destaque) */
-.navbar-menu .whatsapp-link {
-    color: var(--wa);
-    border: 1px solid var(--wa);
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-}
-
-.navbar-menu .whatsapp-link:hover {
-    background-color: var(--wa);
-    color: white;
-}
-
-/* 2. HERO SECTION DE ALTO IMPACTO */
-.hero-section {
-    background-color: var(--hero-bg-color); 
-    color: white;
-    padding: 100px 30px;
-    text-align: center;
-}
-
-.hero-section h1 {
-    font-size: 44px;
-    font-weight: 900;
-    color: white;
-    margin-bottom: 20px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-section p {
-    font-size: 20px;
-    font-weight: 400;
-    color: #e0e0e0;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-cta {
-    background-color: var(--brand);
-    color: white;
-    text-decoration: none;
-    padding: 15px 40px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    transition: var(--transition);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: inline-block;
-}
-
-.hero-cta:hover {
-    background-color: var(--brand-shadow);
-    transform: translateY(-2px);
-}
-
-/* 3. CONTEÚDO PRINCIPAL (ARTIGO) */
-.content-area {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 0 20px;
-}
-
-.content-area h2 {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--brand-shadow);
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-left: 5px solid var(--brand);
-    padding-left: 15px;
-}
-
-.content-area h3 {
-    font-size: 22px;
-    font-weight: 700;
+#mobile-header .menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
     color: var(--text-charcoal);
-    margin-top: 30px;
-    margin-bottom: 15px;
 }
 
-.article-text p {
+/* GRID PRINCIPAL (Largura Total - 250px Sidebar + Conteúdo) */
+#main-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr; 
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+/* SIDEBAR FIXA (Esquerda) */
+#main-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px 20px 30px 20px; 
+    background: var(--sidebar-bg-color); 
+    border-right: 1px solid rgba(0, 0, 0, 0.1); 
+    color: var(--sidebar-text-color); 
+}
+.agency-info {
+    max-width: 100%; 
+}
+.agency-info h1 {
+    font-weight: 800;
+    font-size: 1.5rem; 
+    margin-bottom: 5px;
+    line-height: 1.1;
+    color: var(--brand);
+}
+.agency-info p {
+    font-size: 14px;
+    color: var(--sidebar-muted-text-color); 
+    line-height: 1.4;
     margin-bottom: 20px;
-    text-align: justify;
-    font-size: 1rem; /* Garantindo o tamanho */
 }
-
-.article-text strong {
+/* Estilo dos links da Sidebar */
+.whatsapp-cta {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+.cta-link-sidebar {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--brand-shadow);
+    color: var(--sidebar-text-color); 
+    transition: all 0.2s ease;
+    text-decoration: none;
+    padding: 2px 0;
 }
-
-/* Estilo para o Bloco de Destaque Estratégico (Inspirado no artigo de blog) */
-.strategic-highlight {
-    background-color: #f7f7f7; 
-    border-left: 5px solid var(--hero-bg-color); 
-    padding: 20px 25px;
-    border-radius: 4px;
-    margin: 30px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+.cta-link-sidebar:hover {
+    color: var(--brand); 
+    transform: translateX(3px); 
 }
-
-.strategic-highlight strong {
-    font-size: 18px;
-    color: var(--hero-bg-color);
-    display: block;
-    margin-bottom: 10px;
-}
-.strategic-highlight p {
-    margin: 0;
-}
-
-/* FINAL CTA / FOOTER SIMPLIFICADO */
-.final-cta-area {
-    background-color: var(--text-charcoal);
-    color: white;
+.cta-link-sidebar .icon {
+    font-size: 1.2rem;
+    width: 20px; 
     text-align: center;
-    padding: 60px 20px;
-    margin-top: 50px;
+    margin-right: 10px;
+    line-height: 1;
 }
 
-.final-cta-area h2 {
-    color: white;
-    font-size: 30px;
-    margin-bottom: 15px;
+/* CONTEÚDO PRINCIPAL (Direita - Rolável) */
+#main-content {
+    padding: 20px 20px 20px 20px; 
 }
 
-/* MEDIA QUERIES PARA RESPONSIVIDADE */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
+/* GRID DE ARTIGOS (ID USADO para o grid) */
+#artigos-grid { 
+    display: grid;
+    gap: 20px;
+    padding: 0; 
+    /* 4 Colunas no Desktop, como na página de Eventos */
+    grid-template-columns: repeat(4, 1fr); 
+}
+
+/* Estilo Básico do Card (Reaproveitado do index/apps) */
+.article-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    transition: all .2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+.article-card:hover{
+    box-shadow:var(--shadow-hover);
+    background: var(--card-hover-bg); 
+}
+.card-media {
+    height: 100px; 
+    background: var(--sidebar-bg-color); /* Fundo claro para contrastar com a imagem WebP */
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.card-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.card-title {
+    font-weight: 800 !important;
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    color: var(--text-charcoal) !important;
+    /* Remover text-transform: uppercase para títulos de artigos */
+}
+.card-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+
+h1,h2{font-weight:800 !important; line-height: 1.1;}
+
+
+/* RESPONSIVIDADE (Abaixo de 1024px) */
+@media (max-width: 1024px) {
+    /* Layout Mobile: 1 coluna */
+    #main-grid {
+        grid-template-columns: 1fr; 
+        min-height: auto;
     }
-    .navbar-menu {
-        gap: 15px;
+    
+    #mobile-header {
+        display: flex; 
     }
-    .navbar-menu a {
-        font-size: 12px;
+
+    #main-sidebar {
+        display: none; 
+        position: static;
+        height: auto;
+        padding: 20px;
+        border-right: none;
+        background: var(--bg);
     }
-    .hero-section {
-        padding: 80px 20px;
+
+    #main-content {
+        padding: 20px;
     }
-    .hero-section h1 {
-        font-size: 32px;
-    }
-    .hero-section p {
-        font-size: 16px;
-    }
-    .content-area h2 {
-        font-size: 24px;
-    }
-    .article-text p {
-        font-size: 0.95rem;
+    
+    #artigos-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
     }
 }
-@media (max-width: 480px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .navbar-menu {
-        margin-top: 10px;
-        flex-wrap: wrap;
-    }
-    .navbar-logo {
-        margin-bottom: 10px;
+@media (max-width: 640px) {
+    #artigos-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
     }
 }
   </style>
 </head>
 <body>
 
-<div class="navbar">
-    <a href="index.html" class="navbar-logo">WinnersTour</a>
-    <div class="navbar-menu">
-        <a href="index.html">Eventos</a>
-        <a href="lazer.html">Lazer</a>
-        <a href="apps.html">Apps</a>
-        <a href="https://linkdasualojavirtual" target="_blank">Loja</a>
-        <a href="https://wa.me/seunumerodowhatsapp" target="_blank" class="whatsapp-link">WhatsApp</a>
-    </div>
+<!-- MENU SUPERIOR MOBILE (Exibido apenas em telas pequenas) -->
+<div id="mobile-header">
+    <span class="logo">WINNERS TOUR</span>
+    <span class="menu-icon">☰</span> 
 </div>
 
-<header class="hero-section">
-    <h1>20 Anos de Estratégia de Compra: Transforme a Viagem da Sua Empresa em um Investimento de Alto Impacto.</h1>
-    <p>Somos uma **Travel Management Company (TMC) com 20 anos de mercado**, focada em eliminar o **Risco do Negócio** causado por viagens mal planejadas. Nossa meta é clara: **Planejamento, Execução e Resolução de Problemas**.</p>
-    <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20quero%20um%20diagn%C3%B3stico%20gratuito%20da%20minha%20pol%C3%ADtica%20de%20viagens." target="_blank" class="hero-cta">
-        SOLICITE UMA CONSULTORIA ESTRATÉGICA AGORA
-    </a>
-</header>
+<div id="main-grid">
+    
+    <div id="main-sidebar">
+        <div class="agency-info">
+            <h1>WINNERS TOUR</h1>
+            <p>
+                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
+            </p>
+            
+            <div class="whatsapp-cta">
+                 <!-- Menu Lateral Simplificado (Lógica reaproveitada do apps.html) -->
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <span class="icon">🟢</span> WHATSAPP
+                 </a>
 
-<div class="content-area">
-    
-    <h2>O Paradigma Falho: Por Que Focar na "Tarifa Mais Barata" É o Caminho Mais Caro.</h2>
-    
-    <div class="article-text">
-        <p>A maioria das empresas comete um erro primário: focar na **tarifa mais baixa** da passagem. Este é o **mito da falsa economia** que você precisa abandonar hoje.</p>
-        <p>Quando você busca apenas o menor preço da passagem, você está ignorando o verdadeiro **Custo Total da Viagem (TTC)**.</p>
-        <p>Este custo não é o preço do bilhete. É o **risco de perder um negócio, de ter um cliente insatisfeito ou de adiar um projeto** porque o viajante não conseguiu chegar a tempo ou teve que lidar com burocracia.</p>
-        <p>Um gestor de viagens não é um comprador. É um **estrategista de execução**.</p>
-        <p>Se a sua agência não entrega **planejamento, disciplina e solução de problemas**, ela é apenas uma cotação, e isso está custando caro à sua empresa.</p>
+                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+                    <span class="icon">🛒</span> LOJA VIRTUAL
+                 </a>
+
+                 <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+                    <span class="icon">🗓️</span> EVENTOS
+                 </a>
+                 
+                 <a href="lazer.html" class="cta-link-sidebar coming-soon" aria-label="Ver pacotes de viagens de lazer. (Disponível em breve)">
+                    <span class="icon">🏖️</span> LAZER
+                 </a>
+                 
+                 <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
+                    <span class="icon">💼</span> CORPORATIVO
+                 </a>
+            </div>
+        </div>
     </div>
     
-    <div class="strategic-highlight">
-        <strong>A Diferença Crítica: O Risco é o Negócio, Não o Preço do Bilhete.</strong>
-        <p>Nosso foco não é economizar R$ 50,00 na passagem. É evitar a **perda de uma transação de milhões** porque o executivo ficou preso em um aeroporto. Vendemos **tranquilidade para o negócio**, garantindo que a viagem cumpra seu objetivo principal.</p>
-    </div>
-    
-    <h2>Pilar I: A Regra de Ouro. O Poder Inegociável da Antecedência de Compra.</h2>
-    
-    <div class="article-text">
-        <h3>1.1. O Segredo da Tarifa Barata Não é Desconto, É Disciplina.</h3>
-        <p>Toda a negociação e toda a economia em viagens corporativas se resume a uma única palavra: **antecedência**.</p>
-        <p>Atrasar a compra não gera desconto, gera **saltos de preço imprevisíveis e assustadores**. É o comportamento padrão do sistema aéreo. Passagens que custam R$ 600 hoje podem saltar para R$ 1.200 em 48 horas, e isso não é negociável.</p>
-        <p>Nossa expertise de 20 anos garante que sua empresa adote a **política de antecedência** como fundamento. Nós criamos os processos e alertas para que a compra seja feita no momento ideal, **eliminando a perda financeira** causada pela procrastinação.</p>
-        <p>O menor preço é você conseguir comprar com antecedência. É a **ferramenta de economia mais poderosa** que existe, e ela não depende de desconto de fornecedor, mas sim da sua **organização interna**.</p>
-
-        <h3>1.2. Governança Simples: Política de Viagens como Orientadora de Custo.</h3>
-        <p>O fundamento da estratégia corporativa é a **Política de Viagens**. Ela não é uma burocracia; é a **ferramenta que orienta o comportamento** do colaborador e define as alternativas viáveis.</p>
-        <p>Se a política é clara e focada em antecipação, ela **reduz custos por si só**. Ela orienta a escolha de classes de serviço, a seleção de fornecedores e a necessidade real da viagem. A diferença de custo é imediata.</p>
-        <p>Nosso trabalho é garantir que essa política seja **funcional e não lesiva**, que ela sirva como um **caminho fácil** para o colaborador viajar de forma eficiente, e não como um obstáculo.</p>
-        <p>A vantagem do compliance é a **redução de custos** e a **melhor organização**. Ponto final. Não é sobre auditoria fiscal; é sobre **estratégia de caixa**.</p>
-    </div>
-    
-    <h2>Pilar II: A Execução da Viagem. O Fim da Burocracia e a Garantia de Solução.</h2>
-    
-    <div class="article-text">
-        <h3>2.1. O Processo de Compra e a Vantagem da Transação Rápida.</h3>
-        <p>Nós resolvemos o problema, compramos a passagem, e deixamos tudo **bem combinado**. Esse é o nosso foco.</p>
-        <p>Nós assumimos a **carga de trabalho de burocracia**. Em vez de você ter que lidar com sistemas complexos ou com cotações intermináveis, você tem um **ponto focal** que resolve a logística inteira.</p>
-        <p>A vantagem da nossa agilidade é a **garantia da melhor tarifa no momento da transação**. O atraso na aprovação interna é o maior inimigo da economia. Nós cortamos a fricção para que a compra seja feita **antes do salto de preço**.</p>
-        <p>A nossa tecnologia (OBT, se for o caso) não é uma promessa de milagre, mas uma **ferramenta para acelerar o processo**. Ela deve garantir que você compre mais rápido e não que você fique preso em um menu de cliques.</p>
-
-        <h3>2.2. A Realidade das Perdas e o Risco de Alteração.</h3>
-        <p>Precisamos ser claros: **multas por cancelamento tardio não existem em passagens aéreas**. O que existe é a **perda total**.</p>
-        <p>Se um bilhete promocional precisa ser alterado, o custo não é uma multa; é o **custo de uma nova compra**. O valor anterior é, na prática, perdido. O mesmo acontece com a maioria dos hotéis de tarifas não reembolsáveis.</p>
-        <p>Nosso trabalho não é prometer o impossível, mas sim **orientar a melhor escolha inicial**. Nós garantimos que você saiba a regra do jogo: se a flexibilidade é crucial, o custo será maior, e nós providenciaremos essa opção de forma **transparente**.</p>
-        <p>A verdadeira mitigação de risco é você ter uma equipe **24/7** que, quando a perda acontece, consegue **reorganizar a logística imediatamente**, garantindo que o seu executivo consiga o próximo voo, e que o **negócio não seja perdido**.</p>
-        <p>A sua paz de espírito está em saber que, quando o voo é cancelado às 2h da manhã, **nós assumimos a frente de batalha**.</p>
-    </div>
-
-    <h2>Pilar III: O Valor Humano. De Viagens de Incentivo à Logística de Eventos.</h2>
-
-    <div class="article-text">
-        <h3>3.1. Viagens de Incentivo: Um Investimento Tangível em Produtividade.</h3>
-        <p>A viagem de incentivo é um **investimento direto em capital humano** e não apenas uma recompensa.</p>
-        <p>Elas **combatem o *burnout***, aumentam a **retenção de talentos** e comprovam o valor do colaborador. É a ferramenta mais poderosa para **fortalecer a cultura** da sua empresa.</p>
-        <p>Nosso trabalho é garantir que essa experiência seja **impecável**. Cuidamos da **negociação de tarifas de grupo**, da logística de dezenas de voos e hospedagens e da organização das atividades.</p>
-        <p>Nós transformamos o seu objetivo de meta em um **evento de alta performance** que terá um **retorno emocional e de produtividade** imediato no seu time.</p>
+    <div id="main-content">
         
-        <h3>3.2. Logística de Eventos: A Precisão da Execução.</h3>
-        <p>A logística de grandes eventos corporativos e treinamentos exige precisão cirúrgica. Um único erro pode gerar um **custo logístico proibitivo**.</p>
-        <p>Nós atuamos na **otimização de rotas** e na negociação com fornecedores que garantam o **melhor custo-benefício** para cada participante.</p>
-        <p>A sua vantagem é ter uma equipe que gerencia a **matriz de rotas**, coordena os *transfers* e garante que todos os participantes cheguem ao evento **sem estresse e dentro do orçamento**.</p>
+        <h2>ARTIGOS E SOLUÇÕES CORPORATIVAS</h2>
+        <p class="card-subtitle" style="margin-bottom: 20px;">Conteúdo estratégico para a gestão inteligente de viagens, custos e eventos da sua empresa.</p>
+        
+        <div id="artigos-grid">
+            
+            <!-- LISTA DE ARTIGOS (6 arquivos) -->
+            
+            <!-- 1. Viagens corporativas como investimento -->
+            <a href="viagens_corporativas_investimento.html" class="article-card" aria-label="Viagens corporativas como investimento: o olhar de quem cuida das viagens">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/viagens_corporativas_investimento.webp" alt="Imagem: Viagens corporativas como investimento">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Viagens corporativas como investimento: o olhar de quem cuida das viagens</p>
+                    <p class="card-subtitle">Entenda como transformar o olhar do financeiro sobre viagens, tratando-as como investimento em receita e não apenas como despesa.</p>
+                </div>
+            </a>
+            
+            <!-- 2. Gestão Inteligente de Viagens Corporativas - o que é e como o princípio KISS simplifica a sua vida -->
+            <a href="gestao_inteligente_viagens.html" class="article-card" aria-label="Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/gestao_inteligente_viagens.webp" alt="Imagem: Gestão Inteligente de Viagens Corporativas">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida</p>
+                    <p class="card-subtitle">Descubra como aplicar o princípio KISS para ter clareza na política, planejamento e execução de todas as viagens.</p>
+                </div>
+            </a>
+            
+            <!-- 3. Regra de Ouro da Antecedência - por que esperar para comprar passagem é pedir para pagar mais caro -->
+            <a href="regra_de_ouro_antecedencia.html" class="article-card" aria-label="Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/regra_de_ouro_antecedencia.webp" alt="Imagem: Regra de Ouro da Antecedência">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro</p>
+                    <p class="card-subtitle">Análise detalhada sobre como o algoritmo das aéreas funciona e a importância da antecedência para fugir das tarifas de emergência.</p>
+                </div>
+            </a>
+            
+            <!-- 4. Gestão de eventos corporativos - como tirar o nó da cabeça do gestor de viagens -->
+            <a href="gestao_de_eventos_corporativos.html" class="article-card" aria-label="Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/gestao_de_eventos_corporativos.webp" alt="Imagem: Gestão de eventos corporativos">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens</p>
+                    <p class="card-subtitle">Guia sobre planejamento em fases, MICE e o papel da agência como copiloto estratégico em grandes eventos.</p>
+                </div>
+            </a>
+
+            <!-- 5. Cancelamentos e remarcações em viagens corporativas - o custo que ninguém vê, mas sempre paga -->
+            <a href="cancelamentos_e_remarcacoes.html" class="article-card" aria-label="Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/cancelamentos_e_remarcacoes.webp" alt="Imagem: Cancelamentos e remarcações em viagens corporativas">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga</p>
+                    <p class="card-subtitle">O guia prático para entender as políticas de multa, tarifas não reembolsáveis e como o no-show consome o orçamento.</p>
+                </div>
+            </a>
+            
+            <!-- 6. Custos adicionais em passagens aéreas - o que realmente está por trás da tarifa barata -->
+            <a href="custos_adicionais_passagens.html" class="article-card" aria-label="Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa barata">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/artigos/custos_adicionais_passagens.webp" alt="Imagem: Custos adicionais em passagens aéreas">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”</p>
+                    <p class="card-subtitle">Desvendando os gastos extras com bagagem, assento, antecipação de voo e upgrade que transformam o custo total da viagem.</p>
+                </div>
+            </a>
+            
+        </div>
+        
     </div>
-    
-    <h2>Conclusão: Pare de Cotar. Comece a Fazer a Viagem Acontecer.</h2>
-    
-    <div class="article-text">
-        <p>O custo da ineficiência e da **demora na compra** será sempre maior do que o investimento em uma TMC com 20 anos de mercado.</p>
-        <p>A **WinnersTour** não é uma agência que fica "de migué" com relatórios de BI. Nós **resolvemos o problema, compramos e garantimos o suporte 24/7** para o seu negócio.</p>
-        <p>Sua empresa tem duas opções: continuar perdendo dinheiro e tempo com agências que só cotam, ou ter uma parceira que assume a **estratégia de Antecedência e a execução imediata**.</p>
-        <p>**Foque no seu negócio. Nós focamos na viagem.**</p>
-    </div>
-    
 </div>
 
-<footer class="final-cta-area">
-    <h2>Pronto para Ter a WinnersTour como Sua Parceira Estratégica?</h2>
-    <p>Garanta a tranquilidade de 20 anos de expertise focada na solução real de problemas. Fale com nossos consultores e comece a resolver sua logística de viagens hoje mesmo.</p>
-    <a href="https://wa.me/seunumerodowhatsapp?text=Ol%C3%A1%2C%20quero%20um%20diagn%C3%B3stico%20gratuito%20da%20minha%20pol%C3%ADtica%20de%20viagens." target="_blank" class="hero-cta" style="background-color: var(--brand-shadow); color: white;">
-        QUERO FALAR COM UM CONSULTOR
-    </a>
+<!-- FOOTER BÁSICO -->
+<footer id="main-footer" style="max-width: none; margin: 0; padding: 20px; border-top: 1px solid var(--sidebar-bg-color); text-align: center; font-size: 0.85rem; color: var(--muted);">
+    &copy; 2025 Winners Tour. Todos os direitos reservados.
 </footer>
 
 </body>
