@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -24,7 +24,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
 
-/* APLICAÇÃO DA FONTE MONTSERRAT para elementos gerais e títulos (sem serifa) */
+/* APLICAÇÃO DA FONTE MONTSERRAT para TODOS os elementos */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
@@ -138,7 +138,7 @@ a{text-decoration:none;color:inherit}
 .hero-article p.author-meta {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.8); 
-    font-family: 'Lora', serif; 
+    font-family: 'Montserrat', sans-serif; /* Corrigido para Montserrat */
 }
 .hero-article .cta-button {
     margin-top: 25px;
@@ -155,13 +155,14 @@ a{text-decoration:none;color:inherit}
     background: #FF5722; 
 }
 
-/* --- CORPO DO ARTIGO: TIPOGRAFIA LORA APLICADA (22px) --- */
+/* --- CORPO DO ARTIGO: TIPOGRAFIA MONTSERRAT APLICADA (22px) --- */
 .article-body {
     max-width: var(--max-content-width);
     margin: 0 auto;
     padding: 0 20px 60px 20px;
-    font-family: 'Lora', serif; 
-    font-size: 1.375rem; /* CORREÇÃO APLICADA: 22px */
+    /* CORREÇÃO APLICADA: Montserrat */
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1.375rem; /* 22px */
     font-weight: 400;
 }
 .article-body h2 {
@@ -174,7 +175,9 @@ a{text-decoration:none;color:inherit}
 }
 .article-body p, .article-body ul li {
     margin-bottom: 20px;
-    font-size: 1.375rem; /* CORREÇÃO APLICADA: 22px */
+    /* CORREÇÃO APLICADA: Montserrat com 22px */
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1.375rem; /* 22px */
     line-height: 1.6; 
     color: var(--text-charcoal); 
 }
@@ -272,7 +275,7 @@ a{text-decoration:none;color:inherit}
             </p>
             
             <p>
-                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Lora, com tamanho 1.375rem e espaçamento de linha otimizado, e os títulos mantêm Montserrat forte e impactante.
+                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Montserrat, com tamanho 1.375rem e espaçamento de linha otimizado, e os títulos mantêm Montserrat forte e impactante.
             </p>
 
             <h2>Benefícios Exclusivos do Convênio</h2>
