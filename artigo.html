@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -95,17 +95,18 @@ a{text-decoration:none;color:inherit}
 
 /* --- ESTILO HERO (Topo do Artigo) - CORRIGIDO COM IMAGEM E DEGRADÊ --- */
 .hero-article {
-    background-color: var(--brand); /* Cor base do hero */
-    background-image: url('assets/misc/comunidade-digital.png'); /* Caminho da sua imagem */
+    background-color: var(--brand); 
+    /* Implementando a imagem (assumindo o path correto) */
+    background-image: url('assets/misc/comunidade-digital.png'); 
     background-repeat: no-repeat;
-    background-position: center right; /* Posiciona a imagem no centro e à direita */
-    background-size: contain; /* Garante que a imagem se ajuste sem cortar */
-    position: relative; /* Para o overlay */
-    overflow: hidden; /* Garante que a imagem não vaze */
+    background-position: center right; 
+    background-size: 300px; /* Ajusta o tamanho da marca d'água */
+    position: relative; 
+    overflow: hidden; 
     padding: 60px 20px;
     text-align: center;
     margin-bottom: 40px;
-    color: white; /* Texto branco para contraste com o fundo laranja */
+    color: white; 
 }
 
 /* Overlay/Degradê sobre a imagem para escurecer e melhorar legibilidade */
@@ -116,10 +117,9 @@ a{text-decoration:none;color:inherit}
     left: 0;
     width: 100%;
     height: 100%;
-    /* Degradê do laranja (brand) mais escuro para transparente, ou uma opacidade */
+    /* Degradê do laranja (brand) mais escuro para transparente */
     background: linear-gradient(to right, rgba(249, 115, 22, 0.9) 0%, rgba(249, 115, 22, 0.7) 50%, rgba(249, 115, 22, 0.5) 100%);
-    /* OU background-color: rgba(var(--brand-r), var(--brand-g), var(--brand-b), 0.7); para uma opacidade simples */
-    z-index: 1; /* Fica acima da imagem de fundo */
+    z-index: 1; 
 }
 
 /* Garante que o conteúdo do hero fique acima do overlay */
@@ -132,20 +132,20 @@ a{text-decoration:none;color:inherit}
     font-size: 2.8rem; 
     font-weight: 900;
     line-height: 1.1;
-    color: white; /* Corrigido para branco */
+    color: white; 
     max-width: 900px;
     margin: 0 auto 20px auto;
     font-family: 'Montserrat', sans-serif; 
 }
 .hero-article p.author-meta {
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8); /* Branco mais suave */
+    color: rgba(255, 255, 255, 0.8); 
     font-family: 'Open Sans', sans-serif; 
 }
 .hero-article .cta-button {
     margin-top: 25px;
     display: inline-block;
-    background: var(--brand-shadow); /* Um laranja mais escuro para o botão */
+    background: var(--brand-shadow); 
     color: white;
     font-weight: 700;
     padding: 10px 25px;
@@ -154,43 +154,39 @@ a{text-decoration:none;color:inherit}
     font-family: 'Montserrat', sans-serif;
 }
 .hero-article .cta-button:hover {
-    background: #FF5722; /* Um laranja ainda mais vibrante no hover */
+    background: #FF5722; 
 }
 
-/* --- CORPO DO ARTIGO: TIPOGRAFIA REFINADA --- */
+/* --- CORPO DO ARTIGO: TIPOGRAFIA CORRIGIDA E AUMENTADA --- */
 .article-body {
     max-width: var(--max-content-width);
     margin: 0 auto;
     padding: 0 20px 60px 20px;
-    font-family: 'Open Sans', sans-serif; /* Corrigido para Open Sans */
-    font-size: 1rem; 
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.125rem; /* CORREÇÃO APLICADA: 18px */
+    font-weight: 400;
 }
 .article-body h2 {
     font-size: 1.8rem;
-    color: var(--brand); /* Títulos secundários com a cor da marca */
+    color: var(--brand); 
     margin-top: 40px;
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif; 
-    font-weight: 900; /* Garante que o h2 seja forte */
+    font-weight: 900; 
 }
 .article-body p, .article-body ul li {
     margin-bottom: 20px;
-    font-size: 1rem; /* 16px */
-    line-height: 1.6; /* Melhora a legibilidade */
-    color: var(--text-charcoal); /* Garante cor do texto principal */
+    font-size: 1.125rem; /* CORREÇÃO APLICADA: 18px */
+    line-height: 1.6; 
+    color: var(--text-charcoal); 
 }
 .article-body ul {
     margin: 20px 0;
     padding-left: 20px;
-    list-style-type: disc; /* Adiciona marcadores de lista */
+    list-style-type: disc; 
 }
 .article-body ul li {
-    margin-bottom: 10px; /* Menos espaço entre itens de lista */
-}
-
-/* Link para o `index.html` na sidebar do app.html */
-.cta-link-sidebar[href="index.html"] .icon {
-    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px; 
 }
 
 /* RESPONSIVIDADE */
@@ -222,13 +218,13 @@ a{text-decoration:none;color:inherit}
     #main-header .logo {
         padding-left: 0;
     }
-    /* No mobile, a imagem de fundo do Hero pode ser menos proeminente ou removida se atrapalhar */
+    /* Remove a imagem de fundo no mobile */
     .hero-article {
-        background-image: none; /* Remove a imagem no mobile para foco no texto */
+        background-image: none;
         background-color: var(--brand);
     }
     .hero-article::before {
-        background: rgba(249, 115, 22, 0.9); /* Apenas uma cor sólida com opacidade no mobile */
+        background: rgba(249, 115, 22, 0.9);
     }
 }
   </style>
@@ -278,7 +274,7 @@ a{text-decoration:none;color:inherit}
             </p>
             
             <p>
-                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Open Sans, com tamanho 1rem e espaçamento de linha otimizado, e os títulos mantêm Montserrat forte e impactante.
+                *Neste ponto, você pode inserir o corpo do seu artigo de 1.500 palavras.* Use tags de parágrafo (`<p>`), títulos (`<h2>`, `<h3>`) e listas (`<ul>`/`<ol>`) para estruturar seu conteúdo de forma legível. O corpo do texto agora usa a fonte Open Sans, com tamanho 1.125rem e espaçamento de linha otimizado, e os títulos mantêm Montserrat forte e impactante.
             </p>
 
             <h2>Benefícios Exclusivos do Convênio</h2>
