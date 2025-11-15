@@ -1,4 +1,4 @@
-// render.js (FINAL - Corrigido bug do Chip de Data e Altura da Imagem)
+// render.js
 
 (function () {
     const mainContent = document.getElementById('main-content');
@@ -237,7 +237,7 @@
                 
                 // Rola para o topo do CONTEÚDO PRINCIPAL (ou o topo da tela) em telas menores
                 if (window.innerWidth < 1024) {
-                    // Rola a tela para o topo para visualização em mobile, ignorando a sidebar oculta.
+                    // CORREÇÃO: Usar window.scrollTo(0, 0) para subir a tela no mobile.
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             });
