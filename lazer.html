@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title>WinnersTour — Lazer & Incentivo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./artigos_base.css"> 
+
+  <style>
+    /* Estilos específicos para a página de diretório */
+    .directory-wrap {
+      max-width: 1024px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .filter-tab {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 5px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+    
+    /* Estilo do Card de Artigo */
+    .article-card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: box-shadow 0.2s;
+    }
+    .article-card:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .card-thumb {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+    }
+    .card-content {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        line-height: 1.3;
+        color: var(--text-charcoal);
+        margin: 0 0 5px 0;
+        height: 48px; /* Limita altura para 2 linhas */
+        overflow: hidden;
+    }
+    .card-meta {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin: 0 0 10px 0;
+    }
+    .card-cta {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--brand);
+    }
+  </style>
+</head>
+<body>
+
+<div id="main-header">
+    <a href="index.html" class="logo">WINNERS TOUR</a>
+    <div class="whatsapp-cta-fixed"><a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20roteiros%20de%20lazer%20e%20incentivo." target="_blank" class="btn btn-whatsapp">WHATSAPP</a></div>
+    <nav class="desktop-nav">
+        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
+        <a href="index.html">EVENTOS</a>
+        <a href="lazer.html">LAZER</a>
+        <a href="corporativo.html">CORPORATIVO</a>
+    </nav>
+    <span class="menu-icon">☰</span> 
+</div>
+
+
+<div class="directory-wrap">
+    <h1 id="directoryTitle"></h1>
+    <div id="loadingMessage" style="text-align: center; padding: 50px;">Carregando artigos...</div>
+
+    <div id="filterTabsContainer" class="filter-tabs">
+        </div>
+
+    <div id="cardsContainer" class="cards-grid">
+        </div>
+</div>
+
+<footer id="main-footer">
+    &copy; 2025 Winners Tour. Todos os direitos reservados.
+</footer>
+
+<script src="./diretorio_lazer.js"></script>
+
+</body>
+</html>
