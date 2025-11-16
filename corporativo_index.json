@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "cancelamentos_e_remarcacoes",
+    "title": "Cancelamentos e remarcações em viagens corporativas",
+    "image_path": "/assets/artigos/cancelamentos_e_remarcacoes.webp"
+  },
+  {
+    "slug": "como_estruturar_viagens",
+    "title": "Como estruturar a área de viagens em 6 etapas",
+    "image_path": "/assets/artigos/como_estruturar_viagens.webp"
+  },
+  {
+    "slug": "custos_adicionais_passagens",
+    "title": "Custos adicionais em passagens aéreas",
+    "image_path": "/assets/artigos/custos_adicionais_passagens.webp"
+  },
+  {
+    "slug": "desafios_gestor_viajante",
+    "title": "Desafios do gestor de viagens e do viajante corporativo",
+    "image_path": "/assets/artigos/desafios_gestor_viajante.webp"
+  },
+  {
+    "slug": "gestao_de_eventos_corporativos",
+    "title": "Gestão de eventos corporativos",
+    "image_path": "/assets/artigos/gestao_de_eventos_corporativos.webp"
+  },
+  {
+    "slug": "gestao_inteligente_viagens",
+    "title": "Gestão Inteligente de Viagens Corporativas",
+    "image_path": "/assets/artigos/gestao_inteligente_viagens.webp"
+  },
+  {
+    "slug": "habilidades_gestor_estrategico",
+    "title": "Habilidades do gestor de viagens corporativas",
+    "image_path": "/assets/artigos/habilidades_gestor_estrategico.webp"
+  },
+  {
+    "slug": "regra_de_ouro_antecedencia",
+    "title": "Regra de Ouro da Antecedência",
+    "image_path": "/assets/artigos/regra_de_ouro_antecedencia.webp"
+  },
+  {
+    "slug": "viagens_corporativas_investimento",
+    "title": "Viagens corporativas como investimento",
+    "image_path": "/assets/artigos/viagens_corporativas_investimento.webp"
+  },
+  {
+    "slug": "viagens_de_premiacao",
+    "title": "Viagens de premiação e de incentivo",
+    "image_path": "/assets/artigos/viagens_de_premiacao.webp"
+  }
+]
