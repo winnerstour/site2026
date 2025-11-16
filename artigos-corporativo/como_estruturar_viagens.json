@@ -1,0 +1,378 @@
+{
+  "slug": "como_estruturar_viagens",
+  "meta_title": "WinnersTour — Como Estruturar a Área de Viagens Corporativas",
+  "title": "Como estruturar a área de viagens corporativas em 6 etapas",
+  "image_path": "/assets/artigos/como_estruturar_viagens.webp",
+  "intro": {
+    "section_type": "intro",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Em muitas empresas, a área de viagens não existe oficialmente."
+      },
+      {
+        "type": "paragraph",
+        "text": "O que existe é um emaranhado de e-mails, ligações, planilhas e decisões espalhadas entre financeiro, RH, compras, marketing e, às vezes, alguém da diretoria que “gosta de viajar” e acaba opinando em tudo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Enquanto isso, a conta de viagens segue firme no topo das maiores despesas corporativas. Passageiros se viram como podem. Fornecedores recebem mensagens desconexas. E, em qualquer crise (pandemia, greve, mudança de malha aérea), a pergunta aparece:"
+      },
+      {
+        "type": "blockquote",
+        "text": "“Quem é o responsável por isso aqui?”"
+      },
+      {
+        "type": "paragraph",
+        "text": "Viajar, por si só, já é algo que exige energia: deslocamento até aeroporto, filas, horários, fuso, reuniões importantes na sequência. Se a empresa não coloca nenhuma estrutura em volta disso, o viajante carrega o peso da logística nas costas — além do objetivo principal da viagem."
+      },
+      {
+        "type": "paragraph",
+        "text": "É justamente para evitar esse cenário que faz sentido falar em estruturar a área de viagens – mesmo que você não tenha um “departamento” formal, nem uma super ferramenta própria. O que você precisa é de método e de ponto focal : alguém dentro da empresa (sozinho ou em parceria com uma agência de viagens) que enxergue viagens como um ciclo e não como tarefas soltas."
+      },
+      {
+        "type": "paragraph",
+        "text": "Neste artigo, vamos organizar esse ciclo em uma metodologia de 6 etapas :"
+      },
+      {
+        "type": "list",
+        "style": "unordered",
+        "items": [
+          "Gestão de pagamentos",
+          "Pré-viagem (política e onboarding)",
+          "Processo de reservas",
+          "Gestão entre reserva, deslocamentos e retorno",
+          "Duty of Care: dever de cuidado com quem está na rua",
+          "Pós-viagem (conciliação e melhoria contínua)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "A ideia aqui não é vender tecnologia específica, nem falar de jargões só por falar. É mostrar, na prática, como você tira a área de viagens do improviso e transforma em um processo previsível – que cuida de pessoas, protege o caixa e reduz o estresse de todo mundo."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": 1,
+      "section_type": "content",
+      "title": "1. Comece pelo dinheiro: gestão de pagamentos",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A porta de entrada da área de viagens é o jeito como você paga por passagens, hotéis, aluguel de carro, aplicativos e afins."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em muitas empresas, esse fluxo ainda é caótico: reembolsos enormes com uma verdadeira montanha de comprovantes, colaboradores usando cartão pessoal “em caráter de emergência”, extratos difíceis de conciliar e dúvidas constantes sobre quem pagou o quê, para qual viagem e para qual área."
+        },
+        {
+          "type": "paragraph",
+          "text": "O primeiro passo para estruturar a área é simplificar e padronizar o caminho do dinheiro. Na prática, isso passa por duas decisões-chave:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Centralizar os gastos em poucos meios de pagamento , preferencialmente em um cartão corporativo ou em uma central de pagamentos corporativos (cartão de crédito corporativo ou virtual). A partir daí, você negocia se a empresa fará adiantamento de despesas para o colaborador ou se ele receberá reembolso apenas daquilo que, de fato, não foi possível pagar previamente com o cartão corporativo.",
+            "Amarrar cada pagamento a um centro de custo específico , desde a origem: comercial, marketing, RH, eventos, treinamento, diretoria etc. É isso que permite enxergar se aquela viagem era da equipe comercial, se aquele evento foi bancado pelo marketing, se aquele treinamento veio do orçamento de RH."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Mais do que escolher “qual cartão usar”, o travel manager precisa se perguntar:"
+        },
+        {
+          "type": "blockquote",
+          "text": "“Com o jeito que pago hoje, é fácil conciliar e entender onde está indo o dinheiro?”"
+        },
+        {
+          "type": "paragraph",
+          "text": "Se a resposta ainda é “não”, é aqui que a estruturação precisa começar."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section_type": "content",
+      "title": "2. Antes do embarque: política de viagens clara e onboarding inteligente",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nenhuma área de viagens se sustenta sem uma política clara ."
+        },
+        {
+          "type": "paragraph",
+          "text": "E política clara não é um PDF de 30 páginas esquecido na intranet. É um conjunto de decisões simples que respondem a perguntas como:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Quem pode viajar, e em quais situações a viagem é autorizada?",
+            "Qual padrão de voo e hotel para cada nível ou tipo de viagem?",
+            "Qual é a regra de ouro de antecedência para comprar passagens?",
+            "O que está incluído (bagagem, assento, transporte) e o que não está?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Essa política precisa ser escrita em linguagem humana, fácil de consultar, integrada ao onboarding de novos colaboradores e conhecida também pelos principais fornecedores (agência de viagens, hotéis, locadoras, apps de transporte)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em mercados mais maduros, não é raro candidatos em processo seletivo pedirem para ver a política de viagens antes de aceitar uma oferta: ninguém quer trocar uma empresa que permite executiva em voos de 12 horas por outra que só aceita econômica no mesmo trecho."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando a política é invisível, cada viagem vira uma negociação particular.  \n            Quando é clara e difundida, ela vira um acordo de jogo que reduz conflito e acelera decisão."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section_type": "content",
+      "title": "3. Como as reservas acontecem: desenhando o processo",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Com política e pagamentos minimamente definidos, vem a pergunta prática:"
+        },
+        {
+          "type": "blockquote",
+          "text": "“Na hora H, como as reservas são feitas?”"
+        },
+        {
+          "type": "paragraph",
+          "text": "É aqui que muita empresa se perde. Deixa tudo “na mão de cada área”, abre infinitos canais (site de varejo, WhatsApp da agência, booking direto com hotel, mil apps) e depois não entende por que não tem controle de nada."
+        },
+        {
+          "type": "paragraph",
+          "text": "Estruturar a área de viagens significa desenhar um processo de reservas coerente :"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Definir quais canais são oficiais : agência de viagens, portal online corporativo, contato direto com o ponto focal interno – e fechar a porta para atalhos paralelos.",
+            "Acordar regras de exibição de conteúdo com a agência/portal: janelas de horário (ex.: mostrar apenas voos entre 6h e 22h), tempo mínimo de conexão, limites de tarifa etc.",
+            "Trabalhar com uma lista de hotéis homologados por cidade, com critérios combinados de preço, localização e segurança.",
+            "Especificar quem aprova o quê: quais viagens precisam de aprovação prévia, quais seguem fluxo automático dentro da política."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Hoje, muitas ferramentas de reserva corporativa estão conectadas a conteúdo de varejo. Sem filtro, aparece de tudo: hostel, quarto compartilhado, motel, propriedades sem padrão mínimo. Por isso é tão importante ter alguém – interno ou na agência – ajustando esse “cardápio”."
+        },
+        {
+          "type": "paragraph",
+          "text": "O objetivo não é engessar. É dar previsibilidade . O colaborador sabe onde pedir, a agência sabe o que pode oferecer, o financeiro sabe que aquilo está dentro da regra."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section_type": "content",
+      "title": "4. Entre a reserva, os deslocamentos e o retorno: a viagem só termina quando o viajante chega em casa",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Na teoria, a viagem está “resolvida” quando a reserva é emitida. Na prática, ela só termina quando o viajante volta para casa ."
+        },
+        {
+          "type": "paragraph",
+          "text": "Até esse momento, qualquer ponto da jornada pode trazer problemas: antes do embarque (mudança de malha aérea, alteração de horário, overbooking de hotel, cancelamento de evento), durante a ida (perder o voo, perder uma conexão, atraso em cadeia), nos deslocamentos locais (carro próprio que estraga, carro alugado que dá problema, acidente de trânsito, transporte que não aparece) e até na volta (trecho de retorno cancelado, necessidade de estender estada, remarcação emergencial)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ou seja: todo o período em que a pessoa está em movimento a serviço da empresa é um terreno fértil para emergências pequenas e grandes . E, quem está no olho do furacão, quase sempre, é o viajante – cansado, sob pressão de entregar um resultado, muitas vezes em uma cidade ou país que não conhece bem."
+        },
+        {
+          "type": "paragraph",
+          "text": "O papel do gestor de viagens aqui não é escrever um manual infinito, e sim estar preparado para atuar assim que o problema é detectado. Chegou a demanda – por e-mail, WhatsApp, ligação, alerta da companhia aérea ou da agência – o travel manager entra em ação: identifica o que aconteceu, escolhe rapidamente o melhor caminho de solução, aciona quem resolve (companhia aérea, hotel, locadora, organizador do evento), negocia o que for necessário, reorganiza a agenda com as áreas envolvidas e devolve ao viajante um plano claro de “como seguimos a partir daqui”."
+        },
+        {
+          "type": "paragraph",
+          "text": "A lógica é simples: detectar rápido, acionar certo, resolver e tirar o problema da cabeça de quem está na rua. O viajante precisa focar na reunião, no cliente, no treinamento, no contrato. A retaguarda de viagens existe justamente para segurar esse peso logístico."
+        },
+        {
+          "type": "paragraph",
+          "text": "Um bom travel manager funciona, nessa etapa, como a central de estabilidade da viagem: absorve impacto, ajuda a decidir e elimina o atrito desnecessário do caminho."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section_type": "content",
+      "title": "5. Duty of Care: dever de cuidado com quem está na rua",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Duty of Care não é um termo bonito em apresentação. É a base da responsabilidade da empresa com quem está na rua a serviço dela."
+        },
+        {
+          "type": "paragraph",
+          "text": "Se a organização diz que “pessoas são o principal ativo”, isso precisa aparecer justamente nas horas mais difíceis: quando algo foge completamente do script. Tudo o que acontece com o colaborador em viagem – do pequeno imprevisto até a grande emergência – acaba, de um jeito ou de outro, voltando como responsabilidade, custo e decisão da empresa."
+        },
+        {
+          "type": "paragraph",
+          "text": "Às vezes, esse dever de cuidado se manifesta em situações relativamente simples: antecipar a volta de alguém por motivo de saúde, bancar uma diária extra de hotel porque não é seguro colocar o colaborador na estrada à noite, arcar com o custo de uma remarcação mais cara para que ele volte para casa a tempo de lidar com um problema familiar sério."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em outros momentos, ele aparece em cenários extremos: falecimento de um familiar em plena viagem, necessidade de repatriar um grupo inteiro que está em outro país, mudanças abruptas causadas por guerra civil, instabilidade política, pandemia, desastres naturais, fechamento repentino de fronteiras. Nesses casos, o “custo de fazer o mínimo” pode envolver desde múltiplos trechos de emergência até, em situações realmente graves, contratar uma aeronave particular para retirar o grupo com segurança ."
+        },
+        {
+          "type": "paragraph",
+          "text": "A verdade é que, do ponto de vista estatístico, esses eventos parecem raros. Mas, quando você olha o conjunto das viagens ao longo dos anos, percebe que sempre tem alguma coisa acontecendo em algum lugar . Justamente por isso, o Duty of Care não pode ser tratado como exceção distante: ele precisa ser incorporado ao desenho da área de viagens."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, isso significa:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "saber, em tempo real, quem está viajando, para onde e por quanto tempo ;",
+            "ter canais concretos para falar com essas pessoas (app, telefone, mensagem, e-mail), e não depender só de boa vontade;",
+            "definir antecipadamente até onde a empresa está disposta a ir em cada tipo de cenário (quando cancelar viagens, quando antecipar retornos, quando autorizar soluções mais caras para preservar a integridade do time);",
+            "preparar o gestor de viagens para coordenar essas respostas junto com RH, jurídico, diretoria e fornecedores."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Duty of Care é, em essência, a empresa assumindo que não terceiriza o cuidado com o seu próprio time . A agência de viagens executa, a companhia aérea transporta, o hotel hospeda, mas quem responde pelo bem-estar de quem está na rua – no papel e na prática – é a organização. E o travel manager é a figura que amarra todas essas pontas."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section_type": "content",
+      "title": "6. Depois da viagem: conciliar, aprender e melhorar",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A última etapa da metodologia é aquela que muita empresa encara apenas como “dor de cabeça contábil”: o pós-viagem ."
+        },
+        {
+          "type": "paragraph",
+          "text": "Mas é justamente aqui que você fecha o ciclo financeiro, mede aderência à política e descobre onde estão as grandes oportunidades de economia e melhoria."
+        },
+        {
+          "type": "paragraph",
+          "text": "Um pós-viagem bem estruturado cuida de três frentes."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section_type": "content",
+      "title": "6.1. Conciliação de despesas sem tortura",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Quanto mais você preparou a casa nos passos 1 e 3 (pagamentos e reservas), mais simples fica a conciliação."
+        },
+        {
+          "type": "paragraph",
+          "text": "O ideal é que a maior parte dos gastos passe pelo cartão corporativo ou por acordos centralizados com a agência de viagens, de forma que os dados dessas despesas “caiam” automaticamente em um sistema de viagens e despesas. O viajante não deveria precisar reconstruir a viagem nota por nota; ele revisa, ajusta o que for necessário e envia para aprovação."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em vez de vários lançamentos manuais para cada corrida, cada refeição e cada diária, a conciliação passa a ser uma checagem de consistência. Isso reduz erro, retrabalho e o desgaste de todos os lados."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section_type": "content",
+      "title": "6.2. Relatórios que olham comportamento, não só valor",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Relatório de área de viagens não é apenas “quanto gastamos em passagens em tal mês”."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os melhores insights aparecem quando você cruza informações de comportamento : com que antecedência as passagens estão sendo compradas, com que frequência as reservas são remarcadas, quantas viagens seguem a política de hotéis preferenciais, quantas escapam para canais não oficiais."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando o time sabe que existe alguém olhando esses padrões, a tendência natural é de maior aderência à política. Pequenos desvios deixam de ser “ninguém vai notar” e passam a ser pontos de atenção."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section_type": "content",
+      "title": "6.3. Ajustes finos para o próximo ciclo",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Os relatórios não são um fim em si mesmos. Eles existem para embasar ajustes práticos: renegociar com fornecedores que não entregaram bem, revisar regras de antecedência em rotas problemáticas, adaptar algum ponto de política que claramente não funciona na realidade, reforçar comunicações que não ficaram claras."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando a empresa usa o pós-viagem para aprender – e não apenas para “acertar contas” – a área de viagens deixa de ser um mal necessário e passa a ser um campo de melhoria contínua."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section_type": "content",
+      "title": "Amarrando as 6 etapas: de fogo cruzado a sistema",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Se você olhar para essas 6 etapas em sequência, dá para enxergar um fio condutor:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Você organiza como paga .",
+            "Define como decide antes de viajar.",
+            "Controla como reserva .",
+            "Fica pronto para agir enquanto o viajante está em deslocamento, até ele voltar para casa .",
+            "Assume o dever de cuidado com quem está na rua representando a empresa.",
+            "E transforma o pós-viagem em aprendizado, não só em papelada."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Essa é a espinha dorsal da área de viagens – esteja ela dentro da empresa, construída com um travel manager dedicado, ou apoiada por uma agência de viagens especializada que executa as rotinas operacionais sob a coordenação desse gestor."
+        },
+        {
+          "type": "paragraph",
+          "text": "O que muda, de um modelo para o outro, não são as etapas.  \n            O que muda é quem faz o quê em cada etapa."
+        },
+        {
+          "type": "paragraph",
+          "text": "O passo prático agora é simples:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "pegue essas 6 fases,",
+            "marque em qual delas sua empresa está mais fraca hoje,",
+            "e escolha um ou dois pontos concretos para melhorar nos próximos meses."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando você faz isso de forma consistente, a área de viagens deixa de ser um conjunto de favores e improvisos – e passa a funcionar como aquilo que realmente é:"
+        },
+        {
+          "type": "blockquote",
+          "text": "uma peça estratégica, que conecta pessoas, negócios e resultados."
+        },
+        {
+          "type": "paragraph",
+          "text": "Pronto para sair do improviso?"
+        }
+      ]
+    }
+  ]
+}

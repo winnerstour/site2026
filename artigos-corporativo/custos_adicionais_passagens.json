@@ -1,0 +1,383 @@
+{
+  "slug": "custos_adicionais_passagens",
+  "meta_title": "WinnersTour — Custos Adicionais em Passagens",
+  "title": "Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”",
+  "image_path": "/assets/artigos/custos_adicionais_passagens.webp",
+  "intro": {
+    "section_type": "intro",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Se você olha para uma passagem e pensa “ufa, saiu barato”, provavelmente ainda não viu a conta inteira."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hoje a passagem aérea é vendida como um serviço de transporte básico — levar a pessoa do ponto A ao ponto B.\n                Só que tudo o que torna essa jornada confortável, minimamente prática e adequada à realidade do viajante foi fatiado em pequenos pedaços cobrados à parte: bagagem, assento, antecipação de voo, upgrade de cabine, entre outros."
+      },
+      {
+        "type": "paragraph",
+        "text": "Do lado da empresa, isso significa uma coisa muito simples:\n                se você só olhar para o valor da tarifa, vai subestimar o custo real daquela viagem."
+      },
+      {
+        "type": "paragraph",
+        "text": "Este artigo é justamente para colocar ordem nesse quebra-cabeça. Vamos destrinchar os principais custos adicionais que aparecem na prática do dia a dia:"
+      },
+      {
+        "type": "list",
+        "style": "unordered",
+        "items": [
+          "bagagem despachada e bagagem de mão “paga” em alguns voos,",
+          "escolha de assentos (do padrão ao conforto e Premium Economy),",
+          "antecipação de voo pelo aplicativo,",
+          "upgrades para classe executiva (pagos, leilão e fidelidade),",
+          "e o papel da agência orientando quando vale a pena pagar por cada um deles."
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": 1,
+      "section_type": "content",
+      "title": "1. Bagagem: o que ainda está incluído e onde começa a cobrança",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "O primeiro “extra” que ganhou fama foi o despacho de bagagem. Ele mudou a forma como as pessoas pensam em arrumar mala — e a forma como a empresa deve pensar seu orçamento de viagem."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section_type": "content",
+      "title": "Bagagem de mão e item pessoal (o que ainda é “de graça”)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nos voos dentro do Brasil, a regra geral é que a tarifa básica inclui:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "uma bagagem de mão de até 10 kg , que vai no compartimento superior do avião;",
+            "um item pessoal , como uma mochila ou bolsa menor, que cabe embaixo do assento à frente."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Esse combo é suficiente para viagens muito curtas, de 1 ou 2 dias, para quem consegue se organizar com pouca coisa.\n                Mas, na prática corporativa, basta falar em viagem de 3 ou 4 dias que o cenário muda: a maioria dos viajantes vai precisar de uma mala de porão."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section_type": "content",
+      "title": "Bagagem despachada: o custo que salta se deixar para depois",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Para despachar uma mala de até 23 kg no porão, entra a cobrança extra. Esse valor pode ser comprado junto com a passagem ou adicionado depois — mas o momento da compra faz diferença."
+        },
+        {
+          "type": "paragraph",
+          "text": "De forma geral:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "comprar a bagagem junto com a passagem ou antecipadamente costuma ter um custo na casa de algumas centenas de reais (por exemplo, algo em torno de R$ 150 na primeira bagagem);",
+            "deixar para resolver no aeroporto costuma ser bem mais caro, chegando facilmente a algo como R$ 200–250 ou mais pela mesma mala."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A lógica é clara: a companhia premia quem decide cedo e pune (financeiramente) quem deixa para “ver depois”.\n                Para o gestor de viagens, isso significa que vale a pena decidir junto com o colaborador, já na emissão, se ele vai ou não despachar bagagem — e incluir esse custo no orçamento."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section_type": "content",
+      "title": "América do Sul: quando até a bagagem de mão entra na conta",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Em alguns voos internacionais curtos dentro da América do Sul (por exemplo, certas tarifas mais econômicas para países vizinhos), as companhias passaram a cobrar também pela bagagem de mão que vai no compartimento superior. Nessas tarifas mais restritivas:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "o passageiro só teria incluído um item pessoal pequeno,",
+            "e qualquer bagagem de mão ou despachada passa a ser cobrada à parte."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Nesses casos, é comum ver taxas adicionais na faixa de R$ 150 a R$ 250 por volume, dependendo da rota e do momento da compra.\n                Isso não se aplica aos voos domésticos dentro do Brasil nem, em geral, às tarifas mais completas de voos longos, mas já é uma realidade em muitos trechos na América do Sul."
+        },
+        {
+          "type": "paragraph",
+          "text": "Aqui, mais do que nunca, o segredo é não ser pego de surpresa .\n                Se a viagem envolve América do Sul, vale checar com cuidado qual é a franquia daquela tarifa específica antes de fechar a compra."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section_type": "content",
+      "title": "2. Assentos: do aleatório ao conforto (e o quebra-cabeça da fidelidade)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "O segundo grande conjunto de custos adicionais está na escolha de assentos.\n                Por trás do “assento pago” existe uma lógica de distribuição de lugares, fidelidade e venda de conforto."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section_type": "content",
+      "title": "O tal do assento aleatório",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A base do jogo é o conceito de assento aleatório automático :"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "se o passageiro não paga pela escolha antecipada,",
+            "a companhia atribui um assento automaticamente, geralmente nas 48 horas que antecedem o voo,",
+            "sem garantia de corredor, janela ou proximidade com a família/colegas."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, isso significa que quem viaja bastante e tem status no programa de fidelidade costuma ser “priorizado” em assentos melhores, enquanto quem viaja pouco tende a ser empurrado para os assentos de meio , que são os menos desejados."
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada companhia implementa isso à sua maneira. Algumas, como a LATAM, trabalham com um sistema que favorece um pouco mais os passageiros frequentes na hora desse sorteio. Outras, como a Gol, podem ser mais imprevisíveis, colocando até clientes frequentes em posições ruins. A Azul, em muitos casos, segura a escolha de assento gratuito para bem perto do voo, permitindo seleção sem custo apenas quando falta menos de 24 horas."
+        },
+        {
+          "type": "paragraph",
+          "text": "Para o viajante, a mensagem é simples:\n                se ele não quiser arriscar assento ruim (especialmente em viagens longas ou em grupo), vai ser pressionado a pagar pela marcação."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section_type": "content",
+      "title": "Quanto custa escolher o assento?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Os valores variam por companhia, rota e momento da compra, mas um padrão comum é:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "assento padrão (a partir de certa linha para trás da aeronave): algo em torno de R$ 59 a R$ 99;",
+            "assentos conforto (mais espaço para as pernas, primeiras fileiras, saída de emergência): muitas vezes entre R$ 120 e R$ 150, podendo ser mais em rotas concorridas."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Passageiros frequentes, com status mais alto nos programas de fidelidade, muitas vezes podem escolher gratuitamente alguns assentos padrão, pagam valor reduzido pelos assentos conforto e, nas categorias mais altas, podem até ter acesso gratuito a parte dos assentos com mais espaço. Mas isso vem com limitações: às vezes só é gratuito do meio para o fundo da aeronave; assentos conforto e primeiras filas continuam pagos, mesmo para clientes importantes, em certas classes tarifárias."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section_type": "content",
+      "title": "Premium Economy: quando o assento vira outra “classe” de serviço",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Além dos assentos pagos dentro da classe econômica tradicional, algumas companhias oferecem uma espécie de “meio termo” chamada Premium Economy ."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ela fica entre a econômica e a executiva e normalmente oferece assentos mais largos ou com mais reclinação, serviço de bordo melhorado, check-in e embarque diferenciados e franquia de bagagem maior."
+        },
+        {
+          "type": "paragraph",
+          "text": "Aqui não estamos mais falando de um “assento pago” dentro da econômica, mas de uma classe de serviço com tarifa própria.\n                E, por isso mesmo, os passageiros frequentes não “ganham” esse lugar só por status: se quiserem viajar em Premium Economy, precisam pagar pela tarifa dessa classe ou conseguir um upgrade específico."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section_type": "content",
+      "title": "E quando o assento “some”?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Um detalhe que gera frustração, mas que precisa ser dito:\n                mesmo depois de marcar assento, a companhia aérea tem autonomia para alterar o mapa de lugares ."
+        },
+        {
+          "type": "paragraph",
+          "text": "Isso pode acontecer por troca de aeronave, necessidades operacionais ou remanejamento interno de cabine. Não é raro o passageiro descobrir, na véspera ou no aeroporto, que o assento que tinha escolhido foi trocado."
+        },
+        {
+          "type": "paragraph",
+          "text": "Por isso, vale a recomendação simples: acompanhar pelo aplicativo se o assento segue o mesmo à medida que o voo se aproxima. Se algo mudar, é melhor tentar ajustar com antecedência do que descobrir na porta de embarque."
+        },
+        {
+          "type": "paragraph",
+          "text": "Para diretoria e perfis mais sensíveis, costuma valer muito a pena incluir no padrão da empresa a compra antecipada de assentos melhores (corredor, janela ou conforto) — é um custo adicional, sim, mas reduz cansaço, reclamação e ruído."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section_type": "content",
+      "title": "3. Antecipação de voo: conveniência que virou produto",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Outro serviço que ganhou etiqueta de preço é a antecipação de voo .\n                Ele é muito usado em rotas curtas como São Paulo–Curitiba, Brasília–São Paulo e outros trechos de ponte aérea corporativa."
+        },
+        {
+          "type": "paragraph",
+          "text": "Funciona mais ou menos assim: no dia da viagem, com algumas horas de antecedência (tipicamente menos de 6 horas antes do horário original), o passageiro já está no aeroporto, termina seus compromissos antes do previsto e quer voltar para casa mais cedo. A companhia permite antecipar para um voo anterior, mediante o pagamento de uma taxa."
+        },
+        {
+          "type": "paragraph",
+          "text": "Essa taxa, em muitos casos, fica na faixa de R$ 100 a R$ 150 por trecho. Em contrapartida, algumas categorias de passageiros frequentes conseguem fazer essa antecipação sem custo , como benefício de fidelidade."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em geral, o serviço é feito pelo aplicativo da companhia aérea . Algumas situações ainda exigem atendimento no aeroporto. A agência pode orientar, mas quem executa a troca ali na hora é o próprio passageiro, usando o app ou o balcão."
+        },
+        {
+          "type": "paragraph",
+          "text": "Para a empresa, a leitura é dupla: em alguns casos, antecipar voo faz sentido para aproveitar melhor o tempo do colaborador e reduzir horas ociosas; em outros, pode ser um custo recorrente que estoura o orçamento se virar hábito em toda e qualquer viagem. Por isso, vale a pena definir diretrizes claras: em que situações a antecipação é autorizada, para quais cargos ou perfis, e até qual valor."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section_type": "content",
+      "title": "4. Upgrades para classe executiva: comprar, pagar depois ou disputar no leilão?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "O último grande bloco de custos adicionais está nos upgrades de cabine , especialmente para a classe executiva em voos internacionais."
+        },
+        {
+          "type": "paragraph",
+          "text": "Aqui, existem três caminhos principais:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "comprar diretamente a passagem em classe executiva,",
+            "pagar um upgrade fixo que a companhia oferece em algum momento,",
+            "tentar o leilão, oferecendo um lance em dinheiro ou milhas por um assento vago."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section_type": "content",
+      "title": "Comprar direto: o caminho mais claro (e mais caro)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "É a opção mais simples de explicar: na hora de emitir, você seleciona já a tarifa em classe executiva.\n                O valor costuma estar muito acima da econômica — às vezes 3, 4 ou mais vezes o preço da tarifa base."
+        },
+        {
+          "type": "paragraph",
+          "text": "Para determinados perfis (diretoria, viagens longas, deslocamentos críticos), essa é uma decisão estratégica:\n                melhor prever o custo alto e garantir conforto do que contar com “oportunidade de upgrade” que talvez nunca apareça."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "section_type": "content",
+      "title": "Upgrade pago: oferta direta da companhia",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Em alguns casos, depois da emissão da econômica, a própria companhia envia ofertas de upgrade com um valor fixo (por exemplo, um complemento em torno de alguns milhares de reais) ou disponibiliza essa opção dentro do aplicativo ou site."
+        },
+        {
+          "type": "paragraph",
+          "text": "É uma forma de a empresa aérea monetizar assentos vazios na executiva sem abrir mão totalmente da imagem de exclusividade daquela cabine."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, esses upgrades pagos podem ser interessantes quando o valor adicional fica dentro de um teto razoável definido pela empresa e a viagem é longa o bastante para justificar o investimento. Mas é importante lembrar: esses convites aparecem de forma oportunista. Não dá para contar com eles como parte garantida da estratégia."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "section_type": "content",
+      "title": "Leilão (bidding): quando o passageiro disputa com o próprio bolso",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "O leilão é a forma mais “gamificada” de upgrade: o passageiro recebe um convite para oferecer um lance em dinheiro ou milhas, não sabe qual é o valor mínimo aceito e disputa com outros passageiros — e com clientes de alto status de fidelidade — pelos assentos livres."
+        },
+        {
+          "type": "paragraph",
+          "text": "O problema do leilão é a opacidade . Se o lance for conservador demais, ele perde o lugar; se for alto demais, pode acabar pagando mais do que pagaria em um upgrade fixo bem negociado."
+        },
+        {
+          "type": "paragraph",
+          "text": "Além disso, passageiros com pontuação de fidelidade muito alta costumam ter preferência em muitos sistemas.\n                Isso significa que um cliente com status elevado pode conseguir o upgrade antes mesmo de alguém que ofereceu um lance alto no leilão."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, o leilão é interessante como oportunidade pontual, mas péssimo como base de planejamento.\n                Para viagens estratégicas, a empresa deve decidir antes: vamos emitir já em executiva? Vamos aceitar upgrade pago até X valor? Vamos ignorar leilões?"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "section_type": "content",
+      "title": "5. O papel da agência (e do gestor de viagens) no meio de tudo isso",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Com tantos custos adicionais, é fácil o orçamento estourar sem ninguém perceber.\n                O trabalho da agência e do gestor de viagens é transformar esse caos em lógica clara."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na bagagem, isso significa definir quando a empresa vai bancar despachos (por exemplo, sempre em viagens acima de X dias) e garantir que essa compra seja antecipada, nunca deixada para o balcão. Nos assentos, passa por decidir perfis prioritários: diretoria e cargos-chave com assento conforto comprado antecipadamente; demais colaboradores seguindo a lógica de assento aleatório, com marcação paga só quando realmente necessário (viagens longas, necessidades especiais). Na antecipação de voo, entra a definição de regras objetivas: quando a conveniência do colaborador e o ganho de tempo justificam o pagamento daquela taxa e quando não justificam."
+        },
+        {
+          "type": "paragraph",
+          "text": "Já nos upgrades, o papel do gestor é separar o que é exceção estratégica (executiva para viagens críticas, dentro de parâmetros de valor) do que é aposta emocional (leilão sem critério). Em vez de reagir a cada oferta que aparece, a empresa passa a ter uma política clara: quando vale pagar por mais conforto, quando é um luxo e quando é desperdício."
+        },
+        {
+          "type": "paragraph",
+          "text": "Acima de tudo, é importante mudar o olhar da empresa:"
+        },
+        {
+          "type": "blockquote",
+          "text": "Em vez de comparar apenas “tarifas de passagem”, passar a comparar Custo Total de Viagem ."
+        },
+        {
+          "type": "paragraph",
+          "text": "Tarifa barata com mala despachada, assento pago, antecipação recorrente e tentativa de upgrade pode, facilmente, sair mais cara do que uma tarifa um pouco mais alta, mas mais bem estruturada."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando o setor de viagens entende e explica isso com clareza, cada real gasto com bagagem, assento ou conforto deixa de ser surpresa e passa a ser decisão consciente.\n                E é justamente aí que a gestão deixa de ser “apagadora de incêndio” e assume o papel de copiloto estratégico na política de viagens da empresa."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quer uma cotação transparente e sem surpresas?"
+        }
+      ]
+    }
+  ]
+}

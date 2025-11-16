@@ -1,0 +1,384 @@
+{
+  "slug": "desafios_gestor_viajante",
+  "meta_title": "WinnersTour — Desafios do Gestor e do Viajante",
+  "title": "Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time",
+  "image_path": "/assets/artigos/desafios_gestor_viajante.webp",
+  "intro": {
+    "section_type": "intro",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Imagina a cena."
+      },
+      {
+        "type": "paragraph",
+        "text": "Você é viajante corporativo, está na correria entre uma reunião e outra, abre o celular e encontra uma tarifa “imperdível” num aplicativo. Quando pede cotação pelo canal oficial da empresa, o preço vem maior. Ou o hotel sugerido parece simples demais. Ou caro demais. A sensação imediata é:"
+      },
+      {
+        "type": "paragraph",
+        "text": "“O setor de viagens não está jogando a meu favor.”"
+      },
+      {
+        "type": "paragraph",
+        "text": "Do outro lado, o gestor de viagens está lidando com orçamento apertado, política de viagens, planilha de auditoria, pressão do financeiro, reclamações da diretoria e, ainda assim, tentando manter tudo centralizado para conseguir cuidar de quem está na rua a trabalho."
+      },
+      {
+        "type": "paragraph",
+        "text": "No meio desses dois mundos, nasce um embate que parece pessoal — mas, na prática, é mais fruto de contexto, ruído e expectativa desalinhada do que de “má vontade” de qualquer lado."
+      },
+      {
+        "type": "paragraph",
+        "text": "Este artigo é um convite para olhar esse choque de outra forma: entender por que ele acontece, quais são os desafios de cada lado e como transformar essa relação em parceria — com o viajante no centro e o dever de cuidado (Duty of Care) como linha de chegada."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": 1,
+      "section_type": "content",
+      "title": "1. Quando parece que todo mundo está jogando contra você",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Para o viajante, a percepção é muito direta:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "“Achei mais barato na internet.”",
+            "“O hotel indicado é ruim ou sem serviço.”",
+            "“Por que precisa de tanta aprovação?”",
+            "“Por que é tão complicado fazer algo que, no site tal, eu resolvo em 3 cliques?”"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "É fácil concluir que o setor de viagens — e muitas vezes a própria agência parceira — está “do lado da empresa”, contra o conforto ou a conveniência de quem viaja."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, a missão do gestor de viagens é outra: equilibrar três forças ao mesmo tempo :"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Cuidar do viajante (segurança, bem-estar, menos estresse).",
+            "Proteger o orçamento (gastar bem, não apenas gastar menos).",
+            "Garantir que tudo isso fique rastreável e dentro das regras da empresa."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando esses três objetivos não são explicados de forma clara, o que chega para o viajante é só a parte chata: “não pode”, “precisa de aprovação”, “só usamos tal hotel”, “compra só por aqui”."
+        },
+        {
+          "type": "paragraph",
+          "text": "O primeiro passo para reduzir o atrito é assumir: não existe time A x time B . Existe um problema complexo (viajar bem, com segurança e custo ok) sendo visto por ângulos diferentes."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section_type": "content",
+      "title": "2. A tarifa “sempre mais barata” no aplicativo – e o jogo da oferta imperdível",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Entre todas as reclamações do viajante corporativo, essa é campeã:"
+        },
+        {
+          "type": "paragraph",
+          "text": "“No aplicativo tal está mais barato.”"
+        },
+        {
+          "type": "paragraph",
+          "text": "E muitas vezes é verdade."
+        },
+        {
+          "type": "paragraph",
+          "text": "Apps e sites de viagem trabalham o tempo todo com a lógica da “oferta imperdível” : cupom de última hora, desconto exclusivo no app, cashback relâmpago… tudo pensado para você não sair da tela sem comprar."
+        },
+        {
+          "type": "paragraph",
+          "text": "Do ponto de vista individual, faz sentido aproveitar. Mas, do ponto de vista da empresa, isso não muda o jogo principal."
+        },
+        {
+          "type": "paragraph",
+          "text": "Uma política de viagens séria não foi criada para “ganhar” alguns reais em uma promoção pontual. Ela existe para:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "usar a regra de ouro da antecedência e reduzir de verdade o custo de passagens e hospedagens;",
+            "evitar compras em cima da hora , quando a cidade já está lotada e os preços explodiram;",
+            "centralizar as reservas , para ter rastreabilidade, poder de negociação e condições de ajudar o viajante se algo der errado."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "As ofertas dos aplicativos podem ser um bônus aqui e ali. Mas a estratégia que realmente funciona, para a empresa e para quem viaja, continua sendo a mesma: planejar, comprar com antecedência e seguir os canais oficiais ."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section_type": "content",
+      "title": "3. O hotel “ruim”, o hotel “caro” e o hotel “errado”",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Outra fonte de atrito recorrente:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "“Por que vocês só cotam o hotel X?”",
+            "“Esse hotel é muito simples.”",
+            "“Esse outro é caro demais.”"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Na cabeça do viajante, faz sentido comparar apenas preço e conforto imediato. Na cabeça do gestor, entra um conjunto bem maior de variáveis:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Localização em relação ao cliente, planta, feira ou evento.",
+            "Segurança da região.",
+            "Condições de pagamento corporativo.",
+            "Flexibilidade para no-show, alteração ou saída antecipada.",
+            "Histórico de problemas (ou de bons atendimentos) com aquele hotel."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Por isso, muitas empresas trabalham com listas de hotéis preferenciais em cada cidade. Não é para engessar a escolha, e sim para garantir um padrão mínimo de segurança, qualidade e previsibilidade."
+        },
+        {
+          "type": "paragraph",
+          "text": "Sim, às vezes o resultado disso pode parecer um hotel “sem graça” ou com diária um pouco acima de alguma promoção pontual na internet. Mas o que se busca ali é:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "reduzir o risco de o viajante ficar “sem quarto” em evento grande;",
+            "evitar regiões perigosas ou muito distantes do local de trabalho;",
+            "facilitar suporte se algo der errado no check-in, no pagamento ou durante a estada."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando essa lógica não é explicada, o que chega para o viajante é só a sensação de que “não pensaram em mim” ."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section_type": "content",
+      "title": "4. Burocracia, aprovações e formulários: o fino equilíbrio entre controle e exagero",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Aqui mora outro ponto de desgaste."
+        },
+        {
+          "type": "paragraph",
+          "text": "Do lado do viajante:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Fluxos de aprovação demorados.",
+            "Formulários demais.",
+            "Políticas que parecem feitas para “pegar no pé” de quem viaja."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Do lado do gestor:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Pressão do financeiro e da auditoria para ter trilhas de aprovação claras.",
+            "Casos reais de abusos (carros acima da categoria, hotéis fora de política, despesas pessoais no cartão corporativo).",
+            "Medo legítimo de ser cobrado por algo que “passou sem controle”."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "O resultado pode ser uma política cheia de travas, feitas para conter exceções — mas que, na prática, atrapalham justamente quem faz tudo certo."
+        },
+        {
+          "type": "paragraph",
+          "text": "O desafio do gestor moderno é:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "automatizar o máximo possível , para não transformar aprovação em carimbo manual eterno;",
+            "confiar mais em quem segue a política e concentrar a energia nas exceções reais;",
+            "ouvir o viajante quando a burocracia começa a atrapalhar o objetivo da viagem."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "E, do lado do viajante, também ajuda muito:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "dar feedback específico (onde exatamente o fluxo trava);",
+            "evitar atalhos por fora do processo só porque “é mais rápido” naquele momento."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "O objetivo não é criar barreiras. É impedir que alguns poucos casos ruins contaminem o benefício de todo mundo."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section_type": "content",
+      "title": "5. O bastidor invisível do gestor de viagens",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Para quem olha de fora, o gestor de viagens é “a pessoa que manda as regras” ou “o chato que diz não”."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, o dia a dia passa longe disso. Esse profissional normalmente está:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "negociando com dezenas de hotéis e fornecedores ao mesmo tempo;",
+            "buscando manter tarifas competitivas em mercados que mudam o tempo todo;",
+            "explicando internamente por que viagens são investimento, não apenas custo;",
+            "respondendo a emergências em cima da hora (greves, cancelamentos, mudanças de rota, doenças, imprevistos familiares);",
+            "tentando modernizar processos em empresas que, às vezes, ainda vivem de planilha e e-mail."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "É um trabalho que mistura pressão , urgência e expectativa alta — dos viajantes, da diretoria e dos fornecedores."
+        },
+        {
+          "type": "paragraph",
+          "text": "Isso não diminui a frustração do viajante quando algo dá errado. Mas ajuda a entender que, do outro lado do e-mail, não tem “o inimigo”. Tem alguém tentando manter o sistema de pé, com recursos limitados, segurando pratinhos que o viajante muitas vezes nem vê."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section_type": "content",
+      "title": "6. O pior custo não está na planilha: estresse, saúde e dever de cuidado",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Quando a gente fala em Duty of Care , o dever de cuidado, estamos falando de algo muito simples e, ao mesmo tempo, enorme: cuidar bem do recurso humano da empresa enquanto ele está na rua, viajando a serviço."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quem está viajando passa, quase sempre, por uma sequência de situações potencialmente estressantes: enfrentar trânsito até o aeroporto, longas viagens de carro, noites mal dormidas, lidar com atrasos e cancelamentos, a sensação permanente de estar “em trânsito”. E, logo depois de tudo isso, ainda vem o que realmente importa: a reunião, a negociação, o treinamento, a visita técnica, a apresentação que não pode dar errado."
+        },
+        {
+          "type": "paragraph",
+          "text": "É por isso que o pior custo raramente aparece apenas na planilha de despesas. O verdadeiro risco está nesse desgaste acumulado: cansaço extremo, queda de performance, aumento de chance de erro, maior vulnerabilidade a problemas de segurança e acidentes."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando o setor de viagens insiste em:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "comprar com antecedência , aplicando a regra de ouro da antecedência de compra;",
+            "escolher hotéis mais recomendados e bem localizados , próximos do local de trabalho ou do evento;",
+            "discutir com o viajante qual é o melhor horário e o melhor desenho da viagem , avaliando impacto de conexões, dias de ida e volta e custo total;"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "em alguns casos, a melhor decisão vai ser ajustar a viagem para caber no orçamento, mesmo que o trajeto fique um pouco menos confortável. Em outros, a escolha mais inteligente será justamente o inverso: evitar uma combinação de conexões barata no papel, mas desgastante demais na prática – porque isso coloca em risco a pessoa e o resultado da viagem."
+        },
+        {
+          "type": "paragraph",
+          "text": "Em todos os cenários, a intenção não é “dificultar a vida do viajante” nem “proteger apenas o orçamento”. A intenção é equilibrar custo, segurança e saúde de quem está na linha de frente, representando a empresa fora de casa."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section_type": "content",
+      "title": "7. Como transformar embate em parceria: combinados que funcionam",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Se a gente tirar o ruído, gestor de viagens e viajante querem a mesma coisa: viajar bem, com o menor estresse possível, sem estourar o orçamento."
+        },
+        {
+          "type": "paragraph",
+          "text": "Na prática, isso passa por alguns combinados simples."
+        },
+        {
+          "type": "paragraph",
+          "text": "Do lado do viajante:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Usar o canal oficial como regra , não exceção — e, quando encontrar algo mais barato fora, trazer a informação como dado para conversa, não como acusação.",
+            "Avisar com antecedência sempre que puder , principalmente em rotas críticas ou em época de eventos grandes.",
+            "Dar feedback estruturado : em vez de “hotel ruim”, explicar o que foi ruim (ruído, localização, internet, segurança, alimentação)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Do lado do gestor:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Explicar bastidores com transparência , em vez de responder apenas com “não pode”.",
+            "Revisar políticas periodicamente , à luz do que realmente acontece em campo, ouvindo quem viaja.",
+            "Negociar exceções bem justificadas , para mostrar que a política existe para proteger, não para engessar."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando cada lado entende o contexto do outro, o “embate” perde força. O viajante deixa de sentir que está sozinho contra o sistema. O gestor deixa de ver o viajante como alguém que “só complica”."
+        },
+        {
+          "type": "paragraph",
+          "text": "E a área de viagens passa a fazer o que sempre deveria ter feito:"
+        },
+        {
+          "type": "paragraph",
+          "text": "cuidar de gente em movimento, com inteligência, segurança e respeito ao esforço de todo mundo envolvido."
+        },
+        {
+          "type": "paragraph",
+          "text": "Deseja alinhar a gestão com a experiência do viajante?"
+        }
+      ]
+    }
+  ]
+}
