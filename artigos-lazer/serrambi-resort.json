@@ -3,6 +3,8 @@
   "meta_title": "Serrambi Resort - Carta de Vendas",
   "title": "Serrambi Resort: sete noites em uma enseada quase particular perto de Porto de Galinhas",
   "image_path": "/assets/artigos/serrambi-resort.webp",
+  "category_macro": "Resorts",
+  "category_micro": "Serrambi",
   "intro": {
     "section_type": "intro",
     "blocks": [
