@@ -86,8 +86,15 @@ a{text-decoration:none;color:inherit}
     /* IMAGEM DE AVIÃO COMO MARCA D'ÁGUA */
     background-image: url('assets/misc/aviao-marca-dagua.png'); 
     background-repeat: no-repeat;
-    background-position: center right; 
-    background-size: 300px; 
+    
+    /* CORREÇÃO: FORÇA A IMAGEM A COBRIR O HERO INTEIRO E AJUSTA OPACIDADE VIA COR */
+    background-position: center; 
+    background-size: cover; /* Faz a imagem preencher todo o Hero */
+    
+    /* NOVO AJUSTE: MISTURA A IMAGEM COM O FUNDO LARANJA */
+    background-blend-mode: multiply; 
+    opacity: 0.85; /* Sutilmente mais opaco para escurecer o fundo, ajuste conforme necessário */
+
     position: relative; 
     overflow: hidden; 
     padding: 60px 20px;
@@ -96,19 +103,10 @@ a{text-decoration:none;color:inherit}
     color: white; 
 }
 
-/* Overlay/Degradê sobre a imagem para escurecer e melhorar legibilidade */
-.hero-article::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(249, 115, 22, 0.9) 0%, rgba(249, 115, 22, 0.7) 50%, rgba(249, 115, 22, 0.5) 100%);
-    z-index: 1; 
-}
+/* REMOVIDO: O pseudoelemento ::before com linear-gradient e z-index que estava atrapalhando. */
+/* O efeito de cor é obtido pela combinação do background-color e background-blend-mode. */
 
-/* Garante que o conteúdo do hero fique acima do overlay */
+/* Garante que o conteúdo do hero fique acima da imagem */
 .hero-article > * {
     position: relative;
     z-index: 2;
@@ -217,12 +215,14 @@ a{text-decoration:none;color:inherit}
     #main-header .logo {
         padding-left: 0;
     }
-    /* Remove a imagem de fundo no mobile */
+    /* CORREÇÃO MOBILE: Remove a imagem de fundo no mobile e deixa o fundo sólido */
     .hero-article {
         background-image: none;
         background-color: var(--brand);
+        background-blend-mode: normal; /* Garante que a cor seja sólida */
+        opacity: 1; /* Garante opacidade total */
     }
     .hero-article::before {
-        background: rgba(249, 115, 22, 0.9);
+        background: none; /* Remove o gradiente */
     }
 }
