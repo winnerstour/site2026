@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Artigos e Soluções Corporativas</title>
+  <title>WinnersTour — Gestão de Viagens Corporativas</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,9 +103,10 @@ a{text-decoration:none;color:inherit}
   line-height: 1;
 }
 
-/* ÍCONE ESPECÍFICO DO WHATSAPP (compartilhado com sidebar e header mobile) */
+/* ÍCONE ESPECÍFICO DO WHATSAPP (sidebar, header mobile e menu mobile) */
 .cta-link-sidebar .whatsapp-icon,
-.mobile-icon-btn .whatsapp-icon {
+.mobile-icon-btn .whatsapp-icon,
+#mobile-menu .whatsapp-icon {
   width: 20px;
   height: 20px;
   margin-right: 0;
@@ -115,7 +116,8 @@ a{text-decoration:none;color:inherit}
   justify-content: center;
 }
 .cta-link-sidebar .whatsapp-icon img,
-.mobile-icon-btn .whatsapp-icon img {
+.mobile-icon-btn .whatsapp-icon img,
+#mobile-menu .whatsapp-icon img {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -143,11 +145,19 @@ a{text-decoration:none;color:inherit}
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 #mobile-menu a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 20px;
   font-size: 0.95rem;
   font-weight: 600;
   border-top: 1px solid rgba(0,0,0,0.04);
+}
+#mobile-menu .icon {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  line-height: 1;
 }
 
 /* LAYOUT PRINCIPAL DO GRID */
@@ -375,14 +385,34 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- MENU MOBILE (itens iguais ao menu lateral) -->
+<!-- MENU MOBILE (itens iguais ao menu lateral, AGORA COM ÍCONES) -->
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
-  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">WhatsApp</a>
-  <a href="https://www.comprarviagem.com.br/winnerstour/">Loja Virtual</a>
-  <a href="index.html">Eventos</a>
-  <a href="apps.html">Aplicativos</a>
-  <a href="lazer.html">Lazer</a>
-  <a href="corporativo.html">Corporativo</a>
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">
+    <span class="whatsapp-icon">
+      <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+    </span>
+    <span>WhatsApp</span>
+  </a>
+  <a href="https://www.comprarviagem.com.br/winnerstour/">
+    <span class="icon">🛒</span>
+    <span>Loja Virtual</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="apps.html">
+    <span class="icon">⚙️</span>
+    <span>Aplicativos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
+  </a>
+  <a href="corporativo.html">
+    <span class="icon">💼</span>
+    <span>Corporativo</span>
+  </a>
 </nav>
 
 <div id="main-grid">
@@ -425,7 +455,7 @@ a{text-decoration:none;color:inherit}
   
   <div id="main-content">
     
-    <h2 class="page-title">ARTIGOS E SOLUÇÕES CORPORATIVAS</h2>
+    <h2 class="page-title">GESTÃO DE VIAGENS CORPORATIVAS</h2>
     <p class="page-subtitle">Conteúdo estratégico para a gestão inteligente de viagens, custos e eventos da sua empresa.</p>
     
     <div id="events-grid">
