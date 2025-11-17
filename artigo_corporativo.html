@@ -12,25 +12,143 @@
   
   <link rel="stylesheet" href="./artigos_base.css">
 
+  <style>
+    /* Estilos para o Mobile Header Fixo e Layout de Sidebar (Adicionados aqui para contexto de ARTIGO) */
+    
+    /* VARIÁVEIS DO GRID/LAYOUT (Replicadas do CSS base) */
+    :root {
+      --brand:#f97316;
+      --text-charcoal:#111827;
+      --sidebar-bg-color: #f0f4f9; 
+    }
+
+    /* FIXO: Cabeçalho mobile */
+    #mobile-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1000;
+      display: none; /* Oculto no desktop */
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    #mobile-header .logo {
+        font-weight: 900;
+        font-size: 1.5rem; 
+        color: var(--brand);
+    }
+    .mobile-cta-group {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    .mobile-cta-group .icon-button {
+        width: 30px;
+        height: 30px;
+    }
+    .mobile-cta-group .menu-icon {
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--text-charcoal);
+    }
+    .icon-wa {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* LAYOUT PRINCIPAL DO GRID */
+    #main-grid {
+        display: grid;
+        grid-template-columns: 250px 1fr; 
+        min-height: 100vh;
+    }
+
+    /* SIDEBAR FIXA */
+    #main-sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        background: var(--sidebar-bg-color); 
+        z-index: 10; /* Para flutuar sobre o conteúdo em mobile */
+    }
+    
+    /* RESPONSIVIDADE */
+    @media (max-width: 1024px) {
+        #mobile-header {
+            display: flex; 
+        }
+        #main-grid {
+            grid-template-columns: 1fr; 
+            padding-top: 50px; /* Compensa o header fixo */
+        }
+        #main-sidebar {
+            display: none; /* Inicialmente oculto no mobile */
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 50px);
+            overflow-y: auto;
+        }
+    }
+  </style>
 </head>
 <body>
 
-<div id="main-header">
+<div id="mobile-header">
     <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="corporativo.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+    <div class="mobile-cta-group">
+        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
+            <span style="font-size: 20px;">🛒</span>
+        </a>
+         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20estratégia%20corporativa." target="_blank" class="icon-button" aria-label="Fale Conosco pelo WhatsApp">
+            <img src="/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa">
+        </a>
+        <span class="menu-icon" id="mobileMenuIcon">☰</span> 
+    </div>
 </div>
 
 <div id="main-grid">
     
-    <div id="main-sidebar"></div> 
+    <div id="main-sidebar">
+        <div class="agency-info">
+            <h1>WINNERS TOUR</h1>
+            <p>
+                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
+            </p>
+            
+            <div class="whatsapp-cta">
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <img src="/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa"> WHATSAPP
+                 </a>
+
+                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+                    <span class="icon">🛒</span> LOJA VIRTUAL
+                 </a>
+
+                 <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+                    <span class="icon">🗓️</span> EVENTOS
+                 </a>
+                 
+                 <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
+                    <span class="icon">⚙️</span> APLICATIVOS
+                 </a>
+                 
+                 <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+                    <span class="icon">🏖️</span> LAZER
+                 </a>
+                 
+                 <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
+                    <span class="icon">💼</span> CORPORATIVO
+                 </a>
+            </div>
+        </div>
+    </div>
     
     <div id="main-content">
         
@@ -51,6 +169,17 @@
     &copy; 2025 Winners Tour. Todos os direitos reservados.
 </footer>
 
+<script>
+    // JS para funcionalidade do menu mobile
+    document.getElementById('mobileMenuIcon').addEventListener('click', function() {
+        var sidebar = document.getElementById('main-sidebar');
+        if (sidebar.style.display === 'block') {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'block';
+        }
+    });
+</script>
 <script src="./render_corporativo.js"></script>
 
 </body>
