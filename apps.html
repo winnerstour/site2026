@@ -86,7 +86,7 @@ a{text-decoration:none;color:inherit}
   color: var(--text-charcoal);
 }
 
-/* LAYOUT PRINCIPAL DO GRID (Largura Total - 4 Colunas) */
+/* LAYOUT PRINCIPAL DO GRID */
 #main-grid {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -151,19 +151,18 @@ a{text-decoration:none;color:inherit}
 }
 /* Estilo para a nova imagem do WhatsApp */
 .cta-link-sidebar .whatsapp-icon {
-  width: 20px; /* Largura do contêiner do ícone */
-  height: 20px; /* Altura do contêiner do ícone */
+  width: 20px;
+  height: 20px;
   margin-right: 10px;
   flex-shrink: 0;
-  /* Centraliza a imagem dentro do contêiner */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cta-link-sidebar .whatsapp-icon img {
-  width: 20px; /* Define a largura da imagem */
-  height: 20px; /* Define a altura da imagem */
-  object-fit: contain; /* Garante que o SVG/WebP caiba sem cortar */
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .cta-link-sidebar.coming-soon {
@@ -183,7 +182,25 @@ a{text-decoration:none;color:inherit}
   padding: 20px 20px 20px 20px;
 }
 
-/* GRID DE APPS (ID USADO para o grid) */
+/* TÍTULO DA PÁGINA (igual ao WINNERS TOUR, mas em cor escura) */
+.page-title {
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--text-charcoal); /* mantém cor escura */
+  margin: 0 0 4px 0;           /* pouco espaço abaixo do título */
+}
+
+/* SUBTÍTULO LOGO ABAIXO DO TÍTULO */
+.page-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 18px 0;          /* reduz espaço para o grid */
+}
+
+/* GRID DE APPS */
 #events-grid {
   display: grid;
   gap: 20px;
@@ -191,7 +208,7 @@ a{text-decoration:none;color:inherit}
   grid-template-columns: repeat(4, 1fr); /* 4 COLUNAS NO DESKTOP */
 }
 
-/* Estilo Básico do Card (Reaproveitado do index/apps) */
+/* Estilo Básico do Card */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -289,10 +306,11 @@ a{text-decoration:none;color:inherit}
       </p>
       
       <div class="whatsapp-cta">
+        <!-- ORDEM ORIGINAL PRESERVADA -->
         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
           <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
         </a>
-        
+
         <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
           <span class="icon">🏖️</span> LAZER
         </a>
@@ -318,8 +336,8 @@ a{text-decoration:none;color:inherit}
   
   <div id="main-content">
     
-    <h2>FERRAMENTAS E APPS</h2>
-    <p class="card-subtitle" style="margin-bottom: 20px;">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
+    <h2 class="page-title">FERRAMENTAS E APLICATIVOS</h2>
+    <p class="page-subtitle">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
     
     <div id="events-grid">
       
@@ -394,3 +412,18 @@ a{text-decoration:none;color:inherit}
       </a>
       
       <a href="https://www.viator.com" target="_blank" class="event-card" aria-label="Viator – Atividades Turísticas">
+        <div class="card-media">
+          <img loading="lazy" src="assets/apps/Viator.webp" alt="Viator Logo" style="object-fit: cover;">
+        </div>
+        <div class="card-content">
+          <p class="card-title">VIATOR – PASSEIOS E EXPERIÊNCIAS</p>
+          <p class="card-subtitle">Plataforma global de passeios, excursões e experiências com avaliações de viajantes, ideal para complementar o roteiro da sua viagem.</p>
+        </div>
+      </a>
+
+    </div><!-- /events-grid -->
+  </div><!-- /main-content -->
+</div><!-- /main-grid -->
+
+</body>
+</html>
