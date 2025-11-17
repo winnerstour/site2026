@@ -21,8 +21,10 @@
       --muted:#6b7280;
       --card-bg-color: #fff;
       --wrap-content-width: 1024px;
+      --radius: 8px; /* Unificado */
     }
-    /* FIXO: Cabeçalho mobile (desktop style, mas fixo) */
+    
+    /* FIXO: Cabeçalho mobile */
     #mobile-header {
       position: fixed;
       top: 0;
@@ -55,6 +57,11 @@
         cursor: pointer;
         color: var(--text-charcoal);
     }
+    .icon-wa {
+        width: 24px;
+        height: 24px;
+    }
+
 
     /* LAYOUT PRINCIPAL DO GRID (Desktop) */
     #main-grid {
@@ -91,38 +98,46 @@
         display: grid;
         gap: 20px;
         padding: 0; 
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo para desktop */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
         margin-top: 20px;
     }
 
-    /* Estilo do Card (similar ao event-card/apps.html) */
+    /* === ESTILOS DOS CARDS UNIFICADOS (Padrão Apps.html) === */
     .article-card {
         background: var(--card-bg-color);
-        border-radius: 8px;
+        border-radius: var(--radius);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         overflow: hidden;
         transition: all .2s ease;
         text-decoration: none;
         display: flex;
         flex-direction: column;
+        border: 1px solid #ddd;
+        height: 100%;
     }
     .article-card:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transform: translateY(-2px);
     }
+    
+    /* Área da Imagem (simulando a cor/fundo do App) */
     .card-thumb-bg {
-        height: 180px; 
-        background-color: #f0f0f0;
-        background-size: cover;
+        height: 120px; /* Altura ajustada para ser similar ao apps.html */
+        background-color: #f0f0f0; /* Fundo neutro */
+        background-size: 100px; /* Tamanho da imagem de thumbnail */
+        background-repeat: no-repeat;
         background-position: center;
         flex-shrink: 0;
     }
+    
     .card-content {
         padding: 15px;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
+    
+    /* Linha 1: Título Principal */
     .card-title {
         font-weight: 900;
         font-size: 1rem;
@@ -130,18 +145,21 @@
         margin-bottom: 5px;
         color: var(--text-charcoal);
         text-transform: uppercase; 
-        height: 40px; /* Garante que o título não estoure */
+        height: 40px; 
         overflow: hidden;
     }
-    .card-meta, .card-cta {
+    /* Linha 2: Leitura Estratégica */
+    .card-meta {
         font-size: 14px;
         color: var(--muted);
         margin: 0;
     }
+    /* Linha 3: Acessar Artigo */
     .card-cta {
+        font-size: 14px;
         color: var(--brand);
         font-weight: 700;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
 
@@ -230,7 +248,7 @@
     <div id="main-content">
         
         <div class="directory-wrap">
-            <h1 id="directoryTitle" style="margin-bottom: 5px;">Artigos para o Gestor de Viagens</h1>
+            <h1 style="margin-bottom: 5px;">ARTIGOS PARA O GESTOR DE VIAGENS</h1>
             <p style="font-size: 1.1rem; color: var(--muted); margin-bottom: 20px;">Uma seleção de artigos essenciais para ajudar na estratégia e gestão de viagens corporativas.</p>
             
             <div id="loadingMessage" style="text-align: center; padding: 50px;">Carregando artigos...</div>
@@ -242,7 +260,7 @@
 </div>
 
 <footer id="main-footer" style="grid-column: 1 / -1; text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px;">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
 
 <script>
