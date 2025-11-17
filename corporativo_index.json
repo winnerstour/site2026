@@ -1,52 +1,62 @@
 [
   {
     "slug": "cancelamentos_e_remarcacoes",
-    "title": "Cancelamentos e remarcações em viagens corporativas",
+    "title": "Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga",
+    "subtitle": "Mostra como decisões de última hora, mudanças de agenda e falhas de planejamento fazem o orçamento explodir e como o gestor pode reduzir perdas sem travar as viagens.",
     "image_path": "/assets/artigos/cancelamentos_e_remarcacoes.webp"
   },
   {
     "slug": "como_estruturar_viagens",
-    "title": "Como estruturar a área de viagens em 6 etapas",
+    "title": "Como estruturar a área de viagens corporativas em 6 etapas",
+    "subtitle": "Apresenta um passo a passo prático para tirar a área de viagens do improviso, definir processos claros e transformar a gestão de deslocamentos em uma função estratégica.",
     "image_path": "/assets/artigos/como_estruturar_viagens.webp"
   },
   {
     "slug": "custos_adicionais_passagens",
-    "title": "Custos adicionais em passagens aéreas",
+    "title": "Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”",
+    "subtitle": "Explica como tarifas promocionais escondem taxas, franquias de bagagem reduzidas e restrições de remarcação que encarecem a viagem, e mostra como comparar opções com visão total de custo.",
     "image_path": "/assets/artigos/custos_adicionais_passagens.webp"
   },
   {
     "slug": "desafios_gestor_viajante",
-    "title": "Desafios do gestor de viagens e do viajante corporativo",
+    "title": "Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time",
+    "subtitle": "Discute os conflitos mais comuns entre quem viaja e quem aprova as viagens e traz caminhos para alinhar expectativas, criar regras claras e transformar a relação em parceria.",
     "image_path": "/assets/artigos/desafios_gestor_viajante.webp"
   },
   {
     "slug": "gestao_de_eventos_corporativos",
-    "title": "Gestão de eventos corporativos",
+    "title": "Gestão de eventos corporativos: como tirar esse “nó” da cabeça do gestor de viagens",
+    "subtitle": "Aborda por que eventos corporativos exigem outro nível de planejamento, integração com fornecedores e controle de custos, e mostra como o gestor de viagens pode assumir esse papel com segurança.",
     "image_path": "/assets/artigos/gestao_de_eventos_corporativos.webp"
   },
   {
     "slug": "gestao_inteligente_viagens",
-    "title": "Gestão Inteligente de Viagens Corporativas",
+    "title": "Gestão inteligente de viagens corporativas: dados, processos e decisões melhores",
+    "subtitle": "Mostra como usar indicadores, políticas bem desenhadas e tecnologia para ganhar visibilidade sobre gastos, aumentar a segurança dos viajantes e apoiar decisões da diretoria.",
     "image_path": "/assets/artigos/gestao_inteligente_viagens.webp"
   },
   {
     "slug": "habilidades_gestor_estrategico",
-    "title": "Habilidades do gestor de viagens corporativas",
+    "title": "Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico",
+    "subtitle": "Explora as competências técnicas, de negociação e de relacionamento que transformam o gestor de viagens em parceiro do negócio, e não apenas em “emissor de passagens”.",
     "image_path": "/assets/artigos/habilidades_gestor_estrategico.webp"
   },
   {
     "slug": "regra_de_ouro_antecedencia",
-    "title": "Regra de Ouro da Antecedência",
+    "title": "Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro",
+    "subtitle": "Explica com exemplos concretos como o fator antecedência impacta diretamente o valor das tarifas e apresenta argumentos para educar gestores e viajantes sobre o momento certo de comprar.",
     "image_path": "/assets/artigos/regra_de_ouro_antecedencia.webp"
   },
   {
     "slug": "viagens_corporativas_investimento",
-    "title": "Viagens corporativas como investimento",
+    "title": "Viagens corporativas como investimento: o olhar de quem cuida das viagens",
+    "subtitle": "Propõe uma mudança de mentalidade, tratando viagens como ferramenta de geração de resultados, e mostra como medir retorno, priorizar deslocamentos e defender o budget com mais argumentos.",
     "image_path": "/assets/artigos/viagens_corporativas_investimento.webp"
   },
   {
     "slug": "viagens_de_premiacao",
-    "title": "Viagens de premiação e de incentivo",
+    "title": "Viagens de premiação e de incentivo: você sabe qual é a diferença?",
+    "subtitle": "Explica as diferenças entre viagens de premiação e programas de incentivo, quando faz sentido usar cada um e como desenhar experiências que engajem equipes e fortaleçam resultados.",
     "image_path": "/assets/artigos/viagens_de_premiacao.webp"
   }
 ]
