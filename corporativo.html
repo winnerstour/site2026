@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="./artigos_base.css"> 
 
@@ -46,7 +46,7 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        margin: 0; /* Ocupa 100% do viewport */
+        margin: 0; 
     }
 
     /* --- SIDEBAR FIXA (Esquerda) --- */
@@ -110,7 +110,6 @@
 
     /* --- CONTEÚDO PRINCIPAL (Direita) --- */
     #main-content {
-        /* REMOVENDO PADDING PARA QUE O DIRECTORY-WRAP POSSA USAR 100% DA LARGURA */
         padding: 20px 0 20px 0; 
     }
     
@@ -135,16 +134,13 @@
 
     /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
     .directory-wrap {
-        /* CORREÇÃO FINAL: Força a largura de 100% e aplica o padding do conteúdo */
-        width: 100%; 
-        margin: 0;
+        margin: 0 auto;
         padding: 0 20px; 
     }
     #cardsContainer {
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Permite 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -182,7 +178,7 @@
     /* Conteúdo do Card */
     .card-content {
         padding: 15px;
-        flex-grow: 1;
+        flex-grow: 1; /* ESSENCIAL: Garante que os cards tenham altura uniforme */
         display: flex;
         flex-direction: column;
     }
@@ -195,23 +191,24 @@
         margin-bottom: 5px;
         color: var(--text-charcoal);
         text-transform: uppercase; 
-        height: 40px; 
+        height: 58px; /* CORREÇÃO: Altura para 3 linhas, resolvendo truncamento */
         overflow: hidden;
     }
-    /* Linha 2: Leitura Estratégica */
+    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS) */
     .card-meta {
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--muted);
         margin: 0;
-        line-height: 1.4;
+        line-height: 1.4; 
     }
     /* Linha 3: Acessar Artigo */
     .card-cta {
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--brand);
         font-weight: 700;
-        margin-top: 5px;
+        margin-top: 5px; /* Empurra o botão ligeiramente para baixo */
     }
 
 
@@ -228,26 +225,6 @@
         align-items: center;
         padding: 10px 16px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    #mobile-header .logo {
-        font-weight: 900;
-        font-size: 1.5rem; 
-        color: var(--brand);
-    }
-    .mobile-cta-group {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    .mobile-cta-group .icon-button {
-        width: 30px;
-        height: 30px;
-        text-align: center;
-    }
-    .mobile-cta-group .menu-icon {
-        font-size: 2rem;
-        cursor: pointer;
-        color: var(--text-charcoal);
     }
     .mobile-cta-group .icon-wa {
         width: 24px;
@@ -290,7 +267,7 @@
 <body>
 
 <div id="mobile-header">
-    <a href="index.html" class="logo">WINNERS TOUR">WINNERS TOUR</a>
+    <a href="index.html" class="logo">WINNERS TOUR</a>
     <div class="mobile-cta-group">
         <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
             <span style="font-size: 20px;">🛒</span>
