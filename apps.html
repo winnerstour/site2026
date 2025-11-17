@@ -79,27 +79,28 @@ a{text-decoration:none;color:inherit}
 }
 
 
-/* 2. Aplicação no Título Principal (h2) */
-/* Usando o seletor de ID + Tag para garantir alta prioridade. */
+/* 2. Aplicação no Título Principal (h2) e remoção do espaçamento inferior */
+/* Aumentando a especificidade para garantir a fonte e removendo margin-bottom */
 #main-content h2 {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
     /* Mantendo estilos existentes */
     font-weight: 900; /* Assumindo que o h2 deve ser forte, dado o design */
     font-size: 2rem;
-    margin-bottom: 5px;
+    margin-bottom: 0px !important; /* <--- AJUSTE: Remove margem inferior do H2 */
+    padding-bottom: 5px; /* Adiciona um pequeno padding para espaçamento visual, se necessário */
 }
 
-/* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) */
-/* Usando o seletor de ID + Classe para garantir alta prioridade. */
+/* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) e remoção do espaçamento superior */
+/* Aumentando a especificidade e removendo margin-top */
 #main-content .page-subtitle {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-    /* O subtítulo no HTML original era: <p class="card-subtitle" style="margin-bottom: 20px;"> */
-    /* Mantendo estilos existentes (tamanho, cor e margem) */
+    /* Mantendo estilos existentes (tamanho, cor) */
     font-size: 16px; /* Tamanho padrão para parágrafos */
     color: var(--muted); /* Cor de texto mutada */
-    margin-bottom: 20px !important;
+    margin-top: 0px !important; /* <--- AJUSTE: Remove margem superior do subtítulo */
+    margin-bottom: 20px !important; /* Mantém a margem inferior para separar do grid */
 }
-/* O CSS original tinha um estilo para .card-subtitle, que mantemos para os cards, mas o novo .page-subtitle sobrescreve no main-content. */
+
 
 /* === LAYOUT MOBILE SUPERIOR (HEADER) === */
 #mobile-header {
@@ -343,7 +344,7 @@ a{text-decoration:none;color:inherit}
     <div id="main-content">
         
         <h2>FERRAMENTAS E APPS</h2>
-        <p class="page-subtitle" style="margin-bottom: 20px;">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
+        <p class="page-subtitle">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
         
         <div id="events-grid">
             
