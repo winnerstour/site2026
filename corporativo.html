@@ -173,7 +173,8 @@
     .card-thumb-bg {
         height: 120px; 
         background-color: #f0f0f0; 
-        background-size: 100px; 
+        /* CORREÇÃO FINAL: Preenche 100% do espaço sem distorcer */
+        background-size: cover; 
         background-repeat: no-repeat;
         background-position: center;
         flex-shrink: 0;
@@ -196,8 +197,7 @@
         margin-bottom: 5px;
         color: var(--text-charcoal);
         text-transform: uppercase; 
-        /* CORREÇÃO FINAL: Altura para 4 linhas seguras */
-        height: 68px; 
+        height: 68px; /* Altura para 4 linhas */
         overflow: hidden;
     }
     /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS + LIMITE DE LINHAS) */
@@ -207,8 +207,7 @@
         color: var(--muted);
         margin: 0;
         line-height: 1.4;
-        /* ADICIONAL: Limita a 2 linhas para evitar quebra do layout */
-        height: calc(1.4em * 2); 
+        height: calc(1.4em * 2); /* Limita a 2 linhas para evitar quebra do layout */
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -361,3 +360,4 @@
 
 </body>
 </html>
+```http://googleusercontent.com/image_generation_content/0
