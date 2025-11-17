@@ -31,7 +31,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;min-height: 100vh;}
     body{
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; /* Base Montserrat */
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       font-size:16px;
       line-height:1.5;
       color:var(--text-charcoal);
@@ -46,7 +46,8 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        margin: 0 auto; 
+        /* CORREÇÃO DE LARGURA: Remove margin: 0 auto; para ocupar 100% da tela */
+        margin: 0; 
     }
 
     /* --- SIDEBAR FIXA (Esquerda) --- */
@@ -117,10 +118,17 @@
     .directory-wrap h1 {
         font-family: 'Montserrat', sans-serif;
         font-weight: 900; /* Peso extra bold para o branding */
-        font-size: 1.8rem;
+        font-size: 1.5rem; /* Tamanho ajustado conforme solicitação */
         color: var(--text-charcoal);
         margin-bottom: 5px;
         line-height: 1.1;
+    }
+    /* SUBTÍTULO: Reduz o espaçamento inferior para aproximar do título */
+    .directory-wrap p {
+        font-size: 1.1rem;
+        color: var(--muted);
+        margin-top: 0;
+        margin-bottom: 20px; /* Mantido para separar do grid */
     }
 
 
@@ -133,7 +141,7 @@
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Permite 4 colunas no desktop */
+        /* CORREÇÃO: Força 4 colunas com largura mínima menor (240px) */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -148,7 +156,7 @@
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        border: 1px solid rgba(0, 0, 0, 0.05); 
+        border: 1px solid rgba(0, 0, 0, 0.05);
         height: 100%;
     }
     .article-card:hover {
