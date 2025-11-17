@@ -60,7 +60,6 @@
         border-right: 1px solid rgba(0, 0, 0, 0.1); 
         color: var(--text-charcoal);
     }
-    /* ... (Estilos da Sidebar) ... */
     .agency-info h1 {
         font-weight: 900;
         font-size: 1.5rem; 
@@ -71,7 +70,7 @@
     .agency-info p {
         font-size: 14px;
         color: var(--muted); 
-        line-height: 1.4;
+        line-height: 1.4; /* PADRÃO DE DENSIDADE PARA O TEXTO DA SIDEBAR */
         margin-bottom: 20px;
     }
     .whatsapp-cta {
@@ -123,9 +122,9 @@
         margin-bottom: 5px;
         line-height: 1.1;
     }
-    /* SUBTÍTULO PRINCIPAL: Fonte correta e espaçamento */
+    /* SUBTÍTULO PRINCIPAL */
     .directory-wrap p {
-        font-family: 'Open Sans', system-ui, sans-serif; /* FONTE DO ARTIGO PARA SUBTÍTULO */
+        font-family: 'Montserrat', sans-serif; /* MANTEM A CONSISTÊNCIA VISUAL DA UI */
         font-size: 1.1rem;
         color: var(--muted);
         margin-top: 0;
@@ -182,7 +181,6 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        font-family: 'Open Sans', system-ui, sans-serif; /* Fonte para o corpo do card */
     }
     
     /* Linha 1: Título Principal */
@@ -196,18 +194,18 @@
         height: 40px; 
         overflow: hidden;
     }
-    /* Linha 2: Subtítulo/Meta (Novo Parâmetro JSON) */
+    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS) */
     .card-meta {
-        /* APLICA A FONTE E TAMANHO CORRETOS DO SUBTÍTULO PRINCIPAL */
-        font-family: 'Open Sans', system-ui, sans-serif; 
-        font-size: 14px; /* Tamanho ligeiramente menor que 1.1rem */
+        /* PADRÃO DE DENSIDADE DA SIDEBAR */
+        font-family: 'Montserrat', system-ui, sans-serif;
+        font-size: 14px;
         color: var(--muted);
         margin: 0;
-        line-height: 1.4;
+        line-height: 1.4; 
     }
     /* Linha 3: Acessar Artigo */
     .card-cta {
-        font-family: 'Open Sans', system-ui, sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--brand);
         font-weight: 700;
@@ -229,6 +227,7 @@
         padding: 10px 16px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
+    /* ... (Estilos Mobile Header) ... */
     #mobile-header .logo {
         font-weight: 900;
         font-size: 1.5rem; 
