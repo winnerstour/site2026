@@ -100,12 +100,12 @@
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Força 4 colunas no desktop */
+        /* CORREÇÃO: Permite 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
 
-    /* === ESTILOS DOS CARDS UNIFICADOS (APLICANDO SHADOW, HOVER E BORDAS) === */
+    /* === ESTILOS DOS CARDS (APLICANDO SHADOW, HOVER E BORDAS) === */
     .article-card {
         background: var(--card-bg-color);
         border-radius: var(--radius); /* Borda arredondada */
@@ -115,12 +115,12 @@
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        /* REMOVEMOS A BORDA DE 1px SOLID #ddd PARA USAR SÓ A SOMBRA (Visual mais limpo) */
-        border: 1px solid transparent; /* Usamos transparent para manter o box-model, mas deixamos a sombra dominar */
+        /* CORREÇÃO: Restabelece a borda sutil, que é essencial para o visual do App Card */
+        border: 1px solid rgba(0, 0, 0, 0.05); 
         height: 100%;
     }
     .article-card:hover {
-        box-shadow: var(--shadow-hover); /* Sombra mais forte no hover */
+        box-shadow: var(--shadow-hover); /* Sombra no hover */
         transform: translateY(-2px);
         background: var(--card-hover-bg); 
     }
