@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="./artigos_base.css"> 
 
@@ -46,7 +46,7 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        margin: 0; 
+        margin: 0; /* Ocupa 100% do viewport */
     }
 
     /* --- SIDEBAR FIXA (Esquerda) --- */
@@ -70,7 +70,7 @@
     .agency-info p {
         font-size: 14px;
         color: var(--muted); 
-        line-height: 1.4; /* PADRÃO DE DENSIDADE PARA O TEXTO DA SIDEBAR */
+        line-height: 1.4;
         margin-bottom: 20px;
     }
     .whatsapp-cta {
@@ -110,6 +110,7 @@
 
     /* --- CONTEÚDO PRINCIPAL (Direita) --- */
     #main-content {
+        /* REMOVENDO PADDING PARA QUE O DIRECTORY-WRAP POSSA USAR 100% DA LARGURA */
         padding: 20px 0 20px 0; 
     }
     
@@ -124,7 +125,7 @@
     }
     /* SUBTÍTULO PRINCIPAL */
     .directory-wrap p {
-        font-family: 'Montserrat', sans-serif; /* MANTEM A CONSISTÊNCIA VISUAL DA UI */
+        font-family: 'Montserrat', sans-serif;
         font-size: 1.1rem;
         color: var(--muted);
         margin-top: 0;
@@ -134,13 +135,16 @@
 
     /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
     .directory-wrap {
-        margin: 0 auto;
+        /* CORREÇÃO FINAL: Força a largura de 100% e aplica o padding do conteúdo */
+        width: 100%; 
+        margin: 0;
         padding: 0 20px; 
     }
     #cardsContainer {
         display: grid;
         gap: 20px;
         padding: 0; 
+        /* CORREÇÃO: Permite 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -194,18 +198,16 @@
         height: 40px; 
         overflow: hidden;
     }
-    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS) */
+    /* Linha 2: Leitura Estratégica */
     .card-meta {
-        /* PADRÃO DE DENSIDADE DA SIDEBAR */
-        font-family: 'Montserrat', system-ui, sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--muted);
         margin: 0;
-        line-height: 1.4; 
+        line-height: 1.4;
     }
     /* Linha 3: Acessar Artigo */
     .card-cta {
-        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--brand);
         font-weight: 700;
@@ -227,7 +229,6 @@
         padding: 10px 16px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-    /* ... (Estilos Mobile Header) ... */
     #mobile-header .logo {
         font-weight: 900;
         font-size: 1.5rem; 
@@ -289,7 +290,7 @@
 <body>
 
 <div id="mobile-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
+    <a href="index.html" class="logo">WINNERS TOUR">WINNERS TOUR</a>
     <div class="mobile-cta-group">
         <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
             <span style="font-size: 20px;">🛒</span>
