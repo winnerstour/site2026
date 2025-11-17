@@ -52,7 +52,8 @@
   --sidebar-muted-text-color: var(--muted);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height: 100vh;}
+/* Adicionando 100% de altura para garantir o layout de coluna */
+html,body{margin:0;padding:0;min-height: 100vh; height: 100%;} 
 
 /* APLICAÇÃO DA FONTE MONTSERRAT COMO FALLBACK PADRÃO */
 body{
@@ -69,7 +70,6 @@ a{text-decoration:none;color:inherit}
 /* === REGRAS DE CSS PARA GARANTIR MONTSERRAT NAS ÁREAS ESPECÍFICAS === */
 
 /* 1. Menu Lateral (#main-sidebar e todos os elementos internos) */
-/* Aplicamos diretamente ao contêiner, usando !important em caso de conflito, embora o body já use Montserrat */
 #main-sidebar,
 #main-sidebar * {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
@@ -81,7 +81,6 @@ a{text-decoration:none;color:inherit}
 }
 
 /* 3. Subtítulo (Nova classe .page-subtitle) */
-/* A especificidade de classe já é alta, mas reforçamos com !important para garantir sobreposição total */
 .page-subtitle {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
     /* Mantendo estilos existentes do original p.card-subtitle */
@@ -112,7 +111,8 @@ a{text-decoration:none;color:inherit}
 
 /* LAYOUT PRINCIPAL DO GRID (Largura Total - 4 Colunas) */
 #main-grid {
-    display: grid;
+    /* CORREÇÃO: Adicionando !important para garantir que display: grid seja aplicado */
+    display: grid !important; 
     grid-template-columns: 250px 1fr; 
     min-height: 100vh;
     margin: 0 auto; 
