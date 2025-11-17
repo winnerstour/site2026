@@ -46,7 +46,7 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        margin: 0; /* Ocupa 100% da tela */
+        margin: 0; 
     }
 
     /* --- SIDEBAR FIXA (Esquerda) --- */
@@ -134,8 +134,6 @@
 
     /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
     .directory-wrap {
-        /* CORREÇÃO: Aplica o limite de largura e centraliza, resolvendo o problema de 4 colunas */
-        max-width: 1280px; 
         margin: 0 auto;
         padding: 0 20px; 
     }
@@ -193,11 +191,13 @@
         margin-bottom: 5px;
         color: var(--text-charcoal);
         text-transform: uppercase; 
-        height: 58px; /* Altura para 3 linhas */
+        /* CORREÇÃO: Altura para 4 linhas (1rem * 1.3 line-height * 4 linhas ≈ 52px. Usamos 68px para folga) */
+        height: 68px; 
         overflow: hidden;
     }
-    /* Linha 2: Leitura Estratégica */
+    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS) */
     .card-meta {
+        /* Tamanho igual ao texto da sidebar (14px) e fonte Montserrat */
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--muted);
@@ -206,6 +206,7 @@
     }
     /* Linha 3: Acessar Artigo */
     .card-cta {
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--brand);
         font-weight: 700;
