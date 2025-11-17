@@ -46,7 +46,7 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        /* CORREÇÃO DE LARGURA: Remove margin: 0 auto; para ocupar 100% da tela */
+        /* CORREÇÃO FINAL: Remove margin: 0 auto; para ocupar 100% da tela */
         margin: 0; 
     }
 
@@ -118,7 +118,7 @@
     .directory-wrap h1 {
         font-family: 'Montserrat', sans-serif;
         font-weight: 900; /* Peso extra bold para o branding */
-        font-size: 1.5rem; /* Tamanho ajustado conforme solicitação */
+        font-size: 1.5rem; 
         color: var(--text-charcoal);
         margin-bottom: 5px;
         line-height: 1.1;
@@ -128,7 +128,7 @@
         font-size: 1.1rem;
         color: var(--muted);
         margin-top: 0;
-        margin-bottom: 20px; /* Mantido para separar do grid */
+        margin-bottom: 20px;
     }
 
 
@@ -141,7 +141,7 @@
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Força 4 colunas com largura mínima menor (240px) */
+        /* CORREÇÃO: Força 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -176,6 +176,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
+    /* Conteúdo do Card */
     .card-content {
         padding: 15px;
         flex-grow: 1;
@@ -284,7 +285,7 @@
 <body>
 
 <div id="mobile-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
+    <a href="index.html" class="logo">WINNERS TOUR">WINNERS TOUR</a>
     <div class="mobile-cta-group">
         <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
             <span style="font-size: 20px;">🛒</span>
