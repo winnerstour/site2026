@@ -66,37 +66,44 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* === AJUSTES DE ESPECIFICIDADE PARA MONTSERRAT === */
+/* === AJUSTES DE ESPECIFICIDADE PARA MONTSERRAT E ESPAÇAMENTO === */
 
 /* 1. Aplicação com Prioridade no Menu Lateral Inteiro */
-/* Usando o ID e !important para forçar a fonte em todos os elementos internos. */
 #main-sidebar, #main-sidebar * {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
 }
-/* Revertendo o peso 900 no logo para não afetar as outras partes da sidebar, mantendo a fonte. */
 #main-sidebar .agency-info h1 {
     font-weight: 900 !important;
 }
 
 
-/* 2. Aplicação no Título Principal (h2) e remoção do espaçamento inferior */
+/* 2. Aplicação no Título Principal (h2) e remoção total do espaçamento inferior */
 #main-content h2 {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-    /* Mantendo estilos existentes */
-    font-weight: 900 !important; /* <--- AJUSTE: Força o peso para ser mais evidente */
-    font-size: 2rem;
-    margin-bottom: 0px !important; /* <--- AJUSTE: Remove totalmente a margem inferior */
-    padding-bottom: 0px !important; /* <--- AJUSTE: Remove preenchimento inferior se houver */
+    /* Forçando estilos visuais */
+    font-weight: 900 !important;
+    font-size: 2rem !important;
+    color: var(--text-charcoal) !important;
+    line-height: 1.0 !important; /* Linha mais justa para encostar no subtítulo */
+    
+    /* Removendo totalmente o espaçamento */
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
 }
 
-/* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) e remoção do espaçamento superior */
+/* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) e remoção total do espaçamento superior */
 #main-content .page-subtitle {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-    /* Mantendo estilos existentes (tamanho, cor) */
-    font-size: 16px; /* Tamanho padrão para parágrafos */
-    color: var(--muted); /* Cor de texto mutada */
-    margin-top: 0px !important; /* <--- AJUSTE: Remove totalmente a margem superior */
-    margin-bottom: 20px !important; /* Mantém a margem inferior para separar do grid */
+    /* Forçando estilos visuais */
+    font-weight: 400 !important; /* Subtítulos geralmente são mais leves */
+    font-size: 16px !important;
+    color: var(--muted) !important;
+    line-height: 1.2 !important; 
+    
+    /* Removendo totalmente o espaçamento superior e mantendo o inferior */
+    margin-top: 0px !important;
+    margin-bottom: 20px !important; 
 }
 
 
@@ -113,7 +120,6 @@ a{text-decoration:none;color:inherit}
     font-weight: 900;
     font-size: 1.5rem; 
     color: var(--brand);
-    /* Mantendo Montserrat no logo mobile, se body for sobrescrito */
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
 }
 #mobile-header .menu-icon {
@@ -270,7 +276,8 @@ a{text-decoration:none;color:inherit}
         min-height: auto;
     }
     #main-sidebar {
-        display: none !important;  /* <--- AJUSTE: Força a ocultação da sidebar em mobile/tablet */
+        /* Oculto por padrão, a visibilidade é controlada pelo JS no mobile */
+        display: none !important;  
         position: static;
         height: auto;
         padding: 20px;
@@ -502,5 +509,35 @@ a{text-decoration:none;color:inherit}
     </div>
 </div>
 
+<script>
+// Lógica para controle do menu lateral em dispositivos móveis
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileHeader = document.getElementById('mobile-header');
+    const menuIcon = mobileHeader ? mobileHeader.querySelector('.menu-icon') : null;
+    const sidebar = document.getElementById('main-sidebar');
+
+    if (menuIcon && sidebar) {
+        menuIcon.addEventListener('click', () => {
+            // Se for mobile e clicar no ícone, alterna a visibilidade da sidebar
+            if (window.innerWidth <= 1024) {
+                const currentDisplay = sidebar.style.display;
+                sidebar.style.display = currentDisplay === 'block' || currentDisplay === '' ? 'none' : 'block';
+            }
+        });
+
+        // Garante que a sidebar volte a ser um bloco no desktop, caso o JS a tenha escondido
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                sidebar.style.display = ''; // Volta ao comportamento padrão do CSS (grid column)
+            } else {
+                 // Em mobile, garante que a sidebar seja forçada a 'none' a menos que seja explicitamente 'block'
+                 if (sidebar.style.display !== 'block') {
+                     sidebar.style.display = 'none';
+                 }
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>
