@@ -54,7 +54,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
 
-/* APLICAÇÃO DA FONTE MONTSERRAT - GLOBAL (fallback) */
+/* APLICAÇÃO DA FONTE MONTSERRAT COMO FALLBACK PADRÃO */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
@@ -66,46 +66,29 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* === AJUSTES DE ESPECIFICIDADE PARA MONTSERRAT E ESPAÇAMENTO === */
+/* === REGRAS DE CSS PARA GARANTIR MONTSERRAT NAS ÁREAS ESPECÍFICAS === */
 
-/* 1. Aplicação com Prioridade no Menu Lateral Inteiro */
-#main-sidebar, #main-sidebar * {
+/* 1. Menu Lateral (#main-sidebar e todos os elementos internos) */
+/* Aplicamos diretamente ao contêiner, usando !important em caso de conflito, embora o body já use Montserrat */
+#main-sidebar,
+#main-sidebar * {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
 }
-#main-sidebar .agency-info h1 {
-    font-weight: 900 !important;
-}
 
-
-/* 2. Aplicação no Título Principal (h2) e remoção total do espaçamento inferior */
+/* 2. Título Principal (#main-content h2) */
 #main-content h2 {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-    /* Forçando estilos visuais */
-    font-weight: 900 !important;
-    font-size: 2rem !important;
-    color: var(--text-charcoal) !important;
-    line-height: 1.0 !important; /* Linha mais justa para encostar no subtítulo */
-    
-    /* Removendo totalmente o espaçamento */
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important;
 }
 
-/* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) e remoção total do espaçamento superior */
-#main-content .page-subtitle {
+/* 3. Subtítulo (Nova classe .page-subtitle) */
+/* A especificidade de classe já é alta, mas reforçamos com !important para garantir sobreposição total */
+.page-subtitle {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
-    /* Forçando estilos visuais */
-    font-weight: 400 !important; /* Subtítulos geralmente são mais leves */
-    font-size: 16px !important;
-    color: var(--muted) !important;
-    line-height: 1.2 !important; 
-    
-    /* Removendo totalmente o espaçamento superior e mantendo o inferior */
-    margin-top: 0px !important;
-    margin-bottom: 20px !important; 
+    /* Mantendo estilos existentes do original p.card-subtitle */
+    font-size: 14px; /* herdado do .card-subtitle */
+    color: var(--muted); /* herdado do .card-subtitle */
+    margin-bottom: 20px; /* herdado do inline style */
 }
-
 
 /* === LAYOUT MOBILE SUPERIOR (HEADER) === */
 #mobile-header {
@@ -120,7 +103,6 @@ a{text-decoration:none;color:inherit}
     font-weight: 900;
     font-size: 1.5rem; 
     color: var(--brand);
-    font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
 }
 #mobile-header .menu-icon {
     font-size: 2rem;
@@ -276,8 +258,7 @@ a{text-decoration:none;color:inherit}
         min-height: auto;
     }
     #main-sidebar {
-        /* Oculto por padrão, a visibilidade é controlada pelo JS no mobile */
-        display: none !important;  
+        display: none; 
         position: static;
         height: auto;
         padding: 20px;
@@ -349,14 +330,14 @@ a{text-decoration:none;color:inherit}
     <div id="main-content">
         
         <h2>FERRAMENTAS E APPS</h2>
-        <p class="page-subtitle">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
+        <p class="page-subtitle" style="margin-bottom: 20px;">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
         
         <div id="events-grid">
             
             <!-- CONTEÚDO ORIGINAL DOS APPS -->
             <a href="https://wanderlog.com" target="_blank" class="event-card" aria-label="Wanderlog - Planejador de Viagens">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Wanderlog'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">WANDERLOG – PLANEJADOR DE VIAGENS</p>
@@ -366,7 +347,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.flightradar24.com/" target="_blank" class="event-card" aria-label="Flightradar24 – Rastreador de Voos">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Flightradar24.webp" alt="Flightradar24 Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Flightradar24'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Flightradar24.webp" alt="Flightradar24 Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">FLIGHTRADAR24 – RASTREADOR DE VOOS</p>
@@ -376,7 +357,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.google.com/travel/flights" target="_blank" class="event-card" aria-label="Google Voos – Comparador de tarifas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/GoogleVoos.webp" alt="Google Voos Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Google+Voos'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/GoogleVoos.webp" alt="Google Voos Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">GOOGLE VOOS – COMPARADOR DE DATAS E TARIFAS</p>
@@ -386,7 +367,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.rome2rio.com" target="_blank" class="event-card" aria-label="Rome2Rio – Como ir de A até B">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Rome2Rio.webp" alt="Rome2Rio Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Rome2Rio'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Rome2Rio.webp" alt="Rome2Rio Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">ROME2RIO – COMO IR DE A ATÉ B</p>
@@ -396,7 +377,7 @@ a{text-decoration:none;color:inherit}
 
             <a href="https://www.melhoresdestinos.com.br/" target="_blank" class="event-card" aria-label="Melhores Destinos – Alertas de Promoções">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/MelhoresDestinos.webp" alt="Melhores Destinos Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Melhores+Destinos'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/MelhoresDestinos.webp" alt="Melhores Destinos Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">MELHORES DESTINOS – ALERTAS DE PROMOÇÕES</p>
@@ -406,7 +387,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.airbnb.com.br" target="_blank" class="event-card" aria-label="Airbnb – Hospedagens alternativas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Airbnb.webp" alt="Airbnb Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Airbnb'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Airbnb.webp" alt="Airbnb Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">AIRBNB – CASAS, APARTAMENTOS E HOSPEDAGENS</p>
@@ -416,7 +397,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.getyourguide.com" target="_blank" class="event-card" aria-label="GetYourGuide – Reservar passeios e atividades">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/GetYourGuide.webp" alt="GetYourGuide Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=GetYourGuide'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/GetYourGuide.webp" alt="GetYourGuide Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">GETYOURGUIDE – PASSEIOS E ATIVIDADES</p>
@@ -426,7 +407,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.viator.com" target="_blank" class="event-card" aria-label="Viator – Atividades Turísticas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Viator.webp" alt="Viator Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Viator'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Viator.webp" alt="Viator Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">VIATOR – ATIVIDADES TURÍSTICAS</p>
@@ -436,7 +417,7 @@ a{text-decoration:none;color:inherit}
 
             <a href="https://www.tripadvisor.com/" target="_blank" class="event-card" aria-label="Tripadvisor – Avaliações de Hotéis e Restaurantes">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/Tripadvisor.webp" alt="Tripadvisor Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Tripadvisor'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/Tripadvisor.webp" alt="Tripadvisor Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">TRIPADVISOR – AVALIAÇÕES DE HOTÉIS E PASSEIOS</p>
@@ -446,7 +427,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.prioritypass.com/pt" target="_blank" class="event-card" aria-label="Priority Pass – Salas VIP">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/PriorityPass.webp" alt="Priority Pass Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=Priority+Pass'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/PriorityPass.webp" alt="Priority Pass Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">PRIORITY PASS – SALAS VIP</p>
@@ -456,7 +437,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.awardtool.com" target="_blank" class="event-card" aria-label="AwardTool – Busca de passagens com milhas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/AwardTool.webp" alt="AwardTool Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=AwardTool'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/AwardTool.webp" alt="AwardTool Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">AWARDTOOL – BUSCA DE PASSAGENS COM MILHAS</p>
@@ -466,7 +447,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.expertflyer.com" target="_blank" class="event-card" aria-label="ExpertFlyer – Assentos, upgrades e disponibilidade prêmio">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/ExpertFlyer.webp" alt="ExpertFlyer Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=ExpertFlyer'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/ExpertFlyer.webp" alt="ExpertFlyer Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">EXPERTFLYER – ASSENTOS E UPGRADES</p>
@@ -476,7 +457,7 @@ a{text-decoration:none;color:inherit}
 
             <a href="https://www.alltrails.com" target="_blank" class="event-card" aria-label="AllTrails – Guia de trilhas e rotas outdoor">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/AllTrails.webp" alt="AllTrails Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=AllTrails'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/AllTrails.webp" alt="AllTrails Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">ALLTRAILS – GUIA DE TRILHAS E ROTAS OUTDOOR</p>
@@ -486,7 +467,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.flightconnections.com" target="_blank" class="event-card" aria-label="FlightConnections – Rotas e conexões em mapa">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/FlightConnections.webp" alt="FlightConnections Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=FlightConnections'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/FlightConnections.webp" alt="FlightConnections Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">FLIGHTCONNECTIONS – ROTAS E CONEXÕES EM MAPA</p>
@@ -496,7 +477,7 @@ a{text-decoration:none;color:inherit}
             
             <a href="https://www.blablacar.com" target="_blank" class="event-card" aria-label="BlaBlaCar – Caronas Compartilhadas">
                 <div class="card-media">
-                  <img loading="lazy" src="assets/apps/BlaBlaCar.webp" alt="BlaBlaCar Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x100/18181b/ffffff?text=BlaBlaCar'" style="object-fit: cover;"> 
+                  <img loading="lazy" src="assets/apps/BlaBlaCar.webp" alt="BlaBlaCar Logo" style="object-fit: cover;"> 
                 </div>
                 <div class="card-content">
                     <p class="card-title">BLABLACAR – CARONAS COMPARTILHADAS</p>
@@ -509,35 +490,5 @@ a{text-decoration:none;color:inherit}
     </div>
 </div>
 
-<script>
-// Lógica para controle do menu lateral em dispositivos móveis
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileHeader = document.getElementById('mobile-header');
-    const menuIcon = mobileHeader ? mobileHeader.querySelector('.menu-icon') : null;
-    const sidebar = document.getElementById('main-sidebar');
-
-    if (menuIcon && sidebar) {
-        menuIcon.addEventListener('click', () => {
-            // Se for mobile e clicar no ícone, alterna a visibilidade da sidebar
-            if (window.innerWidth <= 1024) {
-                const currentDisplay = sidebar.style.display;
-                sidebar.style.display = currentDisplay === 'block' || currentDisplay === '' ? 'none' : 'block';
-            }
-        });
-
-        // Garante que a sidebar volte a ser um bloco no desktop, caso o JS a tenha escondido
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024) {
-                sidebar.style.display = ''; // Volta ao comportamento padrão do CSS (grid column)
-            } else {
-                 // Em mobile, garante que a sidebar seja forçada a 'none' a menos que seja explicitamente 'block'
-                 if (sidebar.style.display !== 'block') {
-                     sidebar.style.display = 'none';
-                 }
-            }
-        });
-    }
-});
-</script>
 </body>
 </html>
