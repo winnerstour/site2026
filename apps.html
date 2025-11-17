@@ -75,29 +75,27 @@ a{text-decoration:none;color:inherit}
 }
 /* Revertendo o peso 900 no logo para não afetar as outras partes da sidebar, mantendo a fonte. */
 #main-sidebar .agency-info h1 {
-    font-weight: 900;
+    font-weight: 900 !important;
 }
 
 
 /* 2. Aplicação no Título Principal (h2) e remoção do espaçamento inferior */
-/* Aumentando a especificidade para garantir a fonte e removendo margin-bottom */
 #main-content h2 {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
     /* Mantendo estilos existentes */
-    font-weight: 900; /* Assumindo que o h2 deve ser forte, dado o design */
+    font-weight: 900 !important; /* <--- AJUSTE: Força o peso para ser mais evidente */
     font-size: 2rem;
-    margin-bottom: 0px !important; /* <--- AJUSTE: Remove margem inferior do H2 */
-    padding-bottom: 5px; /* Adiciona um pequeno padding para espaçamento visual, se necessário */
+    margin-bottom: 0px !important; /* <--- AJUSTE: Remove totalmente a margem inferior */
+    padding-bottom: 0px !important; /* <--- AJUSTE: Remove preenchimento inferior se houver */
 }
 
 /* 3. Aplicação no Subtítulo (com a nova classe .page-subtitle) e remoção do espaçamento superior */
-/* Aumentando a especificidade e removendo margin-top */
 #main-content .page-subtitle {
     font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
     /* Mantendo estilos existentes (tamanho, cor) */
     font-size: 16px; /* Tamanho padrão para parágrafos */
     color: var(--muted); /* Cor de texto mutada */
-    margin-top: 0px !important; /* <--- AJUSTE: Remove margem superior do subtítulo */
+    margin-top: 0px !important; /* <--- AJUSTE: Remove totalmente a margem superior */
     margin-bottom: 20px !important; /* Mantém a margem inferior para separar do grid */
 }
 
@@ -272,7 +270,7 @@ a{text-decoration:none;color:inherit}
         min-height: auto;
     }
     #main-sidebar {
-        display: none; 
+        display: none !important;  /* <--- AJUSTE: Força a ocultação da sidebar em mobile/tablet */
         position: static;
         height: auto;
         padding: 20px;
