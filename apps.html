@@ -149,6 +149,21 @@ a{text-decoration:none;color:inherit}
     margin-right: 10px;
     line-height: 1;
 }
+/* ÍCONE ESPECÍFICO DO WHATSAPP (com imagem) */
+.cta-link-sidebar .whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cta-link-sidebar .whatsapp-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
 .cta-link-sidebar.coming-soon {
     color: var(--sidebar-muted-text-color) !important; 
     text-decoration: line-through; 
@@ -275,7 +290,7 @@ a{text-decoration:none;color:inherit}
 </head>
 <body>
 
-<!-- NOVO CABEÇALHO MOBILE -->
+<!-- CABEÇALHO MOBILE -->
 <div id="mobile-header">
     <span class="logo">WINNERS TOUR</span>
     <span class="menu-icon">☰</span> 
@@ -291,9 +306,9 @@ a{text-decoration:none;color:inherit}
             </p>
             
             <div class="whatsapp-cta">
-                 <!-- ORDEM AJUSTADA CONFORME PEDIDO: WHATSAPP, LOJA VIRTUAL, EVENTOS, APLICATIVOS, LAZER, CORPORATIVO -->
+                 <!-- ORDEM: WHATSAPP, LOJA VIRTUAL, EVENTOS, APLICATIVOS, LAZER, CORPORATIVO -->
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-                    <span class="icon">🟢</span> WHATSAPP
+                    <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
                  </a>
 
                  <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
@@ -308,7 +323,7 @@ a{text-decoration:none;color:inherit}
                     <span class="icon">⚙️</span> APLICATIVOS
                  </a>
                  
-                 <a href="lazer.html" class="cta-link-sidebar coming-soon" aria-label="Ver pacotes de viagens de lazer. (Disponível em breve)">
+                 <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
                     <span class="icon">🏖️</span> LAZER
                  </a>
                  
@@ -326,7 +341,6 @@ a{text-decoration:none;color:inherit}
         
         <div id="events-grid">
             
-            <!-- CONTEÚDO ORIGINAL DOS APPS (TODOS PRESERVADOS ATÉ BLABLACAR) -->
             <a href="https://wanderlog.com" target="_blank" class="event-card" aria-label="Wanderlog - Planejador de Viagens">
                 <div class="card-media">
                   <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo" style="object-fit: cover;"> 
