@@ -46,7 +46,7 @@
   --color-pink-600: #db2777;
   --color-blue-800: #1e40af;
   
-  /* CORES DA SIDEBAR */
+  /* CORES DA SIDEBAR (Consistentes com o design de artigo) */
   --sidebar-bg-color: #f0f4f9;
   --sidebar-text-color: var(--text-charcoal); 
   --sidebar-muted-text-color: var(--muted);
@@ -66,64 +66,97 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* === CABEÇALHO MOBILE (FIXO) === */
+/* === LAYOUT MOBILE SUPERIOR (HEADER) === */
 #mobile-header {
-  display: none;
+  display: none; 
   background: var(--bg);
   padding: 10px 16px;
-  border-bottom: 1px solid rgba(15,23,42,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   align-items: center;
   justify-content: space-between;
+  height: 56px;
+  position: static;
+  z-index: 1000;
 }
 #mobile-header .logo {
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 1.1rem; 
   color: var(--brand);
 }
-.mobile-header-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.mobile-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.mobile-icon-btn{
-  width:32px;
-  height:32px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid rgba(0,0,0,0.06);
-  box-shadow:var(--shadow-base);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.mobile-icon-btn {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.mobile-icon-btn img{
-  width:18px;
-  height:18px;
-  object-fit:contain;
-}
-.mobile-icon-btn .icon{
-  font-size:1.3rem;
-  line-height:1;
-}
-.mobile-menu-button{
-  width:36px;
-  height:36px;
-  border-radius:999px;
-  border:1px solid rgba(0,0,0,0.12);
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.4rem;
-  cursor:pointer;
+.mobile-icon-btn .icon {
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
-/* MENU MOBILE DROPDOWN */
-.mobile-nav{
-  display:none;
+/* ÍCONE ESPECÍFICO DO WHATSAPP (sidebar, header mobile e menu mobile) */
+.cta-link-sidebar .whatsapp-icon,
+.mobile-icon-btn .whatsapp-icon,
+#mobile-menu .whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.mobile-nav a{
-  text-decoration:none;
+.cta-link-sidebar .whatsapp-icon img,
+.mobile-icon-btn .whatsapp-icon img,
+#mobile-menu .whatsapp-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+#mobile-header .menu-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-charcoal);
+  border: none;
+  background: transparent;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* MENU MOBILE (ABRE AO CLICAR NO HAMBÚRGUER) */
+#mobile-menu {
+  display: none;
+}
+#mobile-menu.open {
+  display: block;
+}
+#mobile-menu {
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+#mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+#mobile-menu .icon {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  line-height: 1;
 }
 
 /* LAYOUT PRINCIPAL DO GRID */
@@ -161,7 +194,7 @@ a{text-decoration:none;color:inherit}
   line-height: 1.4;
   margin-bottom: 20px;
 }
-/* CTAS SIDEBAR */
+/* CTAS NA SIDEBAR */
 .whatsapp-cta {
   margin-top: 30px;
   display: flex;
@@ -189,21 +222,6 @@ a{text-decoration:none;color:inherit}
   margin-right: 10px;
   line-height: 1;
 }
-/* ÍCONE ESPECÍFICO DO WHATSAPP (com imagem) */
-.cta-link-sidebar .whatsapp-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cta-link-sidebar .whatsapp-icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
 .cta-link-sidebar.coming-soon {
   color: var(--sidebar-muted-text-color) !important; 
   text-decoration: line-through; 
@@ -215,12 +233,13 @@ a{text-decoration:none;color:inherit}
   transform: none;
 }
 
+
 /* CONTEÚDO PRINCIPAL (Direita - Rolável) */
 #main-content {
   padding: 20px 20px 20px 20px; 
 }
 
-/* TÍTULO DA PÁGINA */
+/* TÍTULO DA PÁGINA (igual ao WINNERS TOUR, mas em cor escura) */
 .page-title {
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 900;
@@ -228,25 +247,25 @@ a{text-decoration:none;color:inherit}
   line-height: 1.1;
   text-transform: uppercase;
   color: var(--text-charcoal);
-  margin: 0 0 4px 0;
+  margin: 0 0 4px 0; /* pouco espaço até o subtítulo */
 }
 
-/* SUBTÍTULO */
+/* SUBTÍTULO LOGO ABAIXO DO TÍTULO */
 .page-subtitle {
   font-size: 14px;
   color: var(--muted);
   margin: 0 0 18px 0;
 }
 
-/* GRID DE APPS */
+/* GRID DE APPS (ID USADO para o grid) */
 #events-grid { 
   display: grid;
   gap: 20px;
   padding: 0; 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 COLUNAS NO DESKTOP */
 }
 
-/* CARD */
+/* Estilo Básico do Card (Reaproveitado do index/apps) */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -292,44 +311,29 @@ a{text-decoration:none;color:inherit}
   font-size: 14px;
   color: var(--muted);
 }
+/* Estilos desnecessários removidos ou ocultados */
 .card-chip.date-chip, .card-chip {display: none;}
+
 
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
+  body{
+    padding-top:56px; /* compensa header fixo */
+  }
   #mobile-header {
-    display:flex;
-    position:fixed;
+    display: flex; 
+    position: fixed;
     top:0;
     left:0;
     right:0;
-    z-index:1000;
   }
-  .mobile-nav{
-    position:fixed;
+  #mobile-menu {
+    position: fixed;
     top:56px;
     left:0;
     right:0;
-    background:var(--bg);
-    border-bottom:1px solid rgba(15,23,42,0.08);
-    box-shadow:0 2px 4px rgba(15,23,42,0.08);
-    padding:8px 16px 10px 16px;
-    z-index:999;
+    z-index: 999;
   }
-  .mobile-nav a{
-    display:block;
-    padding:6px 0;
-    font-size:0.95rem;
-    font-weight:600;
-    color:var(--text-charcoal);
-  }
-  .mobile-nav.open{
-    display:block;
-  }
-
-  body{
-    padding-top:60px;
-  }
-
   #main-grid {
     grid-template-columns: 1fr; 
     min-height: auto;
@@ -346,12 +350,12 @@ a{text-decoration:none;color:inherit}
     padding: 20px;
   }
   #events-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
   }
 }
 @media (max-width: 640px) {
   #events-grid {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
   }
 }
   </style>
@@ -362,30 +366,57 @@ a{text-decoration:none;color:inherit}
 <div id="mobile-header">
   <span class="logo">WINNERS TOUR</span>
   <div class="mobile-header-actions">
+    <!-- Botão WhatsApp -->
     <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
        class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp">
-      <img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp">
+      <span class="whatsapp-icon">
+        <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+      </span>
     </a>
+    <!-- Botão Loja Virtual -->
     <a href="https://www.comprarviagem.com.br/winnerstour/" 
-       class="mobile-icon-btn" aria-label="Ir para Loja Virtual">
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour">
       <span class="icon">🛒</span>
     </a>
-    <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Abrir menu de navegação">☰</button>
+    <!-- Botão Menu Hambúrguer -->
+    <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
+      ☰
+    </button>
   </div>
 </div>
 
-<!-- MENU MOBILE DROPDOWN -->
-<div id="mobile-nav" class="mobile-nav">
-  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." aria-label="Fale conosco pelo WhatsApp">WHATSAPP</a>
-  <a href="https://www.comprarviagem.com.br/winnerstour/" aria-label="Fazer orçamento na Loja Virtual.">LOJA VIRTUAL</a>
-  <a href="index.html" aria-label="Eventos e Feiras">EVENTOS</a>
-  <a href="apps.html" aria-label="Ver aplicativos recomendados.">APLICATIVOS</a>
-  <a href="lazer.html" aria-label="Ver pacotes de viagens de lazer.">LAZER</a>
-  <a href="corporativo.html" aria-label="Artigos e Soluções Corporativas">CORPORATIVO</a>
-</div>
+<!-- MENU MOBILE (itens iguais ao menu lateral, COM ÍCONES) -->
+<nav id="mobile-menu" aria-label="Menu de navegação mobile">
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">
+    <span class="whatsapp-icon">
+      <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+    </span>
+    <span>WhatsApp</span>
+  </a>
+  <a href="https://www.comprarviagem.com.br/winnerstour/">
+    <span class="icon">🛒</span>
+    <span>Loja Virtual</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="apps.html">
+    <span class="icon">⚙️</span>
+    <span>Aplicativos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
+  </a>
+  <a href="corporativo.html">
+    <span class="icon">💼</span>
+    <span>Corporativo</span>
+  </a>
+</nav>
 
 <div id="main-grid">
-  
+    
   <div id="main-sidebar">
     <div class="agency-info">
       <h1>WINNERS TOUR</h1>
@@ -421,17 +452,17 @@ a{text-decoration:none;color:inherit}
       </div>
     </div>
   </div>
-  
-  <div id="main-content">
     
+  <div id="main-content">
+        
     <h2 class="page-title">FERRAMENTAS E APLICATIVOS</h2>
     <p class="page-subtitle">Uma seleção de aplicativos essenciais para a sua viagem e participação em feiras.</p>
-    
+        
     <div id="events-grid">
-      
+      <!-- WANDERLOG -->
       <a href="https://wanderlog.com" target="_blank" class="event-card" aria-label="Wanderlog - Planejador de Viagens">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo">
         </div>
         <div class="card-content">
           <p class="card-title">WANDERLOG – PLANEJADOR DE VIAGENS</p>
@@ -439,9 +470,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- FLIGHTRADAR24 -->
       <a href="https://www.flightradar24.com/" target="_blank" class="event-card" aria-label="Flightradar24 – Rastreador de Voos">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Flightradar24.webp" alt="Flightradar24 Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Flightradar24.webp" alt="Flightradar24 Logo">
         </div>
         <div class="card-content">
           <p class="card-title">FLIGHTRADAR24 – RASTREADOR DE VOOS</p>
@@ -449,9 +481,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- GOOGLE VOOS -->
       <a href="https://www.google.com/travel/flights" target="_blank" class="event-card" aria-label="Google Voos – Comparador de tarifas">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/GoogleVoos.webp" alt="Google Voos Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/GoogleVoos.webp" alt="Google Voos Logo">
         </div>
         <div class="card-content">
           <p class="card-title">GOOGLE VOOS – COMPARADOR DE DATAS E TARIFAS</p>
@@ -459,9 +492,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- ROME2RIO -->
       <a href="https://www.rome2rio.com" target="_blank" class="event-card" aria-label="Rome2Rio – Como ir de A até B">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Rome2Rio.webp" alt="Rome2Rio Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Rome2Rio.webp" alt="Rome2Rio Logo">
         </div>
         <div class="card-content">
           <p class="card-title">ROME2RIO – COMO IR DE A ATÉ B</p>
@@ -469,9 +503,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
 
+      <!-- MELHORES DESTINOS -->
       <a href="https://www.melhoresdestinos.com.br/" target="_blank" class="event-card" aria-label="Melhores Destinos – Alertas de Promoções">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/MelhoresDestinos.webp" alt="Melhores Destinos Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/MelhoresDestinos.webp" alt="Melhores Destinos Logo">
         </div>
         <div class="card-content">
           <p class="card-title">MELHORES DESTINOS – ALERTAS DE PROMOÇÕES</p>
@@ -479,9 +514,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- AIRBNB -->
       <a href="https://www.airbnb.com.br" target="_blank" class="event-card" aria-label="Airbnb – Hospedagens alternativas">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Airbnb.webp" alt="Airbnb Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Airbnb.webp" alt="Airbnb Logo">
         </div>
         <div class="card-content">
           <p class="card-title">AIRBNB – CASAS, APARTAMENTOS E HOSPEDAGENS</p>
@@ -489,9 +525,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- GETYOURGUIDE -->
       <a href="https://www.getyourguide.com" target="_blank" class="event-card" aria-label="GetYourGuide – Reservar passeios e atividades">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/GetYourGuide.webp" alt="GetYourGuide Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/GetYourGuide.webp" alt="GetYourGuide Logo">
         </div>
         <div class="card-content">
           <p class="card-title">GETYOURGUIDE – PASSEIOS E ATIVIDADES</p>
@@ -499,9 +536,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- VIATOR -->
       <a href="https://www.viator.com" target="_blank" class="event-card" aria-label="Viator – Atividades Turísticas">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Viator.webp" alt="Viator Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Viator.webp" alt="Viator Logo">
         </div>
         <div class="card-content">
           <p class="card-title">VIATOR – ATIVIDADES TURÍSTICAS</p>
@@ -509,9 +547,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
 
+      <!-- TRIPADVISOR -->
       <a href="https://www.tripadvisor.com/" target="_blank" class="event-card" aria-label="Tripadvisor – Avaliações de Hotéis e Restaurantes">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/Tripadvisor.webp" alt="Tripadvisor Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/Tripadvisor.webp" alt="Tripadvisor Logo">
         </div>
         <div class="card-content">
           <p class="card-title">TRIPADVISOR – AVALIAÇÕES DE HOTÉIS E PASSEIOS</p>
@@ -519,9 +558,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- PRIORITY PASS -->
       <a href="https://www.prioritypass.com/pt" target="_blank" class="event-card" aria-label="Priority Pass – Salas VIP">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/PriorityPass.webp" alt="Priority Pass Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/PriorityPass.webp" alt="Priority Pass Logo">
         </div>
         <div class="card-content">
           <p class="card-title">PRIORITY PASS – SALAS VIP</p>
@@ -529,9 +569,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- AWARDTOOL -->
       <a href="https://www.awardtool.com" target="_blank" class="event-card" aria-label="AwardTool – Busca de passagens com milhas">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/AwardTool.webp" alt="AwardTool Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/AwardTool.webp" alt="AwardTool Logo">
         </div>
         <div class="card-content">
           <p class="card-title">AWARDTOOL – BUSCA DE PASSAGENS COM MILHAS</p>
@@ -539,9 +580,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- EXPERTFLYER -->
       <a href="https://www.expertflyer.com" target="_blank" class="event-card" aria-label="ExpertFlyer – Assentos, upgrades e disponibilidade prêmio">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/ExpertFlyer.webp" alt="ExpertFlyer Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/ExpertFlyer.webp" alt="ExpertFlyer Logo">
         </div>
         <div class="card-content">
           <p class="card-title">EXPERTFLYER – ASSENTOS E UPGRADES</p>
@@ -549,9 +591,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
 
+      <!-- ALLTRAILS -->
       <a href="https://www.alltrails.com" target="_blank" class="event-card" aria-label="AllTrails – Guia de trilhas e rotas outdoor">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/AllTrails.webp" alt="AllTrails Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/AllTrails.webp" alt="AllTrails Logo">
         </div>
         <div class="card-content">
           <p class="card-title">ALLTRAILS – GUIA DE TRILHAS E ROTAS OUTDOOR</p>
@@ -559,9 +602,10 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- FLIGHTCONNECTIONS -->
       <a href="https://www.flightconnections.com" target="_blank" class="event-card" aria-label="FlightConnections – Rotas e conexões em mapa">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/FlightConnections.webp" alt="FlightConnections Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/FlightConnections.webp" alt="FlightConnections Logo">
         </div>
         <div class="card-content">
           <p class="card-title">FLIGHTCONNECTIONS – ROTAS E CONEXÕES EM MAPA</p>
@@ -569,28 +613,36 @@ a{text-decoration:none;color:inherit}
         </div>
       </a>
       
+      <!-- BLABLACAR -->
       <a href="https://www.blablacar.com" target="_blank" class="event-card" aria-label="BlaBlaCar – Caronas Compartilhadas">
         <div class="card-media">
-          <img loading="lazy" src="assets/apps/BlaBlaCar.webp" alt="BlaBlaCar Logo" style="object-fit: cover;">
+          <img loading="lazy" src="assets/apps/BlaBlaCar.webp" alt="BlaBlaCar Logo">
         </div>
         <div class="card-content">
           <p class="card-title">BLABLACAR – CARONAS COMPARTILHADAS</p>
           <p class="card-subtitle">Plataforma de caronas compartilhadas em trajetos entre cidades. Opção econômica quando não há voo ou trem conveniente.</p>
         </div>
       </a>
-      
+            
     </div>
-    
+        
   </div>
 </div>
 
 <script>
-  (function(){
+  (function() {
     var toggle = document.getElementById('mobile-menu-toggle');
-    var nav = document.getElementById('mobile-nav');
-    if(toggle && nav){
-      toggle.addEventListener('click', function(){
-        nav.classList.toggle('open');
+    var menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function() {
+        menu.classList.toggle('open');
+      });
+      // Fecha o menu ao clicar em qualquer link
+      var links = menu.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.remove('open');
+        });
       });
     }
   })();
