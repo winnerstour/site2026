@@ -1,4 +1,4 @@
-// diretorio_corporativo.js (DIRETÓRIO CORPORATIVO SEM FILTROS)
+// diretorio_corporativo.js (DIRETÓRIO CORPORATIVO ADAPTADO PARA O NOVO DESIGN)
 
 (function () {
     const INDEX_DATA_URL = './corporativo_index.json';
@@ -25,14 +25,16 @@
     // --- RENDERIZAÇÃO DE CARDS ---
     function buildArticleCard(article) {
         const finalUrl = `${ARTICLE_BASE_URL}${article.slug}`;
-        const imagePath = fixPath(article.image_path || '/assets/artigos/default.webp');
+        // O image_path vem do JSON, assumindo que ele aponta para a imagem de thumbnail do artigo
+        const imagePath = fixPath(article.image_path || '/assets/artigos/default.webp'); 
+        const metaText = article.meta_text || 'Leitura Estratégica';
 
         return `
             <a href="${finalUrl}" class="article-card">
-                <div class="card-thumb" style="background-image: url('${imagePath}');"></div>
+                <div class="card-thumb-bg" style="background-image: url('${imagePath}');"></div>
                 <div class="card-content">
                     <h3 class="card-title">${article.title}</h3>
-                    <p class="card-meta">Leitura Estratégica</p>
+                    <p class="card-meta">${metaText}</p>
                     <p class="card-cta">Acessar Artigo &rarr;</p>
                 </div>
             </a>
@@ -62,6 +64,6 @@
         }
     }
 
-    if (directoryTitle) directoryTitle.textContent = 'Artigos & Estratégia Corporativa';
+    // O título agora é renderizado diretamente no HTML (para manter a quebra de linha)
     document.addEventListener('DOMContentLoaded', loadDirectory);
 })();
