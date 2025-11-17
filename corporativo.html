@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Gestão de Viagens Corporativas</title>
+  <title>WinnersTour — Artigos e Soluções Corporativas</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,8 +103,19 @@ a{text-decoration:none;color:inherit}
   line-height: 1;
 }
 
-/* ÍCONE ESPECÍFICO DO WHATSAPP (sidebar, header mobile e menu mobile) */
-.cta-link-sidebar .whatsapp-icon,
+/* ÍCONE WHATSAPP
+   - Sidebar: com margem à direita
+   - Header/menu mobile: sem margem, só o ícone
+*/
+.cta-link-sidebar .whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;      /* espaçamento texto WHATSAPP na lateral */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .mobile-icon-btn .whatsapp-icon,
 #mobile-menu .whatsapp-icon {
   width: 20px;
@@ -115,12 +126,17 @@ a{text-decoration:none;color:inherit}
   align-items: center;
   justify-content: center;
 }
+
+/* contorno preto em volta do logo do WhatsApp */
 .cta-link-sidebar .whatsapp-icon img,
 .mobile-icon-btn .whatsapp-icon img,
 #mobile-menu .whatsapp-icon img {
   width: 20px;
   height: 20px;
   object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #000;  /* contorno preto para lembrar os emojis */
+  box-sizing: border-box;
 }
 
 #mobile-header .menu-icon {
@@ -385,7 +401,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- MENU MOBILE (itens iguais ao menu lateral, AGORA COM ÍCONES) -->
+<!-- MENU MOBILE -->
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
   <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">
     <span class="whatsapp-icon">
@@ -455,7 +471,7 @@ a{text-decoration:none;color:inherit}
   
   <div id="main-content">
     
-    <h2 class="page-title">GESTÃO DE VIAGENS CORPORATIVAS</h2>
+    <h2 class="page-title">ARTIGOS E SOLUÇÕES CORPORATIVAS</h2>
     <p class="page-subtitle">Conteúdo estratégico para a gestão inteligente de viagens, custos e eventos da sua empresa.</p>
     
     <div id="events-grid">
@@ -504,94 +520,4 @@ a{text-decoration:none;color:inherit}
       </a>
 
       <!-- 5 -->
-      <a href="artigos-corporativo/viagens_corporativas_investimento.html" class="event-card" aria-label="Viagens corporativas como investimento: o olhar de quem cuida das viagens">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/viagens_corporativas_investimento.webp" alt="Viagens corporativas como investimento: o olhar de quem cuida das viagens">
-        </div>
-        <div class="card-content">
-          <p class="card-title">VIAGENS CORPORATIVAS COMO INVESTIMENTO: O OLHAR DE QUEM CUIDA DAS VIAGENS</p>
-          <p class="card-subtitle">Entenda como transformar o olhar do financeiro sobre viagens, tratando-as como investimento em receita e não apenas como despesa.</p>
-        </div>
-      </a>
-
-      <!-- 6 -->
-      <a href="artigos-corporativo/gestao_inteligente_viagens.html" class="event-card" aria-label="Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/gestao_inteligente_viagens.webp" alt="Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida">
-        </div>
-        <div class="card-content">
-          <p class="card-title">GESTÃO INTELIGENTE DE VIAGENS: O QUE É E COMO O PRINCÍPIO KISS SIMPLIFICA A SUA VIDA</p>
-          <p class="card-subtitle">Descubra como aplicar o princípio KISS para ter clareza na política, planejamento e execução de todas as viagens.</p>
-        </div>
-      </a>
-
-      <!-- 7 -->
-      <a href="artigos-corporativo/regra_de_ouro_antecedencia.html" class="event-card" aria-label="Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/regra_de_ouro_antecedencia.webp" alt="Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro">
-        </div>
-        <div class="card-content">
-          <p class="card-title">REGRA DE OURO DA ANTECEDÊNCIA: POR QUE ESPERAR PARA COMPRAR PASSAGEM É PEDIR PARA PAGAR MAIS CARO</p>
-          <p class="card-subtitle">Análise detalhada sobre como o algoritmo das aéreas funciona e a importância da antecedência para fugir das tarifas de emergência.</p>
-        </div>
-      </a>
-
-      <!-- 8 -->
-      <a href="artigos-corporativo/gestao_de_eventos_corporativos.html" class="event-card" aria-label="Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/gestao_de_eventos_corporativos.webp" alt="Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens">
-        </div>
-        <div class="card-content">
-          <p class="card-title">GESTÃO DE EVENTOS: COMO TIRAR O NÓ DA CABEÇA DO GESTOR DE VIAGENS</p>
-          <p class="card-subtitle">Guia sobre planejamento em fases, MICE e o papel da agência como copiloto estratégico em grandes eventos.</p>
-        </div>
-      </a>
-
-      <!-- 9 -->
-      <a href="artigos-corporativo/cancelamentos_e_remarcacoes.html" class="event-card" aria-label="Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/cancelamentos_e_remarcacoes.webp" alt="Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga">
-        </div>
-        <div class="card-content">
-          <p class="card-title">CANCELAMENTOS E REMARCAÇÕES EM VIAGENS CORPORATIVAS: O CUSTO QUE NINGUÉM VÊ, MAS SEMPRE PAGA</p>
-          <p class="card-subtitle">O guia prático para entender as políticas de multa, tarifas não reembolsáveis e como o no-show consome o orçamento.</p>
-        </div>
-      </a>
-
-      <!-- 10 -->
-      <a href="artigos-corporativo/custos_adicionais_passagens.html" class="event-card" aria-label="Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”">
-        <div class="card-media">
-          <img loading="lazy" src="assets/artigos/custos_adicionais_passagens.webp" alt="Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”">
-        </div>
-        <div class="card-content">
-          <p class="card-title">CUSTOS ADICIONAIS EM PASSAGENS AÉREAS: O QUE REALMENTE ESTÁ POR TRÁS DA TARIFA “BARATA”</p>
-          <p class="card-subtitle">Desvendando os gastos extras com bagagem, assento, antecipação de voo e upgrade que transformam o custo total da viagem.</p>
-        </div>
-      </a>
-
-    </div>
-    
-  </div>
-</div>
-
-<script>
-  (function() {
-    var toggle = document.getElementById('mobile-menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('open');
-      });
-      // Fecha o menu ao clicar em qualquer link
-      var links = menu.querySelectorAll('a');
-      links.forEach(function(link) {
-        link.addEventListener('click', function() {
-          menu.classList.remove('open');
-        });
-      });
-    }
-  })();
-</script>
-
-</body>
-</html>
+      <a href="artigos-corporativo/viagens_corporativas_investimento.html" class="event-card" aria-label="Viagens corporativas como investimento: o olhar de quem cuid
