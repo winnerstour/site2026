@@ -1,4 +1,4 @@
-// diretorio_corporativo.js (DIRETÓRIO CORPORATIVO ADAPTADO PARA O NOVO DESIGN)
+// diretorio_corporativo.js (DIRETÓRIO CORPORATIVO ADAPTADO PARA O SUBTITLE JSON)
 
 (function () {
     const INDEX_DATA_URL = './corporativo_index.json';
@@ -24,9 +24,12 @@
     // --- RENDERIZAÇÃO DE CARDS ---
     function buildArticleCard(article) {
         const finalUrl = `${ARTICLE_BASE_URL}${article.slug}`;
-        // O image_path vem do JSON, assumindo que ele aponta para a imagem de thumbnail do artigo
-        const imagePath = fixPath(article.image_path || '/assets/artigos/default.webp'); 
-        const metaText = article.meta_text || 'Leitura Estratégica';
+        
+        // Assumindo que image_path no JSON aponta para a ilustração colorida
+        const imagePath = fixPath(article.image_path || '/assets/artigos/default_corporativo.webp'); 
+        
+        // **SUBSTITUÍDO**: Usa o campo 'subtitle' do JSON, caso contrário usa 'Leitura Estratégica'
+        const metaText = article.subtitle || 'Leitura Estratégica'; 
 
         return `
             <a href="${finalUrl}" class="article-card">
