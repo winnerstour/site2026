@@ -4,289 +4,352 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Estratégia Corporativa</title>
+  <title>WinnersTour — Ferramentas e Apps</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./artigos_base.css"> 
-
   <style>
-    /* VARIÁVEIS DO GRID/LAYOUT */
-    :root {
-      --brand:#f97316;
-      --text-charcoal:#111827;
-      --sidebar-bg-color: #f0f4f9; 
+    /* VARIÁVEIS DE COR E ESTILO */
+    :root{
+      --brand:#f97316; 
+      --brand-shadow:#C2410C; 
+      --text-charcoal:#111827; 
       --muted:#6b7280;
-      --card-bg-color: #fff;
-      --wrap-content-width: 1024px;
-      --radius: 8px; 
+      --bg:#fff;
+      --card:#fff;
       --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-      --shadow-hover:0 4px 10px rgba(2,8,23,.10); 
-      --card-hover-bg:#f5f5f5;
+      --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+      --card-hover-bg:#f5f5f5; 
+      --radius:18px;
+      --wrap:1024px; /* Unificado para a largura do conteúdo */
+      --sidebar-bg-color: #f0f4f9; 
     }
-    
-    /* RESET BÁSICO */
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;min-height: 100vh;}
-    body{
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      font-size:16px;
-      line-height:1.5;
-      color:var(--text-charcoal);
-      background:var(--bg);
-      overflow-x: hidden;
-    }
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
 
-    /* === LAYOUT DE GRID (Desktop) === */
-    #main-grid {
-        display: grid;
-        grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
+    /* Estilos do grid e card da página apps (Adaptado para o novo grid) */
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
         min-height: 100vh;
-        margin: 0; 
     }
 
-    /* --- SIDEBAR FIXA (Esquerda) --- */
-    #main-sidebar {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        overflow-y: auto;
-        padding: 30px 20px 30px 20px; 
-        background: var(--sidebar-bg-color); 
-        border-right: 1px solid rgba(0, 0, 0, 0.1); 
+    body {
+        background: #e5e7eb;
         color: var(--text-charcoal);
     }
+
+    #main-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr; 
+        gap: 30px;
+        align-items: flex-start;
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 30px 20px 40px;
+    }
+
+    /* SIDEBAR LATERAL */
+    #main-sidebar {
+        background: var(--sidebar-bg-color);
+        border-radius: 24px;
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.18);
+        padding: 24px 22px 26px;
+        position: sticky;
+        top: 20px;
+        align-self: flex-start;
+    }
+
     .agency-info h1 {
+        margin: 0 0 12px 0;
+        font-size: 1.5rem;
         font-weight: 900;
-        font-size: 1.5rem; 
-        margin-bottom: 5px;
-        line-height: 1.1;
         color: var(--brand);
+        letter-spacing: 0.12em;
     }
+
     .agency-info p {
-        font-size: 14px;
-        color: var(--muted); 
-        line-height: 1.4;
-        margin-bottom: 20px;
+        margin: 0 0 18px 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--muted);
     }
+
+    /* CTA WhatsApp destacado na sidebar */
     .whatsapp-cta {
-        margin-top: 30px;
+        background: #22c55e1a;
+        border-radius: 14px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        border: 1px dashed #16a34a;
+    }
+
+    .whatsapp-cta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #16a34a;
+        font-size: 0.9rem;
+    }
+
+    .whatsapp-cta .icon-wa {
+        width: 22px;
+        height: 22px;
+    }
+
+    .sidebar-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 10px;
+    }
+
+    /* Lista de botões/links no sidebar */
+    .sidebar-cta-list {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 6px;
     }
+
     .cta-link-sidebar {
         display: flex;
         align-items: center;
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-charcoal); 
-        transition: all 0.2s ease;
+        gap: 8px;
+        padding: 7px 6px;
+        font-size: 0.9rem;
         text-decoration: none;
-        padding: 2px 0;
-    }
-    .cta-link-sidebar:hover {
-        color: var(--brand); 
-        transform: translateX(3px); 
-    }
-    .cta-link-sidebar .icon {
-        font-size: 1.2rem;
-        width: 20px;
-        text-align: center;
-        margin-right: 10px;
-        line-height: 1;
-    }
-    .cta-link-sidebar .icon-wa {
-        width: 20px;
-        height: 20px;
-        vertical-align: middle;
-        margin-right: 10px;
-    }
-
-
-    /* --- CONTEÚDO PRINCIPAL (Direita) --- */
-    #main-content {
-        padding: 20px 0 20px 0; 
-    }
-    
-    /* TÍTULO PRINCIPAL DO DIRETÓRIO: Aplica a fonte da marca */
-    .directory-wrap h1 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 900; 
-        font-size: 1.5rem; 
         color: var(--text-charcoal);
-        margin-bottom: 5px;
-        line-height: 1.1;
+        border-radius: 10px;
+        transition: all 0.18s ease-out;
+        font-weight: 700;
     }
-    /* SUBTÍTULO PRINCIPAL */
-    .directory-wrap p {
-        font-family: 'Montserrat', sans-serif;
+
+    .cta-link-sidebar .icon {
         font-size: 1.1rem;
-        color: var(--muted);
+        width: 22px;
+        text-align: center;
+    }
+
+    .cta-link-sidebar:hover {
+        background: #e5e7eb;
+        transform: translateX(3px);
+        color: var(--brand);
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+    #main-content {
+        background: #f9fafb;
+        border-radius: 24px;
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+        padding: 24px 26px 30px;
+    }
+
+    #main-content h2 {
+        font-size: 1.4rem;
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 6px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-charcoal);
     }
 
-
-    /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
-    .directory-wrap {
-        max-width: 1280px; 
-        margin: 0 auto;
-        padding: 0 20px; 
+    #main-content .card-subtitle {
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.4;
     }
-    #cardsContainer {
+
+    /* GRID DE APPS */
+    #apps-grid {
         display: grid;
-        gap: 20px;
-        padding: 0; 
-        margin-top: 20px;
-    }
-    /* CORREÇÃO DE ESPECIFICIDADE: Força 4 colunas */
-    #main-content #cardsContainer.cards-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
     }
 
-
-    /* === ESTILOS DOS CARDS === */
-    .article-card {
-        background: var(--card-bg-color);
-        border-radius: var(--radius); 
-        box-shadow: var(--shadow-base); 
-        overflow: hidden;
-        transition: all .2s ease;
-        text-decoration: none;
+    .app-card {
         display: flex;
-        flex-direction: column;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        height: 100%;
+        flex-direction: row;
+        gap: 12px;
+        padding: 13px 12px;
+        border-radius: 16px;
+        background: var(--card);
+        box-shadow: var(--shadow-base);
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.18s ease-out;
+        border: 1px solid rgba(148,163,184,0.3);
+        min-height: 110px;
     }
-    .article-card:hover {
-        box-shadow: var(--shadow-hover); 
-        transform: translateY(-2px);
-        background: var(--card-hover-bg); 
+
+    .app-card:hover {
+        background: var(--card-hover-bg);
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-1px);
     }
-    
-    /* Área da Imagem */
-    .card-thumb-bg {
-        height: 120px; 
-        background-color: #f0f0f0; 
-        /* CORREÇÃO FINAL: Preenche 100% do espaço sem distorcer */
-        background-size: cover; 
-        background-repeat: no-repeat;
-        background-position: center;
+
+    .card-media {
+        width: 90px;
+        height: 90px;
+        background: #f9fafb;
+        border-radius: 14px;
+        border: 1px solid #e5e7eb;
+        overflow: hidden;
         flex-shrink: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
-    /* Conteúdo do Card */
+
+    .card-media img {
+        max-width: 100%;
+        max-height: 80px; /* Limita o tamanho das imagens do app */
+        object-fit: contain; 
+    }
+
     .card-content {
         padding: 15px;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
-    
-    /* Linha 1: Título Principal */
+
     .card-title {
-        font-weight: 900;
+        font-weight: 900 !important;
         font-size: 1rem;
         line-height: 1.3;
         margin-bottom: 5px;
-        color: var(--text-charcoal);
+        color: var(--text-charcoal) !important;
         text-transform: uppercase; 
-        height: 68px; /* Altura para 4 linhas */
-        overflow: hidden;
+        letter-spacing: 0.06em;
     }
-    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS + LIMITE DE LINHAS) */
-    .card-meta {
-        font-family: 'Montserrat', sans-serif;
+
+    .card-subtitle {
         font-size: 14px;
         color: var(--muted);
-        margin: 0;
-        line-height: 1.4;
-        height: calc(1.4em * 2); /* Limita a 2 linhas para evitar quebra do layout */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-    /* Linha 3: Acessar Artigo */
-    .card-cta {
-        font-size: 14px;
-        color: var(--brand);
-        font-weight: 700;
-        margin-top: 5px;
     }
 
-
-    /* --- MOBILE HEADER FIXO --- */
+    /* HEADER MOBILE */
     #mobile-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        z-index: 1000;
-        display: none; 
-        justify-content: space-between;
+        display: none;
         align-items: center;
-        padding: 10px 16px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    .mobile-cta-group .icon-wa {
-        width: 24px;
-        height: 24px;
+        justify-content: space-between;
+        padding: 12px 16px;
+        background: #0f172a;
+        color: #f9fafb;
+        position: sticky;
+        top: 0;
+        z-index: 20;
     }
 
-    /* --- RESPONSIVIDADE --- */
+    #mobile-header .logo {
+        font-size: 1.1rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+    }
+
+    #mobile-header .logo span {
+        color: var(--brand);
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .menu-toggle span {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .menu-icon {
+        font-size: 1.1rem;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.6);
+    }
+
+    /* Estilos Mobile */
     @media (max-width: 1024px) {
         #mobile-header {
-            display: flex; 
-            position: fixed;
+            display: flex;
         }
+
         #main-grid {
             grid-template-columns: 1fr; 
-            min-height: auto;
-            padding-top: 50px; 
+            padding-top: 10px; 
         }
+
         #main-sidebar {
+            position: static;
+            margin: 10px 16px 0 16px;
+            border-radius: 18px;
             display: none; 
-            position: fixed;
-            top: 50px;
-            width: 100%;
-            height: auto;
-            max-height: calc(100vh - 50px);
-            overflow-y: auto;
-            z-index: 999;
         }
+
         #main-content {
-            padding: 20px 0;
+            margin: 10px 16px 30px 16px;
+            border-radius: 18px;
         }
-        .directory-wrap {
-             padding: 0 16px;
-        }
-        #cardsContainer {
-             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        #apps-grid {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         }
     }
+
+    /* FONTES: aplicar Montserrat na página e dar destaque ao menu lateral */
+    body {
+        margin: 0;
+        font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-charcoal);
+        background-color: #f3f4f6;
+    }
+
+    #main-sidebar,
+    #main-sidebar h1,
+    #main-sidebar .cta-link-sidebar {
+        font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        text-transform: none;
+    }
+
+    #main-sidebar h1 {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    #main-sidebar .cta-link-sidebar {
+        letter-spacing: 0.06em;
+        font-weight: 700;
+    }
+
   </style>
 </head>
 <body>
 
 <div id="mobile-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    <div class="mobile-cta-group">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
-            <span style="font-size: 20px;">🛒</span>
-        </a>
-         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20estratégia%20corporativa." target="_blank" class="icon-button" aria-label="Fale Conosco pelo WhatsApp">
-            <img src="/site2026/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa">
-        </a>
-        <span class="menu-icon" id="mobileMenuIcon">☰</span> 
+    <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">
+        WINNERS <span>TOUR</span>
+    </a>
+    <div class="menu-toggle">
+        <span>Menu</span>
+        <span class="menu-icon" id="mobileMenuIcon">☰</span>
     </div>
 </div>
 
@@ -296,15 +359,26 @@
         <div class="agency-info">
             <h1>WINNERS TOUR</h1>
             <p>
-                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
+                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras,
+                congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais.
+                Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo?
+                Fale conosco pelo WhatsApp ou use as opções abaixo.
             </p>
             
             <div class="whatsapp-cta">
                  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-                    <img src="/site2026/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa" style="width: 20px; height: 20px;"> WHATSAPP
+                    <img src="/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa"> 
+                    Falar no WhatsApp
+                 </a>
+            </div>
+            
+            <div class="sidebar-title">NAVEGUE PELAS SOLUÇÕES</div>
+            <div class="sidebar-cta-list">
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <img src="/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa" style="width: 20px; height: 20px;"> WHATSAPP
                  </a>
 
-                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+                 <a href="https://www.comprarviagem.com.br/winnerstour" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
                     <span class="icon">🛒</span> LOJA VIRTUAL
                  </a>
 
@@ -329,21 +403,115 @@
     
     <div id="main-content">
         
-        <div class="directory-wrap">
-            <h1 style="margin-bottom: 5px;">ARTIGOS PARA O GESTOR DE VIAGENS</h1>
-            <p style="font-size: 1.1rem; color: var(--muted); margin-bottom: 20px;">Uma seleção de artigos essenciais para ajudar na estratégia e gestão de viagens corporativas.</p>
+        <h2>ARTIGOS PARA O GESTOR DE VIAGENS</h2>
+        <p class="card-subtitle" style="margin-bottom: 20px;">Uma seleção de conteúdos estratégicos, curtos e objetivos, para ajudar na estratégia e gestão de viagens corporativas.</p>
+        
+        <div id="apps-grid">
             
-            <div id="loadingMessage" style="text-align: center; padding: 50px;">Carregando artigos...</div>
-
-            <div id="cardsContainer" class="cards-grid">
+            <a href="https://wanderlog.com" target="_blank" class="app-card" aria-label="Wanderlog - Planejador de Viagens">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/apps/Wanderlog.webp" alt="Wanderlog Logo"> 
                 </div>
+                <div class="card-content">
+                    <p class="card-title">WANDERLOG – PLANEJADOR DE VIAGENS</p>
+                    <p class="card-subtitle">Planejador de viagens gratuito para montar roteiro dia a dia, salvar reservas e compartilhar o plano com colegas de trabalho.</p>
+                </div>
+            </a>
+
+            <a href="https://www.tripit.com" target="_blank" class="app-card" aria-label="TripIt – Organizador de Itinerários de Viagem">
+                <div class="card-media">
+                  <img loading="lazy" src="assets/apps/TripIt.webp" alt="TripIt Logo"> 
+                </div>
+                <div class="card-content">
+                    <p class="card-title">TRIPIT – ORGANIZADOR DE VIAGENS</p>
+                    <p class="card-subtitle">Centraliza passagens, reservas de hotel, locação de carro e reuniões em um único itinerário inteligente.</p>
+                </div>
+            </a>
+
+            <a href="https://www.trailso.com" target="_blank" class="app-card" aria-label="Trailso – Gestão de Viagens a Trabalho">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/Trailso.webp" alt="Trailso Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">TRAILSO – VIAGENS A TRABALHO</p>
+                    <p class="card-subtitle">Plataforma focada em viagens corporativas, com gestão de políticas, aprovação de viagens e análise de custos.</p>
+                </div>
+            </a>
+
+            <a href="https://www.rome2rio.com" target="_blank" class="app-card" aria-label="Rome2Rio – Conexões Multimodais">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/Rome2Rio.webp" alt="Rome2Rio Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">ROME2RIO – COMO CHEGAR</p>
+                    <p class="card-subtitle">Mostra rotas combinando avião, trem, ônibus, barco e carro, ajudando o gestor a avaliar alternativas de deslocamento.</p>
+                </div>
+            </a>
+
+            <a href="https://www.flightradar24.com" target="_blank" class="app-card" aria-label="Flightradar24 – Monitoramento de Voos">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/Flightradar24.webp" alt="Flightradar24 Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">FLIGHTRADAR24 – MONITOR DE VOOS</p>
+                    <p class="card-subtitle">Acompanha em tempo real a posição das aeronaves, útil para monitorar atrasos e prever impactos na agenda do executivo.</p>
+                </div>
+            </a>
+
+            <a href="https://www.airhelp.com" target="_blank" class="app-card" aria-label="AirHelp – Direitos do Passageiro Aéreo">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/AirHelp.webp" alt="AirHelp Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">AIRHELP – DIREITOS DO PASSAGEIRO</p>
+                    <p class="card-subtitle">Ajuda a verificar se o passageiro tem direito a compensação em casos de atrasos, cancelamentos ou overbooking.</p>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/travel/flights" target="_blank" class="app-card" aria-label="Google Flights – Pesquisa Exploratória de Voos">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/GoogleFlights.webp" alt="Google Flights Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">GOOGLE FLIGHTS – CONSULTA RÁPIDA</p>
+                    <p class="card-subtitle">Ferramenta útil para exploração rápida de datas e tarifas, ajudando a identificar janelas mais econômicas de viagem.</p>
+                </div>
+            </a>
+
+            <a href="https://www.concur.com/" target="_blank" class="app-card" aria-label="SAP Concur – Despesas e Viagens">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/Concur.webp" alt="Concur Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">SAP CONCUR – DESPESAS & VIAGENS</p>
+                    <p class="card-subtitle">Integra reserva de viagens e reembolso de despesas em um único fluxo, alinhado à governança e compliance da empresa.</p>
+                </div>
+            </a>
+
+            <a href="https://www.travelex.com" target="_blank" class="app-card" aria-label="Travelex – Câmbio e Cartão Pré-pago">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/Travelex.webp" alt="Travelex Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">TRAVELEX – CÂMBIO PARA VIAGENS</p>
+                    <p class="card-subtitle">Acompanha taxas de câmbio, compra moeda e recarrega cartões pré-pagos para executivos em viagem internacional.</p>
+                </div>
+            </a>
+
+            <a href="https://www.whatsapp.com" target="_blank" class="app-card" aria-label="WhatsApp – Comunicação com Viajantes">
+                <div class="card-media">
+                    <img loading="lazy" src="assets/apps/WhatsApp.webp" alt="WhatsApp Logo">
+                </div>
+                <div class="card-content">
+                    <p class="card-title">WHATSAPP – CANAL COM O VIAJANTE</p>
+                    <p class="card-subtitle">Principal canal para avisos rápidos sobre mudanças de voo, envio de vouchers e suporte ao viajante durante a viagem.</p>
+                </div>
+            </a>
+
         </div>
+
     </div>
 </div>
-
-<footer id="main-footer" style="grid-column: 1 / -1; text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px;">
-    © 2025 Winners Tour. Todos os direitos reservados.
-</footer>
 
 <script>
     // JS para funcionalidade do menu mobile
@@ -356,7 +524,6 @@
         }
     });
 </script>
-<script src="./diretorio_corporativo.js"></script>
 
 </body>
 </html>
