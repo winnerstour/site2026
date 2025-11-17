@@ -21,7 +21,10 @@
       --muted:#6b7280;
       --card-bg-color: #fff;
       --wrap-content-width: 1024px;
-      --radius: 8px; /* Unificado */
+      --radius: 8px; /* Mantido */
+      --shadow-base:0 2px 5px rgba(2,8,23,.05); /* Copiado do Eventos */
+      --shadow-hover:0 4px 10px rgba(2,8,23,.10); /* Copiado do Eventos */
+      --card-hover-bg:#f5f5f5; /* Copiado do Eventos */
     }
     /* FIXO: Cabeçalho mobile */
     #mobile-header {
@@ -82,48 +85,50 @@
         color: var(--text-charcoal);
     }
 
-    /* CONTEÚDO PRINCIPAL (Direita) */
+    /* CONTEÚDO PRINCIPAL (Direita) - LARGURA TOTAL DO GRID */
     #main-content {
-        padding: 20px 20px 20px 20px; 
+        /* Padding vertical mantido, horizontal removido para o directory-wrap cuidar */
+        padding: 20px 0 20px 0; 
     }
 
     /* GRID DE CARDS (Adaptação da estrutura apps.html) */
     .directory-wrap {
-      max-width: var(--wrap-content-width);
+      /* REMOVIDO max-width: 1024px AQUI para que o grid preencha o #main-content */
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 20px; /* Padding para o conteúdo não colar nas bordas do #main-content */
     }
     #cardsContainer {
         display: grid;
         gap: 20px;
         padding: 0; 
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo para desktop */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
         margin-top: 20px;
     }
 
-    /* Estilo do Card (similar ao event-card/apps.html) */
+    /* === ESTILOS DOS CARDS UNIFICADOS (CORREÇÃO DE EFEITOS) === */
     .article-card {
         background: var(--card-bg-color);
-        border-radius: var(--radius);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-radius: var(--radius); /* Aplicando borda arredondada */
+        box-shadow: var(--shadow-base); /* Aplicando sombra base */
         overflow: hidden;
         transition: all .2s ease;
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        border: 1px solid #ddd;
+        border: 1px solid rgba(0, 0, 0, 0.05); /* Borda sutil */
         height: 100%;
     }
     .article-card:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-hover); /* Aplicando sombra de hover */
         transform: translateY(-2px);
+        background: var(--card-hover-bg); 
     }
     
-    /* Área da Imagem (simulando a cor/fundo do App) */
+    /* Área da Imagem */
     .card-thumb-bg {
-        height: 120px; /* Altura ajustada para ser similar ao apps.html */
-        background-color: #f0f0f0; /* Fundo neutro */
-        background-size: 100px; /* Tamanho da imagem de thumbnail */
+        height: 120px; 
+        background-color: #f0f0f0; 
+        background-size: 100px; /* Mantém o ícone centralizado */
         background-repeat: no-repeat;
         background-position: center;
         flex-shrink: 0;
@@ -185,6 +190,9 @@
         }
         #main-content {
             padding: 20px 0;
+        }
+        .directory-wrap {
+             padding: 0 16px; /* Padding padrão para mobile */
         }
         #cardsContainer {
              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
