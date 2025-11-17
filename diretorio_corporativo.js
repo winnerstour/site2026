@@ -6,7 +6,6 @@
     
     const BASE_PATH = window.location.pathname.startsWith('/site2026') ? '/site2026' : '';
 
-    const directoryTitle = document.getElementById('directoryTitle');
     const cardsContainer = document.getElementById('cardsContainer');
     const loadingMessage = document.getElementById('loadingMessage');
 
@@ -35,7 +34,7 @@
                 <div class="card-content">
                     <h3 class="card-title">${article.title}</h3>
                     <p class="card-meta">${metaText}</p>
-                    <p class="card-cta">Acessar Artigo &rarr;</p>
+                    <p class="card-cta">Acessar Artigo →</p>
                 </div>
             </a>
         `;
@@ -64,6 +63,5 @@
         }
     }
 
-    // O título agora é renderizado diretamente no HTML (para manter a quebra de linha)
     document.addEventListener('DOMContentLoaded', loadDirectory);
 })();
