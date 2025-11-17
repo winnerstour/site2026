@@ -4,258 +4,359 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Ferramentas e Apps</title>
+  <title>WinnersTour — Estratégia Corporativa</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="./artigos_base.css"> 
+
   <style>
-    /* VARIÁVEIS DE COR E ESTILO */
-    :root{
-      --brand:#f97316; 
-      --brand-shadow:#C2410C; 
-      --text-charcoal:#111827; 
-      --muted:#6b7280;
-      --bg:#fff;
-      --card:#fff;
-      --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-      --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-      --card-hover-bg:#f5f5f5; 
-      --radius:18px;
-      --wrap:1024px; /* Unificado para a largura do conteúdo */
+    /* VARIÁVEIS DO GRID/LAYOUT */
+    :root {
+      --brand:#f97316;
+      --text-charcoal:#111827;
       --sidebar-bg-color: #f0f4f9; 
+      --muted:#6b7280;
+      --card-bg-color: #fff;
+      --wrap-content-width: 1024px;
+      --radius: 8px; 
+      --shadow-base:0 2px 5px rgba(2,8,23,.05); 
+      --shadow-hover:0 4px 10px rgba(2,8,23,.10); 
+      --card-hover-bg:#f5f5f5;
     }
-
-    /* Estilos do grid e card da página apps (Adaptado para o novo grid) */
-    * {
-        box-sizing: border-box;
+    
+    /* RESET BÁSICO */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;min-height: 100vh;}
+    body{
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size:16px;
+      line-height:1.5;
+      color:var(--text-charcoal);
+      background:var(--bg);
+      overflow-x: hidden;
     }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
 
-    html, body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-    }
-
-    body {
-        background: #e5e7eb;
-        color: var(--text-charcoal);
-    }
-
+    /* === LAYOUT DE GRID (Desktop) === */
     #main-grid {
         display: grid;
-        grid-template-columns: 320px 1fr; 
-        gap: 30px;
-        align-items: flex-start;
-        max-width: var(--wrap);
-        margin: 0 auto;
-        padding: 30px 20px 40px;
+        grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
+        min-height: 100vh;
+        margin: 0; 
     }
 
-    /* SIDEBAR LATERAL */
+    /* --- SIDEBAR FIXA (Esquerda) --- */
     #main-sidebar {
-        background: var(--sidebar-bg-color);
-        border-radius: 24px;
-        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.18);
-        padding: 24px 22px 26px;
         position: sticky;
-        top: 20px;
-        align-self: flex-start;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 30px 20px 30px 20px; 
+        background: var(--sidebar-bg-color); 
+        border-right: 1px solid rgba(0, 0, 0, 0.1); 
+        color: var(--text-charcoal);
     }
-
     .agency-info h1 {
-        margin: 0 0 12px 0;
-        font-size: 1.5rem;
         font-weight: 900;
+        font-size: 1.5rem; 
+        margin-bottom: 5px;
+        line-height: 1.1;
         color: var(--brand);
-        letter-spacing: 0.12em;
     }
-
     .agency-info p {
-        margin: 0 0 18px 0;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: var(--muted);
+        font-size: 14px;
+        color: var(--muted); 
+        line-height: 1.4;
+        margin-bottom: 20px;
     }
-
-    /* CTA WhatsApp destacado na sidebar */
     .whatsapp-cta {
-        background: #22c55e1a;
-        border-radius: 14px;
-        padding: 10px 12px;
-        display: flex;
-        align-items: center;
-        margin-bottom: 16px;
-        border: 1px dashed #16a34a;
-    }
-
-    .whatsapp-cta a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 700;
-        text-decoration: none;
-        color: #16a34a;
-        font-size: 0.9rem;
-    }
-
-    .whatsapp-cta .icon-wa {
-        width: 22px;
-        height: 22px;
-    }
-
-    .sidebar-title {
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--muted);
-        margin-bottom: 10px;
-    }
-
-    /* Lista de botões/links no sidebar */
-    .sidebar-cta-list {
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 12px;
     }
-
     .cta-link-sidebar {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 7px 6px;
-        font-size: 0.9rem;
-        text-decoration: none;
-        color: var(--text-charcoal);
-        border-radius: 10px;
-        transition: all 0.18s ease-out;
+        font-size: 1rem;
         font-weight: 700;
-    }
-
-    .cta-link-sidebar .icon {
-        font-size: 1.1rem;
-        width: 22px;
-        text-align: center;
-    }
-
-    .cta-link-sidebar:hover {
-        background: #e5e7eb;
-        transform: translateX(3px);
-        color: var(--brand);
-    }
-
-    /* CONTEÚDO PRINCIPAL */
-    #main-content {
-        background: #f9fafb;
-        border-radius: 24px;
-        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
-        padding: 24px 26px 30px;
-    }
-
-    #main-content h2 {
-        font-size: 1.4rem;
-        margin-top: 0;
-        margin-bottom: 6px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-charcoal);
-    }
-
-    #main-content .card-subtitle {
-        margin-top: 0;
-        margin-bottom: 18px;
-        font-size: 0.95rem;
-        color: var(--muted);
-        line-height: 1.4;
-    }
-
-    /* GRID DE APPS */
-    #apps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 16px;
-    }
-
-    .app-card {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-        padding: 13px 12px;
-        border-radius: 16px;
-        background: var(--card);
-        box-shadow: var(--shadow-base);
+        color: var(--text-charcoal); 
+        transition: all 0.2s ease;
         text-decoration: none;
-        color: inherit;
-        transition: all 0.18s ease-out;
-        border: 1px solid rgba(148,163,184,0.3);
-        min-height: 110px;
+        padding: 2px 0;
     }
-
-    .app-card:hover {
-        background: var(--card-hover-bg);
-        box-shadow: var(--shadow-hover);
-        transform: translateY(-1px);
+    .cta-link-sidebar:hover {
+        color: var(--brand); 
+        transform: translateX(3px); 
     }
-
-    .card-media {
-        width: 90px;
-        height: 90px;
-        background: #f9fafb;
-        border-radius: 14px;
-        border: 1px solid #e5e7eb;
-        overflow: hidden;
-        flex-shrink: 0;
-        padding: 10px;
+    .cta-link-sidebar .icon {
+        font-size: 1.2rem;
+        width: 20px;
         text-align: center;
+        margin-right: 10px;
+        line-height: 1;
+    }
+    .cta-link-sidebar .icon-wa {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+
+    /* --- CONTEÚDO PRINCIPAL (Direita) --- */
+    #main-content {
+        padding: 20px 0 20px 0; 
+    }
+    
+    /* TÍTULO PRINCIPAL DO DIRETÓRIO: Aplica a fonte da marca */
+    .directory-wrap h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900; 
+        font-size: 1.5rem; 
+        color: var(--text-charcoal);
+        margin-bottom: 5px;
+        line-height: 1.1;
+    }
+    /* SUBTÍTULO PRINCIPAL */
+    .directory-wrap p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        color: var(--muted);
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+
+    /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
+    .directory-wrap {
+        max-width: 1280px; 
+        margin: 0 auto;
+        padding: 0 20px; 
+    }
+    #cardsContainer {
+        display: grid;
+        gap: 20px;
+        padding: 0; 
+        margin-top: 20px;
+    }
+    /* CORREÇÃO DE ESPECIFICIDADE: Força 4 colunas */
+    #main-content #cardsContainer.cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    }
+
+
+    /* === ESTILOS DOS CARDS === */
+    .article-card {
+        background: var(--card-bg-color);
+        border-radius: var(--radius); 
+        box-shadow: var(--shadow-base); 
+        overflow: hidden;
+        transition: all .2s ease;
+        text-decoration: none;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
     }
-
-    .card-media img {
-        max-width: 100%;
-        max-height: 80px; /* Limita o tamanho das imagens do app */
-        object-fit: contain; 
+    .article-card:hover {
+        box-shadow: var(--shadow-hover); 
+        transform: translateY(-2px);
+        background: var(--card-hover-bg); 
     }
-
+    
+    /* Área da Imagem */
+    .card-thumb-bg {
+        height: 120px; 
+        background-color: #f0f0f0; 
+        /* CORREÇÃO FINAL: Preenche 100% do espaço sem distorcer */
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Conteúdo do Card */
     .card-content {
         padding: 15px;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
-
+    
+    /* Linha 1: Título Principal */
     .card-title {
-        font-weight: 900 !important;
+        font-weight: 900;
         font-size: 1rem;
         line-height: 1.3;
         margin-bottom: 5px;
-        color: var(--text-charcoal) !important;
+        color: var(--text-charcoal);
         text-transform: uppercase; 
-        letter-spacing: 0.06em;
+        height: 68px; /* Altura para 4 linhas */
+        overflow: hidden;
     }
-
-    .card-subtitle {
+    /* Linha 2: Subtítulo/Meta (FONTE E TAMANHO CORRIGIDOS + LIMITE DE LINHAS) */
+    .card-meta {
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         color: var(--muted);
+        margin: 0;
+        line-height: 1.4;
+        height: calc(1.4em * 2); /* Limita a 2 linhas para evitar quebra do layout */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    /* Linha 3: Acessar Artigo */
+    .card-cta {
+        font-size: 14px;
+        color: var(--brand);
+        font-weight: 700;
+        margin-top: 5px;
     }
 
-    /* HEADER MOBILE */
+
+    /* --- MOBILE HEADER FIXO --- */
     #mobile-header {
-        display: none;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        background: #0f172a;
-        color: #f9fafb;
-        position: sticky;
+        position: fixed;
         top: 0;
-        z-index: 20;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000;
+        display: none; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .mobile-cta-group .icon-wa {
+        width: 24px;
+        height: 24px;
     }
 
-    #mobile-header .logo {
-        font-size: 1.1rem;
-        font-weight:
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 1024px) {
+        #mobile-header {
+            display: flex; 
+            position: fixed;
+        }
+        #main-grid {
+            grid-template-columns: 1fr; 
+            min-height: auto;
+            padding-top: 50px; 
+        }
+        #main-sidebar {
+            display: none; 
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 50px);
+            overflow-y: auto;
+            z-index: 999;
+        }
+        #main-content {
+            padding: 20px 0;
+        }
+        .directory-wrap {
+             padding: 0 16px;
+        }
+        #cardsContainer {
+             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    }
+  </style>
+</head>
+<body>
+
+<div id="mobile-header">
+    <a href="index.html" class="logo">WINNERS TOUR</a>
+    <div class="mobile-cta-group">
+        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
+            <span style="font-size: 20px;">🛒</span>
+        </a>
+         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20estratégia%20corporativa." target="_blank" class="icon-button" aria-label="Fale Conosco pelo WhatsApp">
+            <img src="/site2026/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa">
+        </a>
+        <span class="menu-icon" id="mobileMenuIcon">☰</span> 
+    </div>
+</div>
+
+<div id="main-grid">
+    
+    <div id="main-sidebar">
+        <div class="agency-info">
+            <h1>WINNERS TOUR</h1>
+            <p>
+                Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
+            </p>
+            
+            <div class="whatsapp-cta">
+                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+                    <img src="/site2026/assets/misc/WhatsApp.svg.webp" alt="WhatsApp" class="icon-wa" style="width: 20px; height: 20px;"> WHATSAPP
+                 </a>
+
+                 <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+                    <span class="icon">🛒</span> LOJA VIRTUAL
+                 </a>
+
+                 <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+                    <span class="icon">🗓️</span> EVENTOS
+                 </a>
+                 
+                 <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
+                    <span class="icon">⚙️</span> APLICATIVOS
+                 </a>
+                 
+                 <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+                    <span class="icon">🏖️</span> LAZER
+                 </a>
+                 
+                 <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
+                    <span class="icon">💼</span> CORPORATIVO
+                 </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        
+        <div class="directory-wrap">
+            <h1 style="margin-bottom: 5px;">ARTIGOS PARA O GESTOR DE VIAGENS</h1>
+            <p style="font-size: 1.1rem; color: var(--muted); margin-bottom: 20px;">Uma seleção de artigos essenciais para ajudar na estratégia e gestão de viagens corporativas.</p>
+            
+            <div id="loadingMessage" style="text-align: center; padding: 50px;">Carregando artigos...</div>
+
+            <div id="cardsContainer" class="cards-grid">
+                </div>
+        </div>
+    </div>
+</div>
+
+<footer id="main-footer" style="grid-column: 1 / -1; text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 40px;">
+    © 2025 Winners Tour. Todos os direitos reservados.
+</footer>
+
+<script>
+    // JS para funcionalidade do menu mobile
+    document.getElementById('mobileMenuIcon').addEventListener('click', function() {
+        var sidebar = document.getElementById('main-sidebar');
+        if (sidebar.style.display === 'block') {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'block';
+        }
+    });
+</script>
+<script src="./diretorio_corporativo.js"></script>
+
+</body>
+</html>
