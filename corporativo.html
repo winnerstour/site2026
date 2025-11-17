@@ -8,7 +8,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="./artigos_base.css"> 
 
@@ -46,7 +46,6 @@
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
         min-height: 100vh;
-        /* CORREÇÃO FINAL: Remove margin: 0 auto; para ocupar 100% da tela */
         margin: 0; 
     }
 
@@ -61,6 +60,7 @@
         border-right: 1px solid rgba(0, 0, 0, 0.1); 
         color: var(--text-charcoal);
     }
+    /* ... (Estilos da Sidebar) ... */
     .agency-info h1 {
         font-weight: 900;
         font-size: 1.5rem; 
@@ -117,14 +117,15 @@
     /* TÍTULO PRINCIPAL DO DIRETÓRIO: Aplica a fonte da marca */
     .directory-wrap h1 {
         font-family: 'Montserrat', sans-serif;
-        font-weight: 900; /* Peso extra bold para o branding */
+        font-weight: 900; 
         font-size: 1.5rem; 
         color: var(--text-charcoal);
         margin-bottom: 5px;
         line-height: 1.1;
     }
-    /* SUBTÍTULO: Reduz o espaçamento inferior para aproximar do título */
+    /* SUBTÍTULO PRINCIPAL: Fonte correta e espaçamento */
     .directory-wrap p {
+        font-family: 'Open Sans', system-ui, sans-serif; /* FONTE DO ARTIGO PARA SUBTÍTULO */
         font-size: 1.1rem;
         color: var(--muted);
         margin-top: 0;
@@ -141,7 +142,6 @@
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Força 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -182,6 +182,7 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        font-family: 'Open Sans', system-ui, sans-serif; /* Fonte para o corpo do card */
     }
     
     /* Linha 1: Título Principal */
@@ -195,14 +196,18 @@
         height: 40px; 
         overflow: hidden;
     }
-    /* Linha 2: Leitura Estratégica */
+    /* Linha 2: Subtítulo/Meta (Novo Parâmetro JSON) */
     .card-meta {
-        font-size: 14px;
+        /* APLICA A FONTE E TAMANHO CORRETOS DO SUBTÍTULO PRINCIPAL */
+        font-family: 'Open Sans', system-ui, sans-serif; 
+        font-size: 14px; /* Tamanho ligeiramente menor que 1.1rem */
         color: var(--muted);
         margin: 0;
+        line-height: 1.4;
     }
     /* Linha 3: Acessar Artigo */
     .card-cta {
+        font-family: 'Open Sans', system-ui, sans-serif;
         font-size: 14px;
         color: var(--brand);
         font-weight: 700;
@@ -285,7 +290,7 @@
 <body>
 
 <div id="mobile-header">
-    <a href="index.html" class="logo">WINNERS TOUR">WINNERS TOUR</a>
+    <a href="index.html" class="logo">WINNERS TOUR</a>
     <div class="mobile-cta-group">
         <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="icon-button" aria-label="Loja Virtual">
             <span style="font-size: 20px;">🛒</span>
