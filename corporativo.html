@@ -31,7 +31,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;min-height: 100vh;}
     body{
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; /* Base Montserrat */
       font-size:16px;
       line-height:1.5;
       color:var(--text-charcoal);
@@ -41,46 +41,7 @@
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
-    /* FIXO: Cabeçalho mobile */
-    #mobile-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      z-index: 1000;
-      display: none; 
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 16px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    #mobile-header .logo {
-        font-weight: 900;
-        font-size: 1.5rem; 
-        color: var(--brand);
-    }
-    .mobile-cta-group {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    .mobile-cta-group .icon-button {
-        width: 30px;
-        height: 30px;
-    }
-    .mobile-cta-group .menu-icon {
-        font-size: 2rem;
-        cursor: pointer;
-        color: var(--text-charcoal);
-    }
-    .icon-wa {
-        width: 24px;
-        height: 24px;
-    }
-
-
-    /* LAYOUT PRINCIPAL DO GRID (Desktop) */
+    /* === LAYOUT DE GRID (Desktop) === */
     #main-grid {
         display: grid;
         grid-template-columns: 250px 1fr; /* Sidebar + Conteúdo */
@@ -88,7 +49,7 @@
         margin: 0 auto; 
     }
 
-    /* SIDEBAR FIXA (Esquerda) */
+    /* --- SIDEBAR FIXA (Esquerda) --- */
     #main-sidebar {
         position: sticky;
         top: 0;
@@ -99,22 +60,80 @@
         border-right: 1px solid rgba(0, 0, 0, 0.1); 
         color: var(--text-charcoal);
     }
+    .agency-info h1 {
+        font-weight: 900;
+        font-size: 1.5rem; 
+        margin-bottom: 5px;
+        line-height: 1.1;
+        color: var(--brand);
+    }
+    .agency-info p {
+        font-size: 14px;
+        color: var(--muted); 
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+    .whatsapp-cta {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .cta-link-sidebar {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-charcoal); 
+        transition: all 0.2s ease;
+        text-decoration: none;
+        padding: 2px 0;
+    }
+    .cta-link-sidebar:hover {
+        color: var(--brand); 
+        transform: translateX(3px); 
+    }
+    .cta-link-sidebar .icon {
+        font-size: 1.2rem;
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+        line-height: 1;
+    }
+    .cta-link-sidebar .icon-wa {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
 
-    /* CONTEÚDO PRINCIPAL (Direita) - LARGURA TOTAL DA COLUNA */
+
+    /* --- CONTEÚDO PRINCIPAL (Direita) --- */
     #main-content {
         padding: 20px 0 20px 0; 
     }
+    
+    /* TÍTULO PRINCIPAL DO DIRETÓRIO: Aplica a fonte da marca */
+    .directory-wrap h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900; /* Peso extra bold para o branding */
+        font-size: 1.8rem;
+        color: var(--text-charcoal);
+        margin-bottom: 5px;
+        line-height: 1.1;
+    }
 
-    /* GRID DE CARDS (CORREÇÃO DE LARGURA E 4 COLUNAS) */
+
+    /* --- DIRETÓRIO DE CARDS (Layout de Grid) --- */
     .directory-wrap {
-      margin: 0 auto;
-      padding: 0 20px; /* Padding nas laterais do #main-content */
+        margin: 0 auto;
+        padding: 0 20px; 
     }
     #cardsContainer {
         display: grid;
         gap: 20px;
         padding: 0; 
-        /* CORREÇÃO: Força 4 colunas com largura mínima menor (240px) */
+        /* CORREÇÃO: Permite 4 colunas no desktop */
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
         margin-top: 20px;
     }
@@ -129,7 +148,7 @@
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        border: 1px solid rgba(0, 0, 0, 0.05); /* Borda sutil */
+        border: 1px solid rgba(0, 0, 0, 0.05); 
         height: 100%;
     }
     .article-card:hover {
@@ -149,13 +168,11 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    /* Conteúdo do Card: Fonte Open Sans (usando montserrat para manter o estilo visual) */
     .card-content {
         padding: 15px;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        /* Usar a fonte do body (Montserrat) ou definir Open Sans, dependendo da sua preferência */
     }
     
     /* Linha 1: Título Principal */
@@ -183,6 +200,45 @@
         margin-top: 5px;
     }
 
+
+    /* --- MOBILE HEADER FIXO --- */
+    #mobile-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000;
+        display: none; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    #mobile-header .logo {
+        font-weight: 900;
+        font-size: 1.5rem; 
+        color: var(--brand);
+    }
+    .mobile-cta-group {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    .mobile-cta-group .icon-button {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+    }
+    .mobile-cta-group .menu-icon {
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--text-charcoal);
+    }
+    .mobile-cta-group .icon-wa {
+        width: 24px;
+        height: 24px;
+    }
 
     /* --- RESPONSIVIDADE --- */
     @media (max-width: 1024px) {
