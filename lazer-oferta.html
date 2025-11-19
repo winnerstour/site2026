@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title id="pageTitle">Oferta de Lazer — WinnersTour</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#C2410C;
+      --wa:#25D366;
+      --wa-hover:#1AC656;
+      --text-charcoal:#111827;
+      --muted:#6b7280;
+      --bg:#f9fafb;
+      --card:#ffffff;
+      --shadow-base:0 2px 5px rgba(2,8,23,.05);
+      --shadow-strong:0 18px 45px rgba(15,23,42,.20);
+      --radius:18px;
+      --wrap:1100px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{
+      margin:0;
+      padding:0;
+      min-height:100vh;
+    }
+    body{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size:16px;
+      line-height:1.5;
+      color:var(--text-charcoal);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+
+    .page-shell{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:16px 16px 40px 16px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:14px;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eef2ff;
+      margin-bottom:16px;
+      transition:all .15s ease;
+    }
+    .back-link:hover{
+      color:var(--brand-shadow);
+      transform:translateX(-2px);
+    }
+
+    .offer-hero{
+      display:grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+      gap:28px;
+      align-items:stretch;
+      margin-bottom:32px;
+    }
+
+    .offer-hero-image-wrapper{
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow-strong);
+      background:#000;
+      min-height:220px;
+    }
+    .offer-hero-image-wrapper img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .offer-hero-text{
+      padding:18px 20px 20px 20px;
+      border-radius:24px;
+      background:radial-gradient(circle at top left,#fef3c7,#fff);
+      box-shadow:var(--shadow-base);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .offer-category{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .offer-title{
+      font-size:1.6rem;
+      line-height:1.25;
+      font-weight:900;
+    }
+
+    .offer-meta{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .offer-intro,
+    .offer-sections{
+      background:var(--card);
+      border-radius:24px;
+      padding:22px 22px 24px 22px;
+      box-shadow:var(--shadow-base);
+      margin-bottom:20px;
+    }
+
+    .offer-intro p{
+      margin:0 0 12px 0;
+      font-size:15px;
+    }
+
+    .content-section{
+      margin-bottom:24px;
+    }
+    .content-section:last-child{
+      margin-bottom:0;
+    }
+
+    .content-section h2{
+      font-size:1.1rem;
+      font-weight:900;
+      margin:0 0 10px 0;
+    }
+    .content-section p{
+      margin:0 0 10px 0;
+      font-size:15px;
+      color:var(--text-charcoal);
+    }
+
+    .error-box{
+      padding:18px;
+      border-radius:18px;
+      background:#fef2f2;
+      color:#7f1d1d;
+      border:1px solid #fecaca;
+      font-size:14px;
+    }
+
+    @media (max-width:900px){
+      .offer-hero{
+        grid-template-columns:1fr;
+      }
+      .offer-hero-image-wrapper{
+        min-height:200px;
+      }
+    }
+
+    @media (max-width:640px){
+      .page-shell{
+        padding:12px 12px 28px 12px;
+      }
+      .offer-title{
+        font-size:1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <a href="lazer.html" class="back-link">
+      <span>←</span>
+      <span>Voltar para ofertas de lazer</span>
+    </a>
+
+    <section class="offer-hero">
+      <div class="offer-hero-image-wrapper">
+        <img id="offerImage" src="" alt="Imagem da oferta de lazer">
+      </div>
+      <div class="offer-hero-text">
+        <p id="offerCategory" class="offer-category"></p>
+        <h1 id="offerTitle" class="offer-title">Carregando oferta...</h1>
+        <p id="offerMeta" class="offer-meta"></p>
+      </div>
+    </section>
+
+    <section id="offerIntro" class="offer-intro">
+      <!-- Intro vai ser injetado via JS -->
+    </section>
+
+    <section id="offerSections" class="offer-sections">
+      <!-- Seções (1, 2, 3...) serão injetadas via JS -->
+    </section>
+
+    <div id="offerError" style="margin-top:16px;"></div>
+  </div>
+
+  <script src="lazer-oferta.js"></script>
+</body>
+</html>
