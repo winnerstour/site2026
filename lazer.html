@@ -9,10 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
+  
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
   
+  <!-- Mesmo CSS base do index -->
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
 :root{
@@ -31,6 +32,7 @@
   --radius:18px;
   --wrap:1280px; 
   
+  /* Cores de Categoria (Mantidas) */
   --color-rose-600: #e11d48;
   --color-teal-600: #0d9488;
   --color-indigo-600: #4f46e5;
@@ -48,13 +50,15 @@
   --color-pink-600: #db2777;
   --color-blue-800: #1e40af;
   
-  --sidebar-bg-color: #f0f4f9;
+  /* CORES DA SIDEBAR (Consistentes com o design de artigo) */
+  --sidebar-bg-color: #f0f4f9; /* Cinza claro suave */
   --sidebar-text-color: var(--text-charcoal); 
   --sidebar-muted-text-color: var(--muted);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;min-height: 100vh;}
 
+/* APLICAÇÃO DA FONTE MONTSERRAT */
 body{
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size:16px;
@@ -66,7 +70,7 @@ body{
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* HEADER MOBILE */
+/* === LAYOUT MOBILE SUPERIOR (HEADER) === */
 #mobile-header {
   display: none; 
   background: var(--bg);
@@ -102,22 +106,34 @@ a{text-decoration:none;color:inherit}
   line-height: 1;
 }
 
-/* ÍCONE WHATSAPP 22px */
+/* ÍCONE WHATSAPP (header + menu mobile) – 22px */
 .mobile-icon-btn .whatsapp-icon,
-#mobile-menu .whatsapp-icon,
-.cta-link-sidebar .whatsapp-icon {
+#mobile-menu .whatsapp-icon {
   width: 22px;
   height: 22px;
+  margin-right: 0;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#mobile-menu .whatsapp-icon { margin-right: 0; }
-.cta-link-sidebar .whatsapp-icon { margin-right: 10px; }
-
 .mobile-icon-btn .whatsapp-icon img,
-#mobile-menu .whatsapp-icon img,
+#mobile-menu .whatsapp-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* ÍCONE WHATSAPP NA SIDEBAR – 22px */
+.cta-link-sidebar .whatsapp-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .cta-link-sidebar .whatsapp-icon img {
   width: 22px;
   height: 22px;
@@ -134,7 +150,7 @@ a{text-decoration:none;color:inherit}
   line-height: 1;
 }
 
-/* MENU MOBILE */
+/* MENU MOBILE (ABRE AO CLICAR NO HAMBÚRGUER) */
 #mobile-menu {
   display: none;
 }
@@ -161,7 +177,7 @@ a{text-decoration:none;color:inherit}
   line-height: 1;
 }
 
-/* LAYOUT PRINCIPAL */
+/* LAYOUT PRINCIPAL DO GRID (Largura Total - 4 Colunas) */
 #main-grid {
   display: grid;
   grid-template-columns: 250px 1fr; 
@@ -169,7 +185,7 @@ a{text-decoration:none;color:inherit}
   margin: 0 auto; 
 }
 
-/* SIDEBAR */
+/* SIDEBAR FIXA (Esquerda) */
 #main-sidebar {
   position: sticky;
   top: 0;
@@ -196,8 +212,7 @@ a{text-decoration:none;color:inherit}
   line-height: 1.4;
   margin-bottom: 20px;
 }
-
-/* CTAs SIDEBAR */
+/* CTAS NA SIDEBAR */
 .whatsapp-cta {
   margin-top: 30px;
   display: flex;
@@ -225,13 +240,24 @@ a{text-decoration:none;color:inherit}
   margin-right: 10px;
   line-height: 1;
 }
+.cta-link-sidebar.coming-soon {
+  color: var(--sidebar-muted-text-color) !important; 
+  text-decoration: line-through; 
+  pointer-events: none; 
+  cursor: default;
+}
+.cta-link-sidebar.coming-soon:hover {
+  color: var(--sidebar-muted-text-color) !important;
+  transform: none;
+}
 
-/* CONTEÚDO PRINCIPAL */
+
+/* CONTEÚDO PRINCIPAL (Direita - Rolável) */
 #main-content {
   padding: 20px 20px 20px 20px; 
 }
 
-/* ABAS */
+/* ABAS DE CATEGORIA (Topo do Conteúdo Principal) */
 #category-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -250,7 +276,7 @@ a{text-decoration:none;color:inherit}
 }
 .tab-link.active {
   color: var(--text-charcoal);
-  border-bottom-color: var(--brand);
+  border-bottom: 2px solid var(--brand);
 }
 
 /* GRID DE CARDS */
@@ -261,7 +287,7 @@ a{text-decoration:none;color:inherit}
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* CARD – borda / sombra padrão + altura 260px */
+/* CARD */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -272,126 +298,59 @@ a{text-decoration:none;color:inherit}
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 260px;
-  position: relative;
+  height: 100%;
 }
 .event-card:hover{
   box-shadow:var(--shadow-hover);
   background: var(--card-hover-bg); 
 }
-
-/* Imagem preenchendo tudo */
 .card-media {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  background: #000; 
+  height: 140px; 
+  background: #fff; 
   overflow: hidden;
+  flex-shrink: 0;
 }
 .card-media img {
   width: 100%;
   height: 100%;
   object-fit: cover; 
-  display: block;
 }
-
-/* Conteúdo (gradiente só no hover) */
 .card-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  padding: 16px 18px 18px 18px;
+  padding: 15px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  color: #ffffff;
-  background: none;
-  transition: background .2s ease, transform .2s ease;
 }
-.event-card:hover .card-content {
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.70) 0%,
-    rgba(0,0,0,0.40) 45%,
-    rgba(0,0,0,0.65) 100%
-  );
-}
-
-/* Título */
 .card-title {
   font-weight: 900 !important;
   font-size: 1rem;
   line-height: 1.3;
   margin-bottom: 5px;
-  color: #ffffff !important;
+  color: var(--text-charcoal) !important;
   text-transform: uppercase; 
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
-
-/* Footer + botão */
-.card-footer {
-  margin-top: auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-  transform: translateY(16px);
-  opacity: 0;
-  transition: transform .2s ease, opacity .2s ease;
-}
-.event-card:hover .card-footer {
-  transform: translateY(0);
-  opacity: 1;
-}
-.card-cta {
-  border-radius: 999px;
-  border: 1px solid #ffffff;
-  padding: 6px 18px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  background: transparent;
-  color: #ffffff;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
-}
-
-/* CARD DE ERRO (quando o JSON não carrega) */
-.error-card {
-  height: auto;
-}
-.error-card-content {
-  position: relative;
-  z-index: 1;
-  padding: 18px 22px 20px 22px;
-  background: var(--card);
-  color: var(--text-charcoal);
-}
-.error-title {
-  font-weight: 800;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  margin: 0 0 8px 0;
-}
-.error-text {
-  font-size: 0.9rem;
+.card-subtitle {
+  font-size: 14px;
   color: var(--muted);
-  margin: 0;
+}
+.card-chip {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  text-transform: uppercase; 
+}
+.card-chip.date-chip {
+  background: var(--brand-shadow) !important;
+  color: #fff !important;
 }
 
-/* Em telas touch, o botão fica sempre visível */
-@media (hover: none) {
-  .card-footer {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-/* RESPONSIVO */
+/* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   body{
-    padding-top:56px;
+    padding-top:56px; /* compensa header fixo */
   }
   #mobile-header {
     display: flex; 
@@ -423,40 +382,42 @@ a{text-decoration:none;color:inherit}
     padding: 20px;
   }
   #events-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS NO TABLET */
   }
 }
 @media (max-width: 640px) {
   #events-grid {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* 1 COLUNA NO MOBILE */
   }
 }
   </style>
 </head>
 <body>
 
-<!-- CABEÇALHO MOBILE -->
+<!-- CABEÇALHO MOBILE FIXO -->
 <div id="mobile-header">
   <span class="logo">WINNERS TOUR</span>
   <div class="mobile-header-actions">
+    <!-- Botão WhatsApp -->
     <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
-       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
-       target="_blank" rel="noopener">
+       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp" target="_blank" rel="noopener">
       <span class="whatsapp-icon">
         <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
       </span>
     </a>
+    <!-- Botão Loja Virtual -->
     <a href="https://www.comprarviagem.com.br/winnerstour/" 
-       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
-       target="_blank" rel="noopener">
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour" target="_blank" rel="noopener">
       <span class="icon">🛒</span>
     </a>
+    <!-- Botão Menu Hambúrguer -->
     <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
       ☰
     </button>
   </div>
 </div>
 
+<!-- MENU MOBILE – NOVA ORDEM -->
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
   <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos."
      target="_blank" rel="noopener">
@@ -470,21 +431,30 @@ a{text-decoration:none;color:inherit}
     <span class="icon">🛒</span>
     <span>Loja Virtual</span>
   </a>
-  <a href="index.html">
-    <span class="icon">🗓️</span>
-    <span>Eventos</span>
+  <a href="https://www.google.com/travel/flights/deals"
+     target="_blank" rel="noopener">
+    <span class="icon">✈️</span>
+    <span>Promoções</span>
   </a>
   <a href="apps.html">
     <span class="icon">⚙️</span>
     <span>Aplicativos</span>
   </a>
-  <a href="lazer.html">
-    <span class="icon">🏖️</span>
-    <span>Lazer</span>
-  </a>
   <a href="corporativo.html">
     <span class="icon">💼</span>
     <span>Corporativo</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="grupos.html">
+    <span class="icon">👥</span>
+    <span>Grupos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
   </a>
 </nav>
 
@@ -511,20 +481,30 @@ a{text-decoration:none;color:inherit}
           <span class="icon">🛒</span> LOJA VIRTUAL
         </a>
 
-        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
-          <span class="icon">🗓️</span> EVENTOS
+        <a href="https://www.google.com/travel/flights/deals" 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Ver promoções de passagens aéreas.">
+          <span class="icon">✈️</span> PROMOÇÕES
         </a>
-        
+
         <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
           <span class="icon">⚙️</span> APLICATIVOS
         </a>
         
-        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-          <span class="icon">🏖️</span> LAZER
-        </a>
-        
         <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
           <span class="icon">💼</span> CORPORATIVO
+        </a>
+
+        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+          <span class="icon">🗓️</span> EVENTOS
+        </a>
+        
+        <a href="grupos.html" class="cta-link-sidebar" aria-label="Viagens em grupo.">
+          <span class="icon">👥</span> GRUPOS
+        </a>
+        
+        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+          <span class="icon">🏖️</span> LAZER
         </a>
       </div>
     </div>
@@ -532,22 +512,25 @@ a{text-decoration:none;color:inherit}
   
   <!-- CONTEÚDO PRINCIPAL -->
   <div id="main-content">
-    <div id="category-tabs"></div>
+        
+    <div id="category-tabs">
+    </div>
+        
     <div id="events-grid">
       <div class="event-card">
-        <div class="card-media">
-          <img src="assets/lazer/placeholder.webp" alt="Carregando">
-        </div>
+        <div class="card-media"></div>
         <div class="card-content">
-          <p class="card-title">Carregando pacotes de lazer...</p>
-          <div class="card-footer">
-            <span class="card-cta">Saiba mais</span>
-          </div>
+          <span class="card-chip date-chip">Carregando...</span>
+          <p class="card-title">Lazer e Férias</p>
+          <p class="card-subtitle">Carregando pacotes...</p>
         </div>
       </div>
     </div>
+        
   </div>
 </div>
+
+<script src="./render_lazer.js"></script>
 
 <script>
   (function() {
@@ -565,187 +548,6 @@ a{text-decoration:none;color:inherit}
       });
     }
   })();
-</script>
-
-<script>
-const LAZER_JSON_URL = './lazer/index.json';
-const PRIMARY_MACRO = 'Hotéis';
-
-function normalizarCategoriaMacro(valor) {
-  if (!valor) return '';
-  return valor
-    .toString()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim();
-}
-
-function sortMacros(macros) {
-  const primaryNorm = normalizarCategoriaMacro(PRIMARY_MACRO);
-  return macros.sort((a, b) => {
-    const na = normalizarCategoriaMacro(a);
-    const nb = normalizarCategoriaMacro(b);
-
-    const isPrimaryA = na === primaryNorm;
-    const isPrimaryB = nb === primaryNorm;
-
-    if (isPrimaryA && !isPrimaryB) return -1;
-    if (!isPrimaryA && isPrimaryB) return 1;
-
-    return a.localeCompare(b, 'pt-BR');
-  });
-}
-
-function createCard(item) {
-  const title = item.title || 'Pacote sem título';
-  const slug = item.slug || '';
-  const macro = item.category_macro || 'Outros';
-
-  let src = item.card_image;
-  if (!src) {
-    if (slug) {
-      src = 'assets/lazer/' + slug + '.webp';
-    } else {
-      src = 'assets/lazer/placeholder.webp';
-    }
-  }
-
-  const hasLink = !!item.href;
-  const wrapperTag = hasLink ? 'a' : 'div';
-  const card = document.createElement(wrapperTag);
-  card.className = 'event-card';
-  if (hasLink) {
-    card.href = item.href;
-    card.setAttribute('aria-label', title);
-  }
-  card.dataset.macro = macro;
-
-  const media = document.createElement('div');
-  media.className = 'card-media';
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.src = src;
-  img.alt = title;
-  media.appendChild(img);
-
-  const content = document.createElement('div');
-  content.className = 'card-content';
-
-  const t = document.createElement('p');
-  t.className = 'card-title';
-  t.textContent = title;
-
-  const footer = document.createElement('div');
-  footer.className = 'card-footer';
-  const cta = document.createElement('span');
-  cta.className = 'card-cta';
-  cta.textContent = 'Saiba mais';
-  footer.appendChild(cta);
-
-  content.appendChild(t);
-  content.appendChild(footer);
-
-  card.appendChild(media);
-  card.appendChild(content);
-
-  return card;
-}
-
-function renderLazer(data) {
-  const tabsContainer = document.getElementById('category-tabs');
-  const grid = document.getElementById('events-grid');
-  if (!tabsContainer || !grid) return;
-
-  grid.innerHTML = '';
-
-  const macrosSet = new Set();
-  data.forEach(item => {
-    const macro = item.category_macro || 'Outros';
-    macrosSet.add(macro);
-  });
-
-  let macros = Array.from(macrosSet);
-  macros = sortMacros(macros);
-
-  const allTab = document.createElement('span');
-  allTab.className = 'tab-link active';
-  allTab.textContent = 'Todos';
-  allTab.dataset.macro = 'TODOS';
-  tabsContainer.appendChild(allTab);
-
-  macros.forEach(macro => {
-    const span = document.createElement('span');
-    span.className = 'tab-link';
-    span.textContent = macro;
-    span.dataset.macro = macro;
-    tabsContainer.appendChild(span);
-  });
-
-  data.forEach(item => {
-    const card = createCard(item);
-    grid.appendChild(card);
-  });
-
-  tabsContainer.addEventListener('click', (ev) => {
-    const target = ev.target;
-    if (!target.classList.contains('tab-link')) return;
-
-    const macroSel = target.dataset.macro;
-
-    tabsContainer.querySelectorAll('.tab-link').forEach(tab => {
-      tab.classList.toggle('active', tab === target);
-    });
-
-    const cards = grid.querySelectorAll('.event-card');
-    cards.forEach(card => {
-      if (macroSel === 'TODOS') {
-        card.style.display = '';
-      } else {
-        const cm = card.dataset.macro || 'Outros';
-        card.style.display = (cm === macroSel) ? '' : 'none';
-      }
-    });
-  });
-}
-
-fetch(LAZER_JSON_URL)
-  .then(resp => {
-    if (!resp.ok) throw new Error('Erro ao carregar ' + LAZER_JSON_URL);
-    return resp.json();
-  })
-  .then(json => {
-    if (!Array.isArray(json)) {
-      console.error('JSON de lazer não é um array', json);
-      return;
-    }
-    renderLazer(json);
-  })
-  .catch(err => {
-    console.error(err);
-    const grid = document.getElementById('events-grid');
-    if (grid) {
-      grid.innerHTML = '';
-      const fallback = document.createElement('div');
-      fallback.className = 'event-card error-card';
-
-      const content = document.createElement('div');
-      content.className = 'error-card-content';
-
-      const t = document.createElement('p');
-      t.className = 'error-title';
-      t.textContent = 'Não foi possível carregar os pacotes de lazer.';
-
-      const s = document.createElement('p');
-      s.className = 'error-text';
-      s.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de array.';
-
-      content.appendChild(t);
-      content.appendChild(s);
-      fallback.appendChild(content);
-      grid.appendChild(fallback);
-    }
-  });
 </script>
 
 </body>
