@@ -258,7 +258,7 @@ a{text-decoration:none;color:inherit}
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* CARD – ALTURA FIXA 260px, IMAGEM PREENCHENDO TUDO */
+/* CARD – borda / sombra iguais ao arquivo antigo + altura 260px */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -266,17 +266,18 @@ a{text-decoration:none;color:inherit}
   overflow: hidden;
   transition: all .2s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 260px;
-  position: relative;
+  height: 260px;           /* altura fixa */
+  position: relative;      /* necessário pro overlay */
 }
 .event-card:hover{
   box-shadow:var(--shadow-hover);
   background: var(--card-hover-bg); 
-  transform: translateY(-2px);
 }
 
-/* Imagem */
+/* Imagem preenchendo tudo */
 .card-media {
   position: absolute;
   inset: 0;
@@ -291,7 +292,7 @@ a{text-decoration:none;color:inherit}
   display: block;
 }
 
-/* Conteúdo em overlay (sem escurecer por padrão) */
+/* Conteúdo (gradiente só no hover) */
 .card-content {
   position: relative;
   z-index: 1;
@@ -302,11 +303,9 @@ a{text-decoration:none;color:inherit}
   justify-content: flex-start;
   align-items: flex-start;
   color: #ffffff;
-  background: none; /* sem gradiente aqui */
+  background: none;
   transition: background .2s ease, transform .2s ease;
 }
-
-/* Gradiente escurecido APENAS no hover */
 .event-card:hover .card-content {
   background: linear-gradient(
     180deg,
@@ -338,12 +337,10 @@ a{text-decoration:none;color:inherit}
   opacity: 0;
   transition: transform .2s ease, opacity .2s ease;
 }
-
 .event-card:hover .card-footer {
   transform: translateY(0);
   opacity: 1;
 }
-
 .card-cta {
   border-radius: 999px;
   border: 1px solid #ffffff;
@@ -607,11 +604,9 @@ function createCard(item) {
 
   const footer = document.createElement('div');
   footer.className = 'card-footer';
-
   const cta = document.createElement('span');
   cta.className = 'card-cta';
   cta.textContent = 'Saiba mais';
-
   footer.appendChild(cta);
 
   content.appendChild(t);
@@ -699,12 +694,6 @@ fetch(LAZER_JSON_URL)
       grid.innerHTML = '';
       const fallback = document.createElement('div');
       fallback.className = 'event-card';
-      const media = document.createElement('div');
-      media.className = 'card-media';
-      const img = document.createElement('img');
-      img.src = 'assets/lazer/placeholder.webp';
-      img.alt = 'Erro';
-      media.appendChild(img);
       const content = document.createElement('div');
       content.className = 'card-content';
       const t = document.createElement('p');
@@ -714,11 +703,10 @@ fetch(LAZER_JSON_URL)
       footer.className = 'card-footer';
       const cta = document.createElement('span');
       cta.className = 'card-cta';
-      cta.textContent = 'Tentar novamente depois';
+      cta.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de array.';
       footer.appendChild(cta);
       content.appendChild(t);
       content.appendChild(footer);
-      fallback.appendChild(media);
       fallback.appendChild(content);
       grid.appendChild(fallback);
     }
