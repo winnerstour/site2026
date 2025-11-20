@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -258,7 +261,7 @@ a{text-decoration:none;color:inherit}
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* CARD – borda / sombra iguais ao arquivo antigo + altura 260px */
+/* CARD – borda / sombra padrão + altura 260px */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -269,8 +272,8 @@ a{text-decoration:none;color:inherit}
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 260px;           /* altura fixa */
-  position: relative;      /* necessário pro overlay */
+  height: 260px;
+  position: relative;
 }
 .event-card:hover{
   box-shadow:var(--shadow-hover);
@@ -354,6 +357,29 @@ a{text-decoration:none;color:inherit}
   box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
 }
 
+/* CARD DE ERRO (quando o JSON não carrega) */
+.error-card {
+  height: auto;
+}
+.error-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 18px 22px 20px 22px;
+  background: var(--card);
+  color: var(--text-charcoal);
+}
+.error-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+.error-text {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+
 /* Em telas touch, o botão fica sempre visível */
 @media (hover: none) {
   .card-footer {
@@ -414,13 +440,15 @@ a{text-decoration:none;color:inherit}
   <span class="logo">WINNERS TOUR</span>
   <div class="mobile-header-actions">
     <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
-       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp">
+       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
+       target="_blank" rel="noopener">
       <span class="whatsapp-icon">
         <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
       </span>
     </a>
     <a href="https://www.comprarviagem.com.br/winnerstour/" 
-       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour">
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
+       target="_blank" rel="noopener">
       <span class="icon">🛒</span>
     </a>
     <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
@@ -430,13 +458,15 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
-  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos."
+     target="_blank" rel="noopener">
     <span class="whatsapp-icon">
       <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
     </span>
     <span>WhatsApp</span>
   </a>
-  <a href="https://www.comprarviagem.com.br/winnerstour/">
+  <a href="https://www.comprarviagem.com.br/winnerstour/"
+     target="_blank" rel="noopener">
     <span class="icon">🛒</span>
     <span>Loja Virtual</span>
   </a>
@@ -469,11 +499,15 @@ a{text-decoration:none;color:inherit}
       </p>
       
       <div class="whatsapp-cta">
-        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
           <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
         </a>
 
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+        <a href="https://www.comprarviagem.com.br/winnerstour/" 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
           <span class="icon">🛒</span> LOJA VIRTUAL
         </a>
 
@@ -693,20 +727,21 @@ fetch(LAZER_JSON_URL)
     if (grid) {
       grid.innerHTML = '';
       const fallback = document.createElement('div');
-      fallback.className = 'event-card';
+      fallback.className = 'event-card error-card';
+
       const content = document.createElement('div');
-      content.className = 'card-content';
+      content.className = 'error-card-content';
+
       const t = document.createElement('p');
-      t.className = 'card-title';
+      t.className = 'error-title';
       t.textContent = 'Não foi possível carregar os pacotes de lazer.';
-      const footer = document.createElement('div');
-      footer.className = 'card-footer';
-      const cta = document.createElement('span');
-      cta.className = 'card-cta';
-      cta.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de array.';
-      footer.appendChild(cta);
+
+      const s = document.createElement('p');
+      s.className = 'error-text';
+      s.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de array.';
+
       content.appendChild(t);
-      content.appendChild(footer);
+      content.appendChild(s);
       fallback.appendChild(content);
       grid.appendChild(fallback);
     }
