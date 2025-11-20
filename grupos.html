@@ -1,1 +1,427 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title>WinnersTour — Grupos</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+/* VARIÁVEIS DE COR E ESTILO */
+:root{
+  --brand:#f97316; 
+  --brand-shadow:#C2410C; 
+  --wa:#25D366; 
+  --wa-hover:#1AC656; 
+  --wa-ring:#128C7E; 
+  --text-charcoal:#111827; 
+  --muted:#6b7280;
+  --bg:#fff;
+  --card:#fff;
+  --shadow-base:0 2px 5px rgba(2,8,23,.05); 
+  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
+  --card-hover-bg:#f5f5f5; 
+  --radius:18px;
+  --wrap:1280px; 
+  
+  /* CORES DA SIDEBAR */
+  --sidebar-bg-color: #f0f4f9;
+  --sidebar-text-color: var(--text-charcoal); 
+  --sidebar-muted-text-color: var(--muted);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height: 100vh;}
 
+body{
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text-charcoal);
+  background:var(--bg);
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* HEADER MOBILE */
+#mobile-header {
+  display: none; 
+  background: var(--bg);
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: static;
+  z-index: 1000;
+}
+#mobile-header .logo {
+  font-weight: 900;
+  font-size: 1.1rem; 
+  color: var(--brand);
+}
+.mobile-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mobile-icon-btn {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.mobile-icon-btn .icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* ÍCONE WHATSAPP 22px (header + menu mobile + sidebar) */
+.mobile-icon-btn .whatsapp-icon,
+#mobile-menu .whatsapp-icon,
+.cta-link-sidebar .whatsapp-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#mobile-menu .whatsapp-icon { margin-right: 0; }
+.cta-link-sidebar .whatsapp-icon { margin-right: 10px; }
+
+.mobile-icon-btn .whatsapp-icon img,
+#mobile-menu .whatsapp-icon img,
+.cta-link-sidebar .whatsapp-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+#mobile-header .menu-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-charcoal);
+  border: none;
+  background: transparent;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* MENU MOBILE */
+#mobile-menu {
+  display: none;
+}
+#mobile-menu.open {
+  display: block;
+}
+#mobile-menu {
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+#mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+#mobile-menu .icon {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+/* LAYOUT PRINCIPAL DO GRID */
+#main-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr; 
+  min-height: 100vh;
+  margin: 0 auto; 
+}
+
+/* SIDEBAR FIXA (Esquerda) */
+#main-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 30px 20px 30px 20px; 
+  background: var(--sidebar-bg-color); 
+  border-right: 1px solid rgba(0, 0, 0, 0.1); 
+  color: var(--sidebar-text-color);
+}
+.agency-info {
+  max-width: 100%; 
+}
+.agency-info h1 {
+  font-weight: 900;
+  font-size: 1.5rem; 
+  margin-bottom: 5px;
+  line-height: 1.1;
+  color: var(--brand);
+}
+.agency-info p {
+  font-size: 14px;
+  color: var(--sidebar-muted-text-color); 
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* CTAs NA SIDEBAR */
+.whatsapp-cta {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cta-link-sidebar {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sidebar-text-color); 
+  transition: all 0.2s ease;
+  text-decoration: none;
+  padding: 2px 0;
+}
+.cta-link-sidebar:hover {
+  color: var(--brand); 
+  transform: translateX(3px); 
+}
+.cta-link-sidebar .icon {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  margin-right: 10px;
+  line-height: 1;
+}
+
+/* CONTEÚDO PRINCIPAL */
+#main-content {
+  padding: 20px 20px 20px 20px; 
+}
+
+/* TÍTULO E TEXTO DA PÁGINA GRUPOS */
+.page-title {
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin: 0 0 10px 0;
+}
+.page-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+  body{
+    padding-top:56px;
+  }
+  #mobile-header {
+    display: flex; 
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+  }
+  #mobile-menu {
+    position: fixed;
+    top:56px;
+    left:0;
+    right:0;
+    z-index: 999;
+  }
+  #main-grid {
+    grid-template-columns: 1fr; 
+    min-height: auto;
+  }
+  #main-sidebar {
+    display: none; 
+    position: static;
+    height: auto;
+    padding: 20px;
+    border-right: none;
+    background: var(--bg);
+  }
+  #main-content {
+    padding: 20px;
+  }
+}
+@media (max-width: 640px) {
+  #main-content {
+    padding: 16px;
+  }
+}
+  </style>
+</head>
+<body>
+
+<!-- CABEÇALHO MOBILE FIXO -->
+<div id="mobile-header">
+  <span class="logo">WINNERS TOUR</span>
+  <div class="mobile-header-actions">
+    <!-- Botão WhatsApp (nova aba) -->
+    <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20em%20grupo." 
+       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
+       target="_blank" rel="noopener">
+      <span class="whatsapp-icon">
+        <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+      </span>
+    </a>
+    <!-- Botão Loja Virtual (nova aba) -->
+    <a href="https://www.comprarviagem.com.br/winnerstour/" 
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
+       target="_blank" rel="noopener">
+      <span class="icon">🛒</span>
+    </a>
+    <!-- Botão Menu Hambúrguer -->
+    <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
+      ☰
+    </button>
+  </div>
+</div>
+
+<!-- MENU MOBILE — ORDEM DEFINIDA -->
+<nav id="mobile-menu" aria-label="Menu de navegação mobile">
+  <!-- WhatsApp (nova aba) -->
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20em%20grupo."
+     target="_blank" rel="noopener">
+    <span class="whatsapp-icon">
+      <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+    </span>
+    <span>WhatsApp</span>
+  </a>
+  <!-- Loja Virtual (nova aba) -->
+  <a href="https://www.comprarviagem.com.br/winnerstour/"
+     target="_blank" rel="noopener">
+    <span class="icon">🛒</span>
+    <span>Loja Virtual</span>
+  </a>
+  <!-- Promoções (nova aba) -->
+  <a href="https://www.google.com/travel/flights/deals"
+     target="_blank" rel="noopener">
+    <span class="icon">✈️</span>
+    <span>Promoções</span>
+  </a>
+  <!-- Internos -->
+  <a href="apps.html">
+    <span class="icon">⚙️</span>
+    <span>Aplicativos</span>
+  </a>
+  <a href="corporativo.html">
+    <span class="icon">💼</span>
+    <span>Corporativo</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="grupos.html">
+    <span class="icon">👥</span>
+    <span>Grupos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
+  </a>
+</nav>
+
+<div id="main-grid">
+  
+  <!-- SIDEBAR -->
+  <div id="main-sidebar">
+    <div class="agency-info">
+      <h1>WINNERS TOUR</h1>
+      <p>
+        Desde 2003, organizamos viagens para empresas, equipes e grupos que participam de feiras, congressos, eventos de incentivo e lazer. 
+        Para solicitações específicas de grupos, fale com nossa equipe pelo WhatsApp ou use as opções abaixo.
+      </p>
+      
+      <div class="whatsapp-cta">
+        <!-- WhatsApp (nova aba) -->
+        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20em%20grupo." 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+          <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
+        </a>
+
+        <!-- Loja Virtual (nova aba) -->
+        <a href="https://www.comprarviagem.com.br/winnerstour/" 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+          <span class="icon">🛒</span> LOJA VIRTUAL
+        </a>
+
+        <!-- Promoções (nova aba) -->
+        <a href="https://www.google.com/travel/flights/deals" 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Ver promoções de passagens aéreas.">
+          <span class="icon">✈️</span> PROMOÇÕES
+        </a>
+
+        <!-- Internos -->
+        <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
+          <span class="icon">⚙️</span> APLICATIVOS
+        </a>
+        
+        <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
+          <span class="icon">💼</span> CORPORATIVO
+        </a>
+
+        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+          <span class="icon">🗓️</span> EVENTOS
+        </a>
+        
+        <a href="grupos.html" class="cta-link-sidebar" aria-label="Viagens em grupo.">
+          <span class="icon">👥</span> GRUPOS
+        </a>
+        
+        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+          <span class="icon">🏖️</span> LAZER
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- CONTEÚDO PRINCIPAL (TEMPLATE VAZIO) -->
+  <div id="main-content">
+    <h2 class="page-title">GRUPOS</h2>
+    <p class="page-subtitle">
+      Página em desenvolvimento. Por favor, contate o WhatsApp para falar com a nossa equipe sobre a sua solicitação de grupos.
+    </p>
+  </div>
+</div>
+
+<script>
+  // MENU MOBILE (mesma lógica das outras páginas)
+  (function() {
+    var toggle = document.getElementById('mobile-menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function() {
+        menu.classList.toggle('open');
+      });
+      var links = menu.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.remove('open');
+        });
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
