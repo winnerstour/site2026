@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="https://static.onertravel.com/widget/search/production/styles.css">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
   
   <style>
 /* VARIÁVEIS DE COR E ESTILO */
@@ -396,16 +399,18 @@ a{text-decoration:none;color:inherit}
 <div id="mobile-header">
   <span class="logo">WINNERS TOUR</span>
   <div class="mobile-header-actions">
-    <!-- Botão WhatsApp -->
+    <!-- Botão WhatsApp (nova aba) -->
     <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
-       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp">
+       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
+       target="_blank" rel="noopener">
       <span class="whatsapp-icon">
         <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
       </span>
     </a>
-    <!-- Botão Loja Virtual -->
+    <!-- Botão Loja Virtual (nova aba) -->
     <a href="https://www.comprarviagem.com.br/winnerstour/" 
-       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour">
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
+       target="_blank" rel="noopener">
       <span class="icon">🛒</span>
     </a>
     <!-- Botão Menu Hambúrguer -->
@@ -415,33 +420,48 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- MENU MOBILE -->
+<!-- MENU MOBILE – NOVA ORDEM -->
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
-  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos.">
+  <!-- WhatsApp (nova aba) -->
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos."
+     target="_blank" rel="noopener">
     <span class="whatsapp-icon">
       <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
     </span>
     <span>WhatsApp</span>
   </a>
-  <a href="https://www.comprarviagem.com.br/winnerstour/">
+  <!-- Loja Virtual (nova aba) -->
+  <a href="https://www.comprarviagem.com.br/winnerstour/"
+     target="_blank" rel="noopener">
     <span class="icon">🛒</span>
     <span>Loja Virtual</span>
+  </a>
+  <!-- Promoções (nova aba) -->
+  <a href="https://www.google.com/travel/flights/deals"
+     target="_blank" rel="noopener">
+    <span class="icon">✈️</span>
+    <span>Promoções</span>
+  </a>
+  <!-- Internos -->
+  <a href="apps.html">
+    <span class="icon">⚙️</span>
+    <span>Aplicativos</span>
+  </a>
+  <a href="corporativo.html">
+    <span class="icon">💼</span>
+    <span>Corporativo</span>
   </a>
   <a href="index.html">
     <span class="icon">🗓️</span>
     <span>Eventos</span>
   </a>
-  <a href="apps.html">
-    <span class="icon">⚙️</span>
-    <span>Aplicativos</span>
+  <a href="grupos.html">
+    <span class="icon">👥</span>
+    <span>Grupos</span>
   </a>
   <a href="lazer.html">
     <span class="icon">🏖️</span>
     <span>Lazer</span>
-  </a>
-  <a href="corporativo.html">
-    <span class="icon">💼</span>
-    <span>Corporativo</span>
   </a>
 </nav>
 
@@ -455,29 +475,46 @@ a{text-decoration:none;color:inherit}
       </p>
       
       <div class="whatsapp-cta">
-         <!-- WHATSAPP COM LOGO IMAGEM -->
-         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." target="_blank" class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+         <!-- WHATSAPP COM LOGO IMAGEM (nova aba) -->
+         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
+            target="_blank" rel="noopener"
+            class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
             <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
          </a>
 
-         <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
+         <!-- LOJA VIRTUAL (nova aba) -->
+         <a href="https://www.comprarviagem.com.br/winnerstour/" 
+            target="_blank" rel="noopener"
+            class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
             <span class="icon">🛒</span> LOJA VIRTUAL
+         </a>
+
+         <!-- PROMOÇÕES (nova aba) -->
+         <a href="https://www.google.com/travel/flights/deals" 
+            target="_blank" rel="noopener"
+            class="cta-link-sidebar" aria-label="Ver promoções de passagens aéreas.">
+            <span class="icon">✈️</span> PROMOÇÕES
+         </a>
+
+         <!-- INTERNOS -->
+         <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
+            <span class="icon">⚙️</span> APLICATIVOS
+         </a>
+         
+         <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
+            <span class="icon">💼</span> CORPORATIVO
          </a>
 
          <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
             <span class="icon">🗓️</span> EVENTOS
          </a>
-         
-         <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
-            <span class="icon">⚙️</span> APLICATIVOS
+
+         <a href="grupos.html" class="cta-link-sidebar" aria-label="Viagens em grupo.">
+            <span class="icon">👥</span> GRUPOS
          </a>
          
          <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
             <span class="icon">🏖️</span> LAZER
-         </a>
-         
-         <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
-            <span class="icon">💼</span> CORPORATIVO
          </a>
       </div>
     </div>
@@ -507,6 +544,7 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 </div>
+
 <script type="text/javascript" src="https://static.onertravel.com/widget/search/production/widget-befly.js">
 </script>
 
