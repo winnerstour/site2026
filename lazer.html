@@ -261,7 +261,7 @@ a{text-decoration:none;color:inherit}
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* CARD – borda / sombra padrão + altura 260px */
+/* CARD – 260px, imagem full */
 .event-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -357,7 +357,7 @@ a{text-decoration:none;color:inherit}
   box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
 }
 
-/* CARD DE ERRO (quando o JSON não carrega) */
+/* CARD DE ERRO */
 .error-card {
   height: auto;
 }
@@ -439,6 +439,7 @@ a{text-decoration:none;color:inherit}
 <div id="mobile-header">
   <span class="logo">WINNERS TOUR</span>
   <div class="mobile-header-actions">
+    <!-- WhatsApp (nova aba) -->
     <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
        class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
        target="_blank" rel="noopener">
@@ -446,17 +447,20 @@ a{text-decoration:none;color:inherit}
         <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
       </span>
     </a>
+    <!-- Loja Virtual (nova aba) -->
     <a href="https://www.comprarviagem.com.br/winnerstour/" 
        class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
        target="_blank" rel="noopener">
       <span class="icon">🛒</span>
     </a>
+    <!-- Menu -->
     <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
       ☰
     </button>
   </div>
 </div>
 
+<!-- MENU MOBILE – NOVA ORDEM -->
 <nav id="mobile-menu" aria-label="Menu de navegação mobile">
   <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos."
      target="_blank" rel="noopener">
@@ -470,21 +474,30 @@ a{text-decoration:none;color:inherit}
     <span class="icon">🛒</span>
     <span>Loja Virtual</span>
   </a>
-  <a href="index.html">
-    <span class="icon">🗓️</span>
-    <span>Eventos</span>
+  <a href="https://www.google.com/travel/flights/deals"
+     target="_blank" rel="noopener">
+    <span class="icon">✈️</span>
+    <span>Promoções</span>
   </a>
   <a href="apps.html">
     <span class="icon">⚙️</span>
     <span>Aplicativos</span>
   </a>
-  <a href="lazer.html">
-    <span class="icon">🏖️</span>
-    <span>Lazer</span>
-  </a>
   <a href="corporativo.html">
     <span class="icon">💼</span>
     <span>Corporativo</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="grupos.html">
+    <span class="icon">👥</span>
+    <span>Grupos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
   </a>
 </nav>
 
@@ -499,32 +512,46 @@ a{text-decoration:none;color:inherit}
       </p>
       
       <div class="whatsapp-cta">
+        <!-- WhatsApp -->
         <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
            target="_blank" rel="noopener"
            class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
           <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
         </a>
 
+        <!-- Loja Virtual -->
         <a href="https://www.comprarviagem.com.br/winnerstour/" 
            target="_blank" rel="noopener"
            class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
           <span class="icon">🛒</span> LOJA VIRTUAL
         </a>
 
-        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
-          <span class="icon">🗓️</span> EVENTOS
+        <!-- Promoções -->
+        <a href="https://www.google.com/travel/flights/deals" 
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Ver promoções de passagens aéreas.">
+          <span class="icon">✈️</span> PROMOÇÕES
         </a>
-        
+
+        <!-- Internos -->
         <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
           <span class="icon">⚙️</span> APLICATIVOS
         </a>
         
-        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-          <span class="icon">🏖️</span> LAZER
-        </a>
-        
         <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
           <span class="icon">💼</span> CORPORATIVO
+        </a>
+
+        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
+          <span class="icon">🗓️</span> EVENTOS
+        </a>
+
+        <a href="grupos.html" class="cta-link-sidebar" aria-label="Viagens em grupo.">
+          <span class="icon">👥</span> GRUPOS
+        </a>
+        
+        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
+          <span class="icon">🏖️</span> LAZER
         </a>
       </div>
     </div>
@@ -549,6 +576,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
+<!-- MENU MOBILE JS -->
 <script>
   (function() {
     var toggle = document.getElementById('mobile-menu-toggle');
@@ -567,6 +595,7 @@ a{text-decoration:none;color:inherit}
   })();
 </script>
 
+<!-- SCRIPT LÓGICA LAZER -->
 <script>
 const LAZER_JSON_URL = './lazer/index.json';
 const PRIMARY_MACRO = 'Hotéis';
@@ -715,11 +744,20 @@ fetch(LAZER_JSON_URL)
     return resp.json();
   })
   .then(json => {
-    if (!Array.isArray(json)) {
-      console.error('JSON de lazer não é um array', json);
-      return;
+    let data;
+    if (Array.isArray(json)) {
+      data = json;
+    } else if (json && typeof json === 'object') {
+      data = Object.values(json);   // aceita JSON em formato objeto
+    } else {
+      throw new Error('Formato inválido do JSON de lazer.');
     }
-    renderLazer(json);
+
+    if (!data.length) {
+      throw new Error('Lista de pacotes de lazer vazia.');
+    }
+
+    renderLazer(data);
   })
   .catch(err => {
     console.error(err);
@@ -738,7 +776,7 @@ fetch(LAZER_JSON_URL)
 
       const s = document.createElement('p');
       s.className = 'error-text';
-      s.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de array.';
+      s.textContent = 'Verifique se o arquivo lazer/index.json existe e está em formato de lista ou objeto.';
 
       content.appendChild(t);
       content.appendChild(s);
