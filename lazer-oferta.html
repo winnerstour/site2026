@@ -6,275 +6,216 @@
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
   <title id="pageTitle">Oferta de Lazer — WinnersTour</title>
 
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Montserrat para logo / navegação | Open Sans para o artigo -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
 
-  <!-- Favicon -->
+  <!-- Favicon (se desejar usar) -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
 
   <style>
-    /* VARIÁVEIS DE COR E ESTILO */
     :root{
       --brand:#f97316;
-      --brand-shadow:#C2410C;
-      --text-charcoal:#111827;
-      --muted:#6b7280;
+      --brand-shadow:#c2410c;
       --bg:#f9fafb;
-      --max-content-width: 880px; /* largura máxima do conteúdo */
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:1120px;
     }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;}
     html,body{margin:0;padding:0;min-height:100vh;}
-
     body{
       font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      font-size:16px;
-      line-height:1.6;
-      color:var(--text-charcoal);
       background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
-
     a{text-decoration:none;color:inherit;}
 
-    /* HEADER SUPERIOR (DESKTOP + MOBILE) */
-    #main-header{
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{
+      background:var(--brand);
+      color:#fff;
+      min-height:80vh;
       display:flex;
-      background:#fff;
-      padding:10px 20px;
-      border-bottom:1px solid rgba(0,0,0,0.08);
+      flex-direction:column;
+      padding:18px 18px 52px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
       align-items:center;
       justify-content:space-between;
-      max-width:calc(var(--max-content-width) + 200px);
-      margin:0 auto;
-      position:sticky;
-      top:0;
-      z-index:50;
+      margin-bottom:32px;
     }
-    #main-header .logo{
+    .hero-logo{
       font-family:'Montserrat',system-ui,sans-serif;
       font-weight:900;
       font-size:1.4rem;
-      color:var(--brand);
-      letter-spacing:0.03em;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
     }
-    #main-header nav.desktop-nav{
+    .hero-actions{
       display:flex;
-      gap:24px;
+      align-items:center;
+      gap:20px;
       font-family:'Montserrat',system-ui,sans-serif;
       font-size:0.9rem;
       font-weight:700;
       text-transform:uppercase;
     }
-    #main-header nav.desktop-nav a{
-      color:var(--text-charcoal);
-      padding:4px 0;
-      position:relative;
+    .hero-actions a.hero-whatsapp{
+      color:#fff;
     }
-    #main-header nav.desktop-nav a::after{
-      content:'';
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-2px;
-      height:2px;
-      background:var(--brand);
-      transform:scaleX(0);
-      transform-origin:center;
-      transition:transform .15s ease-out;
-    }
-    #main-header nav.desktop-nav a:hover::after{
-      transform:scaleX(1);
-    }
-
-    #main-header .menu-icon{
-      font-size:1.6rem;
-      cursor:pointer;
-      display:none;
-      padding:4px 6px;
-    }
-
-    /* MENU MOBILE (DROP-DOWN) */
-    #mobile-menu{
-      display:none;
-      position:absolute;
-      top:56px;
-      left:0;
-      right:0;
-      background:#fff;
-      border-bottom:1px solid rgba(0,0,0,0.08);
-      box-shadow:0 8px 16px rgba(15,23,42,0.08);
-      z-index:40;
-    }
-    #mobile-menu.open{display:block;}
-    #mobile-menu a{
-      display:block;
-      padding:12px 20px;
-      font-family:'Montserrat',system-ui,sans-serif;
-      font-size:0.9rem;
-      font-weight:700;
-      text-transform:uppercase;
-      border-top:1px solid rgba(0,0,0,0.04);
-    }
-
-    /* CONTAINER GERAL DO CONTEÚDO */
-    #main-content{
-      max-width:calc(var(--max-content-width) + 200px);
-      margin:0 auto;
-      padding:20px 20px 60px 20px;
-    }
-
-    /* LINK VOLTAR */
-    .back-link{
-      margin:16px 0 12px 0;
-    }
-    .back-link a{
+    .hero-menu-btn{
       display:inline-flex;
       align-items:center;
       gap:6px;
-      font-size:0.9rem;
-      font-weight:600;
-      color:#1d4ed8;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
     }
-    .back-link a::before{
-      content:'←';
-      font-size:0.9rem;
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
     }
 
-    /* HERO DO ARTIGO (TÍTULO GRANDE + CTA) */
-    .hero-article{
-      background-color:var(--brand);
-      background-image:url('assets/misc/aviao-marca-dagua.png');
-      background-repeat:no-repeat;
-      background-position:center right;
-      background-size:320px;
-      position:relative;
-      overflow:hidden;
-      padding:50px 28px;
-      text-align:left;
-      margin-bottom:32px;
-      border-radius:22px;
-      color:#fff;
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{
+      flex:1;
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);
+      align-items:center;
+      gap:40px;
     }
-    .hero-article::before{
-      content:'';
-      position:absolute;
-      top:0;left:0;width:100%;height:100%;
-      background:linear-gradient(to right,rgba(249,115,22,0.9) 0%,rgba(249,115,22,0.75) 40%,rgba(249,115,22,0.5) 100%);
-      z-index:1;
-    }
-    .hero-article > *{
-      position:relative;
-      z-index:2;
-    }
-    .hero-category{
-      font-size:0.8rem;
-      font-weight:700;
-      letter-spacing:0.11em;
-      text-transform:uppercase;
-      margin:0 0 10px 0;
-      opacity:0.9;
-    }
-    .hero-article h1{
-      margin:0 0 12px 0;
-      font-family:'Open Sans',system-ui,sans-serif;
-      font-size:2.4rem;
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
       line-height:1.25;
       font-weight:800;
     }
-    .hero-meta{
-      margin:0 0 20px 0;
-      font-size:0.95rem;
+    .hero-scroll-hint{
+      font-size:0.9rem;
       opacity:0.9;
+      margin:0;
     }
-    .hero-cta{
+    .hero-image{
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(15,23,42,0.55);
+      background:#000;
+      max-height:420px;
+    }
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) LOGO ABAIXO DO HERO */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-32px auto 40px auto;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.15);
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    .offer-cta-text{
+      flex:1;
+      font-size:0.95rem;
+      color:var(--text);
+    }
+    .offer-cta-strip-button{
+      white-space:nowrap;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:11px 26px;
+      padding:9px 20px;
       border-radius:999px;
+      background:var(--brand);
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
       font-size:0.9rem;
       font-weight:700;
       text-transform:uppercase;
       letter-spacing:0.06em;
-      border:none;
-      background:var(--brand-shadow);
-      color:#fff;
-      box-shadow:0 10px 20px rgba(0,0,0,0.25);
-      cursor:pointer;
-      font-family:'Montserrat',system-ui,sans-serif;
     }
-    .hero-cta:hover{
+    .offer-cta-strip-button:hover{
       background:#ea580c;
-    }
-
-    /* IMAGEM PRINCIPAL DA OFERTA */
-    .offer-banner{
-      max-width:var(--max-content-width);
-      margin:0 auto 32px auto;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 18px 40px rgba(15,23,42,0.18);
-      background:#000;
-    }
-    .offer-banner img{
-      display:block;
-      width:100%;
-      height:100%;
-      max-height:380px;
-      object-fit:cover;
     }
 
     /* CORPO DO ARTIGO */
     .article-body{
-      max-width:var(--max-content-width);
-      margin:0 auto;
-      padding:0 0 40px 0;
-      font-size:1.2rem; /* ~19px */
-      line-height:1.7;
+      max-width:820px;
+      margin:0 auto 40px auto;
+      font-size:1.1rem;
+      line-height:1.8;
     }
     .article-body p{
       margin:0 0 20px 0;
     }
     .article-body h2{
       font-size:1.7rem;
-      color:var(--brand);
       margin:40px 0 16px 0;
       font-weight:800;
+      color:var(--brand);
     }
     .article-body ul{
       margin:16px 0 24px 0;
-      padding-left:22px;
+      padding-left:24px;
     }
-    .article-body ul li{
+    .article-body li{
       margin-bottom:10px;
     }
-
-    /* SEÇÕES GERADAS VIA JS */
     .content-section{
       margin-bottom:12px;
     }
 
-    /* CTA FINAL DO ARTIGO */
+    /* CTA FINAL FIXO */
     .article-cta-final{
-      max-width:var(--max-content-width);
-      margin:10px auto 0 auto;
-      padding:22px 18px;
+      margin-top:10px;
+      padding:18px 18px 20px 18px;
       border-radius:16px;
       background:#fff7ed;
       border:1px solid #fed7aa;
+      text-align:center;
       display:flex;
       flex-direction:column;
-      align-items:center;
-      text-align:center;
-      gap:10px;
+      gap:8px;
+      font-size:0.95rem;
     }
     .article-cta-final strong{
       font-size:1rem;
     }
     .article-cta-final a{
-      margin-top:2px;
+      margin-top:4px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -292,162 +233,235 @@
       background:#ea580c;
     }
 
-    /* CAIXA DE ERRO (usada pelo JS) */
+    /* MENSAGEM DE ERRO DO JS */
     #offerError{
-      max-width:var(--max-content-width);
+      max-width:820px;
       margin:0 auto 40px auto;
     }
     .error-box{
       padding:16px 18px;
       border-radius:16px;
       background:#fef2f2;
-      color:#7f1d1d;
       border:1px solid #fecaca;
+      color:#7f1d1d;
       font-size:0.9rem;
     }
 
-    /* RESPONSIVO */
-    @media (min-width:1025px){
-      #mobile-menu{display:none!important;}
-      #main-header nav.desktop-nav{display:flex;}
-      #main-header .menu-icon{display:none;}
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
     }
-    @media (max-width:1024px){
-      #main-header{
-        max-width:none;
-        margin:0;
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
       }
-      #main-header nav.desktop-nav{
-        display:none;
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
       }
-      #main-header .menu-icon{
-        display:block;
+      .hero-text h1{
+        font-size:2.2rem;
       }
-      .hero-article{
-        margin-left:0;
-        margin-right:0;
-        border-radius:0;
-        background-image:none;
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
       }
-      .hero-article h1{
-        font-size:2rem;
+      .offer-cta-strip-button{
+        align-self:stretch;
+        justify-content:center;
+        width:100%;
       }
     }
     @media (max-width:640px){
-      #main-content{
+      .hero-wrap{
         padding:16px 14px 40px 14px;
+        min-height:70vh;
       }
-      .hero-article{
-        padding:40px 18px;
+      .hero-topbar{
+        margin-bottom:24px;
       }
-      .offer-banner{
-        border-radius:16px;
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
       }
       .article-body{
-        font-size:1.05rem;
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER SUPERIOR -->
-  <header id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
+  <!-- HERO EM BARRA CHEIA (com cabeçalho + imagem) -->
+  <header class="hero-wrap">
+    <div class="hero-inner">
+      <!-- Topo: logo + ações -->
+      <div class="hero-topbar">
+        <a href="index.html" class="hero-logo">WINNERS TOUR</a>
 
-    <nav class="desktop-nav">
-      <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" rel="noopener">LOJA VIRTUAL</a>
-      <a href="index.html">EVENTOS</a>
-      <a href="apps.html">APLICATIVOS</a>
-      <a href="corporativo.html">CORPORATIVO</a>
-      <a href="grupos.html">GRUPOS</a>
-      <a href="lazer.html">LAZER</a>
-    </nav>
+        <div class="hero-actions">
+          <a class="hero-whatsapp"
+             href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer."
+             target="_blank" rel="noopener">
+            WhatsApp
+          </a>
 
-    <span class="menu-icon" id="mobile-menu-toggle" aria-label="Abrir menu de navegação">☰</span>
-  </header>
+          <button type="button" class="hero-menu-btn" id="heroMenuToggle">
+            <span>Menu</span>
+            <span class="hamburger">☰</span>
+          </button>
+        </div>
+      </div>
 
-  <!-- MENU MOBILE (ABRE AO CLICAR NO ÍCONE) -->
-  <nav id="mobile-menu" aria-label="Menu de navegação mobile">
-    <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" rel="noopener">Loja Virtual</a>
-    <a href="index.html">Eventos</a>
-    <a href="apps.html">Aplicativos</a>
-    <a href="corporativo.html">Corporativo</a>
-    <a href="grupos.html">Grupos</a>
-    <a href="lazer.html">Lazer</a>
-  </nav>
+      <!-- Conteúdo principal do hero -->
+      <div class="hero-main">
+        <div class="hero-text">
+          <!-- Category / meta ficam escondidos; só título visível -->
+          <p id="offerCategory"></p>
+          <p id="offerMeta"></p>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main id="main-content">
-    <div class="back-link">
-      <a href="lazer.html">Voltar para ofertas de lazer</a>
-    </div>
+          <h1 id="offerTitle">Título da oferta de lazer</h1>
+          <p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
+        </div>
 
-    <!-- HERO DO ARTIGO (preenchido parcialmente via JS) -->
-    <section class="hero-article">
-      <p id="offerCategory" class="hero-category">RESORT · DESTINO</p>
-      <h1 id="offerTitle">Título da oferta de lazer</h1>
-      <p id="offerMeta" class="hero-meta">
-        Oferta de viagem de lazer cuidadosamente curada pela WinnersTour.
-      </p>
-      <a class="hero-cta"
-         href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer."
-         target="_blank" rel="noopener">
-        Fale com um consultor especialista
-      </a>
-    </section>
-
-    <!-- IMAGEM PRINCIPAL DA OFERTA -->
-    <figure class="offer-banner">
-      <img id="offerImage" src="assets/misc/placeholder-lazer.webp" alt="Imagem da oferta de lazer">
-    </figure>
-
-    <!-- CORPO DO ARTIGO GERADO PELO JSON -->
-    <div class="article-body">
-      <section id="offerIntro">
-        <!-- Blocos de introdução são inseridos aqui pelo JS -->
-      </section>
-
-      <section id="offerSections">
-        <!-- Seções detalhadas são inseridas aqui pelo JS -->
-      </section>
-
-      <!-- CTA FINAL FIXO -->
-      <div class="article-cta-final">
-        <strong>Pronto para tirar essa ideia do papel?</strong>
-        <span>Envie sua data, quantidade de pessoas e cidade de saída para que nossa equipe prepare a melhor combinação de voos e hospedagem.</span>
-        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20dessa%20oferta%20de%20lazer."
-           target="_blank" rel="noopener">
-          Falar com a WinnersTour
-        </a>
+        <figure class="hero-image">
+          <img id="offerImage" src="assets/misc/placeholder-lazer.webp" alt="Imagem da oferta de lazer">
+        </figure>
       </div>
     </div>
+  </header>
 
-    <!-- ÁREA DE ERRO (CASO O JSON NÃO CARREGUE) -->
+  <!-- BARRA DE CTA (CTA1 + CTA2) -->
+  <section class="offer-cta-strip">
+    <div class="offer-cta-text" id="offerCta1">
+      Pacote de viagem incluindo hospedagem, passagens aéreas e serviços selecionados pela WinnersTour.
+    </div>
+    <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20dessa%20oferta%20de%20lazer."
+       target="_blank" rel="noopener"
+       class="offer-cta-strip-button"
+       id="offerCta2">
+      Fale com nossa equipe agora
+    </a>
+  </section>
+
+  <!-- CORPO DO ARTIGO (conteúdo vindo do JSON) -->
+  <main class="article-body">
+    <section id="offerIntro"></section>
+
+    <section id="offerSections"></section>
+
+    <div class="article-cta-final">
+      <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
+      <span>Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagem para você.</span>
+      <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20personalizado%20dessa%20oferta%20de%20lazer."
+         target="_blank" rel="noopener">
+        Falar com a WinnersTour
+      </a>
+    </div>
+
     <div id="offerError"></div>
   </main>
 
-  <!-- JS DO MENU MOBILE -->
+  <!-- MENU OVERLAY (abre ao clicar em “Menu”) -->
+  <div class="site-menu" id="siteMenu">
+    <div class="site-menu-panel">
+      <h2>Mais opções</h2>
+      <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" rel="noopener">Loja Virtual</a>
+      <a href="index.html">Eventos</a>
+      <a href="apps.html">Aplicativos</a>
+      <a href="corporativo.html">Corporativo</a>
+      <a href="grupos.html">Grupos</a>
+      <a href="lazer.html">Lazer</a>
+
+      <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
+    </div>
+  </div>
+
+  <!-- JS do menu (WhatsApp + Menu hamburguer) -->
   <script>
     (function(){
-      const toggle = document.getElementById('mobile-menu-toggle');
-      const menu   = document.getElementById('mobile-menu');
-      if(!toggle || !menu) return;
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-      toggle.addEventListener('click', function(){
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
         menu.classList.toggle('open');
-      });
+      }
 
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
       menu.addEventListener('click', function(ev){
-        const link = ev.target.closest('a');
-        if(link){
-          menu.classList.remove('open');
-        }
+        if (ev.target === menu) menu.classList.remove('open');
       });
     })();
   </script>
 
-  <!-- SCRIPT DE CARGA DA OFERTA (usa slug + JSON completo) -->
+  <!-- JS que carrega o conteúdo da oferta a partir do JSON -->
   <script src="lazer-oferta.js"></script>
 </body>
 </html>
