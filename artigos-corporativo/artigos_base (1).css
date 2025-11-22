@@ -1,0 +1,228 @@
+/* VARIÁVEIS DE COR E ESTILO */
+:root{
+  --brand:#f97316; 
+  --brand-shadow:#C2410C; 
+  --text-charcoal:#111827; 
+  --muted:#6b7280;
+  --bg:#fff;
+  --max-content-width: 800px; /* Largura máxima do corpo do artigo */
+  --sidebar-bg-color: #f0f4f9; 
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height: 100vh;}
+
+/* APLICAÇÃO DA FONTE OPEN SANS para TODOS os elementos */
+body{
+  font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text-charcoal);
+  background:var(--bg);
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* --- MENU SUPERIOR (HEADER) --- */
+#main-header {
+    display: flex; 
+    background: var(--bg);
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: space-between;
+    max-width: calc(var(--max-content-width) + 200px); 
+    margin: 0 auto; 
+}
+#main-header .logo {
+    font-weight: 800;
+    font-size: 1.5rem; 
+    color: var(--brand);
+    padding-left: 20px; 
+}
+
+/* Navegação Desktop */
+#main-header nav.desktop-nav {
+    display: none; 
+    margin-right: 20px;
+}
+#main-header nav.desktop-nav a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-left: 20px;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+#main-header nav.desktop-nav a:hover {
+    color: var(--brand);
+}
+
+/* Ícone do Hambúrguer */
+#main-header .menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-charcoal);
+}
+
+/* --- LAYOUT DO ARTIGO: Coluna Única --- */
+#main-grid {
+    display: block; 
+    min-height: 100vh;
+}
+
+#main-sidebar {
+    display: none !important; 
+}
+
+#main-content {
+    padding: 0; 
+}
+
+/* --- ESTILO HERO (Topo do Artigo) --- */
+.hero-article {
+    background-color: var(--brand); 
+    /* IMAGEM DE AVIÃO COMO MARCA D'ÁGUA */
+    background-image: url('assets/misc/aviao-marca-dagua.png'); 
+    background-repeat: no-repeat;
+    background-position: center right; 
+    background-size: 300px; 
+    position: relative; 
+    overflow: hidden; 
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: white; 
+}
+
+/* Overlay/Degradê sobre a imagem para escurecer e melhorar legibilidade */
+.hero-article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(249, 115, 22, 0.9) 0%, rgba(249, 115, 22, 0.7) 50%, rgba(249, 115, 22, 0.5) 100%);
+    z-index: 1; 
+}
+
+/* Garante que o conteúdo do hero fique acima do overlay */
+.hero-article > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-article h1 {
+    font-size: 2.8rem; 
+    font-weight: 800;
+    line-height: 1.1;
+    color: white; 
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    font-family: 'Open Sans', sans-serif; 
+}
+.hero-article p.author-meta {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8); 
+    font-family: 'Open Sans', sans-serif; 
+}
+.hero-article .cta-button {
+    margin-top: 25px;
+    display: inline-block;
+    background: var(--brand-shadow); 
+    color: white;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-family: 'Open Sans', sans-serif;
+}
+.hero-article .cta-button:hover {
+    background: #FF5722; 
+}
+
+/* --- CORPO DO ARTIGO: TIPOGRAFIA OPEN SANS APLICADA (22px) --- */
+.article-body {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.375rem; /* 22px */
+    font-weight: 400;
+}
+.article-body h2 {
+    font-size: 1.8rem;
+    color: var(--brand); 
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-family: 'Open Sans', sans-serif; 
+    font-weight: 800; 
+}
+.article-body p, .article-body ul li {
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.375rem; /* 22px */
+    line-height: 1.6; 
+    color: var(--text-charcoal); 
+}
+.article-body ul {
+    margin: 20px 0;
+    padding-left: 20px;
+    list-style-type: disc; 
+}
+.article-body ul li {
+    margin-bottom: 10px; 
+}
+
+/* --- FOOTER SIMPLES --- */
+#main-footer {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-top: 1px solid var(--sidebar-bg-color);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+
+/* RESPONSIVIDADE */
+@media (min-width: 1025px) {
+    #main-header nav.desktop-nav {
+        display: flex;
+        align-items: center;
+    }
+    #main-header .menu-icon {
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    #main-header nav.desktop-nav {
+        display: none;
+    }
+    #main-header .menu-icon {
+        display: block;
+    }
+    .hero-article h1 {
+        font-size: 2rem;
+    }
+    #main-header {
+        justify-content: space-between;
+        max-width: none;
+        margin: 0;
+        padding: 10px 20px;
+    }
+    #main-header .logo {
+        padding-left: 0;
+    }
+    /* Remove a imagem de fundo no mobile */
+    .hero-article {
+        background-image: none;
+        background-color: var(--brand);
+    }
+    .hero-article::before {
+        background: rgba(249, 115, 22, 0.9);
+    }
+}
