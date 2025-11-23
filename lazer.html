@@ -683,7 +683,14 @@ function renderLazer(data) {
   categorias.forEach(categoria => {
     const span = document.createElement('span');
     span.className = 'tab-link';
-    span.textContent = categoria;
+
+    // Aqui mudamos apenas o NOME exibido:
+    // se a categoria do JSON for "Internacional",
+    // mostramos "Inter" na aba.
+    const label = categoria === 'Internacional' ? 'Inter' : categoria;
+    span.textContent = label;
+
+    // Mas mantemos o valor original para o filtro:
     span.dataset.categoria = categoria;
     tabsContainer.appendChild(span);
   });
