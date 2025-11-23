@@ -4,7 +4,7 @@
     "title": "Aruba Clássico – 6 dias para descobrir a ilha da felicidade",
     "titulo_curto": "Aruba Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "aruba-classico.webp",
+    "card_image": "/assets/lazer/aruba-classico.webp",
     "href": "lazer-oferta.html?slug=aruba-classico"
   },
   {
@@ -12,7 +12,7 @@
     "title": "Aruba & Curaçao Clássico – 7 dias entre duas joias do Caribe Holandês",
     "titulo_curto": "Aruba & Curaçao – 7 dias",
     "categoria": "Internacional",
-    "card_image": "aruba-e-curacao.webp",
+    "card_image": "/assets/lazer/aruba-e-curacao.webp",
     "href": "lazer-oferta.html?slug=aruba-e-curacao"
   },
   {
@@ -20,7 +20,7 @@
     "title": "Barcelona Clássico – 6 dias entre Gaudí, história e mar Mediterrâneo",
     "titulo_curto": "Barcelona Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "barcelona-classico.webp",
+    "card_image": "/assets/lazer/barcelona-classico.webp",
     "href": "lazer-oferta.html?slug=barcelona-classico"
   },
   {
@@ -28,7 +28,7 @@
     "title": "Bogotá Clássico – 4 dias entre ouro, altitude e história andina",
     "titulo_curto": "Bogotá Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "bogota-classico.webp",
+    "card_image": "/assets/lazer/bogota-classico.webp",
     "href": "lazer-oferta.html?slug=bogota-classico"
   },
   {
@@ -36,7 +36,7 @@
     "title": "Bruxelas Clássico – 6 dias entre Grand-Place, surrealismo e sabores belgas",
     "titulo_curto": "Bruxelas Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "bruxelas-classico.webp",
+    "card_image": "/assets/lazer/bruxelas-classico.webp",
     "href": "lazer-oferta.html?slug=bruxelas-classico"
   },
   {
@@ -44,7 +44,7 @@
     "title": "Buenos Aires Clássico – 4 dias entre tango, arquitetura e cafés históricos",
     "titulo_curto": "Buenos Aires Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "buenos-aires-classico.webp",
+    "card_image": "/assets/lazer/buenos-aires-classico.webp",
     "href": "lazer-oferta.html?slug=buenos-aires-classico"
   },
   {
@@ -52,7 +52,7 @@
     "title": "Buenos Aires e Santiago – 5 dias entre arquitetura portenha e cordilheira andina",
     "titulo_curto": "Buenos Aires e Santiago – 5 dias",
     "categoria": "Internacional",
-    "card_image": "buenos-aires-e-santiago.webp",
+    "card_image": "/assets/lazer/buenos-aires-e-santiago.webp",
     "href": "lazer-oferta.html?slug=buenos-aires-e-santiago"
   },
   {
@@ -60,7 +60,7 @@
     "title": "Cancún All Inclusive Clássico – 6 dias de Caribe e cultura maia",
     "titulo_curto": "Cancún All Inclusive – 6 dias",
     "categoria": "Internacional",
-    "card_image": "cancun-all-inclusive-classico.webp",
+    "card_image": "/assets/lazer/cancun-all-inclusive-classico.webp",
     "href": "lazer-oferta.html?slug=cancun-all-inclusive-classico"
   },
   {
@@ -68,7 +68,7 @@
     "title": "Cancún e Orlando – 9 dias entre Caribe, cultura maia e parques temáticos",
     "titulo_curto": "Cancún e Orlando – 9 dias",
     "categoria": "Internacional",
-    "card_image": "cancun-e-orlando.webp",
+    "card_image": "/assets/lazer/cancun-e-orlando.webp",
     "href": "lazer-oferta.html?slug=cancun-e-orlando"
   },
   {
@@ -76,7 +76,7 @@
     "title": "Cartagena Clássico – 6 dias entre muralhas coloniais e Caribe colombiano",
     "titulo_curto": "Cartagena Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "cartagena-classico.webp",
+    "card_image": "/assets/lazer/cartagena-classico.webp",
     "href": "lazer-oferta.html?slug=cartagena-classico"
   },
   {
@@ -84,7 +84,7 @@
     "title": "Cozumel Clássico – 4 dias entre recifes, lenda maia e Caribe mexicano",
     "titulo_curto": "Cozumel Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "cozumel-classico.webp",
+    "card_image": "/assets/lazer/cozumel-classico.webp",
     "href": "lazer-oferta.html?slug=cozumel-classico"
   },
   {
@@ -92,7 +92,7 @@
     "title": "Curaçao Clássico – 6 dias entre Willemstad colorida e praias da costa oeste",
     "titulo_curto": "Curaçao Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "curacao-classico.webp",
+    "card_image": "/assets/lazer/curacao-classico.webp",
     "href": "lazer-oferta.html?slug=curacao-classico"
   },
   {
@@ -100,7 +100,7 @@
     "title": "Dubai Clássico – 5 dias entre souks históricos e arranha-céus futuristas",
     "titulo_curto": "Dubai Clássico – 5 dias",
     "categoria": "Internacional",
-    "card_image": "dubai-classico.webp",
+    "card_image": "/assets/lazer/dubai-classico.webp",
     "href": "lazer-oferta.html?slug=dubai-classico"
   },
   {
@@ -108,7 +108,7 @@
     "title": "Dublin Clássico – 5 dias entre literatura, pubs e campos verdes",
     "titulo_curto": "Dublin Clássico – 5 dias",
     "categoria": "Internacional",
-    "card_image": "dublin-classico.webp",
+    "card_image": "/assets/lazer/dublin-classico.webp",
     "href": "lazer-oferta.html?slug=dublin-classico"
   },
   {
@@ -116,7 +116,7 @@
     "title": "Florença Clássico – 6 dias no coração do Renascimento italiano",
     "titulo_curto": "Florença Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "florenca-classico.webp",
+    "card_image": "/assets/lazer/florenca-classico.webp",
     "href": "lazer-oferta.html?slug=florenca-classico"
   },
   {
@@ -124,7 +124,7 @@
     "title": "",
     "titulo_curto": "",
     "categoria": "",
-    "card_image": "gramado-chocoland-hotel.webp",
+    "card_image": "/assets/lazer/gramado-chocoland-hotel.webp",
     "href": "lazer-oferta.html?slug=gramado-chocoland-hotel"
   },
   {
@@ -132,7 +132,7 @@
     "title": "Jamaica Clássica – 6 dias entre Montego Bay, praias e cultura reggae",
     "titulo_curto": "Jamaica Clássica – 6 dias",
     "categoria": "Internacional",
-    "card_image": "jamaica-classica.webp",
+    "card_image": "/assets/lazer/jamaica-classica.webp",
     "href": "lazer-oferta.html?slug=jamaica-classica"
   },
   {
@@ -140,7 +140,7 @@
     "title": "Las Vegas Clássico – 4 dias entre Strip, cassinos e Grand Canyon",
     "titulo_curto": "Las Vegas Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "las-vegas-classico.webp",
+    "card_image": "/assets/lazer/las-vegas-classico.webp",
     "href": "lazer-oferta.html?slug=las-vegas-classico"
   },
   {
@@ -148,7 +148,7 @@
     "title": "Lisboa Clássico – 6 dias na cidade das sete colinas",
     "titulo_curto": "Lisboa Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "lisboa-classico.webp",
+    "card_image": "/assets/lazer/lisboa-classico.webp",
     "href": "lazer-oferta.html?slug=lisboa-classico"
   },
   {
@@ -156,7 +156,7 @@
     "title": "Liverpool Clássico – 5 dias entre docks, Beatles e história viva",
     "titulo_curto": "Liverpool Clássico – 5 dias",
     "categoria": "Internacional",
-    "card_image": "liverpool-classico.webp",
+    "card_image": "/assets/lazer/liverpool-classico.webp",
     "href": "lazer-oferta.html?slug=liverpool-classico"
   },
   {
@@ -164,7 +164,7 @@
     "title": "Londres Clássico – 6 dias entre ícones, parques e bairros vibrantes",
     "titulo_curto": "Londres Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "londres-classico.webp",
+    "card_image": "/assets/lazer/londres-classico.webp",
     "href": "lazer-oferta.html?slug=londres-classico"
   },
   {
@@ -172,7 +172,7 @@
     "title": "Los Angeles Clássico – 4 dias entre Hollywood, praias e o letreiro mais famoso do mundo",
     "titulo_curto": "Los Angeles Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "los-angeles-classico.webp",
+    "card_image": "/assets/lazer/los-angeles-classico.webp",
     "href": "lazer-oferta.html?slug=los-angeles-classico"
   },
   {
@@ -180,7 +180,7 @@
     "title": "Madrid Clássico – 6 dias entre praças históricas, arte e tapas",
     "titulo_curto": "Madrid Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "madrid-classico.webp",
+    "card_image": "/assets/lazer/madrid-classico.webp",
     "href": "lazer-oferta.html?slug=madrid-classico"
   },
   {
@@ -188,7 +188,7 @@
     "title": "Mendoza Clássico – 4 dias entre vinhos, praças e a sombra dos Andes",
     "titulo_curto": "Mendoza Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "mendoza-classico.webp",
+    "card_image": "/assets/lazer/mendoza-classico.webp",
     "href": "lazer-oferta.html?slug=mendoza-classico"
   },
   {
@@ -196,7 +196,7 @@
     "title": "Mexico City Clássico – 4 dias entre Centro Histórico, Teotihuacan e mariachi",
     "titulo_curto": "Mexico City Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "mexico-city-classico.webp",
+    "card_image": "/assets/lazer/mexico-city-classico.webp",
     "href": "lazer-oferta.html?slug=mexico-city-classico"
   },
   {
@@ -204,7 +204,7 @@
     "title": "Miami Clássico – 4 dias entre beaches, Art Deco e contrastes",
     "titulo_curto": "Miami Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "miami-classico.webp",
+    "card_image": "/assets/lazer/miami-classico.webp",
     "href": "lazer-oferta.html?slug=miami-classico"
   },
   {
@@ -212,7 +212,7 @@
     "title": "Milão Clássico: 4 dias entre Duomo, moda e Navigli",
     "titulo_curto": "Milão Clássico",
     "categoria": "Internacional",
-    "card_image": "milao-classico.webp",
+    "card_image": "/assets/lazer/milao-classico.webp",
     "href": "lazer-oferta.html?slug=milao-classico"
   },
   {
@@ -220,7 +220,7 @@
     "title": "Montevidéu Clássico – 4 dias entre Ciudad Vieja, Rambla e parrillas",
     "titulo_curto": "Montevidéu Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "montevideo-classico.webp",
+    "card_image": "/assets/lazer/montevideo-classico.webp",
     "href": "lazer-oferta.html?slug=montevideo-classico"
   },
   {
@@ -228,7 +228,7 @@
     "title": "Montevidéu com Punta del Este – 4 dias entre Ciudad Vieja, Rambla e um dia inteiro de litoral",
     "titulo_curto": "Montevidéu com Punta del Este – 4 dias",
     "categoria": "Internacional",
-    "card_image": "montevideo-com-punta-del-este.webp",
+    "card_image": "/assets/lazer/montevideo-com-punta-del-este.webp",
     "href": "lazer-oferta.html?slug=montevideo-com-punta-del-este"
   },
   {
@@ -236,7 +236,7 @@
     "title": "New York Clássico – 4 dias entre skyline, parques e história",
     "titulo_curto": "New York Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "new-york-classico.webp",
+    "card_image": "/assets/lazer/new-york-classico.webp",
     "href": "lazer-oferta.html?slug=new-york-classico"
   },
   {
@@ -244,7 +244,7 @@
     "title": "Panama City Clássico – 4 dias entre Canal, Casco Viejo e Calçada do Amador",
     "titulo_curto": "Panama City Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "panama-city-classico.webp",
+    "card_image": "/assets/lazer/panama-city-classico.webp",
     "href": "lazer-oferta.html?slug=panama-city-classico"
   },
   {
@@ -252,7 +252,7 @@
     "title": "Paris Clássico – 5 noites entre Torre Eiffel, Sena e bairros históricos",
     "titulo_curto": "Paris Clássico – 5 noites",
     "categoria": "Internacional",
-    "card_image": "paris-classico.webp",
+    "card_image": "/assets/lazer/paris-classico.webp",
     "href": "lazer-oferta.html?slug=paris-classico"
   },
   {
@@ -260,7 +260,7 @@
     "title": "Porto Clássico – 6 dias entre Douro, Ribeira e miradouros",
     "titulo_curto": "Porto Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "porto-classico.webp",
+    "card_image": "/assets/lazer/porto-classico.webp",
     "href": "lazer-oferta.html?slug=porto-classico"
   },
   {
@@ -268,7 +268,7 @@
     "title": "Punta Cana Clássico – 6 dias entre resort all inclusive e Ilha Saona",
     "titulo_curto": "Punta Cana Clássico – 5 noites",
     "categoria": "Internacional",
-    "card_image": "punta-cana-classico.webp",
+    "card_image": "/assets/lazer/punta-cana-classico.webp",
     "href": "lazer-oferta.html?slug=punta-cana-classico"
   },
   {
@@ -276,7 +276,7 @@
     "title": "Quito Clássico – 4 dias entre Centro Histórico, Meio do Mundo e Teleférico",
     "titulo_curto": "Quito Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "quito-classico.webp",
+    "card_image": "/assets/lazer/quito-classico.webp",
     "href": "lazer-oferta.html?slug=quito-classico"
   },
   {
@@ -284,7 +284,7 @@
     "title": "Riviera Maya Clássico – 4 dias entre mar do Caribe, cenotes e cultura maia",
     "titulo_curto": "Riviera Maya Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "riviera-maya-classico.webp",
+    "card_image": "/assets/lazer/riviera-maya-classico.webp",
     "href": "lazer-oferta.html?slug=riviera-maya-classico"
   },
   {
@@ -292,7 +292,7 @@
     "title": "Roma Clássico – 6 dias entre Coliseu, Fórum, Palatino e praças históricas",
     "titulo_curto": "Roma Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "roma-classico.webp",
+    "card_image": "/assets/lazer/roma-classico.webp",
     "href": "lazer-oferta.html?slug=roma-classico"
   },
   {
@@ -300,7 +300,7 @@
     "title": "San Andrés Clássico – 6 dias entre Mar de Sete Cores e cayos caribenhos",
     "titulo_curto": "San Andrés Clássico – 6 dias",
     "categoria": "Internacional",
-    "card_image": "san-andres-classico.webp",
+    "card_image": "/assets/lazer/san-andres-classico.webp",
     "href": "lazer-oferta.html?slug=san-andres-classico"
   },
   {
@@ -308,7 +308,7 @@
     "title": "San José Clássico – 5 dias entre capital, Ilha Tortuga e Vale Central",
     "titulo_curto": "San José Clássico – 5 dias",
     "categoria": "Internacional",
-    "card_image": "san-jose-classico.webp",
+    "card_image": "/assets/lazer/san-jose-classico.webp",
     "href": "lazer-oferta.html?slug=san-jose-classico"
   },
   {
@@ -316,7 +316,7 @@
     "title": "Santiago Clássico – 4 dias de inverno entre Andes, city tour e vinhos",
     "titulo_curto": "Santiago Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "santiago-classico.webp",
+    "card_image": "/assets/lazer/santiago-classico.webp",
     "href": "lazer-oferta.html?slug=santiago-classico"
   },
   {
@@ -324,7 +324,7 @@
     "title": "São Francisco: roteiro clássico de 4 dias à beira da baía",
     "titulo_curto": "São Francisco Clássico",
     "categoria": "Internacional",
-    "card_image": "sao-francisco-classico.webp",
+    "card_image": "/assets/lazer/sao-francisco-classico.webp",
     "href": "lazer-oferta.html?slug=sao-francisco-classico"
   },
   {
@@ -332,7 +332,7 @@
     "title": "Tulum Clássico – 4 dias entre ruínas maias, cenotes e estilo de vida boho",
     "titulo_curto": "Tulum Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "tulum-classico.webp",
+    "card_image": "/assets/lazer/tulum-classico.webp",
     "href": "lazer-oferta.html?slug=tulum-classico"
   },
   {
@@ -340,7 +340,7 @@
     "title": "Ushuaia Clássico – Inverno, 4 dias no Fim do Mundo",
     "titulo_curto": "Ushuaia Clássico – Inverno",
     "categoria": "Internacional",
-    "card_image": "ushuaia-classico-inverno.webp",
+    "card_image": "/assets/lazer/ushuaia-classico-inverno.webp",
     "href": "lazer-oferta.html?slug=ushuaia-classico-inverno"
   },
   {
@@ -348,7 +348,7 @@
     "title": "Ushuaia Clássico – Verão, 4 dias no Fim do Mundo",
     "titulo_curto": "Ushuaia Clássico – Verão",
     "categoria": "Internacional",
-    "card_image": "ushuaia-classico-verao.webp",
+    "card_image": "/assets/lazer/ushuaia-classico-verao.webp",
     "href": "lazer-oferta.html?slug=ushuaia-classico-verao"
   },
   {
@@ -356,7 +356,7 @@
     "title": "Washington DC Clássico – 4 dias de imersão entre poder, memoriais e museus",
     "titulo_curto": "Washington DC Clássico – 4 dias",
     "categoria": "Internacional",
-    "card_image": "washington-dc-classico.webp",
+    "card_image": "/assets/lazer/washington-dc-classico.webp",
     "href": "lazer-oferta.html?slug=washington-dc-classico"
   },
    {
@@ -364,7 +364,7 @@
     "title": "Andorra: neve, sol e experiências alpinas em 6 dias",
     "titulo_curto": "Andorra – Neve nos Pirenéus",
     "categoria": "Neve",
-    "card_image": "andorra.webp",
+    "card_image": "/assets/lazer/andorra.webp",
     "href": "lazer-oferta.html?slug=andorra"
   },
   {
@@ -372,7 +372,7 @@
     "title": "Aspen Snowmass: 8 dias de neve, cultura e gastronomia nas Montanhas Rochosas",
     "titulo_curto": "Aspen – Férias na Neve",
     "categoria": "Neve",
-    "card_image": "aspen.webp",
+    "card_image": "/assets/lazer/aspen.webp",
     "href": "lazer-oferta.html?slug=aspen"
   },
   {
@@ -380,7 +380,7 @@
     "title": "Bariloche: férias na neve na Patagônia em 8 dias",
     "titulo_curto": "Bariloche – Férias na Neve",
     "categoria": "Neve",
-    "card_image": "bariloche.webp",
+    "card_image": "/assets/lazer/bariloche.webp",
     "href": "lazer-oferta.html?slug=bariloche"
   },
   {
@@ -388,7 +388,7 @@
     "title": "Courchevel e Genebra: neve, luxo alpino e elegância suíça em 7 dias",
     "titulo_curto": "Courchevel & Genebra – Neve",
     "categoria": "Neve",
-    "card_image": "courchevel-e-genebra.webp",
+    "card_image": "/assets/lazer/courchevel-e-genebra.webp",
     "href": "lazer-oferta.html?slug=courchevel-e-genebra"
   },
   {
@@ -396,7 +396,7 @@
     "title": "Snowmass: férias de neve em família nas Montanhas Rochosas em 8 dias",
     "titulo_curto": "Snowmass – Férias na Neve",
     "categoria": "Neve",
-    "card_image": "snowmass.webp",
+    "card_image": "/assets/lazer/snowmass.webp",
     "href": "lazer-oferta.html?slug=snowmass"
   },
   {
@@ -404,7 +404,7 @@
     "title": "Tremblant & Montreal: inverno franco-canadense em 8 dias",
     "titulo_curto": "Tremblant & Montreal – Neve",
     "categoria": "Neve",
-    "card_image": "tremblant-montreal.webp",
+    "card_image": "/assets/lazer/tremblant-montreal.webp",
     "href": "lazer-oferta.html?slug=tremblant-montreal"
   },
   {
@@ -412,7 +412,7 @@
     "title": "Valle Nevado: ski week nos Andes chilenos em 8 dias",
     "titulo_curto": "Valle Nevado – Férias na Neve",
     "categoria": "Neve",
-    "card_image": "valle-nevado.webp",
+    "card_image": "/assets/lazer/valle-nevado.webp",
     "href": "lazer-oferta.html?slug=valle-nevado"
   },
    {
@@ -420,7 +420,7 @@
     "title": "Carnaval no Canadá: Toronto, Niagara, Ottawa, Quebec e Montreal em 8 dias",
     "titulo_curto": "Carnaval no Canadá",
     "categoria": "Eventos",
-    "card_image": "carnaval-no-canada.webp",
+    "card_image": "/assets/lazer/carnaval-no-canada.webp",
     "href": "lazer-oferta.html?slug=carnaval-no-canada"
   },
   {
@@ -428,7 +428,7 @@
     "title": "Carnaval no Egito: Cairo, Cruzeiro no Nilo e Luxor em 8 dias",
     "titulo_curto": "Carnaval no Egito",
     "categoria": "Eventos",
-    "card_image": "carnaval-no-egito.webp",
+    "card_image": "/assets/lazer/carnaval-no-egito.webp",
     "href": "lazer-oferta.html?slug=carnaval-no-egito"
   },
   {
@@ -436,7 +436,7 @@
     "title": "Fórmula 1 GP São Paulo 2026: 4 noites de velocidade e cultura na maior metrópole do Brasil",
     "titulo_curto": "F1 GP São Paulo 2026",
     "categoria": "Eventos",
-    "card_image": "formula-1-gp-sp-2026.webp",
+    "card_image": "/assets/lazer/formula-1-gp-sp-2026.webp",
     "href": "lazer-oferta.html?slug=formula-1-gp-sp-2026"
   },
   {
@@ -444,7 +444,7 @@
     "title": "MotoGP Goiânia 2026: 4 noites para viver o Grande Prêmio do Brasil",
     "titulo_curto": "MotoGP Goiânia 2026",
     "categoria": "Eventos",
-    "card_image": "motogp-goiania.webp",
+    "card_image": "/assets/lazer/motogp-goiania.webp",
     "href": "lazer-oferta.html?slug=motogp-goiania"
   },
   {
@@ -452,7 +452,7 @@
     "title": "Natal Luz de Gramado: 5 noites de magia na Serra Gaúcha",
     "titulo_curto": "Natal Luz de Gramado",
     "categoria": "Eventos",
-    "card_image": "natal-luz-de-gramado.webp",
+    "card_image": "/assets/lazer/natal-luz-de-gramado.webp",
     "href": "lazer-oferta.html?slug=natal-luz-de-gramado"
   },
   {
@@ -460,7 +460,7 @@
     "title": "Réveillon na Ilha da Madeira: Funchal e contrastes da ilha em 6 dias",
     "titulo_curto": "Réveillon na Ilha da Madeira",
     "categoria": "Eventos",
-    "card_image": "reveillon-na-ilha-da-madeira.webp",
+    "card_image": "/assets/lazer/reveillon-na-ilha-da-madeira.webp",
     "href": "lazer-oferta.html?slug=reveillon-na-ilha-da-madeira"
   },
   {
@@ -468,7 +468,7 @@
     "title": "Réveillon na Turquia: Istambul, Capadócia e rota histórica em 11 dias",
     "titulo_curto": "Réveillon na Turquia",
     "categoria": "Eventos",
-    "card_image": "reveillon-na-turquia.webp",
+    "card_image": "/assets/lazer/reveillon-na-turquia.webp",
     "href": "lazer-oferta.html?slug=reveillon-na-turquia"
   },
   {
@@ -476,7 +476,7 @@
     "title": "Réveillon no Egito: Cairo e Cruzeiro pelo Nilo em 8 dias",
     "titulo_curto": "Réveillon no Egito",
     "categoria": "Eventos",
-    "card_image": "reveillon-no-egito.webp",
+    "card_image": "/assets/lazer/reveillon-no-egito.webp",
     "href": "lazer-oferta.html?slug=reveillon-no-egito"
   },
     {
@@ -484,7 +484,7 @@
     "title": "Disney 4-Park Magic Ticket: 4 dias inteiros em cada parque temático",
     "titulo_curto": "Disney 4-Park Magic Ticket",
     "categoria": "Disney",
-    "card_image": "disney-4-park-magic-ticket.webp",
+    "card_image": "/assets/lazer/disney-4-park-magic-ticket.webp",
     "href": "lazer-oferta.html?slug=disney-4-park-magic-ticket"
   },
   {
@@ -492,7 +492,7 @@
     "title": "Disney Christmas Celebration: Natal completo nos parques de Orlando",
     "titulo_curto": "Disney Christmas Celebration",
     "categoria": "Disney",
-    "card_image": "disney-christmas-celebration.webp",
+    "card_image": "/assets/lazer/disney-christmas-celebration.webp",
     "href": "lazer-oferta.html?slug=disney-christmas-celebration"
   },
   {
@@ -500,7 +500,7 @@
     "title": "Disney Dream Vacation: 7 noites de magia completa em Orlando",
     "titulo_curto": "Disney Dream Vacation",
     "categoria": "Disney",
-    "card_image": "disney-dream-vacation.webp",
+    "card_image": "/assets/lazer/disney-dream-vacation.webp",
     "href": "lazer-oferta.html?slug=disney-dream-vacation"
   },
   {
@@ -508,7 +508,7 @@
     "title": "Mickey's Very Merry Christmas Party: uma noite de Natal inesquecível no Magic Kingdom",
     "titulo_curto": "Mickey's Very Merry Christmas Party",
     "categoria": "Disney",
-    "card_image": "mickeys-verry-merry-christmas-party.webp",
+    "card_image": "/assets/lazer/mickeys-verry-merry-christmas-party.webp",
     "href": "lazer-oferta.html?slug=mickeys-verry-merry-christmas-party"
   },
     {
@@ -516,7 +516,7 @@
     "title": "Camping Parque Caminhos do Mar: imersão na Mata Atlântica entre trilhas e aventura",
     "titulo_curto": "Camping Parque Caminhos do Mar",
     "categoria": "Aventura",
-    "card_image": "camping-parque-caminhos-do-mar.webp",
+    "card_image": "/assets/lazer/camping-parque-caminhos-do-mar.webp",
     "href": "lazer-oferta.html?slug=camping-parque-caminhos-do-mar"
   },
   {
@@ -524,7 +524,7 @@
     "title": "Chapada dos Veadeiros: Natureza e Cultura em 4 dias",
     "titulo_curto": "Chapada dos Veadeiros: Natureza e Cultura",
     "categoria": "Aventura",
-    "card_image": "chapada-dos-veadeiros-natureza-e-cultura.webp",
+    "card_image": "/assets/lazer/chapada-dos-veadeiros-natureza-e-cultura.webp",
     "href": "lazer-oferta.html?slug=chapada-dos-veadeiros-natureza-e-cultura"
   },
   {
@@ -532,7 +532,7 @@
     "title": "Explorando a Chapada dos Veadeiros: trilhas, cachoeiras e história em 5 dias",
     "titulo_curto": "Explorando a Chapada dos Veadeiros",
     "categoria": "Aventura",
-    "card_image": "explorando-a-chapada-dos-veadeiros.webp",
+    "card_image": "/assets/lazer/explorando-a-chapada-dos-veadeiros.webp",
     "href": "lazer-oferta.html?slug=explorando-a-chapada-dos-veadeiros"
   },
   {
@@ -540,7 +540,7 @@
     "title": "Itatiaia: entre montanhas e cachoeiras na Serra da Mantiqueira",
     "titulo_curto": "Itatiaia – Montanhas e Cachoeiras",
     "categoria": "Aventura",
-    "card_image": "itatiaia-entre-montanhas-e-cachoeiras.webp",
+    "card_image": "/assets/lazer/itatiaia-entre-montanhas-e-cachoeiras.webp",
     "href": "lazer-oferta.html?slug=itatiaia-entre-montanhas-e-cachoeiras"
   },
   {
@@ -548,7 +548,7 @@
     "title": "Itatiaia: entre picos e cachoeiras da Mantiqueira",
     "titulo_curto": "Itatiaia – Picos e Cachoeiras",
     "categoria": "Aventura",
-    "card_image": "itatiaia-entre-picos-e-cachoeiras-da-mantiqueira.webp",
+    "card_image": "/assets/lazer/itatiaia-entre-picos-e-cachoeiras-da-mantiqueira.webp",
     "href": "lazer-oferta.html?slug=itatiaia-entre-picos-e-cachoeiras-da-mantiqueira"
   },
   {
@@ -556,7 +556,7 @@
     "title": "Itatiaia: natureza e cachoeiras da Serra da Mantiqueira",
     "titulo_curto": "Itatiaia – Natureza e Cachoeiras",
     "categoria": "Aventura",
-    "card_image": "itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira.webp",
+    "card_image": "/assets/lazer/itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira.webp",
     "href": "lazer-oferta.html?slug=itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira"
   }
 ]
