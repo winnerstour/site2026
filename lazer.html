@@ -672,34 +672,62 @@ function renderLazer(data) {
     categoriasSet.add(categoria);
   });
 
-  const categorias = Array.from(categoriasSet);
+  // Ordem desejada para exibição das categorias (aba superior)
+  // Todos (fixo) · Brasil · Day Use · Disney · Tour · Neve · Inter · Resorts · Aventura · Eventos
+  const CAT_ORDER = [
+    'Brasil',
+    'Day Use',
+    'Disney',
+    'Tour',
+    'Neve',
+    'Internacional', // exibida como "Inter"
+    'Resorts',
+    'Aventura',
+    'Eventos'
+  ];
 
+  // Converte o Set em array e ordena conforme CAT_ORDER.
+  // Categorias não listadas em CAT_ORDER vão para o fim, em ordem alfabética.
+  const categorias = Array.from(categoriasSet).sort((a, b) => {
+    const ia = CAT_ORDER.indexOf(a);
+    const ib = CAT_ORDER.indexOf(b);
+
+    if (ia === -1 && ib === -1) {
+      return a.localeCompare(b);
+    }
+
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+
+  // Aba "Todos"
   const allTab = document.createElement('span');
   allTab.className = 'tab-link active';
   allTab.textContent = 'Todos';
   allTab.dataset.categoria = 'TODOS';
   tabsContainer.appendChild(allTab);
 
+  // Abas por categoria
   categorias.forEach(categoria => {
     const span = document.createElement('span');
     span.className = 'tab-link';
 
-    // Aqui mudamos apenas o NOME exibido:
-    // se a categoria do JSON for "Internacional",
-    // mostramos "Inter" na aba.
+    // Exibe "Inter" quando a categoria do JSON for "Internacional"
     const label = categoria === 'Internacional' ? 'Inter' : categoria;
     span.textContent = label;
 
-    // Mas mantemos o valor original para o filtro:
     span.dataset.categoria = categoria;
     tabsContainer.appendChild(span);
   });
 
+  // Monta os cards
   data.forEach(item => {
     const card = createCard(item);
     grid.appendChild(card);
   });
 
+  // Lógica de filtro ao clicar nas abas
   tabsContainer.addEventListener('click', (ev) => {
     const target = ev.target;
     if (!target.classList.contains('tab-link')) return;
