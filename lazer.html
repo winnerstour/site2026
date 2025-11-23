@@ -597,7 +597,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- SCRIPT LÓGICA LAZER -->
 <script>
-const LAZER_JSON_URL = 'index-lazer.json';
+const LAZER_JSON_URL = './lazer/index-lazer.json';
 
 function createCard(item) {
   const title = item.titulo_curto || item.title || 'Pacote sem título';
@@ -672,7 +672,7 @@ function renderLazer(data) {
     categoriasSet.add(categoria);
   });
 
-  const categorias = Array.from(categoriasSet); // mantém a ordem de aparição
+  const categorias = Array.from(categoriasSet);
 
   const allTab = document.createElement('span');
   allTab.className = 'tab-link active';
@@ -753,7 +753,7 @@ fetch(LAZER_JSON_URL, { cache: 'no-cache' })
 
       const s = document.createElement('p');
       s.className = 'error-text';
-      s.textContent = 'Verifique se o arquivo index-lazer.json existe na mesma pasta e está em formato de lista ou objeto.';
+      s.textContent = 'Verifique se o arquivo lazer/index-lazer.json existe e está em formato de lista ou objeto.';
 
       content.appendChild(t);
       content.appendChild(s);
