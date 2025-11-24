@@ -55,6 +55,7 @@
   }
 
   // Remove heading markdown "### Título" duplicado
+  
   function stripDuplicateHeading(md, secTitle) {
     if (!md || typeof md !== 'string') return md || '';
     if (!secTitle || typeof secTitle !== 'string') return md;
@@ -63,18 +64,35 @@
     const lines = norm.split('\n');
     if (!lines.length) return md;
 
-    const first = lines[0].trim();
-    if (first.startsWith('### ')) {
-      const headingText = first.replace(/^###\s+/, '').trim();
-      if (headingText === secTitle.trim()) {
-        return lines.slice(1).join('\n');
-      }
+    // pega primeira linha não vazia
+    let idx = 0;
+    while (idx < lines.length && !lines[idx].trim()) idx++;
+    if (idx >= lines.length) return md;
+
+    const firstRaw = lines[idx].trim();
+
+    function normalizeHeadingText(line) {
+      if (!line) return '';
+      let t = String(line).trim();
+      // remove hashes de heading no começo
+      t = t.replace(/^#{1,6}\s+/, '');
+      // remove marcadores de negrito/itálico envolvendo a linha inteira
+      t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
+      return t.trim();
     }
+
+    const firstNorm = normalizeHeadingText(firstRaw);
+    const secNorm = String(secTitle).trim();
+
+    if (firstNorm && firstNorm === secNorm) {
+      const remaining = lines.slice(idx + 1);
+      return remaining.join('\n');
+    }
+
     return md;
   }
 
-  // Converte markdown em HTML simples (parágrafos, listas, headings)
-  function markdownToHtml(md) {
+function markdownToHtml(md) {
     if (!md || typeof md !== 'string') return '';
     const norm = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const lines = norm.split('\n');
