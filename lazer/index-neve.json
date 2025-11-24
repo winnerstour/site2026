@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "andorra",
+    "title": "Andorra: neve, sol e experiências alpinas em 6 dias",
+    "titulo_curto": "Andorra – Neve nos Pirenéus",
+    "categoria": "Neve",
+    "card_image": "andorra.webp",
+    "href": "lazer-oferta.html?slug=andorra"
+  },
+  {
+    "slug": "aspen",
+    "title": "Aspen Snowmass: 8 dias de neve, cultura e gastronomia nas Montanhas Rochosas",
+    "titulo_curto": "Aspen – Férias na Neve",
+    "categoria": "Neve",
+    "card_image": "aspen.webp",
+    "href": "lazer-oferta.html?slug=aspen"
+  },
+  {
+    "slug": "bariloche",
+    "title": "Bariloche: férias na neve na Patagônia em 8 dias",
+    "titulo_curto": "Bariloche – Férias na Neve",
+    "categoria": "Neve",
+    "card_image": "bariloche.webp",
+    "href": "lazer-oferta.html?slug=bariloche"
+  },
+  {
+    "slug": "courchevel-e-genebra",
+    "title": "Courchevel e Genebra: neve, luxo alpino e elegância suíça em 7 dias",
+    "titulo_curto": "Courchevel & Genebra – Neve",
+    "categoria": "Neve",
+    "card_image": "courchevel-e-genebra.webp",
+    "href": "lazer-oferta.html?slug=courchevel-e-genebra"
+  },
+  {
+    "slug": "snowmass",
+    "title": "Snowmass: férias de neve em família nas Montanhas Rochosas em 8 dias",
+    "titulo_curto": "Snowmass – Férias na Neve",
+    "categoria": "Neve",
+    "card_image": "snowmass.webp",
+    "href": "lazer-oferta.html?slug=snowmass"
+  },
+  {
+    "slug": "tremblant-montreal",
+    "title": "Tremblant & Montreal: inverno franco-canadense em 8 dias",
+    "titulo_curto": "Tremblant & Montreal – Neve",
+    "categoria": "Neve",
+    "card_image": "tremblant-montreal.webp",
+    "href": "lazer-oferta.html?slug=tremblant-montreal"
+  },
+  {
+    "slug": "valle-nevado",
+    "title": "Valle Nevado: ski week nos Andes chilenos em 8 dias",
+    "titulo_curto": "Valle Nevado – Férias na Neve",
+    "categoria": "Neve",
+    "card_image": "valle-nevado.webp",
+    "href": "lazer-oferta.html?slug=valle-nevado"
+  }
+]
