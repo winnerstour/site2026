@@ -3,7 +3,8 @@
     "slug": "aruba-classico",
     "title": "Aruba Clássico – 6 dias para descobrir a ilha da felicidade",
     "titulo_curto": "Aruba Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.507",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/aruba-classico.webp",
     "href": "lazer-oferta.html?slug=aruba-classico"
   },
@@ -11,7 +12,8 @@
     "slug": "aruba-e-curacao",
     "title": "Aruba & Curaçao Clássico – 7 dias entre duas joias do Caribe Holandês",
     "titulo_curto": "Aruba & Curaçao – 7 dias",
-    "categoria": "Internacional",
+    "price": "7.710",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/aruba-e-curacao.webp",
     "href": "lazer-oferta.html?slug=aruba-e-curacao"
   },
@@ -19,7 +21,8 @@
     "slug": "barcelona-classico",
     "title": "Barcelona Clássico – 6 dias entre Gaudí, história e mar Mediterrâneo",
     "titulo_curto": "Barcelona Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "2.787",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/barcelona-classico.webp",
     "href": "lazer-oferta.html?slug=barcelona-classico"
   },
@@ -27,7 +30,8 @@
     "slug": "bogota-classico",
     "title": "Bogotá Clássico – 4 dias entre ouro, altitude e história andina",
     "titulo_curto": "Bogotá Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.303",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/bogota-classico.webp",
     "href": "lazer-oferta.html?slug=bogota-classico"
   },
@@ -35,7 +39,8 @@
     "slug": "bruxelas-classico",
     "title": "Bruxelas Clássico – 6 dias entre Grand-Place, surrealismo e sabores belgas",
     "titulo_curto": "Bruxelas Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "2.352",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/bruxelas-classico.webp",
     "href": "lazer-oferta.html?slug=bruxelas-classico"
   },
@@ -43,7 +48,8 @@
     "slug": "buenos-aires-classico",
     "title": "Buenos Aires Clássico – 4 dias entre tango, arquitetura e cafés históricos",
     "titulo_curto": "Buenos Aires Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "2.396",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/buenos-aires-classico.webp",
     "href": "lazer-oferta.html?slug=buenos-aires-classico"
   },
@@ -51,7 +57,8 @@
     "slug": "buenos-aires-e-santiago",
     "title": "Buenos Aires e Santiago – 5 dias entre arquitetura portenha e cordilheira andina",
     "titulo_curto": "Buenos Aires e Santiago – 5 dias",
-    "categoria": "Internacional",
+    "price": "2.415",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/buenos-aires-e-santiago.webp",
     "href": "lazer-oferta.html?slug=buenos-aires-e-santiago"
   },
@@ -59,7 +66,8 @@
     "slug": "cancun-all-inclusive-classico",
     "title": "Cancún All Inclusive Clássico – 6 dias de Caribe e cultura maia",
     "titulo_curto": "Cancún All Inclusive – 6 dias",
-    "categoria": "Internacional",
+    "price": "4.662",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/cancun-all-inclusive-classico.webp",
     "href": "lazer-oferta.html?slug=cancun-all-inclusive-classico"
   },
@@ -67,7 +75,8 @@
     "slug": "cancun-e-orlando",
     "title": "Cancún e Orlando – 9 dias entre Caribe, cultura maia e parques temáticos",
     "titulo_curto": "Cancún e Orlando – 9 dias",
-    "categoria": "Internacional",
+    "price": "4.843",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/cancun-e-orlando.webp",
     "href": "lazer-oferta.html?slug=cancun-e-orlando"
   },
@@ -75,7 +84,8 @@
     "slug": "cartagena-classico",
     "title": "Cartagena Clássico – 6 dias entre muralhas coloniais e Caribe colombiano",
     "titulo_curto": "Cartagena Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "2.005",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/cartagena-classico.webp",
     "href": "lazer-oferta.html?slug=cartagena-classico"
   },
@@ -83,7 +93,8 @@
     "slug": "cozumel-classico",
     "title": "Cozumel Clássico – 4 dias entre recifes, lenda maia e Caribe mexicano",
     "titulo_curto": "Cozumel Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.297",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/cozumel-classico.webp",
     "href": "lazer-oferta.html?slug=cozumel-classico"
   },
@@ -91,7 +102,8 @@
     "slug": "curacao-classico",
     "title": "Curaçao Clássico – 6 dias entre Willemstad colorida e praias da costa oeste",
     "titulo_curto": "Curaçao Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.326",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/curacao-classico.webp",
     "href": "lazer-oferta.html?slug=curacao-classico"
   },
@@ -99,7 +111,8 @@
     "slug": "dubai-classico",
     "title": "Dubai Clássico – 5 dias entre souks históricos e arranha-céus futuristas",
     "titulo_curto": "Dubai Clássico – 5 dias",
-    "categoria": "Internacional",
+    "price": "1.482",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/dubai-classico.webp",
     "href": "lazer-oferta.html?slug=dubai-classico"
   },
@@ -107,7 +120,8 @@
     "slug": "dublin-classico",
     "title": "Dublin Clássico – 5 dias entre literatura, pubs e campos verdes",
     "titulo_curto": "Dublin Clássico – 5 dias",
-    "categoria": "Internacional",
+    "price": "4.700",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/dublin-classico.webp",
     "href": "lazer-oferta.html?slug=dublin-classico"
   },
@@ -115,23 +129,17 @@
     "slug": "florenca-classico",
     "title": "Florença Clássico – 6 dias no coração do Renascimento italiano",
     "titulo_curto": "Florença Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.993",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/florenca-classico.webp",
     "href": "lazer-oferta.html?slug=florenca-classico"
-  },
-  {
-    "slug": "gramado-chocoland-hotel",
-    "title": "",
-    "titulo_curto": "",
-    "categoria": "",
-    "card_image": "./assets/lazer/gramado-chocoland-hotel.webp",
-    "href": "lazer-oferta.html?slug=gramado-chocoland-hotel"
   },
   {
     "slug": "jamaica-classica",
     "title": "Jamaica Clássica – 6 dias entre Montego Bay, praias e cultura reggae",
     "titulo_curto": "Jamaica Clássica – 6 dias",
-    "categoria": "Internacional",
+    "price": "7.743",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/jamaica-classica.webp",
     "href": "lazer-oferta.html?slug=jamaica-classica"
   },
@@ -139,7 +147,8 @@
     "slug": "las-vegas-classico",
     "title": "Las Vegas Clássico – 4 dias entre Strip, cassinos e Grand Canyon",
     "titulo_curto": "Las Vegas Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "3.251",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/las-vegas-classico.webp",
     "href": "lazer-oferta.html?slug=las-vegas-classico"
   },
@@ -147,7 +156,8 @@
     "slug": "lisboa-classico",
     "title": "Lisboa Clássico – 6 dias na cidade das sete colinas",
     "titulo_curto": "Lisboa Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "1.930",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/lisboa-classico.webp",
     "href": "lazer-oferta.html?slug=lisboa-classico"
   },
@@ -155,7 +165,8 @@
     "slug": "liverpool-classico",
     "title": "Liverpool Clássico – 5 dias entre docks, Beatles e história viva",
     "titulo_curto": "Liverpool Clássico – 5 dias",
-    "categoria": "Internacional",
+    "price": "2.647",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/liverpool-classico.webp",
     "href": "lazer-oferta.html?slug=liverpool-classico"
   },
@@ -163,7 +174,8 @@
     "slug": "londres-classico",
     "title": "Londres Clássico – 6 dias entre ícones, parques e bairros vibrantes",
     "titulo_curto": "Londres Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.291",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/londres-classico.webp",
     "href": "lazer-oferta.html?slug=londres-classico"
   },
@@ -171,7 +183,8 @@
     "slug": "los-angeles-classico",
     "title": "Los Angeles Clássico – 4 dias entre Hollywood, praias e o letreiro mais famoso do mundo",
     "titulo_curto": "Los Angeles Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "3.745",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/los-angeles-classico.webp",
     "href": "lazer-oferta.html?slug=los-angeles-classico"
   },
@@ -179,7 +192,8 @@
     "slug": "madrid-classico",
     "title": "Madrid Clássico – 6 dias entre praças históricas, arte e tapas",
     "titulo_curto": "Madrid Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.798",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/madrid-classico.webp",
     "href": "lazer-oferta.html?slug=madrid-classico"
   },
@@ -187,7 +201,8 @@
     "slug": "mendoza-classico",
     "title": "Mendoza Clássico – 4 dias entre vinhos, praças e a sombra dos Andes",
     "titulo_curto": "Mendoza Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.951",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/mendoza-classico.webp",
     "href": "lazer-oferta.html?slug=mendoza-classico"
   },
@@ -195,7 +210,8 @@
     "slug": "mexico-city-classico",
     "title": "Mexico City Clássico – 4 dias entre Centro Histórico, Teotihuacan e mariachi",
     "titulo_curto": "Mexico City Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.045",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/mexico-city-classico.webp",
     "href": "lazer-oferta.html?slug=mexico-city-classico"
   },
@@ -203,7 +219,8 @@
     "slug": "miami-classico",
     "title": "Miami Clássico – 4 dias entre beaches, Art Deco e contrastes",
     "titulo_curto": "Miami Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "2.264",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/miami-classico.webp",
     "href": "lazer-oferta.html?slug=miami-classico"
   },
@@ -211,7 +228,8 @@
     "slug": "milao-classico",
     "title": "Milão Clássico: 4 dias entre Duomo, moda e Navigli",
     "titulo_curto": "Milão Clássico",
-    "categoria": "Internacional",
+    "price": "4.304",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/milao-classico.webp",
     "href": "lazer-oferta.html?slug=milao-classico"
   },
@@ -219,7 +237,8 @@
     "slug": "montevideo-classico",
     "title": "Montevidéu Clássico – 4 dias entre Ciudad Vieja, Rambla e parrillas",
     "titulo_curto": "Montevidéu Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.062",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/montevideo-classico.webp",
     "href": "lazer-oferta.html?slug=montevideo-classico"
   },
@@ -227,7 +246,8 @@
     "slug": "montevideo-com-punta-del-este",
     "title": "Montevidéu com Punta del Este – 4 dias entre Ciudad Vieja, Rambla e um dia inteiro de litoral",
     "titulo_curto": "Montevidéu com Punta del Este – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.191",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/montevideo-com-punta-del-este.webp",
     "href": "lazer-oferta.html?slug=montevideo-com-punta-del-este"
   },
@@ -235,7 +255,8 @@
     "slug": "new-york-classico",
     "title": "New York Clássico – 4 dias entre skyline, parques e história",
     "titulo_curto": "New York Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "4.772",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/new-york-classico.webp",
     "href": "lazer-oferta.html?slug=new-york-classico"
   },
@@ -243,7 +264,8 @@
     "slug": "panama-city-classico",
     "title": "Panama City Clássico – 4 dias entre Canal, Casco Viejo e Calçada do Amador",
     "titulo_curto": "Panama City Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.869",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/panama-city-classico.webp",
     "href": "lazer-oferta.html?slug=panama-city-classico"
   },
@@ -251,7 +273,8 @@
     "slug": "paris-classico",
     "title": "Paris Clássico – 5 noites entre Torre Eiffel, Sena e bairros históricos",
     "titulo_curto": "Paris Clássico – 5 noites",
-    "categoria": "Internacional",
+    "price": "3.496",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/paris-classico.webp",
     "href": "lazer-oferta.html?slug=paris-classico"
   },
@@ -259,7 +282,8 @@
     "slug": "porto-classico",
     "title": "Porto Clássico – 6 dias entre Douro, Ribeira e miradouros",
     "titulo_curto": "Porto Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "1.979",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/porto-classico.webp",
     "href": "lazer-oferta.html?slug=porto-classico"
   },
@@ -267,7 +291,8 @@
     "slug": "punta-cana-classico",
     "title": "Punta Cana Clássico – 6 dias entre resort all inclusive e Ilha Saona",
     "titulo_curto": "Punta Cana Clássico – 5 noites",
-    "categoria": "Internacional",
+    "price": "3.564",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/punta-cana-classico.webp",
     "href": "lazer-oferta.html?slug=punta-cana-classico"
   },
@@ -275,7 +300,8 @@
     "slug": "quito-classico",
     "title": "Quito Clássico – 4 dias entre Centro Histórico, Meio do Mundo e Teleférico",
     "titulo_curto": "Quito Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.431",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/quito-classico.webp",
     "href": "lazer-oferta.html?slug=quito-classico"
   },
@@ -283,7 +309,8 @@
     "slug": "riviera-maya-classico",
     "title": "Riviera Maya Clássico – 4 dias entre mar do Caribe, cenotes e cultura maia",
     "titulo_curto": "Riviera Maya Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "3.425",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/riviera-maya-classico.webp",
     "href": "lazer-oferta.html?slug=riviera-maya-classico"
   },
@@ -291,7 +318,8 @@
     "slug": "roma-classico",
     "title": "Roma Clássico – 6 dias entre Coliseu, Fórum, Palatino e praças históricas",
     "titulo_curto": "Roma Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "3.303",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/roma-classico.webp",
     "href": "lazer-oferta.html?slug=roma-classico"
   },
@@ -299,7 +327,8 @@
     "slug": "san-andres-classico",
     "title": "San Andrés Clássico – 6 dias entre Mar de Sete Cores e cayos caribenhos",
     "titulo_curto": "San Andrés Clássico – 6 dias",
-    "categoria": "Internacional",
+    "price": "1.243",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/san-andres-classico.webp",
     "href": "lazer-oferta.html?slug=san-andres-classico"
   },
@@ -307,7 +336,8 @@
     "slug": "san-jose-classico",
     "title": "San José Clássico – 5 dias entre capital, Ilha Tortuga e Vale Central",
     "titulo_curto": "San José Clássico – 5 dias",
-    "categoria": "Internacional",
+    "price": "2.291",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/san-jose-classico.webp",
     "href": "lazer-oferta.html?slug=san-jose-classico"
   },
@@ -315,7 +345,8 @@
     "slug": "santiago-classico",
     "title": "Santiago Clássico – 4 dias de inverno entre Andes, city tour e vinhos",
     "titulo_curto": "Santiago Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.162",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/santiago-classico.webp",
     "href": "lazer-oferta.html?slug=santiago-classico"
   },
@@ -323,7 +354,8 @@
     "slug": "sao-francisco-classico",
     "title": "São Francisco: roteiro clássico de 4 dias à beira da baía",
     "titulo_curto": "São Francisco Clássico",
-    "categoria": "Internacional",
+    "price": "3.761",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/sao-francisco-classico.webp",
     "href": "lazer-oferta.html?slug=sao-francisco-classico"
   },
@@ -331,7 +363,8 @@
     "slug": "tulum-classico",
     "title": "Tulum Clássico – 4 dias entre ruínas maias, cenotes e estilo de vida boho",
     "titulo_curto": "Tulum Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "1.709",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/tulum-classico.webp",
     "href": "lazer-oferta.html?slug=tulum-classico"
   },
@@ -339,7 +372,8 @@
     "slug": "ushuaia-classico-inverno",
     "title": "Ushuaia Clássico – Inverno, 4 dias no Fim do Mundo",
     "titulo_curto": "Ushuaia Clássico – Inverno",
-    "categoria": "Internacional",
+    "price": "1.647",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/ushuaia-classico-inverno.webp",
     "href": "lazer-oferta.html?slug=ushuaia-classico-inverno"
   },
@@ -347,7 +381,8 @@
     "slug": "ushuaia-classico-verao",
     "title": "Ushuaia Clássico – Verão, 4 dias no Fim do Mundo",
     "titulo_curto": "Ushuaia Clássico – Verão",
-    "categoria": "Internacional",
+    "price": "1.880",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/ushuaia-classico-verao.webp",
     "href": "lazer-oferta.html?slug=ushuaia-classico-verao"
   },
@@ -355,7 +390,8 @@
     "slug": "washington-dc-classico",
     "title": "Washington DC Clássico – 4 dias de imersão entre poder, memoriais e museus",
     "titulo_curto": "Washington DC Clássico – 4 dias",
-    "categoria": "Internacional",
+    "price": "4.300",    
+	"categoria": "Internacional",
     "card_image": "./assets/lazer/washington-dc-classico.webp",
     "href": "lazer-oferta.html?slug=washington-dc-classico"
   },
@@ -363,7 +399,8 @@
     "slug": "andorra",
     "title": "Andorra: neve, sol e experiências alpinas em 6 dias",
     "titulo_curto": "Andorra – Neve nos Pirenéus",
-    "categoria": "Neve",
+    "price": "6.103",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/andorra.webp",
     "href": "lazer-oferta.html?slug=andorra"
   },
@@ -371,7 +408,8 @@
     "slug": "aspen",
     "title": "Aspen Snowmass: 8 dias de neve, cultura e gastronomia nas Montanhas Rochosas",
     "titulo_curto": "Aspen – Férias na Neve",
-    "categoria": "Neve",
+    "price": "10.003",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/aspen.webp",
     "href": "lazer-oferta.html?slug=aspen"
   },
@@ -379,7 +417,8 @@
     "slug": "bariloche",
     "title": "Bariloche: férias na neve na Patagônia em 8 dias",
     "titulo_curto": "Bariloche – Férias na Neve",
-    "categoria": "Neve",
+    "price": "3.187",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/bariloche.webp",
     "href": "lazer-oferta.html?slug=bariloche"
   },
@@ -387,7 +426,8 @@
     "slug": "courchevel-e-genebra",
     "title": "Courchevel e Genebra: neve, luxo alpino e elegância suíça em 7 dias",
     "titulo_curto": "Courchevel & Genebra – Neve",
-    "categoria": "Neve",
+    "price": "15.317",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/courchevel-e-genebra.webp",
     "href": "lazer-oferta.html?slug=courchevel-e-genebra"
   },
@@ -395,7 +435,8 @@
     "slug": "snowmass",
     "title": "Snowmass: férias de neve em família nas Montanhas Rochosas em 8 dias",
     "titulo_curto": "Snowmass – Férias na Neve",
-    "categoria": "Neve",
+    "price": "19.573",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/snowmass.webp",
     "href": "lazer-oferta.html?slug=snowmass"
   },
@@ -403,7 +444,8 @@
     "slug": "tremblant-montreal",
     "title": "Tremblant & Montreal: inverno franco-canadense em 8 dias",
     "titulo_curto": "Tremblant & Montreal – Neve",
-    "categoria": "Neve",
+    "price": "9.852",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/tremblant-montreal.webp",
     "href": "lazer-oferta.html?slug=tremblant-montreal"
   },
@@ -411,7 +453,8 @@
     "slug": "valle-nevado",
     "title": "Valle Nevado: ski week nos Andes chilenos em 8 dias",
     "titulo_curto": "Valle Nevado – Férias na Neve",
-    "categoria": "Neve",
+    "price": "5.469",    
+	"categoria": "Neve",
     "card_image": "./assets/lazer/valle-nevado.webp",
     "href": "lazer-oferta.html?slug=valle-nevado"
   },
@@ -419,7 +462,8 @@
     "slug": "carnaval-no-canada",
     "title": "Carnaval no Canadá: Toronto, Niagara, Ottawa, Quebec e Montreal em 8 dias",
     "titulo_curto": "Carnaval no Canadá",
-    "categoria": "Eventos",
+    "price": "12.594",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/carnaval-no-canada.webp",
     "href": "lazer-oferta.html?slug=carnaval-no-canada"
   },
@@ -427,7 +471,8 @@
     "slug": "carnaval-no-egito",
     "title": "Carnaval no Egito: Cairo, Cruzeiro no Nilo e Luxor em 8 dias",
     "titulo_curto": "Carnaval no Egito",
-    "categoria": "Eventos",
+    "price": "8.730",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/carnaval-no-egito.webp",
     "href": "lazer-oferta.html?slug=carnaval-no-egito"
   },
@@ -435,7 +480,8 @@
     "slug": "formula-1-gp-sp-2026",
     "title": "Fórmula 1 GP São Paulo 2026: 4 noites de velocidade e cultura na maior metrópole do Brasil",
     "titulo_curto": "F1 GP São Paulo 2026",
-    "categoria": "Eventos",
+    "price": "4.544",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/formula-1-gp-sp-2026.webp",
     "href": "lazer-oferta.html?slug=formula-1-gp-sp-2026"
   },
@@ -443,7 +489,8 @@
     "slug": "motogp-goiania",
     "title": "MotoGP Goiânia 2026: 4 noites para viver o Grande Prêmio do Brasil",
     "titulo_curto": "MotoGP Goiânia 2026",
-    "categoria": "Eventos",
+    "price": "2.858",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/motogp-goiania.webp",
     "href": "lazer-oferta.html?slug=motogp-goiania"
   },
@@ -451,7 +498,8 @@
     "slug": "natal-luz-de-gramado",
     "title": "Natal Luz de Gramado: 5 noites de magia na Serra Gaúcha",
     "titulo_curto": "Natal Luz de Gramado",
-    "categoria": "Eventos",
+    "price": "2.246",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/natal-luz-de-gramado.webp",
     "href": "lazer-oferta.html?slug=natal-luz-de-gramado"
   },
@@ -459,7 +507,8 @@
     "slug": "reveillon-na-ilha-da-madeira",
     "title": "Réveillon na Ilha da Madeira: Funchal e contrastes da ilha em 6 dias",
     "titulo_curto": "Réveillon na Ilha da Madeira",
-    "categoria": "Eventos",
+    "price": "9.534",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/reveillon-na-ilha-da-madeira.webp",
     "href": "lazer-oferta.html?slug=reveillon-na-ilha-da-madeira"
   },
@@ -467,7 +516,8 @@
     "slug": "reveillon-na-turquia",
     "title": "Réveillon na Turquia: Istambul, Capadócia e rota histórica em 11 dias",
     "titulo_curto": "Réveillon na Turquia",
-    "categoria": "Eventos",
+    "price": "8.903",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/reveillon-na-turquia.webp",
     "href": "lazer-oferta.html?slug=reveillon-na-turquia"
   },
@@ -475,7 +525,8 @@
     "slug": "reveillon-no-egito",
     "title": "Réveillon no Egito: Cairo e Cruzeiro pelo Nilo em 8 dias",
     "titulo_curto": "Réveillon no Egito",
-    "categoria": "Eventos",
+    "price": "8.199",    
+	"categoria": "Eventos",
     "card_image": "./assets/lazer/reveillon-no-egito.webp",
     "href": "lazer-oferta.html?slug=reveillon-no-egito"
   },
@@ -483,7 +534,8 @@
     "slug": "disney-4-park-magic-ticket",
     "title": "Disney 4-Park Magic Ticket: 4 dias inteiros em cada parque temático",
     "titulo_curto": "Disney 4-Park Magic Ticket",
-    "categoria": "Disney",
+    "price": "2.922",    
+	"categoria": "Disney",
     "card_image": "./assets/lazer/disney-4-park-magic-ticket.webp",
     "href": "lazer-oferta.html?slug=disney-4-park-magic-ticket"
   },
@@ -491,7 +543,8 @@
     "slug": "disney-christmas-celebration",
     "title": "Disney Christmas Celebration: Natal completo nos parques de Orlando",
     "titulo_curto": "Disney Christmas Celebration",
-    "categoria": "Disney",
+    "price": "13.272",    
+	"categoria": "Disney",
     "card_image": "./assets/lazer/disney-christmas-celebration.webp",
     "href": "lazer-oferta.html?slug=disney-christmas-celebration"
   },
@@ -499,7 +552,8 @@
     "slug": "disney-dream-vacation",
     "title": "Disney Dream Vacation: 7 noites de magia completa em Orlando",
     "titulo_curto": "Disney Dream Vacation",
-    "categoria": "Disney",
+    "price": "7.985",    
+	"categoria": "Disney",
     "card_image": "./assets/lazer/disney-dream-vacation.webp",
     "href": "lazer-oferta.html?slug=disney-dream-vacation"
   },
@@ -507,7 +561,8 @@
     "slug": "mickeys-verry-merry-christmas-party",
     "title": "Mickey's Very Merry Christmas Party: uma noite de Natal inesquecível no Magic Kingdom",
     "titulo_curto": "Mickey's Very Merry Christmas Party",
-    "categoria": "Disney",
+    "price": "1.262",    
+	"categoria": "Disney",
     "card_image": "./assets/lazer/mickeys-verry-merry-christmas-party.webp",
     "href": "lazer-oferta.html?slug=mickeys-verry-merry-christmas-party"
   },
@@ -515,7 +570,8 @@
     "slug": "camping-parque-caminhos-do-mar",
     "title": "Camping Parque Caminhos do Mar: imersão na Mata Atlântica entre trilhas e aventura",
     "titulo_curto": "Camping Parque Caminhos do Mar",
-    "categoria": "Aventura",
+    "price": "263",    
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/camping-parque-caminhos-do-mar.webp",
     "href": "lazer-oferta.html?slug=camping-parque-caminhos-do-mar"
   },
@@ -523,7 +579,8 @@
     "slug": "chapada-dos-veadeiros-natureza-e-cultura",
     "title": "Chapada dos Veadeiros: Natureza e Cultura em 4 dias",
     "titulo_curto": "Chapada dos Veadeiros: Natureza e Cultura",
-    "categoria": "Aventura",
+    "price": "2.883",    
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/chapada-dos-veadeiros-natureza-e-cultura.webp",
     "href": "lazer-oferta.html?slug=chapada-dos-veadeiros-natureza-e-cultura"
   },
@@ -531,7 +588,8 @@
     "slug": "explorando-a-chapada-dos-veadeiros",
     "title": "Explorando a Chapada dos Veadeiros: trilhas, cachoeiras e história em 5 dias",
     "titulo_curto": "Explorando a Chapada dos Veadeiros",
-    "categoria": "Aventura",
+    "price": "3.841",    
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/explorando-a-chapada-dos-veadeiros.webp",
     "href": "lazer-oferta.html?slug=explorando-a-chapada-dos-veadeiros"
   },
@@ -539,7 +597,8 @@
     "slug": "itatiaia-entre-montanhas-e-cachoeiras",
     "title": "Itatiaia: entre montanhas e cachoeiras na Serra da Mantiqueira",
     "titulo_curto": "Itatiaia – Montanhas e Cachoeiras",
-    "categoria": "Aventura",
+    "price": "2.253",    
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/itatiaia-entre-montanhas-e-cachoeiras.webp",
     "href": "lazer-oferta.html?slug=itatiaia-entre-montanhas-e-cachoeiras"
   },
@@ -547,7 +606,8 @@
     "slug": "itatiaia-entre-picos-e-cachoeiras-da-mantiqueira",
     "title": "Itatiaia: entre picos e cachoeiras da Mantiqueira",
     "titulo_curto": "Itatiaia – Picos e Cachoeiras",
-    "categoria": "Aventura",
+    "price": "1.253",
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/itatiaia-entre-picos-e-cachoeiras-da-mantiqueira.webp",
     "href": "lazer-oferta.html?slug=itatiaia-entre-picos-e-cachoeiras-da-mantiqueira"
   },
@@ -555,7 +615,8 @@
     "slug": "itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira",
     "title": "Itatiaia: natureza e cachoeiras da Serra da Mantiqueira",
     "titulo_curto": "Itatiaia – Natureza e Cachoeiras",
-    "categoria": "Aventura",
+    "price": "1.053",    
+	"categoria": "Aventura",
     "card_image": "./assets/lazer/itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira.webp",
     "href": "lazer-oferta.html?slug=itatiaia-natureza-e-cachoeiras-da-serra-da-mantiqueira"
   },
@@ -563,7 +624,8 @@
     "slug": "balneario-camboriu",
     "title": "Balneário Camboriú: 5 noites entre arranha-céus, mar e Vale Europeu",
     "titulo_curto": "Balneário Camboriú – 5 noites",
-    "categoria": "Brasil",
+    "price": "926",    
+	"categoria": "Brasil",
     "card_image": "balneario-camboriu.webp",
     "href": "lazer-oferta.html?slug=balneario-camboriu"
   },
@@ -571,7 +633,8 @@
     "slug": "beto-carrero",
     "title": "Beto Carrero World: um dia de parque saindo de Balneário Camboriú",
     "titulo_curto": "Beto Carrero – 1 dia de parque",
-    "categoria": "Brasil",
+    "price": "126",    
+	"categoria": "Brasil",
     "card_image": "beto-carrero.webp",
     "href": "lazer-oferta.html?slug=beto-carrero"
   },
@@ -579,7 +642,8 @@
     "slug": "curitiba-morretes-e-a-serra-do-mar",
     "title": "Curitiba, Morretes e a Serra do Mar: 4 dias entre cidade, trem e litoral",
     "titulo_curto": "Curitiba, Morretes e Serra do Mar",
-    "categoria": "Brasil",
+    "price": "1.263",
+	"categoria": "Brasil",
     "card_image": "curitiba-morretes-e-a-serra-do-mar.webp",
     "href": "lazer-oferta.html?slug=curitiba-morretes-e-a-serra-do-mar"
   },
@@ -587,7 +651,8 @@
     "slug": "fernando-de-noronha",
     "title": "Fernando de Noronha: 5 noites de natureza, trilhas e mar cristalino",
     "titulo_curto": "Fernando de Noronha – 5 noites",
-    "categoria": "Brasil",
+    "price": "1.724",
+	"categoria": "Brasil",
     "card_image": "fernando-de-noronha.webp",
     "href": "lazer-oferta.html?slug=fernando-de-noronha"
   },
@@ -595,7 +660,8 @@
     "slug": "fortaleza",
     "title": "Fortaleza: 7 noites entre orla, cultura e dunas de Cumbuco",
     "titulo_curto": "Fortaleza – 7 noites",
-    "categoria": "Brasil",
+    "price": "900",
+	"categoria": "Brasil",
     "card_image": "fortaleza.webp",
     "href": "lazer-oferta.html?slug=fortaleza"
   },
@@ -603,6 +669,7 @@
     "slug": "foz-do-iguacu",
     "title": "Foz do Iguaçu: 4 noites entre Cataratas, Itaipu e Tríplice Fronteira",
     "titulo_curto": "Foz do Iguaçu – 4 noites",
+    "price": "582",
     "categoria": "Brasil",
     "card_image": "foz-do-iguacu.webp",
     "href": "lazer-oferta.html?slug=foz-do-iguacu"
@@ -611,6 +678,7 @@
     "slug": "gramado",
     "title": "Gramado: 5 noites entre fantasia alpina, natureza e sabores da Serra Gaúcha",
     "titulo_curto": "Gramado – 5 noites",
+    "price": "936",
     "categoria": "Brasil",
     "card_image": "gramado.webp",
     "href": "lazer-oferta.html?slug=gramado"
@@ -619,6 +687,7 @@
     "slug": "maceio",
     "title": "Maceió: 7 noites entre orla urbana, piscinas naturais e aventura em Alagoas",
     "titulo_curto": "Maceió – 7 noites",
+    "price": "1.357",
     "categoria": "Brasil",
     "card_image": "maceio.webp",
     "href": "lazer-oferta.html?slug=maceio"
@@ -627,6 +696,7 @@
     "slug": "porto-seguro",
     "title": "Porto Seguro: 7 noites entre história, orla animada e paraísos do sul da Bahia",
     "titulo_curto": "Porto Seguro – 7 noites",
+    "price": "787",
     "categoria": "Brasil",
     "card_image": "porto-seguro.webp",
     "href": "lazer-oferta.html?slug=porto-seguro"
@@ -635,6 +705,7 @@
     "slug": "rota-das-emocoes-do-maranhao-ao-ceara",
     "title": "Rota das Emoções – Do Maranhão ao Ceará: 7 noites entre Lençóis, Delta e Jericoacoara",
     "titulo_curto": "Rota das Emoções – 7 noites",
+    "price": "4.787",
     "categoria": "Brasil",
     "card_image": "rota-das-emocoes-do-maranhao-ao-ceara.webp",
     "href": "lazer-oferta.html?slug=rota-das-emocoes-do-maranhao-ao-ceara"
@@ -643,7 +714,8 @@
     "slug": "acqua-beach-park-resort",
     "title": "Uma semana no Acqua Beach Park Resort, em Porto das Dunas",
     "titulo_curto": "Semana no Acqua Beach Park Resort",
-    "categoria": "Resorts",
+    "price": "7.169",    
+	"categoria": "Resorts",
     "card_image": "acqua-beach-park-resort.webp",
     "href": "lazer-oferta.html?slug=acqua-beach-park-resort"
   },
@@ -651,7 +723,8 @@
     "slug": "cana-brava-all-inclusive-resort-ilheus",
     "title": "Uma semana no Cana Brava All Inclusive Resort, em Ilhéus",
     "titulo_curto": "Semana no Cana Brava All Inclusive",
-    "categoria": "Resorts",
+    "price": "4.161",    
+	"categoria": "Resorts",
     "card_image": "cana-brava-all-inclusive-resort-ilheus.webp",
     "href": "lazer-oferta.html?slug=cana-brava-all-inclusive-resort-ilheus"
   },
@@ -659,7 +732,8 @@
     "slug": "carmel-cumbuco-resort-cumbuco",
     "title": "Uma semana no Carmel Cumbuco Resort, em Cumbuco",
     "titulo_curto": "Semana no Carmel Cumbuco Resort",
-    "categoria": "Resorts",
+    "price": "5.395",    
+	"categoria": "Resorts",
     "card_image": "carmel-cumbuco-resort-cumbuco.webp",
     "href": "lazer-oferta.html?slug=carmel-cumbuco-resort-cumbuco"
   },
@@ -667,7 +741,8 @@
     "slug": "costao-do-santinho-resort-florianopolis",
     "title": "Uma semana no Costão do Santinho Resort, em Florianópolis",
     "titulo_curto": "Semana no Costão do Santinho",
-    "categoria": "Resorts",
+    "price": "3.435",    
+	"categoria": "Resorts",
     "card_image": "costao-do-santinho-resort-florianopolis.webp",
     "href": "lazer-oferta.html?slug=costao-do-santinho-resort-florianopolis"
   },
@@ -675,7 +750,8 @@
     "slug": "dom-pedro-laguna-beach-resort",
     "title": "Uma semana no Dom Pedro Laguna Beach Resort, em Aquiraz",
     "titulo_curto": "Semana no Dom Pedro Laguna",
-    "categoria": "Resorts",
+    "price": "5.867",    
+	"categoria": "Resorts",
     "card_image": "dom-pedro-laguna-beach-resort.webp",
     "href": "lazer-oferta.html?slug=dom-pedro-laguna-beach-resort"
   },
@@ -683,7 +759,8 @@
     "slug": "fernando-de-noronha-pousada-maria-bonita",
     "title": "Uma semana em Fernando de Noronha na Pousada Maria Bonita",
     "titulo_curto": "Semana na Pousada Maria Bonita",
-    "categoria": "Resorts",
+    "price": "6.650",    
+	"categoria": "Resorts",
     "card_image": "fernando-de-noronha-pousada-maria-bonita.webp",
     "href": "lazer-oferta.html?slug=fernando-de-noronha-pousada-maria-bonita"
   },
@@ -691,7 +768,8 @@
     "slug": "gramado-chocoland-hotel",
     "title": "Uma semana no Chocoland Hotel durante o Natal Luz de Gramado",
     "titulo_curto": "Natal Luz no Chocoland Hotel",
-    "categoria": "Resorts",
+    "price": "3.447",    
+	"categoria": "Resorts",
     "card_image": "gramado-chocoland-hotel.webp",
     "href": "lazer-oferta.html?slug=gramado-chocoland-hotel"
   },
@@ -699,7 +777,8 @@
     "slug": "gran-hotel-stella-maris-resort",
     "title": "Uma semana no Gran Hotel Stella Maris Urban Resort, em Salvador",
     "titulo_curto": "Semana no Gran Hotel Stella Maris",
-    "categoria": "Resorts",
+    "price": "3.529",    
+	"categoria": "Resorts",
     "card_image": "gran-hotel-stella-maris-resort.webp",
     "href": "lazer-oferta.html?slug=gran-hotel-stella-maris-resort"
   },
@@ -707,7 +786,8 @@
     "slug": "iberostar-selection-praia-do-forte",
     "title": "Uma semana no Iberostar Selection Praia do Forte, na Bahia",
     "titulo_curto": "Semana no Iberostar Praia do Forte",
-    "categoria": "Resorts",
+    "price": "4.893",    
+	"categoria": "Resorts",
     "card_image": "iberostar-selection-praia-do-forte.webp",
     "href": "lazer-oferta.html?slug=iberostar-selection-praia-do-forte"
   },
@@ -715,7 +795,8 @@
     "slug": "ipioca-beach-resort",
     "title": "Uma semana no Ipioca Beach Resort, em Maceió",
     "titulo_curto": "Semana no Ipioca Beach Resort",
-    "categoria": "Resorts",
+    "price": "6.645",    
+	"categoria": "Resorts",
     "card_image": "ipioca-beach-resort.webp",
     "href": "lazer-oferta.html?slug=ipioca-beach-resort"
   },
@@ -723,7 +804,8 @@
     "slug": "japaratinga-lounge-resort-japaratinga",
     "title": "Uma semana no Japaratinga Lounge Resort, na Costa dos Corais",
     "titulo_curto": "Semana no Japaratinga Lounge Resort",
-    "categoria": "Resorts",
+    "price": "7.252",    
+	"categoria": "Resorts",
     "card_image": "japaratinga-lounge-resort-japaratinga.webp",
     "href": "lazer-oferta.html?slug=japaratinga-lounge-resort-japaratinga"
   },
@@ -731,7 +813,8 @@
     "slug": "la-torre-resort-all-inclusive",
     "title": "Uma semana no La Torre Resort All Inclusive, em Porto Seguro",
     "titulo_curto": "Semana no La Torre Resort",
-    "categoria": "Resorts",
+    "price": "11.367",    
+	"categoria": "Resorts",
     "card_image": "la-torre-resort-all-inclusive.webp",
     "href": "lazer-oferta.html?slug=la-torre-resort-all-inclusive"
   },
@@ -739,7 +822,8 @@
     "slug": "malai-manso-resort-chapada-dos-guimaraes",
     "title": "Uma semana no Malai Manso Resort, no Lago do Manso e Chapada dos Guimarães",
     "titulo_curto": "Semana no Malai Manso Resort",
-    "categoria": "Resorts",
+    "price": "6.482",    
+	"categoria": "Resorts",
     "card_image": "malai-manso-resort-chapada-dos-guimaraes.webp",
     "href": "lazer-oferta.html?slug=malai-manso-resort-chapada-dos-guimaraes"
   },
@@ -747,7 +831,8 @@
     "slug": "mavsa-resort-convention-spa-cesario-lange",
     "title": "Uma semana no Mavsa Resort Convention & SPA, em Cesário Lange",
     "titulo_curto": "Semana no Mavsa Resort",
-    "categoria": "Resorts",
+    "price": "8.998",    
+	"categoria": "Resorts",
     "card_image": "mavsa-resort-convention-spa-cesario-lange.webp",
     "href": "lazer-oferta.html?slug=mavsa-resort-convention-spa-cesario-lange"
   },
@@ -755,7 +840,8 @@
     "slug": "nannai-resort-spa",
     "title": "Uma semana no Nannai Resort & Spa, em Muro Alto",
     "titulo_curto": "Semana no Nannai Resort & Spa",
-    "categoria": "Resorts",
+    "price": "13.188",    
+	"categoria": "Resorts",
     "card_image": "nannai-resort-spa.webp",
     "href": "lazer-oferta.html?slug=nannai-resort-spa"
   },
@@ -763,7 +849,8 @@
     "slug": "ocean-palace-all-inclusive-premium-natal",
     "title": "Uma semana no Ocean Palace All Inclusive Premium, em Natal",
     "titulo_curto": "Semana no Ocean Palace Natal",
-    "categoria": "Resorts",
+    "price": "3.646",    
+	"categoria": "Resorts",
     "card_image": "ocean-palace-all-inclusive-premium-natal.webp",
     "href": "lazer-oferta.html?slug=ocean-palace-all-inclusive-premium-natal"
   },
@@ -771,7 +858,8 @@
     "slug": "pratagy-beach-all-inclusive-resort-maceio",
     "title": "Uma semana no Pratagy Beach All Inclusive Resort, em Maceió",
     "titulo_curto": "Semana no Pratagy Beach Resort",
-    "categoria": "Resorts",
+    "price": "5.520",    
+	"categoria": "Resorts",
     "card_image": "pratagy-beach-all-inclusive-resort-maceio.webp",
     "href": "lazer-oferta.html?slug=pratagy-beach-all-inclusive-resort-maceio"
   },
@@ -779,7 +867,8 @@
     "slug": "salinas-maceio-all-inclusive-resort-maceio",
     "title": "Uma semana no Salinas Maceió All Inclusive Resort, em Ipioca",
     "titulo_curto": "Semana no Salinas Maceió",
-    "categoria": "Resorts",
+    "price": "5.719",    
+	"categoria": "Resorts",
     "card_image": "salinas-maceio-all-inclusive-resort-maceio.webp",
     "href": "lazer-oferta.html?slug=salinas-maceio-all-inclusive-resort-maceio"
   },
@@ -787,7 +876,8 @@
     "slug": "salinas-maragogi-all-inclusive-resort-maragogi",
     "title": "Uma semana no Salinas Maragogi All Inclusive Resort, em Maragogi",
     "titulo_curto": "Semana no Salinas Maragogi",
-    "categoria": "Resorts",
+    "price": "6.368",    
+	"categoria": "Resorts",
     "card_image": "salinas-maragogi-all-inclusive-resort-maragogi.webp",
     "href": "lazer-oferta.html?slug=salinas-maragogi-all-inclusive-resort-maragogi"
   },
@@ -795,7 +885,8 @@
     "slug": "samoa-beach-resort",
     "title": "Uma semana no Samoa Beach Resort, em Muro Alto",
     "titulo_curto": "Semana no Samoa Beach Resort",
-    "categoria": "Resorts",
+    "price": "9.034",    
+	"categoria": "Resorts",
     "card_image": "samoa-beach-resort.webp",
     "href": "lazer-oferta.html?slug=samoa-beach-resort"
   },
@@ -803,7 +894,8 @@
     "slug": "serhs-experience-suites-natal",
     "title": "Uma semana no SERHS Experience Suites, em Natal",
     "titulo_curto": "Semana no SERHS Experience Suites",
-    "categoria": "Resorts",
+    "price": "6.730",    
+	"categoria": "Resorts",
     "card_image": "serhs-experience-suites-natal.webp",
     "href": "lazer-oferta.html?slug=serhs-experience-suites-natal"
   },
@@ -811,7 +903,8 @@
     "slug": "serhs-natal-grand-hotel-resort-natal",
     "title": "Uma semana no Serhs Natal Grand Hotel & Resort, em Natal",
     "titulo_curto": "Semana no Serhs Natal Grand Hotel",
-    "categoria": "Resorts",
+    "price": "1.455",    
+	"categoria": "Resorts",
     "card_image": "serhs-natal-grand-hotel-resort-natal.webp",
     "href": "lazer-oferta.html?slug=serhs-natal-grand-hotel-resort-natal"
   },
@@ -819,7 +912,8 @@
     "slug": "serrambi-resort",
     "title": "Uma semana no Serrambi Resort, em Ipojuca",
     "titulo_curto": "Semana no Serrambi Resort",
-    "categoria": "Resorts",
+    "price": "11.442",    
+	"categoria": "Resorts",
     "card_image": "serrambi-resort.webp",
     "href": "lazer-oferta.html?slug=serrambi-resort"
   },
@@ -827,7 +921,8 @@
     "slug": "summerville-resort",
     "title": "Uma semana no Summerville All Inclusive Resort, em Muro Alto",
     "titulo_curto": "Semana no Summerville Resort",
-    "categoria": "Resorts",
+    "price": "14.928",    
+	"categoria": "Resorts",
     "card_image": "summerville-resort.webp",
     "href": "lazer-oferta.html?slug=summerville-resort"
   },
@@ -835,7 +930,8 @@
     "slug": "tivoli-ecoresort-praia-do-forte",
     "title": "Uma semana no Tivoli Ecoresort Praia do Forte, na Bahia",
     "titulo_curto": "Semana no Tivoli Ecoresort",
-    "categoria": "Resorts",
+    "price": "6.830",    
+	"categoria": "Resorts",
     "card_image": "tivoli-ecoresort-praia-do-forte.webp",
     "href": "lazer-oferta.html?slug=tivoli-ecoresort-praia-do-forte"
   },
@@ -843,7 +939,8 @@
     "slug": "vila-gale-alagoas-barra-de-santo-antonio",
     "title": "Uma semana no Vila Galé Alagoas, em Barra de Santo Antônio",
     "titulo_curto": "Semana no Vila Galé Alagoas",
-    "categoria": "Resorts",
+    "price": "4.270",    
+	"categoria": "Resorts",
     "card_image": "vila-gale-alagoas-barra-de-santo-antonio.webp",
     "href": "lazer-oferta.html?slug=vila-gale-alagoas-barra-de-santo-antonio"
   },
@@ -851,7 +948,8 @@
     "slug": "vila-gale-collection-sunset-cumbuco",
     "title": "Uma semana no Vila Galé Collection Sunset Cumbuco",
     "titulo_curto": "Semana no Vila Galé Collection Sunset",
-    "categoria": "Resorts",
+    "price": "2.719",    
+	"categoria": "Resorts",
     "card_image": "vila-gale-collection-sunset-cumbuco.webp",
     "href": "lazer-oferta.html?slug=vila-gale-collection-sunset-cumbuco"
   },
@@ -859,7 +957,8 @@
     "slug": "vila-gale-eco-resort-angra-dos-reis",
     "title": "Uma semana no Vila Galé Eco Resort de Angra, na Costa Verde",
     "titulo_curto": "Semana no Vila Galé Eco Resort de Angra",
-    "categoria": "Resorts",
+    "price": "3.989",    
+	"categoria": "Resorts",
     "card_image": "vila-gale-eco-resort-angra-dos-reis.webp",
     "href": "lazer-oferta.html?slug=vila-gale-eco-resort-angra-dos-reis"
   },
@@ -867,7 +966,8 @@
     "slug": "vila-gale-resort-cumbuco",
     "title": "Uma semana no Vila Galé Resort Cumbuco, no Ceará",
     "titulo_curto": "Semana no Vila Galé Cumbuco",
-    "categoria": "Resorts",
+    "price": "4.478",    
+	"categoria": "Resorts",
     "card_image": "vila-gale-resort-cumbuco.webp",
     "href": "lazer-oferta.html?slug=vila-gale-resort-cumbuco"
   },
@@ -875,7 +975,8 @@
     "slug": "vila-gale-resort-mares-camacari",
     "title": "Uma semana no Vila Galé Resort Marés, em Guarajuba (Litoral Norte da Bahia)",
     "titulo_curto": "Semana no Vila Galé Marés",
-    "categoria": "Resorts",
+    "price": "4.536",    
+	"categoria": "Resorts",
     "card_image": "vila-gale-resort-mares-camacari.webp",
     "href": "lazer-oferta.html?slug=vila-gale-resort-mares-camacari"
   },
@@ -883,7 +984,8 @@
     "slug": "westin-porto-de-galinhas",
     "title": "Uma semana no The Westin Porto de Galinhas, em Muro Alto",
     "titulo_curto": "Semana no Westin Porto de Galinhas",
-    "categoria": "Resorts",
+    "price": "13.663",    
+	"categoria": "Resorts",
     "card_image": "westin-porto-de-galinhas.webp",
     "href": "lazer-oferta.html?slug=westin-porto-de-galinhas"
   }, 
@@ -891,7 +993,8 @@
     "slug": "africa-do-sul-espetacular",
     "title": "África do Sul Espetacular – 8 dias entre safári, história e Cabo",
     "titulo_curto": "África do Sul Espetacular",
-    "categoria": "Tour",
+    "price": "7.719",    
+	"categoria": "Tour",
     "card_image": "africa-do-sul-espetacular.webp",
     "href": "lazer-oferta.html?slug=africa-do-sul-espetacular"
   },
@@ -899,7 +1002,8 @@
     "slug": "auroras-boreais-o-espetaculo-das-luzes-do-artico",
     "title": "Auroras Boreais – O Espetáculo das Luzes do Ártico em Whitehorse",
     "titulo_curto": "Auroras Boreais no Yukon",
-    "categoria": "Tour",
+    "price": "4.697",    
+	"categoria": "Tour",
     "card_image": "auroras-boreais-o-espetaculo-das-luzes-do-artico.webp",
     "href": "lazer-oferta.html?slug=auroras-boreais-o-espetaculo-das-luzes-do-artico"
   },
@@ -907,7 +1011,8 @@
     "slug": "belezas-de-istambul-e-capadocia",
     "title": "Belezas de Istambul e Capadócia – 7 dias entre impérios e paisagens lunares",
     "titulo_curto": "Belezas de Istambul e Capadócia",
-    "categoria": "Tour",
+    "price": "3.891",    
+	"categoria": "Tour",
     "card_image": "belezas-de-istambul-e-capadocia.webp",
     "href": "lazer-oferta.html?slug=belezas-de-istambul-e-capadocia"
   },
@@ -915,7 +1020,8 @@
     "slug": "belezas-de-marrocos",
     "title": "Belezas de Marrocos – 8 dias pelas Cidades Imperiais",
     "titulo_curto": "Belezas de Marrocos",
-    "categoria": "Tour",
+    "price": "6.096",    
+	"categoria": "Tour",
     "card_image": "belezas-de-marrocos.webp",
     "href": "lazer-oferta.html?slug=belezas-de-marrocos"
   },
@@ -923,7 +1029,8 @@
     "slug": "buenos-aires-imperdivel",
     "title": "Buenos Aires Imperdível – 4 dias entre cidade, tango e Delta do Tigre",
     "titulo_curto": "Buenos Aires Imperdível",
-    "categoria": "Tour",
+    "price": "1.071",    
+	"categoria": "Tour",
     "card_image": "buenos-aires-imperdivel.webp",
     "href": "lazer-oferta.html?slug=buenos-aires-imperdivel"
   },
@@ -931,7 +1038,8 @@
     "slug": "celebracao-do-festival-holi",
     "title": "Celebração do Festival Holi – 8 dias no Triângulo Dourado da Índia",
     "titulo_curto": "Celebração do Festival Holi",
-    "categoria": "Tour",
+    "price": "6.006",    
+	"categoria": "Tour",
     "card_image": "celebracao-do-festival-holi.webp",
     "href": "lazer-oferta.html?slug=celebracao-do-festival-holi"
   },
@@ -939,7 +1047,8 @@
     "slug": "descubra-dubai-e-abu-dhabi",
     "title": "Descubra Dubai e Abu Dhabi – 6 dias entre futuro, tradição e deserto",
     "titulo_curto": "Descubra Dubai e Abu Dhabi",
-    "categoria": "Tour",
+    "price": "3.633",    
+	"categoria": "Tour",
     "card_image": "descubra-dubai-e-abu-dhabi.webp",
     "href": "lazer-oferta.html?slug=descubra-dubai-e-abu-dhabi"
   },
@@ -947,7 +1056,8 @@
     "slug": "descubra-o-egito",
     "title": "Descubra o Egito – 8 dias entre Pirâmides, Nilo e Templos Milenares",
     "titulo_curto": "Descubra o Egito",
-    "categoria": "Tour",
+    "price": "9.753",    
+	"categoria": "Tour",
     "card_image": "descubra-o-egito.webp",
     "href": "lazer-oferta.html?slug=descubra-o-egito"
   },
@@ -955,7 +1065,8 @@
     "slug": "deserto-do-salar---uyuni",
     "title": "Deserto do Salar - Uyuni – 7 dias entre Atacama e o maior deserto de sal do mundo",
     "titulo_curto": "Deserto do Salar - Uyuni",
-    "categoria": "Tour",
+    "price": "12.862",    
+	"categoria": "Tour",
     "card_image": "deserto-do-salar---uyuni.webp",
     "href": "lazer-oferta.html?slug=deserto-do-salar---uyuni"
   },
@@ -963,7 +1074,8 @@
     "slug": "egito-classico-via-aswan-e-sharm-el-sheikh",
     "title": "Egito Clássico via Aswan e Sharm El Sheikh – 11 dias entre Nilo e Mar Vermelho",
     "titulo_curto": "Egito via Aswan e Sharm El Sheikh",
-    "categoria": "Tour",
+    "price": "8.828",    
+	"categoria": "Tour",
     "card_image": "egito-classico-via-aswan-e-sharm-el-sheikh.webp",
     "href": "lazer-oferta.html?slug=egito-classico-via-aswan-e-sharm-el-sheikh"
   },
@@ -971,7 +1083,8 @@
     "slug": "egito-classico-via-aswan",
     "title": "Egito Clássico via Aswan – 8 dias entre Cairo e o Rio Nilo",
     "titulo_curto": "Egito Clássico via Aswan",
-    "categoria": "Tour",
+    "price": "4.222",    
+	"categoria": "Tour",
     "card_image": "egito-classico-via-aswan.webp",
     "href": "lazer-oferta.html?slug=egito-classico-via-aswan"
   },
@@ -979,7 +1092,8 @@
     "slug": "egito-com-hurghada",
     "title": "Egito com Hurghada – 11 dias entre Nilo e Mar Vermelho",
     "titulo_curto": "Egito com Hurghada",
-    "categoria": "Tour",
+    "price": "10.762",    
+	"categoria": "Tour",
     "card_image": "egito-com-hurghada.webp",
     "href": "lazer-oferta.html?slug=egito-com-hurghada"
   },
@@ -987,7 +1101,8 @@
     "slug": "egito-com-jordania",
     "title": "Egito com Jordânia – 11 dias entre Nilo, Petra e o deserto",
     "titulo_curto": "Egito com Jordânia",
-    "categoria": "Tour",
+    "price": "15.014",    
+	"categoria": "Tour",
     "card_image": "egito-com-jordania.webp",
     "href": "lazer-oferta.html?slug=egito-com-jordania"
   },
@@ -995,7 +1110,8 @@
     "slug": "encantos-da-africa-do-sul",
     "title": "Encantos da África do Sul – 8 dias entre safári e Cidade do Cabo",
     "titulo_curto": "Encantos da África do Sul",
-    "categoria": "Tour",
+    "price": "4.315",    
+	"categoria": "Tour",
     "card_image": "encantos-da-africa-do-sul.webp",
     "href": "lazer-oferta.html?slug=encantos-da-africa-do-sul"
   },
@@ -1003,7 +1119,8 @@
     "slug": "essencia-australiana",
     "title": "Essência Australiana – 9 dias entre Melbourne e Sydney",
     "titulo_curto": "Essência Australiana",
-    "categoria": "Tour",
+    "price": "12.585",    
+	"categoria": "Tour",
     "card_image": "essencia-australiana.webp",
     "href": "lazer-oferta.html?slug=essencia-australiana"
   },
@@ -1011,7 +1128,8 @@
     "slug": "grand-tour-por-marrocos",
     "title": "Grand Tour por Marrocos: do Atlântico ao Saara em 10 dias",
     "titulo_curto": "Grand Tour por Marrocos",
-    "categoria": "Tour",
+    "price": "9.093",    
+	"categoria": "Tour",
     "card_image": "grand-tour-por-marrocos.webp",
     "href": "lazer-oferta.html?slug=grand-tour-por-marrocos"
   },
@@ -1019,7 +1137,8 @@
     "slug": "grecia-continental-com-zaquintos",
     "title": "Grécia Continental com Zaquintos: entre o mundo clássico e o azul do Jônico",
     "titulo_curto": "Grécia Continental com Zaquintos",
-    "categoria": "Tour",
+    "price": "10.795",    
+	"categoria": "Tour",
     "card_image": "grecia-continental-com-zaquintos.webp",
     "href": "lazer-oferta.html?slug=grecia-continental-com-zaquintos"
   },
@@ -1027,7 +1146,8 @@
     "slug": "grecia-continental-e-meteora",
     "title": "Grécia Continental e Meteora: história, mitos e mosteiros suspensos",
     "titulo_curto": "Grécia Continental e Meteora",
-    "categoria": "Tour",
+    "price": "7.238",    
+	"categoria": "Tour",
     "card_image": "grecia-continental-e-meteora.webp",
     "href": "lazer-oferta.html?slug=grecia-continental-e-meteora"
   },
@@ -1035,7 +1155,8 @@
     "slug": "joias-da-arabia-saudita",
     "title": "Joias da Arábia Saudita – 8 dias entre deserto, cidades sagradas e metrópoles modernas",
     "titulo_curto": "Joias da Arábia Saudita",
-    "categoria": "Tour",
+    "price": "13.717",    
+	"categoria": "Tour",
     "card_image": "joias-da-arabia-saudita.webp",
     "href": "lazer-oferta.html?slug=joias-da-arabia-saudita"
   },
@@ -1043,7 +1164,8 @@
     "slug": "lendas-da-turquia",
     "title": "Lendas da Turquia – 10 dias entre Istambul, Capadócia e o Egeu",
     "titulo_curto": "Lendas da Turquia",
-    "categoria": "Tour",
+    "price": "5.276",    
+	"categoria": "Tour",
     "card_image": "lendas-da-turquia.webp",
     "href": "lazer-oferta.html?slug=lendas-da-turquia"
   },
@@ -1051,7 +1173,8 @@
     "slug": "melodia-grega---atenas-mykonos-santorini",
     "title": "Melodia Grega – 8 dias entre Atenas, Santorini e Mykonos",
     "titulo_curto": "Melodia Grega",
-    "categoria": "Tour",
+    "price": "13.863",    
+	"categoria": "Tour",
     "card_image": "melodia-grega---atenas-mykonos-santorini.webp",
     "href": "lazer-oferta.html?slug=melodia-grega---atenas-mykonos-santorini"
   },
@@ -1059,7 +1182,8 @@
     "slug": "o-explorador-australiano",
     "title": "O Explorador Australiano – 12 dias entre Melbourne, Cairns e Sydney",
     "titulo_curto": "O Explorador Australiano",
-    "categoria": "Tour",
+    "price": "18.606",    
+	"categoria": "Tour",
     "card_image": "o-explorador-australiano.webp",
     "href": "lazer-oferta.html?slug=o-explorador-australiano"
   },
@@ -1067,7 +1191,8 @@
     "slug": "o-melhor-do-leste-canadense",
     "title": "O Melhor do Leste Canadense – 9 dias de trem entre Toronto, Ottawa, Quebec e Montreal",
     "titulo_curto": "O Melhor do Leste Canadense",
-    "categoria": "Tour",
+    "price": "16.087",    
+	"categoria": "Tour",
     "card_image": "o-melhor-do-leste-canadense.webp",
     "href": "lazer-oferta.html?slug=o-melhor-do-leste-canadense"
   },
@@ -1075,7 +1200,8 @@
     "slug": "patagonia-classica-buenos-aires-calafate-e-ushuaia",
     "title": "Patagônia Clássica – 9 dias entre Buenos Aires, Calafate e Ushuaia",
     "titulo_curto": "Patagônia Clássica: Buenos Aires, Calafate e Ushuaia",
-    "categoria": "Tour",
+    "price": "7.737",    
+	"categoria": "Tour",
     "card_image": "patagonia-classica-buenos-aires-calafate-e-ushuaia.webp",
     "href": "lazer-oferta.html?slug=patagonia-classica-buenos-aires-calafate-e-ushuaia"
   },
@@ -1083,7 +1209,8 @@
     "slug": "peru-a-experiencia-completa",
     "title": "Peru – A Experiência Completa – 14 dias entre Lima, Paracas, Nazca, Arequipa, Colca, Puno, Cusco, Vale Sagrado e Machu Picchu",
     "titulo_curto": "Peru – A Experiência Completa",
-    "categoria": "Tour",
+    "price": "15.150",    
+	"categoria": "Tour",
     "card_image": "peru-a-experiencia-completa.webp",
     "href": "lazer-oferta.html?slug=peru-a-experiencia-completa"
   },
@@ -1091,7 +1218,8 @@
     "slug": "peru-a-milenaria-rota-inca",
     "title": "Peru – A Milenária Rota Inca – 7 dias entre Lima, Cusco, Vale Sagrado e Machu Picchu pela Trilha Inca Curta",
     "titulo_curto": "Peru – A Milenária Rota Inca",
-    "categoria": "Tour",
+    "price": "8.391",    
+	"categoria": "Tour",
     "card_image": "peru-a-milenaria-rota-inca.webp",
     "href": "lazer-oferta.html?slug=peru-a-milenaria-rota-inca"
   },
@@ -1099,7 +1227,8 @@
     "slug": "peru-do-mar-aos-andes",
     "title": "Peru – Do Mar aos Andes – 8 dias entre Lima, Paracas, Cusco, Vale Sagrado e Machu Picchu",
     "titulo_curto": "Peru – Do Mar aos Andes",
-    "categoria": "Tour",
+    "price": "7.834",    
+	"categoria": "Tour",
     "card_image": "peru-do-mar-aos-andes.webp",
     "href": "lazer-oferta.html?slug=peru-do-mar-aos-andes"
   },
@@ -1107,7 +1236,8 @@
     "slug": "peru-rota-dos-andes",
     "title": "Peru – Rota dos Andes – 12 dias entre Lima, Arequipa, Colca, Puno, Cusco, Vale Sagrado e Machu Picchu",
     "titulo_curto": "Peru – Rota dos Andes",
-    "categoria": "Tour",
+    "price": "9.533",    
+	"categoria": "Tour",
     "card_image": "peru-rota-dos-andes.webp",
     "href": "lazer-oferta.html?slug=peru-rota-dos-andes"
   },
@@ -1115,7 +1245,8 @@
     "slug": "peru-um-despertar-em-machu-picchu",
     "title": "Peru – Um Despertar em Machu Picchu – 7 dias entre Lima, Cusco, Vale Sagrado e Machu Picchu",
     "titulo_curto": "Peru – Um Despertar em Machu Picchu",
-    "categoria": "Tour",
+    "price": "5.968",    
+	"categoria": "Tour",
     "card_image": "peru-um-despertar-em-machu-picchu.webp",
     "href": "lazer-oferta.html?slug=peru-um-despertar-em-machu-picchu"
   },
@@ -1123,7 +1254,8 @@
     "slug": "quatro-faces-da-australia",
     "title": "Quatro Faces da Austrália – 14 dias entre Melbourne, Cairns, Brisbane e Sydney",
     "titulo_curto": "Quatro Faces da Austrália",
-    "categoria": "Tour",
+    "price": "20.995",    
+	"categoria": "Tour",
     "card_image": "quatro-faces-da-australia.webp",
     "href": "lazer-oferta.html?slug=quatro-faces-da-australia"
   },
@@ -1131,7 +1263,8 @@
     "slug": "sicilia-concordia",
     "title": "Sicília Concórdia – 8 dias pela ilha dos mil povos",
     "titulo_curto": "Sicília Concórdia",
-    "categoria": "Tour",
+    "price": "8.979",    
+	"categoria": "Tour",
     "card_image": "sicilia-concordia.webp",
     "href": "lazer-oferta.html?slug=sicilia-concordia"
   },
@@ -1139,7 +1272,8 @@
     "slug": "tesouros-da-tailândia",
     "title": "Tesouros da Tailândia – 7 dias entre Bangkok, Chiang Rai e Chiang Mai",
     "titulo_curto": "Tesouros da Tailândia",
-    "categoria": "Tour",
+    "price": "6.796",    
+	"categoria": "Tour",
     "card_image": "tesouros-da-tailândia.webp",
     "href": "lazer-oferta.html?slug=tesouros-da-tailândia"
   },
@@ -1147,7 +1281,8 @@
     "slug": "travessia-dos-lagos-andinos",
     "title": "Travessia dos Lagos Andinos – 12 dias entre Buenos Aires, Bariloche, Puerto Varas e Santiago",
     "titulo_curto": "Travessia dos Lagos Andinos",
-    "categoria": "Tour",
+    "price": "8.423",    
+	"categoria": "Tour",
     "card_image": "travessia-dos-lagos-andinos.webp",
     "href": "lazer-oferta.html?slug=travessia-dos-lagos-andinos"
   },
@@ -1155,8 +1290,253 @@
     "slug": "triangulo-dourado-da-india",
     "title": "Triângulo Dourado da Índia – 7 dias entre Delhi, Jaipur e Agra",
     "titulo_curto": "Triângulo Dourado da Índia",
-    "categoria": "Tour",
+    "price": "4.177",    
+	"categoria": "Tour",
     "card_image": "triangulo-dourado-da-india.webp",
     "href": "lazer-oferta.html?slug=triangulo-dourado-da-india"
-  }  
+  },
+  {
+    "slug": "Cabanas-Hotel-Fazenda-Guarapuava",
+    "title": "Day-use no Cabanas Hotel Fazenda / Hope Valley Adventure (Guarapuava/PR): aventura radical com conforto de alto padrão no interior do Paraná",
+    "titulo_curto": "Day-use Cabanas Hotel Fazenda (Hope Valley)",
+    "price": "190",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Cabanas-Hotel-Fazenda-Guarapuava.webp",
+    "href": "lazer-oferta.html?slug=Cabanas-Hotel-Fazenda-Guarapuava"
+  },
+  {
+    "slug": "Capivari-Ecoresort-Campina-Grande-do-Sul",
+    "title": "Day-use no Capivari Ecoresort (Campina Grande do Sul/PR): resort de serra com piscinas aquecidas perto de Curitiba",
+    "titulo_curto": "Day-use Capivari Ecoresort",
+    "price": "240",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Capivari-Ecoresort-Campina-Grande-do-Sul.webp",
+    "href": "lazer-oferta.html?slug=Capivari-Ecoresort-Campina-Grande-do-Sul"
+  },
+  {
+    "slug": "Chacara-Minas-d-Agua-Campo-Magro",
+    "title": "Day-use na Chácara Minas d’Água (Campo Magro/PR): escape gourmet e natureza para desacelerar perto de Curitiba",
+    "titulo_curto": "Day-use Chácara Minas d’Água",
+    "price": "150",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Chacara-Minas-d-Agua-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Minas-d-Agua-Campo-Magro"
+  },
+  {
+    "slug": "Chacara-Pedra-Lisa-Campo-Magro",
+    "title": "Day-use na Chácara Pedra Lisa (Campo Magro/PR): aventura, cachoeiras e redário em 20 hectares de natureza",
+    "titulo_curto": "Day-use Chácara Pedra Lisa",
+    "price": "100",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Chacara-Pedra-Lisa-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Pedra-Lisa-Campo-Magro"
+  },
+  {
+    "slug": "Chacara-Sant-Ana-Campo-Magro",
+    "title": "Day-use na Chácara Sant’Ana (Campo Magro/PR): costela fogo de chão premiada, aventura e sossego a poucos minutos de Curitiba",
+    "titulo_curto": "Day-use Chácara Sant’Ana Campo Magro",
+    "price": "140",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Chacara-Sant-Ana-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Sant-Ana-Campo-Magro"
+  },
+  {
+    "slug": "Eco-Estancia-Maktub-Morretes",
+    "title": "Day-use na Eco Estância Maktub (Morretes/PR): imersão na Mata Atlântica aos pés do Marumbi",
+    "titulo_curto": "Day-use Eco Estância Maktub",
+    "price": "120",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Eco-Estancia-Maktub-Morretes.webp",
+    "href": "lazer-oferta.html?slug=Eco-Estancia-Maktub-Morretes"
+  },
+  {
+    "slug": "Eco-Hotel-Bouganville",
+    "title": "Day-use no Eco Hotel Bouganville (São José dos Pinhais/Contenda): fazenda com piscina aquecida, animais e cozinha colonial de destaque",
+    "titulo_curto": "Day-use Eco Hotel Bouganville",
+    "price": "160",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Eco-Hotel-Bouganville.webp",
+    "href": "lazer-oferta.html?slug=Eco-Hotel-Bouganville"
+  },
+  {
+    "slug": "Estancia-Casa-na-Arvore-Contenda",
+    "title": "Day-use na Estância Casa na Árvore (Contenda/PR): trilhas, casa na árvore de 20 m e acolhimento pet friendly",
+    "titulo_curto": "Day-use Estância Casa na Árvore",
+    "price": "150",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Estancia-Casa-na-Arvore-Contenda.webp",
+    "href": "lazer-oferta.html?slug=Estancia-Casa-na-Arvore-Contenda"
+  },
+  {
+    "slug": "Fazenda-Evaristo-Rio-Negrinho-SC",
+    "title": "Day-use na Fazenda Evaristo (Rio Negrinho/SC): ecoturismo gigante em um único dia",
+    "titulo_curto": "Day-use Fazenda Evaristo",
+    "price": "100",    
+	"categoria": "Brasil",
+    "card_image": "Fazenda-Evaristo-Rio-Negrinho-SC.webp",
+    "href": "lazer-oferta.html?slug=Fazenda-Evaristo-Rio-Negrinho-SC"
+  },
+  {
+    "slug": "Fazzenda-Park-Resort-Gaspar",
+    "title": "Day-use all inclusive no Fazzenda Park Resort (Gaspar/SC): um dia de resort-fazenda de luxo no Vale Europeu",
+    "titulo_curto": "Day-use Fazzenda Park Resort",
+    "price": "750",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Fazzenda-Park-Resort-Gaspar.webp",
+    "href": "lazer-oferta.html?slug=Fazzenda-Park-Resort-Gaspar"
+  },
+  {
+    "slug": "Hope-Valley-Adventure-Resort-Guarapuava",
+    "title": "Day-use no Hope Valley Adventure Resort (Guarapuava/PR): hotel-fazenda de aventura, família e conforto premium no interior do Paraná",
+    "titulo_curto": "Day-use Hope Valley Adventure Resort",
+    "price": "449",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hope-Valley-Adventure-Resort-Guarapuava.webp",
+    "href": "lazer-oferta.html?slug=Hope-Valley-Adventure-Resort-Guarapuava"
+  },
+  {
+    "slug": "Hotel-Estancia-Betania-Colombo",
+    "title": "Day-use no Hotel Estância Betânia (Colombo/PR): refúgio de campo a poucos minutos de Curitiba",
+    "titulo_curto": "Day-use Estância Betânia",
+    "price": "195",    
+	"categoria": "Brasil",
+    "card_image": "Hotel-Estancia-Betania-Colombo.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Estancia-Betania-Colombo"
+  },
+  {
+    "slug": "Hotel-Fazenda-Casarao-do-Vale-Massaranduba",
+    "title": "Day-use no Hotel Fazenda Casarão do Vale (Massaranduba/SC): um dia de fazenda completa no Vale Europeu",
+    "titulo_curto": "Day-use Casarão do Vale",
+    "price": "258",    
+	"categoria": "Brasil",
+    "card_image": "Hotel-Fazenda-Casarao-do-Vale-Massaranduba.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Casarao-do-Vale-Massaranduba"
+  },
+  {
+    "slug": "Hotel-Fazenda-Dona-Francisca-Joinville",
+    "title": "Day-use no Hotel Fazenda Dona Francisca (Joinville/SC): resort de fazenda completo na Serra Dona Francisca a poucas horas de Curitiba",
+    "titulo_curto": "Day-use Hotel Fazenda Dona Francisca",
+    "price": "400",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Dona-Francisca-Joinville.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Dona-Francisca-Joinville"
+  },
+  {
+    "slug": "Hotel-Fazenda-Itaytyba-Tibagi",
+    "title": "Day-use no Hotel Fazenda Itaytyba (Tibagi/PR): ecoturismo premium, cânion Guartelá e fazenda de alto padrão nos Campos Gerais",
+    "titulo_curto": "Day-use Hotel Fazenda Itaytyba",
+    "price": "0",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Itaytyba-Tibagi.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Itaytyba-Tibagi"
+  },
+  {
+    "slug": "Hotel-Fazenda-Pommernland-Pomerode",
+    "title": "Day-use no Hotel Fazenda Pommernland (Pomerode/SC): lazer ativo, conforto aquecido e cultura do Vale Europeu em um único dia",
+    "titulo_curto": "Day-use Hotel Fazenda Pommernland",
+    "price": "298",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Pommernland-Pomerode.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Pommernland-Pomerode"
+  },
+  {
+    "slug": "Hotel-Nativa-Eco-Mandirituba",
+    "title": "Day-use no Hotel Nativa Eco (Mandirituba/PR): resort de campo pertinho de Curitiba",
+    "titulo_curto": "Day-use Hotel Nativa Eco",
+    "price": "320",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hotel-Nativa-Eco-Mandirituba.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Nativa-Eco-Mandirituba"
+  },
+  {
+    "slug": "Hotel-Vale-das-Hortensias-Serra-Dona-Francisca",
+    "title": "Day-use no Hotel Vale das Hortênsias (Serra Dona Francisca/SC): refúgio de mata atlântica, piscina aquecida e gastronomia caseira a poucas horas de Curitiba",
+    "titulo_curto": "Day-use Hotel Vale das Hortênsias",
+    "price": "220",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Hotel-Vale-das-Hortensias-Serra-Dona-Francisca.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Vale-das-Hortensias-Serra-Dona-Francisca"
+  },
+  {
+    "slug": "La-Dolce-Vita-Park-Hotel",
+    "title": "Day-use no La Dolce Vita Park Hotel (São José dos Pinhais/PR): resort com piscinas internas e externas perto de Curitiba",
+    "titulo_curto": "Day-use La Dolce Vita Park Hotel",
+    "price": "260",
+    "categoria": "Day Use Cwb",
+    "card_image": "La-Dolce-Vita-Park-Hotel.webp",
+    "href": "lazer-oferta.html?slug=La-Dolce-Vita-Park-Hotel"
+  },
+  {
+    "slug": "Pousada-Arraial-do-Ouro-Gaspar",
+    "title": "Day-use na Pousada Arraial do Ouro (Gaspar/SC): refúgio intimista com estrutura completa no coração do Vale Europeu",
+    "titulo_curto": "Day-use Pousada Arraial do Ouro",
+    "price": "299",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Pousada-Arraial-do-Ouro-Gaspar.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Arraial-do-Ouro-Gaspar"
+  },
+  {
+    "slug": "Pousada-Fazenda-Ribeirao-das-Flores",
+    "title": "Day-use na Pousada Fazenda Ribeirão das Flores: um refúgio rural perto de Curitiba",
+    "titulo_curto": "Day-use Ribeirão das Flores",
+    "price": "200",    
+	"categoria": "Brasil",
+    "card_image": "Pousada-Fazenda-Ribeirao-das-Flores.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Fazenda-Ribeirao-das-Flores"
+  },
+  {
+    "slug": "Pousada-Hakuna-Matata-Morretes",
+    "title": "Day-use na Pousada Hakuna Matata (Morretes/PR): imersão na Serra do Mar em um único dia",
+    "titulo_curto": "Day-use Hakuna Matata Morretes",
+    "price": "220",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Pousada-Hakuna-Matata-Morretes.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Hakuna-Matata-Morretes"
+  },
+  {
+    "slug": "Recanto-dos-Arcos-Cachoeira-do-Alemao",
+    "title": "Day-use no Recanto dos Arcos – Cachoeira do Alemão (São Luiz do Purunã/PR): natureza, cachoeira e sossego a poucos quilômetros de Curitiba",
+    "titulo_curto": "Day-use Recanto dos Arcos",
+    "price": "75",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Recanto-dos-Arcos-Cachoeira-do-Alemao.webp",
+    "href": "lazer-oferta.html?slug=Recanto-dos-Arcos-Cachoeira-do-Alemao"
+  },
+  {
+    "slug": "Varshana-Experience-Hotel-Balsa-Nova",
+    "title": "Day-use no Varshana Experience Hotel (São Luiz do Purunã/Balsa Nova): retiro de bem-estar com SPA, trilha de sensações e piscina aquecida",
+    "titulo_curto": "Day-use Varshana Experience Hotel",
+    "price": "0",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Varshana-Experience-Hotel-Balsa-Nova.webp",
+    "href": "lazer-oferta.html?slug=Varshana-Experience-Hotel-Balsa-Nova"
+  },
+  {
+    "slug": "Vila-Katu-Campo-Magro",
+    "title": "Day-use na Vila Katu (Campo Magro/PR): natureza, gastronomia e lazer infantil a minutos de Curitiba",
+    "titulo_curto": "Day-use Vila Katu Campo Magro",
+    "price": "80",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Vila-Katu-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Vila-Katu-Campo-Magro"
+  },
+  {
+    "slug": "Vila-dos-Animais-Campina-Grande-Do-Sul",
+    "title": "Day-use na Vila dos Animais (Campina Grande do Sul/PR): fazendinha, mata nativa e desconexão a poucos km de Curitiba",
+    "titulo_curto": "Day-use Vila dos Animais",
+    "price": "155",    
+	"categoria": "Day Use Cwb",
+    "card_image": "Vila-dos-Animais-Campina-Grande-Do-Sul.webp",
+    "href": "lazer-oferta.html?slug=Vila-dos-Animais-Campina-Grande-Do-Sul"
+  },
+  {
+    "slug": "islandia-entre-gelo-e-fogo",
+    "title": "Islândia: Entre Gelo e Fogo – 8 dias entre vulcões, geleiras e lagoas termais",
+    "titulo_curto": "Islândia: Entre Gelo e Fogo",
+    "price": "21.763",
+	"categoria": "Tour",
+    "card_image": "islandia-entre-gelo-e-fogo.webp",
+    "href": "lazer-oferta.html?slug=islandia-entre-gelo-e-fogo"
+  }
+]
 ]
