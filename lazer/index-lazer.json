@@ -1150,5 +1150,237 @@
     "categoria": "Tour",
     "card_image": "assets/lazer/triangulo-dourado-da-india.webp",
     "href": "lazer-oferta.html?slug=triangulo-dourado-da-india"
+  },
+    {
+    "slug": "Cabanas-Hotel-Fazenda-Guarapuava",
+    "title": "Day-use no Cabanas Hotel Fazenda / Hope Valley Adventure (Guarapuava/PR): aventura radical com conforto de alto padrão no interior do Paraná",
+    "titulo_curto": "Day-use Cabanas Hotel Fazenda (Hope Valley)",
+    "categoria": "Day Use Cwb",
+    "card_image": "Cabanas-Hotel-Fazenda-Guarapuava.webp",
+    "href": "lazer-oferta.html?slug=Cabanas-Hotel-Fazenda-Guarapuava"
+  },
+  {
+    "slug": "Capivari-Ecoresort-Campina-Grande-do-Sul",
+    "title": "Day-use no Capivari Ecoresort (Campina Grande do Sul/PR): resort de serra com piscinas aquecidas perto de Curitiba",
+    "titulo_curto": "Day-use Capivari Ecoresort",
+    "categoria": "Day Use Cwb",
+    "card_image": "Capivari-Ecoresort-Campina-Grande-do-Sul.webp",
+    "href": "lazer-oferta.html?slug=Capivari-Ecoresort-Campina-Grande-do-Sul"
+  },
+  {
+    "slug": "Chacara-Minas-d-Agua-Campo-Magro",
+    "title": "Day-use na Chácara Minas d’Água (Campo Magro/PR): escape gourmet e natureza para desacelerar perto de Curitiba",
+    "titulo_curto": "Day-use Chácara Minas d’Água",
+    "categoria": "Day Use Cwb",
+    "card_image": "Chacara-Minas-d-Agua-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Minas-d-Agua-Campo-Magro"
+  },
+  {
+    "slug": "Chacara-Pedra-Lisa-Campo-Magro",
+    "title": "Day-use na Chácara Pedra Lisa (Campo Magro/PR): aventura, cachoeiras e redário em 20 hectares de natureza",
+    "titulo_curto": "Day-use Chácara Pedra Lisa",
+    "categoria": "Day Use Cwb",
+    "card_image": "Chacara-Pedra-Lisa-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Pedra-Lisa-Campo-Magro"
+  },
+  {
+    "slug": "Chacara-Sant-Ana-Campo-Magro",
+    "title": "Day-use na Chácara Sant’Ana (Campo Magro/PR): costela fogo de chão premiada, aventura e sossego a poucos minutos de Curitiba",
+    "titulo_curto": "Day-use Chácara Sant’Ana Campo Magro",
+    "categoria": "Day Use Cwb",
+    "card_image": "Chacara-Sant-Ana-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Chacara-Sant-Ana-Campo-Magro"
+  },
+  {
+    "slug": "Eco-Estancia-Maktub-Morretes",
+    "title": "Day-use na Eco Estância Maktub (Morretes/PR): imersão na Mata Atlântica aos pés do Marumbi",
+    "titulo_curto": "Day-use Eco Estância Maktub",
+    "categoria": "Day Use Cwb",
+    "card_image": "Eco-Estancia-Maktub-Morretes.webp",
+    "href": "lazer-oferta.html?slug=Eco-Estancia-Maktub-Morretes"
+  },
+  {
+    "slug": "Eco-Hotel-Bouganville",
+    "title": "Day-use no Eco Hotel Bouganville (São José dos Pinhais/Contenda): fazenda com piscina aquecida, animais e cozinha colonial de destaque",
+    "titulo_curto": "Day-use Eco Hotel Bouganville",
+    "categoria": "Day Use Cwb",
+    "card_image": "Eco-Hotel-Bouganville.webp",
+    "href": "lazer-oferta.html?slug=Eco-Hotel-Bouganville"
+  },
+  {
+    "slug": "Estancia-Casa-na-Arvore-Contenda",
+    "title": "Day-use na Estância Casa na Árvore (Contenda/PR): trilhas, casa na árvore de 20 m e acolhimento pet friendly",
+    "titulo_curto": "Day-use Estância Casa na Árvore",
+    "categoria": "Day Use Cwb",
+    "card_image": "Estancia-Casa-na-Arvore-Contenda.webp",
+    "href": "lazer-oferta.html?slug=Estancia-Casa-na-Arvore-Contenda"
+  },
+  {
+    "slug": "Fazenda-Evaristo-Rio-Negrinho-SC",
+    "title": "Day-use na Fazenda Evaristo (Rio Negrinho/SC): ecoturismo gigante em um único dia",
+    "titulo_curto": "Day-use Fazenda Evaristo",
+    "categoria": "Brasil",
+    "card_image": "Fazenda-Evaristo-Rio-Negrinho-SC.webp",
+    "href": "lazer-oferta.html?slug=Fazenda-Evaristo-Rio-Negrinho-SC"
+  },
+  {
+    "slug": "Fazzenda-Park-Resort-Gaspar",
+    "title": "Day-use all inclusive no Fazzenda Park Resort (Gaspar/SC): um dia de resort-fazenda de luxo no Vale Europeu",
+    "titulo_curto": "Day-use Fazzenda Park Resort",
+    "categoria": "Day Use Cwb",
+    "card_image": "Fazzenda-Park-Resort-Gaspar.webp",
+    "href": "lazer-oferta.html?slug=Fazzenda-Park-Resort-Gaspar"
+  },
+  {
+    "slug": "Hope-Valley-Adventure-Resort-Guarapuava",
+    "title": "Day-use no Hope Valley Adventure Resort (Guarapuava/PR): hotel-fazenda de aventura, família e conforto premium no interior do Paraná",
+    "titulo_curto": "Day-use Hope Valley Adventure Resort",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hope-Valley-Adventure-Resort-Guarapuava.webp",
+    "href": "lazer-oferta.html?slug=Hope-Valley-Adventure-Resort-Guarapuava"
+  },
+  {
+    "slug": "Hotel-Estancia-Betania-Colombo",
+    "title": "Day-use no Hotel Estância Betânia (Colombo/PR): refúgio de campo a poucos minutos de Curitiba",
+    "titulo_curto": "Day-use Estância Betânia",
+    "categoria": "Brasil",
+    "card_image": "Hotel-Estancia-Betania-Colombo.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Estancia-Betania-Colombo"
+  },
+  {
+    "slug": "Hotel-Fazenda-Caina-Balsa-Nova",
+    "title": "Day-use no Hotel Fazenda Cainã (Balsa Nova/PR): luxo rústico, piscinas aquecidas e cultura tropeira perto de Curitiba",
+    "titulo_curto": "Day-use Hotel Fazenda Cainã",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Caina-Balsa-Nova.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Caina-Balsa-Nova"
+  },
+  {
+    "slug": "Hotel-Fazenda-Casarao-do-Vale-Massaranduba",
+    "title": "Day-use no Hotel Fazenda Casarão do Vale (Massaranduba/SC): um dia de fazenda completa no Vale Europeu",
+    "titulo_curto": "Day-use Casarão do Vale",
+    "categoria": "Brasil",
+    "card_image": "Hotel-Fazenda-Casarao-do-Vale-Massaranduba.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Casarao-do-Vale-Massaranduba"
+  },
+  {
+    "slug": "Hotel-Fazenda-Dona-Francisca-Joinville",
+    "title": "Day-use no Hotel Fazenda Dona Francisca (Joinville/SC): resort de fazenda completo na Serra Dona Francisca a poucas horas de Curitiba",
+    "titulo_curto": "Day-use Hotel Fazenda Dona Francisca",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Dona-Francisca-Joinville.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Dona-Francisca-Joinville"
+  },
+  {
+    "slug": "Hotel-Fazenda-Itaytyba-Tibagi",
+    "title": "Day-use no Hotel Fazenda Itaytyba (Tibagi/PR): ecoturismo premium, cânion Guartelá e fazenda de alto padrão nos Campos Gerais",
+    "titulo_curto": "Day-use Hotel Fazenda Itaytyba",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Itaytyba-Tibagi.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Itaytyba-Tibagi"
+  },
+  {
+    "slug": "Hotel-Fazenda-Pommernland-Pomerode",
+    "title": "Day-use no Hotel Fazenda Pommernland (Pomerode/SC): lazer ativo, conforto aquecido e cultura do Vale Europeu em um único dia",
+    "titulo_curto": "Day-use Hotel Fazenda Pommernland",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Fazenda-Pommernland-Pomerode.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Fazenda-Pommernland-Pomerode"
+  },
+  {
+    "slug": "Hotel-Nativa-Eco-Mandirituba",
+    "title": "Day-use no Hotel Nativa Eco (Mandirituba/PR): resort de campo pertinho de Curitiba",
+    "titulo_curto": "Day-use Hotel Nativa Eco",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Nativa-Eco-Mandirituba.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Nativa-Eco-Mandirituba"
+  },
+  {
+    "slug": "Hotel-Vale-das-Hortensias-Serra-Dona-Francisca",
+    "title": "Day-use no Hotel Vale das Hortênsias (Serra Dona Francisca/SC): refúgio de mata atlântica, piscina aquecida e gastronomia caseira a poucas horas de Curitiba",
+    "titulo_curto": "Day-use Hotel Vale das Hortênsias",
+    "categoria": "Day Use Cwb",
+    "card_image": "Hotel-Vale-das-Hortensias-Serra-Dona-Francisca.webp",
+    "href": "lazer-oferta.html?slug=Hotel-Vale-das-Hortensias-Serra-Dona-Francisca"
+  },
+  {
+    "slug": "La-Dolce-Vita-Park-Hotel",
+    "title": "Day-use no La Dolce Vita Park Hotel (São José dos Pinhais/PR): resort com piscinas internas e externas perto de Curitiba",
+    "titulo_curto": "Day-use La Dolce Vita Park Hotel",
+    "categoria": "Day Use Cwb",
+    "card_image": "La-Dolce-Vita-Park-Hotel.webp",
+    "href": "lazer-oferta.html?slug=La-Dolce-Vita-Park-Hotel"
+  },
+  {
+    "slug": "Pousada-Arraial-do-Ouro-Gaspar",
+    "title": "Day-use na Pousada Arraial do Ouro (Gaspar/SC): refúgio intimista com estrutura completa no coração do Vale Europeu",
+    "titulo_curto": "Day-use Pousada Arraial do Ouro",
+    "categoria": "Day Use Cwb",
+    "card_image": "Pousada-Arraial-do-Ouro-Gaspar.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Arraial-do-Ouro-Gaspar"
+  },
+  {
+    "slug": "Pousada-Fazenda-Ribeirao-das-Flores",
+    "title": "Day-use na Pousada Fazenda Ribeirão das Flores: um refúgio rural perto de Curitiba",
+    "titulo_curto": "Day-use Ribeirão das Flores",
+    "categoria": "Brasil",
+    "card_image": "Pousada-Fazenda-Ribeirao-das-Flores.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Fazenda-Ribeirao-das-Flores"
+  },
+  {
+    "slug": "Pousada-Hakuna-Matata-Morretes",
+    "title": "Day-use na Pousada Hakuna Matata (Morretes/PR): imersão na Serra do Mar em um único dia",
+    "titulo_curto": "Day-use Hakuna Matata Morretes",
+    "categoria": "Day Use Cwb",
+    "card_image": "Pousada-Hakuna-Matata-Morretes.webp",
+    "href": "lazer-oferta.html?slug=Pousada-Hakuna-Matata-Morretes"
+  },
+  {
+    "slug": "Recanto-dos-Arcos-Cachoeira-do-Alemao",
+    "title": "Day-use no Recanto dos Arcos – Cachoeira do Alemão (São Luiz do Purunã/PR): natureza, cachoeira e sossego a poucos quilômetros de Curitiba",
+    "titulo_curto": "Day-use Recanto dos Arcos",
+    "categoria": "Day Use Cwb",
+    "card_image": "Recanto-dos-Arcos-Cachoeira-do-Alemao.webp",
+    "href": "lazer-oferta.html?slug=Recanto-dos-Arcos-Cachoeira-do-Alemao"
+  },
+  {
+    "slug": "Varshana-Experience-Hotel-Balsa-Nova",
+    "title": "Day-use no Varshana Experience Hotel (São Luiz do Purunã/Balsa Nova): retiro de bem-estar com SPA, trilha de sensações e piscina aquecida",
+    "titulo_curto": "Day-use Varshana Experience Hotel",
+    "categoria": "Day Use Cwb",
+    "card_image": "Varshana-Experience-Hotel-Balsa-Nova.webp",
+    "href": "lazer-oferta.html?slug=Varshana-Experience-Hotel-Balsa-Nova"
+  },
+  {
+    "slug": "Vila-Katu-Campo-Magro",
+    "title": "Day-use na Vila Katu (Campo Magro/PR): natureza, gastronomia e lazer infantil a minutos de Curitiba",
+    "titulo_curto": "Day-use Vila Katu Campo Magro",
+    "categoria": "Day Use Cwb",
+    "card_image": "Vila-Katu-Campo-Magro.webp",
+    "href": "lazer-oferta.html?slug=Vila-Katu-Campo-Magro"
+  },
+  {
+    "slug": "Vila-dos-Animais-Campina-Grande-Do-Sul",
+    "title": "Day-use na Vila dos Animais (Campina Grande do Sul/PR): fazendinha, mata nativa e desconexão a poucos km de Curitiba",
+    "titulo_curto": "Day-use Vila dos Animais",
+    "categoria": "Day Use Cwb",
+    "card_image": "Vila-dos-Animais-Campina-Grande-Do-Sul.webp",
+    "href": "lazer-oferta.html?slug=Vila-dos-Animais-Campina-Grande-Do-Sul"
+  },
+  {
+    "slug": "Vira-Charme-Resort-Ponta-Grossa",
+    "title": "Day-use no Virá Charme Resort (Campos Gerais/PR): natureza de luxo, lago e experiência romântica a poucas horas de Curitiba",
+    "titulo_curto": "Day-use Virá Charme Resort",
+    "categoria": "Day Use Cwb",
+    "card_image": "Vira-Charme-Resort-Ponta-Grossa.webp",
+    "href": "lazer-oferta.html?slug=Vira-Charme-Resort-Ponta-Grossa"
+  },
+  {
+    "slug": "islandia-entre-gelo-e-fogo",
+    "title": "Islândia: Entre Gelo e Fogo – 8 dias entre vulcões, geleiras e lagoas termais",
+    "titulo_curto": "Islândia: Entre Gelo e Fogo",
+    "categoria": "Tour",
+    "card_image": "islandia-entre-gelo-e-fogo.webp",
+    "href": "lazer-oferta.html?slug=islandia-entre-gelo-e-fogo"
   }
 ]
