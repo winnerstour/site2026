@@ -31,6 +31,69 @@
     return slug ? slug.trim() : '';
   }
 
+  // Converte um texto markdown simples em array de blocks [{ text }]
+  function mdToBlocks(md) {
+    if (!md || typeof md !== 'string') return [];
+    return md
+      .split(/\n\s*\n/) // quebra por parágrafo (linha em branco)
+      .map(chunk => chunk.replace(/\r/g, '').trim())
+      .filter(Boolean)
+      .map(text => ({ text }));
+  }
+
+  // Adapta o NOVO formato de JSON (titulo, titulo_curto, categoria, sections[id, titulo_secao, conteudo_markdown])
+  // para o formato "antigo" esperado por renderOffer/buildIntro/buildSections
+  function convertNewJsonToOld(raw, slug) {
+    if (!raw || !raw.titulo || !Array.isArray(raw.sections)) {
+      throw new Error('O JSON desta oferta não está no formato esperado (novo modelo).');
+    }
+
+    const allSections = raw.sections;
+
+    // Separa CTA1 / CTA2
+    const ctaSections = allSections.filter(s => s && (s.id === 'CTA1' || s.id === 'CTA2'));
+
+    // Seção de introdução: prioriza id === 1; se não tiver, pega a primeira que NÃO é CTA
+    let introSection = allSections.find(s => s && s.id === 1);
+    if (!introSection) {
+      introSection = allSections.find(s => s && s.id !== 'CTA1' && s.id !== 'CTA2') || allSections[0];
+    }
+
+    // Demais seções de conteúdo (id numérico 2,3,4,...)
+    const contentSections = allSections.filter(
+      s =>
+        s &&
+        s !== introSection &&
+        s.id !== 'CTA1' &&
+        s.id !== 'CTA2'
+    );
+
+    // Intro = introdução + CTA1/CTA2 ao final
+    let introBlocks = mdToBlocks(introSection && introSection.conteudo_markdown);
+    ctaSections.forEach(sec => {
+      introBlocks = introBlocks.concat(mdToBlocks(sec.conteudo_markdown));
+    });
+
+    const intro = { blocks: introBlocks };
+
+    // Seções no formato antigo: { title, blocks: [{text}] }
+    const sections = contentSections.map(sec => ({
+      title: sec.titulo_secao || '',
+      blocks: mdToBlocks(sec.conteudo_markdown)
+    }));
+
+    return {
+      slug: slug,
+      title: raw.titulo,
+      meta_title: raw.titulo,
+      image_path: raw.image_path || '/assets/misc/placeholder-lazer.webp',
+      category_macro: raw.categoria || 'Lazer',
+      category_micro: '',
+      intro,
+      sections
+    };
+  }
+
   function buildIntro(intro) {
     introContainer.innerHTML = '';
 
@@ -153,6 +216,7 @@
       return;
     }
 
+    // JSON COMPLETO SEMPRE BUSCADO NA PASTA /lazer
     const dataUrl = `${BASE_PATH}/lazer/${encodeURIComponent(slug)}.json`;
 
     try {
@@ -161,10 +225,19 @@
         throw new Error(`Não foi possível carregar o arquivo ${dataUrl}`);
       }
 
-      const data = await response.json();
+      const raw = await response.json();
+      console.log('[DEBUG JSON OFERTA RAW]', raw);
 
-      // Validação mínima do formato esperado
-      if (!data || !data.slug || !data.title || !data.intro || !data.sections) {
+      let data;
+
+      // Formato ANTIGO (slug, title, intro, sections já prontos)
+      if (raw && raw.slug && raw.title && raw.intro && raw.sections) {
+        data = raw;
+      }
+      // Novo formato (titulo, titulo_curto, categoria, sections[id, titulo_secao, conteudo_markdown])
+      else if (raw && raw.titulo && Array.isArray(raw.sections)) {
+        data = convertNewJsonToOld(raw, slug);
+      } else {
         throw new Error('O JSON desta oferta não está no formato esperado.');
       }
 
