@@ -4,6 +4,16 @@
   "categoria": "Tour",
   "sections": [
     {
+      "id": "CTA1",
+      "titulo_secao": "CTA1",
+      "conteudo_markdown": "**📌 Pacote Descubra Dubai e Abu Dhabi**\n\n- Hospedagem nos destinos do roteiro, conforme o número de noites indicado em cada cidade.\n- Regime de alimentação conforme o pacote (café da manhã e/ou outras refeições, quando incluídos).\n- Traslados principais internos conforme o programa (aeroportos, hotéis e trechos entre cidades, quando indicados).\n- Passeios, city tours e visitas guiadas de acordo com a programação detalhada deste tour.\n- Demais serviços e diferenciais conforme descrito nas seções completas deste roteiro."
+    },
+    {
+      "id": "CTA2",
+      "titulo_secao": "CTA2",
+      "conteudo_markdown": "👉 *Fale com nossa equipe no WhatsApp para receber os valores atualizados a partir da sua cidade, ver as próximas saídas e ajustar este tour ao seu tempo de viagem.*"
+    },
+    {
       "id": 1,
       "titulo_secao": "Introdução",
       "conteudo_markdown": "Imagine chegar a **Dubai** depois de um voo noturno, cruzar as portas de vidro do aeroporto e ser recebido por um horizonte de arranha-céus, luzes e estradas impecáveis. Em poucos minutos, você já percebe que está em um lugar onde tudo parece ter sido desenhado para impressionar: prédios que tocam o céu, shoppings que mais parecem cidades, mesquitas elegantes e o deserto começando logo ali, depois da última avenida.\n\nO roteiro **Descubra Dubai e Abu Dhabi** é uma viagem de **6 dias e 5 noites**, com base em **2 adultos**, que combina três experiências em sequência: a Dubai histórica às margens do Creek, a Dubai futurista de Marina e Palm Jumeirah, e um dia inteiro dedicado à capital **Abu Dhabi**, com direito à Grande Mesquita Sheikh Zayed e ao Palácio Presidencial Qasr Al Watan. Tudo isso com recepção no aeroporto, traslados organizados e hospedagem em hotel 5★ – como o **Marriott Hotel Al Jaddaf, Dubai** ou similar – com café da manhã diário.\n\nEntre um compromisso e outro do roteiro, há tempo livre para você caminhar por conta própria, escolher um jantar especial com vista para o Burj Khalifa, estender a noite em um rooftop ou simplesmente desacelerar à beira da piscina do hotel.\n\nSe você procura um primeiro contato intenso com os Emirados Árabes Unidos – misturando cidade, deserto e cultura – este circuito entre **Dubai e Abu Dhabi** é uma forma enxuta e bem amarrada de fazer isso acontecer.\n"

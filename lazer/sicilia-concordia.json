@@ -4,6 +4,16 @@
   "categoria": "Tour",
   "sections": [
     {
+      "id": "CTA1",
+      "titulo_secao": "CTA1",
+      "conteudo_markdown": "**📌 Pacote Sicília Concórdia**\n\n- Hospedagem nos destinos do roteiro, conforme o número de noites indicado em cada cidade.\n- Regime de alimentação conforme o pacote (café da manhã e/ou outras refeições, quando incluídos).\n- Passeios, city tours e visitas guiadas de acordo com a programação detalhada deste tour.\n- Demais serviços e diferenciais conforme descrito nas seções completas deste roteiro."
+    },
+    {
+      "id": "CTA2",
+      "titulo_secao": "CTA2",
+      "conteudo_markdown": "👉 *Fale com nossa equipe no WhatsApp para receber os valores atualizados a partir da sua cidade, ver as próximas saídas e ajustar este tour ao seu tempo de viagem.*"
+    },
+    {
       "id": 1,
       "titulo_secao": "Introdução",
       "conteudo_markdown": "Imagine começar a viagem chegando a **Palermo**, com o cheiro de café saindo dos bares, varais nas sacadas e cúpulas coloridas misturando estilos árabes, normandos e barrocos. Em poucos dias, você estará caminhando entre os **templos gregos de Agrigento**, descendo ao vale onde colunas de pedra desafiam o tempo, visitando mosaicos romanos em Piazza Armerina, se perdendo pelas ruelas de **Ragusa Ibla** e terminando diante do vulcão **Etna** e do cenário cinematográfico de **Taormina**.\n\nO roteiro **Sicília Concórdia** é uma viagem de **8 dias e 7 noites**, pensada para **2 adultos**, que dá a volta em boa parte da ilha em um circuito regular: 2 noites em Palermo, 1 noite em Agrigento, 1 noite em Ragusa, 2 noites em Catânia e mais 1 noite final em Palermo. É um percurso que conecta, em linha reta, aquilo que faz da Sicília um lugar único: sincretismo religioso, herança grega e romana, cidades barrocas renascidas depois de terremotos, salinas, vulcão ativo, vilas medievais e vilarejos à beira-mar.\n\nAo longo dessa jornada, você vai:\n- explorar o centro histórico de **Palermo** e a vizinha **Monreale**, com suas catedrais cobertas de mosaicos dourados;\n- subir até a vila medieval de **Erice**, provar doces de amêndoa e atravessar as salinas e moinhos de vento de **Trapani** a caminho de Agrigento;\n- caminhar entre os templos dóricos do **Vale dos Templos** e depois ver de perto os mosaicos romanos da **Villa Romana del Casale**;\n- mergulhar no barroco de **Ragusa** e **Noto**, navegar ao redor da ilha de Ortígia em **Siracusa** (quando o tempo permite) e subir as encostas do **Etna**, fechando o dia com vista do vulcão e do Mar Jônico em Taormina.\n\nSe você procura uma Sicília densa em história, paisagens dramáticas e experiências sensoriais fortes, sem ter que se preocupar com rotas, entradas e deslocamentos, este circuito entrega a ilha em grande estilo – da Capela Palatina ao Teatro Grego, do vinho do Etna às ruelas de pedra de Cefalù.\n"
