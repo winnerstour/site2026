@@ -675,10 +675,10 @@ function renderLazer(data) {
   // Ordem desejada para exibição das categorias (aba superior)
   // Todos (fixo) · Brasil · Day Use · Disney · Tour · Neve · Inter · Resorts · Aventura · Eventos
   const CAT_ORDER = [
+    'Tour',
     'Brasil',
     'Day Use',
     'Disney',
-    'Tour',
     'Neve',
     'Internacional', // exibida como "Inter"
     'Resorts',
@@ -701,20 +701,19 @@ function renderLazer(data) {
     return ia - ib;
   });
 
-  // Aba "Todos"
-  const allTab = document.createElement('span');
-  allTab.className = 'tab-link active';
-  allTab.textContent = 'Todos';
-  allTab.dataset.categoria = 'TODOS';
-  tabsContainer.appendChild(allTab);
-
-  // Abas por categoria
+  // Abas por categoria (sem aba "Todos")
   categorias.forEach(categoria => {
     const span = document.createElement('span');
     span.className = 'tab-link';
 
     // Exibe "Inter" quando a categoria do JSON for "Internacional"
-    const label = categoria === 'Internacional' ? 'Inter' : categoria;
+    // e "DayUse" quando for "Day Use"
+    let label = categoria;
+    if (categoria === 'Internacional') {
+      label = 'Inter';
+    } else if (categoria === 'Day Use') {
+      label = 'DayUse';
+    }
     span.textContent = label;
 
     span.dataset.categoria = categoria;
@@ -727,27 +726,35 @@ function renderLazer(data) {
     grid.appendChild(card);
   });
 
+  // Função para aplicar filtro por categoria
+  function aplicarFiltroCategoria(categoriaSel) {
+    const tabs = tabsContainer.querySelectorAll('.tab-link');
+    tabs.forEach(tab => {
+      const tabCat = tab.dataset.categoria;
+      tab.classList.toggle('active', tabCat === categoriaSel);
+    });
+
+    const cards = grid.querySelectorAll('.event-card');
+    cards.forEach(card => {
+      const cat = card.dataset.categoria || 'Outros';
+      card.style.display = (cat === categoriaSel) ? '' : 'none';
+    });
+  }
+
   // Lógica de filtro ao clicar nas abas
   tabsContainer.addEventListener('click', (ev) => {
     const target = ev.target;
     if (!target.classList.contains('tab-link')) return;
 
     const categoriaSel = target.dataset.categoria;
-
-    tabsContainer.querySelectorAll('.tab-link').forEach(tab => {
-      tab.classList.toggle('active', tab === target);
-    });
-
-    const cards = grid.querySelectorAll('.event-card');
-    cards.forEach(card => {
-      if (categoriaSel === 'TODOS') {
-        card.style.display = '';
-      } else {
-        const cat = card.dataset.categoria || 'Outros';
-        card.style.display = (cat === categoriaSel) ? '' : 'none';
-      }
-    });
+    aplicarFiltroCategoria(categoriaSel);
   });
+
+  // Aplica filtro inicial na categoria "Tour" (se existir), caso contrário usa a primeira da lista
+  const catInicial = categorias.includes('Tour') ? 'Tour' : (categorias[0] || null);
+  if (catInicial) {
+    aplicarFiltroCategoria(catInicial);
+  }
 }
 
 fetch(LAZER_JSON_URL, { cache: 'no-cache' })
