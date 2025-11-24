@@ -1,293 +1,52 @@
 {
-  "slug": "gramado-chocoland-hotel",
-  "meta_title": "Chocoland Hotel Gramado - Carta de Vendas",
-  "title": "Chocoland Hotel Gramado: sete noites de magia do chocolate no Natal Luz",
-  "image_path": "/assets/artigos/gramado-chocoland-hotel.webp",
-  "intro": {
-    "section_type": "intro",
-    "blocks": [
-      {
-        "type": "paragraph",
-        "text": "Imagine chegar a Gramado à noite, com a cidade inteira iluminada, as árvores decoradas e as músicas de Natal ecoando pelas ruas. A poucos minutos do centro, na Avenida Borges de Medeiros, você avista um grande castelo iluminado em tons quentes, com vitrais, detalhes dourados e o aroma de chocolate no ar. Esse é o Chocoland Hotel Gramado, o primeiro hotel temático do chocolate do Brasil, um quatro estrelas que funciona como um verdadeiro hotel-parque, combinando hospedagem, lazer, bem-estar e experiência sensorial em plena temporada do Natal Luz."
-      },
-      {
-        "type": "paragraph",
-        "text": "Em vez de ser apenas um lugar para dormir, o Chocoland vira o seu quartel-general de magia: piscinas aquecidas, spa com rituais à base de cacau, fondue temático, áreas lúdicas para as crianças e uma localização estratégica para ir e voltar dos espetáculos sem perder tempo no trânsito. Esta carta existe para te ajudar a entender se esse castelo do chocolate é a base certa para uma estadia de sete noites em Gramado durante o Natal Luz, explicar quando faz mais sentido ir, destacar as duas grandes razões para escolhê-lo, dar uma noção honesta de faixa de preço e mostrar, passo a passo, como organizar o pacote de forma inteligente."
-      },
-      {
-        "type": "paragraph",
-        "text": "---"
-      }
-    ]
-  },
+  "titulo": "Uma semana no Chocoland Hotel durante o Natal Luz de Gramado",
+  "titulo_curto": "Natal Luz no Chocoland Hotel",
+  "categoria": "Resorts",
   "sections": [
     {
-      "id": "CTA1",
+      "id": 0,
       "titulo_secao": "CTA1",
-      "conteudo_markdown": "**📌 Pacote internacional**\n\n- Hospedagem em hotel selecionado, conforme o número de noites indicado no roteiro.\n- Regime de alimentação conforme o pacote (café da manhã e/ou outras refeições, quando incluídos).\n- Traslados principais previstos (aeroporto ↔ hotel e/ou pontos centrais, quando indicados).\n- Passeios e experiências conforme a programação detalhada (city tours, visitas guiadas, entradas específicas etc.).\n- Demais serviços e diferenciais conforme descrito nas seções completas deste pacote."
+      "conteudo_markdown": "**📌 Pacote Natal Luz no Chocoland Hotel**\n\n- Hospedagem em resort selecionado, conforme o número de noites indicado no roteiro.\n- Regime de alimentação conforme o pacote (café da manhã e/ou outras refeições, quando incluídos).\n- Estrutura de lazer do resort com piscinas, áreas de praia, atividades e espaços para crianças e adultos, conforme descrito.\n- Traslados principais previstos (aeroporto/rodoviária ↔ resort, quando indicados).\n- Demais serviços e diferenciais conforme descrito nas seções completas deste pacote."
     },
     {
-      "id": "CTA2",
+      "id": 0.5,
       "titulo_secao": "CTA2",
-      "conteudo_markdown": "👉 *Fale com nossa equipe no WhatsApp para receber os valores atualizados a partir da sua cidade e ajustar este roteiro internacional às datas e ao estilo de viagem que você prefere.*"
+      "conteudo_markdown": "👉 *Fale com nossa equipe no WhatsApp para receber os valores atualizados a partir da sua cidade, escolher a categoria de apartamento e ajustar as datas da sua estadia neste resort.*"
     },
     {
       "id": 1,
-      "section_type": "content",
-      "title": "1. Quando faz mais sentido se hospedar aqui",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Gramado vive o Natal Luz de fim de outubro até a primeira quinzena de janeiro, com a cidade cheia, espetáculos diários e decoração natalina por todos os lados. O Chocoland Hotel Gramado fica na Avenida Borges de Medeiros, 4877, um eixo estratégico que facilita o deslocamento para o centro, Rua Coberta, espetáculos e atrações da região, reduzindo o tempo em trânsito em plena alta temporada."
-        },
-        {
-          "type": "paragraph",
-          "text": "Como referência de investimento, um pacote de cinco noites em fim de novembro para dois adultos, com hospedagem em regime de café da manhã, transfers regulares Porto Alegre ↔ Gramado, um dia de Bustour e ingresso para um grande espetáculo costuma partir da faixa de pouco mais de três mil reais por pessoa em base dupla, sem incluir aéreo nem seguro viagem. Projetando sete noites em período semelhante, é razoável considerar um patamar acima de quatro mil e quinhentos reais por pessoa apenas na parte terrestre, variando conforme categoria de suíte, datas exatas e opcionais escolhidos."
-        },
-        {
-          "type": "paragraph",
-          "text": "Para organizar melhor a escolha da data, vale enxergar assim:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Pico de alta temporada: fins de semana de novembro e dezembro, Réveillon e férias de janeiro, quando a cidade está lotada, os espetáculos são mais disputados e as tarifas sobem – ideal para quem quer ver Gramado no auge do movimento e está disposto a investir mais.",
-            "Meio de semana em novembro e começo de dezembro: ainda com toda a magia do Natal Luz, mas com menos fluxo do que feriados e fins de semana, oferecendo melhor equilíbrio entre custo, lotação e facilidade de circulação.",
-            "Início ou fim da temporada: no final de outubro ou começo de janeiro, a cidade segue decorada e com programação, porém com menor pressão de demanda, boa pedida para quem busca clima natalino, mas prefere ambientes um pouco menos cheios."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Se o seu objetivo é viver o Natal Luz com intensidade, assistir a pelo menos dois grandes espetáculos e ainda encaixar tours pela Serra Gaúcha, uma estadia de sete noites no Chocoland, pegando meio de semana e fim de semana, costuma ser o melhor cenário em termos de aproveitamento."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ],
-      "conteudo_markdown": ""
+      "titulo_secao": "Introdução",
+      "conteudo_markdown": "Imagine chegar a Gramado e ver, bem na Avenida Borges de Medeiros, um castelo iluminado, com vitrais, escadarias, personagens e vitrines cheias de chocolate artesanal. É ali que você se hospeda quando escolhe passar **uma semana no Chocoland Hotel**, em plena temporada do **Natal Luz**. fileciteturn31file0turn31file1\n\nDurante o dia, a cidade mistura clima de serra, lojas decoradas, parques temáticos e passeios pela região. À noite, a magia natalina toma conta com espetáculos como o **Nativitaten**, desfiles e apresentações que atraem visitantes do Brasil inteiro. fileciteturn31file0turn31file1 Voltar para um hotel temático, com cheirinho de chocolate, piscina aquecida e um bom café ou fondue esperando depois do show, faz toda a diferença em uma viagem de fim de ano.\n\nO pacote de referência considera 5 noites, de 25 a 30 de novembro de 2025, para dois adultos, com **hospedagem com café da manhã, transfers regulares entre o aeroporto de Porto Alegre e o hotel, Bustour 1 dia e ingresso para o espetáculo Nativitaten no setor Arquibancada Prata**. fileciteturn31file0turn31file1 Aqui, vamos estender esse raciocínio para **7 dias de viagem**, pensando na experiência completa de quem quer aproveitar a estrutura do castelo, os shows do Natal Luz e os passeios pela Serra Gaúcha com calma.\n\nAo longo desta página, você vai ver:\n\n- por que o Chocoland funciona muito bem como base para uma semana inteira em Gramado;\n- como escolher a categoria de suíte ideal para o seu perfil (casal ou família);\n- de que forma piscina aquecida, Cacau Spa, Toca dos Pingols e a gastronomia temática seguram a experiência em dias sem passeios;\n- quais **2 ou 3 tours regionais** fazem mais sentido encaixar em um roteiro de 7 dias;\n- e em que época do ano a viagem fica ainda mais especial, considerando o calendário do Natal Luz e o clima de serra."
     },
     {
       "id": 2,
-      "section_type": "content",
-      "title": "2. A grande experiência-âncora deste hotel",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "A grande experiência-âncora do Chocoland Hotel Gramado é ser um resort urbano temático, o primeiro hotel do chocolate do Brasil, com conceito de hotel-parque. Isso significa que, mesmo em uma estadia de sete noites, você consegue alternar dias de passeios externos com dias dedicados a aproveitar o próprio castelo, sem cair na sensação de que já esgotou o que havia para fazer dentro do hotel."
-        },
-        {
-          "type": "paragraph",
-          "text": "A área aquática traz piscina interna aquecida, banheira de hidromassagem e espreguiçadeiras, criando um ambiente perfeito para recuperar as energias depois de um dia de Bustour, Snowland ou Tour Uva e Vinho. Em seguida, entram a sauna e o Cacau Spa, com rituais de bem-estar e a famosa chocolaterapia, utilizando produtos naturais à base de cacau em cuidados corporais e faciais."
-        },
-        {
-          "type": "paragraph",
-          "text": "Para completar, o hotel oferece ainda o Choco Hair, um espaço de beleza para quem quer se preparar para uma noite especial, além de internet gratuita, recepção 24 horas, estacionamento seguro, elevador, acessibilidade e ambientes sempre climatizados. A sensação é de estar hospedado em um castelo confortável, lúdico e funcional ao mesmo tempo."
-        },
-        {
-          "type": "paragraph",
-          "text": "No eixo da diversão temática entram a Toca dos Pingols, espaço lúdico dedicado às crianças, e a Chocostore, que vende chocolates autorais e souvenirs exclusivos. A proposta é que o hóspede se sinta realmente dentro de um mundo do chocolate, com experiências imersivas que justificam passar mais tempo dentro do hotel ao longo da semana."
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Conceito de hotel-parque temático do chocolate, que transforma o hotel em atração principal, e não apenas em lugar para dormir.",
-            "Estrutura de bem-estar completa, com piscina aquecida, hidromassagem, sauna, Cacau Spa e Choco Hair, ideal para dias de descanso entre passeios intensos.",
-            "Lazer temático para famílias, com Toca dos Pingols, Chocostore e ambientação lúdica que encanta adultos e crianças ao longo de vários dias."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Se você se imagina em uma viagem em que parte da magia está no próprio hotel, e não apenas na cidade, essa é a espinha dorsal da proposta do Chocoland."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "Por que o Chocoland Hotel é um lugar especial para visitar",
+      "conteudo_markdown": "O Chocoland não é apenas um hotel bem localizado em Gramado: ele é apresentado como o **1º Hotel Temático do Chocolate do Brasil**, com conceito de **Hotel-Parque**, pensado para que a hospedagem seja parte central da viagem. fileciteturn31file1\n\nIsso aparece na forma como o castelo foi desenhado: fachada palaciana, áreas internas tematizadas, personagens próprios, loja de chocolates e uma programação que combina bem-estar e diversão. Para quem fica uma semana, esse conceito é o que sustenta o interesse mesmo nos dias em que você decide ficar só no hotel.\n\nA infraestrutura de lazer inclui **piscina coberta e aquecida, banheira de hidromassagem, sauna, espreguiçadeiras e jardim**, criando um pequeno oásis indoor para os dias de frio ou chuva – comuns na serra. fileciteturn31file0turn31file1 Para completar, o **Cacau Spa** trabalha com rituais de bem-estar e a famosa **chocolaterapia**, que usa o cacau em tratamentos corporais e faciais, aproveitando o efeito relaxante e o impacto sensorial do tema. fileciteturn31file1\n\nPara as famílias, a **Toca dos Pingols** entra como grande aliada: é o espaço lúdico dedicado às crianças, garantindo brincadeiras temáticas dentro do próprio castelo. Enquanto os pequenos se divertem, os adultos podem aproveitar o spa, a piscina ou um café tranquilo na **Cafeteria** integrada à Chocostore, que serve doces, salgados, chocolates, vinhos, espumantes e cervejas especiais. fileciteturn31file1\n\nDo ponto de vista prático, a localização na Borges de Medeiros é um trunfo importante. Em dias de Natal Luz, o trânsito fica intenso e muitos deslocamentos cansam; estar em um ponto central significa caminhar para boa parte dos restaurantes e ter deslocamentos mais curtos até o Serra Park e outras atrações, o que reduz o cansaço em uma estadia de 7 dias. fileciteturn31file0turn31file1"
     },
     {
       "id": 3,
-      "section_type": "content",
-      "title": "3. A segunda grande razão para escolher este hotel",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Se a estrutura de resort temático é o primeiro grande motivo, a segunda grande razão para escolher o Chocoland Hotel Gramado é a combinação de gastronomia autoral com localização estratégica em plena Borges de Medeiros, algo que faz muita diferença em alta temporada."
-        },
-        {
-          "type": "paragraph",
-          "text": "Na parte gastronômica, o hotel trabalha com um café da manhã em buffet já incluído na diária, generoso e com forte presença de produtos artesanais da Serra Gaúcha – pães, bolos, geleias, frios e criações que dialogam com o tema do chocolate. Para as demais refeições, o restaurante do castelo oferece um cardápio à la carte com pratos autorais pensados para os apaixonados por chocolate, além de experiências especiais como o Fondue Temático Chocoland."
-        },
-        {
-          "type": "paragraph",
-          "text": "A poucos passos dali, a cafeteria integrada à Chocostore e ao Atelier do Chocolate permite pausas com cafés, chás, chocolates quentes, doces, salgados, vinhos e espumantes. Em uma estadia de sete noites, poder contar com tantas opções dentro do próprio hotel reduz o estresse de precisar procurar restaurante externo em todas as refeições, especialmente nas noites em que você volta cansado de um tour ou espetáculo."
-        },
-        {
-          "type": "paragraph",
-          "text": "Somando a isso, entra a localização central na Borges de Medeiros: você está bem conectado aos principais restaurantes da cidade, lojas, Rua Coberta e pontos de saída de diversos passeios e transfers. Em plena alta temporada, isso significa menos tempo parado em deslocamentos e mais tempo curtindo a estrutura do hotel e os eventos do Natal Luz."
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Café da manhã farto em buffet já incluído, com forte identidade local e toques de chocolate.",
-            "Gastronomia autoral e experiências como o Fondue Temático Chocoland, que transformam as noites em parte da atração da viagem.",
-            "Localização privilegiada na Avenida Borges de Medeiros, que economiza tempo e energia em plena temporada do Natal Luz."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Se o primeiro motivo garante diversão e bem-estar dentro do castelo, o segundo é o que faz você dizer que valeu a pena escolher justamente esse hotel."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "As duas grandes âncoras desta viagem",
+      "conteudo_markdown": "### 1. Suítes temáticas e conforto de castelo por 7 noites\n\nO pacote base trabalha com a categoria **Double Room**, em regime de hospedagem com café da manhã. fileciteturn31file0turn31file1 Ela atende bem quem vai ficar poucos dias ou busca a opção mais econômica, mas, para uma semana completa, vale olhar com carinho para as **suítes temáticas**.\n\nO Chocoland conta com **83 suítes divididas em oito categorias**, incluindo opções **familiares e clássicas palacianas**, com metragem a partir de **25 m²** e capacidade para **2 adultos e até 2 crianças**, dependendo da categoria. fileciteturn31file1 As suítes familiares são perfeitas para quem viaja com filhos e quer um ambiente prático e divertido; já as clássicas apostam em uma atmosfera mais elegante, ideal para casais que querem um clima romântico em plena temporada de Natal.\n\nEm sete noites, o quarto se transforma em parte essencial da experiência: é onde você se arruma para os espetáculos, descansa entre um tour e outro e aproveita momentos de silêncio depois do movimento das ruas. Por isso, investir em uma categoria temática maior, com melhor layout e decoração mais imersiva, é um upgrade que realmente faz diferença na sensação de luxo da viagem.\n\n### 2. Piscina aquecida, Cacau Spa, Toca dos Pingols e gastronomia temática\n\nA segunda grande âncora desta viagem é o conjunto **lazer aquecido + spa de cacau + entretenimento infantil + gastronomia temática**.\n\nNa área de lazer, a **piscina interior aquecida**, a banheira de hidromassagem, a sauna e as espreguiçadeiras internas garantem que você possa relaxar mesmo se o clima estiver frio ou chuvoso – algo comum na serra, principalmente à noite. fileciteturn31file0turn31file1\n\nO **Cacau Spa** entra como protagonista para quem quer um dia de descanso completo: rituais de chocolaterapia, massagens e tratamentos que usam o cacau como estrela tornam o spa uma experiência diferente de qualquer outro hotel tradicional. fileciteturn31file1\n\nEnquanto isso, a **Toca dos Pingols** e outros espaços lúdicos seguram a animação das crianças, o que é essencial em uma semana de viagem em família. Saber que os pequenos têm um lugar seguro e divertido dentro do próprio hotel permite que os adultos se desliguem por algumas horas.\n\nNa parte gastronômica, além do **café da manhã em buffet** já incluído, o restaurante do castelo trabalha com **menu à la carte** e o famoso **Fondue Temático Chocoland**, que transforma uma das noites em um jantar-experiência para chocolovers, combinando o clima de serra com a identidade do hotel. fileciteturn31file0turn31file1 Somando tudo, o castelo vira, de fato, um pequeno parque temático indoor, capaz de sustentar dias inteiros de lazer sem repetição."
     },
     {
       "id": 4,
-      "section_type": "content",
-      "title": "4. Para quem este hotel faz (e não faz) sentido",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "O Chocoland Hotel Gramado foi pensado para quem quer viver o Natal Luz com conforto, tema forte e estrutura de resort urbano, sem abrir mão de estar bem localizado para circular pela cidade. Não é a opção básica de hospedagem; é uma escolha de experiência, especialmente indicada para famílias e casais que valorizam ambiente lúdico, temática criativa e serviços de bem-estar."
-        },
-        {
-          "type": "paragraph",
-          "text": "De forma direta, ele faz e não faz sentido assim:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Perfeito para você se viaja em família e quer um hotel com piscina aquecida, spa, área infantil e temática que encante crianças e adultos ao longo de uma semana.",
-            "Perfeito se você gosta da ideia de um castelo do chocolate, com experiências temáticas, fondue exclusivo, Chocostore e ambientação que vão além de um hotel tradicional.",
-            "Perfeito se você quer ficar bem localizado na Borges de Medeiros, evitando longos deslocamentos de carro na alta temporada e aproveitando a facilidade de ir a restaurantes e atrações a partir do hotel.",
-            "Talvez não seja a melhor escolha se o foco é o menor preço possível e você pretende usar o hotel apenas para dormir.",
-            "Talvez não faça sentido se você prefere hotéis ultradiscretos, sem tematização e com áreas comuns pouco movimentadas, já que aqui a proposta é abraçar o lúdico do chocolate e do Natal."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Se você se reconhece no perfil de quem quer uma semana completa de magia, conforto e tema, o Chocoland tende a ser um encaixe muito natural para o Natal Luz."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "Como o resto da viagem gira em torno disso",
+      "conteudo_markdown": "Com a suíte certa escolhida e o eixo **lazer aquecido + spa + gastronomia temática + espaço infantil** bem definido, o restante da semana em Gramado se organiza em alguns blocos de experiência:\n\n1. **Bloco Bustour & Reconhecimento de Gramado e Canela** – Logo nos primeiros dias, usar o **Ticket Bustour 1 dia** para circular pelos principais pontos turísticos (Mini Mundo, Lago Negro, Rua Torta, parques temáticos em Canela) ajuda a entender a geografia da região e decidir o que merece retorno com mais calma. fileciteturn31file0turn31file1\n2. **Bloco Hotel-Parque & Bem-estar** – Dias ou meio períodos dedicados a aproveitar a piscina aquecida, a hidromassagem, o Cacau Spa, a Toca dos Pingols e a cafeteria, intercalando descanso com pequenas saídas pela Borges de Medeiros.\n3. **Bloco Tours Clássicos da Serra Gaúcha** – Um dia inteiro para o **Tour Trem e Vinho com Epopeia Italiana**, outro para o **Snowland ou Parque Skyglass** e, se desejar, um terceiro para roteiros como **Tour Nova Petrópolis – Origens Alemãs** ou Linha Bella, sempre voltando para o conforto do castelo à noite. fileciteturn31file0turn31file1\n4. **Bloco Noites Temáticas & Gastronomia** – Noites reservadas para o **Fondue Temático Chocoland** e para jantares especiais em Gramado (Noite Suíça, Noite Alemã, Noite Gaúcha ou Noite Italiana), aproveitando o clima de serra e as tradições coloniais. fileciteturn31file0turn31file1\n5. **Bloco Natal Luz & Espetáculos** – Além do **Nativitaten** já incluído, vale encaixar ao menos mais um grande show, como o **Grande Desfile de Natal**, para completar a experiência do evento. Os demais dias podem ser preenchidos com as atrações gratuitas de rua e a decoração da cidade. fileciteturn31file0turn31file1\n\nAjustando o peso de cada bloco – mais hotel e spa para quem quer descanso, mais tours e espetáculos para quem busca programação intensa – você cria uma semana sob medida, sem correria e com tempo para curtir o castelo de chocolate."
     },
     {
       "id": 5,
-      "section_type": "content",
-      "title": "5. Quanto custa se hospedar aqui (em linhas gerais)",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Falando de números com transparência, uma referência concreta é um pacote de cinco noites em Gramado, para dois adultos, com hospedagem no Chocoland Hotel Gramado em categoria Double Room, café da manhã, transfers regulares Porto Alegre ↔ Gramado, um dia de Bustour e ingresso para um dos grandes espetáculos do Natal Luz, a partir de pouco mais de três mil reais por pessoa em base dupla, sem incluir aéreo, seguro viagem nem demais passeios opcionais."
-        },
-        {
-          "type": "paragraph",
-          "text": "Ao projetar sete noites em período equivalente, mantendo padrão semelhante de hospedagem e serviços terrestres, é razoável imaginar um investimento acima de quatro mil e quinhentos reais por pessoa na parte terrestre, podendo subir conforme a categoria da suíte escolhida, as datas exatas e a quantidade de serviços extras incluídos, como tours de vinho, parque de neve, noites temáticas e sessões no spa."
-        },
-        {
-          "type": "paragraph",
-          "text": "Na prática, o valor final do seu pacote de sete noites no Chocoland vai oscilar principalmente por três fatores:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Época exata da viagem e padrão de ocupação, porque feriados, fins de semana e noites de grandes espetáculos tendem a ter tarifas mais altas.",
-            "Tipo de acomodação, variando do Double Room mais básico às suítes temáticas maiores, especialmente indicadas para famílias ou estadias mais longas.",
-            "Quantidade de serviços opcionais incluídos, como Tour Trem e Vinho, Snowland, Noites Temáticas, jantares especiais e sessões no Cacau Spa."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Use essa referência como base, sabendo que, para sete noites, o patamar naturalmente sobe e que o segredo está em equilibrar datas, tipo de suíte e quantidade de passeios para encaixar no seu orçamento."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "Um opcional especial para estender essa viagem",
+      "conteudo_markdown": "Se a ideia é transformar essa semana no Chocoland em uma das grandes viagens da sua vida, o opcional mais interessante é combinar **upgrade para uma suíte temática de maior metragem** com um **dia premium de Tour Trem e Vinho com Epopeia Italiana**.\n\nNo campo da hospedagem, sair do Double Room e ir para uma **suíte temática familiar ou clássica**, com pelo menos 25 m² e decoração mais elaborada, muda completamente a sensação de estar em um castelo de chocolate. Em sete noites, esse tipo de upgrade se dilui no custo total e se multiplica em conforto, fotos, lembranças e momentos de descanso real. fileciteturn31file1\n\nJá o **Tour Trem e Vinho com Epopeia Italiana** é o programa que mais adiciona profundidade cultural à viagem: um dia inteiro pelas vinícolas da região, passeio a bordo da Maria Fumaça com música típica, degustações e a visita ao parque temático Epopeia Italiana, que recria a história da imigração com cenários e efeitos especiais. fileciteturn31file1 É o tipo de passeio que ocupa o dia todo, mas que conversa diretamente com o clima de serra, com a gastronomia e com o romantismo de Gramado.\n\nVoltar desse dia intenso para um castelo aquecido, com fondue, spa e cama temática à espera, é o que costuma transformar a viagem em lembrança inesquecível."
     },
     {
       "id": 6,
-      "section_type": "content",
-      "title": "6. O que o pacote já deixa resolvido para você",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Um dos grandes diferenciais de trabalhar esse destino em formato de pacote é que você já embarca com a espinha dorsal da viagem pronta, especialmente em uma época tão concorrida quanto o Natal Luz. Em vez de montar tudo peça por peça, você resolve logo o essencial e usa o resto do tempo para personalizar."
-        },
-        {
-          "type": "paragraph",
-          "text": "Tomando como referência um pacote de cinco noites e projetando uma lógica similar para sete noites, o que normalmente fica resolvido é:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Hospedagem no Chocoland Hotel Gramado, em categoria Double Room ou superior, com café da manhã em buffet e acesso a piscina interna aquecida, hidromassagem, sauna, áreas de lazer temático, Toca dos Pingols, Chocostore e demais instalações do castelo.",
-            "Transfers regulares Aeroporto de Porto Alegre ↔ hotel em Gramado ou Canela, em ônibus, micro-ônibus ou van, com franquia de bagagem padrão, garantindo a logística de chegada e saída sem dor de cabeça.",
-            "Ticket Bustour por um dia, o city tour oficial de Gramado e Canela em esquema hop-on/hop-off, com dezenas de paradas, permitindo que você conheça os principais pontos turísticos e organize melhor o restante da sua semana.",
-            "Ingresso para pelo menos um grande espetáculo do Natal Luz, como o Nativitaten, já garantido no pacote, bastando planejar o transporte na noite do evento.",
-            "Suporte consultivo para encaixar opcionais estratégicos, como Tour Uva e Vinho com Maria Fumaça, Snowland, Noites Temáticas, Skyglass e outros, que podem ser adicionados para transformar a viagem em uma experiência completa de sete dias."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Por outro lado, normalmente não estão incluídos as passagens aéreas até Porto Alegre, o seguro viagem, refeições não mencionadas, transporte até alguns espetáculos quando não especificado, passeios extras fora do roteiro básico, gorjetas, despesas pessoais e qualquer item não listado explicitamente como incluído no pacote."
-        },
-        {
-          "type": "paragraph",
-          "text": "Em resumo, você já sai de casa com hotel, café da manhã, transfers, Bustour e pelo menos um grande espetáculo garantidos e, a partir daí, monta as camadas extras conforme seu perfil e seu orçamento."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "Quando faz mais sentido ir para o Chocoland Hotel em Gramado",
+      "conteudo_markdown": "O **Natal Luz de Gramado** acontece, na temporada 2025/2026, de **24 de outubro de 2025 a 11 de janeiro de 2026**, período em que a cidade assume oficialmente sua versão natalina, com espetáculos, desfiles, decoração e programação diária. fileciteturn31file1\n\nEntre o fim de novembro e o começo de dezembro – como no recorte de 25 a 30 de novembro usado na cotação de referência –, você pega a cidade já totalmente decorada, com a agenda de shows em ritmo forte e temperaturas um pouco mais amenas do que no verão pleno. fileciteturn31file0turn31file1\n\nOs **feriados prolongados e a segunda metade de dezembro** costumam ser os períodos mais concorridos, com maior ocupação nos hotéis, ingressos disputados e trânsito mais pesado. Quem prefere um pouco menos de movimento pode mirar novembro e o início de dezembro, quando ainda há bastante programação, mas a cidade respira um pouco melhor.\n\nIndependentemente da data, é importante considerar que o Chocoland e os principais espetáculos do Natal Luz trabalham com **disponibilidade limitada**. Reservar a hospedagem com antecedência, garantir logo os ingressos do Nativitaten, do Grande Desfile de Natal e dos principais tours é a melhor forma de evitar frustração na alta temporada. fileciteturn31file0turn31file1\n\nCom **sete noites em Gramado**, você tem tempo de encaixar shows, tours de dia inteiro, momentos só no castelo e ainda alguma flexibilidade para lidar com dias chuvosos ou ajustes de última hora – algo fundamental em uma viagem de fim de ano."
     },
     {
       "id": 7,
-      "section_type": "cta",
-      "title": "7. Como funciona na prática e qual é o próximo passo",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Organizar sete noites no Chocoland Hotel Gramado durante o Natal Luz fica muito mais simples quando você transforma a sua ideia em um pequeno briefing. Você não precisa dominar a malha de espetáculos, horários de tours ou detalhes de categorias de suítes; essa parte fica comigo. O seu papel é dizer como você quer viver essa semana de magia na Serra Gaúcha."
-        },
-        {
-          "type": "paragraph",
-          "text": "Na prática, o passo a passo é este:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "Você escolhe uma janela aproximada de datas, como última semana de novembro, início de dezembro ou férias de janeiro, e indica se prefere incluir fins de semana ou focar em meios de semana para tentar um pouco menos de lotação.",
-            "Informa a cidade de saída, o número de adultos e crianças com idades e o tipo de experiência desejada: foco em família, viagem romântica, interesse em tours de vinho ou prioridade em espetáculos específicos do Natal Luz.",
-            "A partir disso, eu monto um cenário de pacote de sete noites no Chocoland Hotel Gramado, sugerindo categoria de acomodação, encaixando transfers, Bustour, ingressos para ao menos um grande espetáculo e opcionais como Trem e Vinho, Snowland e Noites Temáticas, sempre com uma visão realista de orçamento.",
-            "Com a proposta em mãos, você analisa com calma, ajusta datas, passeios e eventuais upgrades e, quando tudo estiver alinhado com o seu estilo de viagem e com o investimento que pretende fazer, seguimos para a confirmação com condições claras e suporte antes e durante a viagem."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Para deixar tudo bem objetivo, o próximo passo é simples: me chame no WhatsApp dizendo que tem interesse em sete noites no Chocoland Hotel Gramado durante o Natal Luz, informe a cidade de saída, o número de pessoas com idades e a janela aproximada de datas. A partir daí, eu preparo uma proposta personalizada para você, ajustando custo, conforto, temática do chocolate e a magia dos espetáculos de Gramado para que a sua viagem saia do papel exatamente do jeito que você imagina."
-        },
-        {
-          "type": "paragraph",
-          "text": "---"
-        }
-      ]
+      "titulo_secao": "Conclusão",
+      "conteudo_markdown": "Passar uma semana no **Chocoland Hotel** durante o **Natal Luz de Gramado** é viver a serra em sua versão mais mágica: cidade decorada, espetáculos noturnos de grande porte, tours pelas vinícolas e colônias gaúchas e, no centro de tudo, um castelo temático onde chocolate, bem-estar e diversão se encontram. fileciteturn31file0turn31file1\n\n**A grande regra de ouro aqui é simples: em uma estadia de sete noites, o que mais faz diferença é escolher uma suíte temática que combine com o seu perfil, usar a infraestrutura de hotel-parque (piscina aquecida, Cacau Spa, Toca dos Pingols, gastronomia temática) como parte ativa da viagem e selecionar com cuidado os espetáculos e tours que realmente conversam com você.**\n\nSe você já se imaginou caminhando pelas ruas iluminadas de Gramado, assistindo ao Nativitaten à beira do lago, voltando para um castelo perfumado de chocolate e encerrando a noite em uma suíte temática depois de um fondue, o próximo passo é direto: **fale com nossa equipe, informe suas datas, cidade de saída e preferências de shows, e deixe que a gente monte sua semana completa no Chocoland – com hospedagem, transporte, ingressos e passeios coordenados nos mínimos detalhes.**\n\nE você, se imagina mais vivendo a magia dos espetáculos de Natal, explorando vinícolas e paisagens da Serra Gaúcha ou aproveitando dias preguiçosos entre a piscina aquecida, o spa de cacau e os sabores do castelo do chocolate?"
     }
   ]
 }
