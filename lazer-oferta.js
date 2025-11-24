@@ -1,25 +1,26 @@
 // lazer-oferta.js
-// Página de detalhe das ofertas de lazer (usa slug + JSON completo no formato "novo")
+// Página de detalhe das ofertas de lazer (usa slug + JSON completo)
 
 (function () {
-  const titleEl = document.getElementById('offerTitle');
-  const categoryEl = document.getElementById('offerCategory');
-  const metaEl = document.getElementById('offerMeta');
-  const imgEl = document.getElementById('offerImage');
-  const introContainer = document.getElementById('offerIntro');
-  const sectionsContainer = document.getElementById('offerSections');
-  const errorContainer = document.getElementById('offerError');
-  const cta1Container = document.getElementById('offerCta1');
-  const bottomCtaButton = document.getElementById('offerBottomCta');
+  const titleEl          = document.getElementById('offerTitle');
+  const categoryEl       = document.getElementById('offerCategory');
+  const metaEl           = document.getElementById('offerMeta');
+  const imgEl            = document.getElementById('offerImage');
+  const introContainer   = document.getElementById('offerIntro');
+  const sectionsContainer= document.getElementById('offerSections');
+  const cta1Container    = document.getElementById('offerCta1');
+  const bottomCtaButton  = document.getElementById('offerBottomCta');
+  const errorContainer   = document.getElementById('offerError');
+  const pageTitleTag     = document.getElementById('pageTitle');
 
-  const pageTitleTag = document.getElementById('pageTitle') || document.title;
-
-  // Detecta /site2026 ou raiz
-  const BASE_PATH = window.location.pathname.indexOf('/site2026') === 0 ? '/site2026' : '';
+  // Detecta /site2026 ou raiz para montar caminhos
+  const BASE_PATH = window.location.pathname.startsWith('/site2026')
+    ? '/site2026'
+    : '';
 
   function showError(msg) {
     if (errorContainer) {
-      errorContainer.innerHTML = '<div class="error-box">' + msg + '</div>';
+      errorContainer.innerHTML = '<div class=\"error-box\">' + (msg || 'Erro inesperado ao carregar esta oferta.') + '</div>';
     }
   }
 
@@ -29,83 +30,82 @@
     return slug ? slug.trim() : '';
   }
 
-  function normaliseNewlines(str) {
-    return String(str || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-  }
+  // Remove heading duplicado no início do markdown quando ele é igual ao título da seção
+  function stripDuplicateHeading(md, secTitle) {
+    if (!md || typeof md !== 'string') return md || '';
+    if (!secTitle || typeof secTitle !== 'string') return md;
 
-  // Remove heading duplicado no início do markdown quando ele repete o título da seção
-  function stripDuplicateHeading(markdown, sectionTitle) {
-    if (!markdown || !sectionTitle) return markdown || '';
-    const norm = normaliseNewlines(markdown);
+    const norm = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const lines = norm.split('\n');
+    if (!lines.length) return md;
 
-    let firstIdx = -1;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].trim()) {
-        firstIdx = i;
-        break;
-      }
-    }
-    if (firstIdx === -1) return markdown;
+    // primeira linha não vazia
+    let idx = 0;
+    while (idx < lines.length && !lines[idx].trim()) idx++;
+    if (idx >= lines.length) return md;
 
-    const firstLine = lines[firstIdx].trim();
+    const firstRaw = lines[idx].trim();
 
     function normalizeHeadingText(line) {
-      let t = String(line || '').trim();
-      // remove ###, #### etc
+      if (!line) return '';
+      let t = String(line).trim();
+      // remove hashes de heading no começo
       t = t.replace(/^#{1,6}\s+/, '');
-      // remove negrito/itálico markdown
+      // remove marcadores de negrito/itálico envolvendo a linha inteira
       t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
       return t.trim();
     }
 
-    const firstNorm = normalizeHeadingText(firstLine);
-    const secNorm = normalizeHeadingText(sectionTitle);
+    const firstNorm = normalizeHeadingText(firstRaw);
+    const secNorm   = String(secTitle).trim();
 
-    if (firstNorm && secNorm && firstNorm === secNorm) {
-      return lines.slice(firstIdx + 1).join('\n');
+    if (firstNorm && firstNorm === secNorm) {
+      const remaining = lines.slice(idx + 1);
+      return remaining.join('\n');
     }
-    return markdown;
+
+    return md;
   }
 
-  function formatInline(text) {
-    if (!text) return '';
-    let t = String(text);
-
-    // negrito: **texto**
-    t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    // itálico: *texto*
-    t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    return t;
-  }
-
-  // Converte markdown "simples" (títulos, listas, parágrafos, negrito, itálico) para HTML
+  // Converte markdown básico em HTML (parágrafos, headings, listas, negrito/itálico)
   function markdownToHtml(md) {
-    if (!md) return '';
-    const lines = normaliseNewlines(md).split('\n');
+    if (!md || typeof md !== 'string') return '';
 
-    let html = '';
-    let inList = false;
-    let paraLines = [];
+    const norm  = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    const lines = norm.split('\n');
+
+    let html      = '';
+    let inList    = false;
+    let paragraph = [];
+
+    function inlineFormat(text) {
+      if (!text) return '';
+      let t = String(text);
+      // negrito **texto**
+      t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      // itálico *texto*
+      t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      return t;
+    }
 
     function flushParagraph() {
-      if (!paraLines.length) return;
-      const text = paraLines.join(' ').trim();
+      if (!paragraph.length) return;
+      const text = paragraph.join(' ').trim();
       if (text) {
-        html += '<p>' + formatInline(text) + '</p>';
+        html += '<p>' + inlineFormat(text) + '</p>\n';
       }
-      paraLines = [];
+      paragraph = [];
     }
 
     function closeList() {
       if (inList) {
-        html += '</ul>';
+        html += '</ul>\n';
         inList = false;
       }
     }
 
     for (let i = 0; i < lines.length; i++) {
-      const raw = lines[i];
+      const raw     = lines[i];
       const trimmed = raw.trim();
 
       if (!trimmed) {
@@ -114,76 +114,90 @@
         continue;
       }
 
-      // títulos markdown (#, ##, ###, #### etc)
-      const mHeading = trimmed.match(/^(#{1,6})\s+(.*)$/);
-      if (mHeading) {
+      // Headings
+      let m;
+      if ((m = /^####\s+(.+)$/.exec(trimmed))) {
         flushParagraph();
         closeList();
-        const level = mHeading[1].length;
-        const content = formatInline(mHeading[2].trim());
-        let tag = 'h3';
-        if (level === 1) tag = 'h2';
-        else if (level === 2) tag = 'h3';
-        else if (level === 3) tag = 'h3';
-        else if (level === 4) tag = 'h4';
-        else if (level === 5) tag = 'h5';
-        else tag = 'h6';
-
-        html += '<' + tag + '>' + content + '</' + tag + '>';
+        html += '<h4>' + inlineFormat(m[1].trim()) + '</h4>\n';
+        continue;
+      }
+      if ((m = /^###\s+(.+)$/.exec(trimmed))) {
+        flushParagraph();
+        closeList();
+        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
+        continue;
+      }
+      if ((m = /^##\s+(.+)$/.exec(trimmed))) {
+        flushParagraph();
+        closeList();
+        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
+        continue;
+      }
+      if ((m = /^#\s+(.+)$/.exec(trimmed))) {
+        flushParagraph();
+        closeList();
+        html += '<h2>' + inlineFormat(m[1].trim()) + '</h2>\n';
         continue;
       }
 
-      // itens de lista "- " ou "* "
+      // Lista simples com "-" ou "*"
       if (/^[-*]\s+/.test(trimmed)) {
         flushParagraph();
         if (!inList) {
           html += '<ul>';
           inList = true;
         }
-        const itemText = trimmed.replace(/^[-*]\s+/, '');
-        html += '<li>' + formatInline(itemText) + '</li>';
+        const item = trimmed.replace(/^[-*]\s+/, '');
+        html += '<li>' + inlineFormat(item) + '</li>';
         continue;
       }
 
-      // texto normal -> acumula no parágrafo
-      paraLines.push(trimmed);
+      // Linha comum -> acumula para parágrafo
+      paragraph.push(trimmed);
     }
 
     flushParagraph();
-    closeList();
+    if (inList) {
+      html += '</ul>\n';
+    }
+
     return html;
   }
 
+  // Versão simplificada para usar em botões (CTA2)
   function markdownToInlineHtml(md) {
-    const full = markdownToHtml(md).trim();
-    if (full.startsWith('<p>') && full.endsWith('</p>')) {
-      return full.slice(3, -4);
-    }
-    return full;
+    if (!md || typeof md !== 'string') return '';
+    let text = md.replace(/\r\n/g, ' ').replace(/\r/g, ' ').trim();
+    // aplica apenas negrito/itálico inline
+    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    return text;
   }
 
-  function renderOfferFromJson(data, slug) {
-    if (!data || typeof data !== 'object') {
-      throw new Error('JSON da oferta vazio ou inválido.');
+  function renderOfferFromJson(json, slug) {
+    if (!json || typeof json !== 'object') {
+      showError('O JSON desta oferta não está no formato esperado.');
+      if (titleEl) titleEl.textContent = 'Oferta não encontrada';
+      return;
     }
 
-    const titulo = data.titulo || data.titulo_curto || slug || 'Oferta de lazer';
-    const categoria = data.categoria || data.categoria_macro || 'Lazer';
+    const slugSafe  = slug || '';
+    const titulo    = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
+    const categoria = json.categoria || '';
+    const metaTitle = json.meta_title || titulo;
 
     // Título da aba
-    const finalTitle = titulo + ' — WinnersTour Lazer';
     if (pageTitleTag instanceof HTMLElement) {
-      pageTitleTag.textContent = finalTitle;
+      pageTitleTag.textContent = metaTitle;
     } else {
-      document.title = finalTitle;
+      document.title = metaTitle;
     }
 
-    // Hero: título
+    // Hero: título (com ajuste se for muito longo)
     if (titleEl) {
       titleEl.textContent = titulo;
-
-      // Ajusta o tamanho do título se ele for muito longo
-      var len = titulo ? String(titulo).length : 0;
+      const len = titulo ? String(titulo).length : 0;
       if (len > 60) {
         titleEl.classList.add('hero-title-small');
       } else {
@@ -191,121 +205,129 @@
       }
     }
 
-    // Hero: categoria (opcional, hoje está oculto via CSS)
+    // Hero: categoria
     if (categoryEl) {
-      categoryEl.textContent = categoria;
+      categoryEl.textContent = categoria || 'Lazer';
     }
 
+    // Hero: meta (linha fina)
     if (metaEl) {
       metaEl.textContent = 'Oferta de viagem de lazer cuidadosamente curada pela WinnersTour.';
     }
 
-    // Imagem principal: busca em /assets/lazer/<slug>.webp
+    // Imagem principal
     if (imgEl) {
       let src = '';
-      if (data.image_path) {
-        if (data.image_path.charAt(0) === '/') {
-          src = BASE_PATH + data.image_path;
+
+      if (json.image_path) {
+        const p = String(json.image_path);
+        if (p.startsWith('/')) {
+          src = BASE_PATH + p;
         } else {
-          src = BASE_PATH + '/' + data.image_path;
+          src = BASE_PATH + '/' + p;
         }
-      } else if (slug) {
-        src = BASE_PATH + '/assets/lazer/' + encodeURIComponent(slug) + '.webp';
+      } else if (slugSafe) {
+        // fallback: tenta em /assets/lazer/slug.webp
+        src = BASE_PATH + '/assets/lazer/' + encodeURIComponent(slugSafe) + '.webp';
+      } else {
+        src = BASE_PATH + '/assets/misc/placeholder-lazer.webp';
       }
 
-      imgEl.src = src || (BASE_PATH + '/assets/misc/placeholder-lazer.webp');
-      imgEl.alt = titulo;
+      imgEl.src = src;
+      imgEl.alt = titulo || 'Imagem da oferta de lazer';
     }
 
-    const allSections = Array.isArray(data.sections) ? data.sections : [];
+    // Seções
+    const sections = Array.isArray(json.sections) ? json.sections : [];
 
-    let introMd = '';
-    let cta1Text = '';
-    let cta2Text = '';
+    let cta1Text    = '';
+    let cta2Text    = '';
+    let introSection= null;
+    const otherSections = [];
 
-    const contentSections = [];
+    sections.forEach(function(sec) {
+      if (!sec || typeof sec !== 'object') return;
 
-    allSections.forEach(function (sec) {
-      if (!sec) return;
-      const id = sec.id;
-      const tituloSecao = sec.titulo_secao || '';
-      const conteudo = sec.conteudo_markdown || '';
+      const rawId   = sec.id;
+      const title   = sec.titulo_secao || '';
+      const idStr   = (typeof rawId === 'string') ? rawId : String(rawId || '');
 
-      const idStr = String(id || '').trim();
-      const tituloLower = String(tituloSecao).trim().toLowerCase();
+      const tNorm = String(title).trim();
 
-      const isCTA1 = idStr === 'CTA1' || tituloSecao === 'CTA1';
-      const isCTA2 = idStr === 'CTA2' || tituloSecao === 'CTA2';
-      const isIntro = idStr === '1' || tituloLower === 'introdução';
-
-      if (isCTA1) {
-        cta1Text = conteudo || '';
+      if (tNorm === 'CTA1' || idStr === 'CTA1') {
+        cta1Text = sec.conteudo_markdown || '';
         return;
       }
-      if (isCTA2) {
-        cta2Text = conteudo || '';
+      if (tNorm === 'CTA2' || idStr === 'CTA2') {
+        cta2Text = sec.conteudo_markdown || '';
         return;
       }
-      if (isIntro) {
-        introMd = conteudo || '';
+      if (tNorm === 'Introdução' || rawId === 1) {
+        introSection = sec;
         return;
       }
 
-      contentSections.push(sec);
+      otherSections.push(sec);
     });
 
-    // CTA1: usa exatamente o texto que vem do JSON (em markdown simples)
+    // CTA1: texto do JSON, em markdown, no card superior
     if (cta1Container) {
       if (cta1Text) {
         cta1Container.innerHTML = markdownToHtml(cta1Text);
+      } else {
+        cta1Container.textContent = '';
       }
     }
 
-    // CTA2: agora vai apenas no botão FINAL da página
-    if (bottomCtaButton) {
-      if (cta2Text) {
-        bottomCtaButton.innerHTML = markdownToInlineHtml(cta2Text);
-      }
-    }
-
-    // Intro
+    // Introdução: NÃO mostra o título "Introdução" e remove "### Introdução" do início
     if (introContainer) {
       introContainer.innerHTML = '';
-      if (introMd) {
-        introContainer.innerHTML = markdownToHtml(introMd);
+      if (introSection && introSection.conteudo_markdown) {
+        const introTitle = introSection.titulo_secao || 'Introdução';
+        const cleanedIntroMd = stripDuplicateHeading(introSection.conteudo_markdown, introTitle);
+        const introHtml = markdownToHtml(cleanedIntroMd);
+        if (introHtml) {
+          introContainer.innerHTML = introHtml;
+        }
       }
     }
 
-    // Demais seções
+    // Demais seções (com títulos em H2 + markdown interno)
     if (sectionsContainer) {
       sectionsContainer.innerHTML = '';
 
-      if (!contentSections.length) {
-        const p = document.createElement('p');
-        p.textContent = 'Detalhes adicionais não disponíveis para esta oferta.';
-        sectionsContainer.appendChild(p);
-      } else {
-        contentSections.forEach(function (sec) {
-          const tituloSecao = sec.titulo_secao || '';
-          let conteudo = sec.conteudo_markdown || '';
+      otherSections.forEach(function(sec) {
+        const wrapper = document.createElement('article');
+        wrapper.className = 'content-section';
 
-          const wrapper = document.createElement('article');
-          wrapper.className = 'content-section';
+        const title = sec.titulo_secao || '';
+        const tNorm = String(title).trim().toLowerCase();
 
-          if (tituloSecao) {
-            const h2 = document.createElement('h2');
-            h2.textContent = tituloSecao;
-            wrapper.appendChild(h2);
-          }
+        // Por segurança, nunca renderiza H2 "Introdução" aqui
+        if (title && tNorm !== 'introdução') {
+          const h2 = document.createElement('h2');
+          h2.textContent = title;
+          wrapper.appendChild(h2);
+        }
 
-          conteudo = stripDuplicateHeading(conteudo, tituloSecao);
-          const html = markdownToHtml(conteudo);
-          if (html) {
-            wrapper.insertAdjacentHTML('beforeend', html);
-          }
+        const rawMd = sec.conteudo_markdown || '';
+        const cleanedMd = stripDuplicateHeading(rawMd, sec.titulo_secao || '');
+        const bodyHtml  = markdownToHtml(cleanedMd);
 
-          sectionsContainer.appendChild(wrapper);
-        });
+        if (bodyHtml) {
+          const div = document.createElement('div');
+          div.innerHTML = bodyHtml;
+          wrapper.appendChild(div);
+        }
+
+        sectionsContainer.appendChild(wrapper);
+      });
+    }
+
+    // CTA2: texto curto/inline aplicado no botão final
+    if (bottomCtaButton) {
+      if (cta2Text) {
+        bottomCtaButton.innerHTML = markdownToInlineHtml(cta2Text);
       }
     }
   }
@@ -314,7 +336,7 @@
     const slug = getSlugFromUrl();
 
     if (!slug) {
-      showError('Nenhuma oferta foi selecionada. Acesse a página de lazer e escolha um roteiro.');
+      showError('Nenhuma oferta foi selecionada. Acesse a página de lazer e escolha um pacote.');
       if (titleEl) titleEl.textContent = 'Oferta não encontrada';
       return;
     }
@@ -332,7 +354,7 @@
     } catch (err) {
       console.error('Erro ao carregar oferta de lazer:', err);
       if (titleEl) titleEl.textContent = 'Erro ao carregar oferta';
-      showError(err && err.message ? err.message : 'Erro inesperado ao carregar esta oferta.');
+      showError(err.message || 'Erro inesperado ao carregar esta oferta.');
     }
   }
 
