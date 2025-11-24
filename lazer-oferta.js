@@ -181,6 +181,14 @@
     // Hero: título
     if (titleEl) {
       titleEl.textContent = titulo;
+
+      // Ajusta o tamanho do título se ele for muito longo
+      var len = titulo ? String(titulo).length : 0;
+      if (len > 60) {
+        titleEl.classList.add('hero-title-small');
+      } else {
+        titleEl.classList.remove('hero-title-small');
+      }
     }
 
     // Hero: categoria (opcional, hoje está oculto via CSS)
