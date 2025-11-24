@@ -22,6 +22,16 @@
   },
   "sections": [
     {
+      "id": "CTA1",
+      "titulo_secao": "CTA1",
+      "conteudo_markdown": "**📌 Pacote internacional**\n\n- Hospedagem em hotel selecionado, conforme o número de noites indicado no roteiro.\n- Regime de alimentação conforme o pacote (café da manhã e/ou outras refeições, quando incluídos).\n- Traslados principais previstos (aeroporto ↔ hotel e/ou pontos centrais, quando indicados).\n- Passeios e experiências conforme a programação detalhada (city tours, visitas guiadas, entradas específicas etc.).\n- Demais serviços e diferenciais conforme descrito nas seções completas deste pacote."
+    },
+    {
+      "id": "CTA2",
+      "titulo_secao": "CTA2",
+      "conteudo_markdown": "👉 *Fale com nossa equipe no WhatsApp para receber os valores atualizados a partir da sua cidade e ajustar este roteiro internacional às datas e ao estilo de viagem que você prefere.*"
+    },
+    {
       "id": 1,
       "section_type": "content",
       "title": "1. Quando faz mais sentido se hospedar aqui",
@@ -55,7 +65,8 @@
           "type": "paragraph",
           "text": "---"
         }
-      ]
+      ],
+      "conteudo_markdown": ""
     },
     {
       "id": 2,
