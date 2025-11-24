@@ -21,7 +21,7 @@
       --bg:#f3f4f6;
       --text:#111827;
       --muted:#6b7280;
-      --max-width:1120px;
+      --max-width:820px;
     }
 
     *{box-sizing:border-box;}
@@ -92,11 +92,20 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:40px;
-      height:40px;
-      border-radius:999px;
-      background:#22c55e;
-      box-shadow:0 8px 18px rgba(0,0,0,0.25);
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
     }
     .hero-whatsapp-icon{
       width:22px;
@@ -401,9 +410,10 @@
         <div class="hero-actions">
           <a class="hero-whatsapp"
              href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer."
-             target="_blank" rel="noopener">
-            <span class="sr-only">WhatsApp</span>
-            <img src="assets/misc/whatsapp-icon.svg" alt="" class="hero-whatsapp-icon">
+             target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+            <span class="whatsapp-icon">
+              <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+            </span>
           </a>
 
           <button type="button" class="hero-menu-btn" id="heroMenuToggle">
