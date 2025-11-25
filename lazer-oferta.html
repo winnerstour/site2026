@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="utf-8"/>
@@ -16,7 +15,7 @@
     :root{
       --brand:#f97316;
       --brand-shadow:#c2410c;
-      --bg:#f3f4f6;
+      --bg:#f9fafb;
       --text:#111827;
       --muted:#6b7280;
       --max-width:820px;
@@ -153,13 +152,13 @@
       display:block;
     }
 
-    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    /* Category/Meta ocultos */
     #offerCategory,
     #offerMeta{
       display:none;
     }
 
-    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    /* BARRA DE CTA (CTA1 + CTA2) */
     .offer-cta-strip{
       max-width:var(--max-width);
       margin:-44px auto 32px auto;
@@ -210,8 +209,8 @@
     .article-body{
       max-width:var(--max-width);
       margin:0 auto 40px auto;
-      padding:0 18px;
-      font-size:1.1rem;
+      padding:0 26px;
+      font-size:1rem;
       line-height:1.8;
     }
     .article-body p{
@@ -235,8 +234,7 @@
     }
 
     /* CTA FINAL FIXO */
-    
-.article-cta-final{
+    .article-cta-final{
       margin:48px 0 32px 0;
       padding:28px 22px 30px 22px;
       border-radius:24px;
@@ -295,7 +293,7 @@
       font-size:0.9rem;
     }
 
-    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    /* MENU OVERLAY */
     .site-menu{
       position:fixed;
       inset:0;
@@ -392,7 +390,8 @@
         font-size:1.8rem;
       }
       .article-body{
-        padding:0 14px;
+        padding:0 22px;
+        font-size:0.98rem;
       }
       #offerError{
         padding:0 14px;
@@ -400,7 +399,7 @@
     }
   </style>
 </meta><style>
-/* Menu hambúrguer com ícones + texto (layout corporativo) */
+/* Menu hambúrguer com ícones + texto */
 .site-menu-panel a{
   display:flex;
   align-items:center;
@@ -423,100 +422,148 @@
 }
 </style></head>
 <body>
-<!-- HERO EM BARRA CHEIA (com cabeçalho + imagem) -->
 <header class="hero-wrap">
 <div class="hero-inner">
-<!-- Topo: logo + ações -->
-<div class="hero-topbar">
-<a class="hero-logo" href="index.html">WINNERS TOUR</a>
-<div class="hero-actions">
-<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
-<span class="whatsapp-icon">
-<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
-</span>
-</a>
-<button class="hero-menu-btn" id="heroMenuToggle" type="button">
-<span>Menu</span>
-<span class="hamburger">☰</span>
-</button>
-</div>
-</div>
-<!-- Conteúdo principal do hero -->
-<div class="hero-main">
-<div class="hero-text">
-<p id="offerCategory"></p>
-<p id="offerMeta"></p>
-<h1 id="offerTitle">Título da oferta de lazer</h1>
-<p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
-</div>
-<figure class="hero-image">
-<img alt="Imagem da oferta de lazer" id="offerImage" src="assets/misc/placeholder-lazer.webp"/>
-</figure>
-</div>
+  <div class="hero-topbar">
+    <a class="hero-logo" href="index.html">WINNERS TOUR</a>
+    <div class="hero-actions">
+      <a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+        <span class="whatsapp-icon">
+          <img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+        </span>
+      </a>
+      <button class="hero-menu-btn" id="heroMenuToggle" type="button">
+        <span>Menu</span>
+        <span class="hamburger">☰</span>
+      </button>
+    </div>
+  </div>
+  <div class="hero-main">
+    <div class="hero-text">
+      <p id="offerCategory"></p>
+      <p id="offerMeta"></p>
+      <h1 id="offerTitle">Título da oferta de lazer</h1>
+      <p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
+    </div>
+    <figure class="hero-image">
+      <img alt="Imagem da oferta de lazer" id="offerImage" src="assets/misc/placeholder-lazer.webp"/>
+    </figure>
+  </div>
 </div>
 </header>
-<!-- BARRA DE CTA (CTA1 + CTA2) -->
+
 <section class="offer-cta-strip">
-<div class="offer-cta-main" id="offerCta1">
-<p><strong>📌 Pacote de viagem:</strong> descrição resumida da oferta (no JSON esse campo vem como CTA1 em formato de parágrafo, explicando noites, hotel, traslados e principais experiências incluídas).</p>
-</div>
-<div class="offer-cta-actions">
-<a class="offer-cta-strip-button" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20dessa%20oferta%20de%20lazer." id="offerCtaTopButton" rel="noopener" target="_blank">
-        👉 Fale com nossa equipe agora
-      </a>
-</div>
+  <div class="offer-cta-main" id="offerCta1">
+    <p><strong>📌 Pacote de viagem:</strong> descrição resumida da oferta (no JSON esse campo vem como CTA1 em formato de parágrafo, explicando noites, hotel, traslados e principais experiências incluídas).</p>
+  </div>
+  <div class="offer-cta-actions">
+    <a class="offer-cta-strip-button" href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerCtaTopButton" rel="noopener" target="_blank">
+      👉 Fale com nossa equipe agora
+    </a>
+  </div>
 </section>
-<!-- CORPO DO ARTIGO (conteúdo vindo do JSON) -->
+
 <main class="article-body">
-<section id="offerIntro"></section>
-<section id="offerSections"></section>
-<div class="article-cta-final">
-<strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
-<span>Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagem para você.</span>
-<a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20personalizado%20dessa%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">
-        Falar com nossa equipe
-      </a>
-</div>
-<div id="offerError"></div>
+  <section id="offerIntro"></section>
+  <section id="offerSections"></section>
+
+  <div class="article-cta-final">
+    <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
+    <span id="offerCta2"></span>
+    <a href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">
+      👉 Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagens para você
+    </a>
+  </div>
+
+  <div id="offerError"></div>
 </main>
-<!-- MENU OVERLAY (abre ao clicar em “Menu”) -->
+
 <div class="site-menu" id="siteMenu">
-<div class="site-menu-panel">
-<h2>Mais opções</h2>
+  <div class="site-menu-panel">
+    <h2>Mais opções</h2>
 
+    <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
 
-
-
-
-
-<div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
-<a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a></div>
+    <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
+      <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
+    </a>
+    <a href="corporativo.html">
+      <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
+    </a>
+    <a href="index.html">
+      <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
+    </a>
+    <a href="grupos.html">
+      <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
+    </a>
+    <a href="lazer.html">
+      <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
+    </a>
+  </div>
 </div>
-<!-- JS do menu (WhatsApp + Menu hamburguer) -->
+
 <script>
-    (function(){
-      const toggle = document.getElementById('heroMenuToggle');
-      const menu   = document.getElementById('siteMenu');
-      const close  = document.getElementById('siteMenuClose');
+(function(){
+  const toggle = document.getElementById('heroMenuToggle');
+  const menu   = document.getElementById('siteMenu');
+  const close  = document.getElementById('siteMenuClose');
 
-      if (!toggle || !menu) return;
+  if (!toggle || !menu) return;
 
-      function toggleMenu(){
-        menu.classList.toggle('open');
-      }
+  function toggleMenu(){
+    menu.classList.toggle('open');
+  }
 
-      toggle.addEventListener('click', toggleMenu);
-      if (close){
-        close.addEventListener('click', toggleMenu);
-      }
+  toggle.addEventListener('click', toggleMenu);
+  if (close){
+    close.addEventListener('click', toggleMenu);
+  }
 
-      // fecha se clicar fora do painel
-      menu.addEventListener('click', function(ev){
-        if (ev.target === menu) menu.classList.remove('open');
-      });
-    })();
-  </script>
-<!-- JS que carrega o conteúdo da oferta a partir do JSON -->
+  menu.addEventListener('click', function(ev){
+    if (ev.target === menu) menu.classList.remove('open');
+  });
+})();
+</script>
+
 <script src="lazer-oferta.js"></script>
+
+<script>
+(function(){
+  function atualizarLinksWhatsApp(tentativa){
+    tentativa = tentativa || 0;
+    var tituloEl = document.getElementById('offerTitle');
+    if (!tituloEl){
+      return;
+    }
+
+    var titulo = (tituloEl.textContent || '').trim();
+    if (!titulo && tentativa < 15){
+      setTimeout(function(){ atualizarLinksWhatsApp(tentativa + 1); }, 300);
+      return;
+    }
+    if (!titulo){
+      return;
+    }
+
+    var mensagem = 'Olá, eu gostaria de fazer um orçamento para ' + titulo;
+    var mensagemCodificada = encodeURIComponent(mensagem);
+    var telefone = '5541999450111';
+    var novoHref = 'https://wa.me/' + telefone + '?text=' + mensagemCodificada;
+
+    var heroBtn = document.querySelector('.hero-whatsapp');
+    if (heroBtn) heroBtn.href = novoHref;
+
+    var ctaTopBtn = document.getElementById('offerCtaTopButton');
+    if (ctaTopBtn) ctaTopBtn.href = novoHref;
+
+    var ctaBottomBtn = document.getElementById('offerBottomCta');
+    if (ctaBottomBtn) ctaBottomBtn.href = novoHref;
+  }
+
+  window.addEventListener('load', function(){
+    atualizarLinksWhatsApp(0);
+  });
+})();
+</script>
 </body>
 </html>
