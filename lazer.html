@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>Winners Tour — Operadora e Agência de Viagens</title>
+  <title>WinnersTour — Lazer e Férias</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -329,29 +329,6 @@ a{text-decoration:none;color:inherit}
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
-/* Bloco de preço no rodapé do card */
-.card-price {
-  margin-top: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 1.1;
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
-}
-
-.card-price-label,
-.card-price-note {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.card-price-value {
-  font-size: 1.4rem;
-  font-weight: 900;
-}
-
 /* Footer + botão */
 .card-footer {
   margin-top: auto;
@@ -619,13 +596,14 @@ a{text-decoration:none;color:inherit}
 </script>
 
 <!-- SCRIPT LÓGICA LAZER -->
+<!-- SCRIPT LÓGICA LAZER -->
 <script>
 const LAZER_JSON_URL = './lazer/index-lazer.json';
 
 // Lê o preço do item, aceitando "price" ou "Price", string ou número.
-// Retorna uma string pronta para exibir (sem "R$").
-function getPriceString(item) {
-  if (!item || typeof item !== 'object') return null;
+// Retorna informações de exibição: ou preço formatado ou "sob consulta".
+function getPriceInfo(item) {
+  if (!item || typeof item !== 'object') return { type: 'consult', value: null };
 
   let raw = null;
 
@@ -635,24 +613,36 @@ function getPriceString(item) {
     raw = item.Price;
   }
 
-  if (raw === null) return null;
+  if (raw === null) return { type: 'consult', value: null };
 
-  // Se for número, formata sem centavos
+  // Se for número
   if (typeof raw === 'number') {
-    return raw.toLocaleString('pt-BR', {
+    if (raw <= 0) {
+      return { type: 'consult', value: null };
+    }
+    const formatted = raw.toLocaleString('pt-BR', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     });
+    return { type: 'price', value: formatted };
   }
 
-  // Se for string ("3.507", "3507" etc.), usa do jeito que veio
+  // Se for string
   if (typeof raw === 'string') {
     const trimmed = raw.trim();
-    if (!trimmed) return null;
-    return trimmed;
+    if (!trimmed) return { type: 'consult', value: null };
+
+    const compact = trimmed.replace(/\s/g, '');
+    const zeroLike = compact === '0' || compact === '0,00' || compact === '0.00' || compact === '0,0' || compact === '0.0';
+    if (zeroLike) {
+      return { type: 'consult', value: null };
+    }
+
+    // Usa como veio do JSON, ex.: "3.507"
+    return { type: 'price', value: trimmed };
   }
 
-  return null;
+  return { type: 'consult', value: null };
 }
 
 function createCard(item) {
@@ -669,9 +659,9 @@ function createCard(item) {
     }
   }
 
-  // preço opcional
-  const formattedPrice = getPriceString(item);
-  const hasPrice = !!formattedPrice;
+  const priceInfo = getPriceInfo(item);
+  const hasPrice = priceInfo.type === 'price';
+  const isConsult = priceInfo.type === 'consult';
 
   const hasLink = !!(item.href || slug);
   const wrapperTag = hasLink ? 'a' : 'div';
@@ -710,18 +700,20 @@ function createCard(item) {
 
   footer.appendChild(cta);
 
-  // Se houver price no JSON, cria o bloco de 3 linhas
+  // Bloco de preço SEMPRE exibido
+  const priceBlock = document.createElement('div');
+  priceBlock.className = 'card-price';
+
+  const label = document.createElement('span');
+  label.className = 'card-price-label';
+
+  const value = document.createElement('span');
+  value.className = 'card-price-value';
+
   if (hasPrice) {
-    const priceBlock = document.createElement('div');
-    priceBlock.className = 'card-price';
-
-    const label = document.createElement('span');
-    label.className = 'card-price-label';
+    // Caso com preço numérico/textual válido
     label.textContent = 'A partir de';
-
-    const value = document.createElement('span');
-    value.className = 'card-price-value';
-    value.textContent = 'R$ ' + formattedPrice;
+    value.textContent = 'R$ ' + priceInfo.value;
 
     const note = document.createElement('span');
     note.className = 'card-price-note';
@@ -730,15 +722,17 @@ function createCard(item) {
     priceBlock.appendChild(label);
     priceBlock.appendChild(value);
     priceBlock.appendChild(note);
-
-    // Título + bloco de preço
-    content.appendChild(t);
-    content.appendChild(priceBlock);
   } else {
-    // Sem price: card segue igual ao atual (só título + botão)
-    content.appendChild(t);
+    // Sem preço ou preço zero: mostra "Preço a partir de / Sob consulta."
+    label.textContent = 'Preço a partir de';
+    value.textContent = 'Sob consulta.';
+
+    priceBlock.appendChild(label);
+    priceBlock.appendChild(value);
   }
 
+  content.appendChild(t);
+  content.appendChild(priceBlock);
   content.appendChild(footer);
 
   card.appendChild(media);
@@ -888,6 +882,7 @@ fetch(LAZER_JSON_URL, { cache: 'no-cache' })
     }
   });
 </script>
+
 
 </body>
 </html>
