@@ -1,218 +1,668 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Desafios do Gestor e do Viajante</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control">
+<title>WinnersTour — Desafios do Gestor e do Viajante</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+</meta><link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="apps.html">APLICATIVOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="desafios_gestor_viajante.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20alinhar%20a%20política%20de%20viagens%20com%20o%20time." target="_blank" class="cta-button">
-                CONSTRUA UMA POLÍTICA DE PARCERIA
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Imagina a cena.</p>
-            <p>Você é viajante corporativo, está na correria entre uma reunião e outra, abre o celular e encontra uma tarifa “imperdível” num aplicativo. Quando pede cotação pelo canal oficial da empresa, o preço vem maior. Ou o hotel sugerido parece simples demais. Ou caro demais. A sensação imediata é:</p>
-            <p><em>“O setor de viagens não está jogando a meu favor.”</em></p>
-            <p>Do outro lado, o gestor de viagens está lidando com orçamento apertado, política de viagens, planilha de auditoria, pressão do financeiro, reclamações da diretoria e, ainda assim, tentando manter tudo centralizado para conseguir cuidar de quem está na rua a trabalho.</p>
-            <p>No meio desses dois mundos, nasce um embate que parece pessoal — mas, na prática, é mais fruto de contexto, ruído e expectativa desalinhada do que de “má vontade” de qualquer lado.</p>
-            <p>Este artigo é um convite para olhar esse choque de outra forma: entender por que ele acontece, quais são os desafios de cada lado e como transformar essa relação em parceria — com o viajante no centro e o <strong>dever de cuidado (Duty of Care)</strong> como linha de chegada.</p>
+</div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
-            <h2>1. Quando parece que todo mundo está jogando contra você</h2>
-            <p>Para o viajante, a percepção é muito direta:</p>
-            <ul>
-                <li>“Achei mais barato na internet.”</li>
-                <li>“O hotel indicado é ruim ou sem serviço.”</li>
-                <li>“Por que precisa de tanta aprovação?”</li>
-                <li>“Por que é tão complicado fazer algo que, no site tal, eu resolvo em 3 cliques?”</li>
-            </ul>
-            <p>É fácil concluir que o setor de viagens — e muitas vezes a própria agência parceira — está “do lado da empresa”, contra o conforto ou a conveniência de quem viaja.</p>
-            <p>Na prática, a missão do gestor de viagens é outra: <strong>equilibrar três forças ao mesmo tempo</strong>:</p>
-            <ul>
-                <li>Cuidar do viajante (segurança, bem-estar, menos estresse).</li>
-                <li>Proteger o orçamento (gastar bem, não apenas gastar menos).</li>
-                <li>Garantir que tudo isso fique rastreável e dentro das regras da empresa.</li>
-            </ul>
-            <p>Quando esses três objetivos não são explicados de forma clara, o que chega para o viajante é só a parte chata: “não pode”, “precisa de aprovação”, “só usamos tal hotel”, “compra só por aqui”.</p>
-            <p>O primeiro passo para reduzir o atrito é assumir: <br />
-                <strong>não existe time A x time B</strong>. <br />
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Imagina a cena.</p>
+<p>Você é viajante corporativo, está na correria entre uma reunião e outra, abre o celular e encontra uma tarifa “imperdível” num aplicativo. Quando pede cotação pelo canal oficial da empresa, o preço vem maior. Ou o hotel sugerido parece simples demais. Ou caro demais. A sensação imediata é:</p>
+<p><em>“O setor de viagens não está jogando a meu favor.”</em></p>
+<p>Do outro lado, o gestor de viagens está lidando com orçamento apertado, política de viagens, planilha de auditoria, pressão do financeiro, reclamações da diretoria e, ainda assim, tentando manter tudo centralizado para conseguir cuidar de quem está na rua a trabalho.</p>
+<p>No meio desses dois mundos, nasce um embate que parece pessoal — mas, na prática, é mais fruto de contexto, ruído e expectativa desalinhada do que de “má vontade” de qualquer lado.</p>
+<p>Este artigo é um convite para olhar esse choque de outra forma: entender por que ele acontece, quais são os desafios de cada lado e como transformar essa relação em parceria — com o viajante no centro e o <strong>dever de cuidado (Duty of Care)</strong> como linha de chegada.</p>
+<h2>1. Quando parece que todo mundo está jogando contra você</h2>
+<p>Para o viajante, a percepção é muito direta:</p>
+<ul>
+<li>“Achei mais barato na internet.”</li>
+<li>“O hotel indicado é ruim ou sem serviço.”</li>
+<li>“Por que precisa de tanta aprovação?”</li>
+<li>“Por que é tão complicado fazer algo que, no site tal, eu resolvo em 3 cliques?”</li>
+</ul>
+<p>É fácil concluir que o setor de viagens — e muitas vezes a própria agência parceira — está “do lado da empresa”, contra o conforto ou a conveniência de quem viaja.</p>
+<p>Na prática, a missão do gestor de viagens é outra: <strong>equilibrar três forças ao mesmo tempo</strong>:</p>
+<ul>
+<li>Cuidar do viajante (segurança, bem-estar, menos estresse).</li>
+<li>Proteger o orçamento (gastar bem, não apenas gastar menos).</li>
+<li>Garantir que tudo isso fique rastreável e dentro das regras da empresa.</li>
+</ul>
+<p>Quando esses três objetivos não são explicados de forma clara, o que chega para o viajante é só a parte chata: “não pode”, “precisa de aprovação”, “só usamos tal hotel”, “compra só por aqui”.</p>
+<p>O primeiro passo para reduzir o atrito é assumir: <br/>
+<strong>não existe time A x time B</strong>. <br/>
                 Existe um problema complexo (viajar bem, com segurança e custo ok) sendo visto por ângulos diferentes.
             </p>
-
-            <h2>2. A tarifa “sempre mais barata” no aplicativo – e o jogo da oferta imperdível</h2>
-            <p>Entre todas as reclamações do viajante corporativo, essa é campeã:</p>
-            <p><em>“No aplicativo tal está mais barato.”</em></p>
-            <p>E muitas vezes é verdade.</p>
-            <p>Apps e sites de viagem trabalham o tempo todo com a lógica da <strong>“oferta imperdível”</strong>: cupom de última hora, desconto exclusivo no app, cashback relâmpago… tudo pensado para você não sair da tela sem comprar.</p>
-            <p>Do ponto de vista individual, faz sentido aproveitar. Mas, do ponto de vista da empresa, isso não muda o jogo principal.</p>
-            <p>Uma política de viagens séria não foi criada para “ganhar” alguns reais em uma promoção pontual. Ela existe para:</p>
-            <ul>
-                <li><strong>usar a regra de ouro da antecedência</strong> e reduzir de verdade o custo de passagens e hospedagens;</li>
-                <li><strong>evitar compras em cima da hora</strong>, quando a cidade já está lotada e os preços explodiram;</li>
-                <li><strong>centralizar as reservas</strong>, para ter rastreabilidade, poder de negociação e condições de ajudar o viajante se algo der errado.</li>
-            </ul>
-            <p>As ofertas dos aplicativos podem ser um bônus aqui e ali. Mas a estratégia que realmente funciona, para a empresa e para quem viaja, continua sendo a mesma: <br />
-                <strong>planejar, comprar com antecedência e seguir os canais oficiais</strong>.
+<h2>2. A tarifa “sempre mais barata” no aplicativo – e o jogo da oferta imperdível</h2>
+<p>Entre todas as reclamações do viajante corporativo, essa é campeã:</p>
+<p><em>“No aplicativo tal está mais barato.”</em></p>
+<p>E muitas vezes é verdade.</p>
+<p>Apps e sites de viagem trabalham o tempo todo com a lógica da <strong>“oferta imperdível”</strong>: cupom de última hora, desconto exclusivo no app, cashback relâmpago… tudo pensado para você não sair da tela sem comprar.</p>
+<p>Do ponto de vista individual, faz sentido aproveitar. Mas, do ponto de vista da empresa, isso não muda o jogo principal.</p>
+<p>Uma política de viagens séria não foi criada para “ganhar” alguns reais em uma promoção pontual. Ela existe para:</p>
+<ul>
+<li><strong>usar a regra de ouro da antecedência</strong> e reduzir de verdade o custo de passagens e hospedagens;</li>
+<li><strong>evitar compras em cima da hora</strong>, quando a cidade já está lotada e os preços explodiram;</li>
+<li><strong>centralizar as reservas</strong>, para ter rastreabilidade, poder de negociação e condições de ajudar o viajante se algo der errado.</li>
+</ul>
+<p>As ofertas dos aplicativos podem ser um bônus aqui e ali. Mas a estratégia que realmente funciona, para a empresa e para quem viaja, continua sendo a mesma: <br/>
+<strong>planejar, comprar com antecedência e seguir os canais oficiais</strong>.
             </p>
-
-            <h2>3. O hotel “ruim”, o hotel “caro” e o hotel “errado”</h2>
-            <p>Outra fonte de atrito recorrente:</p>
-            <ul>
-                <li>“Por que vocês só cotam o hotel X?”</li>
-                <li>“Esse hotel é muito simples.”</li>
-                <li>“Esse outro é caro demais.”</li>
-            </ul>
-            <p>Na cabeça do viajante, faz sentido comparar apenas preço e conforto imediato. Na cabeça do gestor, entra um conjunto bem maior de variáveis:</p>
-            <ul>
-                <li>Localização em relação ao cliente, planta, feira ou evento.</li>
-                <li>Segurança da região.</li>
-                <li>Condições de pagamento corporativo.</li>
-                <li>Flexibilidade para no-show, alteração ou saída antecipada.</li>
-                <li>Histórico de problemas (ou de bons atendimentos) com aquele hotel.</li>
-            </ul>
-            <p>Por isso, muitas empresas trabalham com <strong>listas de hotéis preferenciais</strong> em cada cidade. Não é para engessar a escolha, e sim para garantir um padrão mínimo de segurança, qualidade e previsibilidade.</p>
-            <p>Sim, às vezes o resultado disso pode parecer um hotel “sem graça” ou com diária um pouco acima de alguma promoção pontual na internet. Mas o que se busca ali é:</p>
-            <ul>
-                <li>reduzir o risco de o viajante ficar “sem quarto” em evento grande;</li>
-                <li>evitar regiões perigosas ou muito distantes do local de trabalho;</li>
-                <li>facilitar suporte se algo der errado no check-in, no pagamento ou durante a estada.</li>
-            </ul>
-            <p>Quando essa lógica não é explicada, o que chega para o viajante é só a sensação de que <em>“não pensaram em mim”</em>.</p>
-
-            <h2>4. Burocracia, aprovações e formulários: o fino equilíbrio entre controle e exagero</h2>
-            <p>Aqui mora outro ponto de desgaste.</p>
-            <p>Do lado do viajante:</p>
-            <ul>
-                <li>Fluxos de aprovação demorados.</li>
-                <li>Formulários demais.</li>
-                <li>Políticas que parecem feitas para “pegar no pé” de quem viaja.</li>
-            </ul>
-            <p>Do lado do gestor:</p>
-            <ul>
-                <li>Pressão do financeiro e da auditoria para ter trilhas de aprovação claras.</li>
-                <li>Casos reais de abusos (carros acima da categoria, hotéis fora de política, despesas pessoais no cartão corporativo).</li>
-                <li>Medo legítimo de ser cobrado por algo que “passou sem controle”.</li>
-            </ul>
-            <p>O resultado pode ser uma política cheia de travas, feitas para conter exceções — mas que, na prática, atrapalham justamente quem faz tudo certo.</p>
-            <p>O desafio do gestor moderno é:</p>
-            <ul>
-                <li><strong>automatizar o máximo possível</strong>, para não transformar aprovação em carimbo manual eterno;</li>
-                <li><strong>confiar mais em quem segue a política</strong> e concentrar a energia nas exceções reais;</li>
-                <li><strong>ouvir o viajante</strong> quando a burocracia começa a atrapalhar o objetivo da viagem.</li>
-            </ul>
-            <p>E, do lado do viajante, também ajuda muito:</p>
-            <ul>
-                <li>dar feedback específico (onde exatamente o fluxo trava);</li>
-                <li>evitar atalhos por fora do processo só porque “é mais rápido” naquele momento.</li>
-            </ul>
-            <p>O objetivo não é criar barreiras. É impedir que alguns poucos casos ruins contaminem o benefício de todo mundo.</p>
-
-            <h2>5. O bastidor invisível do gestor de viagens</h2>
-            <p>Para quem olha de fora, o gestor de viagens é “a pessoa que manda as regras” ou “o chato que diz não”.</p>
-            <p>Na prática, o dia a dia passa longe disso. Esse profissional normalmente está:</p>
-            <ul>
-                <li>negociando com dezenas de hotéis e fornecedores ao mesmo tempo;</li>
-                <li>buscando manter tarifas competitivas em mercados que mudam o tempo todo;</li>
-                <li>explicando internamente por que viagens são investimento, não apenas custo;</li>
-                <li>respondendo a emergências em cima da hora (greves, cancelamentos, mudanças de rota, doenças, imprevistos familiares);</li>
-                <li>tentando modernizar processos em empresas que, às vezes, ainda vivem de planilha e e-mail.</li>
-            </ul>
-            <p>É um trabalho que mistura <strong>pressão</strong>, <strong>urgência</strong> e <strong>expectativa alta</strong> — dos viajantes, da diretoria e dos fornecedores.</p>
-            <p>Isso não diminui a frustração do viajante quando algo dá errado. Mas ajuda a entender que, do outro lado do e-mail, não tem “o inimigo”. Tem alguém tentando manter o sistema de pé, com recursos limitados, segurando pratinhos que o viajante muitas vezes nem vê.</p>
-
-            <h2>6. O pior custo não está na planilha: estresse, saúde e dever de cuidado</h2>
-            <p>Quando a gente fala em <strong>Duty of Care</strong>, o dever de cuidado, estamos falando de algo muito simples e, ao mesmo tempo, enorme: cuidar bem do recurso humano da empresa enquanto ele está na rua, viajando a serviço.</p>
-            <p>Quem está viajando passa, quase sempre, por uma sequência de situações potencialmente estressantes: enfrentar trânsito até o aeroporto, longas viagens de carro, noites mal dormidas, lidar com atrasos e cancelamentos, a sensação permanente de estar “em trânsito”. E, logo depois de tudo isso, ainda vem o que realmente importa: a reunião, a negociação, o treinamento, a visita técnica, a apresentação que não pode dar errado.</p>
-            <p>É por isso que o pior custo raramente aparece apenas na planilha de despesas. O verdadeiro risco está nesse desgaste acumulado: <strong>cansaço extremo, queda de performance, aumento de chance de erro, maior vulnerabilidade a problemas de segurança e acidentes.</strong></p>
-            <p>Quando o setor de viagens insiste em:</p>
-            <ul>
-                <li><strong>comprar com antecedência</strong>, aplicando a regra de ouro da antecedência de compra;</li>
-                <li><strong>escolher hotéis mais recomendados e bem localizados</strong>, próximos do local de trabalho ou do evento;</li>
-                <li><strong>discutir com o viajante qual é o melhor horário e o melhor desenho da viagem</strong>, avaliando impacto de conexões, dias de ida e volta e custo total;</li>
-            </ul>
-            <p>em alguns casos, a melhor decisão vai ser ajustar a viagem para caber no orçamento, mesmo que o trajeto fique um pouco menos confortável. Em outros, a escolha mais inteligente será justamente o inverso: evitar uma combinação de conexões barata no papel, mas desgastante demais na prática – porque isso coloca em risco a pessoa e o resultado da viagem.</p>
-            <p>Em todos os cenários, a intenção não é “dificultar a vida do viajante” nem “proteger apenas o orçamento”.<br />
+<h2>3. O hotel “ruim”, o hotel “caro” e o hotel “errado”</h2>
+<p>Outra fonte de atrito recorrente:</p>
+<ul>
+<li>“Por que vocês só cotam o hotel X?”</li>
+<li>“Esse hotel é muito simples.”</li>
+<li>“Esse outro é caro demais.”</li>
+</ul>
+<p>Na cabeça do viajante, faz sentido comparar apenas preço e conforto imediato. Na cabeça do gestor, entra um conjunto bem maior de variáveis:</p>
+<ul>
+<li>Localização em relação ao cliente, planta, feira ou evento.</li>
+<li>Segurança da região.</li>
+<li>Condições de pagamento corporativo.</li>
+<li>Flexibilidade para no-show, alteração ou saída antecipada.</li>
+<li>Histórico de problemas (ou de bons atendimentos) com aquele hotel.</li>
+</ul>
+<p>Por isso, muitas empresas trabalham com <strong>listas de hotéis preferenciais</strong> em cada cidade. Não é para engessar a escolha, e sim para garantir um padrão mínimo de segurança, qualidade e previsibilidade.</p>
+<p>Sim, às vezes o resultado disso pode parecer um hotel “sem graça” ou com diária um pouco acima de alguma promoção pontual na internet. Mas o que se busca ali é:</p>
+<ul>
+<li>reduzir o risco de o viajante ficar “sem quarto” em evento grande;</li>
+<li>evitar regiões perigosas ou muito distantes do local de trabalho;</li>
+<li>facilitar suporte se algo der errado no check-in, no pagamento ou durante a estada.</li>
+</ul>
+<p>Quando essa lógica não é explicada, o que chega para o viajante é só a sensação de que <em>“não pensaram em mim”</em>.</p>
+<h2>4. Burocracia, aprovações e formulários: o fino equilíbrio entre controle e exagero</h2>
+<p>Aqui mora outro ponto de desgaste.</p>
+<p>Do lado do viajante:</p>
+<ul>
+<li>Fluxos de aprovação demorados.</li>
+<li>Formulários demais.</li>
+<li>Políticas que parecem feitas para “pegar no pé” de quem viaja.</li>
+</ul>
+<p>Do lado do gestor:</p>
+<ul>
+<li>Pressão do financeiro e da auditoria para ter trilhas de aprovação claras.</li>
+<li>Casos reais de abusos (carros acima da categoria, hotéis fora de política, despesas pessoais no cartão corporativo).</li>
+<li>Medo legítimo de ser cobrado por algo que “passou sem controle”.</li>
+</ul>
+<p>O resultado pode ser uma política cheia de travas, feitas para conter exceções — mas que, na prática, atrapalham justamente quem faz tudo certo.</p>
+<p>O desafio do gestor moderno é:</p>
+<ul>
+<li><strong>automatizar o máximo possível</strong>, para não transformar aprovação em carimbo manual eterno;</li>
+<li><strong>confiar mais em quem segue a política</strong> e concentrar a energia nas exceções reais;</li>
+<li><strong>ouvir o viajante</strong> quando a burocracia começa a atrapalhar o objetivo da viagem.</li>
+</ul>
+<p>E, do lado do viajante, também ajuda muito:</p>
+<ul>
+<li>dar feedback específico (onde exatamente o fluxo trava);</li>
+<li>evitar atalhos por fora do processo só porque “é mais rápido” naquele momento.</li>
+</ul>
+<p>O objetivo não é criar barreiras. É impedir que alguns poucos casos ruins contaminem o benefício de todo mundo.</p>
+<h2>5. O bastidor invisível do gestor de viagens</h2>
+<p>Para quem olha de fora, o gestor de viagens é “a pessoa que manda as regras” ou “o chato que diz não”.</p>
+<p>Na prática, o dia a dia passa longe disso. Esse profissional normalmente está:</p>
+<ul>
+<li>negociando com dezenas de hotéis e fornecedores ao mesmo tempo;</li>
+<li>buscando manter tarifas competitivas em mercados que mudam o tempo todo;</li>
+<li>explicando internamente por que viagens são investimento, não apenas custo;</li>
+<li>respondendo a emergências em cima da hora (greves, cancelamentos, mudanças de rota, doenças, imprevistos familiares);</li>
+<li>tentando modernizar processos em empresas que, às vezes, ainda vivem de planilha e e-mail.</li>
+</ul>
+<p>É um trabalho que mistura <strong>pressão</strong>, <strong>urgência</strong> e <strong>expectativa alta</strong> — dos viajantes, da diretoria e dos fornecedores.</p>
+<p>Isso não diminui a frustração do viajante quando algo dá errado. Mas ajuda a entender que, do outro lado do e-mail, não tem “o inimigo”. Tem alguém tentando manter o sistema de pé, com recursos limitados, segurando pratinhos que o viajante muitas vezes nem vê.</p>
+<h2>6. O pior custo não está na planilha: estresse, saúde e dever de cuidado</h2>
+<p>Quando a gente fala em <strong>Duty of Care</strong>, o dever de cuidado, estamos falando de algo muito simples e, ao mesmo tempo, enorme: cuidar bem do recurso humano da empresa enquanto ele está na rua, viajando a serviço.</p>
+<p>Quem está viajando passa, quase sempre, por uma sequência de situações potencialmente estressantes: enfrentar trânsito até o aeroporto, longas viagens de carro, noites mal dormidas, lidar com atrasos e cancelamentos, a sensação permanente de estar “em trânsito”. E, logo depois de tudo isso, ainda vem o que realmente importa: a reunião, a negociação, o treinamento, a visita técnica, a apresentação que não pode dar errado.</p>
+<p>É por isso que o pior custo raramente aparece apenas na planilha de despesas. O verdadeiro risco está nesse desgaste acumulado: <strong>cansaço extremo, queda de performance, aumento de chance de erro, maior vulnerabilidade a problemas de segurança e acidentes.</strong></p>
+<p>Quando o setor de viagens insiste em:</p>
+<ul>
+<li><strong>comprar com antecedência</strong>, aplicando a regra de ouro da antecedência de compra;</li>
+<li><strong>escolher hotéis mais recomendados e bem localizados</strong>, próximos do local de trabalho ou do evento;</li>
+<li><strong>discutir com o viajante qual é o melhor horário e o melhor desenho da viagem</strong>, avaliando impacto de conexões, dias de ida e volta e custo total;</li>
+</ul>
+<p>em alguns casos, a melhor decisão vai ser ajustar a viagem para caber no orçamento, mesmo que o trajeto fique um pouco menos confortável. Em outros, a escolha mais inteligente será justamente o inverso: evitar uma combinação de conexões barata no papel, mas desgastante demais na prática – porque isso coloca em risco a pessoa e o resultado da viagem.</p>
+<p>Em todos os cenários, a intenção não é “dificultar a vida do viajante” nem “proteger apenas o orçamento”.<br/>
                 A intenção é <strong>equilibrar custo, segurança e saúde</strong> de quem está na linha de frente, representando a empresa fora de casa.
             </p>
-
-            <h2>7. Como transformar embate em parceria: combinados que funcionam</h2>
-            <p>Se a gente tirar o ruído, gestor de viagens e viajante querem a mesma coisa: viajar bem, com o menor estresse possível, sem estourar o orçamento.</p>
-            <p>Na prática, isso passa por alguns combinados simples.</p>
-            <p><strong>Do lado do viajante:</strong></p>
-            <ul>
-                <li><strong>Usar o canal oficial como regra</strong>, não exceção — e, quando encontrar algo mais barato fora, trazer a informação como dado para conversa, não como acusação.</li>
-                <li><strong>Avisar com antecedência sempre que puder</strong>, principalmente em rotas críticas ou em época de eventos grandes.</li>
-                <li><strong>Dar feedback estruturado</strong>: em vez de “hotel ruim”, explicar o que foi ruim (ruído, localização, internet, segurança, alimentação).</li>
-            </ul>
-            <p><strong>Do lado do gestor:</strong></p>
-            <ul>
-                <li><strong>Explicar bastidores com transparência</strong>, em vez de responder apenas com “não pode”.</li>
-                <li><strong>Revisar políticas periodicamente</strong>, à luz do que realmente acontece em campo, ouvindo quem viaja.</li>
-                <li><strong>Negociar exceções bem justificadas</strong>, para mostrar que a política existe para proteger, não para engessar.</li>
-            </ul>
-            <p>Quando cada lado entende o contexto do outro, o “embate” perde força. O viajante deixa de sentir que está sozinho contra o sistema. O gestor deixa de ver o viajante como alguém que “só complica”.</p>
-            <p>E a área de viagens passa a fazer o que sempre deveria ter feito:</p>
-            <p><strong>cuidar de gente em movimento, com inteligência, segurança e respeito ao esforço de todo mundo envolvido.</strong></p>
-            
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Deseja alinhar a gestão com a experiência do viajante?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20alinhar%20política%20e%20viagem." target="_blank" class="cta-button">
+<h2>7. Como transformar embate em parceria: combinados que funcionam</h2>
+<p>Se a gente tirar o ruído, gestor de viagens e viajante querem a mesma coisa: viajar bem, com o menor estresse possível, sem estourar o orçamento.</p>
+<p>Na prática, isso passa por alguns combinados simples.</p>
+<p><strong>Do lado do viajante:</strong></p>
+<ul>
+<li><strong>Usar o canal oficial como regra</strong>, não exceção — e, quando encontrar algo mais barato fora, trazer a informação como dado para conversa, não como acusação.</li>
+<li><strong>Avisar com antecedência sempre que puder</strong>, principalmente em rotas críticas ou em época de eventos grandes.</li>
+<li><strong>Dar feedback estruturado</strong>: em vez de “hotel ruim”, explicar o que foi ruim (ruído, localização, internet, segurança, alimentação).</li>
+</ul>
+<p><strong>Do lado do gestor:</strong></p>
+<ul>
+<li><strong>Explicar bastidores com transparência</strong>, em vez de responder apenas com “não pode”.</li>
+<li><strong>Revisar políticas periodicamente</strong>, à luz do que realmente acontece em campo, ouvindo quem viaja.</li>
+<li><strong>Negociar exceções bem justificadas</strong>, para mostrar que a política existe para proteger, não para engessar.</li>
+</ul>
+<p>Quando cada lado entende o contexto do outro, o “embate” perde força. O viajante deixa de sentir que está sozinho contra o sistema. O gestor deixa de ver o viajante como alguém que “só complica”.</p>
+<p>E a área de viagens passa a fazer o que sempre deveria ter feito:</p>
+<p><strong>cuidar de gente em movimento, com inteligência, segurança e respeito ao esforço de todo mundo envolvido.</strong></p>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div style="text-align: center; margin-top: 50px;">
+<p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Deseja alinhar a gestão com a experiência do viajante?</p>
+<a class="cta-button" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20alinhar%20política%20e%20viagem." target="_blank">
                     FALE COM UM CONSULTOR
                  </a>
-            </div>
-
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
 </div>
-
+</div>
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>

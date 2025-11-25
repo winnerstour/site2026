@@ -1,345 +1,722 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Viagens de Premiação e de Incentivo</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control"/>
+<title>WinnersTour — Viagens de Premiação e de Incentivo</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="apps.html">APLICATIVOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="viagens_de_premiacao.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Viagens de premiação e de incentivo: você sabe qual é a diferença?</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Viagens de premiação e de incentivo: você sabe qual é a diferença?</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20planejar%20uma%20viagem%20de%20incentivo%20para%20o%20meu%20time." target="_blank" class="cta-button">
-                PLANEJE SEU PROGRAMA DE INCENTIVO
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Imagine dois cenários.</p>
+</div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
-            <p>No primeiro, o colaborador recebe em dinheiro o mesmo valor que a empresa teria investido em uma viagem. Ele fica feliz, paga algumas contas, compra algo que queria há tempo… e, em poucas semanas, o prêmio já virou só mais uma linha no extrato bancário.</p>
-
-            <p>No segundo, ele é chamado no palco, na frente da equipe, e descobre que ganhou uma viagem com tudo incluído para um destino que sempre sonhou em conhecer – e ainda pode levar a esposa ou a família. Meses depois, vem a viagem, as fotos, as histórias, as piadas internas, as lembranças compartilhadas no café da empresa.</p>
-
-            <p>Nos dois casos, o investimento financeiro pode ser parecido.  
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Imagine dois cenários.</p>
+<p>No primeiro, o colaborador recebe em dinheiro o mesmo valor que a empresa teria investido em uma viagem. Ele fica feliz, paga algumas contas, compra algo que queria há tempo… e, em poucas semanas, o prêmio já virou só mais uma linha no extrato bancário.</p>
+<p>No segundo, ele é chamado no palco, na frente da equipe, e descobre que ganhou uma viagem com tudo incluído para um destino que sempre sonhou em conhecer – e ainda pode levar a esposa ou a família. Meses depois, vem a viagem, as fotos, as histórias, as piadas internas, as lembranças compartilhadas no café da empresa.</p>
+<p>Nos dois casos, o investimento financeiro pode ser parecido.  
                 Mas o <strong>impacto emocional e de memória</strong> não tem comparação.
             </p>
-
-            <p>É por isso que, quando a gente fala de <strong>viagens de premiação e de incentivo</strong>, não está falando de mimo. Estamos falando de <strong>estratégia de negócio</strong>, de cultura, de performance e de memória emocional a longo prazo.</p>
-
-            <p>Neste artigo, vamos organizar esse tema em 7 pontos:</p>
-
-            <ul>
-                <li>O que é marketing de incentivo (e por que ele não é só “prêmio”)</li>
-                <li>A diferença prática entre viagem de incentivo e viagem de premiação</li>
-                <li>Por que viagem gera mais resultado que dinheiro ou prêmio material</li>
-                <li>Como funciona, por dentro, um programa de incentivo bem desenhado</li>
-                <li>O risco da viagem errada: quando o prêmio não combina com o público</li>
-                <li>Onde a agência de viagens entra como parceira estratégica</li>
-                <li>Por onde começar se você quiser tirar essa ideia do papel</li>
-            </ul>
-
-            <h2>1. Marketing de incentivo: quando “prêmio” vira ferramenta de gestão</h2>
-
-            <p>Marketing de incentivo é tudo aquilo que a empresa faz para <strong>estimular comportamento de alta performance</strong> de forma contínua: bater meta, vender mais, reter clientes-chave, reduzir churn, melhorar indicadores críticos.</p>
-
-            <p>Não é apenas “dar um presente” para quem foi bem.  
+<p>É por isso que, quando a gente fala de <strong>viagens de premiação e de incentivo</strong>, não está falando de mimo. Estamos falando de <strong>estratégia de negócio</strong>, de cultura, de performance e de memória emocional a longo prazo.</p>
+<p>Neste artigo, vamos organizar esse tema em 7 pontos:</p>
+<ul>
+<li>O que é marketing de incentivo (e por que ele não é só “prêmio”)</li>
+<li>A diferença prática entre viagem de incentivo e viagem de premiação</li>
+<li>Por que viagem gera mais resultado que dinheiro ou prêmio material</li>
+<li>Como funciona, por dentro, um programa de incentivo bem desenhado</li>
+<li>O risco da viagem errada: quando o prêmio não combina com o público</li>
+<li>Onde a agência de viagens entra como parceira estratégica</li>
+<li>Por onde começar se você quiser tirar essa ideia do papel</li>
+</ul>
+<h2>1. Marketing de incentivo: quando “prêmio” vira ferramenta de gestão</h2>
+<p>Marketing de incentivo é tudo aquilo que a empresa faz para <strong>estimular comportamento de alta performance</strong> de forma contínua: bater meta, vender mais, reter clientes-chave, reduzir churn, melhorar indicadores críticos.</p><p>Em termos de negócio, programas bem desenhados costumam impactar indicadores como aumento de vendas ou produtividade, redução de cancelamentos de contratos, fortalecimento de relacionamento com clientes e melhora de clima e retenção de talentos.</p>
+<p>Não é apenas “dar um presente” para quem foi bem.  
                 É criar um <strong>ciclo estruturado</strong>:
             </p>
-
-            <ul>
-                <li>a empresa define metas claras,</li>
-                <li>comunica qual é a recompensa,</li>
-                <li>acompanha o desempenho,</li>
-                <li>reconhece os melhores de maneira visível e memorável.</li>
-            </ul>
-
-            <p>Dentro desse universo, <strong>a viagem de incentivo</strong> tem um papel especial. Ela deixa de ser “custo de RH” e passa a ser vista como <strong>investimento em capital humano</strong>: uma forma de transformar esforço em experiência, e experiência em vínculo emocional com a marca.</p>
-
-            <p>Quando esse processo é bem desenhado, ele se paga.  
+<ul>
+<li>a empresa define metas claras,</li>
+<li>comunica qual é a recompensa,</li>
+<li>acompanha o desempenho,</li>
+<li>reconhece os melhores de maneira visível e memorável.</li>
+</ul>
+<p>Dentro desse universo, <strong>a viagem de incentivo</strong> tem um papel especial. Ela deixa de ser “custo de RH” e passa a ser vista como <strong>investimento em capital humano</strong>: uma forma de transformar esforço em experiência, e experiência em vínculo emocional com a marca.</p>
+<p>Quando esse processo é bem desenhado, ele se paga.  
                 O aumento de vendas, produtividade e engajamento financia o próprio programa.
             </p>
-
-            <h2>2. Viagem de incentivo x viagem de premiação: não são a mesma coisa</h2>
-
-            <p>Na conversa do dia a dia, muita gente mistura os termos. Mas, na prática, existe uma diferença importante entre <strong>viagem de incentivo</strong> e <strong>viagem de premiação</strong>.</p>
-
-            <p>
-                <strong>Viagem de incentivo</strong> é o programa em si.  
+<h2>2. Viagem de incentivo x viagem de premiação: não são a mesma coisa</h2>
+<p>Na conversa do dia a dia, muita gente mistura os termos. Mas, na prática, existe uma diferença importante entre <strong>viagem de incentivo</strong> e <strong>viagem de premiação</strong>.</p>
+<p>
+<strong>Viagem de incentivo</strong> é o programa em si.  
                 É tudo o que acontece <strong>antes da viagem</strong>: campanha, regras, comunicação, ranking, acompanhamento, expectativa. Ela é usada para manter a equipe focada num objetivo: “se eu chegar lá, eu embarco”.
             </p>
-
-            <p>
-                <strong>Viagem de premiação</strong> é o ápice.  
+<p>
+<strong>Viagem de premiação</strong> é o ápice.  
                 É a <strong>entrega do prêmio</strong> para quem já bateu a meta. É o momento em que a empresa trata o colaborador (e muitas vezes o cônjuge) num nível de excelência máxima, com experiências que ele não teria sozinho.
             </p>
-
-            <p>Você pode pensar assim:</p>
-
-            <blockquote>
-                A viagem de incentivo é a maratona.<br>
+<p>Você pode pensar assim:</p>
+<blockquote>
+                A viagem de incentivo é a maratona.<br/>
                 A viagem de premiação é o pódio.
             </blockquote>
-
-            <p>Quando a empresa só pensa na viagem como “premiação” pontual, perde a parte mais poderosa do processo: <strong>a jornada de motivação</strong> que acontece durante meses, antes do embarque.</p>
-
-            <h2>3. Por que viagem funciona melhor que dinheiro ou bens?</h2>
-
-            <p>Do ponto de vista financeiro, pode parecer que tanto faz.  
+<p>Quando a empresa só pensa na viagem como “premiação” pontual, perde a parte mais poderosa do processo: <strong>a jornada de motivação</strong> que acontece durante meses, antes do embarque.</p>
+<h2>3. Por que viagem funciona melhor que dinheiro ou bens?</h2>
+<p>Do ponto de vista financeiro, pode parecer que tanto faz.  
                 “Se eu gasto X, tanto faz dar em dinheiro ou em viagem.”
             </p>
-
-            <p>Do ponto de vista <strong>humano</strong>, não é assim.</p>
-
-            <h3>Memória emocional: o que fica e o que se apaga</h3>
-
-            <ul>
-                <li>Um bônus em dinheiro é ótimo, mas se <strong>dissolve no dia a dia</strong>: paga boleto, compra algo pontual, some no fluxo.</li>
-                <li>Um bem material, como um <strong>carro ou uma moto</strong>, realmente aumenta o tempo de lembrança – o colaborador vê, usa, se orgulha – mas, na prática, essa sensação especial dura apenas <strong>alguns poucos anos</strong>, até ser substituída por outra compra ou virar parte da rotina.</li>
-                <li>Já uma <strong>viagem de incentivo bem construída</strong> costuma ser lembrada por volta de <strong>10 anos</strong>.</li>
-                <li>Quando inclui cônjuge ou família, essa memória pode facilmente ultrapassar <strong>20 anos</strong>.</li>
-            </ul>
-
-            <p>A razão é simples: viagem mexe com:</p>
-
-            <ul>
-                <li>expectativa (antes),</li>
-                <li>experiência (durante),</li>
-                <li>história (depois).</li>
-            </ul>
-
-            <p>Ela vira assunto em casa, no almoço de família, no grupo de WhatsApp, na roda de colegas. O colaborador não volta só com fotos; ele volta com <strong>um capítulo de vida</strong> que foi proporcionado pela empresa.</p>
-
-            <p>E cada vez que ele relembra esse capítulo, a marca da empresa aparece junto.</p>
-
-            <h3>O efeito “exemplo vivo”</h3>
-
-            <p>Existe ainda o fator social: quem não foi na viagem <strong>vê</strong> quem foi.</p>
-
-            <ul>
-                <li>Vê as fotos, ouve as histórias, percebe o brilho no olho.</li>
-                <li>Entende que não é uma premiação abstrata, mas algo concreto, desejável, aspiracional.</li>
-            </ul>
-
-            <p>Isso gera um efeito silencioso de <strong>emulação saudável</strong>:</p>
-
-            <blockquote>
+<p>Do ponto de vista <strong>humano</strong>, não é assim.</p>
+<h3>Memória emocional: o que fica e o que se apaga</h3>
+<ul>
+<li>Um bônus em dinheiro é ótimo, mas se <strong>dissolve no dia a dia</strong>: paga boleto, compra algo pontual, some no fluxo.</li>
+<li>Um bem material, como um <strong>carro ou uma moto</strong>, realmente aumenta o tempo de lembrança – o colaborador vê, usa, se orgulha – mas, na prática, essa sensação especial dura apenas <strong>alguns poucos anos</strong>, até ser substituída por outra compra ou virar parte da rotina.</li>
+<li>Já uma <strong>viagem de incentivo bem construída</strong> costuma ser lembrada por volta de <strong>10 anos</strong>.</li>
+<li>Quando inclui cônjuge ou família, essa memória pode facilmente ultrapassar <strong>20 anos</strong>.</li>
+</ul>
+<p>A razão é simples: viagem mexe com:</p>
+<ul>
+<li>expectativa (antes),</li>
+<li>experiência (durante),</li>
+<li>história (depois).</li>
+</ul>
+<p>Ela vira assunto em casa, no almoço de família, no grupo de WhatsApp, na roda de colegas. O colaborador não volta só com fotos; ele volta com <strong>um capítulo de vida</strong> que foi proporcionado pela empresa.</p>
+<p>E cada vez que ele relembra esse capítulo, a marca da empresa aparece junto.</p>
+<h3>O efeito “exemplo vivo”</h3>
+<p>Existe ainda o fator social: quem não foi na viagem <strong>vê</strong> quem foi.</p>
+<ul>
+<li>Vê as fotos, ouve as histórias, percebe o brilho no olho.</li>
+<li>Entende que não é uma premiação abstrata, mas algo concreto, desejável, aspiracional.</li>
+</ul>
+<p>Isso gera um efeito silencioso de <strong>emulação saudável</strong>:</p>
+<blockquote>
                 “Na próxima campanha, eu quero estar nesse avião.”
             </blockquote>
-
-            <h2>4. Como funciona, por dentro, um programa de incentivo bem desenhado</h2>
-
-            <p>Um bom programa de viagens de incentivo começa muito antes da reserva de hotel. Ele precisa ser tratado como <strong>projeto estratégico</strong>, não como “ação solta”.</p>
-
-            <p>Em linhas gerais, a jornada passa por quatro fases:</p>
-
-            <h3>4.1. Objetivo claro e metas bem desenhadas</h3>
-
-            <p>Primeiro vem a pergunta-chave: <strong>para quê</strong>?</p>
-
-            <ul>
-                <li>Aumentar vendas de um produto específico?</li>
-                <li>Acelerar fechamento de contratos de maior ticket?</li>
-                <li>Reduzir rotatividade em uma área crítica?</li>
-                <li>Recompensar parceiros de canal (revendas, distribuidores)?</li>
-            </ul>
-
-            <p>Com o objetivo definido, as metas precisam ser claras, possíveis e mensuráveis. A campanha não pode parecer loteria. O colaborador precisa perceber:</p>
-
-            <blockquote>
+<h2>4. Como funciona, por dentro, um programa de incentivo bem desenhado</h2>
+<p>Um bom programa de viagens de incentivo começa muito antes da reserva de hotel. Ele precisa ser tratado como <strong>projeto estratégico</strong>, não como “ação solta”.</p>
+<p>Em linhas gerais, a jornada passa por quatro fases:</p>
+<h3>4.1. Objetivo claro e metas bem desenhadas</h3>
+<p>Primeiro vem a pergunta-chave: <strong>para quê</strong>?</p>
+<ul>
+<li>Aumentar vendas de um produto específico?</li>
+<li>Acelerar fechamento de contratos de maior ticket?</li>
+<li>Reduzir rotatividade em uma área crítica?</li>
+<li>Recompensar parceiros de canal (revendas, distribuidores)?</li>
+</ul>
+<p>Com o objetivo definido, as metas precisam ser claras, possíveis e mensuráveis. A campanha não pode parecer loteria. O colaborador precisa perceber:</p>
+<blockquote>
                 “Se eu fizer X, Y e Z, tenho chance real de estar nessa viagem.”
             </blockquote>
-
-            <h3>4.2. Regulamento simples (e justo)</h3>
-
-            <p>Regras confusas matam qualquer campanha de incentivo.  
+<h3>4.2. Regulamento simples (e justo)</h3>
+<p>Regras confusas matam qualquer campanha de incentivo.  
                 O regulamento deve ser:
             </p>
-
-            <ul>
-                <li>simples o suficiente para caber em 1–2 páginas,</li>
-                <li>transparente o bastante para evitar sensação de injustiça,</li>
-                <li>sólido para suportar questionamentos do time e do financeiro.</li>
-            </ul>
-
-            <p>Quando o regulamento é bem escrito, o gestor de viagens da empresa não vira “SAC da campanha” o tempo todo.</p>
-
-            <h3>4.3. Lançamento com impacto</h3>
-
-            <p>É aqui que muitas empresas erram: criam uma campanha boa e <strong>lançam morno</strong>.</p>
-
-            <p>Um bom lançamento costuma envolver:</p>
-
-            <ul>
-                <li>uma convenção, evento interno ou reunião-chave,</li>
-                <li>apresentação do destino, vídeos, fotos, histórias,</li>
-                <li>depoimentos de quem já participou de viagens anteriores (se houver histórico),</li>
-                <li>um storytelling que faça o colaborador pensar:<br>
+<ul>
+<li>simples o suficiente para caber em 1–2 páginas,</li>
+<li>transparente o bastante para evitar sensação de injustiça,</li>
+<li>sólido para suportar questionamentos do time e do financeiro.</li>
+</ul>
+<p>Quando o regulamento é bem escrito, o gestor de viagens da empresa não vira “SAC da campanha” o tempo todo.</p>
+<h3>4.3. Lançamento com impacto</h3>
+<p>É aqui que muitas empresas erram: criam uma campanha boa e <strong>lançam morno</strong>.</p>
+<p>Um bom lançamento costuma envolver:</p>
+<ul>
+<li>uma convenção, evento interno ou reunião-chave,</li>
+<li>apresentação do destino, vídeos, fotos, histórias,</li>
+<li>depoimentos de quem já participou de viagens anteriores (se houver histórico),</li>
+<li>um storytelling que faça o colaborador pensar:<br/>
                     “Eu me vejo nesse lugar. Quero estar lá.”</li>
-            </ul>
-
-            <p>Quanto melhor o lançamento, mais forte o “motor emocional” que puxa a campanha.</p>
-
-            <h3>4.4. Acompanhamento e contagem regressiva</h3>
-
-            <p>Ao longo do período da campanha, o time precisa sentir que está num jogo com placar visível:</p>
-
-            <ul>
-                <li>rankings periódicos (respeitando LGPD e cultura da empresa),</li>
-                <li>comunicações regulares sobre andamento,</li>
-                <li>lembretes de metas intermediárias,</li>
-                <li>aquecimento conforme a viagem se aproxima.</li>
-            </ul>
-
-            <p>Quando a campanha termina, a viagem de premiação entra em cena como coroação de um processo que foi vivido por meses.</p>
-
-            <h2>5. O risco da viagem errada: quando o prêmio não combina com o público</h2>
-
-            <p>Viagem de incentivo não é “pegar um destino da moda e reservar para todo mundo”.  
+</ul>
+<p>Quanto melhor o lançamento, mais forte o “motor emocional” que puxa a campanha.</p>
+<h3>4.4. Acompanhamento e contagem regressiva</h3>
+<p>Ao longo do período da campanha, o time precisa sentir que está num jogo com placar visível:</p>
+<ul>
+<li>rankings periódicos (respeitando LGPD e cultura da empresa),</li>
+<li>comunicações regulares sobre andamento,</li>
+<li>lembretes de metas intermediárias,</li>
+<li>aquecimento conforme a viagem se aproxima.</li>
+</ul>
+<p>Quando a campanha termina, a viagem de premiação entra em cena como coroação de um processo que foi vivido por meses.</p>
+<p>Para visualizar isso na prática, imagine uma campanha de seis meses para a equipe comercial: a empresa investe em uma viagem de incentivo, levando os melhores vendedores e seus acompanhantes a um resort no Nordeste, com um orçamento total de, por exemplo, R$ 150 mil. Em troca, a meta é gerar alguns milhões adicionais em vendas e reduzir cancelamentos em uma carteira-chave. Mesmo que os números sejam hipotéticos, esse tipo de raciocínio ajuda a enxergar a viagem como parte de um plano de negócios, não como uma linha isolada de despesa.</p><h2>5. O risco da viagem errada: quando o prêmio não combina com o público</h2>
+<p>Viagem de incentivo não é “pegar um destino da moda e reservar para todo mundo”.  
                 Se o programa for mal desenhado, a experiência pode virar <strong>fonte de desconforto</strong> em vez de reconhecimento.
             </p>
-
-            <p>Pense em alguns cenários:</p>
-
-            <ul>
-                <li>Um grupo de colaboradores que nunca saiu do país é levado direto para uma experiência muito sofisticada, com gastronomia ultra refinada e etiqueta rígida, em que as pessoas passam mais tempo com medo de errar do que curtindo.</li>
-                <li>Um grupo mais simples, acostumado a praia, família e passeio de barco, é colocado num roteiro urbano super conceitual, com museus e atividades que não falam nada com a realidade deles.</li>
-                <li>Ou o contrário: um grupo de executivos acostumados a viajar por trabalho para o exterior é premiado com uma viagem tão básica que não gera nenhuma sensação de “algo especial”.</li>
-            </ul>
-
-            <p>A viagem pode ser um cruzeiro, um resort no Nordeste, uma capital europeia, um grande destino internacional.  
+<p>Pense em alguns cenários:</p>
+<ul>
+<li>Um grupo de colaboradores que nunca saiu do país é levado direto para uma experiência muito sofisticada, com gastronomia ultra refinada e etiqueta rígida, em que as pessoas passam mais tempo com medo de errar do que curtindo.</li>
+<li>Um grupo mais simples, acostumado a praia, família e passeio de barco, é colocado num roteiro urbano super conceitual, com museus e atividades que não falam nada com a realidade deles.</li>
+<li>Ou o contrário: um grupo de executivos acostumados a viajar por trabalho para o exterior é premiado com uma viagem tão básica que não gera nenhuma sensação de “algo especial”.</li>
+</ul>
+<p>A viagem pode ser um cruzeiro, um resort no Nordeste, uma capital europeia, um grande destino internacional.  
                 O problema não é o tipo de viagem em si.  
                 O problema é <strong>a falta de alinhamento com o perfil do grupo e dos acompanhantes</strong>.
             </p>
-
-            <p>Quando isso acontece, surgem situações como:</p>
-
-            <ul>
-                <li>gente desconfortável com o nível de sofisticação do hotel ou dos restaurantes,</li>
-                <li>cônjuges que não se sentem à vontade com o estilo do destino,</li>
-                <li>atividades “obrigatórias” que não combinam com ninguém,</li>
-                <li>comentários do tipo: “Foi bonito, mas não era pra gente”.</li>
-            </ul>
-
-            <p>É por isso que, ao desenhar uma viagem de incentivo ou de premiação, vale seguir três princípios simples:</p>
-
-            <ol>
-                <li><strong>Aspiracional, mas acessível emocionalmente</strong><br>
+<p>Quando isso acontece, surgem situações como:</p>
+<ul>
+<li>gente desconfortável com o nível de sofisticação do hotel ou dos restaurantes,</li>
+<li>cônjuges que não se sentem à vontade com o estilo do destino,</li>
+<li>atividades “obrigatórias” que não combinam com ninguém,</li>
+<li>comentários do tipo: “Foi bonito, mas não era pra gente”.</li>
+</ul>
+<p>É por isso que, ao desenhar uma viagem de incentivo ou de premiação, vale seguir três princípios simples:</p>
+<ol>
+<li><strong>Aspiracional, mas acessível emocionalmente</strong><br/>
                     A viagem pode ser especial, diferente, marcante – mas não deve fazer o convidado se sentir deslocado o tempo todo.</li>
-                <li><strong>Pensar no grupo e também nos acompanhantes</strong><br>
+<li><strong>Pensar no grupo e também nos acompanhantes</strong><br/>
                     Muitas vezes, quem mais estranha o ambiente não é o premiado, e sim o cônjuge ou a família. O roteiro precisa considerar isso.</li>
-                <li><strong>Evitar extremos muito exóticos ou muito “engomados”</strong><br>
+<li><strong>Evitar extremos muito exóticos ou muito “engomados”</strong><br/>
                     Um pouco de novidade é ótimo. Exagero na dose vira tensão, não prazer.</li>
-            </ol>
-
-            <p>Quando a experiência é pensada com esse cuidado, o premiado se sente verdadeiramente acolhido. E aí, sim, o investimento da empresa se transforma em lembrança positiva de longo prazo.</p>
-
-            <h2>6. Onde a agência de viagens entra como copiloto estratégico</h2>
-
-            <p>É aqui que entra o papel da agência/operadora de incentivo como <strong>copiloto</strong> do gestor de viagens e de RH.</p>
-
-            <p>Uma boa agência especializada em viagens de incentivo ajuda a:</p>
-
-            <ul>
-                <li>traduzir os objetivos da empresa em <strong>formato de viagem</strong> (destino, duração, perfil de hotel, tipo de experiência);</li>
-                <li>evitar erros de adequação, fazendo as perguntas certas sobre perfil, histórico de viagens, estilo dos convidados e cônjuges;</li>
-                <li>cuidar da <strong>logística invisível</strong>, que é onde muitos programas escorregam:
+</ol>
+<p>Quando a experiência é pensada com esse cuidado, o premiado se sente verdadeiramente acolhido. E aí, sim, o investimento da empresa se transforma em lembrança positiva de longo prazo.</p>
+<div class="article-box-cta"><p><strong>Ficou inseguro sobre qual tipo de viagem combina melhor com o perfil do seu time?</strong></p><p>Se quiser, você pode tirar dúvidas rápidas com a nossa equipe pelo WhatsApp antes de definir destino, formato ou regras de premiação.</p><a class="cta-button cta-button-secondary" href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20viagens%20de%20premia%C3%A7%C3%A3o%20e%20incentivo%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20o%20perfil%20do%20meu%20time%20e%20o%20tipo%20de%20viagem." target="_blank">FALAR COM A EQUIPE NO WHATSAPP</a></div><h2>6. Onde a agência de viagens entra como copiloto estratégico</h2>
+<p>É aqui que entra o papel da agência/operadora de incentivo como <strong>copiloto</strong> do gestor de viagens e de RH.</p>
+<p>Uma boa agência especializada em viagens de incentivo ajuda a:</p>
+<ul>
+<li>traduzir os objetivos da empresa em <strong>formato de viagem</strong> (destino, duração, perfil de hotel, tipo de experiência);</li>
+<li>evitar erros de adequação, fazendo as perguntas certas sobre perfil, histórico de viagens, estilo dos convidados e cônjuges;</li>
+<li>cuidar da <strong>logística invisível</strong>, que é onde muitos programas escorregam:
                     <ul>
-                        <li>trechos aéreos bem pensados,</li>
-                        <li>assentos e bagagem já incluídos (sem constrangimento de “passar chapéu” no premiado),</li>
-                        <li>transfers, jantares, experiências e pequenos detalhes que fazem o grupo se sentir em “modo prêmio” o tempo todo;</li>
-                    </ul>
-                </li>
-                <li>blindar a experiência contra problemas previsíveis: overbooking, atrasos, mudanças de malha, necessidades especiais.</li>
-            </ul>
-
-            <p>O objetivo é simples:  
+<li>trechos aéreos bem pensados,</li>
+<li>assentos e bagagem já incluídos (sem constrangimento de “passar chapéu” no premiado),</li>
+<li>transfers, jantares, experiências e pequenos detalhes que fazem o grupo se sentir em “modo prêmio” o tempo todo;</li>
+</ul>
+</li>
+<li>blindar a experiência contra problemas previsíveis: overbooking, atrasos, mudanças de malha, necessidades especiais.</li>
+</ul>
+<p>O objetivo é simples:  
                 para o premiado, a viagem precisa parecer <strong>100% fluida e bem-resolvida</strong>.  
                 Para a empresa, precisa ser <strong>controlável, auditável e alinhada às metas de negócio</strong>.
             </p>
-
-            <p>Quando a agência entra cedo na conversa, ela não é só “fornecedora de pacote”.  
+<p>Quando a agência entra cedo na conversa, ela não é só “fornecedora de pacote”.  
                 Ela vira parceira na construção do programa e ajuda o gestor da empresa a defender o projeto internamente, inclusive diante do financeiro.
             </p>
-
-            <h2>7. Por onde começar: próximos passos para tirar a ideia do papel</h2>
-
-            <p>Se você quer trabalhar com viagens de incentivo e premiação na sua empresa (ou oferecer isso para seus clientes), um bom caminho é:</p>
-
-            <ol>
-                <li><strong>Escolher um objetivo simples para o primeiro ciclo</strong><br>
+<h2>7. Por onde começar: próximos passos para tirar a ideia do papel</h2>
+<p>Se você quer trabalhar com viagens de incentivo e premiação na sua empresa (ou oferecer isso para seus clientes), um bom caminho é:</p>
+<ol>
+<li><strong>Escolher um objetivo simples para o primeiro ciclo</strong><br/>
                     Em vez de tentar abraçar tudo, comece com algo concreto: uma meta de vendas, um grupo de parceiros, uma área estratégica.</li>
-                <li><strong>Definir um público bem delimitado</strong><br>
+<li><strong>Definir um público bem delimitado</strong><br/>
                     Quem são os potenciais premiados? Equipe interna, canal de vendas, revendedores, distribuidores? Qual é o perfil médio de idade, renda, estilo de vida?</li>
-                <li><strong>Esboçar um regulamento em linguagem humana</strong><br>
+<li><strong>Esboçar um regulamento em linguagem humana</strong><br/>
                     Esqueça a linguagem jurídica no primeiro rascunho. Escreva como você explicaria a campanha em 5 minutos para o time. Depois, formaliza.</li>
-                <li><strong>Trazer a agência de incentivo para perto desde o início</strong><br>
+<li><strong>Trazer a agência de incentivo para perto desde o início</strong><br/>
                     Em vez de chamar a agência só para cotar destino, envolva logo na fase de desenho: perfil do grupo, sugestão de roteiros, orçamento, viabilidade.</li>
-                <li><strong>Planejar uma viagem que caiba no bolso — e na história da empresa</strong><br>
+<li><strong>Planejar uma viagem que caiba no bolso — e na história da empresa</strong><br/>
                     Uma viagem menor, mas bem pensada e muito bem executada, gera mais resultado do que uma “super produção” desalinhada com a realidade e a cultura da organização.</li>
-            </ol>
-
-            <p>No fim das contas, <strong>viagem de incentivo e viagem de premiação são duas faces da mesma moeda</strong>:  
+</ol>
+<p>No fim das contas, <strong>viagem de incentivo e viagem de premiação são duas faces da mesma moeda</strong>:  
                 um lado é a estratégia contínua de motivação, o outro é a experiência inesquecível que sela esse esforço.
             </p>
-
-            <p>Quando bem trabalhadas, elas deixam de ser “despesa de final de ano” e se tornam um <strong>investimento em memória, engajamento e performance</strong> — que continua dando retorno muito tempo depois de o avião pousar de volta.</p>
-            
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Pronto para planejar sua viagem de incentivo?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20planejar%20uma%20viagem%20de%20incentivo%20para%20o%20meu%20time." target="_blank" class="cta-button">
-                    FALE COM O ESPECIALISTA EM INCENTIVOS
-                 </a>
-            </div>
-
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
+<p>Quando bem trabalhadas, elas deixam de ser “despesa de final de ano” e se tornam um <strong>investimento em memória, engajamento e performance</strong> — que continua dando retorno muito tempo depois de o avião pousar de volta.</p>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div class="article-cta-final"><strong>Ficou com alguma dúvida sobre viagens de incentivo e premiação na sua empresa?</strong><span>Envie uma mensagem pelo WhatsApp e tire dúvidas rápidas sobre formatos de campanha, destinos e tipos de viagem que combinam melhor com o perfil do seu time.</span><a href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20viagens%20de%20premia%C3%A7%C3%A3o%20e%20incentivo%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20a%20realidade%20da%20minha%20empresa." rel="noopener" target="_blank">FALE COM A NOSSA EQUIPE PELO WHATSAPP</a></div>
 </div>
-
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>

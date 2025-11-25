@@ -1,225 +1,617 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Habilidades do Gestor de Viagens</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control"/>
+<title>WinnersTour — Habilidades do Gestor de Viagens</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="apps.html">APLICATIVOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="habilidades_gestor_estrategico.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20a%20estratégia%20de%20gestão%20de%20viagens." target="_blank" class="cta-button">
-                ENCONTRE SEU TRAVEL MANAGER ESTRATÉGICO
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Em quase toda empresa que viaja com frequência existe uma figura silenciosa que segura muitos pratos ao mesmo tempo.</p>
+</div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
-            <p>É a pessoa que sabe quanto custa cada trecho, conhece os hábitos dos diretores, entende qual hotel funciona para qual time, resolve pepino de reembolso… e, ainda assim, quase nunca aparece na foto.</p>
-
-            <p>Esse é o <strong>gestor de viagens corporativas</strong> (travel manager).</p>
-
-            <p>Por muito tempo, esse papel foi visto como alguém “que emite passagem e reserva hotel”. Só que, na prática, a conta de viagens está entre as <strong>cinco maiores despesas</strong> da maioria das grandes empresas. E, quando você olha por esse ângulo, o travel manager deixa de ser um executor operacional e passa a ser:</p>
-
-            <blockquote>
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Em quase toda empresa que viaja com frequência existe uma figura silenciosa que segura muitos pratos ao mesmo tempo.</p>
+<p>É a pessoa que sabe quanto custa cada trecho, conhece os hábitos dos diretores, entende qual hotel funciona para qual time, resolve pepino de reembolso… e, ainda assim, quase nunca aparece na foto.</p>
+<p>Esse é o <strong>gestor de viagens corporativas</strong> (travel manager).</p>
+<p>Por muito tempo, esse papel foi visto como alguém “que emite passagem e reserva hotel”. Só que, na prática, a conta de viagens está entre as <strong>cinco maiores despesas</strong> da maioria das grandes empresas. E, quando você olha por esse ângulo, o travel manager deixa de ser um executor operacional e passa a ser:</p>
+<blockquote>
                 uma mistura de controlador de custos, guardião de pessoas e facilitador de processos.
             </blockquote>
-
-            <p>Neste artigo, vamos olhar as <strong>habilidades essenciais</strong> que diferenciam um gestor de viagens estratégico, especialmente em empresas onde a operação ainda é muito apoiada em agência de viagens, sem grandes plataformas próprias.</p>
-
-            <p>Vamos organizar em 7 pontos:</p>
-
-            <ul>
-                <li>Entender que viagem é despesa grande — e, ao mesmo tempo, alavanca de negócios</li>
-                <li>Pensar como facilitador, não como “resolvedor de tudo”</li>
-                <li>Respirar Duty of Care: cuidar de gente de forma prática</li>
-                <li>Ler perfis de viajantes e adaptar a política à realidade</li>
-                <li>Saber interpretar números, relatórios e tendências</li>
-                <li>Educar, empoderar e não centralizar tudo em si</li>
-                <li>Dominar a lógica de despesas e reembolsos sem cair na burocracia</li>
-            </ul>
-
-            <h2>1. Ver viagem como despesa grande — e como alavanca de negócio</h2>
-
-            <p>A primeira habilidade é de mentalidade.</p>
-
-            <p>O gestor de viagens lida com uma conta que, em muitas empresas, está no <strong>top 5 de despesas</strong>: aéreo, hospedagem, traslados, aplicativos, alimentação, seguros, taxas. Não é pouca coisa.</p>
-
-            <p>Se ele se enxergar apenas como “quem faz reserva”, vai ficar eternamente preso em apagar incêndio: troca de voo, alteração de data, hotel que caiu, nota que não chegou.</p>
-
-            <p>O gestor estratégico olha para essa despesa como um todo e se pergunta o tempo todo:</p>
-
-            <ul>
-                <li>Onde estamos gastando mais do que deveríamos?</li>
-                <li>Onde não podemos cortar, porque mexe em segurança e dignidade?</li>
-                <li>Onde podemos investir melhor para destravar resultado (ex.: viagens de incentivo, visitas-chave, feiras importantes)?</li>
-            </ul>
-
-            <p>Essa visão dupla — <strong>controle de custo + impacto no negócio</strong> — é a base de tudo. Sem ela, o gestor vira um call center interno; com ela, vira alguém ouvido por diretoria, financeiro e RH.</p>
-
-            <h2>2. Pensar como facilitador, não como “resolvedor de tudo”</h2>
-
-            <p>Outra habilidade que muda o jogo é a capacidade de <strong>sair do modo executor</strong> e entrar no modo <strong>arquiteto de processos</strong>.</p>
-
-            <p>Em muitas empresas, o reflexo é: qualquer dúvida de viagem, liga para o gestor. Qualquer remarcação, manda mensagem para ele. Qualquer envio de nota, ele que corre atrás. Isso é receita certa para sobrecarga, lentidão e pouquíssimo tempo para pensar estrategicamente.</p>
-
-            <p>O travel manager maduro entende que seu papel principal não é fazer tudo com as próprias mãos, e sim desenhar regras claras, documentar caminhos, alinhar com a agência de viagens e dar autonomia responsável para viajantes, secretárias e aprovadores.</p>
-
-            <p>Em vez de ser sempre o “nível 1” de atendimento, ele passa a ser mais nível 2 ou 3:</p>
-
-            <blockquote>
+<p>Neste artigo, vamos olhar as <strong>habilidades essenciais</strong> que diferenciam um gestor de viagens estratégico, especialmente em empresas onde a operação ainda é muito apoiada em agência de viagens, sem grandes plataformas próprias.</p>
+<p>Vamos organizar em 7 pontos:</p>
+<ul>
+<li>Entender que viagem é despesa grande — e, ao mesmo tempo, alavanca de negócios</li>
+<li>Pensar como facilitador, não como “resolvedor de tudo”</li>
+<li>Respirar Duty of Care: cuidar de gente de forma prática</li>
+<li>Ler perfis de viajantes e adaptar a política à realidade</li>
+<li>Saber interpretar números, relatórios e tendências</li>
+<li>Educar, empoderar e não centralizar tudo em si</li>
+<li>Dominar a lógica de despesas e reembolsos sem cair na burocracia</li>
+</ul>
+<h2>1. Ver viagem como despesa grande — e como alavanca de negócio</h2>
+<p>A primeira habilidade é de mentalidade.</p>
+<p>O gestor de viagens lida com uma conta que, em muitas empresas, está no <strong>top 5 de despesas</strong>: aéreo, hospedagem, traslados, aplicativos, alimentação, seguros, taxas. Não é pouca coisa.</p>
+<p>Se ele se enxergar apenas como “quem faz reserva”, vai ficar eternamente preso em apagar incêndio: troca de voo, alteração de data, hotel que caiu, nota que não chegou.</p>
+<p>O gestor estratégico olha para essa despesa como um todo e se pergunta o tempo todo:</p>
+<ul>
+<li>Onde estamos gastando mais do que deveríamos?</li>
+<li>Onde não podemos cortar, porque mexe em segurança e dignidade?</li>
+<li>Onde podemos investir melhor para destravar resultado (ex.: viagens de incentivo, visitas-chave, feiras importantes)?</li>
+</ul>
+<p>Essa visão dupla — <strong>controle de custo + impacto no negócio</strong> — é a base de tudo. Sem ela, o gestor vira um call center interno; com ela, vira alguém ouvido por diretoria, financeiro e RH.</p>
+<h2>2. Pensar como facilitador, não como “resolvedor de tudo”</h2>
+<p>Outra habilidade que muda o jogo é a capacidade de <strong>sair do modo executor</strong> e entrar no modo <strong>arquiteto de processos</strong>.</p>
+<p>Em muitas empresas, o reflexo é: qualquer dúvida de viagem, liga para o gestor. Qualquer remarcação, manda mensagem para ele. Qualquer envio de nota, ele que corre atrás. Isso é receita certa para sobrecarga, lentidão e pouquíssimo tempo para pensar estrategicamente.</p>
+<p>O travel manager maduro entende que seu papel principal não é fazer tudo com as próprias mãos, e sim desenhar regras claras, documentar caminhos, alinhar com a agência de viagens e dar autonomia responsável para viajantes, secretárias e aprovadores.</p>
+<p>Em vez de ser sempre o “nível 1” de atendimento, ele passa a ser mais nível 2 ou 3:</p>
+<blockquote>
                 os casos simples se resolvem sozinhos, com boas orientações; o gestor entra nos casos complexos, nos conflitos, nos ajustes de política e na leitura dos números.
             </blockquote>
-
-            <p>Essa habilidade de <strong>criar estrutura para os outros agirem com segurança</strong> é um divisor de águas na carreira.</p>
-
-            <h2>3. Respirar Duty of Care: cuidar de gente de forma prática</h2>
-
-            <p>Muito se fala em <strong>Duty of Care</strong> (“dever de cuidar”), mas, na rotina, isso começa em coisas muito simples.</p>
-
-            <p>Cuidar bem do viajante não é só ter um plano para crise internacional ou furacão na rota. É, antes de tudo:</p>
-
-            <ul>
-                <li>garantir que o colaborador não esteja pagando do próprio bolso para trabalhar (reembolsos justos de km, alimentação, aplicativos);</li>
-                <li>escolher hotéis que ofereçam segurança mínima, mesmo quando o orçamento é apertado;</li>
-                <li>não empurrar conexões absurdas, viradas de madrugada desnecessárias ou jornadas que detonam a saúde da pessoa;</li>
-                <li>ter um plano claro de quem aciona quem quando algo dá errado: atraso, perda de conexão, incidente em outro país.</li>
-            </ul>
-
-            <p>Uma das habilidades centrais do gestor de viagens é navegar essa tensão entre <strong>economizar</strong>, porque a empresa precisa controlar custo, e <strong>proteger</strong>, porque a empresa precisa cuidar das pessoas.</p>
-
-            <p>Cortar demais, sem olhar para a vida real do viajante, sai caro lá na frente: desmotivação, perda de talentos, erros, adoecimento.</p>
-
-            <p>O travel manager que respira Duty of Care vira, naturalmente, um aliado do RH e da liderança, não só do financeiro.</p>
-
-            <h2>4. Ler perfis de viajantes e adaptar a política à realidade</h2>
-
-            <p>Em quase toda empresa média ou grande, o gestor cuida de um “mundo” de perfis diferentes: engenheiros de campo, vendedores de bebidas e equipamentos, executivos C-level, auditores, consultores, expatriados e até colaboradores que estão entrando num avião pela primeira vez na vida.</p>
-
-            <p>Se a política de viagens não considera essa diversidade, ela vira ou rígida demais (e todo mundo quebra a regra), ou aberta demais (e o custo sai de controle).</p>
-
-            <p>Aqui entra uma habilidade fina: <strong>padronizar onde faz sentido e aceitar que sempre existirão exceções</strong>. Uma boa referência é:</p>
-
-            <blockquote>
+<p>Essa habilidade de <strong>criar estrutura para os outros agirem com segurança</strong> é um divisor de águas na carreira.</p>
+<h2>3. Respirar Duty of Care: cuidar de gente de forma prática</h2>
+<p>Muito se fala em <strong>Duty of Care</strong> (“dever de cuidar”), mas, na rotina, isso começa em coisas muito simples.</p>
+<p>Cuidar bem do viajante não é só ter um plano para crise internacional ou furacão na rota. É, antes de tudo:</p>
+<ul>
+<li>garantir que o colaborador não esteja pagando do próprio bolso para trabalhar (reembolsos justos de km, alimentação, aplicativos);</li>
+<li>escolher hotéis que ofereçam segurança mínima, mesmo quando o orçamento é apertado;</li>
+<li>não empurrar conexões absurdas, viradas de madrugada desnecessárias ou jornadas que detonam a saúde da pessoa;</li>
+<li>ter um plano claro de quem aciona quem quando algo dá errado: atraso, perda de conexão, incidente em outro país.</li>
+</ul>
+<p>Uma das habilidades centrais do gestor de viagens é navegar essa tensão entre <strong>economizar</strong>, porque a empresa precisa controlar custo, e <strong>proteger</strong>, porque a empresa precisa cuidar das pessoas.</p>
+<p>Cortar demais, sem olhar para a vida real do viajante, sai caro lá na frente: desmotivação, perda de talentos, erros, adoecimento.</p>
+<p>O travel manager que respira Duty of Care vira, naturalmente, um aliado do RH e da liderança, não só do financeiro.</p>
+<h2>4. Ler perfis de viajantes e adaptar a política à realidade</h2>
+<p>Em quase toda empresa média ou grande, o gestor cuida de um “mundo” de perfis diferentes: engenheiros de campo, vendedores de bebidas e equipamentos, executivos C-level, auditores, consultores, expatriados e até colaboradores que estão entrando num avião pela primeira vez na vida.</p>
+<p>Se a política de viagens não considera essa diversidade, ela vira ou rígida demais (e todo mundo quebra a regra), ou aberta demais (e o custo sai de controle).</p>
+<p>Aqui entra uma habilidade fina: <strong>padronizar onde faz sentido e aceitar que sempre existirão exceções</strong>. Uma boa referência é:</p>
+<blockquote>
                 se a solução resolve bem 90% dos casos e deixa 10% para análise especial, está excelente.
             </blockquote>
-
-            <p>O gestor de viagens habilidoso conversa com as áreas mais críticas, entende os tipos de rota (local, interestadual, internacional, remota), define o que é “padrão da casa” em termos de classe, hotéis, aplicativos, antecipação e bagagem, e cria caminhos claros para tratar os casos realmente fora da curva.</p>
-
-            <p>Viajar, no fim, <strong>não é o negócio da empresa</strong>. Viajar é o caminho para fechar negócio, visitar cliente, participar de evento, implantar projeto.</p>
-
-            <p>A habilidade aqui é deixar esse caminho <strong>menos tortuoso</strong>, com mais clareza, sem inventar atalhos mirabolantes — mas com um mapa bem desenhado para os “exploradores”, que são os viajantes.</p>
-
-            <h2>5. Saber interpretar números, relatórios e tendências</h2>
-
-            <p>Se tem uma hard skill que separa o gestor mediano do gestor estratégico, é essa: <strong>ler dados</strong>.</p>
-
-            <p>Não é ser cientista de dados, nem criar dashboards complexos. É algo mais direto: bater o olho em relatórios e perceber desvios, comparar períodos e notar quando um fornecedor encareceu demais, enxergar para onde está indo a maior fatia do orçamento e se perguntar “por que isso aqui está assim?” antes de virar problema.</p>
-
-            <p>Exemplo simples: a empresa trabalha com dois aplicativos de transporte. De repente, o gasto começa a subir. O gestor experiente puxa o histórico, percebe que um dos apps mudou o tarifário, recalibra as orientações ou a política de uso e comunica isso de forma clara para os usuários e aprovadores.</p>
-
-            <p>Essa mesma habilidade vale para coisas como comparar tarifas de hotéis por cidade, identificar quando o padrão de compra (como a antecedência de emissão) está ruim e encontrar pagamentos duplicados, como seguros viagem redundantes.</p>
-
-            <p>Administrar é, em grande parte, <strong>planear olhando para o que os números estão dizendo</strong>. O gestor que ignora isso fica à mercê dos fornecedores; o que domina essa leitura passa a negociar melhor, argumentar com propriedade e propor melhorias com base em fatos.</p>
-
-            <h2>6. Educar, empoderar e não centralizar tudo em si</h2>
-
-            <p>Outra habilidade essencial é a de <strong>formar viajantes mais autônomos</strong>, e não dependentes para qualquer pequena decisão.</p>
-
-            <p>Isso não significa “jogar tudo no colo do colaborador” e sumir. Significa explicar com clareza as regras de viagem da empresa, criar guias simples (passo a passo de como remarcar, como usar aplicativos, como guardar notas), incentivar que viajantes mais experientes ajudem os novos e se posicionar como o “nível 2 ou 3” de suporte: entrar quando o problema é grande, complexo ou envolve exceção.</p>
-
-            <p>Um gestor que tem essa habilidade atende menos ligações de “coisas óbvias”, recebe menos e-mails de dúvida repetida e ganha tempo para cuidar de temas estratégicos (renovação de contratos, análise de custos, melhoria de políticas).</p>
-
-            <p>No dia a dia, isso passa muito pela habilidade de <strong>comunicação</strong>: textos claros, políticas sem juridiquês desnecessário, orientações que cabem em uma tela de celular e repetição inteligente das mensagens mais importantes.</p>
-
-            <p>Quem educa bem a base tem muito mais liberdade na ponta.</p>
-
-            <h2>7. Dominar a lógica de despesas e reembolsos sem cair na burocracia</h2>
-
-            <p>Por fim, uma habilidade que pesa diretamente na satisfação dos viajantes: <strong>entender (e simplificar) a gestão de despesas e reembolsos</strong>.</p>
-
-            <p>Esse costuma ser um dos processos mais cansativos da área: juntar notas, preencher planilhas, mandar para assinar, corrigir erro, reenviar, esperar aprovação e só então receber o reembolso.</p>
-
-            <p>Para quem viaja, isso é sinônimo de fricção. Para quem aprova e confere, é sinônimo de retrabalho.</p>
-
-            <p>O gestor de viagens habilidoso entende cada etapa desse fluxo, enxerga onde estão os gargalos e ajuda a aproximar o processo do “fim a fim” ideal (do planejamento da viagem até a prestação de contas), reduzindo ao máximo o que é manual, repetitivo e sujeito a erro.</p>
-
-            <p>Mesmo quando a empresa ainda não tem uma ferramenta integrada perfeita, dá para melhorar muito com regras claras sobre o que pode e o que não pode, limites por tipo de gasto, modelos padronizados de relatório e orientações simples para guardar e enviar comprovantes. Só isso já diminui muito o “custo da burocracia” para todo mundo.</p>
-
-            <p>Menos tempo brigando com papel significa mais tempo focado no trabalho que realmente importa.</p>
-
-            <h2>Conclusão: o gestor de viagens como arquiteto de mobilidade</h2>
-
-            <p>No fim das contas, as habilidades que mais importam no gestor de viagens corporativas são uma combinação de:</p>
-
-            <ul>
-                <li><strong>visão estratégica de custos</strong>,</li>
-                <li><strong>cuidado real com as pessoas</strong>,</li>
-                <li><strong>capacidade de ler dados e tendências</strong>,</li>
-                <li><strong>talento para ensinar e desenhar processos claros</strong>.</li>
-            </ul>
-
-            <p>Esse profissional deixa de ser visto como “quem compra passagem” e passa a ser o <strong>arquiteto da mobilidade corporativa</strong>: alguém que faz a ponte entre financeiro, RH, diretoria, agência de viagens e, principalmente, os viajantes.</p>
-
-            <p>Quando essas habilidades estão bem desenvolvidas, a viagem deixa de ser apenas uma grande despesa e passa a ser uma <strong>alavanca de resultados, relacionamento e retenção de talentos</strong>.</p>
-            
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Pronto para desenvolver sua área de viagens?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20desenvolver%20habilidades%20estratégicas%20em%20gestão%20de%20viagens." target="_blank" class="cta-button">
-                    FALE COM UM ESPECIALISTA
-                 </a>
-            </div>
-
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
+<p>O gestor de viagens habilidoso conversa com as áreas mais críticas, entende os tipos de rota (local, interestadual, internacional, remota), define o que é “padrão da casa” em termos de classe, hotéis, aplicativos, antecipação e bagagem, e cria caminhos claros para tratar os casos realmente fora da curva.</p>
+<p>Viajar, no fim, <strong>não é o negócio da empresa</strong>. Viajar é o caminho para fechar negócio, visitar cliente, participar de evento, implantar projeto.</p>
+<p>A habilidade aqui é deixar esse caminho <strong>menos tortuoso</strong>, com mais clareza, sem inventar atalhos mirabolantes — mas com um mapa bem desenhado para os “exploradores”, que são os viajantes.</p>
+<h2>5. Saber interpretar números, relatórios e tendências</h2>
+<p>Se tem uma hard skill que separa o gestor mediano do gestor estratégico, é essa: <strong>ler dados</strong>.</p>
+<p>Não é ser cientista de dados, nem criar dashboards complexos. É algo mais direto: bater o olho em relatórios e perceber desvios, comparar períodos e notar quando um fornecedor encareceu demais, enxergar para onde está indo a maior fatia do orçamento e se perguntar “por que isso aqui está assim?” antes de virar problema.</p>
+<p>Exemplo simples: a empresa trabalha com dois aplicativos de transporte. De repente, o gasto começa a subir. O gestor experiente puxa o histórico, percebe que um dos apps mudou o tarifário, recalibra as orientações ou a política de uso e comunica isso de forma clara para os usuários e aprovadores.</p>
+<p>Essa mesma habilidade vale para coisas como comparar tarifas de hotéis por cidade, identificar quando o padrão de compra (como a antecedência de emissão) está ruim e encontrar pagamentos duplicados, como seguros viagem redundantes.</p>
+<p>Administrar é, em grande parte, <strong>planear olhando para o que os números estão dizendo</strong>. O gestor que ignora isso fica à mercê dos fornecedores; o que domina essa leitura passa a negociar melhor, argumentar com propriedade e propor melhorias com base em fatos.</p>
+<h2>6. Educar, empoderar e não centralizar tudo em si</h2>
+<p>Outra habilidade essencial é a de <strong>formar viajantes mais autônomos</strong>, e não dependentes para qualquer pequena decisão.</p>
+<p>Isso não significa “jogar tudo no colo do colaborador” e sumir. Significa explicar com clareza as regras de viagem da empresa, criar guias simples (passo a passo de como remarcar, como usar aplicativos, como guardar notas), incentivar que viajantes mais experientes ajudem os novos e se posicionar como o “nível 2 ou 3” de suporte: entrar quando o problema é grande, complexo ou envolve exceção.</p>
+<p>Um gestor que tem essa habilidade atende menos ligações de “coisas óbvias”, recebe menos e-mails de dúvida repetida e ganha tempo para cuidar de temas estratégicos (renovação de contratos, análise de custos, melhoria de políticas).</p>
+<p>No dia a dia, isso passa muito pela habilidade de <strong>comunicação</strong>: textos claros, políticas sem juridiquês desnecessário, orientações que cabem em uma tela de celular e repetição inteligente das mensagens mais importantes.</p>
+<p>Quem educa bem a base tem muito mais liberdade na ponta.</p>
+<div class="article-box-cta"><p><strong>Quer entender, na prática, por onde começar a evoluir essas habilidades na sua empresa?</strong></p><p>Se quiser, você pode tirar dúvidas rápidas com a nossa equipe pelo WhatsApp sobre os desafios que está vivendo hoje na gestão de viagens.</p><a class="cta-button cta-button-secondary" href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20as%20habilidades%20do%20gestor%20de%20viagens%20estrat%C3%A9gico%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20a%20realidade%20de%20viagens%20da%20minha%20empresa." target="_blank">FALAR COM A EQUIPE NO WHATSAPP</a></div><h2>7. Dominar a lógica de despesas e reembolsos sem cair na burocracia</h2>
+<p>Por fim, uma habilidade que pesa diretamente na satisfação dos viajantes: <strong>entender (e simplificar) a gestão de despesas e reembolsos</strong>.</p>
+<p>Esse costuma ser um dos processos mais cansativos da área: juntar notas, preencher planilhas, mandar para assinar, corrigir erro, reenviar, esperar aprovação e só então receber o reembolso.</p>
+<p>Para quem viaja, isso é sinônimo de fricção. Para quem aprova e confere, é sinônimo de retrabalho.</p>
+<p>O gestor de viagens habilidoso entende cada etapa desse fluxo, enxerga onde estão os gargalos e ajuda a aproximar o processo do “fim a fim” ideal (do planejamento da viagem até a prestação de contas), reduzindo ao máximo o que é manual, repetitivo e sujeito a erro.</p>
+<p>Mesmo quando a empresa ainda não tem uma ferramenta integrada perfeita, dá para melhorar muito com regras claras sobre o que pode e o que não pode, limites por tipo de gasto, modelos padronizados de relatório e orientações simples para guardar e enviar comprovantes. Só isso já diminui muito o “custo da burocracia” para todo mundo.</p>
+<p>Menos tempo brigando com papel significa mais tempo focado no trabalho que realmente importa.</p>
+<div class="article-box-resumo"><h3>Foto rápida do gestor de viagens estratégico</h3><ul><li>Enxerga viagens como uma das grandes despesas da empresa — e como ferramenta de resultado, não só como custo.</li><li>Ajuda a desenhar políticas que equilibram controle de gastos, segurança das pessoas e fluidez operacional.</li><li>Acompanha alguns indicadores simples (custos médios, antecedência, rotas principais) e usa isso nas conversas com liderança.</li><li>Educa e apoia os viajantes para que eles resolvam o básico sozinhos, intervindo só nos casos mais complexos.</li><li>Trabalha em parceria com agência de viagens, RH, financeiro e liderança, em vez de tentar carregar tudo sozinho.</li></ul></div><h2>Conclusão: o gestor de viagens como arquiteto de mobilidade</h2>
+<p>No fim das contas, as habilidades que mais importam no gestor de viagens corporativas são uma combinação de:</p>
+<ul>
+<li><strong>visão estratégica de custos</strong>,</li>
+<li><strong>cuidado real com as pessoas</strong>,</li>
+<li><strong>capacidade de ler dados e tendências</strong>,</li>
+<li><strong>talento para ensinar e desenhar processos claros</strong>.</li>
+</ul>
+<p>Esse profissional deixa de ser visto como “quem compra passagem” e passa a ser o <strong>arquiteto da mobilidade corporativa</strong>: alguém que faz a ponte entre financeiro, RH, diretoria, agência de viagens e, principalmente, os viajantes.</p>
+<p>Quando essas habilidades estão bem desenvolvidas, a viagem deixa de ser apenas uma grande despesa e passa a ser uma <strong>alavanca de resultados, relacionamento e retenção de talentos</strong>.</p><p>Se você quiser dar os primeiros passos nessa direção, pode começar com movimentos simples:</p><ul><li>Escolher uma ou duas habilidades deste artigo para focar nos próximos meses (por exemplo: dados e relatórios, ou educação dos viajantes).</li><li>Definir 2 ou 3 indicadores básicos de viagens (como custo médio por trecho, antecedência média de compra e principais rotas da empresa).</li><li>Criar um guia simples de orientações para os viajantes, deixando claro o que a área de viagens faz e o que cada pessoa pode resolver sozinha.</li></ul>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div class="article-cta-final"><strong>Ficou com alguma dúvida sobre como evoluir a gestão de viagens na sua empresa?</strong><span>Fale com a nossa equipe pelo WhatsApp para tirar dúvidas rápidas sobre a realidade de viagens da sua empresa e próximos passos possíveis.</span><a href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20as%20habilidades%20do%20gestor%20de%20viagens%20estrat%C3%A9gico%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20como%20evoluir%20a%20gest%C3%A3o%20de%20viagens%20na%20minha%20empresa." rel="noopener" target="_blank">FALE COM A NOSSA EQUIPE PELO WHATSAPP</a></div>
 </div>
-
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>

@@ -1,286 +1,693 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Cancelamentos e Remarcações</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control"/>
+<title>WinnersTour — Cancelamentos e Remarcações</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="cancelamentos_e_remarcacoes.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20a%20política%20de%20remarcações%20da%20minha%20empresa." target="_blank" class="cta-button">
-                REALIZE UMA ANÁLISE DE RISCO E POLÍTICA
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Quem cuida de viagens dentro da empresa já ouviu isso dezenas de vezes:</p>
+</div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
-            <blockquote>
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Quem cuida de viagens dentro da empresa já ouviu isso dezenas de vezes:</p>
+<blockquote>
                 “Emite assim mesmo… se mudar a gente remarca depois.”
             </blockquote>
-
-            <p>Na teoria, parece simples. Na prática, cada “depois a gente vê” pode virar:</p>
-
-            <ul>
-                <li>diária de hotel perdida,</li>
-                <li>passagem praticamente recomprada a preço cheio,</li>
-                <li>ingresso de evento jogado fora,</li>
-                <li>ou um grupo inteiro travado em políticas rígidas de cancelamento.</li>
-            </ul>
-
-            <p>Este texto é para organizar o raciocínio de quem está no meio desse fogo cruzado:
-                <strong>como funcionam, de verdade, os cancelamentos e remarcações</strong> de hotéis, passagens aéreas e eventos – e onde o dinheiro some sem ninguém perceber.
+<p>Na teoria, parece simples. Na prática, cada “depois a gente vê” pode virar:</p>
+<ul>
+<li>diária de hotel perdida,</li>
+<li>passagem praticamente recomprada a preço cheio,</li>
+<li>ingresso de evento jogado fora,</li>
+<li>ou um grupo inteiro travado em políticas rígidas de cancelamento.</li>
+</ul>
+<p>Este texto é para organizar o raciocínio de quem está no meio desse fogo cruzado: 
+                <strong>como funcionam, de verdade, os cancelamentos e remarcações em hotelaria, passagens aéreas e eventos – e onde o dinheiro some sem ninguém perceber.</strong> 
+                Ao mesmo tempo, é um material para que diretores financeiros, compras e RH enxerguem que essas decisões não são “mero operacional de viagem”, mas um dos pontos que mais distorcem o orçamento de viagens ao longo do ano.
             </p>
-
-            <h2>1. Hospedagem: flexível, não reembolsável e o impacto do no-show</h2>
-
-            <p>Na hotelaria, a lógica costuma ser dividida em três camadas:</p>
-
-            <ol>
-                <li><strong>Tarifa flexível</strong></li>
-                <li><strong>Tarifa não reembolsável</strong></li>
-                <li><strong>Regra de no-show (não comparecimento)</strong></li>
-            </ol>
-
-            <p>Entender essa diferença já evita metade dos mal-entendidos.</p>
-
-            <h3>Tarifas flexíveis: respiro com prazo</h3>
-
-            <p>As tarifas flexíveis são aquelas em que o hotel permite cancelar ou alterar a reserva <strong>sem custo</strong>, desde que o hóspede avise dentro de um prazo combinado. Em muitos casos, esse prazo chega até
+<h2>1. Hospedagem: flexível, não reembolsável e o impacto do no-show</h2>
+<p>Na hotelaria, a lógica costuma ser dividida em três camadas:</p>
+<ol>
+<li><strong>Tarifa flexível</strong></li>
+<li><strong>Tarifa não reembolsável</strong></li>
+<li><strong>Regra de no-show (não comparecimento)</strong></li>
+</ol>
+<p>Entender essa diferença já evita metade dos mal-entendidos.</p>
+<h3>Tarifas flexíveis: respiro com prazo</h3>
+<p>As tarifas flexíveis são aquelas em que o hotel permite cancelar ou alterar a reserva <strong>sem custo</strong>, desde que o hóspede avise dentro de um prazo combinado. Em muitos casos, esse prazo chega até
                 <strong>24 horas antes</strong> do check-in; em outros, pode ser de 48 ou 72 horas, dependendo do hotel, da data e da cidade.
             </p>
-
-            <p>Se o hóspede avisa dentro desse prazo, a reserva é cancelada sem multa ou com penalidade mínima.
+<p>Se o hóspede avisa dentro desse prazo, a reserva é cancelada sem multa ou com penalidade mínima.
                 Para viagens corporativas com chance real de mudança, essa tarifa funciona como um “amortecedor de risco”.
             </p>
-
-            <p>O ponto crítico é simples: <strong>passou do prazo, o jogo muda</strong>.</p>
-
-            <h3>Tarifas não reembolsáveis: desconto na entrada, risco total na saída</h3>
-
-            <p>A tarifa não reembolsável seduz com um preço melhor, mas vem com um recado embutido:</p>
-
-            <blockquote>
+<p>O ponto crítico é simples: <strong>passou do prazo, o jogo muda</strong>.</p>
+<h3>Tarifas não reembolsáveis: desconto na entrada, risco total na saída</h3>
+<p>A tarifa não reembolsável seduz com um preço melhor, mas vem com um recado embutido:</p>
+<blockquote>
                 “Se desistir, perde tudo.”
             </blockquote>
-
-            <p>Na prática, o hotel <strong>cobra antecipado</strong> ou bloqueia o valor no cartão e, se o hóspede desistir depois do prazo de arrependimento, <strong>não há devolução</strong>. Também não é comum mudar data, encurtar período ou transformar em crédito. É o clássico trade-off: a empresa economiza na compra, mas assume o risco de perder
+<p>Na prática, o hotel <strong>cobra antecipado</strong> ou bloqueia o valor no cartão e, se o hóspede desistir depois do prazo de arrependimento, <strong>não há devolução</strong>. Também não é comum mudar data, encurtar período ou transformar em crédito. É o clássico trade-off: a empresa economiza na compra, mas assume o risco de perder
                 <strong>100%</strong> se o plano mudar.
             </p>
-
-            <h3>No-show: uma diária… ou o período inteiro</h3>
-
-            <p>Além do tipo de tarifa, existe a regra de <strong>no-show</strong>: quando o hóspede simplesmente não aparece e não avisa. Em muitos casos, o hotel cobra apenas
+<h3>No-show: uma diária… ou o período inteiro</h3>
+<p>Além do tipo de tarifa, existe a regra de <strong>no-show</strong>: quando o hóspede simplesmente não aparece e não avisa. Em muitos casos, o hotel cobra apenas
                 <strong>uma diária</strong> como multa; em períodos de grande demanda (feiras, congressos, grandes eventos na cidade), é bem comum reter o valor de
                 <strong>toda a estadia</strong>.
             </p>
-
-            <p>Imagine uma reserva de 5 noites num evento importante. Se a pessoa desiste da viagem em cima da hora e ninguém cancela a reserva, é possível o hotel cobrar
+<p>Imagine uma reserva de 5 noites num evento importante. Se a pessoa desiste da viagem em cima da hora e ninguém cancela a reserva, é possível o hotel cobrar
                 <strong>as 5 noites inteiras</strong> e, depois do “leite derramado”, quase não há espaço para negociação.
             </p>
-
-            <p>Do ponto de vista da gestão de viagens, uma regra prática vale ouro:</p>
-
-            <blockquote>
-                Se a viagem caiu, <strong>avise o hotel imediatamente</strong>.<br>
+<p>Do ponto de vista da gestão de viagens, uma regra prática vale ouro:</p>
+<blockquote>
+                Se a viagem caiu, <strong>avise o hotel imediatamente</strong>.<br/>
                 Cada hora de silêncio aumenta a chance de a multa sair de “1 diária” para “período inteiro”.
             </blockquote>
-
-            <h2>2. Passagens aéreas: na prática, não reembolsáveis</h2>
-
-            <p>No aéreo, o cenário é ainda mais rígido. Para o dia a dia do corporativo, a regra mais segura é tratar todas as passagens assim:</p>
-
-            <blockquote>
-                <strong>Passagem aérea é não reembolsável. Ponto.</strong>
-            </blockquote>
-
-            <p>O que normalmente volta, quando volta, é algo pequeno ligado a taxas – muitas vezes apenas uma parte da taxa de embarque, na casa de algumas dezenas de reais (por exemplo, algo em torno de R$ 50 por trecho, dependendo do aeroporto). Contar com devolução da
+<h2>2. Passagens aéreas: na prática, não reembolsáveis</h2>
+<p>No aéreo, o cenário é ainda mais rígido. Para o dia a dia do corporativo, a regra mais segura é tratar todas as passagens assim:</p>
+<blockquote>
+<strong>Passagem aérea é não reembolsável. Ponto.</strong>
+</blockquote>
+<p>O que normalmente volta, quando volta, é algo pequeno ligado a taxas – muitas vezes apenas uma parte da taxa de embarque, na casa de algumas dezenas de reais (por exemplo, algo em torno de R$ 50 por trecho, dependendo do aeroporto). Contar com devolução da
                 <strong>tarifa aérea</strong> em si é se iludir.
             </p>
-
-            <p>A única exceção real é quando a própria companhia aérea cancela o voo por motivo operacional ou de força maior e o passageiro decide não viajar mais. Nesses casos, a empresa aérea costuma oferecer remarcação sem custo adicional ou reembolso mais amplo do valor pago, justamente porque foi ela quem rompeu o serviço previsto. Ainda assim, é um cenário relativamente
+<p>A única exceção real é quando a própria companhia aérea cancela o voo por motivo operacional ou de força maior e o passageiro decide não viajar mais. Nesses casos, a empresa aérea costuma oferecer remarcação sem custo adicional ou reembolso mais amplo do valor pago, justamente porque foi ela quem rompeu o serviço previsto. Ainda assim, é um cenário relativamente
                 <strong>raro</strong> se comparado com o volume de viagens emitidas.
             </p>
-
-            <p>Em qualquer cancelamento por decisão da empresa ou do passageiro, a regra prática é considerar que não haverá reembolso da passagem e que qualquer valor aproveitado será exceção, não regra. O maior desafio, porém, não é nem o cancelamento em si. É a remarcação.</p>
-
-            <h2>3. O problema não é só a multa – é a diferença de tarifa</h2>
-
-            <p>Quando alguém pergunta quanto custa remarcar, costuma imaginar algo como:</p>
-
-            <blockquote>
+<p>Em qualquer cancelamento por decisão da empresa ou do passageiro, a regra prática é considerar que não haverá reembolso da passagem e que qualquer valor aproveitado será exceção, não regra. O maior desafio, porém, não é nem o cancelamento em si. É a remarcação.</p>
+<h2>3. O problema não é só a multa – é a diferença de tarifa</h2>
+<p>Quando alguém pergunta quanto custa remarcar, costuma imaginar algo como:</p>
+<blockquote>
                 “Ah, paga uma multa e pronto.”
             </blockquote>
-
-            <p>Na realidade, o custo quase sempre é:</p>
-
-            <blockquote>
-                <strong>Multa de alteração + diferença de tarifa</strong>
-            </blockquote>
-
-            <p>A multa é a parte relativamente fácil: um valor fixo por trecho (por exemplo, R$ 500 na ida + R$ 500 na volta, totalizando R$ 1.000 por passageiro). O estrago mora na
+<p>Na realidade, o custo quase sempre é:</p>
+<blockquote>
+<strong>Multa de alteração + diferença de tarifa</strong>
+</blockquote>
+<p>A multa é a parte relativamente fácil: um valor fixo por trecho (por exemplo, R$ 500 na ida + R$ 500 na volta, totalizando R$ 1.000 por passageiro). O estrago mora na
                 <strong>diferença de tarifa</strong>, especialmente quando a nova data é em cima da hora.
             </p>
-
-            <p>Imagine um caso bem próximo da sua rotina: a empresa comprou uma passagem ida e volta por
+<p>Imagine um caso bem próximo da sua rotina: a empresa comprou uma passagem ida e volta por
                 <strong>R$ 1.500</strong>, com boa antecedência, e a tarifa tem multa de
                 <strong>R$ 500 por trecho</strong> em caso de remarcação. A viagem cai e decidem remarcar para alguns dias depois, já bem perto da nova data. Na remarcação, a companhia cobra
                 <strong>R$ 1.000 de multa</strong> (R$ 500 ida + R$ 500 volta); sobram
                 <strong>R$ 500</strong> como algo parecido com “crédito” da passagem antiga; e a nova viagem, como está sendo comprada em cima da hora, aparece por
                 <strong>R$ 4.000</strong> (tarifa cheia ou muito próxima disso).
             </p>
-
-            <p>Na ponta do lápis, dos
+<p>Na ponta do lápis, dos
                 <strong>R$ 1.500</strong> originais, R$ 1.000 desaparecem na multa, os R$ 500 restantes apenas abatem um pedaço da nova passagem, e a empresa desembolsa agora
                 <strong>R$ 3.500</strong>. A viagem antiga virou quase perda total, e a remarcação funciona, na prática, como
                 <strong>comprar outra passagem a preço cheio</strong> com um pequeno alívio pelo que sobrou.
             </p>
-
-            <p>Por isso, é importante alinhar a expectativa dentro da empresa:</p>
-
-            <blockquote>
-                Remarcação não é mágica.<br>
-                Ajuda a aproveitar uma parte do valor, mas <strong>nova viagem = novo preço</strong>.<br>
+<p>Por isso, é importante alinhar a expectativa dentro da empresa:</p>
+<blockquote>
+                Remarcação não é mágica.<br/>
+                Ajuda a aproveitar uma parte do valor, mas <strong>nova viagem = novo preço</strong>.<br/>
                 Se for em cima da hora, esse novo preço tende a ser o mais caro de todos.
             </blockquote>
-
-            <h2>4. Eventos, feiras e congressos: quando o problema é achar cama na cidade</h2>
-
-            <p>Se hotéis e passagens já exigem cuidado, o cenário de <strong>eventos, feiras e congressos</strong> adiciona uma camada a mais: muitas vezes, o maior problema não é nem a multa, e sim
+<div class="article-callout">
+<p>Ficou com alguma dúvida sobre cancelamentos e remarcações e como isso impacta o caixa da sua empresa? Fale com a gente pelo WhatsApp.</p>
+<p>Com base nos seus relatórios de viagens, nós ajudamos a mapear esses custos “invisíveis” e a revisar suas regras para reduzir perdas sem travar as viagens importantes.</p>
+<a class="cta-button cta-button-secundario" href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20cancelamentos%20e%20remarca%C3%A7%C3%B5es%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20para%20entender%20melhor%20o%20impacto%20na%20minha%20empresa." target="_blank">FALAR COM A EQUIPE NO WHATSAPP</a>
+</div>
+<h2>4. Eventos, feiras e congressos: quando o problema é achar cama na cidade</h2>
+<p>Se hotéis e passagens já exigem cuidado, o cenário de <strong>eventos, feiras e congressos</strong> adiciona uma camada a mais: muitas vezes, o maior problema não é nem a multa, e sim
                 <strong>não ter onde ficar</strong>.
             </p>
-
-            <p>Em grandes eventos, é muito comum que, quando você começa a buscar hotel, simplesmente não encontre vaga em lugar nenhum. Ao ligar direto para as principais hospedagens da cidade, a resposta vem quase padrão: “Estamos bloqueados para uma empresa/organização X”. Na prática, alguma empresa de grande porte, promotora ou operadora de eventos
+<p>Em grandes eventos, é muito comum que, quando você começa a buscar hotel, simplesmente não encontre vaga em lugar nenhum. Ao ligar direto para as principais hospedagens da cidade, a resposta vem quase padrão: “Estamos bloqueados para uma empresa/organização X”. Na prática, alguma empresa de grande porte, promotora ou operadora de eventos
                 <strong>comprou praticamente todo o inventário da cidade</strong> e o que sobra é muito pouco.
             </p>
-
-            <p>Nessas horas, o desafio não é discutir política de cancelamento. É literalmente
+<p>Nessas horas, o desafio não é discutir política de cancelamento. É literalmente
                 <strong>garimpar uma cama</strong>: procurar em bairros mais afastados, olhar cidades vizinhas, mapear pequenas pousadas que ainda não foram bloqueadas ou negociar diretamente com hotéis que tenham segurado alguns poucos apartamentos fora de bloqueios maiores. Ao mesmo tempo, justamente porque a demanda está concentrada, as políticas para esse período se tornam mais duras: tarifas não reembolsáveis, prazos de cancelamento bem longos, multas altas ou perda total da estadia em caso de desistência e pouca ou nenhuma flexibilidade para mudar datas.
             </p>
-
-            <h3>Bloqueio de grupo: um pouco mais de jogo de cintura – se for bem negociado</h3>
-
-            <p>Quando a empresa fecha um <strong>bloqueio de grupo</strong> diretamente com o hotel (por exemplo, um conjunto de apartamentos para um evento específico), costuma aparecer um pouco mais de jogo de cintura. É relativamente comum o hotel aceitar trocar nomes de hóspedes até certo prazo, liberar alguns apartamentos do bloqueio sem multa ou ajustar levemente datas de entrada e saída. Mas tudo isso
+<h3>Bloqueio de grupo: um pouco mais de jogo de cintura – se for bem negociado</h3>
+<p>Quando a empresa fecha um <strong>bloqueio de grupo</strong> diretamente com o hotel (por exemplo, um conjunto de apartamentos para um evento específico), costuma aparecer um pouco mais de jogo de cintura. É relativamente comum o hotel aceitar trocar nomes de hóspedes até certo prazo, liberar alguns apartamentos do bloqueio sem multa ou ajustar levemente datas de entrada e saída. Mas tudo isso
                 <strong>depende de negociação direta</strong> com o hotel e precisa estar escrito no contrato desde o começo. Não é algo que se assume; é algo que se combina.
             </p>
-
-            <h2>5. O mito do “crédito”: o que o viajante imagina x o que realmente acontece</h2>
-
-            <p>Um dos ruídos mais frequentes entre viajante, gestor de viagens e financeiro é a ideia de “crédito”. As frases são clássicas: “Se eu não for mais, essa passagem fica de crédito pra outra, né?”; “Pelo menos não perdemos tudo, dá pra usar depois”; “Se cancelar o hotel, dá pra jogar pra outra data, certo?”.</p>
-
-            <p>Tecnicamente, em alguns casos, sobra uma parte da tarifa aérea como crédito após a multa, a taxa de embarque pode ser devolvida e determinados hotéis e contratos permitem reaproveitar parte do valor em outra reserva. Mas a realidade financeira é bem menos gentil: no aéreo, a maior parte do valor foi consumida pela multa e pela necessidade de recomprar caro; no hotel, tarifas não reembolsáveis e no-show em período de evento quase sempre significam perda integral; e, em eventos, inscrições e pacotes especiais normalmente não aceitam remarcação ou reembolso.</p>
-
-            <p>Para evitar frustração, vale mudar a forma de comunicar. Em vez de dizer apenas “Fica de crédito”, funciona melhor algo como:</p>
-
-            <blockquote>
-                “Em alguns casos a gente consegue aproveitar uma parte do valor,<br>
-                mas se a decisão de cancelar ou remarcar vem em cima da hora,<br>
+<h2>5. O mito do “crédito”: o que o viajante imagina x o que realmente acontece</h2>
+<p>Um dos ruídos mais frequentes entre viajante, gestor de viagens e financeiro é a ideia de “crédito”. As frases são clássicas: “Se eu não for mais, essa passagem fica de crédito pra outra, né?”; “Pelo menos não perdemos tudo, dá pra usar depois”; “Se cancelar o hotel, dá pra jogar pra outra data, certo?”.</p>
+<p>Tecnicamente, em alguns casos, sobra uma parte da tarifa aérea como crédito após a multa, a taxa de embarque pode ser devolvida e determinados hotéis e contratos permitem reaproveitar parte do valor em outra reserva. Mas a realidade financeira é bem menos gentil: no aéreo, a maior parte do valor foi consumida pela multa e pela necessidade de recomprar caro; no hotel, tarifas não reembolsáveis e no-show em período de evento quase sempre significam perda integral; e, em eventos, inscrições e pacotes especiais normalmente não aceitam remarcação ou reembolso.</p>
+<p>Para evitar frustração, vale mudar a forma de comunicar. Em vez de dizer apenas “Fica de crédito”, funciona melhor algo como:</p>
+<blockquote>
+                “Em alguns casos a gente consegue aproveitar uma parte do valor,<br/>
+                mas se a decisão de cancelar ou remarcar vem em cima da hora,<br/>
                 é importante saber que <strong>a maior parte do custo já foi</strong>.”
             </blockquote>
-
-            <p>Essa honestidade na conversa protege tanto o setor de viagens quanto o relacionamento com o viajante.</p>
-
-            <h2>6. Como transformar tudo isso em orientação prática dentro da empresa</h2>
-
-            <p>Mais do que decorar regulamento, o papel do gestor de viagens é
-                <strong>traduzir essas regras em decisões práticas</strong>. Isso começa antes de qualquer emissão, com uma pergunta simples: essa viagem é certa ou ainda está no “talvez”? Se ainda estiver no campo das hipóteses, pode ser mais inteligente segurar alguns dias, aguardar confirmação mais firme ou, se realmente for necessário emitir, optar por tarifas mais flexíveis, explicando claramente para o gestor por que o custo ficou maior. Na maioria das vezes, é melhor gastar um pouco mais na tarifa do que perder tudo depois.
-            </p>
-
-            <p>Também é fundamental diferenciar muito bem, dentro da empresa, o discurso de
-                <strong>cancelamento</strong> e de <strong>remarcação</strong>. Cancelamento de aérea, na prática, precisa ser tratado como não reembolsável, salvo em casos de cancelamento do voo pela própria companhia. Já a remarcação deve ser sempre explicada com a fórmula completa: multa de alteração somada à diferença de tarifa, deixando claro que, quando a mudança é em cima da hora, a nova tarifa quase sempre é bem mais alta. Com hotéis, a explicação passa por mostrar a diferença entre tarifa flexível e não reembolsável e pelo impacto do no-show, especialmente em períodos de evento.
-            </p>
-
-            <p>No caso de eventos, feiras e grandes datas, vale ter essas regras
-                <strong>por escrito</strong>. É importante registrar que, nesses períodos, a principal dificuldade costuma ser encontrar vaga de hospedagem, que os hotéis operam com políticas mais duras e que ingressos, credenciais e pacotes especiais geralmente não aceitam reembolso nem remarcação. Se houver bloqueio de grupo com hotel, o ideal é que o contrato traga, de forma bem objetiva, o prazo de troca de nomes e a possibilidade (ou não) de liberar alguns quartos sem multa, evitando surpresas lá na frente.
-            </p>
-
-            <p>Por fim, todo esse cenário reforça o valor da antecedência em todas as frentes. A Regra de Ouro da Antecedência não serve apenas para baratear passagens; ela impacta diretamente a chance de encontrar hotel, a qualidade das condições negociadas e a margem para reagir a imprevistos. Quem decide cedo tem mais alternativas, melhores tarifas e menos choque com políticas rígidas. Quem decide em cima da hora paga caro, encontra pouca vaga e vive mais exposto àquelas regras que parecem duras demais apenas porque foram lidas tarde demais.</p>
-
-            <h2>Conclusão: depois de emitido, o contrato manda – por isso decidir bem antes é tão importante</h2>
-
-            <p>Cancelamentos e remarcações fazem parte da vida de qualquer empresa que viaja.
+<p>Essa honestidade na conversa protege tanto o setor de viagens quanto o relacionamento com o viajante.</p>
+<h2>6. Como transformar tudo isso em orientação prática dentro da empresa</h2>
+<p>Mais do que decorar regulamento, o papel do gestor de viagens é transformar essas regras em uma matriz de decisão clara para a empresa. É ele quem ajuda líderes a responder perguntas como: “emitimos agora ou esperamos?”, “vale pagar pela tarifa flexível neste caso?” e “o que acontece se essa reunião cair?”.</p>
+<p>Na prática, isso passa por três frentes principais:</p>
+<ol>
+<li><strong>Decidir bem antes de emitir.</strong> Separar o que é “viagem certa” do que ainda é hipótese, definir prazos mínimos de confirmação e, quando houver incerteza real, ter coragem de dizer “ainda não é hora de emitir”.</li>
+<li><strong>Definir política e contratos que reflitam a realidade.</strong> Estabelecer quando a empresa aceita tarifa não reembolsável, como lidar com períodos de eventos, quais prazos de cancelamento serão adotados e como isso aparece de forma objetiva na política de viagens.</li>
+<li><strong>Comunicar, acompanhar e ajustar.</strong> Explicar de forma simples para viajantes, gestores e diretoria o que acontece em cada cenário, acompanhar os casos de cancelamento e remarcação e usar esses dados para ajustar política e contratos ao longo do tempo.</li>
+</ol>
+<p>Quando essa lógica está clara, cada pedido de viagem deixa de ser um “caso isolado” e passa a seguir um raciocínio padrão. Isso reduz conflitos internos, protege o caixa e fortalece a posição do gestor de viagens como referência em risco e custo – e não apenas como “quem emite as passagens”.</p>
+<h2>7. A foto ideal do gestor de viagens diante de cancelamentos e remarcações</h2>
+<p>Na prática, o “gestor estratégico” nesse tema não é quem evita todo cancelamento (isso é impossível), mas quem consegue transformar esses casos em aprendizado e decisões melhores para frente.</p>
+<p>Alguns sinais de que a gestão está madura:</p>
+<ul>
+<li>Os pedidos de viagem chegam com prazos e cenários mais claros (“certa”, “provável”, “a estudar”).</li>
+<li>Existem diretrizes objetivas sobre quando usar tarifa flexível ou não reembolsável, especialmente em períodos de evento.</li>
+<li>Os principais contratos de hotel, aéreo e eventos trazem cláusulas de cancelamento discutidas conscientemente com a diretoria.</li>
+<li>Casos de cancelamento e remarcação são registrados e acompanhados, em vez de “sumirem” em e-mails isolados.</li>
+<li>A diretoria sabe, em linhas gerais, quanto a empresa perde por ano com essas situações – e enxerga o gestor de viagens como referência nesse assunto.</li>
+</ul>
+<p>É esse cenário que reduz a sensação de improviso, melhora o relacionamento com os viajantes e dá ao gestor de viagens um papel claro na proteção do orçamento.</p>
+<h2>Conclusão: depois de emitido, o contrato manda – por isso decidir bem antes é tão importante</h2>
+<p>Cancelamentos e remarcações fazem parte da vida de qualquer empresa que viaja.
                 O que muda tudo é:
             </p>
-
-            <ul>
-                <li><strong>como a empresa decide antes de emitir</strong>,</li>
-                <li><strong>o quanto entende das regras de hotel, aéreo e eventos</strong>,</li>
-                <li><strong>e quão honesta é a comunicação sobre risco de perda</strong>.</li>
-            </ul>
-
-            <p>Hotéis podem ser parceiros quando se escolhe tarifa flexível e se avisa no prazo, ou carrascos quando há no-show em período de evento.
+<ul>
+<li><strong>como a empresa decide antes de emitir</strong>,</li>
+<li><strong>o quanto entende das regras de hotel, aéreo e eventos</strong>,</li>
+<li><strong>e quão honesta é a comunicação sobre risco de perda</strong>.</li>
+</ul>
+<p>Hotéis podem ser parceiros quando se escolhe tarifa flexível e se avisa no prazo, ou carrascos quando há no-show em período de evento.
                 Passagens aéreas, na prática, devem ser tratadas como <strong>não reembolsáveis</strong>, com remarcação funcionando quase sempre como recomprar caro.
                 Em grandes eventos, o maior desafio muitas vezes nem é a multa: é conseguir achar um lugar decente para o time dormir.
             </p>
-
-            <p>Quando o gestor de viagens enxerga isso com clareza e consegue traduzir em linguagem simples para diretores, áreas internas e viajantes, algo importante acontece:</p>
-
-            <ul>
-                <li>cai a expectativa de “desconto milagroso” depois que tudo deu errado,</li>
-                <li>aumenta o cuidado na hora de autorizar viagem e evento,</li>
-                <li>e o orçamento para de sangrar em multas e diferenças de tarifa que “ninguém viu” chegando.</li>
-            </ul>
-
-            <p>No fim, cancelar ou remarcar sempre vai ter um preço.
+<p>Quando o gestor de viagens enxerga isso com clareza e consegue traduzir em linguagem simples para diretores, áreas internas e viajantes, algo importante acontece:</p>
+<ul>
+<li>cai a expectativa de “desconto milagroso” depois que tudo deu errado,</li>
+<li>aumenta o cuidado na hora de autorizar viagem e evento,</li>
+<li>e o orçamento para de sangrar em multas e diferenças de tarifa que “ninguém viu” chegando.</li>
+</ul>
+<p>No fim, cancelar ou remarcar sempre vai ter um preço.
                 O papel da boa gestão é fazer esse preço ser <strong>exceção consciente</strong> – e não a rotina silenciosa que corrói o caixa mês após mês.
             </p>
-            
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Dúvidas sobre políticas de cancelamento?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20esclarecer%20as%20políticas%20de%20cancelamento%20para%20evitar%20custos." target="_blank" class="cta-button">
-                    FALE COM NOSSO TIME
-                 </a>
-            </div>
-
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div class="article-cta-final"><strong>Ficou com alguma dúvida sobre cancelamentos, remarcações e o impacto disso no orçamento de viagens da sua empresa?</strong><span>Converse com nossa equipe pelo WhatsApp para entender melhor como esses custos aparecem na prática e quais ajustes de política e processos podem reduzir perdas ao longo do ano.</span><a href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20cancelamentos%20e%20remarca%C3%A7%C3%B5es%20no%20site%20da%20Winners%20Tour%20e%20fiquei%20com%20d%C3%BAvidas%20sobre%20como%20aplicar%20isso%20na%20minha%20empresa.%20Pode%20me%20ajudar%3F" rel="noopener" target="_blank">FALE COM A NOSSA EQUIPE PELO WHATSAPP</a></div>
 </div>
-
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>

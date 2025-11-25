@@ -1,273 +1,658 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Gestão de Eventos Corporativos</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control"/>
+<title>WinnersTour — Gestão de Eventos Corporativos</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="gestao_de_eventos_corporativos.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20planejar%20um%20evento%20corporativo." target="_blank" class="cta-button">
-                PLANEJE SEU PRÓXIMO EVENTO CONOSCO
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Quem cuida de viagens dentro da empresa sabe: de repente, sem perceber, deixa de ser apenas “gestor de passagens” e passa a ser tratado como <strong>gestor de eventos</strong>.</p>
+</div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
-            <p>Num mês, é “só” levar duas pessoas para um congresso em outra cidade. No seguinte, já envolve <strong>time inteiro</strong>, credencial premium, camarote em grande evento esportivo, translado dedicado, hotel com sala de reunião e, às vezes, até <strong>organizar um congresso próprio</strong> num resort com centro de eventos.</p>
-
-            <p>É aí que o cérebro dá aquele nó.</p>
-
-            <p>Porque deixar uma pessoa de pé num voo é uma coisa. Fazer um evento inteiro funcionar – com gente chegando de cidades diferentes, traslado, credenciais, coffee break, palestrante, festa de encerramento – é outra escala de responsabilidade.</p>
-
-            <p>Esse artigo é justamente para isso: para ajudar o setor de viagens a enxergar um <strong>caminho claro de gestão de eventos</strong>, com fases, papéis definidos, uso inteligente de parceiros e uma agência atuando como <strong>copiloto estratégico</strong>. Assim, mesmo uma empresa pequena consegue entregar evento grande sem colapsar o time interno.</p>
-
-            <h2>1. Quando a viagem vira evento (e o seu papel muda de nível)</h2>
-
-            <p>Nem todo evento é igual. E é aqui que muitos se perdem, tratando tudo como se fosse “só mais um deslocamento”.</p>
-
-            <p>Dá para imaginar pelo menos três cenários bem diferentes:</p>
-
-            <ul>
-                <li>quando a empresa <strong>apenas participa</strong> de um evento externo, levando poucas pessoas como visitantes ou ouvintes;</li>
-                <li>quando leva um <strong>grupo maior</strong>, com ingressos premium, camarotes, áreas VIP, hospitalidade;</li>
-                <li>quando a empresa <strong>é protagonista</strong>: expositora em feira, organizadora de congresso próprio ou anfitriã de um encontro de clientes e parceiros num grande hotel.</li>
-            </ul>
-
-            <p>No primeiro caso, a lógica ainda é parecida com viagem tradicional: passagem, hotel, inscrição, talvez um traslado simples.</p>
-
-            <p>No segundo, o custo e a complexidade sobem: ingresso premium ou camarote, área reservada, talvez um pacote de hospitalidade que inclui alimentação, bebidas, transporte dedicado.</p>
-
-            <p>No terceiro, muda tudo: entra em jogo montagem de estande, locação de área de exposição, contratação de fornecedores locais, audiovisual, equipe de apoio, decoração, alimentação, festa de encerramento.</p>
-
-            <p>Perceber em qual desses níveis você está é o primeiro passo para não subestimar o trabalho. Quem tenta tratar <strong>evento de nível 3</strong> como se fosse <strong>viagem de nível 1</strong> está pedindo para viver na base do improviso.</p>
-
-            <h2>2. Planejamento estratégico em fases: antes, durante e depois</h2>
-
-            <p>Para o gestor de viagens virar gestor de eventos sem enlouquecer, a saída é <strong>pensar em fases</strong>.</p>
-
-            <p>Antes de falar de hotel, aéreo ou buffet, vêm quatro perguntas estratégicas:</p>
-
-            <ol>
-                <li><strong>Qual é o objetivo do evento?</strong><br>Trazer clientes? Treinar equipe? Lançar produto? Fortalecer relacionamento?</li>
-                <li><strong>Quem precisa estar lá?</strong><br>Quantas pessoas, de quais áreas, vindas de onde, com quais necessidades especiais?</li>
-                <li><strong>Que formato faz sentido?</strong><br>Participar de feira existente como visitante? Ter estande? Alugar uma sala de hotel? Reservar o centro de convenções inteiro?</li>
-                <li><strong>Qual é o orçamento realista e quem decide o quê?</strong><br>Quem aprova valores? Quem assina contratos? Quem responde se algo der errado?</li>
-            </ol>
-
-            <p>Quando isso está claro, você quebra o planejamento em três momentos:</p>
-
-            <p><strong>Antes do evento:</strong> definição de datas, local, tipo de estrutura necessária, reserva de bloqueios de hotel, passagens, contratação de serviços terrestres, audiovisual, alimentação, credenciais, visitas técnicas (se necessário).</p>
-
-            <p><strong>Durante o evento:</strong> operação de traslado, credenciamento, suporte ao participante, ajustes em tempo real, resposta a imprevistos.</p>
-
-            <p><strong>Depois do evento:</strong> encerramento de contratos, pagamento de fornecedores, análise do que funcionou e do que precisa ser melhorado para a próxima edição.</p>
-
-            <p>A antecedência aqui é tão importante quanto nas viagens: quanto mais cedo se decide <strong>data, local e tamanho do evento</strong>, mais fácil é costurar tudo sem surto coletivo – e sem pagar “tarifa de emergência” em tudo.</p>
-
-            <h2>3. MICE na prática: hospedagem, centro de eventos, serviços terrestres e receptivo</h2>
-
-            <p>Quando a decisão de “vamos fazer/participar do evento” já está tomada, entra o mundo MICE (Meetings, Incentives, Conferences, Exhibitions), mesmo que ninguém use esse nome no dia a dia.</p>
-
-            <p>Na prática, significa articular quatro grandes blocos:</p>
-
-            <h3>Hospedagem e local do evento</h3>
-
-            <p>Em eventos mais simples, basta um hotel bem localizado. Em eventos maiores, o hotel passa a ser também <strong>local de reunião</strong>: salas, auditórios, centro de convenções interno.</p>
-
-            <p>Aqui entram decisões como:</p>
-
-            <ul>
-                <li>bloquear um número de apartamentos para o grupo,</li>
-                <li>garantir que as salas de reunião comportem o formato (plenária, salas paralelas, workshops),</li>
-                <li>negociar condições para coffee breaks, almoços, jantares, festa de encerramento.</li>
-            </ul>
-
-            <p>Muitas vezes, faz sentido <strong>viajar antes</strong> para uma visita técnica: ver a estrutura ao vivo, caminhar pelo espaço, visualizar fluxo de pessoas. Essa visita prévia costuma evitar problemas que só aparecem quando se pisa no lugar.</p>
-
-            <h3>Serviços terrestres e receptivo</h3>
-
-            <p>Em eventos com vários participantes, o traslado deixa de ser detalhe.</p>
-
-            <p>Surge a necessidade de:</p>
-
-            <ul>
-                <li>transporte aeroporto ↔ hotel ↔ local do evento,</li>
-                <li>veículos dedicados para diretores ou convidados VIP,</li>
-                <li>equipe de receptivo no aeroporto e no hotel para direcionar as pessoas, responder dúvidas, resolver pequenos problemas na hora.</li>
-            </ul>
-
-            <p>Esse receptivo funciona como <strong>“braço estendido”</strong> da empresa no destino: é quem vê o que o gestor não consegue ver à distância.</p>
-
-            <h3>Fornecedores de evento e memorabilidade</h3>
-
-            <p>Em eventos mais completos, entram outras camadas:</p>
-
-            <ul>
-                <li>audiovisual (som, luz, projeção, telão),</li>
-                <li>gravação e filmagem profissional,</li>
-                <li>fotografia, cenografia, decoração,</li>
-                <li>equipe para produção da festa de encerramento,</li>
-                <li>apoio na relação com palestrantes, mestres de cerimônia, DJs ou bandas.</li>
-            </ul>
-
-            <p>É esse conjunto que dá a “cara” do evento – o que torna a experiência memorável e faz com que ele seja repetido como parte da estratégia comercial da empresa, e não só como um esforço pontual.</p>
-
-            <h2>4. Agência como copiloto estratégico: dividindo o peso do evento</h2>
-
-            <p>Tudo isso é bonito no papel, mas alguém precisa fazer acontecer.</p>
-
-            <p>Se o setor interno de viagens tenta segurar tudo sozinho, a chance de sobrecarga é enorme: orçamentos para todos os lados, contratos que precisam ser lidos, fornecedores ligando o tempo todo, participantes com dúvidas, diretores pedindo ajustes em cima da hora.</p>
-
-            <p>É aqui que a <strong>agência de viagens especializada em corporativo e eventos</strong> entra como <strong>copiloto estratégico</strong> – e não apenas como “emissora de passagem”.</p>
-
-            <p>Esse papel de copiloto inclui:</p>
-
-            <ul>
-                <li>centralizar a parte de <strong>viagens, hospedagem e traslados</strong>,</li>
-                <li>apoiar na busca e na negociação com <strong>hotéis, centros de eventos e empresas de receptivo</strong>,</li>
-                <li>indicar e coordenar <strong>fornecedores locais</strong> (transporte, audiovisual, staff de apoio),</li>
-                <li>ser ponto de contato para os participantes em questões logísticas,</li>
-                <li>dividir com o cliente a responsabilidade de acompanhar o que está acontecendo em tempo real.</li>
-            </ul>
-
-            <p>O modelo vencedor é justamente esse: a empresa foca no conteúdo, no objetivo comercial, em quem precisa se encontrar com quem, no que precisa ser dito no palco. A agência ajuda a garantir que <strong>tudo o que é infraestrutura e logística funcione</strong> – e que ninguém fique perdido no aeroporto sem saber para onde ir.</p>
-
-            <p>Assim, mesmo empresas menores conseguem organizar eventos grandes, porque não estão sozinhas: têm um time de bastidores que sustenta a operação.</p>
-
-            <h2>5. Planejar quem faz o quê: mapa de responsabilidades que evita confusão</h2>
-
-            <p>Um dos grandes motivos pelos quais eventos viram caos é simples: ninguém sabe exatamente <strong>quem é responsável por quê</strong>.</p>
-
-            <p>Gestão de eventos madura começa com um mapa de responsabilidades. Não precisa ser um organograma complexo; basta ter clareza de funções:</p>
-
-            <ul>
-                <li>quem responde pela <strong>decisão final</strong> de orçamento e fornecedores;</li>
-                <li>quem faz a interface com a agência;</li>
-                <li>quem fala com o hotel e com o centro de eventos;</li>
-                <li>quem cuida dos <strong>convidados internos</strong> (colaboradores) e externos (clientes, parceiros);</li>
-                <li>quem aprova a comunicação, convites, material de divulgação;</li>
-                <li>quem acompanha a operação no dia (ou nos dias) do evento.</li>
-            </ul>
-
-            <p>Esse mapa evita um cenário comum: fornecedor recebendo instruções conflitantes de três pessoas diferentes, e-mail atravessado, expectativa desalinhada.</p>
-
-            <p>Uma vez definidas as funções, o gestor de viagens deixa de ser “a pessoa para quem tudo é jogado” e passa a ser <strong>um dos pilares</strong> dentro de uma estrutura clara. Ele continua fundamental, mas não está mais sozinho.</p>
-
-            <h2>6. Gestão de riscos e plano de contingência: o protocolo 3D</h2>
-
-            <p>Evento sem imprevisto é lenda.</p>
-
-            <p>Pode ser chuva forte no dia da montagem, voo cancelado com palestrante dentro, atraso no transporte, problema técnico no som, fornecedor que falha na entrega, grupo que se perde no deslocamento.</p>
-
-            <p>O que diferencia um evento caótico de um evento bem gerido não é a ausência de problemas, e sim <strong>a forma como se reage a eles</strong>.</p>
-
-            <p>Uma forma simples de olhar para isso é adotar um <strong>protocolo 3D</strong>:</p>
-
-            <ol>
-                <li>
-                    <strong>Detectar</strong><br>
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Quem cuida de viagens dentro da empresa sabe: de repente, sem perceber, deixa de ser apenas “gestor de passagens” e passa a ser tratado como <strong>gestor de eventos</strong>.</p>
+<p>Num mês, é “só” levar duas pessoas para um congresso em outra cidade. No seguinte, já envolve <strong>time inteiro</strong>, credencial premium, camarote em grande evento esportivo, translado dedicado, hotel com sala de reunião e, às vezes, até <strong>organizar um congresso próprio</strong> num resort com centro de eventos.</p>
+<p>É aí que o cérebro dá aquele nó.</p>
+<p>Porque deixar uma pessoa de pé num voo é uma coisa. Fazer um evento inteiro funcionar – com gente chegando de cidades diferentes, traslado, credenciais, coffee break, palestrante, festa de encerramento – é outra escala de responsabilidade.</p>
+<p>Esse artigo é justamente para isso: para ajudar o setor de viagens a enxergar um <strong>caminho claro de gestão de eventos</strong>, com fases, papéis definidos, uso inteligente de parceiros e uma agência atuando como <strong>copiloto estratégico</strong>. Assim, mesmo uma empresa pequena consegue entregar evento grande sem colapsar o time interno.</p>
+<h2>1. Quando a viagem vira evento (e o seu papel muda de nível)</h2>
+<p>Nem todo evento é igual. E é aqui que muitos se perdem, tratando tudo como se fosse “só mais um deslocamento”.</p>
+<p>Dá para imaginar pelo menos três cenários bem diferentes:</p>
+<ul>
+<li>quando a empresa <strong>apenas participa</strong> de um evento externo, levando poucas pessoas como visitantes ou ouvintes;</li>
+<li>quando leva um <strong>grupo maior</strong>, com ingressos premium, camarotes, áreas VIP, hospitalidade;</li>
+<li>quando a empresa <strong>é protagonista</strong>: expositora em feira, organizadora de congresso próprio ou anfitriã de um encontro de clientes e parceiros num grande hotel.</li>
+</ul>
+<p>No primeiro caso, a lógica ainda é parecida com viagem tradicional: passagem, hotel, inscrição, talvez um traslado simples.</p>
+<p>No segundo, o custo e a complexidade sobem: ingresso premium ou camarote, área reservada, talvez um pacote de hospitalidade que inclui alimentação, bebidas, transporte dedicado.</p>
+<p>No terceiro, muda tudo: entra em jogo montagem de estande, locação de área de exposição, contratação de fornecedores locais, audiovisual, equipe de apoio, decoração, alimentação, festa de encerramento.</p>
+<p>Perceber em qual desses níveis você está é o primeiro passo para não subestimar o trabalho. Quem tenta tratar <strong>evento de nível 3</strong> como se fosse <strong>viagem de nível 1</strong> está pedindo para viver na base do improviso.</p><p>Para visualizar, pense em uma convenção anual de vendas com 150 a 200 pessoas em um resort: há deslocamentos vindos de várias cidades, blocos de plenária, workshops, momentos de relacionamento, possível presença de clientes e parceiros, além de fornecedores de audiovisual, alimentação e experiências. Esse tipo de encontro já está claramente no nível 3 – e tentar tratá-lo como uma simples viagem de nível 1 é receita certa para viver na base do improviso.</p>
+<h2>2. Planejamento estratégico em fases: antes, durante e depois</h2>
+<p>Para o gestor de viagens virar gestor de eventos sem enlouquecer, a saída é <strong>pensar em fases</strong>.</p>
+<p>Antes de falar de hotel, aéreo ou buffet, vêm quatro perguntas estratégicas:</p>
+<ol>
+<li><strong>Qual é o objetivo do evento?</strong><br/>Trazer clientes? Treinar equipe? Lançar produto? Fortalecer relacionamento?</li>
+<li><strong>Quem precisa estar lá?</strong><br/>Quantas pessoas, de quais áreas, vindas de onde, com quais necessidades especiais?</li>
+<li><strong>Que formato faz sentido?</strong><br/>Participar de feira existente como visitante? Ter estande? Alugar uma sala de hotel? Reservar o centro de convenções inteiro?</li>
+<li><strong>Qual é o orçamento realista e quem decide o quê?</strong><br/>Quem aprova valores? Quem assina contratos? Quem responde se algo der errado?</li>
+</ol>
+<p>Quando isso está claro, você quebra o planejamento em três momentos:</p>
+<p><strong>Antes do evento:</strong> definição de datas, local, tipo de estrutura necessária, reserva de bloqueios de hotel, passagens, contratação de serviços terrestres, audiovisual, alimentação, credenciais, visitas técnicas (se necessário).</p>
+<p><strong>Durante o evento:</strong> operação de traslado, credenciamento, suporte ao participante, ajustes em tempo real, resposta a imprevistos.</p>
+<p><strong>Depois do evento:</strong> encerramento de contratos, pagamento de fornecedores, análise do que funcionou e do que precisa ser melhorado para a próxima edição.</p>
+<p>A antecedência aqui é tão importante quanto nas viagens: quanto mais cedo se decide <strong>data, local e tamanho do evento</strong>, mais fácil é costurar tudo sem surto coletivo – e sem pagar “tarifa de emergência” em tudo.</p>
+<h2>3. MICE na prática: hospedagem, centro de eventos, serviços terrestres e receptivo</h2>
+<p>Quando a decisão de “vamos fazer/participar do evento” já está tomada, entra o mundo MICE (Meetings, Incentives, Conferences, Exhibitions), mesmo que ninguém use esse nome no dia a dia.</p>
+<p>Na prática, significa articular quatro grandes blocos:</p>
+<h3>Hospedagem e local do evento</h3>
+<p>Em eventos mais simples, basta um hotel bem localizado. Em eventos maiores, o hotel passa a ser também <strong>local de reunião</strong>: salas, auditórios, centro de convenções interno.</p>
+<p>Aqui entram decisões como:</p>
+<ul>
+<li>bloquear um número de apartamentos para o grupo,</li>
+<li>garantir que as salas de reunião comportem o formato (plenária, salas paralelas, workshops),</li>
+<li>negociar condições para coffee breaks, almoços, jantares, festa de encerramento.</li>
+</ul>
+<p>Muitas vezes, faz sentido <strong>viajar antes</strong> para uma visita técnica: ver a estrutura ao vivo, caminhar pelo espaço, visualizar fluxo de pessoas. Essa visita prévia costuma evitar problemas que só aparecem quando se pisa no lugar.</p>
+<h3>Serviços terrestres e receptivo</h3>
+<p>Em eventos com vários participantes, o traslado deixa de ser detalhe.</p>
+<p>Surge a necessidade de:</p>
+<ul>
+<li>transporte aeroporto ↔ hotel ↔ local do evento,</li>
+<li>veículos dedicados para diretores ou convidados VIP,</li>
+<li>equipe de receptivo no aeroporto e no hotel para direcionar as pessoas, responder dúvidas, resolver pequenos problemas na hora.</li>
+</ul>
+<p>Esse receptivo funciona como <strong>“braço estendido”</strong> da empresa no destino: é quem vê o que o gestor não consegue ver à distância.</p>
+<h3>Fornecedores de evento e memorabilidade</h3>
+<p>Em eventos mais completos, entram outras camadas:</p>
+<ul>
+<li>audiovisual (som, luz, projeção, telão),</li>
+<li>gravação e filmagem profissional,</li>
+<li>fotografia, cenografia, decoração,</li>
+<li>equipe para produção da festa de encerramento,</li>
+<li>apoio na relação com palestrantes, mestres de cerimônia, DJs ou bandas.</li>
+</ul>
+<p>É esse conjunto que dá a “cara” do evento – o que torna a experiência memorável e faz com que ele seja repetido como parte da estratégia comercial da empresa, e não só como um esforço pontual.</p>
+<h2>4. Agência como copiloto estratégico: dividindo o peso do evento</h2>
+<p>Tudo isso é bonito no papel, mas alguém precisa fazer acontecer.</p>
+<p>Se o setor interno de viagens tenta segurar tudo sozinho, a chance de sobrecarga é enorme: orçamentos para todos os lados, contratos que precisam ser lidos, fornecedores ligando o tempo todo, participantes com dúvidas, diretores pedindo ajustes em cima da hora.</p>
+<p>É aqui que a <strong>agência de viagens especializada em corporativo e eventos</strong> entra como <strong>copiloto estratégico</strong> – e não apenas como “emissora de passagem”.</p>
+<p>Esse papel de copiloto inclui:</p>
+<ul>
+<li>centralizar a parte de <strong>viagens, hospedagem e traslados</strong>,</li>
+<li>apoiar na busca e na negociação com <strong>hotéis, centros de eventos e empresas de receptivo</strong>,</li>
+<li>indicar e coordenar <strong>fornecedores locais</strong> (transporte, audiovisual, staff de apoio),</li>
+<li>ser ponto de contato para os participantes em questões logísticas,</li>
+<li>dividir com o cliente a responsabilidade de acompanhar o que está acontecendo em tempo real.</li>
+</ul>
+<p>O modelo vencedor é justamente esse: a empresa foca no conteúdo, no objetivo comercial, em quem precisa se encontrar com quem, no que precisa ser dito no palco. A agência ajuda a garantir que <strong>tudo o que é infraestrutura e logística funcione</strong> – e que ninguém fique perdido no aeroporto sem saber para onde ir.</p>
+<p>Assim, mesmo empresas menores conseguem organizar eventos grandes, porque não estão sozinhas: têm um time de bastidores que sustenta a operação.</p>
+<h2>5. Planejar quem faz o quê: mapa de responsabilidades que evita confusão</h2>
+<p>Um dos grandes motivos pelos quais eventos viram caos é simples: ninguém sabe exatamente <strong>quem é responsável por quê</strong>.</p>
+<p>Gestão de eventos madura começa com um mapa de responsabilidades. Não precisa ser um organograma complexo; basta ter clareza de funções:</p>
+<ul>
+<li>quem responde pela <strong>decisão final</strong> de orçamento e fornecedores;</li>
+<li>quem faz a interface com a agência;</li>
+<li>quem fala com o hotel e com o centro de eventos;</li>
+<li>quem cuida dos <strong>convidados internos</strong> (colaboradores) e externos (clientes, parceiros);</li>
+<li>quem aprova a comunicação, convites, material de divulgação;</li>
+<li>quem acompanha a operação no dia (ou nos dias) do evento.</li>
+</ul>
+<p>Esse mapa evita um cenário comum: fornecedor recebendo instruções conflitantes de três pessoas diferentes, e-mail atravessado, expectativa desalinhada.</p>
+<p>Uma vez definidas as funções, o gestor de viagens deixa de ser “a pessoa para quem tudo é jogado” e passa a ser <strong>um dos pilares</strong> dentro de uma estrutura clara. Ele continua fundamental, mas não está mais sozinho.</p>
+<div class="article-box-cta"><p><strong>Está com dificuldade para montar o mapa de responsabilidades ou dividir o que fica com a agência e o que fica com o time interno?</strong></p><p>Se quiser, você pode tirar dúvidas rápidas com a nossa equipe pelo WhatsApp antes de bater o martelo sobre funções e parceiros do seu próximo evento.</p><a class="cta-button cta-button-secondary" href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20gest%C3%A3o%20de%20eventos%20corporativos%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20o%20mapa%20de%20responsabilidades%20do%20meu%20evento." target="_blank">FALAR COM A EQUIPE NO WHATSAPP</a></div><h2>6. Gestão de riscos e plano de contingência: o protocolo 3D</h2>
+<p>Evento sem imprevisto é lenda.</p>
+<p>Pode ser chuva forte no dia da montagem, voo cancelado com palestrante dentro, atraso no transporte, problema técnico no som, fornecedor que falha na entrega, grupo que se perde no deslocamento.</p>
+<p>O que diferencia um evento caótico de um evento bem gerido não é a ausência de problemas, e sim <strong>a forma como se reage a eles</strong>.</p>
+<p>Uma forma simples de olhar para isso é adotar um <strong>protocolo 3D</strong>:</p>
+<ol>
+<li>
+<strong>Detectar</strong><br/>
                     Ter olhos e ouvidos atentos para perceber cedo quando algo não está indo bem:
                     atrasos recorrentes de traslado, fila se formando no credenciamento, clima afetando estrutura ao ar livre, fornecedor sinalizando dificuldade de entrega. Esse olhar vem de experiência, mas também de ter <strong>pessoas espalhadas</strong> pelos pontos críticos: aeroporto, hotel, entrada do evento, backstage.
                 </li>
-                <li>
-                    <strong>Decidir</strong><br>
+<li>
+<strong>Decidir</strong><br/>
                     Diante de um problema, é preciso ter <strong>autonomia e critérios</strong> para decidir:
                     remanejar transporte, antecipar ou atrasar um bloco da programação, deslocar pessoas para outra sala, acionar plano B de fornecedor. Decisões podem ser tomadas sozinho em casos simples ou em conjunto quando o impacto é maior. O importante é que não fiquem paradas porque “ninguém sabe quem manda”.
                 </li>
-                <li>
-                    <strong>Desviar</strong><br>
+<li>
+<strong>Desviar</strong><br/>
                     Depois da decisão, vem o desvio de rota na prática – e, principalmente, a <strong>comunicação rápida</strong>:
                     avisar participantes sobre mudança de horário ou local, informar palestrantes, equipe técnica, receptivo, hotel, usar canais claros (grupo de WhatsApp, e-mail, app de evento) para que ninguém seja pego de surpresa.
                 </li>
-            </ol>
-
-            <p>Esse 3D – detectar, decidir, desviar – é quase um <strong>manual operacional de crise</strong>. Ele impede que um problema pontual vire desastre e faz parte do <strong>Duty of Care</strong> da empresa: o dever de cuidar das pessoas que estão ali a serviço do negócio.</p>
-
-            <p>Quanto mais gente experiente e mais parceiros confiáveis há na operação, mais fácil é aplicar esse protocolo sem pânico.</p>
-
-            <h2>7. Recomendações finais: eventos que libertam o cliente para focar no estratégico</h2>
-
-            <p>O objetivo de toda essa estrutura não é deixar a gestão de eventos mais pesada. É justamente o contrário: <strong>tirar o peso da cabeça do gestor de viagens e do time interno</strong>.</p>
-
-            <p>Quando você entende em que nível de evento está se metendo, planeja em fases (antes, durante, depois), organiza bem a parte MICE (hospedagem, centro de eventos, terrestre, receptivo, produção), trata a agência como copiloto estratégico, define claramente quem faz o quê e tem um protocolo simples de gestão de riscos e contingência, o evento deixa de ser um monstro incontrolável e passa a ser um <strong>projeto de alto impacto</strong>, com começo, meio e fim.</p>
-
-            <p>O cliente interno (diretoria, área comercial, marketing) consegue focar em:</p>
-
-            <ul>
-                <li>falar com os clientes certos,</li>
-                <li>cuidar das palestras,</li>
-                <li>fechar negócios,</li>
-                <li>fortalecer relacionamento.</li>
-            </ul>
-
-            <p>Enquanto isso, você e seus parceiros garantem que:</p>
-
-            <ul>
-                <li>todos cheguem,</li>
-                <li>todos sejam bem tratados,</li>
-                <li>tudo funcione o suficiente para que o objetivo principal aconteça.</li>
-            </ul>
-
-            <p>No fim, é isso que diferencia um evento qualquer de um <strong>evento vencedor</strong>: não é o quanto se gastou em tela de LED, e sim o quanto a operação foi bem pensada para que as pessoas certas estivessem no lugar certo, na hora certa – com apoio suficiente para que nada desvie o foco do que realmente importa.</p>
-
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Pronto para simplificar seu próximo evento?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20planejar%20um%20evento%20corporativo." target="_blank" class="cta-button">
-                    SOLICITE UM ORÇAMENTO SEM COMPROMISSO
-                 </a>
-            </div>
-            
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
+</ol><p>Em resumo, o 3D é um lembrete simples para o time de bastidores: detectar cedo o problema, decidir com critério e desviar rápido, sempre comunicando bem para proteger tanto as pessoas quanto os objetivos do evento.</p>
+<p>Esse 3D – detectar, decidir, desviar – é quase um <strong>manual operacional de crise</strong>. Ele impede que um problema pontual vire desastre e faz parte do <strong>Duty of Care</strong> da empresa: o dever de cuidar das pessoas que estão ali a serviço do negócio.</p>
+<p>Quanto mais gente experiente e mais parceiros confiáveis há na operação, mais fácil é aplicar esse protocolo sem pânico.</p>
+<h2>7. Recomendações finais: eventos que libertam o cliente para focar no estratégico</h2>
+<p>O objetivo de toda essa estrutura não é deixar a gestão de eventos mais pesada. É justamente o contrário: <strong>tirar o peso da cabeça do gestor de viagens e do time interno</strong>.</p>
+<p>Quando você entende em que nível de evento está se metendo, planeja em fases (antes, durante, depois), organiza bem a parte MICE (hospedagem, centro de eventos, terrestre, receptivo, produção), trata a agência como copiloto estratégico, define claramente quem faz o quê e tem um protocolo simples de gestão de riscos e contingência, o evento deixa de ser um monstro incontrolável e passa a ser um <strong>projeto de alto impacto</strong>, com começo, meio e fim.</p>
+<p>O cliente interno (diretoria, área comercial, marketing) consegue focar em:</p>
+<ul>
+<li>falar com os clientes certos,</li>
+<li>cuidar das palestras,</li>
+<li>fechar negócios,</li>
+<li>fortalecer relacionamento.</li>
+</ul>
+<p>Enquanto isso, você e seus parceiros garantem que:</p>
+<ul>
+<li>todos cheguem,</li>
+<li>todos sejam bem tratados,</li>
+<li>tudo funcione o suficiente para que o objetivo principal aconteça.</li>
+</ul>
+<p>No fim, é isso que diferencia um evento qualquer de um <strong>evento vencedor</strong>: não é o quanto se gastou em tela de LED, e sim o quanto a operação foi bem pensada para que as pessoas certas estivessem no lugar certo, na hora certa – com apoio suficiente para que nada desvie o foco do que realmente importa.</p>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div class="article-cta-final"><strong>Ficou com alguma dúvida sobre seu próximo evento corporativo?</strong><span>Envie uma mensagem pelo WhatsApp e tire dúvidas rápidas sobre formato, parceiros e logística de eventos que envolvem viagens, hospedagem e receptivo.</span><a href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20gest%C3%A3o%20de%20eventos%20corporativos%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20um%20evento%20que%20estou%20organizando." rel="noopener" target="_blank">FALE COM A NOSSA EQUIPE PELO WHATSAPP</a></div>
 </div>
-
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>

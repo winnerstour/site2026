@@ -1,190 +1,627 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Viagens corporativas como investimento</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Link para o CSS de Estilo Base (Modular) -->
-  <link rel="stylesheet" href="./artigos_base.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control"/>
+<title>WinnersTour — Viagens corporativas como investimento</title>
 
-</head>
+
+
+<!-- Link para o CSS de Estilo Base (Modular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/><link href="./artigos_base.css" rel="stylesheet"/><style>
+    :root{
+      --brand:#f97316;
+      --brand-shadow:#c2410c;
+      --bg:#f3f4f6;
+      --text:#111827;
+      --muted:#6b7280;
+      --max-width:820px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    body{
+      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit;}
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* HERO EM BARRA CHEIA (inclui cabeçalho) */
+    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+      color:#fff;
+      min-height:68vh;
+      display:flex;
+      flex-direction:column;
+      padding:18px 18px 28px 18px;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    /* TOPBAR DENTRO DO HERO */
+    .hero-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:26px;
+    }
+    .hero-logo{
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.4rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .hero-actions a.hero-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px;
+    }
+    .hero-actions .whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-actions .whatsapp-icon img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+    }
+    .hero-whatsapp-icon{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+    .hero-menu-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.85);
+      background:transparent;
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
+    }
+    .hero-menu-btn .hamburger{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    /* CONTEÚDO PRINCIPAL DO HERO */
+    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-text h1{
+      margin:0 0 16px 0;
+      font-size:2.6rem;
+      line-height:1.25;
+      font-weight:800;
+    }
+    .hero-text h1.hero-title-small{
+      font-size:2.1rem;
+    }
+    .hero-scroll-hint{
+      font-size:0.9rem;
+      opacity:0.9;
+      margin:0;
+    }
+    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Category/Meta ocultos, só para não quebrar o JS se forem usados */
+    #offerCategory,
+    #offerMeta{
+      display:none;
+    }
+
+    /* BARRA DE CTA (CTA1 + CTA2) – estilo “card” do Viver de Blog */
+    .offer-cta-strip{
+      max-width:var(--max-width);
+      margin:-44px auto 32px auto;
+      background:#ffffff;
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.18);
+      padding:22px 26px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+    }
+    .offer-cta-main{
+      flex:1 1 65%;
+      font-size:0.98rem;
+      color:var(--text);
+    }
+    .offer-cta-main p{
+      margin:0;
+    }
+    .offer-cta-actions{
+      flex:0 0 260px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .offer-cta-strip-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      padding:12px 20px;
+      border-radius:999px;
+      background:#22c55e;
+      color:#fff;
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      border:none;
+      cursor:pointer;
+      text-align:center;
+    }
+    .offer-cta-strip-button:hover{
+      background:#16a34a;
+    }
+
+    /* CORPO DO ARTIGO */
+    .article-body{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+    .article-body p{
+      margin:0 0 20px 0;
+    }
+    .article-body h2{
+      font-size:1.7rem;
+      margin:40px 0 16px 0;
+      font-weight:800;
+      color:var(--brand);
+    }
+    .article-body ul{
+      margin:16px 0 24px 0;
+      padding-left:24px;
+    }
+    .article-body li{
+      margin-bottom:10px;
+    }
+    .content-section{
+      margin-bottom:12px;
+    }
+
+    /* CTA FINAL FIXO */
+    
+.article-cta-final{
+      margin:48px 0 32px 0;
+      padding:28px 22px 30px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-shadow));
+      border:none;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      color:#fff;
+      box-shadow:0 18px 45px rgba(15,23,42,0.35);
+    }
+    .article-cta-final strong{
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .article-cta-final span{
+      max-width:540px;
+      font-size:0.98rem;
+    }
+    .article-cta-final a{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 28px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--brand);
+      font-family:'Montserrat',system-ui,sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      border:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+    .article-cta-final a:hover{
+      background:#fef3c7;
+      color:var(--brand-shadow);
+    }
+
+    /* MENSAGEM DE ERRO DO JS */
+    #offerError{
+      max-width:var(--max-width);
+      margin:0 auto 40px auto;
+      padding:0 18px;
+    }
+    .error-box{
+      padding:16px 18px;
+      border-radius:16px;
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      font-size:0.9rem;
+    }
+
+    /* MENU OVERLAY (abre ao clicar em “Menu”) */
+    .site-menu{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.78);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:90px;
+      z-index:60;
+    }
+    .site-menu.open{
+      display:flex;
+    }
+    .site-menu-panel{
+      background:#ffffff;
+      border-radius:16px;
+      padding:18px 24px;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 18px 40px rgba(15,23,42,0.45);
+      font-family:'Montserrat',system-ui,sans-serif;
+    }
+    .site-menu-panel h2{
+      margin:0 0 12px 0;
+      font-size:1rem;
+      font-weight:800;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a{
+      display:block;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,0.35);
+      font-size:0.9rem;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+    .site-menu-panel a:first-of-type{
+      border-top:none;
+    }
+    .site-menu-close{
+      margin-top:10px;
+      text-align:right;
+      font-size:0.85rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:960px){
+      .hero-main{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+      .hero-image{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .hero-text h1{
+        font-size:2.2rem;
+      }
+      .offer-cta-strip{
+        flex-direction:column;
+        align-items:flex-start;
+        margin:-44px auto 32px auto;
+      }
+      .offer-cta-actions{
+        width:100%;
+        flex:0 0 auto;
+      }
+      .offer-cta-strip-button{
+        width:100%;
+      }
+    }
+    @media (max-width:640px){
+      .hero-wrap{
+        padding:16px 14px 40px 14px;
+        min-height:70vh;
+      }
+      .hero-topbar{
+        margin-bottom:24px;
+      }
+      .hero-logo{
+        font-size:1.2rem;
+      }
+      .hero-actions{
+        gap:10px;
+      }
+      .hero-main{
+        gap:22px;
+      }
+      .hero-text h1{
+        font-size:1.8rem;
+      }
+      .article-body{
+        padding:0 14px;
+      }
+      #offerError{
+        padding:0 14px;
+      }
+    }
+  </style>
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/><style>
+/* Ajustes específicos para artigos corporativos WinnersTour */
+
+/* Hero sem imagem: uma coluna, título centralizado */
+.hero-main-single{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero-main-single .hero-text{
+  text-align:center;
+  margin:0 auto;
+}
+.hero-main-single .hero-text h1{
+  margin-bottom:12px;
+}
+
+/* Mesmo ritmo de leitura do modelo de lazer + respiro no início */
+.article-body{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+.article-body > p:first-of-type{
+  margin-top:24px;
+}
+
+/* Citações com o mesmo tamanho do corpo do texto */
+.article-body blockquote{
+  font-size:1.1rem;
+  margin:24px 0;
+  font-style:italic;
+}
+
+/* Menu hambúrguer com ícones + texto */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
 <!-- MENU SUPERIOR (HEADER) -->
-<div id="main-header">
-    <a href="index.html" class="logo">WINNERS TOUR</a>
-    
-    <nav class="desktop-nav">
-        <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank">LOJA VIRTUAL</a>
-        <a href="index.html">EVENTOS</a>
-        <a href="lazer.html">LAZER</a>
-        <a href="viagens_corporativas_investimento.html">CORPORATIVO</a>
-    </nav>
-    
-    <span class="menu-icon">☰</span> 
+
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main hero-main-single">
+<div class="hero-text">
+
+
+<h1 id="offerTitle">Viagens corporativas como investimento: o olhar de quem cuida das viagens</h1>
+<p class="hero-scroll-hint">Role a página para ver o artigo completo ↓</p>
 </div>
 
-<div id="main-grid">
-    
-    <div id="main-sidebar"></div> 
-    
-    <div id="main-content">
-        
-        <!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
-        <div class="hero-article">
-            <h1>Viagens corporativas como investimento: o olhar de quem cuida das viagens</h1>
-            <p class="author-meta">
-                Publicado por Equipe Winners Tour em Novembro de 2025
-            </p>
-            <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20a%20política%20de%20viagens%20da%20minha%20empresa." target="_blank" class="cta-button">
-                REALIZE UMA ANÁLISE DE CUSTOS E RETORNO
-            </a>
-        </div>
-        <!-- BLOC_HERO_END -->
-        
-        <!-- BLOC_BODY_START: CORPO DO ARTIGO -->
-        <div class="article-body">
-            
-            <p>Se você cuida das viagens da empresa, provavelmente vive no meio de dois fogos.</p>
-
-            <p>De um lado, a diretoria e o financeiro pedindo para <strong>reduzir custo</strong>. Do outro, o comercial, o marketing e os projetos pedindo para <strong>estar presente</strong> em clientes, obras, feiras e eventos.</p>
-
-            <p>Quando todo gasto de viagem entra no sistema como “despesa”, a pressão tende a ir sempre para o mesmo lado: cortar, adiar, mandar menos gente, escolher o mais barato a qualquer custo. Só que você sabe, na prática, que muita coisa importante acontece justamente quando alguém entra no avião e vai lá olhar o cliente no olho.</p>
-
-            <p>Este artigo é um convite para mudar o enquadramento — começando por você, que faz essa gestão: sair da pergunta “quanto essa viagem custa?” e passar para “<strong>que retorno essa viagem precisa trazer para valer a pena?</strong>”.</p>
-
-            <h2>1. A armadilha de olhar só para o centro de custo</h2>
-
-            <p>Quando viagem é vista apenas como “T&amp;E”, ela entra na mesma caixinha de água, luz, aluguel e papel de impressora. O sistema mostra um valor total e, se esse número parece alto, vem a reação automática: “temos que cortar”.</p>
-
-            <p>Você sente isso quando:</p>
-
-            <ul>
-                <li>te pedem para “segurar ao máximo” passagens e hotéis,</li>
-                <li>questionam cada deslocamento como se fosse supérfluo,</li>
-                <li>comparam a viagem com outras despesas fixas e pedem redução linear.</li>
-            </ul>
-
-            <p>O problema é que <strong>viagem não é igual conta de luz</strong>. Muitas vezes, ela está diretamente ligada à receita: manutenção de clientes estratégicos, abertura de mercado, execução de projetos, participação em feiras que geram pipeline para o ano inteiro.</p>
-
-            <p>Se a empresa só olha o extrato de gastos, mas não enxerga o que essas viagens destravam, você acaba na posição ingrata de “cortador de custo”, mesmo sabendo que alguns cortes podem sair bem mais caros lá na frente — na forma de cliente perdido ou oportunidade não aproveitada.</p>
-
-            <h2>2. Três tipos de viagem que você precisa defender como investimento</h2>
-
-            <p>Do seu lado da mesa, ajuda muito diferenciar <strong>qual tipo de viagem está em jogo</strong>. Nem tudo é estratégico, mas existem alguns formatos que já nascem com cara de investimento.</p>
-
-            <p>O primeiro são as <strong>rotas comerciais e visitas a clientes</strong>. Representantes que passam a semana numa cidade ou região, visitando carteiras inteiras, não estão “gastando diária”: estão protegendo faturamento, reativando contas paradas, abrindo espaço em clientes que hoje compram mais da concorrência. Sem essa presença periódica, o relacionamento esfria — e quem ocupa o espaço é outro fornecedor.</p>
-
-            <p>O segundo são as <strong>mobilizações para obra, implantação ou operação</strong>. Quando uma equipe é deslocada por semanas ou meses para montar, instalar ou operar algo, o custo de viagem entra junto com o custo de produção. É ele que viabiliza entregar o projeto, cumprir contrato, manter uma operação funcionando. Cortar aqui não é “economizar viagem”, é comprometer a entrega.</p>
-
-            <p>O terceiro são as <strong>feiras e eventos estratégicos</strong>. Aqui a conta é mais sensível, porque envolve levar equipe, montar estande, tirar pessoas do escritório. Mas, quando a participação é bem planejada, você sabe que feira não é passeio: é geração de leads, fortalecimento de marca, encontro com parceiros e clientes num único lugar. Reduzir a ida a “mandar só alguém para marcar presença” normalmente é a receita certa para gastar e não colher quase nada.</p>
-
-            <p>Como gestor de viagens, seu papel não é defender que “toda viagem é sagrada”, mas sim separar com clareza: o que é deslocamento operacional que pode ser otimizado — e o que é deslocamento <strong>estratégico</strong>, que precisa ser tratado como investimento.</p>
-
-            <h2>3. Mudar a pergunta: da fatura para o retorno esperado (e o custo invisível da não-viagem)</h2>
-
-            <p>Uma das mudanças mais poderosas que você pode provocar é trocar a ordem das perguntas.</p>
-
-            <p>Em vez de começar por “quanto temos para gastar nessa viagem?”, comece internamente por:</p>
-
-            <blockquote>
-                <p><strong>“O que essa viagem precisa entregar para fazer sentido?”</strong></p>
-            </blockquote>
-
-            <p>Para uma rota comercial, isso pode significar listar os principais clientes a serem visitados, as contas em risco, os prospects que estão prontos para uma conversa presencial. Para uma feira, pode ser uma meta aproximada de leads qualificados, reuniões marcadas, parceiros abordados. Para uma mobilização de projeto, as entregas técnicas e marcos de cronograma que dependem de presença física.</p>
-
-            <p>Quando você ajuda as áreas a pensarem a viagem assim, o custo deixa de ser um número solto e passa a ser comparado com algo concreto: se essa viagem custa X, que tamanho de proteção de receita ou de oportunidade ela precisa buscar para valer a pena?</p>
-
-            <p>E aqui entra um ponto que quase nunca aparece na planilha: o <strong>custo invisível da não-viagem</strong>. À primeira vista, parece aquela lógica do Július: “se eu não viajar, o gasto é zero”. Só que, na prática, a não-viagem pode ser justamente a opção mais cara que existe — quando resulta em cliente perdido, mercado conquistado pelo concorrente, faturamento menor no ano seguinte.</p>
-
-            <p>Um cliente grande que não é visitado quando deveria pode esfriar o relacionamento e migrar para outro fornecedor. Uma feira em que você decide “economizar” abre espaço para a concorrência ocupar o lugar que poderia ser seu. Um problema técnico que não é tratado presencialmente pode virar cancelamento de contrato. Nada disso aparece na linha “viagens” da despesa, mas aparece lá na frente como perda de receita.</p>
-
-            <p>A pergunta que fica, então, não é só “quanto custa essa viagem?”, mas também:</p>
-
-            <blockquote>
-                <p><strong>“Quanto estamos deixando de ganhar por não estar presentes onde deveríamos?”</strong></p>
-            </blockquote>
-
-            <p>Quando você começa a colocar esse custo invisível na conta, a ideia de cortar viagem a qualquer preço perde força. O raciocínio fica mais maduro: se <strong>não viajar</strong> representa risco alto de perder receita, então aquela viagem não é um luxo — é um <strong>investimento de proteção</strong>. E é a partir dessa lógica que você consegue defender, com muito mais segurança, quais deslocamentos fazem sentido e quais podem, aí sim, ser cortados ou substituídos.</p>
-
-            <h2>4. Colocar números na mesa (sem virar um estudo impossível)</h2>
-
-            <p>Você não precisa montar um modelo econométrico para provar que viagem pode ser investimento. Alguns comparativos simples já mudam a conversa com diretoria e financeiro.</p>
-
-            <p>Comece por um exemplo real, de preferência numa rota ou evento que a empresa conhece bem:</p>
-
-            <ul>
-                <li>escolha um período em que a equipe <strong>viajou com regularidade</strong> para atender clientes de uma região ou participou de um grande evento;</li>
-                <li>levante quanto foi investido em viagens ligadas a esse movimento (aproximadamente);</li>
-                <li>identifique negócios fechados, contratos renovados ou ampliados, clientes mantidos graças a essa presença.</li>
-            </ul>
-
-            <p>Você provavelmente vai encontrar relações do tipo: investir um determinado valor em viagens comerciais que ajudam a manter uma carteira muito maior de faturamento, ou colocar um montante numa feira que, ao longo de 12 meses, gera contratos que multiplicam esse valor várias vezes.</p>
-
-            <p>Mesmo que não seja possível traçar uma linha perfeita “essa passagem = esse contrato”, o raciocínio muda. A viagem deixa de ser um buraco negro de despesa e passa a ser vista como <strong>parte do custo de aquisição, retenção e expansão de receita</strong>.</p>
-
-            <p>A partir daí, você pode defender, com muito mais tranquilidade, que cortar viagens estratégicas impacta diretamente essa receita e que o lugar correto de discutir viagens não é só no centro de custo, mas também na pauta de crescimento.</p>
-
-            <h2>5. Política de viagens: de “polícia de gasto” a filtro de investimento</h2>
-
-            <p>Por fim, tudo isso precisa aparecer em algum lugar que não dependa só da sua memória: na <strong>política de viagens</strong>.</p>
-
-            <p>Uma política escrita apenas para dizer “não pode” tende a te empurrar para o papel de guardião do orçamento – e só. Uma política desenhada como filtro de investimento te permite algo mais sofisticado:</p>
-
-            <ul>
-                <li>separar viagens de rotina que podem ser reduzidas, combinadas ou substituídas por canais digitais,</li>
-                <li>definir quais tipos de viagem são considerados <strong>estratégicos</strong> (clientes-chave, grandes projetos, feiras definidas como prioritárias),</li>
-                <li>estabelecer critérios simples para aprovação, sempre relacionando viagem com objetivo de negócio.</li>
-            </ul>
-
-            <p>Assim, quando alguém questionar “por que estamos gastando tanto com essas viagens?”, você não responde só com “porque a área pediu”. Você responde com:</p>
-
-            <ul>
-                <li>qual é o papel daquela viagem na manutenção ou expansão de receita,</li>
-                <li>quais os riscos de não realizá-la,</li>
-                <li>e como ela foi planejada para aumentar as chances de retorno.</li>
-            </ul>
-
-            <p>Você deixa de ser apenas o “bombeiro” que apaga incêndio de custo e passa a ser visto como <strong>gestor de um portfólio de viagens-investimento</strong>: algumas são ajustadas, outras descartadas, e outras defendidas com firmeza porque sustentam a saúde da empresa no médio e longo prazo.</p>
-
-            <h2>Conclusão: o gestor de viagens como guardião do investimento certo</h2>
-
-            <p>Viagem corporativa sempre vai aparecer na planilha como gasto. O que muda é a história que você ajuda a empresa a enxergar por trás desses números.</p>
-
-            <p>Quando você trata tudo como despesa a cortar, corre o risco de economizar hoje e perder muito amanhã. Quando você ajuda a diferenciar o que é custo supérfluo do que é <strong>investimento em relacionamento, receita e posicionamento</strong>, passa a decidir melhor onde vale a pena apertar – e onde é perigoso mexer.</p>
-
-            <p>No fim, a pergunta que você pode levar para cada discussão não é “dá para gastar menos?”, mas:</p>
-
-            <blockquote>
-                <p><strong>“Essa viagem, do jeito que está desenhada, tem cara de custo ou cara de investimento?”</strong></p>
-            </blockquote>
-
-            <p>A partir daí, seu trabalho deixa de ser só emitir, remarcar e cortar. Vira parte ativa da estratégia da empresa — exatamente o lugar onde quem cuida bem de viagens merece estar.</p>
-
-            <!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="font-size: 1.2rem; font-weight: 700; font-family: 'Open Sans', sans-serif;">Quer transformar custos em investimentos?</p>
-                 <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20analisar%20viagens%20como%20investimento." target="_blank" class="cta-button">
-                    FALE COM NOSSO TIME DE ESTRATÉGIA
-                 </a>
-            </div>
-            
-        </div>
-        <!-- BLOC_BODY_END -->
-        
-    </div>
 </div>
+</div>
+</header><div class="site-menu" id="siteMenu"><div class="site-menu-panel"><h2>Mais opções</h2><a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a><div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div></div></div><div id="main-grid">
+<div id="main-sidebar"></div>
+<div id="main-content">
+<!-- BLOC_HERO_START: TÍTULO E CTA PRINCIPAL -->
 
+<!-- BLOC_HERO_END -->
+<!-- BLOC_BODY_START: CORPO DO ARTIGO -->
+<div class="article-body">
+<p>Se você cuida das viagens da empresa, provavelmente vive no meio de dois fogos.</p>
+<p>De um lado, a diretoria e o financeiro pedindo para <strong>reduzir custo</strong>. Do outro, o comercial, o marketing e os projetos pedindo para <strong>estar presente</strong> em clientes, obras, feiras e eventos.</p>
+<p>Quando todo gasto de viagem entra no sistema como “despesa”, a pressão tende a ir sempre para o mesmo lado: cortar, adiar, mandar menos gente, escolher o mais barato a qualquer custo. Só que você sabe, na prática, que muita coisa importante acontece justamente quando alguém entra no avião e vai lá olhar o cliente no olho.</p>
+<p>Este artigo é um convite para mudar o enquadramento — começando por você, que faz essa gestão: sair da pergunta “quanto essa viagem custa?” e passar para “<strong>que retorno essa viagem precisa trazer para valer a pena?</strong>”.</p>
+<h2>1. A armadilha de olhar só para o centro de custo</h2>
+<p>Quando viagem aparece apenas como “T&amp;E” na planilha, ela entra no mesmo balaio de aluguel, energia e outros custos fixos. Se o número parece alto, a reação automática é: <strong>“temos que cortar”</strong>.</p>
+<p>Você sente isso quando:</p>
+<ul>
+<li>te pedem para “segurar ao máximo” passagens e hotéis,</li>
+<li>questionam cada deslocamento como se fosse supérfluo,</li>
+<li>comparam viagem com outras despesas fixas e pedem redução linear, sem olhar o que está por trás.</li>
+</ul>
+<p>O problema é que <strong>nem toda viagem é igual</strong>. Algumas são puramente operacionais e até podem ser reduzidas ou substituídas por canais digitais. Outras, porém, <strong>sustentam receita, relacionamento e posições estratégicas</strong> que não aparecem na mesma linha da planilha.</p>
+<p>Quando a empresa enxerga tudo só como gasto no centro de custo, corre o risco de cortar justamente viagens que protegem faturamento, renovam contratos ou garantem presença em clientes-chave. O impacto não vem na fatura da agência, mas meses depois, na forma de cliente perdido ou oportunidade que nunca saiu do papel.</p>
+<h2>2. Três tipos de viagem que você precisa defender como investimento</h2>
+<p>Do seu lado da mesa, ajuda muito diferenciar <strong>qual tipo de viagem está em jogo</strong>. Nem tudo é estratégico, mas existem alguns formatos que já nascem com cara de investimento.</p>
+<p>O primeiro são as <strong>rotas comerciais e visitas a clientes</strong>. Representantes que passam a semana numa cidade ou região, visitando carteiras inteiras, não estão “gastando diária”: estão protegendo faturamento, reativando contas paradas, abrindo espaço em clientes que hoje compram mais da concorrência. Sem essa presença periódica, o relacionamento esfria — e quem ocupa o espaço é outro fornecedor.</p>
+<p>O segundo são as <strong>mobilizações para obra, implantação ou operação</strong>. Quando uma equipe é deslocada por semanas ou meses para montar, instalar ou operar algo, o custo de viagem entra junto com o custo de produção. É ele que viabiliza entregar o projeto, cumprir contrato, manter uma operação funcionando. Cortar aqui não é “economizar viagem”, é comprometer a entrega.</p>
+<p>O terceiro são as <strong>feiras e eventos estratégicos</strong>. Aqui a conta é mais sensível, porque envolve levar equipe, montar estande, tirar pessoas do escritório. Mas, quando a participação é bem planejada, você sabe que feira não é passeio: é geração de leads, fortalecimento de marca, encontro com parceiros e clientes num único lugar. Reduzir a ida a “mandar só alguém para marcar presença” normalmente é a receita certa para gastar e não colher quase nada.</p>
+<p>Como gestor de viagens, seu papel não é defender que “toda viagem é sagrada”, mas sim separar com clareza: o que é deslocamento operacional que pode ser otimizado — e o que é deslocamento <strong>estratégico</strong>, que precisa ser tratado como investimento.</p>
+<h2>3. Mudar a pergunta: da fatura para o retorno esperado (e o custo invisível da não-viagem)</h2>
+<p>Uma das mudanças mais poderosas que você pode provocar é trocar a ordem das perguntas.</p>
+<p>Em vez de começar por “quanto temos para gastar nessa viagem?”, comece internamente por:</p>
+<blockquote>
+<p><strong>“O que essa viagem precisa entregar para fazer sentido?”</strong></p>
+</blockquote>
+<p>Para uma rota comercial, isso pode significar listar os principais clientes a serem visitados, as contas em risco, os prospects que estão prontos para uma conversa presencial. Para uma feira, pode ser uma meta aproximada de leads qualificados, reuniões marcadas, parceiros abordados. Para uma mobilização de projeto, as entregas técnicas e marcos de cronograma que dependem de presença física.</p>
+<p>Quando você ajuda as áreas a pensarem a viagem assim, o custo deixa de ser um número solto e passa a ser comparado com algo concreto: se essa viagem custa X, que tamanho de proteção de receita ou de oportunidade ela precisa buscar para valer a pena?</p>
+<p>E aqui entra um ponto que quase nunca aparece na planilha: o <strong>custo invisível da não-viagem</strong>. À primeira vista, parece aquela lógica do Július: “se eu não viajar, o gasto é zero”. Só que, na prática, a não-viagem pode ser justamente a opção mais cara que existe — quando resulta em cliente perdido, mercado conquistado pelo concorrente, faturamento menor no ano seguinte.</p>
+<p>Um cliente grande que não é visitado quando deveria pode esfriar o relacionamento e migrar para outro fornecedor. Uma feira em que você decide “economizar” abre espaço para a concorrência ocupar o lugar que poderia ser seu. Um problema técnico que não é tratado presencialmente pode virar cancelamento de contrato. Nada disso aparece na linha “viagens” da despesa, mas aparece lá na frente como perda de receita.</p>
+<p>A pergunta que fica, então, não é só “quanto custa essa viagem?”, mas também:</p>
+<blockquote>
+<p><strong>“Quanto estamos deixando de ganhar por não estar presentes onde deveríamos?”</strong></p>
+</blockquote>
+<p>Quando você começa a colocar esse custo invisível na conta, a ideia de cortar viagem a qualquer preço perde força. O raciocínio fica mais maduro: se <strong>não viajar</strong> representa risco alto de perder receita, então aquela viagem não é um luxo — é um <strong>investimento de proteção</strong>. E é a partir dessa lógica que você consegue defender, com muito mais segurança, quais deslocamentos fazem sentido e quais podem, aí sim, ser cortados ou substituídos.</p>
+<div class="article-box-cta">
+<p>Se você ficou com dúvida sobre como tratar as viagens da sua empresa como investimento (e não só como custo), fale com a gente pelo WhatsApp.</p>
+<p>Converse com nosso time e monte um primeiro rascunho de “portfólio de viagens-investimento” adaptado à sua realidade.</p>
+<a class="cta-button cta-button-secondary" href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20viagens%20corporativas%20como%20investimento%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20sobre%20a%20realidade%20de%20viagens%20da%20minha%20empresa." target="_blank">FALAR COM A EQUIPE NO WHATSAPP</a>
+</div>
+<h2>4. Colocar números na mesa (sem virar um estudo impossível)</h2>
+<p>Você não precisa montar um modelo econométrico para provar que viagem é investimento. Mas <strong>precisa de alguns exemplos concretos</strong>. Mesmo números simples já mudam a conversa com diretoria e financeiro.</p>
+<p>Comece por um caso que a empresa reconhece, numa rota ou evento importante:</p>
+<ul>
+<li>escolha um período em que a equipe <strong>visitou clientes de uma região, participou de uma feira ou acompanhou um grande projeto</strong>;</li>
+<li>levante quanto foi investido, aproximadamente, em passagens, hospedagem e deslocamentos ligados a esse movimento;</li>
+<li>identifique negócios fechados, contratos renovados ou ampliados, clientes mantidos graças a essa presença.</li>
+</ul>
+<p>Com isso em mãos, você provavelmente vai encontrar relações do tipo: “investimos algo em torno de R$ X em viagens e isso ajudou a proteger/gerar R$ Y em receita”. Não precisa ser uma conta perfeita: <strong>basta ter ordem de grandeza</strong>.</p>
+<p><strong>Exemplo prático (hipotético)</strong></p>
+<p>Imagine que, em um semestre, a empresa investiu cerca de R$ 80 mil em viagens para visitar uma carteira de clientes-chave. A partir dessas viagens, foram renovados contratos que somam R$ 3 milhões em faturamento anual e fechados novos negócios de R$ 700 mil.</p>
+<ul>
+<li>Investimento aproximado em viagens: R$ 80 mil;</li>
+<li>Receita anual protegida/gerada ligada a essa movimentação: R$ 3,7 milhões;</li>
+<li>Mesmo que apenas uma parte disso dependa diretamente da viagem, fica claro que <strong>não é gasto de “cafezinho”</strong>.</li>
+</ul>
+<p>Quando você traduz algumas situações assim, começa a consolidar a ideia de viagem como parte do <strong>custo de aquisição, retenção e expansão de receita</strong>, e não apenas como linha de despesa.</p>
+<h3>Como agir amanhã</h3>
+<ul>
+<li>liste 5 a 10 viagens recentes que, na prática, ajudaram a fechar ou manter negócios importantes;</li>
+<li>para cada uma, estime quanto foi investido em deslocamento e qual receita ela ajudou a proteger ou conquistar;</li>
+<li>monte um quadro simples com essas relações e leve para a próxima conversa com diretoria ou financeiro.</li>
+</ul>
+<p>Esse primeiro movimento já tira viagens estratégicas da categoria “só cortar” e começa a colocá-las também na pauta de crescimento.</p>
+<h2>5. Política de viagens: de “polícia de gasto” a filtro de investimento</h2>
+<p>Por fim, tudo isso precisa aparecer em algum lugar que não dependa só da sua memória: na <strong>política de viagens</strong>.</p>
+<p>Uma política escrita apenas para dizer “não pode” tende a te empurrar para o papel de guardião do orçamento – e só. Uma política desenhada como filtro de investimento te permite algo mais sofisticado:</p>
+<ul>
+<li>separar viagens de rotina que podem ser reduzidas, combinadas ou substituídas por canais digitais,</li>
+<li>definir quais tipos de viagem são considerados <strong>estratégicos</strong> (clientes-chave, grandes projetos, feiras definidas como prioritárias),</li>
+<li>estabelecer critérios simples para aprovação, sempre relacionando viagem com objetivo de negócio.</li>
+</ul>
+<p>Assim, quando alguém questionar “por que estamos gastando tanto com essas viagens?”, você não responde só com “porque a área pediu”. Você responde com:</p>
+<ul>
+<li>qual é o papel daquela viagem na manutenção ou expansão de receita,</li>
+<li>quais os riscos de não realizá-la,</li>
+<li>e como ela foi planejada para aumentar as chances de retorno.</li>
+</ul>
+<p>Você deixa de ser apenas o “bombeiro” que apaga incêndio de custo e passa a ser visto como <strong>gestor de um portfólio de viagens-investimento</strong>: algumas são ajustadas, outras descartadas, e outras defendidas com firmeza porque sustentam a saúde da empresa no médio e longo prazo.</p>
+<h2>6. A foto ideal do gestor de viagens-investimento</h2>
+<p>Na prática, o gestor de viagens que faz essa virada de chave não é só quem emite bilhetes. Ele atua como <strong>gestor de portfólio de viagens-investimento</strong> dentro da empresa.</p>
+<ul>
+<li><strong>Classifica</strong> as viagens em rotinas que podem ser otimizadas e em viagens estratégicas que protegem ou geram receita;</li>
+<li><strong>define critérios</strong> claros, junto com diretoria e áreas de negócio, para o que merece defesa como investimento;</li>
+<li><strong>acompanha indicadores simples</strong> (renovação de contratos visitados, oportunidades trabalhadas em feiras, clientes reativados após visitas);</li>
+<li><strong>usa a política de viagens</strong> como ferramenta de alinhamento, não apenas de corte;</li>
+<li><strong>traduz números em decisões</strong>, mostrando o impacto de cortar ou manter determinados deslocamentos.</li>
+</ul>
+<p>É essa postura que tira o tema viagens da gaveta de “custos administrativos” e coloca perto da pauta de <strong>receita, crescimento e relacionamento com clientes</strong>.</p>
+<h2>Conclusão: o gestor de viagens como guardião do investimento certo</h2>
+<p>Viagem corporativa sempre vai aparecer na planilha como gasto. O que muda tudo é a história que você conta por trás daquela linha: se ela representa apenas custo administrativo ou se está ligada a <strong>receita, relacionamento e posicionamento da empresa</strong>.</p>
+<p>Quando você trata tudo como despesa a cortar, corre o risco de desligar justamente as viagens que protegem contratos, destravam oportunidades ou evitam problemas grandes mais à frente. Quando passa a enxergar parte das viagens como investimento, você decide com muito mais clareza <strong>onde vale apertar</strong> e <strong>onde é perigoso mexer</strong>.</p>
+<p>No fim, a pergunta que você pode levar para cada discussão não é “dá para gastar menos?”, mas:</p>
+<blockquote>
+<p><strong>“Essa viagem, do jeito que está desenhada, tem cara de custo ou cara de investimento?”</strong></p>
+</blockquote>
+<p>A partir dela, fica mais fácil reposicionar seu papel. Em vez de ser visto apenas como quem “aprova ou não aprova viagem”, você passa a atuar como <strong>gestor de portfólio de viagens-investimento</strong>, ajudando a empresa a proteger e crescer receita com decisões melhores de mobilidade.</p>
+<p>Se você quiser estruturar esse olhar de forma mais consistente – com diagnóstico da base de viagens, classificação por tipo de investimento, revisão de política e indicadores simples para acompanhar – é exatamente o tipo de trabalho que a Winners Tour pode construir junto com você.</p>
+<p>O artigo termina aqui, mas a conversa pode continuar na prática, olhando os dados e os desafios reais da sua empresa.</p>
+<!-- Chamada Final para Ação (Rodapé do Conteúdo) -->
+<div class="article-cta-final"><strong>Ficou com alguma dúvida sobre como tratar viagens corporativas como investimento — e não só como custo?</strong><span>Fale com nossa equipe pelo WhatsApp para tirar dúvidas rápidas sobre o olhar de investimento e como isso pode se aplicar à realidade de viagens da sua empresa.</span><a href="https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20viagens%20corporativas%20como%20investimento%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20a%20realidade%20de%20viagens%20da%20minha%20empresa." rel="noopener" target="_blank">FALE COM A NOSSA EQUIPE PELO WHATSAPP</a></div>
+</div>
+<!-- BLOC_BODY_END -->
+</div>
+</div>
 <!-- FOOTER BÁSICO -->
 <footer id="main-footer">
-    &copy; 2025 Winners Tour. Todos os direitos reservados.
+    © 2025 Winners Tour. Todos os direitos reservados.
 </footer>
+<script>
+    (function(){
+      const toggle = document.getElementById('heroMenuToggle');
+      const menu   = document.getElementById('siteMenu');
+      const close  = document.getElementById('siteMenuClose');
 
-</body>
+      if (!toggle || !menu) return;
+
+      function toggleMenu(){
+        menu.classList.toggle('open');
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      if (close){
+        close.addEventListener('click', toggleMenu);
+      }
+
+      // fecha se clicar fora do painel
+      menu.addEventListener('click', function(ev){
+        if (ev.target === menu) menu.classList.remove('open');
+      });
+    })();
+  </script></body>
 </html>
