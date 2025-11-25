@@ -1,20 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">Oferta de Lazer — WinnersTour</title>
-
-  <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control">
+<title id="pageTitle">Oferta de Lazer — WinnersTour</title>
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="assets/misc/favicon.png" rel="icon" type="image/png"/>
+<style>
     :root{
       --brand:#f97316;
       --brand-shadow:#c2410c;
@@ -401,99 +399,101 @@
       }
     }
   </style>
-</head>
+</meta><style>
+/* Menu hambúrguer com ícones + texto (layout corporativo) */
+.site-menu-panel a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.site-menu-icon{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  background:rgba(248,250,252,0.95);
+  box-shadow:0 1px 4px rgba(15,23,42,0.18);
+}
+.site-menu-label{
+  flex:1 1 auto;
+}
+</style></head>
 <body>
-
-  <!-- HERO EM BARRA CHEIA (com cabeçalho + imagem) -->
-  <header class="hero-wrap">
-    <div class="hero-inner">
-      <!-- Topo: logo + ações -->
-      <div class="hero-topbar">
-        <a href="index.html" class="hero-logo">WINNERS TOUR</a>
-
-        <div class="hero-actions">
-          <a class="hero-whatsapp"
-             href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer."
-             target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
-            <span class="whatsapp-icon">
-              <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-            </span>
-          </a>
-
-          <button type="button" class="hero-menu-btn" id="heroMenuToggle">
-            <span>Menu</span>
-            <span class="hamburger">☰</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Conteúdo principal do hero -->
-      <div class="hero-main">
-        <div class="hero-text">
-          <p id="offerCategory"></p>
-          <p id="offerMeta"></p>
-
-          <h1 id="offerTitle">Título da oferta de lazer</h1>
-          <p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
-        </div>
-
-        <figure class="hero-image">
-          <img id="offerImage" src="assets/misc/placeholder-lazer.webp" alt="Imagem da oferta de lazer">
-        </figure>
-      </div>
-    </div>
-  </header>
-
-  <!-- BARRA DE CTA (CTA1 + CTA2) -->
-  <section class="offer-cta-strip">
-    <div class="offer-cta-main" id="offerCta1">
-      <p><strong>📌 Pacote de viagem:</strong> descrição resumida da oferta (no JSON esse campo vem como CTA1 em formato de parágrafo, explicando noites, hotel, traslados e principais experiências incluídas).</p>
-    </div>
-    <div class="offer-cta-actions">
-      <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20dessa%20oferta%20de%20lazer."
-         target="_blank" rel="noopener"
-         class="offer-cta-strip-button"
-         id="offerCtaTopButton">
+<!-- HERO EM BARRA CHEIA (com cabeçalho + imagem) -->
+<header class="hero-wrap">
+<div class="hero-inner">
+<!-- Topo: logo + ações -->
+<div class="hero-topbar">
+<a class="hero-logo" href="index.html">WINNERS TOUR</a>
+<div class="hero-actions">
+<a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+<span class="whatsapp-icon">
+<img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+</span>
+</a>
+<button class="hero-menu-btn" id="heroMenuToggle" type="button">
+<span>Menu</span>
+<span class="hamburger">☰</span>
+</button>
+</div>
+</div>
+<!-- Conteúdo principal do hero -->
+<div class="hero-main">
+<div class="hero-text">
+<p id="offerCategory"></p>
+<p id="offerMeta"></p>
+<h1 id="offerTitle">Título da oferta de lazer</h1>
+<p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
+</div>
+<figure class="hero-image">
+<img alt="Imagem da oferta de lazer" id="offerImage" src="assets/misc/placeholder-lazer.webp"/>
+</figure>
+</div>
+</div>
+</header>
+<!-- BARRA DE CTA (CTA1 + CTA2) -->
+<section class="offer-cta-strip">
+<div class="offer-cta-main" id="offerCta1">
+<p><strong>📌 Pacote de viagem:</strong> descrição resumida da oferta (no JSON esse campo vem como CTA1 em formato de parágrafo, explicando noites, hotel, traslados e principais experiências incluídas).</p>
+</div>
+<div class="offer-cta-actions">
+<a class="offer-cta-strip-button" href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20dessa%20oferta%20de%20lazer." id="offerCtaTopButton" rel="noopener" target="_blank">
         👉 Fale com nossa equipe agora
       </a>
-    </div>
-  </section>
-
-  <!-- CORPO DO ARTIGO (conteúdo vindo do JSON) -->
-  <main class="article-body">
-    <section id="offerIntro"></section>
-
-    <section id="offerSections"></section>
-
-    <div class="article-cta-final">
-      <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
-      <span>Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagem para você.</span>
-      <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20personalizado%20dessa%20oferta%20de%20lazer."
-         target="_blank" rel="noopener" id="offerBottomCta">
+</div>
+</section>
+<!-- CORPO DO ARTIGO (conteúdo vindo do JSON) -->
+<main class="article-body">
+<section id="offerIntro"></section>
+<section id="offerSections"></section>
+<div class="article-cta-final">
+<strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
+<span>Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagem para você.</span>
+<a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20personalizado%20dessa%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">
         Falar com nossa equipe
       </a>
-    </div>
+</div>
+<div id="offerError"></div>
+</main>
+<!-- MENU OVERLAY (abre ao clicar em “Menu”) -->
+<div class="site-menu" id="siteMenu">
+<div class="site-menu-panel">
+<h2>Mais opções</h2>
 
-    <div id="offerError"></div>
-  </main>
 
-  <!-- MENU OVERLAY (abre ao clicar em “Menu”) -->
-  <div class="site-menu" id="siteMenu">
-    <div class="site-menu-panel">
-      <h2>Mais opções</h2>
-      <a href="https://www.comprarviagem.com.br/winnerstour/" target="_blank" rel="noopener">Loja Virtual</a>
-      <a href="index.html">Eventos</a>
-      <a href="apps.html">Aplicativos</a>
-      <a href="corporativo.html">Corporativo</a>
-      <a href="grupos.html">Grupos</a>
-      <a href="lazer.html">Lazer</a>
 
-      <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
-    </div>
-  </div>
 
-  <!-- JS do menu (WhatsApp + Menu hamburguer) -->
-  <script>
+
+
+<div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
+<a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank"><span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span></a><a href="corporativo.html"><span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span></a><a href="index.html"><span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span></a><a href="grupos.html"><span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span></a><a href="lazer.html"><span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span></a></div>
+</div>
+<!-- JS do menu (WhatsApp + Menu hamburguer) -->
+<script>
     (function(){
       const toggle = document.getElementById('heroMenuToggle');
       const menu   = document.getElementById('siteMenu');
@@ -516,8 +516,7 @@
       });
     })();
   </script>
-
-  <!-- JS que carrega o conteúdo da oferta a partir do JSON -->
-  <script src="lazer-oferta.js"></script>
+<!-- JS que carrega o conteúdo da oferta a partir do JSON -->
+<script src="lazer-oferta.js"></script>
 </body>
 </html>
