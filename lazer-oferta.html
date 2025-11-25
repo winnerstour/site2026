@@ -5,12 +5,15 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="no-store, must-revalidate, max-age=0" http-equiv="Cache-Control">
 <title id="pageTitle">Oferta de Lazer — WinnersTour</title>
+
 <!-- Fontes -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
+
 <!-- Favicon -->
 <link href="assets/misc/favicon.png" rel="icon" type="image/png"/>
+
 <style>
     :root{
       --brand:#f97316;
@@ -28,7 +31,7 @@
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
-      font-size:17px;
+      font-size:17px;               /* Corpo - Inter Regular 17px */
     }
     a{text-decoration:none;color:inherit;}
 
@@ -105,11 +108,6 @@
       object-fit:contain;
       display:block;
     }
-    .hero-whatsapp-icon{
-      width:22px;
-      height:22px;
-      display:block;
-    }
     .hero-menu-btn{
       display:inline-flex;
       align-items:center;
@@ -139,9 +137,9 @@
     .hero-text h1{
       margin:0 0 16px 0;
       font-family:'Inter',system-ui,sans-serif;
-      font-size:30px;
+      font-size:30px;          /* Inter Bold 30px */
       line-height:1.25;
-      font-weight:700; /* Inter Bold */
+      font-weight:700;
     }
     .hero-text h1.hero-title-small{
       font-size:26px;
@@ -172,7 +170,7 @@
       display:none;
     }
 
-    /* BARRA DE CTA (CTA1 + CTA2) */
+    /* BARRA DE CTA (CTA1) */
     .offer-cta-strip{
       max-width:var(--max-width);
       margin:-44px auto 32px auto;
@@ -259,7 +257,7 @@
       margin-bottom:12px;
     }
 
-    /* CTA FINAL FIXO */
+    /* CTA FINAL FIXO: 3 seções (Título, CTA2, Botão) */
     .article-cta-final{
       margin:48px 0 32px 0;
       padding:28px 22px 30px 22px;
@@ -278,12 +276,13 @@
       font-size:22px;
       font-weight:700;
       font-family:'Inter',system-ui,sans-serif;
+      display:block;
     }
     .article-cta-final span{
-      max-width:540px;
+      max-width:640px;
       font-size:17px;
       display:block;
-      margin-top:6px;
+      margin-top:4px;
       font-family:'Inter',system-ui,sans-serif;
       font-weight:400;
     }
@@ -303,6 +302,8 @@
       letter-spacing:0.08em;
       border:none;
       box-shadow:0 10px 25px rgba(0,0,0,0.25);
+      white-space:normal;
+      text-align:center;
     }
     .article-cta-final a:hover{
       background:#fef3c7;
@@ -429,59 +430,38 @@
       }
     }
   </style>
-</meta><style>
-/* Menu hambúrguer com ícones + texto */
-.site-menu-panel a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.site-menu-icon{
-  flex:0 0 auto;
-  width:26px;
-  height:26px;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1rem;
-  background:rgba(248,250,252,0.95);
-  box-shadow:0 1px 4px rgba(15,23,42,0.18);
-}
-.site-menu-label{
-  flex:1 1 auto;
-}
-</style></head>
+</head>
 <body>
 <header class="hero-wrap">
-<div class="hero-inner">
-  <div class="hero-topbar">
-    <a class="hero-logo" href="index.html">WINNERS TOUR</a>
-    <div class="hero-actions">
-      <!-- topo WhatsApp, href será atualizado via JS com o título da oferta -->
-      <a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111" rel="noopener" target="_blank">
-        <span class="whatsapp-icon">
-          <img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
-        </span>
-      </a>
-      <button class="hero-menu-btn" id="heroMenuToggle" type="button">
-        <span>Menu</span>
-        <span class="hamburger">☰</span>
-      </button>
+  <div class="hero-inner">
+    <div class="hero-topbar">
+      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
+      <div class="hero-actions">
+        <!-- topo WhatsApp, href será atualizado via JS com o título da oferta -->
+        <a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111" rel="noopener" target="_blank">
+          <span class="whatsapp-icon">
+            <img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
+          </span>
+        </a>
+        <button class="hero-menu-btn" id="heroMenuToggle" type="button">
+          <span>Menu</span>
+          <span class="hamburger">☰</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-text">
+        <p id="offerCategory"></p>
+        <p id="offerMeta"></p>
+        <h1 id="offerTitle">Título da oferta de lazer</h1>
+        <p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
+      </div>
+      <figure class="hero-image">
+        <img alt="Imagem da oferta de lazer" id="offerImage" src="assets/misc/placeholder-lazer.webp"/>
+      </figure>
     </div>
   </div>
-  <div class="hero-main">
-    <div class="hero-text">
-      <p id="offerCategory"></p>
-      <p id="offerMeta"></p>
-      <h1 id="offerTitle">Título da oferta de lazer</h1>
-      <p class="hero-scroll-hint">Role a página para ver todos os detalhes da viagem ↓</p>
-    </div>
-    <figure class="hero-image">
-      <img alt="Imagem da oferta de lazer" id="offerImage" src="assets/misc/placeholder-lazer.webp"/>
-    </figure>
-  </div>
-</div>
 </header>
 
 <section class="offer-cta-strip">
@@ -500,10 +480,15 @@
   <section id="offerIntro"></section>
   <section id="offerSections"></section>
 
+  <!-- CTA FINAL com 3 blocos fixos: Título, CTA2 (texto JSON), Botão -->
   <div class="article-cta-final">
+    <!-- 1. Título -->
     <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
+
+    <!-- 2. CTA2 – preenchido via JSON em lazer-oferta.js -->
     <span id="offerCta2"></span>
-    <!-- CTA2 WhatsApp, href será atualizado via JS com o título da oferta -->
+
+    <!-- 3. Botão fixo com dedinho -->
     <a href="https://wa.me/5541999450111" id="offerBottomCta" rel="noopener" target="_blank">
       👉 Receba valores atualizados no WhatsApp
     </a>
@@ -537,7 +522,7 @@
 </div>
 
 <script>
-/* Menu hamburguer */
+/* Menu hambúrguer */
 (function(){
   const toggle = document.getElementById('heroMenuToggle');
   const menu   = document.getElementById('siteMenu');
@@ -583,7 +568,7 @@
       return;
     }
 
-    var mensagem = 'Olá, eu gostaria de fazer um orçamento para ' + titulo;
+    var mensagem = 'Ol\u00e1, eu gostaria de fazer um or\u00e7amento para ' + titulo;
     var mensagemCodificada = encodeURIComponent(mensagem);
     var telefone = '5541999450111';
     var novoHref = 'https://wa.me/' + telefone + '?text=' + mensagemCodificada;
@@ -600,28 +585,6 @@
 
   window.addEventListener('load', function(){
     atualizarLinksWhatsApp(0);
-  });
-})();
-</script>
-
-<script>
-/* Se o CTA2 ainda estiver sendo injetado no botão branco por algum JS antigo,
-   move o texto para a linha do CTA2 e mantém o botão com a frase fixa
-   "👉 Receba valores atualizados no WhatsApp". */
-(function(){
-  window.addEventListener('load', function(){
-    var botao = document.getElementById('offerBottomCta');
-    var alvoCta2 = document.getElementById('offerCta2');
-    if (!botao || !alvoCta2) return;
-
-    var textoPadrao = '👉 Receba valores atualizados no WhatsApp';
-    var textoAtual = (botao.textContent || '').trim();
-
-    if (textoAtual && textoAtual !== textoPadrao){
-      alvoCta2.textContent = textoAtual;
-    }
-
-    botao.textContent = textoPadrao;
   });
 })();
 </script>
