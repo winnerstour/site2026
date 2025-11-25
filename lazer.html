@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Lazer e Férias</title>
+  <title>Winners Tour — Operadora e Agência de Viagens</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -622,14 +622,37 @@ a{text-decoration:none;color:inherit}
 <script>
 const LAZER_JSON_URL = './lazer/index-lazer.json';
 
-function formatPriceBRL(value) {
-  if (value === null || value === undefined || value === '') return null;
-  const n = Number(value);
-  if (!Number.isFinite(n)) return null;
-  return n.toLocaleString('pt-BR', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
+// Lê o preço do item, aceitando "price" ou "Price", string ou número.
+// Retorna uma string pronta para exibir (sem "R$").
+function getPriceString(item) {
+  if (!item || typeof item !== 'object') return null;
+
+  let raw = null;
+
+  if (item.price !== undefined && item.price !== null) {
+    raw = item.price;
+  } else if (item.Price !== undefined && item.Price !== null) {
+    raw = item.Price;
+  }
+
+  if (raw === null) return null;
+
+  // Se for número, formata sem centavos
+  if (typeof raw === 'number') {
+    return raw.toLocaleString('pt-BR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    });
+  }
+
+  // Se for string ("3.507", "3507" etc.), usa do jeito que veio
+  if (typeof raw === 'string') {
+    const trimmed = raw.trim();
+    if (!trimmed) return null;
+    return trimmed;
+  }
+
+  return null;
 }
 
 function createCard(item) {
@@ -646,8 +669,8 @@ function createCard(item) {
     }
   }
 
-  // Preço opcional vindo do JSON
-  const formattedPrice = formatPriceBRL(item.price);
+  // preço opcional
+  const formattedPrice = getPriceString(item);
   const hasPrice = !!formattedPrice;
 
   const hasLink = !!(item.href || slug);
@@ -687,7 +710,7 @@ function createCard(item) {
 
   footer.appendChild(cta);
 
-  // bloco de preço opcional, acima do botão
+  // Se houver price no JSON, cria o bloco de 3 linhas
   if (hasPrice) {
     const priceBlock = document.createElement('div');
     priceBlock.className = 'card-price';
@@ -708,9 +731,11 @@ function createCard(item) {
     priceBlock.appendChild(value);
     priceBlock.appendChild(note);
 
+    // Título + bloco de preço
     content.appendChild(t);
     content.appendChild(priceBlock);
   } else {
+    // Sem price: card segue igual ao atual (só título + botão)
     content.appendChild(t);
   }
 
@@ -736,28 +761,25 @@ function renderLazer(data) {
     categoriasSet.add(categoria);
   });
 
-  // Ordem desejada para exibição das categorias (aba superior)
-  // Todos (fixo) · Brasil · Day Use · Disney · Tour · Neve · Inter · Resorts · Aventura · Eventos
+  // Ordem de exibição das categorias
   const CAT_ORDER = [
     'Tour',
     'Brasil',
     'Day Use',
     'Disney',
     'Neve',
-    'Internacional', // exibida como "Inter"
+    'Internacional', // aparece como "Inter"
     'Resorts',
     'Aventura',
     'Eventos'
   ];
 
-  // Converte o Set em array e ordena conforme CAT_ORDER.
-  // Categorias não listadas em CAT_ORDER vão para o fim, em ordem alfabética.
   const categorias = Array.from(categoriasSet).sort((a, b) => {
     const ia = CAT_ORDER.indexOf(a);
     const ib = CAT_ORDER.indexOf(b);
 
     if (ia === -1 && ib === -1) {
-      return a.localeCompare(b);
+      return a.localeCompare(b, 'pt-BR');
     }
 
     if (ia === -1) return 1;
@@ -765,13 +787,11 @@ function renderLazer(data) {
     return ia - ib;
   });
 
-  // Abas por categoria (sem aba "Todos")
+  // Abas por categoria
   categorias.forEach(categoria => {
     const span = document.createElement('span');
     span.className = 'tab-link';
 
-    // Exibe "Inter" quando a categoria do JSON for "Internacional"
-    // e "DayUse" quando for "Day Use"
     let label = categoria;
     if (categoria === 'Internacional') {
       label = 'Inter';
@@ -784,13 +804,12 @@ function renderLazer(data) {
     tabsContainer.appendChild(span);
   });
 
-  // Monta os cards
+  // Cards
   data.forEach(item => {
     const card = createCard(item);
     grid.appendChild(card);
   });
 
-  // Função para aplicar filtro por categoria
   function aplicarFiltroCategoria(categoriaSel) {
     const tabs = tabsContainer.querySelectorAll('.tab-link');
     tabs.forEach(tab => {
@@ -805,7 +824,7 @@ function renderLazer(data) {
     });
   }
 
-  // Lógica de filtro ao clicar nas abas
+  // Clique nas abas
   tabsContainer.addEventListener('click', (ev) => {
     const target = ev.target;
     if (!target.classList.contains('tab-link')) return;
@@ -814,13 +833,14 @@ function renderLazer(data) {
     aplicarFiltroCategoria(categoriaSel);
   });
 
-  // Aplica filtro inicial na categoria "Tour" (se existir), caso contrário usa a primeira da lista
+  // Filtro inicial
   const catInicial = categorias.includes('Tour') ? 'Tour' : (categorias[0] || null);
   if (catInicial) {
     aplicarFiltroCategoria(catInicial);
   }
 }
 
+// Carrega JSON e monta a página
 fetch(LAZER_JSON_URL, { cache: 'no-cache' })
   .then(resp => {
     if (!resp.ok) throw new Error('Erro ao carregar ' + LAZER_JSON_URL);
