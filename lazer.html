@@ -335,9 +335,10 @@ a{text-decoration:none;color:inherit}
   margin-top: auto;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .card-price {
@@ -362,6 +363,7 @@ a{text-decoration:none;color:inherit}
   font-weight: 900;
 }
 
+
 /* Footer + botão */
 .card-footer {
   margin-top: 4px;
@@ -382,11 +384,13 @@ a{text-decoration:none;color:inherit}
   border: 1px solid #ffffff;
   padding: 6px 18px;
   font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   background: transparent;
   color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
 }
 
@@ -723,9 +727,11 @@ function createCard(item) {
   t.className = 'card-title';
   t.textContent = title;
 
+  // Bloco inferior em duas colunas (esquerda: botão, direita: preço)
   const bottom = document.createElement('div');
   bottom.className = 'card-bottom';
 
+  // Coluna esquerda: botão Saiba mais
   const footer = document.createElement('div');
   footer.className = 'card-footer';
 
@@ -735,7 +741,7 @@ function createCard(item) {
 
   footer.appendChild(cta);
 
-  // Bloco de preço SEMPRE exibido
+  // Coluna direita: bloco de preço SEMPRE exibido
   const priceBlock = document.createElement('div');
   priceBlock.className = 'card-price';
 
@@ -766,8 +772,9 @@ function createCard(item) {
     priceBlock.appendChild(value);
   }
 
-  bottom.appendChild(priceBlock);
+  // Ordem: esquerda = footer, direita = priceBlock
   bottom.appendChild(footer);
+  bottom.appendChild(priceBlock);
 
   content.appendChild(t);
   content.appendChild(bottom);
