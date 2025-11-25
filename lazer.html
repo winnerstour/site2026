@@ -342,6 +342,7 @@ a{text-decoration:none;color:inherit}
 }
 
 .card-price {
+  flex: 0 0 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -358,6 +359,11 @@ a{text-decoration:none;color:inherit}
   text-transform: uppercase;
 }
 
+.card-price-label,
+.card-price-value {
+  white-space: nowrap;
+}
+
 .card-price-value {
   font-size: 1.4rem;
   font-weight: 900;
@@ -366,11 +372,11 @@ a{text-decoration:none;color:inherit}
 
 /* Footer + botão */
 .card-footer {
-  margin-top: 4px;
-  width: 100%;
+  margin-top: 0;
+  flex: 0 0 40%;
   display: flex;
-  justify-content: center;
-  padding-top: 10px;
+  justify-content: flex-start;
+  padding-top: 6px;
   transform: translateY(16px);
   opacity: 0;
   transition: transform .2s ease, opacity .2s ease;
