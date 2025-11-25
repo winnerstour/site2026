@@ -1,382 +1,47 @@
 {
-  "slug": "gestao_de_eventos_corporativos",
-  "meta_title": "WinnersTour — Gestão de Eventos Corporativos",
-  "title": "Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens",
-  "image_path": "/assets/artigos/gestao_de_eventos_corporativos.webp",
-  "intro": {
-    "section_type": "intro",
-    "blocks": [
-      {
-        "type": "paragraph",
-        "text": "Quem cuida de viagens dentro da empresa sabe: de repente, sem perceber, deixa de ser apenas “gestor de passagens” e passa a ser tratado como gestor de eventos ."
-      },
-      {
-        "type": "paragraph",
-        "text": "Num mês, é “só” levar duas pessoas para um congresso em outra cidade. No seguinte, já envolve time inteiro , credencial premium, camarote em grande evento esportivo, translado dedicado, hotel com sala de reunião e, às vezes, até organizar um congresso próprio num resort com centro de eventos."
-      },
-      {
-        "type": "paragraph",
-        "text": "É aí que o cérebro dá aquele nó."
-      },
-      {
-        "type": "paragraph",
-        "text": "Porque deixar uma pessoa de pé num voo é uma coisa. Fazer um evento inteiro funcionar – com gente chegando de cidades diferentes, traslado, credenciais, coffee break, palestrante, festa de encerramento – é outra escala de responsabilidade."
-      },
-      {
-        "type": "paragraph",
-        "text": "Esse artigo é justamente para isso: para ajudar o setor de viagens a enxergar um caminho claro de gestão de eventos , com fases, papéis definidos, uso inteligente de parceiros e uma agência atuando como copiloto estratégico . Assim, mesmo uma empresa pequena consegue entregar evento grande sem colapsar o time interno."
-      }
-    ]
-  },
+  "titulo": "Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens",
+  "titulo_curto": "Gestão de eventos corporativos",
+  "categoria": "Artigo Corporativo",
   "sections": [
     {
       "id": 1,
-      "section_type": "content",
-      "title": "1. Quando a viagem vira evento (e o seu papel muda de nível)",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Nem todo evento é igual. E é aqui que muitos se perdem, tratando tudo como se fosse “só mais um deslocamento”."
-        },
-        {
-          "type": "paragraph",
-          "text": "Dá para imaginar pelo menos três cenários bem diferentes:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "quando a empresa apenas participa de um evento externo, levando poucas pessoas como visitantes ou ouvintes;",
-            "quando leva um grupo maior , com ingressos premium, camarotes, áreas VIP, hospitalidade;",
-            "quando a empresa é protagonista : expositora em feira, organizadora de congresso próprio ou anfitriã de um encontro de clientes e parceiros num grande hotel."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "No primeiro caso, a lógica ainda é parecida com viagem tradicional: passagem, hotel, inscrição, talvez um traslado simples."
-        },
-        {
-          "type": "paragraph",
-          "text": "No segundo, o custo e a complexidade sobem: ingresso premium ou camarote, área reservada, talvez um pacote de hospitalidade que inclui alimentação, bebidas, transporte dedicado."
-        },
-        {
-          "type": "paragraph",
-          "text": "No terceiro, muda tudo: entra em jogo montagem de estande, locação de área de exposição, contratação de fornecedores locais, audiovisual, equipe de apoio, decoração, alimentação, festa de encerramento."
-        },
-        {
-          "type": "paragraph",
-          "text": "Perceber em qual desses níveis você está é o primeiro passo para não subestimar o trabalho. Quem tenta tratar evento de nível 3 como se fosse viagem de nível 1 está pedindo para viver na base do improviso."
-        }
-      ]
+      "titulo_secao": "Introdução",
+      "conteudo_markdown": "Quem cuida de viagens dentro da empresa sabe: de repente, sem perceber, deixa de ser apenas “gestor de passagens” e passa a ser tratado como **gestor de eventos**.\n\nNum mês, é “só” levar duas pessoas para um congresso em outra cidade. No seguinte, já envolve **time inteiro**, credencial premium, camarote em grande evento esportivo, translado dedicado, hotel com sala de reunião e, às vezes, até **organizar um congresso próprio** num resort com centro de eventos.\n\nÉ aí que o cérebro dá aquele nó.\n\nPorque deixar uma pessoa de pé num voo é uma coisa. Fazer um evento inteiro funcionar – com gente chegando de cidades diferentes, traslado, credenciais, coffee break, palestrante, festa de encerramento – é outra escala de responsabilidade.\n\nEsse artigo é justamente para isso: para ajudar o setor de viagens a enxergar um **caminho claro de gestão de eventos**, com fases, papéis definidos, uso inteligente de parceiros e uma agência atuando como **copiloto estratégico**. Assim, mesmo uma empresa pequena consegue entregar evento grande sem colapsar o time interno.\n"
     },
     {
       "id": 2,
-      "section_type": "content",
-      "title": "2. Planejamento estratégico em fases: antes, durante e depois",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Para o gestor de viagens virar gestor de eventos sem enlouquecer, a saída é pensar em fases ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Antes de falar de hotel, aéreo ou buffet, vêm quatro perguntas estratégicas:"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "Qual é o objetivo do evento? Trazer clientes? Treinar equipe? Lançar produto? Fortalecer relacionamento?",
-            "Quem precisa estar lá? Quantas pessoas, de quais áreas, vindas de onde, com quais necessidades especiais?",
-            "Que formato faz sentido? Participar de feira existente como visitante? Ter estande? Alugar uma sala de hotel? Reservar o centro de convenções inteiro?",
-            "Qual é o orçamento realista e quem decide o quê? Quem aprova valores? Quem assina contratos? Quem responde se algo der errado?"
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Quando isso está claro, você quebra o planejamento em três momentos:"
-        },
-        {
-          "type": "paragraph",
-          "text": "Antes do evento: definição de datas, local, tipo de estrutura necessária, reserva de bloqueios de hotel, passagens, contratação de serviços terrestres, audiovisual, alimentação, credenciais, visitas técnicas (se necessário)."
-        },
-        {
-          "type": "paragraph",
-          "text": "Durante o evento: operação de traslado, credenciamento, suporte ao participante, ajustes em tempo real, resposta a imprevistos."
-        },
-        {
-          "type": "paragraph",
-          "text": "Depois do evento: encerramento de contratos, pagamento de fornecedores, análise do que funcionou e do que precisa ser melhorado para a próxima edição."
-        },
-        {
-          "type": "paragraph",
-          "text": "A antecedência aqui é tão importante quanto nas viagens: quanto mais cedo se decide data, local e tamanho do evento , mais fácil é costurar tudo sem surto coletivo – e sem pagar “tarifa de emergência” em tudo."
-        }
-      ]
+      "titulo_secao": "1. Quando a viagem vira evento (e o seu papel muda de nível)",
+      "conteudo_markdown": "Nem todo evento é igual. E é aqui que muitos se perdem, tratando tudo como se fosse “só mais um deslocamento”.\n\nDá para imaginar pelo menos três cenários bem diferentes:\n\n- quando a empresa **apenas participa** de um evento externo, levando poucas pessoas como visitantes ou ouvintes;\n- quando leva um **grupo maior**, com ingressos premium, camarotes, áreas VIP, hospitalidade;\n- quando a empresa **é protagonista**: expositora em feira, organizadora de congresso próprio ou anfitriã de um encontro de clientes e parceiros num grande hotel.\n\nNo primeiro caso, a lógica ainda é parecida com viagem tradicional: passagem, hotel, inscrição, talvez um traslado simples.\n\nNo segundo, o custo e a complexidade sobem: ingresso premium ou camarote, área reservada, talvez um pacote de hospitalidade que inclui alimentação, bebidas, transporte dedicado.\n\nNo terceiro, muda tudo: entra em jogo montagem de estande, locação de área de exposição, contratação de fornecedores locais, audiovisual, equipe de apoio, decoração, alimentação, festa de encerramento.\n\nPerceber em qual desses níveis você está é o primeiro passo para não subestimar o trabalho. Quem tenta tratar **evento de nível 3** como se fosse **viagem de nível 1** está pedindo para viver na base do improviso.\n\nPara visualizar, pense em uma convenção anual de vendas com 150 a 200 pessoas em um resort: há deslocamentos vindos de várias cidades, blocos de plenária, workshops, momentos de relacionamento, possível presença de clientes e parceiros, além de fornecedores de audiovisual, alimentação e experiências. Esse tipo de encontro já está claramente no nível 3 – e tentar tratá-lo como uma simples viagem de nível 1 é receita certa para viver na base do improviso.\n"
     },
     {
       "id": 3,
-      "section_type": "content",
-      "title": "3. MICE na prática: hospedagem, centro de eventos, serviços terrestres e receptivo",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Quando a decisão de “vamos fazer/participar do evento” já está tomada, entra o mundo MICE (Meetings, Incentives, Conferences, Exhibitions), mesmo que ninguém use esse nome no dia a dia."
-        },
-        {
-          "type": "paragraph",
-          "text": "Na prática, significa articular quatro grandes blocos:"
-        }
-      ]
+      "titulo_secao": "2. Planejamento estratégico em fases: antes, durante e depois",
+      "conteudo_markdown": "Para o gestor de viagens virar gestor de eventos sem enlouquecer, a saída é **pensar em fases**.\n\nAntes de falar de hotel, aéreo ou buffet, vêm quatro perguntas estratégicas:\n\n1. **Qual é o objetivo do evento?**  \n   Trazer clientes? Treinar equipe? Lançar produto? Fortalecer relacionamento?\n2. **Quem precisa estar lá?**  \n   Quantas pessoas, de quais áreas, vindas de onde, com quais necessidades especiais?\n3. **Que formato faz sentido?**  \n   Participar de feira existente como visitante? Ter estande? Alugar uma sala de hotel? Reservar o centro de convenções inteiro?\n4. **Qual é o orçamento realista e quem decide o quê?**  \n   Quem aprova valores? Quem assina contratos? Quem responde se algo der errado?\n\nQuando isso está claro, você quebra o planejamento em três momentos:\n\n**Antes do evento:** definição de datas, local, tipo de estrutura necessária, reserva de bloqueios de hotel, passagens, contratação de serviços terrestres, audiovisual, alimentação, credenciais, visitas técnicas (se necessário).\n\n**Durante o evento:** operação de traslado, credenciamento, suporte ao participante, ajustes em tempo real, resposta a imprevistos.\n\n**Depois do evento:** encerramento de contratos, pagamento de fornecedores, análise do que funcionou e do que precisa ser melhorado para a próxima edição.\n\nA antecedência aqui é tão importante quanto nas viagens: quanto mais cedo se decide **data, local e tamanho do evento**, mais fácil é costurar tudo sem surto coletivo – e sem pagar “tarifa de emergência” em tudo.\n"
     },
     {
       "id": 4,
-      "section_type": "content",
-      "title": "Hospedagem e local do evento",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Em eventos mais simples, basta um hotel bem localizado. Em eventos maiores, o hotel passa a ser também local de reunião : salas, auditórios, centro de convenções interno."
-        },
-        {
-          "type": "paragraph",
-          "text": "Aqui entram decisões como:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "bloquear um número de apartamentos para o grupo,",
-            "garantir que as salas de reunião comportem o formato (plenária, salas paralelas, workshops),",
-            "negociar condições para coffee breaks, almoços, jantares, festa de encerramento."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Muitas vezes, faz sentido viajar antes para uma visita técnica: ver a estrutura ao vivo, caminhar pelo espaço, visualizar fluxo de pessoas. Essa visita prévia costuma evitar problemas que só aparecem quando se pisa no lugar."
-        }
-      ]
+      "titulo_secao": "3. MICE na prática: hospedagem, centro de eventos, serviços terrestres e receptivo",
+      "conteudo_markdown": "Quando a decisão de “vamos fazer/participar do evento” já está tomada, entra o mundo MICE (Meetings, Incentives, Conferences, Exhibitions), mesmo que ninguém use esse nome no dia a dia.\n\nNa prática, significa articular quatro grandes blocos.\n\n### Hospedagem e local do evento\n\nEm eventos mais simples, basta um hotel bem localizado. Em eventos maiores, o hotel passa a ser também **local de reunião**: salas, auditórios, centro de convenções interno.\n\nAqui entram decisões como:\n\n- bloquear um número de apartamentos para o grupo;\n- garantir que as salas de reunião comportem o formato (plenária, salas paralelas, workshops);\n- negociar condições para coffee breaks, almoços, jantares, festa de encerramento.\n\nMuitas vezes, faz sentido **viajar antes** para uma visita técnica: ver a estrutura ao vivo, caminhar pelo espaço, visualizar fluxo de pessoas. Essa visita prévia costuma evitar problemas que só aparecem quando se pisa no lugar.\n\n### Serviços terrestres e receptivo\n\nEm eventos com vários participantes, o traslado deixa de ser detalhe.\n\nSurge a necessidade de:\n\n- transporte aeroporto ↔ hotel ↔ local do evento;\n- veículos dedicados para diretores ou convidados VIP;\n- equipe de receptivo no aeroporto e no hotel para direcionar as pessoas, responder dúvidas, resolver pequenos problemas na hora.\n\nEsse receptivo funciona como **“braço estendido”** da empresa no destino: é quem vê o que o gestor não consegue ver à distância.\n\n### Fornecedores de evento e memorabilidade\n\nEm eventos mais completos, entram outras camadas:\n\n- audiovisual (som, luz, projeção, telão);\n- gravação e filmagem profissional;\n- fotografia, cenografia, decoração;\n- equipe para produção da festa de encerramento;\n- apoio na relação com palestrantes, mestres de cerimônia, DJs ou bandas.\n\nÉ esse conjunto que dá a “cara” do evento – o que torna a experiência memorável e faz com que ele seja repetido como parte da estratégia comercial da empresa, e não só como um esforço pontual.\n"
     },
     {
       "id": 5,
-      "section_type": "content",
-      "title": "Serviços terrestres e receptivo",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Em eventos com vários participantes, o traslado deixa de ser detalhe."
-        },
-        {
-          "type": "paragraph",
-          "text": "Surge a necessidade de:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "transporte aeroporto ↔ hotel ↔ local do evento,",
-            "veículos dedicados para diretores ou convidados VIP,",
-            "equipe de receptivo no aeroporto e no hotel para direcionar as pessoas, responder dúvidas, resolver pequenos problemas na hora."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Esse receptivo funciona como “braço estendido” da empresa no destino: é quem vê o que o gestor não consegue ver à distância."
-        }
-      ]
+      "titulo_secao": "4. Agência como copiloto estratégico: dividindo o peso do evento",
+      "conteudo_markdown": "Tudo isso é bonito no papel, mas alguém precisa fazer acontecer.\n\nSe o setor interno de viagens tenta segurar tudo sozinho, a chance de sobrecarga é enorme: orçamentos para todos os lados, contratos que precisam ser lidos, fornecedores ligando o tempo todo, participantes com dúvidas, diretores pedindo ajustes em cima da hora.\n\nÉ aqui que a **agência de viagens especializada em corporativo e eventos** entra como **copiloto estratégico** – e não apenas como “emissora de passagem”.\n\nEsse papel de copiloto inclui:\n\n- centralizar a parte de **viagens, hospedagem e traslados**;\n- apoiar na busca e na negociação com **hotéis, centros de eventos e empresas de receptivo**;\n- indicar e coordenar **fornecedores locais** (transporte, audiovisual, staff de apoio);\n- ser ponto de contato para os participantes em questões logísticas;\n- dividir com o cliente a responsabilidade de acompanhar o que está acontecendo em tempo real.\n\nO modelo vencedor é justamente esse: a empresa foca no conteúdo, no objetivo comercial, em quem precisa se encontrar com quem, no que precisa ser dito no palco. A agência ajuda a garantir que **tudo o que é infraestrutura e logística funcione** – e que ninguém fique perdido no aeroporto sem saber para onde ir.\n\nAssim, mesmo empresas menores conseguem organizar eventos grandes, porque não estão sozinhas: têm um time de bastidores que sustenta a operação.\n"
     },
     {
       "id": 6,
-      "section_type": "content",
-      "title": "Fornecedores de evento e memorabilidade",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Em eventos mais completos, entram outras camadas:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "audiovisual (som, luz, projeção, telão),",
-            "gravação e filmagem profissional,",
-            "fotografia, cenografia, decoração,",
-            "equipe para produção da festa de encerramento,",
-            "apoio na relação com palestrantes, mestres de cerimônia, DJs ou bandas."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "É esse conjunto que dá a “cara” do evento – o que torna a experiência memorável e faz com que ele seja repetido como parte da estratégia comercial da empresa, e não só como um esforço pontual."
-        }
-      ]
+      "titulo_secao": "5. Planejar quem faz o quê: mapa de responsabilidades que evita confusão",
+      "conteudo_markdown": "Um dos grandes motivos pelos quais eventos viram caos é simples: ninguém sabe exatamente **quem é responsável por quê**.\n\nGestão de eventos madura começa com um mapa de responsabilidades. Não precisa ser um organograma complexo; basta ter clareza de funções:\n\n- quem responde pela **decisão final** de orçamento e fornecedores;\n- quem faz a interface com a agência;\n- quem fala com o hotel e com o centro de eventos;\n- quem cuida dos **convidados internos** (colaboradores) e externos (clientes, parceiros);\n- quem aprova a comunicação, convites, material de divulgação;\n- quem acompanha a operação no dia (ou nos dias) do evento.\n\nEsse mapa evita um cenário comum: fornecedor recebendo instruções conflitantes de três pessoas diferentes, e-mail atravessado, expectativa desalinhada.\n\nUma vez definidas as funções, o gestor de viagens deixa de ser “a pessoa para quem tudo é jogado” e passa a ser **um dos pilares** dentro de uma estrutura clara. Ele continua fundamental, mas não está mais sozinho.\n\n**Está com dificuldade para montar o mapa de responsabilidades ou dividir o que fica com a agência e o que fica com o time interno?**\n\nSe quiser, você pode tirar dúvidas rápidas com a nossa equipe pelo WhatsApp antes de bater o martelo sobre funções e parceiros do seu próximo evento.\n"
     },
     {
       "id": 7,
-      "section_type": "content",
-      "title": "4. Agência como copiloto estratégico: dividindo o peso do evento",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Tudo isso é bonito no papel, mas alguém precisa fazer acontecer."
-        },
-        {
-          "type": "paragraph",
-          "text": "Se o setor interno de viagens tenta segurar tudo sozinho, a chance de sobrecarga é enorme: orçamentos para todos os lados, contratos que precisam ser lidos, fornecedores ligando o tempo todo, participantes com dúvidas, diretores pedindo ajustes em cima da hora."
-        },
-        {
-          "type": "paragraph",
-          "text": "É aqui que a agência de viagens especializada em corporativo e eventos entra como copiloto estratégico – e não apenas como “emissora de passagem”."
-        },
-        {
-          "type": "paragraph",
-          "text": "Esse papel de copiloto inclui:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "centralizar a parte de viagens, hospedagem e traslados ,",
-            "apoiar na busca e na negociação com hotéis, centros de eventos e empresas de receptivo ,",
-            "indicar e coordenar fornecedores locais (transporte, audiovisual, staff de apoio),",
-            "ser ponto de contato para os participantes em questões logísticas,",
-            "dividir com o cliente a responsabilidade de acompanhar o que está acontecendo em tempo real."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "O modelo vencedor é justamente esse: a empresa foca no conteúdo, no objetivo comercial, em quem precisa se encontrar com quem, no que precisa ser dito no palco. A agência ajuda a garantir que tudo o que é infraestrutura e logística funcione – e que ninguém fique perdido no aeroporto sem saber para onde ir."
-        },
-        {
-          "type": "paragraph",
-          "text": "Assim, mesmo empresas menores conseguem organizar eventos grandes, porque não estão sozinhas: têm um time de bastidores que sustenta a operação."
-        }
-      ]
+      "titulo_secao": "6. Gestão de riscos e plano de contingência: o protocolo 3D",
+      "conteudo_markdown": "Evento sem imprevisto é lenda.\n\nPode ser chuva forte no dia da montagem, voo cancelado com palestrante dentro, atraso no transporte, problema técnico no som, fornecedor que falha na entrega, grupo que se perde no deslocamento.\n\nO que diferencia um evento caótico de um evento bem gerido não é a ausência de problemas, e sim **a forma como se reage a eles**.\n\nUma forma simples de olhar para isso é adotar um **protocolo 3D**:\n\n1. **Detectar**  \n   Ter olhos e ouvidos atentos para perceber cedo quando algo não está indo bem: atrasos recorrentes de traslado, fila se formando no credenciamento, clima afetando estrutura ao ar livre, fornecedor sinalizando dificuldade de entrega. Esse olhar vem de experiência, mas também de ter **pessoas espalhadas** pelos pontos críticos: aeroporto, hotel, entrada do evento, backstage.\n2. **Decidir**  \n   Diante de um problema, é preciso ter **autonomia e critérios** para decidir: remanejar transporte, antecipar ou atrasar um bloco da programação, deslocar pessoas para outra sala, acionar plano B de fornecedor. Decisões podem ser tomadas sozinho em casos simples ou em conjunto quando o impacto é maior. O importante é que não fiquem paradas porque “ninguém sabe quem manda”.\n3. **Desviar**  \n   Depois da decisão, vem o desvio de rota na prática – e, principalmente, a **comunicação rápida**: avisar participantes sobre mudança de horário ou local, informar palestrantes, equipe técnica, receptivo, hotel, usar canais claros (grupo de WhatsApp, e-mail, app de evento) para que ninguém seja pego de surpresa.\n\nEm resumo, o 3D é um lembrete simples para o time de bastidores: detectar cedo o problema, decidir com critério e desviar rápido, sempre comunicando bem para proteger tanto as pessoas quanto os objetivos do evento.\n\nEsse 3D – detectar, decidir, desviar – é quase um **manual operacional de crise**. Ele impede que um problema pontual vire desastre e faz parte do **Duty of Care** da empresa: o dever de cuidar das pessoas que estão ali a serviço do negócio.\n\nQuanto mais gente experiente e mais parceiros confiáveis há na operação, mais fácil é aplicar esse protocolo sem pânico.\n"
     },
     {
       "id": 8,
-      "section_type": "content",
-      "title": "5. Planejar quem faz o quê: mapa de responsabilidades que evita confusão",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Um dos grandes motivos pelos quais eventos viram caos é simples: ninguém sabe exatamente quem é responsável por quê ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Gestão de eventos madura começa com um mapa de responsabilidades. Não precisa ser um organograma complexo; basta ter clareza de funções:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "quem responde pela decisão final de orçamento e fornecedores;",
-            "quem faz a interface com a agência;",
-            "quem fala com o hotel e com o centro de eventos;",
-            "quem cuida dos convidados internos (colaboradores) e externos (clientes, parceiros);",
-            "quem aprova a comunicação, convites, material de divulgação;",
-            "quem acompanha a operação no dia (ou nos dias) do evento."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Esse mapa evita um cenário comum: fornecedor recebendo instruções conflitantes de três pessoas diferentes, e-mail atravessado, expectativa desalinhada."
-        },
-        {
-          "type": "paragraph",
-          "text": "Uma vez definidas as funções, o gestor de viagens deixa de ser “a pessoa para quem tudo é jogado” e passa a ser um dos pilares dentro de uma estrutura clara. Ele continua fundamental, mas não está mais sozinho."
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "section_type": "content",
-      "title": "6. Gestão de riscos e plano de contingência: o protocolo 3D",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Evento sem imprevisto é lenda."
-        },
-        {
-          "type": "paragraph",
-          "text": "Pode ser chuva forte no dia da montagem, voo cancelado com palestrante dentro, atraso no transporte, problema técnico no som, fornecedor que falha na entrega, grupo que se perde no deslocamento."
-        },
-        {
-          "type": "paragraph",
-          "text": "O que diferencia um evento caótico de um evento bem gerido não é a ausência de problemas, e sim a forma como se reage a eles ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Uma forma simples de olhar para isso é adotar um protocolo 3D :"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "Detectar Ter olhos e ouvidos atentos para perceber cedo quando algo não está indo bem:\n                    atrasos recorrentes de traslado, fila se formando no credenciamento, clima afetando estrutura ao ar livre, fornecedor sinalizando dificuldade de entrega. Esse olhar vem de experiência, mas também de ter pessoas espalhadas pelos pontos críticos: aeroporto, hotel, entrada do evento, backstage.",
-            "Decidir Diante de um problema, é preciso ter autonomia e critérios para decidir:\n                    remanejar transporte, antecipar ou atrasar um bloco da programação, deslocar pessoas para outra sala, acionar plano B de fornecedor. Decisões podem ser tomadas sozinho em casos simples ou em conjunto quando o impacto é maior. O importante é que não fiquem paradas porque “ninguém sabe quem manda”.",
-            "Desviar Depois da decisão, vem o desvio de rota na prática – e, principalmente, a comunicação rápida :\n                    avisar participantes sobre mudança de horário ou local, informar palestrantes, equipe técnica, receptivo, hotel, usar canais claros (grupo de WhatsApp, e-mail, app de evento) para que ninguém seja pego de surpresa."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Esse 3D – detectar, decidir, desviar – é quase um manual operacional de crise . Ele impede que um problema pontual vire desastre e faz parte do Duty of Care da empresa: o dever de cuidar das pessoas que estão ali a serviço do negócio."
-        },
-        {
-          "type": "paragraph",
-          "text": "Quanto mais gente experiente e mais parceiros confiáveis há na operação, mais fácil é aplicar esse protocolo sem pânico."
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "section_type": "cta",
-      "title": "7. Recomendações finais: eventos que libertam o cliente para focar no estratégico",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "O objetivo de toda essa estrutura não é deixar a gestão de eventos mais pesada. É justamente o contrário: tirar o peso da cabeça do gestor de viagens e do time interno ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Quando você entende em que nível de evento está se metendo, planeja em fases (antes, durante, depois), organiza bem a parte MICE (hospedagem, centro de eventos, terrestre, receptivo, produção), trata a agência como copiloto estratégico, define claramente quem faz o quê e tem um protocolo simples de gestão de riscos e contingência, o evento deixa de ser um monstro incontrolável e passa a ser um projeto de alto impacto , com começo, meio e fim."
-        },
-        {
-          "type": "paragraph",
-          "text": "O cliente interno (diretoria, área comercial, marketing) consegue focar em:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "falar com os clientes certos,",
-            "cuidar das palestras,",
-            "fechar negócios,",
-            "fortalecer relacionamento."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Enquanto isso, você e seus parceiros garantem que:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "todos cheguem,",
-            "todos sejam bem tratados,",
-            "tudo funcione o suficiente para que o objetivo principal aconteça."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "No fim, é isso que diferencia um evento qualquer de um evento vencedor : não é o quanto se gastou em tela de LED, e sim o quanto a operação foi bem pensada para que as pessoas certas estivessem no lugar certo, na hora certa – com apoio suficiente para que nada desvie o foco do que realmente importa."
-        },
-        {
-          "type": "paragraph",
-          "text": "Pronto para simplificar seu próximo evento?"
-        }
-      ]
+      "titulo_secao": "7. Recomendações finais: eventos que libertam o cliente para focar no estratégico",
+      "conteudo_markdown": "O objetivo de toda essa estrutura não é deixar a gestão de eventos mais pesada. É justamente o contrário: **tirar o peso da cabeça do gestor de viagens e do time interno**.\n\nQuando você entende em que nível de evento está se metendo, planeja em fases (antes, durante, depois), organiza bem a parte MICE (hospedagem, centro de eventos, terrestre, receptivo, produção), trata a agência como copiloto estratégico, define claramente quem faz o quê e tem um protocolo simples de gestão de riscos e contingência, o evento deixa de ser um monstro incontrolável e passa a ser um **projeto de alto impacto**, com começo, meio e fim.\n\nO cliente interno (diretoria, área comercial, marketing) consegue focar em:\n\n- falar com os clientes certos;\n- cuidar das palestras;\n- fechar negócios;\n- fortalecer relacionamento.\n\nEnquanto isso, você e seus parceiros garantem que:\n\n- todos cheguem;\n- todos sejam bem tratados;\n- tudo funcione o suficiente para que o objetivo principal aconteça.\n\nNo fim, é isso que diferencia um evento qualquer de um **evento vencedor**: não é o quanto se gastou em tela de LED, e sim o quanto a operação foi bem pensada para que as pessoas certas estivessem no lugar certo, na hora certa – com apoio suficiente para que nada desvie o foco do que realmente importa.\n\n---\n\n**Ficou com alguma dúvida sobre seu próximo evento corporativo?**\n\nEnvie uma mensagem pelo WhatsApp e tire dúvidas rápidas sobre formato, parceiros e logística de eventos que envolvem viagens, hospedagem e receptivo.\n\n[FALE COM A NOSSA EQUIPE PELO WHATSAPP](https://wa.me/5541999450111?text=Ol%C3%A1%21%20Li%20o%20artigo%20sobre%20gest%C3%A3o%20de%20eventos%20corporativos%20no%20site%20da%20Winners%20Tour%20e%20gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20r%C3%A1pidas%20sobre%20um%20evento%20que%20estou%20organizando.)\n"
     }
   ]
 }

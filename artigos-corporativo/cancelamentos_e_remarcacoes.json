@@ -1,319 +1,52 @@
 {
-  "slug": "cancelamentos_e_remarcacoes",
-  "meta_title": "WinnersTour — Cancelamentos e Remarcações",
-  "title": "Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga",
-  "image_path": "/assets/artigos/cancelamentos_e_remarcacoes.webp",
-  "intro": {
-    "section_type": "intro",
-    "blocks": [
-      {
-        "type": "paragraph",
-        "text": "Quem cuida de viagens dentro da empresa já ouviu isso dezenas de vezes:"
-      },
-      {
-        "type": "blockquote",
-        "text": "“Emite assim mesmo… se mudar a gente remarca depois.”"
-      },
-      {
-        "type": "paragraph",
-        "text": "Na teoria, parece simples. Na prática, cada “depois a gente vê” pode virar:"
-      },
-      {
-        "type": "list",
-        "style": "unordered",
-        "items": [
-          "diária de hotel perdida,",
-          "passagem praticamente recomprada a preço cheio,",
-          "ingresso de evento jogado fora,",
-          "ou um grupo inteiro travado em políticas rígidas de cancelamento."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Este texto é para organizar o raciocínio de quem está no meio desse fogo cruzado: como funcionam, de verdade, os cancelamentos e remarcações de hotéis, passagens aéreas e eventos – e onde o dinheiro some sem ninguém perceber."
-      }
-    ]
-  },
+  "titulo": "Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga",
+  "titulo_curto": "Cancelamentos e remarcações em viagens corporativas",
+  "categoria": "Artigo Corporativo",
   "sections": [
     {
       "id": 1,
-      "section_type": "content",
-      "title": "1. Hospedagem: flexível, não reembolsável e o impacto do no-show",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Na hotelaria, a lógica costuma ser dividida em três camadas:"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "Tarifa flexível",
-            "Tarifa não reembolsável",
-            "Regra de no-show (não comparecimento)"
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Entender essa diferença já evita metade dos mal-entendidos."
-        }
-      ]
+      "titulo_secao": "Introdução",
+      "conteudo_markdown": "Quem cuida de viagens dentro da empresa já ouviu isso dezenas de vezes:\n\n> “Emite assim mesmo… se mudar a gente remarca depois.”\n\nNa teoria, parece simples. Na prática, cada “depois a gente vê” pode virar:\n\n- diária de hotel perdida,\n- passagem praticamente recomprada a preço cheio,\n- ingresso de evento jogado fora,\n- ou um grupo inteiro travado em políticas rígidas de cancelamento.\n\nEste texto é para organizar o raciocínio de quem está no meio desse fogo cruzado: **como funcionam, de verdade, os cancelamentos e remarcações em hotelaria, passagens aéreas e eventos – e onde o dinheiro some sem ninguém perceber.**\n\nAo mesmo tempo, é um material para que diretores financeiros, compras e RH enxerguem que essas decisões não são “mero operacional de viagem”, mas um dos pontos que mais distorcem o orçamento de viagens ao longo do ano.\n"
     },
     {
       "id": 2,
-      "section_type": "content",
-      "title": "Tarifas flexíveis: respiro com prazo",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "As tarifas flexíveis são aquelas em que o hotel permite cancelar ou alterar a reserva sem custo , desde que o hóspede avise dentro de um prazo combinado. Em muitos casos, esse prazo chega até 24 horas antes do check-in; em outros, pode ser de 48 ou 72 horas, dependendo do hotel, da data e da cidade."
-        },
-        {
-          "type": "paragraph",
-          "text": "Se o hóspede avisa dentro desse prazo, a reserva é cancelada sem multa ou com penalidade mínima.\n                Para viagens corporativas com chance real de mudança, essa tarifa funciona como um “amortecedor de risco”."
-        },
-        {
-          "type": "paragraph",
-          "text": "O ponto crítico é simples: passou do prazo, o jogo muda ."
-        }
-      ]
+      "titulo_secao": "1. Hospedagem: flexível, não reembolsável e o impacto do no-show",
+      "conteudo_markdown": "Na hotelaria, a lógica costuma ser dividida em três camadas:\n\n1. **Tarifa flexível**\n2. **Tarifa não reembolsável**\n3. **Regra de no-show (não comparecimento)**\n\nEntender essa diferença já evita metade dos mal-entendidos.\n\n### Tarifas flexíveis: respiro com prazo\n\nAs tarifas flexíveis são aquelas em que o hotel permite cancelar ou alterar a reserva **sem custo**, desde que o hóspede avise dentro de um prazo combinado. Em muitos casos, esse prazo chega até **24 horas antes** do check-in; em outros, pode ser de 48 ou 72 horas, dependendo do hotel, da data e da cidade.\n\nSe o hóspede avisa dentro desse prazo, a reserva é cancelada sem multa ou com penalidade mínima. Para viagens corporativas com chance real de mudança, essa tarifa funciona como um “amortecedor de risco”.\n\nO ponto crítico é simples: **passou do prazo, o jogo muda**.\n\n### Tarifas não reembolsáveis: desconto na entrada, risco total na saída\n\nA tarifa não reembolsável seduz com um preço melhor, mas vem com um recado embutido:\n\n> “Se desistir, perde tudo.”\n\nNa prática, o hotel **cobra antecipado** ou bloqueia o valor no cartão e, se o hóspede desistir depois do prazo de arrependimento, **não há devolução**. Também não é comum mudar data, encurtar período ou transformar em crédito. É o clássico trade-off: a empresa economiza na compra, mas assume o risco de perder **100%** se o plano mudar.\n\n### No-show: uma diária… ou o período inteiro\n\nAlém do tipo de tarifa, existe a regra de **no-show**: quando o hóspede simplesmente não aparece e não avisa. Em muitos casos, o hotel cobra apenas **uma diária** como multa; em períodos de grande demanda (feiras, congressos, grandes eventos na cidade), é bem comum reter o valor de **toda a estadia**.\n\nImagine uma reserva de 5 noites num evento importante. Se a pessoa desiste da viagem em cima da hora e ninguém cancela a reserva, é possível o hotel cobrar **as 5 noites inteiras** e, depois do “leite derramado”, quase não há espaço para negociação.\n\nDo ponto de vista da gestão de viagens, uma regra prática vale ouro:\n\n> Se a viagem caiu, **avise o hotel imediatamente**.  \n> Cada hora de silêncio aumenta a chance de a multa sair de “1 diária” para “período inteiro”.\n"
     },
     {
       "id": 3,
-      "section_type": "content",
-      "title": "Tarifas não reembolsáveis: desconto na entrada, risco total na saída",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "A tarifa não reembolsável seduz com um preço melhor, mas vem com um recado embutido:"
-        },
-        {
-          "type": "blockquote",
-          "text": "“Se desistir, perde tudo.”"
-        },
-        {
-          "type": "paragraph",
-          "text": "Na prática, o hotel cobra antecipado ou bloqueia o valor no cartão e, se o hóspede desistir depois do prazo de arrependimento, não há devolução . Também não é comum mudar data, encurtar período ou transformar em crédito. É o clássico trade-off: a empresa economiza na compra, mas assume o risco de perder 100% se o plano mudar."
-        }
-      ]
+      "titulo_secao": "2. Passagens aéreas: na prática, não reembolsáveis",
+      "conteudo_markdown": "No aéreo, o cenário é ainda mais rígido. Para o dia a dia do corporativo, a regra mais segura é tratar todas as passagens assim:\n\n> **Passagem aérea é não reembolsável. Ponto.**\n\nO que normalmente volta, quando volta, é algo pequeno ligado a taxas – muitas vezes apenas uma parte da taxa de embarque, na casa de algumas dezenas de reais (por exemplo, algo em torno de R$ 50 por trecho, dependendo do aeroporto). Contar com devolução da **tarifa aérea** em si é se iludir.\n\nA única exceção real é quando a própria companhia aérea cancela o voo por motivo operacional ou de força maior e o passageiro decide não viajar mais. Nesses casos, a empresa aérea costuma oferecer remarcação sem custo adicional ou reembolso mais amplo do valor pago, justamente porque foi ela quem rompeu o serviço previsto. Ainda assim, é um cenário relativamente **raro** se comparado com o volume de viagens emitidas.\n\nEm qualquer cancelamento por decisão da empresa ou do passageiro, a regra prática é considerar que não haverá reembolso da passagem e que qualquer valor aproveitado será exceção, não regra.\n\nO maior desafio, porém, não é nem o cancelamento em si. É a remarcação.\n"
     },
     {
       "id": 4,
-      "section_type": "content",
-      "title": "No-show: uma diária… ou o período inteiro",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Além do tipo de tarifa, existe a regra de no-show : quando o hóspede simplesmente não aparece e não avisa. Em muitos casos, o hotel cobra apenas uma diária como multa; em períodos de grande demanda (feiras, congressos, grandes eventos na cidade), é bem comum reter o valor de toda a estadia ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Imagine uma reserva de 5 noites num evento importante. Se a pessoa desiste da viagem em cima da hora e ninguém cancela a reserva, é possível o hotel cobrar as 5 noites inteiras e, depois do “leite derramado”, quase não há espaço para negociação."
-        },
-        {
-          "type": "paragraph",
-          "text": "Do ponto de vista da gestão de viagens, uma regra prática vale ouro:"
-        },
-        {
-          "type": "blockquote",
-          "text": "Se a viagem caiu, avise o hotel imediatamente . Cada hora de silêncio aumenta a chance de a multa sair de “1 diária” para “período inteiro”."
-        }
-      ]
+      "titulo_secao": "3. O problema não é só a multa – é a diferença de tarifa",
+      "conteudo_markdown": "Quando alguém pergunta quanto custa remarcar, costuma imaginar algo como:\n\n> “Ah, paga uma multa e pronto.”\n\nNa realidade, o custo quase sempre é:\n\n> **Multa de alteração + diferença de tarifa**\n\nA multa é a parte relativamente fácil: um valor fixo por trecho (por exemplo, R$ 500 na ida + R$ 500 na volta, totalizando R$ 1.000 por passageiro). O estrago mora na **diferença de tarifa**, especialmente quando a nova data é em cima da hora.\n\nImagine um caso bem próximo da sua rotina: a empresa comprou uma passagem ida e volta por **R$ 1.500**, com boa antecedência, e a tarifa tem multa de **R$ 500 por trecho** em caso de remarcação. A viagem cai e decidem remarcar para alguns dias depois, já bem perto da nova data. Na remarcação, a companhia cobra **R$ 1.000 de multa** (R$ 500 ida + R$ 500 volta); sobram **R$ 500** como algo parecido com “crédito” da passagem antiga; e a nova viagem, como está sendo comprada em cima da hora, aparece por **R$ 4.000** (tarifa cheia ou muito próxima disso).\n\nNa ponta do lápis, dos **R$ 1.500** originais, R$ 1.000 desaparecem na multa, os R$ 500 restantes apenas abatem um pedaço da nova passagem, e a empresa desembolsa agora **R$ 3.500**. A viagem antiga virou quase perda total, e a remarcação funciona, na prática, como **comprar outra passagem a preço cheio** com um pequeno alívio pelo que sobrou.\n\nPor isso, é importante alinhar a expectativa dentro da empresa:\n\n*Remarcação não é mágica.*  \nAjuda a aproveitar uma parte do valor, mas **nova viagem = novo preço**.  \nSe for em cima da hora, esse novo preço tende a ser o mais caro de todos.\n\n---\n\nFicou com alguma dúvida sobre cancelamentos e remarcações e como isso impacta o caixa da sua empresa? Fale com a gente pelo WhatsApp.\n\nCom base nos seus relatórios de viagens, nós ajudamos a mapear esses custos “invisíveis” e a revisar suas regras para reduzir perdas sem travar as viagens importantes.\n"
     },
     {
       "id": 5,
-      "section_type": "content",
-      "title": "2. Passagens aéreas: na prática, não reembolsáveis",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "No aéreo, o cenário é ainda mais rígido. Para o dia a dia do corporativo, a regra mais segura é tratar todas as passagens assim:"
-        },
-        {
-          "type": "blockquote",
-          "text": "Passagem aérea é não reembolsável. Ponto."
-        },
-        {
-          "type": "paragraph",
-          "text": "O que normalmente volta, quando volta, é algo pequeno ligado a taxas – muitas vezes apenas uma parte da taxa de embarque, na casa de algumas dezenas de reais (por exemplo, algo em torno de R$ 50 por trecho, dependendo do aeroporto). Contar com devolução da tarifa aérea em si é se iludir."
-        },
-        {
-          "type": "paragraph",
-          "text": "A única exceção real é quando a própria companhia aérea cancela o voo por motivo operacional ou de força maior e o passageiro decide não viajar mais. Nesses casos, a empresa aérea costuma oferecer remarcação sem custo adicional ou reembolso mais amplo do valor pago, justamente porque foi ela quem rompeu o serviço previsto. Ainda assim, é um cenário relativamente raro se comparado com o volume de viagens emitidas."
-        },
-        {
-          "type": "paragraph",
-          "text": "Em qualquer cancelamento por decisão da empresa ou do passageiro, a regra prática é considerar que não haverá reembolso da passagem e que qualquer valor aproveitado será exceção, não regra. O maior desafio, porém, não é nem o cancelamento em si. É a remarcação."
-        }
-      ]
+      "titulo_secao": "4. Eventos, feiras e congressos: quando o problema é achar cama na cidade",
+      "conteudo_markdown": "Se hotéis e passagens já exigem cuidado, o cenário de **eventos, feiras e congressos** adiciona uma camada a mais: muitas vezes, o maior problema não é nem a multa, e sim **não ter onde ficar**.\n\nEm grandes eventos, é muito comum que, quando você começa a buscar hotel, simplesmente não encontre vaga em lugar nenhum. Ao ligar direto para as principais hospedagens da cidade, a resposta vem quase padrão: “Estamos bloqueados para uma empresa/organização X”. Na prática, alguma empresa de grande porte, promotora ou operadora de eventos **comprou praticamente todo o inventário da cidade** e o que sobra é muito pouco.\n\nNessas horas, o desafio não é discutir política de cancelamento. É literalmente **garimpar uma cama**: procurar em bairros mais afastados, olhar cidades vizinhas, mapear pequenas pousadas que ainda não foram bloqueadas ou negociar diretamente com hotéis que tenham segurado alguns poucos apartamentos fora de bloqueios maiores. Ao mesmo tempo, justamente porque a demanda está concentrada, as políticas para esse período se tornam mais duras: tarifas não reembolsáveis, prazos de cancelamento bem longos, multas altas ou perda total da estadia em caso de desistência e pouca ou nenhuma flexibilidade para mudar datas.\n\n### Bloqueio de grupo: um pouco mais de jogo de cintura – se for bem negociado\n\nQuando a empresa fecha um **bloqueio de grupo** diretamente com o hotel (por exemplo, um conjunto de apartamentos para um evento específico), costuma aparecer um pouco mais de jogo de cintura. É relativamente comum o hotel aceitar trocar nomes de hóspedes até certo prazo, liberar alguns apartamentos do bloqueio sem multa ou ajustar levemente datas de entrada e saída. Mas tudo isso **depende de negociação direta** com o hotel e precisa estar escrito no contrato desde o começo. Não é algo que se assume; é algo que se combina.\n"
     },
     {
       "id": 6,
-      "section_type": "content",
-      "title": "3. O problema não é só a multa – é a diferença de tarifa",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Quando alguém pergunta quanto custa remarcar, costuma imaginar algo como:"
-        },
-        {
-          "type": "blockquote",
-          "text": "“Ah, paga uma multa e pronto.”"
-        },
-        {
-          "type": "paragraph",
-          "text": "Na realidade, o custo quase sempre é:"
-        },
-        {
-          "type": "blockquote",
-          "text": "Multa de alteração + diferença de tarifa"
-        },
-        {
-          "type": "paragraph",
-          "text": "A multa é a parte relativamente fácil: um valor fixo por trecho (por exemplo, R$ 500 na ida + R$ 500 na volta, totalizando R$ 1.000 por passageiro). O estrago mora na diferença de tarifa , especialmente quando a nova data é em cima da hora."
-        },
-        {
-          "type": "paragraph",
-          "text": "Imagine um caso bem próximo da sua rotina: a empresa comprou uma passagem ida e volta por R$ 1.500 , com boa antecedência, e a tarifa tem multa de R$ 500 por trecho em caso de remarcação. A viagem cai e decidem remarcar para alguns dias depois, já bem perto da nova data. Na remarcação, a companhia cobra R$ 1.000 de multa (R$ 500 ida + R$ 500 volta); sobram R$ 500 como algo parecido com “crédito” da passagem antiga; e a nova viagem, como está sendo comprada em cima da hora, aparece por R$ 4.000 (tarifa cheia ou muito próxima disso)."
-        },
-        {
-          "type": "paragraph",
-          "text": "Na ponta do lápis, dos R$ 1.500 originais, R$ 1.000 desaparecem na multa, os R$ 500 restantes apenas abatem um pedaço da nova passagem, e a empresa desembolsa agora R$ 3.500 . A viagem antiga virou quase perda total, e a remarcação funciona, na prática, como comprar outra passagem a preço cheio com um pequeno alívio pelo que sobrou."
-        },
-        {
-          "type": "paragraph",
-          "text": "Por isso, é importante alinhar a expectativa dentro da empresa:"
-        },
-        {
-          "type": "blockquote",
-          "text": "Remarcação não é mágica. Ajuda a aproveitar uma parte do valor, mas nova viagem = novo preço . Se for em cima da hora, esse novo preço tende a ser o mais caro de todos."
-        }
-      ]
+      "titulo_secao": "5. O mito do “crédito”: o que o viajante imagina x o que realmente acontece",
+      "conteudo_markdown": "Um dos ruídos mais frequentes entre viajante, gestor de viagens e financeiro é a ideia de “crédito”. As frases são clássicas:\n\n- “Se eu não for mais, essa passagem fica de crédito pra outra, né?”\n- “Pelo menos não perdemos tudo, dá pra usar depois.”\n- “Se cancelar o hotel, dá pra jogar pra outra data, certo?”\n\nTecnicamente, em alguns casos, sobra uma parte da tarifa aérea como crédito após a multa, a taxa de embarque pode ser devolvida e determinados hotéis e contratos permitem reaproveitar parte do valor em outra reserva.\n\nMas a realidade financeira é bem menos gentil: no aéreo, a maior parte do valor foi consumida pela multa e pela necessidade de recomprar caro; no hotel, tarifas não reembolsáveis e no-show em período de evento quase sempre significam perda integral; e, em eventos, inscrições e pacotes especiais normalmente não aceitam remarcação ou reembolso.\n\nPara evitar frustração, vale mudar a forma de comunicar. Em vez de dizer apenas “Fica de crédito”, funciona melhor algo como:\n\n> “Em alguns casos a gente consegue aproveitar uma parte do valor,  \n> mas se a decisão de cancelar ou remarcar vem em cima da hora,  \n> é importante saber que **a maior parte do custo já foi**.”\n\nEssa honestidade na conversa protege tanto o setor de viagens quanto o relacionamento com o viajante.\n"
     },
     {
       "id": 7,
-      "section_type": "content",
-      "title": "4. Eventos, feiras e congressos: quando o problema é achar cama na cidade",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Se hotéis e passagens já exigem cuidado, o cenário de eventos, feiras e congressos adiciona uma camada a mais: muitas vezes, o maior problema não é nem a multa, e sim não ter onde ficar ."
-        },
-        {
-          "type": "paragraph",
-          "text": "Em grandes eventos, é muito comum que, quando você começa a buscar hotel, simplesmente não encontre vaga em lugar nenhum. Ao ligar direto para as principais hospedagens da cidade, a resposta vem quase padrão: “Estamos bloqueados para uma empresa/organização X”. Na prática, alguma empresa de grande porte, promotora ou operadora de eventos comprou praticamente todo o inventário da cidade e o que sobra é muito pouco."
-        },
-        {
-          "type": "paragraph",
-          "text": "Nessas horas, o desafio não é discutir política de cancelamento. É literalmente garimpar uma cama : procurar em bairros mais afastados, olhar cidades vizinhas, mapear pequenas pousadas que ainda não foram bloqueadas ou negociar diretamente com hotéis que tenham segurado alguns poucos apartamentos fora de bloqueios maiores. Ao mesmo tempo, justamente porque a demanda está concentrada, as políticas para esse período se tornam mais duras: tarifas não reembolsáveis, prazos de cancelamento bem longos, multas altas ou perda total da estadia em caso de desistência e pouca ou nenhuma flexibilidade para mudar datas."
-        }
-      ]
+      "titulo_secao": "6. Como transformar tudo isso em orientação prática dentro da empresa",
+      "conteudo_markdown": "Mais do que decorar regulamento, o papel do gestor de viagens é transformar essas regras em uma matriz de decisão clara para a empresa. É ele quem ajuda líderes a responder perguntas como: “emitimos agora ou esperamos?”, “vale pagar pela tarifa flexível neste caso?” e “o que acontece se essa reunião cair?”.\n\nNa prática, isso passa por três frentes principais:\n\n1. **Decidir bem antes de emitir.** Separar o que é “viagem certa” do que ainda é hipótese, definir prazos mínimos de confirmação e, quando houver incerteza real, ter coragem de dizer “ainda não é hora de emitir”.  \n2. **Definir política e contratos que reflitam a realidade.** Estabelecer quando a empresa aceita tarifa não reembolsável, como lidar com períodos de eventos, quais prazos de cancelamento serão adotados e como isso aparece de forma objetiva na política de viagens.  \n3. **Comunicar, acompanhar e ajustar.** Explicar de forma simples para viajantes, gestores e diretoria o que acontece em cada cenário, acompanhar os casos de cancelamento e remarcação e usar esses dados para ajustar política e contratos ao longo do tempo.\n\nQuando essa lógica está clara, cada pedido de viagem deixa de ser um “caso isolado” e passa a seguir um raciocínio padrão. Isso reduz conflitos internos, protege o caixa e fortalece a posição do gestor de viagens como referência em risco e custo – e não apenas como “quem emite as passagens”.\n"
     },
     {
       "id": 8,
-      "section_type": "content",
-      "title": "Bloqueio de grupo: um pouco mais de jogo de cintura – se for bem negociado",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Quando a empresa fecha um bloqueio de grupo diretamente com o hotel (por exemplo, um conjunto de apartamentos para um evento específico), costuma aparecer um pouco mais de jogo de cintura. É relativamente comum o hotel aceitar trocar nomes de hóspedes até certo prazo, liberar alguns apartamentos do bloqueio sem multa ou ajustar levemente datas de entrada e saída. Mas tudo isso depende de negociação direta com o hotel e precisa estar escrito no contrato desde o começo. Não é algo que se assume; é algo que se combina."
-        }
-      ]
+      "titulo_secao": "7. A foto ideal do gestor de viagens diante de cancelamentos e remarcações",
+      "conteudo_markdown": "Na prática, o “gestor estratégico” nesse tema não é quem evita todo cancelamento (isso é impossível), mas quem consegue transformar esses casos em aprendizado e decisões melhores para frente.\n\nAlguns sinais de que a gestão está madura:\n\n- Os pedidos de viagem chegam com prazos e cenários mais claros (“certa”, “provável”, “a estudar”).\n- Existem diretrizes objetivas sobre quando usar tarifa flexível ou não reembolsável, especialmente em períodos de evento.\n- Os principais contratos de hotel, aéreo e eventos trazem cláusulas de cancelamento discutidas conscientemente com a diretoria.\n- Casos de cancelamento e remarcação são registrados e acompanhados, em vez de “sumirem” em e-mails isolados.\n- A diretoria sabe, em linhas gerais, quanto a empresa perde por ano com essas situações – e enxerga o gestor de viagens como referência nesse assunto.\n\nÉ esse cenário que reduz a sensação de improviso, melhora o relacionamento com os viajantes e dá ao gestor de viagens um papel claro na proteção do orçamento.\n"
     },
     {
       "id": 9,
-      "section_type": "content",
-      "title": "5. O mito do “crédito”: o que o viajante imagina x o que realmente acontece",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Um dos ruídos mais frequentes entre viajante, gestor de viagens e financeiro é a ideia de “crédito”. As frases são clássicas: “Se eu não for mais, essa passagem fica de crédito pra outra, né?”; “Pelo menos não perdemos tudo, dá pra usar depois”; “Se cancelar o hotel, dá pra jogar pra outra data, certo?”."
-        },
-        {
-          "type": "paragraph",
-          "text": "Tecnicamente, em alguns casos, sobra uma parte da tarifa aérea como crédito após a multa, a taxa de embarque pode ser devolvida e determinados hotéis e contratos permitem reaproveitar parte do valor em outra reserva. Mas a realidade financeira é bem menos gentil: no aéreo, a maior parte do valor foi consumida pela multa e pela necessidade de recomprar caro; no hotel, tarifas não reembolsáveis e no-show em período de evento quase sempre significam perda integral; e, em eventos, inscrições e pacotes especiais normalmente não aceitam remarcação ou reembolso."
-        },
-        {
-          "type": "paragraph",
-          "text": "Para evitar frustração, vale mudar a forma de comunicar. Em vez de dizer apenas “Fica de crédito”, funciona melhor algo como:"
-        },
-        {
-          "type": "blockquote",
-          "text": "“Em alguns casos a gente consegue aproveitar uma parte do valor, mas se a decisão de cancelar ou remarcar vem em cima da hora, é importante saber que a maior parte do custo já foi .”"
-        },
-        {
-          "type": "paragraph",
-          "text": "Essa honestidade na conversa protege tanto o setor de viagens quanto o relacionamento com o viajante."
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "section_type": "content",
-      "title": "6. Como transformar tudo isso em orientação prática dentro da empresa",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Mais do que decorar regulamento, o papel do gestor de viagens é traduzir essas regras em decisões práticas . Isso começa antes de qualquer emissão, com uma pergunta simples: essa viagem é certa ou ainda está no “talvez”? Se ainda estiver no campo das hipóteses, pode ser mais inteligente segurar alguns dias, aguardar confirmação mais firme ou, se realmente for necessário emitir, optar por tarifas mais flexíveis, explicando claramente para o gestor por que o custo ficou maior. Na maioria das vezes, é melhor gastar um pouco mais na tarifa do que perder tudo depois."
-        },
-        {
-          "type": "paragraph",
-          "text": "Também é fundamental diferenciar muito bem, dentro da empresa, o discurso de cancelamento e de remarcação . Cancelamento de aérea, na prática, precisa ser tratado como não reembolsável, salvo em casos de cancelamento do voo pela própria companhia. Já a remarcação deve ser sempre explicada com a fórmula completa: multa de alteração somada à diferença de tarifa, deixando claro que, quando a mudança é em cima da hora, a nova tarifa quase sempre é bem mais alta. Com hotéis, a explicação passa por mostrar a diferença entre tarifa flexível e não reembolsável e pelo impacto do no-show, especialmente em períodos de evento."
-        },
-        {
-          "type": "paragraph",
-          "text": "No caso de eventos, feiras e grandes datas, vale ter essas regras por escrito . É importante registrar que, nesses períodos, a principal dificuldade costuma ser encontrar vaga de hospedagem, que os hotéis operam com políticas mais duras e que ingressos, credenciais e pacotes especiais geralmente não aceitam reembolso nem remarcação. Se houver bloqueio de grupo com hotel, o ideal é que o contrato traga, de forma bem objetiva, o prazo de troca de nomes e a possibilidade (ou não) de liberar alguns quartos sem multa, evitando surpresas lá na frente."
-        },
-        {
-          "type": "paragraph",
-          "text": "Por fim, todo esse cenário reforça o valor da antecedência em todas as frentes. A Regra de Ouro da Antecedência não serve apenas para baratear passagens; ela impacta diretamente a chance de encontrar hotel, a qualidade das condições negociadas e a margem para reagir a imprevistos. Quem decide cedo tem mais alternativas, melhores tarifas e menos choque com políticas rígidas. Quem decide em cima da hora paga caro, encontra pouca vaga e vive mais exposto àquelas regras que parecem duras demais apenas porque foram lidas tarde demais."
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "section_type": "content",
-      "title": "Conclusão: depois de emitido, o contrato manda – por isso decidir bem antes é tão importante",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Cancelamentos e remarcações fazem parte da vida de qualquer empresa que viaja.\n                O que muda tudo é:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "como a empresa decide antes de emitir ,",
-            "o quanto entende das regras de hotel, aéreo e eventos ,",
-            "e quão honesta é a comunicação sobre risco de perda ."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Hotéis podem ser parceiros quando se escolhe tarifa flexível e se avisa no prazo, ou carrascos quando há no-show em período de evento.\n                Passagens aéreas, na prática, devem ser tratadas como não reembolsáveis , com remarcação funcionando quase sempre como recomprar caro.\n                Em grandes eventos, o maior desafio muitas vezes nem é a multa: é conseguir achar um lugar decente para o time dormir."
-        },
-        {
-          "type": "paragraph",
-          "text": "Quando o gestor de viagens enxerga isso com clareza e consegue traduzir em linguagem simples para diretores, áreas internas e viajantes, algo importante acontece:"
-        },
-        {
-          "type": "list",
-          "style": "unordered",
-          "items": [
-            "cai a expectativa de “desconto milagroso” depois que tudo deu errado,",
-            "aumenta o cuidado na hora de autorizar viagem e evento,",
-            "e o orçamento para de sangrar em multas e diferenças de tarifa que “ninguém viu” chegando."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "No fim, cancelar ou remarcar sempre vai ter um preço.\n                O papel da boa gestão é fazer esse preço ser exceção consciente – e não a rotina silenciosa que corrói o caixa mês após mês."
-        },
-        {
-          "type": "paragraph",
-          "text": "Dúvidas sobre políticas de cancelamento?"
-        }
-      ]
+      "titulo_secao": "Conclusão: depois de emitido, o contrato manda – por isso decidir bem antes é tão importante",
+      "conteudo_markdown": "Cancelamentos e remarcações fazem parte da vida de qualquer empresa que viaja. O que muda tudo é:\n\n- **como a empresa decide antes de emitir**,\n- **o quanto entende das regras de hotel, aéreo e eventos**,\n- **e quão honesta é a comunicação sobre risco de perda**.\n\nHotéis podem ser parceiros quando se escolhe tarifa flexível e se avisa no prazo, ou carrascos quando há no-show em período de evento. Passagens aéreas, na prática, devem ser tratadas como **não reembolsáveis**, com remarcação funcionando quase sempre como recomprar caro. Em grandes eventos, o maior desafio muitas vezes nem é a multa: é conseguir achar um lugar decente para o time dormir.\n\nQuando o gestor de viagens enxerga isso com clareza e consegue traduzir em linguagem simples para diretores, áreas internas e viajantes, algo importante acontece:\n\n- cai a expectativa de “desconto milagroso” depois que tudo deu errado,\n- aumenta o cuidado na hora de autorizar viagem e evento,\n- e o orçamento para de sangrar em multas e diferenças de tarifa que “ninguém viu” chegando.\n\nNo fim, cancelar ou remarcar sempre vai ter um preço.  \nO papel da boa gestão é fazer esse preço ser **exceção consciente** – e não a rotina silenciosa que corrói o caixa mês após mês.\n\n---\n\n**Ficou com alguma dúvida sobre cancelamentos, remarcações e o impacto disso no orçamento de viagens da sua empresa?**\n\nConverse com nossa equipe pelo WhatsApp para entender melhor como esses custos aparecem na prática e quais ajustes de política e processos podem reduzir perdas ao longo do ano.\n"
     }
   ]
 }
