@@ -329,9 +329,42 @@ a{text-decoration:none;color:inherit}
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
+
+/* Bloco de preço alinhado à direita, no rodapé do card */
+.card-bottom {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.card-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.card-price-label,
+.card-price-note {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-price-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
 /* Footer + botão */
 .card-footer {
-  margin-top: auto;
+  margin-top: 4px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -661,7 +694,6 @@ function createCard(item) {
 
   const priceInfo = getPriceInfo(item);
   const hasPrice = priceInfo.type === 'price';
-  const isConsult = priceInfo.type === 'consult';
 
   const hasLink = !!(item.href || slug);
   const wrapperTag = hasLink ? 'a' : 'div';
@@ -690,6 +722,9 @@ function createCard(item) {
   const t = document.createElement('p');
   t.className = 'card-title';
   t.textContent = title;
+
+  const bottom = document.createElement('div');
+  bottom.className = 'card-bottom';
 
   const footer = document.createElement('div');
   footer.className = 'card-footer';
@@ -731,16 +766,17 @@ function createCard(item) {
     priceBlock.appendChild(value);
   }
 
+  bottom.appendChild(priceBlock);
+  bottom.appendChild(footer);
+
   content.appendChild(t);
-  content.appendChild(priceBlock);
-  content.appendChild(footer);
+  content.appendChild(bottom);
 
   card.appendChild(media);
   card.appendChild(content);
 
   return card;
 }
-
 function renderLazer(data) {
   const tabsContainer = document.getElementById('category-tabs');
   const grid = document.getElementById('events-grid');
