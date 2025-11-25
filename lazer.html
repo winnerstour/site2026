@@ -342,7 +342,7 @@ a{text-decoration:none;color:inherit}
 }
 
 .card-price {
-  flex: 0 0 60%;
+  flex: 0 0 55%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -373,7 +373,7 @@ a{text-decoration:none;color:inherit}
 /* Footer + botão */
 .card-footer {
   margin-top: 0;
-  flex: 0 0 40%;
+  flex: 0 0 45%;
   display: flex;
   justify-content: flex-start;
   padding-top: 6px;
@@ -389,7 +389,7 @@ a{text-decoration:none;color:inherit}
   border-radius: 999px;
   border: 1px solid #ffffff;
   padding: 6px 18px;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -840,6 +840,8 @@ function renderLazer(data) {
       label = 'Inter';
     } else if (categoria === 'Day Use') {
       label = 'DayUse';
+    } else if (categoria === 'Day Use Cwb') {
+      label = 'Day Use';
     }
     span.textContent = label;
 
