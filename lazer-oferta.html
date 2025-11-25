@@ -44,7 +44,8 @@
     }
 
     /* HERO EM BARRA CHEIA (inclui cabeçalho) */
-    .hero-wrap{background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
+    .hero-wrap{
+      background:linear-gradient(135deg,var(--brand-shadow),var(--brand));
       color:#fff;
       min-height:68vh;
       display:flex;
@@ -126,7 +127,10 @@
     }
 
     /* CONTEÚDO PRINCIPAL DO HERO */
-    .hero-main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+    .hero-main{
+      flex:1;
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
       align-items:center;
       gap:32px;
     }
@@ -144,7 +148,14 @@
       opacity:0.9;
       margin:0;
     }
-    .hero-image{border-radius:28px;overflow:hidden;background:#000;max-height:460px;border:4px solid rgba(255,255,255,0.9);box-shadow:0 16px 32px rgba(15,23,42,0.35);}
+    .hero-image{
+      border-radius:28px;
+      overflow:hidden;
+      background:#000;
+      max-height:460px;
+      border:4px solid rgba(255,255,255,0.9);
+      box-shadow:0 16px 32px rgba(15,23,42,0.35);
+    }
     .hero-image img{
       width:100%;
       height:100%;
@@ -255,16 +266,18 @@
     .article-cta-final span{
       max-width:540px;
       font-size:0.98rem;
+      display:block;
+      margin-top:6px;
     }
     .article-cta-final a{
-      margin-top:8px;
+      margin-top:12px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       padding:10px 28px;
       border-radius:999px;
       background:#fff;
-      color:var(--brand);
+      color:#ff6a00;
       font-family:'Montserrat',system-ui,sans-serif;
       font-weight:800;
       font-size:0.95rem;
@@ -275,7 +288,7 @@
     }
     .article-cta-final a:hover{
       background:#fef3c7;
-      color:var(--brand-shadow);
+      color:#c2410c;
     }
 
     /* MENSAGEM DE ERRO DO JS */
@@ -321,7 +334,7 @@
       font-size:1rem;
       font-weight:800;
       text-transform:uppercase;
-      color:var(--text);
+      color:#151515;
     }
     .site-menu-panel a{
       display:block;
@@ -330,7 +343,7 @@
       font-size:0.9rem;
       font-weight:700;
       text-transform:uppercase;
-      color:var(--text);
+      color:#151515;
     }
     .site-menu-panel a:first-of-type{
       border-top:none;
@@ -339,7 +352,7 @@
       margin-top:10px;
       text-align:right;
       font-size:0.85rem;
-      color:var(--muted);
+      color:#6b7280;
       cursor:pointer;
     }
 
@@ -469,8 +482,9 @@
 
   <div class="article-cta-final">
     <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
-    <span id="offerCta2">Envie datas, cidade de saída e quantidade de pessoas para que nossa equipe monte o melhor desenho de voos e hospedagens para você.</span>
-    <a href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">      Receba valores atualizados no WhatsApp 👉
+    <span id="offerCta2"></span>
+    <a href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">
+      👉 Receba valores atualizados no WhatsApp
     </a>
   </div>
 
@@ -564,5 +578,27 @@
   });
 })();
 </script>
+
+<script>
+/* Move o texto atual (CTA2) do botão branco para a frase logo abaixo do título laranja,
+   depois fixa o texto padrão do botão: "👉 Receba valores atualizados no WhatsApp" */
+(function(){
+  window.addEventListener('load', function(){
+    var botao = document.getElementById('offerBottomCta');
+    var alvoCta2 = document.getElementById('offerCta2');
+    if (!botao || !alvoCta2) return;
+
+    var textoPadrao = '👉 Receba valores atualizados no WhatsApp';
+    var textoAtual = (botao.textContent || '').trim();
+
+    if (textoAtual && textoAtual !== textoPadrao){
+      alvoCta2.textContent = textoAtual;
+    }
+
+    botao.textContent = textoPadrao;
+  });
+})();
+</script>
+
 </body>
 </html>
