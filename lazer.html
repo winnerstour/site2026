@@ -329,21 +329,22 @@ a{text-decoration:none;color:inherit}
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
-/* Footer + botão */
+/* Footer + botão + preço */
 .card-footer {
   margin-top: auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
   padding-top: 10px;
-  transform: translateY(16px);
-  opacity: 0;
-  transition: transform .2s ease, opacity .2s ease;
 }
+
 .event-card:hover .card-footer {
-  transform: translateY(0);
+  transform: none;
   opacity: 1;
 }
+
+/* Botão "Saiba mais" */
 .card-cta {
   border-radius: 999px;
   border: 1px solid #ffffff;
@@ -355,6 +356,32 @@ a{text-decoration:none;color:inherit}
   background: transparent;
   color: #ffffff;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+}
+
+/* Bloco de preço dentro do card */
+.card-price {
+  text-align: right;
+  line-height: 1.1;
+}
+
+.card-price .price-label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+
+.card-price .price-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.card-price .price-per {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.9;
 }
 
 /* CARD DE ERRO */
@@ -597,212 +624,244 @@ a{text-decoration:none;color:inherit}
 
 <!-- SCRIPT LÓGICA LAZER -->
 <script>
-const LAZER_JSON_URL = './lazer/index-lazer.json';
+(function() {
+  const LAZER_JSON_URL = './lazer/index-lazer.json';
 
-function createCard(item) {
-  const title = item.titulo_curto || item.title || 'Pacote sem título';
-  const slug = item.slug || '';
-  const categoria = item.categoria || 'Outros';
-
-  let src = item.card_image;
-  if (!src) {
-    if (slug) {
-      src = 'assets/lazer/' + slug + '.webp';
-    } else {
-      src = 'assets/lazer/placeholder.webp';
-    }
-  }
-
-  const hasLink = !!(item.href || slug);
-  const wrapperTag = hasLink ? 'a' : 'div';
-  const card = document.createElement(wrapperTag);
-  card.className = 'event-card';
-
-  if (hasLink) {
-    card.href = item.href || ('lazer-oferta.html?slug=' + slug);
-    card.setAttribute('aria-label', title);
-  }
-
-  card.dataset.categoria = categoria;
-
-  const media = document.createElement('div');
-  media.className = 'card-media';
-
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.src = src;
-  img.alt = title;
-  media.appendChild(img);
-
-  const content = document.createElement('div');
-  content.className = 'card-content';
-
-  const t = document.createElement('p');
-  t.className = 'card-title';
-  t.textContent = title;
-
-  const footer = document.createElement('div');
-  footer.className = 'card-footer';
-
-  const cta = document.createElement('span');
-  cta.className = 'card-cta';
-  cta.textContent = 'Saiba mais';
-
-  footer.appendChild(cta);
-  content.appendChild(t);
-  content.appendChild(footer);
-
-  card.appendChild(media);
-  card.appendChild(content);
-
-  return card;
-}
-
-function renderLazer(data) {
-  const tabsContainer = document.getElementById('category-tabs');
-  const grid = document.getElementById('events-grid');
-  if (!tabsContainer || !grid) return;
-
-  grid.innerHTML = '';
-  tabsContainer.innerHTML = '';
-
-  const categoriasSet = new Set();
-  data.forEach(item => {
-    const categoria = item.categoria || 'Outros';
-    categoriasSet.add(categoria);
-  });
-
-  // Ordem desejada para exibição das categorias (aba superior)
-  // Todos (fixo) · Brasil · Day Use · Disney · Tour · Neve · Inter · Resorts · Aventura · Eventos
-  const CAT_ORDER = [
+  // Ordem de exibição das categorias (usa os valores do JSON)
+  const CATEGORY_ORDER = [
     'Tour',
     'Brasil',
     'Day Use',
     'Disney',
     'Neve',
-    'Internacional', // exibida como "Inter"
+    'Internacional',
     'Resorts',
     'Aventura',
     'Eventos'
   ];
 
-  // Converte o Set em array e ordena conforme CAT_ORDER.
-  // Categorias não listadas em CAT_ORDER vão para o fim, em ordem alfabética.
-  const categorias = Array.from(categoriasSet).sort((a, b) => {
-    const ia = CAT_ORDER.indexOf(a);
-    const ib = CAT_ORDER.indexOf(b);
+  function getCategoryLabel(cat) {
+    if (cat === 'Internacional') return 'Inter';
+    if (cat === 'Day Use') return 'DayUse';
+    return cat;
+  }
 
-    if (ia === -1 && ib === -1) {
-      return a.localeCompare(b);
+  function formatPrice(price) {
+    if (price === undefined || price === null || price === '') return '';
+    if (typeof price === 'number') {
+      return price.toLocaleString('pt-BR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+    }
+    const raw = String(price).trim();
+    const normalized = raw.replace(/\./g, '').replace(',', '.');
+    const num = Number(normalized);
+    if (!Number.isNaN(num) && num > 0) {
+      return num.toLocaleString('pt-BR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+    }
+    return raw;
+  }
+
+  function createCard(item) {
+    const title = item.titulo_curto || item.title || 'Pacote sem título';
+    const slug = item.slug || '';
+    const categoria = item.categoria || 'Outros';
+
+    let src = item.card_image;
+    if (!src) {
+      if (slug) {
+        src = 'assets/lazer/' + slug + '.webp';
+      } else {
+        src = 'assets/lazer/placeholder.webp';
+      }
+    } else if (!/^https?:\/\//i.test(src) && !src.startsWith('assets/')) {
+      // Se o JSON trouxer só o nome do arquivo, prefixa com assets/lazer
+      src = 'assets/lazer/' + src;
     }
 
-    if (ia === -1) return 1;
-    if (ib === -1) return -1;
-    return ia - ib;
-  });
+    const href = item.href || (slug ? ('lazer-oferta.html?slug=' + encodeURIComponent(slug)) : '#');
 
-  // Abas por categoria (sem aba "Todos")
-  categorias.forEach(categoria => {
-    const span = document.createElement('span');
-    span.className = 'tab-link';
+    const card = document.createElement('a');
+    card.className = 'event-card';
+    card.href = href;
+    card.dataset.categoria = categoria;
 
-    // Exibe "Inter" quando a categoria do JSON for "Internacional"
-    // e "DayUse" quando for "Day Use"
-    let label = categoria;
-    if (categoria === 'Internacional') {
-      label = 'Inter';
-    } else if (categoria === 'Day Use') {
-      label = 'DayUse';
+    const media = document.createElement('div');
+    media.className = 'card-media';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title;
+    media.appendChild(img);
+
+    const content = document.createElement('div');
+    content.className = 'card-content';
+
+    const t = document.createElement('p');
+    t.className = 'card-title';
+    t.textContent = title;
+
+    const footer = document.createElement('div');
+    footer.className = 'card-footer';
+
+    const priceText = formatPrice(item.price);
+    if (priceText) {
+      const priceEl = document.createElement('div');
+      priceEl.className = 'card-price';
+      priceEl.innerHTML = `
+        <span class="price-label">a partir de</span>
+        <span class="price-value">R$ ${priceText}</span>
+        <span class="price-per">por pessoa</span>
+      `;
+      footer.appendChild(priceEl);
     }
-    span.textContent = label;
 
-    span.dataset.categoria = categoria;
-    tabsContainer.appendChild(span);
-  });
+    const cta = document.createElement('span');
+    cta.className = 'card-cta';
+    cta.textContent = 'Saiba mais';
+    footer.appendChild(cta);
 
-  // Monta os cards
-  data.forEach(item => {
-    const card = createCard(item);
-    grid.appendChild(card);
-  });
+    content.appendChild(t);
+    content.appendChild(footer);
 
-  // Função para aplicar filtro por categoria
-  function aplicarFiltroCategoria(categoriaSel) {
-    const tabs = tabsContainer.querySelectorAll('.tab-link');
-    tabs.forEach(tab => {
-      const tabCat = tab.dataset.categoria;
-      tab.classList.toggle('active', tabCat === categoriaSel);
-    });
+    card.appendChild(media);
+    card.appendChild(content);
 
-    const cards = grid.querySelectorAll('.event-card');
-    cards.forEach(card => {
-      const cat = card.dataset.categoria || 'Outros';
-      card.style.display = (cat === categoriaSel) ? '' : 'none';
+    return card;
+  }
+
+  function sortCategories(categories) {
+    return categories.slice().sort((a, b) => {
+      const ia = CATEGORY_ORDER.indexOf(a);
+      const ib = CATEGORY_ORDER.indexOf(b);
+      if (ia === -1 && ib === -1) return a.localeCompare(b);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
     });
   }
 
-  // Lógica de filtro ao clicar nas abas
-  tabsContainer.addEventListener('click', (ev) => {
-    const target = ev.target;
-    if (!target.classList.contains('tab-link')) return;
-
-    const categoriaSel = target.dataset.categoria;
-    aplicarFiltroCategoria(categoriaSel);
-  });
-
-  // Aplica filtro inicial na categoria "Tour" (se existir), caso contrário usa a primeira da lista
-  const catInicial = categorias.includes('Tour') ? 'Tour' : (categorias[0] || null);
-  if (catInicial) {
-    aplicarFiltroCategoria(catInicial);
-  }
-}
-
-fetch(LAZER_JSON_URL, { cache: 'no-cache' })
-  .then(resp => {
-    if (!resp.ok) throw new Error('Erro ao carregar ' + LAZER_JSON_URL);
-    return resp.json();
-  })
-  .then(json => {
-    let data;
-    if (Array.isArray(json)) {
-      data = json;
-    } else if (json && typeof json === 'object') {
-      data = Object.values(json);
-    } else {
-      throw new Error('Formato inválido do JSON de lazer.');
-    }
-
-    if (!data.length) {
-      throw new Error('Lista de pacotes de lazer vazia.');
-    }
-
-    renderLazer(data);
-  })
-  .catch(err => {
-    console.error(err);
+  function renderLazer(data) {
+    const tabsContainer = document.getElementById('category-tabs');
     const grid = document.getElementById('events-grid');
-    if (grid) {
-      grid.innerHTML = '';
-      const fallback = document.createElement('div');
-      fallback.className = 'event-card error-card';
+    if (!tabsContainer || !grid) return;
 
-      const content = document.createElement('div');
-      content.className = 'error-card-content';
+    grid.innerHTML = '';
+    tabsContainer.innerHTML = '';
 
-      const t = document.createElement('p');
-      t.className = 'error-title';
-      t.textContent = 'Não foi possível carregar os pacotes de lazer.';
+    const categoriasSet = new Set();
+    data.forEach(item => {
+      categoriasSet.add(item.categoria || 'Outros');
+    });
 
-      const s = document.createElement('p');
-      s.className = 'error-text';
-      s.textContent = 'Verifique se o arquivo lazer/index-lazer.json existe e está em formato de lista ou objeto.';
+    const categorias = sortCategories(Array.from(categoriasSet));
 
-      content.appendChild(t);
-      content.appendChild(s);
-      fallback.appendChild(content);
-      grid.appendChild(fallback);
+    // Cria as abas (sem "Todos")
+    categorias.forEach((cat, idx) => {
+      const tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'tab-link';
+      tab.dataset.categoria = cat;
+      tab.textContent = getCategoryLabel(cat);
+      if (idx === 0) {
+        tab.classList.add('active');
+      }
+      tabsContainer.appendChild(tab);
+    });
+
+    // Cria os cards
+    data.forEach(item => {
+      const card = createCard(item);
+      grid.appendChild(card);
+    });
+
+    function aplicarFiltro(categoriaSelecionada) {
+      const cards = grid.querySelectorAll('.event-card');
+      cards.forEach(card => {
+        const cat = card.dataset.categoria || 'Outros';
+        card.style.display = (cat === categoriaSelecionada) ? '' : 'none';
+      });
     }
-  });
+
+    // Aplica filtro inicial (primeira categoria)
+    if (categorias.length > 0) {
+      aplicarFiltro(categorias[0]);
+    }
+
+    tabsContainer.addEventListener('click', function(ev) {
+      const target = ev.target.closest('.tab-link');
+      if (!target) return;
+
+      const categoriaSel = target.dataset.categoria;
+
+      tabsContainer.querySelectorAll('.tab-link').forEach(tab => {
+        tab.classList.toggle('active', tab === target);
+      });
+
+      aplicarFiltro(categoriaSel);
+    });
+  }
+
+  function normalizarJson(json) {
+    if (Array.isArray(json)) return json;
+    if (Array.isArray(json.ofertas)) return json.ofertas;
+    return Object.values(json);
+  }
+
+  function mostrarErro(mensagem) {
+    const grid = document.getElementById('events-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    const fallback = document.createElement('div');
+    fallback.className = 'event-card error-card';
+
+    const media = document.createElement('div');
+    media.className = 'card-media';
+    const img = document.createElement('img');
+    img.src = 'assets/lazer/placeholder.webp';
+    img.alt = 'Pacotes de lazer';
+    media.appendChild(img);
+
+    const content = document.createElement('div');
+    content.className = 'error-card-content';
+
+    const t = document.createElement('p');
+    t.className = 'card-title';
+    t.textContent = 'Não foi possível carregar os pacotes de lazer.';
+
+    const s = document.createElement('p');
+    s.className = 'error-text';
+    s.textContent = mensagem || 'Verifique se o arquivo lazer/index-lazer.json existe e está em formato de lista ou objeto.';
+
+    content.appendChild(t);
+    content.appendChild(s);
+    fallback.appendChild(media);
+    fallback.appendChild(content);
+    grid.appendChild(fallback);
+  }
+
+  fetch(LAZER_JSON_URL, { cache: 'no-cache' })
+    .then(resp => {
+      if (!resp.ok) throw new Error('Erro ao carregar ' + LAZER_JSON_URL);
+      return resp.json();
+    })
+    .then(json => {
+      const data = normalizarJson(json);
+      if (!data || !data.length) {
+        throw new Error('Lista de pacotes de lazer vazia.');
+      }
+      renderLazer(data);
+    })
+    .catch(err => {
+      console.error('Erro ao carregar pacotes de lazer:', err);
+      mostrarErro(err && err.message);
+    });
+})();
 </script>
 
 </body>
