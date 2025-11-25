@@ -329,6 +329,29 @@ a{text-decoration:none;color:inherit}
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
 }
 
+/* Bloco de preço no rodapé do card */
+.card-price {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.card-price-label,
+.card-price-note {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-price-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
 /* Footer + botão */
 .card-footer {
   margin-top: auto;
@@ -599,6 +622,16 @@ a{text-decoration:none;color:inherit}
 <script>
 const LAZER_JSON_URL = './lazer/index-lazer.json';
 
+function formatPriceBRL(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const n = Number(value);
+  if (!Number.isFinite(n)) return null;
+  return n.toLocaleString('pt-BR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+}
+
 function createCard(item) {
   const title = item.titulo_curto || item.title || 'Pacote sem título';
   const slug = item.slug || '';
@@ -612,6 +645,10 @@ function createCard(item) {
       src = 'assets/lazer/placeholder.webp';
     }
   }
+
+  // Preço opcional vindo do JSON
+  const formattedPrice = formatPriceBRL(item.price);
+  const hasPrice = !!formattedPrice;
 
   const hasLink = !!(item.href || slug);
   const wrapperTag = hasLink ? 'a' : 'div';
@@ -649,7 +686,34 @@ function createCard(item) {
   cta.textContent = 'Saiba mais';
 
   footer.appendChild(cta);
-  content.appendChild(t);
+
+  // bloco de preço opcional, acima do botão
+  if (hasPrice) {
+    const priceBlock = document.createElement('div');
+    priceBlock.className = 'card-price';
+
+    const label = document.createElement('span');
+    label.className = 'card-price-label';
+    label.textContent = 'A partir de';
+
+    const value = document.createElement('span');
+    value.className = 'card-price-value';
+    value.textContent = 'R$ ' + formattedPrice;
+
+    const note = document.createElement('span');
+    note.className = 'card-price-note';
+    note.textContent = 'por pessoa';
+
+    priceBlock.appendChild(label);
+    priceBlock.appendChild(value);
+    priceBlock.appendChild(note);
+
+    content.appendChild(t);
+    content.appendChild(priceBlock);
+  } else {
+    content.appendChild(t);
+  }
+
   content.appendChild(footer);
 
   card.appendChild(media);
