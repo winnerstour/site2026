@@ -8,7 +8,7 @@
 <!-- Fontes -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/misc/favicon.png" rel="icon" type="image/png"/>
 <style>
@@ -24,10 +24,11 @@
     *{box-sizing:border-box;}
     html,body{margin:0;padding:0;min-height:100vh;}
     body{
-      font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
+      font-size:17px;
     }
     a{text-decoration:none;color:inherit;}
 
@@ -118,7 +119,8 @@
       border:1px solid rgba(255,255,255,0.85);
       background:transparent;
       color:#fff;
-      font:inherit;
+      font-family:'Inter',system-ui,sans-serif;
+      font-size:15px;
       cursor:pointer;
     }
     .hero-menu-btn .hamburger{
@@ -136,15 +138,16 @@
     }
     .hero-text h1{
       margin:0 0 16px 0;
-      font-size:2.6rem;
+      font-family:'Inter',system-ui,sans-serif;
+      font-size:30px;
       line-height:1.25;
-      font-weight:800;
+      font-weight:700; /* Inter Bold */
     }
     .hero-text h1.hero-title-small{
-      font-size:2.1rem;
+      font-size:26px;
     }
     .hero-scroll-hint{
-      font-size:0.9rem;
+      font-size:15px;
       opacity:0.9;
       margin:0;
     }
@@ -183,11 +186,16 @@
     }
     .offer-cta-main{
       flex:1 1 65%;
-      font-size:0.98rem;
+      font-size:17px;
       color:var(--text);
+      font-family:'Inter',system-ui,sans-serif;
+      font-weight:400;
     }
     .offer-cta-main p{
       margin:0;
+    }
+    .offer-cta-main strong{
+      font-weight:500; /* Inter Medium 17px */
     }
     .offer-cta-actions{
       flex:0 0 260px;
@@ -204,7 +212,7 @@
       background:#22c55e;
       color:#fff;
       font-family:'Montserrat',system-ui,sans-serif;
-      font-size:0.9rem;
+      font-size:14px;
       font-weight:700;
       text-transform:uppercase;
       letter-spacing:0.06em;
@@ -221,17 +229,24 @@
       max-width:var(--max-width);
       margin:0 auto 40px auto;
       padding:0 26px;
-      font-size:1rem;
+      font-size:17px;            /* Inter Regular 17px */
       line-height:1.8;
+      font-family:'Inter',system-ui,sans-serif;
+      font-weight:400;
     }
     .article-body p{
       margin:0 0 20px 0;
     }
+    .article-body strong,
+    .article-body b{
+      font-weight:500;           /* Inter Medium 17px */
+    }
     .article-body h2{
-      font-size:1.7rem;
+      font-size:22px;            /* Inter SemiBold 22px */
       margin:40px 0 16px 0;
-      font-weight:800;
+      font-weight:600;
       color:var(--brand);
+      font-family:'Inter',system-ui,sans-serif;
     }
     .article-body ul{
       margin:16px 0 24px 0;
@@ -260,14 +275,17 @@
       box-shadow:0 18px 45px rgba(15,23,42,0.35);
     }
     .article-cta-final strong{
-      font-size:1.2rem;
-      font-weight:800;
+      font-size:22px;
+      font-weight:700;
+      font-family:'Inter',system-ui,sans-serif;
     }
     .article-cta-final span{
       max-width:540px;
-      font-size:0.98rem;
+      font-size:17px;
       display:block;
       margin-top:6px;
+      font-family:'Inter',system-ui,sans-serif;
+      font-weight:400;
     }
     .article-cta-final a{
       margin-top:12px;
@@ -277,10 +295,10 @@
       padding:10px 28px;
       border-radius:999px;
       background:#fff;
-      color:#ff6a00;
+      color:var(--brand);
       font-family:'Montserrat',system-ui,sans-serif;
-      font-weight:800;
-      font-size:0.95rem;
+      font-weight:700;
+      font-size:14px;
       text-transform:uppercase;
       letter-spacing:0.08em;
       border:none;
@@ -288,7 +306,7 @@
     }
     .article-cta-final a:hover{
       background:#fef3c7;
-      color:#c2410c;
+      color:var(--brand-shadow);
     }
 
     /* MENSAGEM DE ERRO DO JS */
@@ -303,7 +321,7 @@
       background:#fef2f2;
       border:1px solid #fecaca;
       color:#7f1d1d;
-      font-size:0.9rem;
+      font-size:14px;
     }
 
     /* MENU OVERLAY */
@@ -327,12 +345,12 @@
       width:90%;
       max-width:420px;
       box-shadow:0 18px 40px rgba(15,23,42,0.45);
-      font-family:'Montserrat',system-ui,sans-serif;
+      font-family:'Inter',system-ui,sans-serif;
     }
     .site-menu-panel h2{
       margin:0 0 12px 0;
-      font-size:1rem;
-      font-weight:800;
+      font-size:17px;
+      font-weight:600;
       text-transform:uppercase;
       color:#151515;
     }
@@ -340,8 +358,8 @@
       display:block;
       padding:10px 0;
       border-top:1px solid rgba(148,163,184,0.35);
-      font-size:0.9rem;
-      font-weight:700;
+      font-size:15px;
+      font-weight:500;
       text-transform:uppercase;
       color:#151515;
     }
@@ -351,7 +369,7 @@
     .site-menu-close{
       margin-top:10px;
       text-align:right;
-      font-size:0.85rem;
+      font-size:14px;
       color:#6b7280;
       cursor:pointer;
     }
@@ -367,7 +385,7 @@
         margin:0 auto;
       }
       .hero-text h1{
-        font-size:2.2rem;
+        font-size:28px;
       }
       .offer-cta-strip{
         flex-direction:column;
@@ -400,11 +418,11 @@
         gap:22px;
       }
       .hero-text h1{
-        font-size:1.8rem;
+        font-size:26px;
       }
       .article-body{
         padding:0 22px;
-        font-size:0.98rem;
+        font-size:17px;
       }
       #offerError{
         padding:0 14px;
@@ -440,7 +458,8 @@
   <div class="hero-topbar">
     <a class="hero-logo" href="index.html">WINNERS TOUR</a>
     <div class="hero-actions">
-      <a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." rel="noopener" target="_blank">
+      <!-- topo WhatsApp, href será atualizado via JS com o título da oferta -->
+      <a aria-label="Fale conosco pelo WhatsApp" class="hero-whatsapp" href="https://wa.me/5541999450111" rel="noopener" target="_blank">
         <span class="whatsapp-icon">
           <img alt="WhatsApp" src="assets/misc/WhatsApp.svg.webp"/>
         </span>
@@ -470,7 +489,8 @@
     <p><strong>📌 Pacote de viagem:</strong> descrição resumida da oferta (no JSON esse campo vem como CTA1 em formato de parágrafo, explicando noites, hotel, traslados e principais experiências incluídas).</p>
   </div>
   <div class="offer-cta-actions">
-    <a class="offer-cta-strip-button" href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerCtaTopButton" rel="noopener" target="_blank">
+    <!-- CTA1 WhatsApp, href será atualizado via JS com o título da oferta -->
+    <a class="offer-cta-strip-button" href="https://wa.me/5541999450111" id="offerCtaTopButton" rel="noopener" target="_blank">
       👉 Fale com nossa equipe agora
     </a>
   </div>
@@ -483,7 +503,8 @@
   <div class="article-cta-final">
     <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
     <span id="offerCta2"></span>
-    <a href="https://wa.me/5541999450111?text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20para%20esta%20oferta%20de%20lazer." id="offerBottomCta" rel="noopener" target="_blank">
+    <!-- CTA2 WhatsApp, href será atualizado via JS com o título da oferta -->
+    <a href="https://wa.me/5541999450111" id="offerBottomCta" rel="noopener" target="_blank">
       👉 Receba valores atualizados no WhatsApp
     </a>
   </div>
@@ -516,6 +537,7 @@
 </div>
 
 <script>
+/* Menu hamburguer */
 (function(){
   const toggle = document.getElementById('heroMenuToggle');
   const menu   = document.getElementById('siteMenu');
@@ -538,9 +560,12 @@
 })();
 </script>
 
+<!-- JS que carrega o conteúdo da oferta a partir do JSON -->
 <script src="lazer-oferta.js"></script>
 
 <script>
+/* Ajusta todos os links de WhatsApp para incluir o título da oferta
+   (vindo do JSON através de #offerTitle, baseado no slug da URL) */
 (function(){
   function atualizarLinksWhatsApp(tentativa){
     tentativa = tentativa || 0;
@@ -550,7 +575,7 @@
     }
 
     var titulo = (tituloEl.textContent || '').trim();
-    if (!titulo && tentativa < 15){
+    if (!titulo && tentativa < 20){
       setTimeout(function(){ atualizarLinksWhatsApp(tentativa + 1); }, 300);
       return;
     }
@@ -580,8 +605,9 @@
 </script>
 
 <script>
-/* Move o texto atual (CTA2) do botão branco para a frase logo abaixo do título laranja,
-   depois fixa o texto padrão do botão: "👉 Receba valores atualizados no WhatsApp" */
+/* Se o CTA2 ainda estiver sendo injetado no botão branco por algum JS antigo,
+   move o texto para a linha do CTA2 e mantém o botão com a frase fixa
+   "👉 Receba valores atualizados no WhatsApp". */
 (function(){
   window.addEventListener('load', function(){
     var botao = document.getElementById('offerBottomCta');
