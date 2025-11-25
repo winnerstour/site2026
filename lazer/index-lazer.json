@@ -1269,13 +1269,13 @@
     "href": "lazer-oferta.html?slug=sicilia-concordia"
   },
   {
-    "slug": "tesouros-da-tailândia",
+    "slug": "tesouros-da-tailandia",
     "title": "Tesouros da Tailândia – 7 dias entre Bangkok, Chiang Rai e Chiang Mai",
     "titulo_curto": "Tesouros da Tailândia",
     "price": "6.796",    
 	"categoria": "Tour",
-    "card_image": "./assets/lazer/tesouros-da-tailândia.webp",
-    "href": "lazer-oferta.html?slug=tesouros-da-tailândia"
+    "card_image": "./assets/lazer/tesouros-da-tailandia.webp",
+    "href": "lazer-oferta.html?slug=tesouros-da-tailandia"
   },
   {
     "slug": "travessia-dos-lagos-andinos",
