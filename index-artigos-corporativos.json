@@ -4,69 +4,69 @@
     "titulo": "Gestão de eventos corporativos: como tirar o nó da cabeça do gestor de viagens",
     "titulo_curto": "Gestão de eventos corporativos",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2gestao_de_eventos_corporativos.webp"
+    "card_image": "./assets/artigos-corporativos/gestao_de_eventos_corporativos.webp"
   },
   {
     "slug": "gestao_inteligente_viagens",
     "titulo": "Gestão Inteligente de Viagens Corporativas: o que é e como o princípio KISS simplifica a sua vida",
     "titulo_curto": "Gestão Inteligente de Viagens Corporativas",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2gestao_inteligente_viagens.webp"
+    "card_image": "./assets/artigos-corporativos/gestao_inteligente_viagens.webp"
   },
   {
     "slug": "habilidades_gestor_estrategico",
     "titulo": "Habilidades do gestor de viagens corporativas: o que realmente diferencia um travel manager estratégico",
     "titulo_curto": "Habilidades do gestor de viagens corporativas",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2habilidades_gestor_estrategico.webp"
+    "card_image": "./assets/artigos-corporativos/habilidades_gestor_estrategico.webp"
   },
   {
     "slug": "regra_de_ouro_antecedencia",
     "titulo": "Regra de Ouro da Antecedência: por que esperar para comprar passagem é pedir para pagar mais caro",
     "titulo_curto": "Regra de Ouro da Antecedência",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2regra_de_ouro_antecedencia.webp"
+    "card_image": "./assets/artigos-corporativos/regra_de_ouro_antecedencia.webp"
   },
   {
     "slug": "viagens_corporativas_investimento",
     "titulo": "Viagens corporativas como investimento: o olhar de quem cuida das viagens",
     "titulo_curto": "Viagens corporativas como investimento",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2viagens_corporativas_investimento.webp"
+    "card_image": "./assets/artigos-corporativos/viagens_corporativas_investimento.webp"
   },
   {
     "slug": "viagens_de_premiacao",
     "titulo": "Viagens de premiação e de incentivo: você sabe qual é a diferença?",
     "titulo_curto": "Viagens de premiação e de incentivo",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2viagens_de_premiacao.webp"
+    "card_image": "./assets/artigos-corporativos/viagens_de_premiacao.webp"
   },
   {
     "slug": "cancelamentos_e_remarcacoes",
     "titulo": "Cancelamentos e remarcações em viagens corporativas: o custo que ninguém vê, mas sempre paga",
     "titulo_curto": "Cancelamentos e remarcações em viagens corporativas",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2cancelamentos_e_remarcacoes.webp"
+    "card_image": "./assets/artigos-corporativos/cancelamentos_e_remarcacoes.webp"
   },
   {
     "slug": "como_estruturar_viagens",
     "titulo": "Como estruturar a área de viagens corporativas em 6 etapas",
     "titulo_curto": "Como estruturar a área de viagens corporativas",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2como_estruturar_viagens.webp"
+    "card_image": "./assets/artigos-corporativos/como_estruturar_viagens.webp"
   },
   {
     "slug": "custos_adicionais_passagens",
     "titulo": "Custos adicionais em passagens aéreas: o que realmente está por trás da tarifa “barata”",
     "titulo_curto": "Custos adicionais em passagens aéreas",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2custos_adicionais_passagens.webp"
+    "card_image": "./assets/artigos-corporativos/custos_adicionais_passagens.webp"
   },
   {
     "slug": "desafios_gestor_viajante",
     "titulo": "Desafios do gestor de viagens e do viajante corporativo: como sair do embate e jogar no mesmo time",
     "titulo_curto": "Desafios do gestor e do viajante corporativo",
     "categoria": "Artigo Corporativo",
-    "card_image": "./assets/artigos-corporativos/image2desafios_gestor_viajante.webp"
+    "card_image": "./assets/artigos-corporativos/desafios_gestor_viajante.webp"
   }
 ]
