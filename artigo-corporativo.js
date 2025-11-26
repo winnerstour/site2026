@@ -1,5 +1,5 @@
 // artigo-corporativo.js
-// Página de artigo corporativo (usa slug + JSON em /Artigos/<slug>.json)
+// Página de artigo corporativo (usa slug + JSON em /Artigos/<slug>.json ou /artigos/<slug>.json)
 
 (function () {
   const titleEl        = document.getElementById('articleTitle');
@@ -9,13 +9,17 @@
   const errorContainer = document.getElementById('articleError');
   const pageTitleTag   = document.getElementById('pageTitle');
 
-  const BASE_PATH = window.location.pathname.startsWith('/site2026')
+  // Detecta se está rodando em /site2026 ou na raiz
+  const BASE_PATH = window.location.pathname.indexOf('/site2026') !== -1
     ? '/site2026'
     : '';
 
   function showError(msg) {
     if (errorContainer) {
-      errorContainer.innerHTML = '<div class="error-box">' + (msg || 'Erro inesperado ao carregar este artigo.') + '</div>';
+      errorContainer.innerHTML =
+        '<div class="error-box">' +
+        (msg || 'Erro inesperado ao carregar este artigo.') +
+        '</div>';
     }
   }
 
@@ -25,6 +29,7 @@
     return slug ? slug.trim() : '';
   }
 
+  // Remove heading duplicado no início da seção (quando o título já é usado fora)
   function stripDuplicateHeading(md, secTitle) {
     if (!md || typeof md !== 'string') return md || '';
     if (!secTitle || typeof secTitle !== 'string') return md;
@@ -42,7 +47,9 @@
     function normalizeHeadingText(line) {
       if (!line) return '';
       let t = String(line).trim();
+      // remove #, ## etc
       t = t.replace(/^#{1,6}\s+/, '');
+      // remove ** ou __ nas pontas
       t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
       return t.trim();
     }
@@ -58,6 +65,7 @@
     return md;
   }
 
+  // Conversor de Markdown simplificado para HTML (parágrafos, listas, h2–h4, negrito/itálico)
   function markdownToHtml(md) {
     if (!md || typeof md !== 'string') return '';
 
@@ -163,6 +171,7 @@
     const subtitulo   = json.subtitulo || '';
     const metaTitle   = json.meta_title || titulo;
 
+    // Guarda para o script que atualiza os links de WhatsApp
     document.body.dataset.articleShortTitle = tituloCurto;
 
     if (pageTitleTag instanceof HTMLElement) {
@@ -190,7 +199,7 @@
     let introSection = null;
     const otherSections = [];
 
-    sections.forEach(function(sec) {
+    sections.forEach(function (sec) {
       if (!sec || typeof sec !== 'object') return;
 
       const rawId = sec.id;
@@ -205,11 +214,15 @@
       otherSections.push(sec);
     });
 
+    // INTRODUÇÃO
     if (introContainer) {
       introContainer.innerHTML = '';
       if (introSection && introSection.conteudo_markdown) {
         const introTitle = introSection.titulo_secao || 'Introdução';
-        const cleanedIntroMd = stripDuplicateHeading(introSection.conteudo_markdown, introTitle);
+        const cleanedIntroMd = stripDuplicateHeading(
+          introSection.conteudo_markdown,
+          introTitle
+        );
         const introHtml = markdownToHtml(cleanedIntroMd);
         if (introHtml) {
           introContainer.innerHTML = introHtml;
@@ -217,10 +230,11 @@
       }
     }
 
+    // DEMAIS SEÇÕES
     if (sectionsCont) {
       sectionsCont.innerHTML = '';
 
-      otherSections.forEach(function(sec) {
+      otherSections.forEach(function (sec) {
         const wrapper = document.createElement('article');
         wrapper.className = 'content-section';
 
@@ -248,6 +262,34 @@
     }
   }
 
+  // Tenta carregar o JSON em /Artigos e, se não achar, em /artigos
+  async function loadArticleJson(slug) {
+    const safeSlug = encodeURIComponent(slug);
+    const candidates = [
+      BASE_PATH + '/Artigos/' + safeSlug + '.json',
+      BASE_PATH + '/artigos/' + safeSlug + '.json'
+    ];
+
+    let lastError = null;
+
+    for (let i = 0; i < candidates.length; i++) {
+      const url = candidates[i];
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (response.ok) {
+          const data = await response.json();
+          return { data, url };
+        } else {
+          lastError = new Error('Não foi possível carregar o arquivo ' + url);
+        }
+      } catch (err) {
+        lastError = err;
+      }
+    }
+
+    throw lastError || new Error('Não foi possível localizar o JSON deste artigo nas pastas /Artigos ou /artigos.');
+  }
+
   async function init() {
     const slug = getSlugFromUrl();
 
@@ -257,20 +299,16 @@
       return;
     }
 
-    const dataUrl = BASE_PATH + '/Artigos/' + encodeURIComponent(slug) + '.json';
-
     try {
-      const response = await fetch(dataUrl, { cache: 'no-store' });
-      if (!response.ok) {
-        throw new Error('Não foi possível carregar o arquivo ' + dataUrl);
-      }
-
-      const data = await response.json();
-      renderArticleFromJson(data, slug);
+      const result = await loadArticleJson(slug);
+      renderArticleFromJson(result.data, slug);
     } catch (err) {
       console.error('Erro ao carregar artigo corporativo:', err);
       if (titleEl) titleEl.textContent = 'Erro ao carregar artigo';
-      showError(err.message || 'Erro inesperado ao carregar este artigo.');
+      showError(
+        (err && err.message ? err.message : 'Erro ao carregar artigo.') +
+        '<br>Verifique se o arquivo JSON "' + slug + '.json" está na pasta <strong>/Artigos</strong> ou <strong>/artigos</strong> do site.'
+      );
     }
   }
 
