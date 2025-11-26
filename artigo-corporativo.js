@@ -163,7 +163,6 @@
     const subtitulo   = json.subtitulo || '';
     const metaTitle   = json.meta_title || titulo;
 
-    // deixa o título curto disponível para o script de WhatsApp
     document.body.dataset.articleShortTitle = tituloCurto;
 
     if (pageTitleTag instanceof HTMLElement) {
