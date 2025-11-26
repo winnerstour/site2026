@@ -9,18 +9,16 @@
   const introContainer   = document.getElementById('offerIntro');
   const sectionsContainer= document.getElementById('offerSections');
   const cta1Container    = document.getElementById('offerCta1');
-  const bottomCtaButton  = document.getElementById('offerBottomCta');
   const errorContainer   = document.getElementById('offerError');
   const pageTitleTag     = document.getElementById('pageTitle');
 
-  // Detecta /site2026 ou raiz para montar caminhos
   const BASE_PATH = window.location.pathname.startsWith('/site2026')
     ? '/site2026'
     : '';
 
   function showError(msg) {
     if (errorContainer) {
-      errorContainer.innerHTML = '<div class=\"error-box\">' + (msg || 'Erro inesperado ao carregar esta oferta.') + '</div>';
+      errorContainer.innerHTML = '<div class="error-box">' + (msg || 'Erro inesperado ao carregar esta oferta.') + '</div>';
     }
   }
 
@@ -30,7 +28,6 @@
     return slug ? slug.trim() : '';
   }
 
-  // Remove heading duplicado no início do markdown quando ele é igual ao título da seção
   function stripDuplicateHeading(md, secTitle) {
     if (!md || typeof md !== 'string') return md || '';
     if (!secTitle || typeof secTitle !== 'string') return md;
@@ -39,7 +36,6 @@
     const lines = norm.split('\n');
     if (!lines.length) return md;
 
-    // primeira linha não vazia
     let idx = 0;
     while (idx < lines.length && !lines[idx].trim()) idx++;
     if (idx >= lines.length) return md;
@@ -49,9 +45,7 @@
     function normalizeHeadingText(line) {
       if (!line) return '';
       let t = String(line).trim();
-      // remove hashes de heading no começo
       t = t.replace(/^#{1,6}\s+/, '');
-      // remove marcadores de negrito/itálico envolvendo a linha inteira
       t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
       return t.trim();
     }
@@ -67,7 +61,6 @@
     return md;
   }
 
-  // Converte markdown básico em HTML (parágrafos, headings, listas, negrito/itálico)
   function markdownToHtml(md) {
     if (!md || typeof md !== 'string') return '';
 
@@ -81,9 +74,7 @@
     function inlineFormat(text) {
       if (!text) return '';
       let t = String(text);
-      // negrito **texto**
       t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-      // itálico *texto*
       t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
       return t;
     }
@@ -114,7 +105,6 @@
         continue;
       }
 
-      // Headings
       let m;
       if ((m = /^####\s+(.+)$/.exec(trimmed))) {
         flushParagraph();
@@ -141,7 +131,6 @@
         continue;
       }
 
-      // Lista simples com "-" ou "*"
       if (/^[-*]\s+/.test(trimmed)) {
         flushParagraph();
         if (!inList) {
@@ -153,7 +142,6 @@
         continue;
       }
 
-      // Linha comum -> acumula para parágrafo
       paragraph.push(trimmed);
     }
 
@@ -165,11 +153,9 @@
     return html;
   }
 
-  // Versão simplificada para usar em botões (CTA2)
   function markdownToInlineHtml(md) {
     if (!md || typeof md !== 'string') return '';
     let text = md.replace(/\r\n/g, ' ').replace(/\r/g, ' ').trim();
-    // aplica apenas negrito/itálico inline
     text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
     return text;
@@ -183,18 +169,16 @@
     }
 
     const slugSafe  = slug || '';
-    const titulo    = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
+       const titulo    = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
     const categoria = json.categoria || '';
     const metaTitle = json.meta_title || titulo;
 
-    // Título da aba
     if (pageTitleTag instanceof HTMLElement) {
       pageTitleTag.textContent = metaTitle;
     } else {
       document.title = metaTitle;
     }
 
-    // Hero: título (com ajuste se for muito longo)
     if (titleEl) {
       titleEl.textContent = titulo;
       const len = titulo ? String(titulo).length : 0;
@@ -205,17 +189,14 @@
       }
     }
 
-    // Hero: categoria
     if (categoryEl) {
       categoryEl.textContent = categoria || 'Lazer';
     }
 
-    // Hero: meta (linha fina)
     if (metaEl) {
       metaEl.textContent = 'Oferta de viagem de lazer cuidadosamente curada pela WinnersTour.';
     }
 
-    // Imagem principal
     if (imgEl) {
       let src = '';
 
@@ -227,7 +208,6 @@
           src = BASE_PATH + '/' + p;
         }
       } else if (slugSafe) {
-        // fallback: tenta em /assets/lazer/slug.webp
         src = BASE_PATH + '/assets/lazer/' + encodeURIComponent(slugSafe) + '.webp';
       } else {
         src = BASE_PATH + '/assets/misc/placeholder-lazer.webp';
@@ -237,7 +217,6 @@
       imgEl.alt = titulo || 'Imagem da oferta de lazer';
     }
 
-    // Seções
     const sections = Array.isArray(json.sections) ? json.sections : [];
 
     let cta1Text    = '';
@@ -270,7 +249,6 @@
       otherSections.push(sec);
     });
 
-    // CTA1: texto do JSON, em markdown, no card superior
     if (cta1Container) {
       if (cta1Text) {
         cta1Container.innerHTML = markdownToHtml(cta1Text);
@@ -279,7 +257,6 @@
       }
     }
 
-    // Introdução: NÃO mostra o título "Introdução" e remove "### Introdução" do início
     if (introContainer) {
       introContainer.innerHTML = '';
       if (introSection && introSection.conteudo_markdown) {
@@ -292,7 +269,6 @@
       }
     }
 
-    // Demais seções (com títulos em H2 + markdown interno)
     if (sectionsContainer) {
       sectionsContainer.innerHTML = '';
 
@@ -303,7 +279,6 @@
         const title = sec.titulo_secao || '';
         const tNorm = String(title).trim().toLowerCase();
 
-        // Por segurança, nunca renderiza H2 "Introdução" aqui
         if (title && tNorm !== 'introdução') {
           const h2 = document.createElement('h2');
           h2.textContent = title;
@@ -324,10 +299,12 @@
       });
     }
 
-    // CTA2: texto curto/inline aplicado no botão final
-    if (bottomCtaButton) {
+    const cta2Span = document.getElementById('offerCta2');
+    if (cta2Span) {
       if (cta2Text) {
-        bottomCtaButton.innerHTML = markdownToInlineHtml(cta2Text);
+        cta2Span.innerHTML = markdownToInlineHtml(cta2Text);
+      } else {
+        cta2Span.textContent = '';
       }
     }
   }

@@ -29,7 +29,7 @@
     body{
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       background:var(--bg);
-      color:#111827;
+      color:var(--text);
       line-height:1.6;
       font-size:17px;
     }
@@ -180,7 +180,7 @@
     .offer-cta-main{
       flex:1 1 65%;
       font-size:17px;
-      color:#111827;
+      color:var(--text);
       font-family:'Inter',system-ui,sans-serif;
       font-weight:400;
     }
@@ -237,7 +237,7 @@
       font-size:22px;
       margin:40px 0 16px 0;
       font-weight:600;
-      color:#f97316;
+      color:var(--brand);
       font-family:'Inter',system-ui,sans-serif;
     }
     .article-body ul{
@@ -471,7 +471,7 @@
   <div class="article-cta-final">
     <strong>Pronto para transformar essa ideia em viagem de verdade?</strong>
     <span id="offerCta2"></span>
-    <a href="https://wa.me/5541999450111" id="offerBottomCta" rel="noopener" target="_blank">
+    <a href="https://wa.me/5541999450111" id="offerWhatsappBottom" rel="noopener" target="_blank">
       👉 Receba valores atualizados no WhatsApp
     </a>
   </div>
@@ -557,7 +557,7 @@
     var ctaTopBtn = document.getElementById('offerCtaTopButton');
     if (ctaTopBtn) ctaTopBtn.href = novoHref;
 
-    var ctaBottomBtn = document.getElementById('offerBottomCta');
+    var ctaBottomBtn = document.getElementById('offerWhatsappBottom');
     if (ctaBottomBtn) ctaBottomBtn.href = novoHref;
   }
 
