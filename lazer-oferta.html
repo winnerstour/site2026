@@ -188,7 +188,7 @@
       margin:0;
     }
     .offer-cta-main strong{
-      font-weight:500;
+      font-weight:700; /* bold mais forte */
     }
     .offer-cta-actions{
       flex:0 0 260px;
@@ -231,7 +231,7 @@
     }
     .article-body strong,
     .article-body b{
-      font-weight:500;
+      font-weight:700; /* bold mais forte no corpo do texto */
     }
     .article-body h2{
       font-size:22px;
@@ -393,7 +393,7 @@
     }
     @media (max-width:640px){
       .hero-wrap{
-        padding:16px 14px 40px 14px;
+        padding:16px 14px 32px 14px;
         min-height:70vh;
       }
       .hero-topbar{
@@ -406,10 +406,24 @@
         gap:10px;
       }
       .hero-main{
-        gap:22px;
+        gap:12px;
       }
       .hero-text h1{
         font-size:26px;
+      }
+      /* imagem em formato barra, sem borda arredondada nem sombra */
+      .hero-image{
+        max-width:none;
+        margin:0 -14px 16px -14px;
+        border-radius:0;
+        border:none;
+        box-shadow:none;
+      }
+      /* card do pacote vira barra, sem bordas arredondadas nem sombra e com respiro da imagem */
+      .offer-cta-strip{
+        margin:16px -14px 32px -14px;
+        border-radius:0;
+        box-shadow:none;
       }
       .article-body{
         padding:0 22px;
@@ -526,27 +540,25 @@
 })();
 </script>
 
-<script src="lazer-oferta.js"></script>
+<script src="lazer-oferta-v2.js"></script>
 
 <script>
 (function(){
   function atualizarLinksWhatsApp(tentativa){
     tentativa = tentativa || 0;
-    var tituloEl = document.getElementById('offerTitle');
-    if (!tituloEl){
+
+    // Usa o título curto vindo do JSON (setado em data-offer-short-title)
+    var tituloCurto = (document.body.dataset.offerShortTitle || '').trim();
+
+    if (!tituloCurto && tentativa < 40){
+      setTimeout(function(){ atualizarLinksWhatsApp(tentativa + 1); }, 250);
+      return;
+    }
+    if (!tituloCurto){
       return;
     }
 
-    var titulo = (tituloEl.textContent || '').trim();
-    if (!titulo && tentativa < 20){
-      setTimeout(function(){ atualizarLinksWhatsApp(tentativa + 1); }, 300);
-      return;
-    }
-    if (!titulo){
-      return;
-    }
-
-    var mensagem = 'Olá, eu gostaria de fazer um orçamento para ' + titulo;
+    var mensagem = 'Olá, eu gostaria de fazer um orçamento para ' + tituloCurto;
     var mensagemCodificada = encodeURIComponent(mensagem);
     var telefone = '5541999450111';
     var novoHref = 'https://wa.me/' + telefone + '?text=' + mensagemCodificada;

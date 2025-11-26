@@ -1,4 +1,4 @@
-// lazer-oferta.js
+// lazer-oferta-v2.js
 // Página de detalhe das ofertas de lazer (usa slug + JSON completo)
 
 (function () {
@@ -168,10 +168,14 @@
       return;
     }
 
-    const slugSafe  = slug || '';
-       const titulo    = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
-    const categoria = json.categoria || '';
-    const metaTitle = json.meta_title || titulo;
+    const slugSafe    = slug || '';
+    const titulo      = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
+    const tituloCurto = json.titulo_curto || json.titulo || slugSafe || 'Oferta de lazer';
+    const categoria   = json.categoria || '';
+    const metaTitle   = json.meta_title || titulo;
+
+    // deixa o título curto disponível para o script de WhatsApp
+    document.body.dataset.offerShortTitle = tituloCurto;
 
     if (pageTitleTag instanceof HTMLElement) {
       pageTitleTag.textContent = metaTitle;
