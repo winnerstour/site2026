@@ -1,147 +1,104 @@
 // artigos.js
-// Diretório de artigos corporativos (cards) baseado em index-artigos-corporativos.json
+// Diretório dinâmico de artigos corporativos baseado em index-artigos-corporativos.json
 
-(function(){
-  const gridEl      = document.getElementById('articlesGrid');
-  const errorEl     = document.getElementById('articlesError');
-  const countEl     = document.getElementById('articlesCount');
-  const chipsEl     = document.getElementById('categoryChips');
+(function () {
+  const gridEl = document.getElementById('events-grid');
 
-  const BASE_PATH = window.location.pathname.startsWith('/site2026')
+  const BASE_PATH = window.location.pathname.indexOf('/site2026') !== -1
     ? '/site2026'
     : '';
 
-  function showError(msg){
-    if (!errorEl) return;
-    errorEl.innerHTML = '<div class="error-box">' + (msg || 'Erro ao carregar os artigos.') + '</div>';
-  }
+  function createCard(item) {
+    const slug       = item.slug || '';
+    const titulo     = item.titulo || item.titulo_curto || slug || 'Artigo corporativo';
+    const tituloCurto = item.titulo_curto || '';
+    let imgSrc       = item.card_image || '';
 
-  function createCard(item){
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.dataset.category = item.categoria || '';
+    if (!slug) return null;
 
-    const href = BASE_PATH + '/artigo-corporativo.html?slug=' + encodeURIComponent(item.slug);
+    // Ajuste de caminho para funcionar em / e /site2026
+    if (imgSrc.startsWith('./')) {
+      imgSrc = BASE_PATH + imgSrc.slice(1); // remove o ponto e mantém /assets...
+    } else if (imgSrc.startsWith('/')) {
+      imgSrc = BASE_PATH + imgSrc;
+    }
 
-    const imgWrap = document.createElement('a');
-    imgWrap.className = 'card-image-wrap';
-    imgWrap.href = href;
+    const href = BASE_PATH + '/artigo-corporativo.html?slug=' + encodeURIComponent(slug);
+
+    const link = document.createElement('a');
+    link.className = 'event-card';
+    link.href = href;
+    link.setAttribute('aria-label', tituloCurto || titulo);
+
+    const media = document.createElement('div');
+    media.className = 'card-media';
 
     const img = document.createElement('img');
     img.loading = 'lazy';
-    img.src = (item.card_image || '').replace(/^\.\//, BASE_PATH + '/');
-    img.alt = item.titulo || '';
-    imgWrap.appendChild(img);
+    img.src = imgSrc;
+    img.alt = titulo;
+    media.appendChild(img);
 
-    const body = document.createElement('div');
-    body.className = 'card-body';
+    const content = document.createElement('div');
+    content.className = 'card-content';
 
-    const cat = document.createElement('div');
-    cat.className = 'card-category';
-    cat.textContent = item.categoria || 'Artigo corporativo';
+    const titleEl = document.createElement('p');
+    titleEl.className = 'card-title';
+    titleEl.textContent = titulo.toUpperCase();
 
-    const title = document.createElement('div');
-    title.className = 'card-title';
-    title.textContent = item.titulo || item.titulo_curto || item.slug;
-
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    meta.textContent = item.titulo_curto || '';
-
-    const footer = document.createElement('div');
-    footer.className = 'card-footer';
-
-    const link = document.createElement('a');
-    link.className = 'card-link';
-    link.href = href;
-    link.innerHTML = '<span>Ver artigo completo</span><span class="card-link-arrow">→</span>';
-
-    footer.appendChild(link);
-
-    body.appendChild(cat);
-    body.appendChild(title);
-    if (item.titulo_curto){
-      body.appendChild(meta);
+    const subtitleEl = document.createElement('p');
+    subtitleEl.className = 'card-subtitle';
+    // Se título curto for diferente, usamos como subtítulo; se for igual, deixamos vazio
+    if (tituloCurto && tituloCurto !== titulo) {
+      subtitleEl.textContent = tituloCurto;
+    } else {
+      subtitleEl.textContent = '';
     }
-    body.appendChild(footer);
 
-    card.appendChild(imgWrap);
-    card.appendChild(body);
+    content.appendChild(titleEl);
+    if (subtitleEl.textContent.trim() !== '') {
+      content.appendChild(subtitleEl);
+    }
 
-    return card;
+    link.appendChild(media);
+    link.appendChild(content);
+
+    return link;
   }
 
-  function renderList(list){
+  function renderList(list) {
     if (!gridEl) return;
     gridEl.innerHTML = '';
 
-    list.forEach(function(item){
+    list.forEach(function (item) {
       const card = createCard(item);
-      gridEl.appendChild(card);
-    });
-
-    if (countEl){
-      const total = list.length;
-      if (total === 0){
-        countEl.textContent = 'Nenhum artigo encontrado para este filtro.';
-      } else if (total === 1){
-        countEl.textContent = '1 artigo disponível.';
-      } else {
-        countEl.textContent = total + ' artigos disponíveis.';
+      if (card) {
+        gridEl.appendChild(card);
       }
-    }
-  }
-
-  function applyFilter(category, allItems){
-    if (!category || category === 'todos'){
-      renderList(allItems);
-      return;
-    }
-    const filtered = allItems.filter(function(item){
-      return (item.categoria || '').toLowerCase() === category.toLowerCase();
-    });
-    renderList(filtered);
-  }
-
-  function setupFilters(allItems){
-    if (!chipsEl) return;
-
-    chipsEl.addEventListener('click', function(ev){
-      const target = ev.target;
-      if (!target || !target.classList.contains('chip')) return;
-
-      const cat = target.getAttribute('data-category') || 'todos';
-
-      const chips = chipsEl.querySelectorAll('.chip');
-      chips.forEach(function(btn){
-        btn.classList.toggle('is-active', btn === target);
-      });
-
-      applyFilter(cat, allItems);
     });
   }
 
-  async function init(){
+  async function init() {
     const url = BASE_PATH + '/index-artigos-corporativos.json';
 
-    try{
-      const res = await fetch(url, { cache:'no-store' });
-      if (!res.ok){
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) {
         throw new Error('Não foi possível carregar ' + url);
       }
 
       const data = await res.json();
-      if (!Array.isArray(data)){
+      if (!Array.isArray(data)) {
         throw new Error('O arquivo de índice de artigos não está no formato esperado (array).');
       }
 
-      setupFilters(data);
-      applyFilter('todos', data);
-    }catch(err){
+      renderList(data);
+    } catch (err) {
       console.error('Erro ao carregar índice de artigos:', err);
-      showError(err.message || 'Erro inesperado ao carregar os artigos.');
-      if (countEl){
-        countEl.textContent = 'Não foi possível carregar os artigos.';
+      if (gridEl) {
+        const div = document.createElement('div');
+        div.textContent = 'Erro ao carregar os artigos corporativos. Tente novamente mais tarde.';
+        gridEl.appendChild(div);
       }
     }
   }
