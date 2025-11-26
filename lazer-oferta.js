@@ -161,6 +161,59 @@
     return text;
   }
 
+
+  function insertInlineImages(slug, BASE_PATH){
+    if (!slug) return;
+    var articleBody = document.querySelector('.article-body');
+    if (!articleBody) return;
+
+    function createFigure(index){
+      var fig = document.createElement('figure');
+      fig.className = 'article-inline-image article-inline-image-' + index;
+      var img = document.createElement('img');
+      img.loading = 'lazy';
+      var baseName = index === 1 ? 'image1' : 'image2';
+      img.src = BASE_PATH + '/assets/lazer/' + baseName + encodeURIComponent(slug) + '.webp';
+      img.alt = '';
+      img.onerror = function(){
+        var p = fig.parentNode;
+        if (p) p.removeChild(fig);
+      };
+      fig.appendChild(img);
+      return fig;
+    }
+
+    // 1) Antes do parágrafo "As duas grandes âncoras desta viagem"
+    var paragraphs = articleBody.getElementsByTagName('p');
+    var alvoAncora = null;
+    for (var i = 0; i < paragraphs.length; i++){
+      var txt = (paragraphs[i].textContent || '').trim().toLowerCase();
+      if (txt.indexOf('as duas grandes âncoras desta viagem') === 0){
+        alvoAncora = paragraphs[i];
+        break;
+      }
+    }
+    if (alvoAncora && alvoAncora.parentNode){
+      var fig1 = createFigure(1);
+      alvoAncora.parentNode.insertBefore(fig1, alvoAncora);
+    }
+
+    // 2) Antes da "Conclusão" (título de seção)
+    var headings = articleBody.getElementsByTagName('h2');
+    var alvoConclusao = null;
+    for (var j = 0; j < headings.length; j++){
+      var htxt = (headings[j].textContent || '').trim().toLowerCase();
+      if (htxt.indexOf('conclusão') === 0){
+        alvoConclusao = headings[j];
+        break;
+      }
+    }
+    if (alvoConclusao && alvoConclusao.parentNode){
+      var fig2 = createFigure(2);
+      alvoConclusao.parentNode.insertBefore(fig2, alvoConclusao);
+    }
+  }
+
   function renderOfferFromJson(json, slug) {
     if (!json || typeof json !== 'object') {
       showError('O JSON desta oferta não está no formato esperado.');
@@ -302,6 +355,8 @@
         sectionsContainer.appendChild(wrapper);
       });
     }
+
+    insertInlineImages(slugSafe, BASE_PATH);
 
     const cta2Span = document.getElementById('offerCta2');
     if (cta2Span) {
