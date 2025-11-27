@@ -15,8 +15,8 @@
   <style>
   :root {
     --brand: #f97316;
-    --brand-dark: #ea580c;
-    --bg-page: #ffffff;         /* volta fundo branco global */
+    --brand-shadow: #c2410c;   /* igual Lazer Oferta */
+    --bg-page: #ffffff;
     --text-main: #111827;
     --text-muted: #6b7280;
   }
@@ -32,7 +32,7 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 17px;          /* corpo */
+    font-size: 17px;
     line-height: 1.7;
     color: var(--text-main);
     background: var(--bg-page);
@@ -40,7 +40,7 @@
   }
 
   strong {
-    font-weight: 700;         /* negrito realmente visível */
+    font-weight: 700;
   }
 
   a {
@@ -56,7 +56,7 @@
   /* ========= TOPO / HERO ========= */
 
   .hero-wrap {
-    background: linear-gradient(135deg, #f97316 0%, #fb923c 35%, #ea580c 100%);
+    background: linear-gradient(135deg, var(--brand-shadow), var(--brand)); /* mesmo degradê do Lazer Oferta */
     color: #fff;
     padding: 16px 16px 40px;
   }
@@ -66,7 +66,6 @@
     margin: 0 auto;
   }
 
-  /* Barra superior com logo / ícones */
   .hero-topbar {
     display: flex;
     align-items: center;
@@ -124,7 +123,6 @@
     line-height: 1;
   }
 
-  /* Bloco do título dentro do hero */
   .hero-text {
     max-width: 960px;
     margin: 40px auto 0 auto;
@@ -132,13 +130,11 @@
     padding: 0 10px;
   }
 
-  /* ===== AJUSTES ESPECÍFICOS PARA ARTIGO CORPORATIVO ===== */
-
-  /* TÍTULO DO HERO – centralizado, mais forte e com respiro */
+  /* TÍTULO PRINCIPAL DO ARTIGO */
   #articleTitle {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-weight: 800;              /* bem negrito */
-    font-size: 30px;               /* título principal */
+    font-weight: 800;
+    font-size: 30px;
     line-height: 1.3;
     text-align: center;
     max-width: 780px;
@@ -158,7 +154,7 @@
 
   @media (min-width: 1024px) {
     .hero-text {
-      margin-top: 56px;  /* empurra um pouco pra baixo no desktop */
+      margin-top: 56px;
     }
   }
 
@@ -171,7 +167,6 @@
   }
 
   .article-card {
-    /* remove cardzão pesado – volta pro layout fluido */
     background: transparent;
     border-radius: 0;
     box-shadow: none;
@@ -213,7 +208,6 @@
     font-weight: 700;
   }
 
-  /* Lista simples */
   .article-body ul {
     padding-left: 1.4rem;
     margin: 0 0 1.1em 0;
@@ -232,7 +226,7 @@
   }
 
   .cta-final-card {
-    background: linear-gradient(135deg, #f97316 0%, #fb923c 35%, #ea580c 100%);
+    background: linear-gradient(135deg, var(--brand-shadow), var(--brand));
     color: #fff;
     border-radius: 28px;
     padding: 28px 18px 32px;
@@ -287,8 +281,6 @@
     padding: 12px 14px;
     font-size: 14px;
   }
-
-  /* ========= RESPONSIVIDADE EXTRA ========= */
 
   @media (max-width: 640px) {
     .hero-wrap {
