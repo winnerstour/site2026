@@ -56,14 +56,14 @@
       text-decoration: none;
     }
 
-    /* HERO LARANJA DO TOPO – degradê invertido (esquerda escuro → direita claro) */
+    /* HERO – degradê invertido com final mais escuro (nada de branco puro) */
     .hero-wrap {
       background: linear-gradient(
         90deg,
         #b45309 0%,
-        var(--brand-dark) 35%,
-        var(--brand) 70%,
-        #fed7aa 100%
+        var(--brand-dark) 30%,
+        var(--brand) 65%,
+        #fb923c 100%
       );
       color: #fff;
       padding: 28px 16px 60px 16px;
@@ -79,11 +79,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      position: relative;
+      position: relative; /* referencial para o dropdown do menu */
       z-index: 2;
     }
 
-    /* LOGO WINNERS TOUR – formatação pedida */
+    /* LOGO WINNERS TOUR */
     .hero-logo {
       font-family: 'Montserrat', system-ui, sans-serif;
       font-weight: 900;
@@ -108,7 +108,7 @@
       font-size: 14px;
     }
 
-    /* WHATSAPP – apenas logo, sem contorno verde */
+    /* WHATSAPP – só o logo */
     .hero-wa-btn {
       width: 36px;
       height: 36px;
@@ -133,6 +133,7 @@
       opacity: 0.9;
     }
 
+    /* BOTÃO MENU */
     .hero-menu-btn {
       padding: 7px 15px;
       border-radius: 999px;
@@ -169,7 +170,7 @@
 
     #articleTitle {
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 40px; /* título maior */
+      font-size: 40px;
       line-height: 1.25;
       font-weight: 900;
       margin: 0 0 12px 0;
@@ -345,12 +346,12 @@
       text-align: center;
     }
 
-    /* MENU DROP-DOWN COLADO AO BOTÃO */
+    /* MENU DROP-DOWN COLADO AO BOTÃO (desliza para baixo) */
 
     .site-menu {
       position: absolute;
-      top: 60px;         /* logo abaixo da barra superior */
-      right: 16px;
+      top: calc(100% + 8px); /* logo abaixo da barra */
+      right: 0;
       z-index: 10;
       opacity: 0;
       pointer-events: none;
@@ -417,7 +418,7 @@
       flex: 1;
     }
 
-    /* RODAPÉ SIMPLES (OPCIONAL) */
+    /* RODAPÉ */
     footer {
       text-align: center;
       font-size: 13px;
@@ -446,36 +447,36 @@
           Menu <span>☰</span>
         </button>
       </div>
+
+      <!-- MENU DROP-DOWN PRESO AO BOTÃO -->
+      <div class="site-menu" id="siteMenu">
+        <div class="site-menu-panel">
+          <h2>Mais opções</h2>
+
+          <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
+
+          <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
+            <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
+          </a>
+          <a href="corporativo.html">
+            <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
+          </a>
+          <a href="index.html">
+            <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
+          </a>
+          <a href="grupos.html">
+            <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
+          </a>
+          <a href="lazer.html">
+            <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="hero-main">
       <h1 id="articleTitle">Carregando artigo…</h1>
       <p id="articleSubtitle"></p>
-    </div>
-
-    <!-- MENU DROP-DOWN PRESO AO TOPO -->
-    <div class="site-menu" id="siteMenu">
-      <div class="site-menu-panel">
-        <h2>Mais opções</h2>
-
-        <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
-
-        <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-          <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-        </a>
-        <a href="corporativo.html">
-          <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-        </a>
-        <a href="index.html">
-          <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
-        </a>
-        <a href="grupos.html">
-          <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-        </a>
-        <a href="lazer.html">
-          <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -509,7 +510,7 @@
     WinnersTour Operadora &amp; Viagens Corporativas
   </footer>
 
-  <!-- SCRIPT MENU (drop-down animado) -->
+  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
   <script>
     (function() {
       const menuToggle = document.getElementById('siteMenuToggle');
