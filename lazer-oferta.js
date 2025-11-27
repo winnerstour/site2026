@@ -24,14 +24,30 @@ document.addEventListener('DOMContentLoaded', async function () {
   function renderMarkdown(md) {
     if (!md) return '';
     let text = md.trim();
-    // Negrito *texto*
-    text = text.replace(/\\(.+?)\\/g, '<strong>$1</strong>');
+
+    // Negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Itálico *texto*
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
     const lines = text.split('\n');
     let html = '';
     let inList = false;
 
     for (let rawLine of lines) {
       const line = rawLine.replace(/\r$/, '');
+
+      // Título de nível 3 (### Meu título) vira um parágrafo em negrito
+      const h3Match = line.match(/^\s*###\s+(.+)/);
+      if (h3Match) {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p><strong>' + h3Match[1].trim() + '</strong></p>';
+        continue;
+      }
+
       if (/^\s*-\s+/.test(line)) {
         if (!inList) {
           html += '<ul>';
@@ -55,16 +71,25 @@ document.addEventListener('DOMContentLoaded', async function () {
     return html;
   }
 
-  function markdownToPlain(md) {
+
+function markdownToPlain(md) {
     if (!md) return '';
-    // remove negritos, itálicos, etc., e normaliza espaço
-    let text = md.replace(/\\(.+?)\\/g, '$1');
-    text = text.replace(/[_*`]/g, '');
+    // remove marcações de markdown (negrito, itálico, títulos) e normaliza espaços
+    let text = md;
+    // remove títulos tipo ### Meu título
+    text = text.replace(/^\s*#{1,6}\s+/gm, '');
+    // negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '$1');
+    // itálico *texto*
+    text = text.replace(/\*(.+?)\*/g, '$1');
+    // remove outros marcadores simples
+    text = text.replace(/[_`]/g, '');
     text = text.replace(/\s+/g, ' ');
     return text.trim();
   }
 
-  function buildYoutubeEmbedUrl(url) {
+
+function buildYoutubeEmbedUrl(url) {
     if (!url) return null;
     try {
       if (url.includes('/embed/')) {
@@ -308,7 +333,27 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
 
       const contentDiv = document.createElement('div');
-      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+      let sectionMd = sec.conteudo_markdown || '';
+
+      // Evita repetir no conteúdo a primeira linha igual ao título da seção
+      if (sec.titulo_secao && sectionMd) {
+        const mdLines = sectionMd.split('\n');
+        if (mdLines.length > 0) {
+          const firstLine = mdLines[0].trim();
+          const normalize = function (str) {
+            return str
+              .replace(/^\s*#{1,6}\s+/, '') // remove "###" etc.
+              .replace(/[*_`]/g, '')
+              .trim()
+              .toLowerCase();
+          };
+          if (normalize(firstLine) === normalize(sec.titulo_secao)) {
+            sectionMd = mdLines.slice(1).join('\n');
+          }
+        }
+      }
+
+      contentDiv.innerHTML = renderMarkdown(sectionMd);
       wrapper.appendChild(contentDiv);
 
       sectionsEl.appendChild(wrapper);
