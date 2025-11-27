@@ -125,32 +125,33 @@
       opacity: 0.9;
     }
 
-    /* BOTÃO MENU */
-    .hero-menu-btn {
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
-      position: relative;
-      z-index: 3;
-    }
-    .hero-menu-btn span {
-      font-size: 16px;
-    }
-    .hero-menu-btn:hover {
-      /* mantém a cor; só sombra + leve subida */
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-      transform: translateY(-1px);
-    }
+/* BOTÃO MENU */
+.hero-menu-btn {
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  /* antes: background: rgba(255, 255, 255, 0.08); */
+  background: rgba(255, 255, 255, 0.20); /* ~20% mais escuro/mais opaco */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(12px);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  position: relative;
+  z-index: 3;
+}
+.hero-menu-btn span {
+  font-size: 16px;
+}
+.hero-menu-btn:hover {
+  /* mantém a mesma cor, só sombra + leve subida */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
 
     .hero-main {
       max-width: var(--max-width);
