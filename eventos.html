@@ -98,6 +98,7 @@
       align-items: center;
       gap: 10px;
       font-size: 14px;
+      position: relative;
     }
 
     /* WHATSAPP – só o logo */
@@ -393,13 +394,13 @@
               <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
             </a>
             <a href="index.html">
-              <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
+              <span class="site-menu-icon">🗓</span><span class="site-menu-label">Eventos</span>
             </a>
             <a href="grupos.html">
               <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
             </a>
             <a href="lazer.html">
-              <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
+              <span class="site-menu-icon">🏖</span><span class="site-menu-label">Lazer</span>
             </a>
           </div>
         </div>
@@ -478,4 +479,15 @@
       });
 
       // Fecha com ESC
-      document.addEventListener('keydown', fun
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    })();
+  </script>
+
+  <!-- Script que carrega o JSON do evento -->
+  <script src="eventos.js"></script>
+</body>
+</html>
