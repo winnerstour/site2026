@@ -51,9 +51,19 @@
   "ChipColor": "bg-zinc-700",
   "sections": [
     {
-      "id": "CTA_FORMATOS",
-      "titulo_secao": "CTAs por formato de viagem (bate-volta, hospedagem e grupos)",
-      "conteudo_markdown": "## CTAs por formato de viagem (bate-volta, hospedagem e grupos)\n\nAbaixo, três chamadas de ação específicas para cada perfil de viagem.  \nNo site, cada uma delas pode ser transformada em um botão ou link separado.\n\n### CTA – Perfil 1 (Bate-volta estratégico)\n\n👉 **Se esse é o seu caso, clique abaixo para consultar os voos disponíveis e emitir sua passagem diretamente na nossa loja virtual. Clique aqui.**  \n\nUse este CTA para levar o visitante diretamente para a página de compra de passagens da agência, já com as datas da AUTOMEC em mente.\n\n### CTA – Perfil 2 (Para quem precisa se hospedar em São Paulo)\n\n👉 **Se você prefere viajar com os voos ajustados e a hospedagem já recomendada, clique abaixo para falar com nossa equipe no WhatsApp e montar o seu pacote de viagem.**  \n\nAqui, o foco é atender quem quer uma combinação equilibrada de voo + hotel, sem perder tempo comparando tudo sozinho.\n\n### CTA – Perfil 3 (Estadia completa e viagem em grupo)\n\n👉 **Se a sua empresa vai participar de todos os dias da AUTOMEC, levar uma equipe maior ou terá estande próprio, clique abaixo para falar com nossa equipe e organizar a viagem como um projeto – com voos coordenados, hospedagem estratégica, transfers e apoio durante toda a feira.**  \n\nEste CTA é ideal para times maiores, missões completas e empresas que precisam de um nível maior de coordenação logística."
+      "id": "CTA3",
+      "titulo_secao": "CTA – Bate-volta",
+      "conteudo_markdown": "## CTA – Bate-volta estratégico (AUTOMEC)\n\n👉 **Se esse é o seu caso, clique abaixo para consultar os voos disponíveis e emitir sua passagem diretamente na nossa loja virtual. Clique aqui.**  \n\nUse este CTA para levar o visitante diretamente para a página de compra de passagens da agência, já com as datas do evento AUTOMEC em mente."
+    },
+    {
+      "id": "CTA4",
+      "titulo_secao": "CTA – Com hospedagem",
+      "conteudo_markdown": "## CTA – Viagem com hospedagem em São Paulo (AUTOMEC)\n\n👉 **Se você prefere viajar com os voos ajustados e a hospedagem já recomendada, clique abaixo para falar com nossa equipe no WhatsApp e montar o seu pacote de viagem.**  \n\nAqui, o foco é atender quem quer uma combinação equilibrada de voo + hotel, sem perder tempo comparando tudo sozinho."
+    },
+    {
+      "id": "CTA5",
+      "titulo_secao": "CTA – Grupos e estadia completa",
+      "conteudo_markdown": "## CTA – Estadia completa e viagem em grupo (AUTOMEC)\n\n👉 **Se a sua empresa vai participar de todos os dias do evento, levar uma equipe maior ou terá estande próprio, clique abaixo para falar com nossa equipe e organizar a viagem como um projeto – com voos coordenados, hospedagem estratégica, transfers e apoio durante toda a feira.**  \n\nEste CTA é ideal para times maiores, missões completas e empresas que precisam de um nível maior de coordenação logística."
     }
   ]
 }
