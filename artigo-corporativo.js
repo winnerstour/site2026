@@ -27,6 +27,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     for (let rawLine of lines) {
       const line = rawLine.replace(/\r$/, '');
+
+      // Títulos tipo "### Título" viram <h3>Título</h3>
+      const headingMatch = line.match(/^\s*###\s+(.+)/);
+      if (headingMatch) {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<h3>' + headingMatch[1] + '</h3>';
+        continue;
+      }
+
       if (/^\s*-\s+/.test(line)) {
         if (!inList) {
           html += '<ul>';
@@ -49,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (inList) html += '</ul>';
     return html;
   }
+
 
   function buildYoutubeEmbedUrl(url) {
     if (!url) return null;
