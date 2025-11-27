@@ -48,7 +48,7 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* HERO – degradê invertido com final mais escuro (sem “ponta branca”) */
+    /* HERO – degradê invertido com final mais escuro */
     .hero-wrap {
       background: linear-gradient(
         90deg,
@@ -61,7 +61,7 @@
       padding: 28px 16px 60px 16px;
       text-align: center;
       position: relative;
-      overflow: visible; /* permite o menu descer sem ser cortado */
+      overflow: visible;
     }
 
     .hero-top-bar {
@@ -71,7 +71,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      position: relative; /* referencial para o dropdown do menu */
+      position: relative;
       z-index: 2;
     }
 
@@ -139,7 +139,7 @@
       align-items: center;
       gap: 6px;
       backdrop-filter: blur(12px);
-      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
       position: relative;
       z-index: 3;
     }
@@ -147,7 +147,7 @@
       font-size: 16px;
     }
     .hero-menu-btn:hover {
-      background: rgba(255, 255, 255, 0.20);
+      /* mantém a cor; só sombra + leve subida */
       box-shadow: 0 6px 14px rgba(0,0,0,0.25);
       transform: translateY(-1px);
     }
@@ -301,9 +301,7 @@
       text-align: center;
     }
 
-    /* MENU DROP-DOWN COLADO AO BOTÃO (desliza para baixo)
-       – agora sem título “Mais opções” e sem “Fechar menu”,
-       e com tipografia mais forte. */
+    /* MENU DROP-DOWN COLADO AO BOTÃO – fundo laranja forte */
     .site-menu {
       position: absolute;
       top: calc(100% + 8px);
@@ -322,7 +320,7 @@
     }
 
     .site-menu-panel {
-      background: #ffffff;
+      background: var(--brand);
       border-radius: 16px;
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
       padding: 10px 14px 10px 14px;
@@ -336,26 +334,26 @@
       padding: 8px 6px;
       border-radius: 9px;
       font-size: 15px;
-      color: #111827;
+      color: #ffffff;
       transition: background 0.15s ease, transform 0.15s ease;
-      font-weight: 600; /* mais “chamativo” */
+      font-weight: 600;
     }
 
     .site-menu-panel a:hover {
-      background: #f3f4f6;
+      background: rgba(0,0,0,0.12);
       transform: translateX(2px);
     }
 
     .site-menu-icon {
       width: 26px;
       text-align: center;
-      font-size: 20px; /* ícone maior */
+      font-size: 20px;
     }
 
     .site-menu-label {
       flex: 1;
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 700; /* labels em negrito Montserrat */
+      font-weight: 700;
     }
 
     /* RODAPÉ */
@@ -443,7 +441,7 @@
   </main>
 
   <footer>
-    Winners Tour — Operadora e agência de viagens
+    Winners Tour — Operadora e Agência de Viagens
   </footer>
 
   <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
