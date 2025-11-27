@@ -2,162 +2,318 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
+  <title>Artigo Corporativo — Winners Tour</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">Winners Tour — Artigo Corporativo</title>
 
-  <!-- FONTES -->
+  <!-- Fonte Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
-      --brand: #f97316;
-      --brand-dark: #ea580c;
-      --wa: #25D366;
-      --bg-page: #f3f4f6;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --card: #ffffff;
+      --color-primary: #f97316;
+      --color-primary-dark: #ea580c;
+      --color-primary-soft: #ffedd5;
+
+      --color-bg: #f3f4f6;
+      --color-bg-soft: #f9fafb;
+
+      --color-text-main: #111827;
+      --color-text-soft: #4b5563;
+      --color-text-muted: #6b7280;
+      --color-text-light: #9ca3af;
+
       --radius-lg: 24px;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
-      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
-      --max-width: 760px;
+      --radius-xl: 32px;
+
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.12);
+      --shadow-hero: 0 26px 70px rgba(15, 23, 42, 0.18);
+      --shadow-chip: 0 7px 18px rgba(15, 23, 42, 0.15);
+      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.12);
     }
 
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--text-main);
-      background: var(--bg-page);
+      margin: 0;
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #fed7aa 0, #fee2e2 24%, #f3f4f6 55%);
+      color: var(--color-text-main);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    img { max-width: 100%; display: block; }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HERO – degradê invertido com final mais escuro */
-    .hero-wrap {
-      background: linear-gradient(
-        90deg,
-        #b45309 0%,
-        var(--brand-dark) 30%,
-        var(--brand) 65%,
-        #fb923c 100%
-      );
-      color: #fff;
-      padding: 28px 16px 60px 16px;
-      text-align: center;
-      position: relative;
-      overflow: visible;
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    .hero-top-bar {
-      max-width: var(--max-width);
-      margin: 0 auto 30px auto;
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(248, 250, 252, 0.94), rgba(248, 250, 252, 0.86), rgba(248, 250, 252, 0.0));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    }
+
+    .navbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 16px 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
+      gap: 16px;
     }
 
-    /* LOGO WINNERS TOUR */
-    .hero-logo {
-      font-family: 'Montserrat', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .hero-logo:hover {
-      text-shadow: 0 0 12px rgba(0,0,0,0.45);
-      transform: translateY(-1px);
-    }
-
-    .hero-actions {
+    .logo-container {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 14px;
     }
 
-    /* WHATSAPP – só o logo */
-    .hero-wa-btn {
-      width: 36px;
-      height: 36px;
+    .logo-mark {
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      background: transparent;
-      border: none;
+      background: radial-gradient(circle at 30% 20%, #fed7aa 0, #f97316 40%, #ea580c 80%);
+      box-shadow:
+        0 0 0 1.5px rgba(255, 255, 255, 0.8),
+        0 10px 25px rgba(248, 113, 22, 0.55);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
-      box-shadow: none;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      color: #fefefe;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.06em;
     }
-    .hero-wa-btn img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
-    .hero-wa-btn:hover {
+
+    .logo-title {
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #0f172a;
+    }
+
+    .logo-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(22, 101, 52, 0.16);
+      background: radial-gradient(circle at 20% 0, #bbf7d0 0, #22c55e 35%, #15803d 72%);
+      color: #ecfdf3;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 12px 30px rgba(22, 163, 74, 0.75);
+      transform: translateY(0);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+    }
+
+    .btn-whatsapp:hover {
       transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.95),
+        0 18px 40px rgba(22, 163, 74, 0.82);
+      filter: brightness(1.06);
+    }
+
+    .btn-whatsapp-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.1);
+    }
+
+    .btn-whatsapp-icon span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: radial-gradient(circle at 30% 10%, #22c55e 0, #16a34a 55%, #166534 100%);
+      position: relative;
+    }
+
+    .btn-whatsapp-icon span::after {
+      content: "";
+      position: absolute;
+      inset: 2px 2px 2px 3px;
+      border-radius: 1px;
+      border: 1.5px solid rgba(15, 23, 42, 0.92);
+      border-top: none;
+      border-left: none;
+      transform: rotate(-35deg);
+    }
+
+    .btn-whatsapp-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .btn-whatsapp-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
       opacity: 0.9;
     }
 
-    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
-    .hero-menu-btn {
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: var(--brand-dark); /* laranja escuro fixo */
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
+    .btn-whatsapp-main {
+      font-size: 12px;
+    }
+
+    .btn-menu {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
+      gap: 7px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.16);
+      background: rgba(248, 250, 252, 0.9);
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      box-shadow: 0 9px 22px rgba(15, 23, 42, 0.12);
+      cursor: default;
+      user-select: none;
+    }
+
+    .btn-menu-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #0f172a;
+    }
+
+    .btn-menu-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .btn-menu-lines span {
+      width: 13px;
+      height: 1.4px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #0f172a, transparent);
+    }
+
+    .hero-wrapper {
+      max-width: 1120px;
+      margin: 16px auto 40px auto;
+      padding: 0 16px;
+    }
+
+    .hero-card {
       position: relative;
-      z-index: 3;
+      overflow: hidden;
+      border-radius: 32px;
+      background: radial-gradient(circle at top left, #fed7aa 0, #f97316 40%, #ea580c 72%);
+      color: #fefefe;
+      box-shadow: var(--shadow-hero);
+      padding: 28px 28px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      isolation: isolate;
     }
-    .hero-menu-btn span {
-      font-size: 16px;
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(251, 113, 133, 0.16) 0, transparent 55%),
+        radial-gradient(circle at 50% 120%, rgba(15, 23, 42, 0.45) 0, transparent 55%);
+      opacity: 0.92;
+      z-index: -1;
     }
-    .hero-menu-btn:hover {
-      /* mantém a cor; só sombra + leve subida */
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-      transform: translateY(-1px);
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.32);
+      border: 1px solid rgba(248, 250, 252, 0.45);
+      box-shadow:
+        0 0 0 1px rgba(248, 250, 252, 0.5),
+        0 12px 26px rgba(15, 23, 42, 0.55);
+      margin-bottom: 18px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #bbf7d0 0, #22c55e 52%, #15803d 100%);
+      box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.9);
+      position: relative;
+    }
+
+    .hero-pill-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      border: 1px solid rgba(187, 247, 208, 0.5);
+    }
+
+    .hero-pill-text {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(248, 250, 252, 0.92);
     }
 
     .hero-main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 0 0 0;
-      position: relative;
-      z-index: 1;
+      max-width: 720px;
     }
 
     #articleTitle {
@@ -166,328 +322,662 @@
       line-height: 1.25;
       font-weight: 900;
       margin: 0 0 12px 0;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.32);
     }
 
     #articleSubtitle {
+      font-size: 14px;
+      line-height: 1.6;
       margin: 0;
-      font-size: 17px;
+      color: rgba(255, 255, 255, 0.92);
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
     }
 
-    .hero-title-small { font-size: 32px !important; }
-
-    @media (max-width: 640px) {
-      #articleTitle { font-size: 30px; }
-      .hero-top-bar { margin-bottom: 22px; }
+    .hero-meta {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(248, 250, 252, 0.92);
     }
 
-    /* ÁREA DO ARTIGO */
-    .article-main {
-      max-width: var(--max-width);
-      margin: -40px auto 60px auto;
-      padding: 0 16px 0 16px;
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.32);
+      border: 1px solid rgba(248, 250, 252, 0.48);
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.9);
+      opacity: 0.9;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 22px;
+      bottom: 20px;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .hero-badge-main {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(248, 250, 252, 0.6);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.75);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-badge-main span {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .hero-badge-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #fee2e2 0, #f97316 40%, #b91c1c 85%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 1.2px rgba(248, 250, 252, 0.95),
+        0 9px 22px rgba(127, 29, 29, 0.9);
+    }
+
+    .hero-badge-icon-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      border: 1.8px solid rgba(15, 23, 42, 0.96);
+      border-top: none;
+      border-left: none;
+      transform: rotate(-35deg) translateX(-1px);
+    }
+
+    .hero-badge-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(15, 23, 42, 0.88);
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 9px 22px rgba(15, 23, 42, 0.15);
+    }
+
+    .layout-wrapper {
+      max-width: 1120px;
+      margin: 0 auto 40px auto;
+      padding: 0 16px 32px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .article-wrapper {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: #f9fafb;
+      box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.08),
+        0 28px 60px rgba(15, 23, 42, 0.18);
+      padding: 22px 22px 24px 22px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .article-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .article-type {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #f97316;
+      margin-bottom: 14px;
+    }
+
+    .article-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #111827;
+    }
+
+    .article-body p {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .article-body strong {
+      font-weight: 700;
+    }
+
+    .article-body em {
+      font-style: italic;
+    }
+
+    .article-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 92px;
+    }
+
+    .sidebar-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.92);
+      color: #e5e7eb;
+      padding: 18px 16px 18px 16px;
+      box-shadow:
+        0 12px 32px rgba(15, 23, 42, 0.65),
+        0 0 0 1px rgba(148, 163, 184, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 10% 0, rgba(251, 146, 60, 0.55) 0, transparent 50%),
+        radial-gradient(circle at 100% 0, rgba(14, 165, 233, 0.45) 0, transparent 55%),
+        radial-gradient(circle at 0 100%, rgba(52, 211, 153, 0.4) 0, transparent 55%);
+      opacity: 0.75;
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    .sidebar-content {
       position: relative;
       z-index: 1;
     }
 
-    .article-container {
-      background: #ffffff;
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      padding: 30px 22px 36px 22px;
-    }
-
-    @media (min-width: 720px) {
-      .article-container { padding: 36px 36px 40px 36px; }
-    }
-
-    .article-container p { margin: 0 0 16px 0; }
-    .article-container p:last-child { margin-bottom: 0; }
-
-    .article-container strong { font-weight: 700; }
-
-    /* TÍTULOS DAS SEÇÕES EM LARANJA FORTE */
-    .article-container h2,
-    .article-container h3,
-    .article-container h4 {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 800;
-      margin: 26px 0 10px 0;
-      color: var(--brand);
-    }
-
-    .article-container h2 { font-size: 22px; }
-    .article-container h3 { font-size: 20px; }
-
-    .article-container ul {
-      padding-left: 1.2rem;
-      margin: 0 0 16px 0;
-    }
-
-    .article-container li { margin-bottom: 6px; }
-
-    #articleIntro { margin-bottom: 18px; }
-    #articleSections { margin-top: 8px; }
-
-    .content-section + .content-section { margin-top: 20px; }
-
-    /* CTA FINAL */
-    .article-cta-wrapper {
-      margin-top: 32px;
-      margin-bottom: 18px;
-    }
-
-    .article-cta-card {
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      border-radius: 26px;
-      box-shadow: var(--shadow-card);
-      padding: 26px 20px 30px 20px;
-      color: #fff;
-      text-align: center;
-    }
-
-    @media (min-width: 720px) {
-      .article-cta-card { padding: 30px 32px 32px 32px; }
-    }
-
-    .article-cta-card .cta-title {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      margin: 0 0 14px 0;
-    }
-
-    .article-cta-card .cta-text {
-      font-size: 15px;
-      margin: 0 0 20px 0;
-      color: rgba(255,255,255,0.93);
-    }
-
-    .cta-button {
+    .sidebar-chip {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
+      gap: 7px;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: #ffffff;
-      color: #b45309;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.08em;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(248, 250, 252, 0.65);
+      box-shadow: 0 9px 22px rgba(15, 23, 42, 0.75);
+      margin-bottom: 10px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
-      border: none;
-      cursor: pointer;
-      white-space: normal;
-      text-align: center;
+      color: #e5e7eb;
     }
 
-    .cta-button:hover { background: #fef3c7; }
-
-    .cta-button em { font-style: normal; }
-
-    /* ÁREA DE ERRO */
-    #articleError { margin-top: 18px; }
-
-    .error-box {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 12px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      border: 1px solid #fecaca;
-      text-align: center;
+    .sidebar-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f97316 0, #ea580c 45%, #c2410c 100%);
+      box-shadow: 0 0 0 1.2px rgba(248, 250, 252, 0.9);
     }
 
-    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
-    .site-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-8px) scale(.98);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .site-menu.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-
-    .site-menu-panel {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
-      padding: 10px 14px 10px 14px;
-      min-width: 240px;
-    }
-
-    .site-menu-panel a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-radius: 9px;
+    .sidebar-title {
       font-size: 15px;
-      color: #111827;
-      transition: background 0.15s ease, transform 0.15s ease;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #f9fafb;
+    }
+
+    .sidebar-subtitle {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(to right, rgba(249, 250, 251, 0.0), rgba(249, 250, 251, 0.65), rgba(249, 250, 251, 0.0));
+      margin: 10px 0 12px 0;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .sidebar-list li {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-list-bullet {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: rgba(253, 224, 71, 0.98);
+    }
+
+    .sidebar-list strong {
+      font-weight: 600;
+      color: #fefce8;
+    }
+
+    .sidebar-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #fef3c7;
+      opacity: 0.92;
+    }
+
+    .sidebar-mini {
+      font-size: 11px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .sidebar-mini strong {
       font-weight: 600;
     }
 
-    .site-menu-panel a:hover {
-      background: #f3f4f6;
-      transform: translateX(2px);
+    .sidebar-secondary {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
+      padding: 16px 15px 15px 15px;
+      box-shadow:
+        0 9px 24px rgba(15, 23, 42, 0.75),
+        0 0 0 1px rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      position: relative;
+      overflow: hidden;
     }
 
-    .site-menu-icon {
-      width: 26px;
-      text-align: center;
-      font-size: 20px;
+    .sidebar-secondary::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      background:
+        radial-gradient(circle at 90% 0, rgba(52, 211, 153, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 0 100%, rgba(59, 130, 246, 0.35) 0, transparent 55%);
+      opacity: 0.75;
+      mix-blend-mode: screen;
+      z-index: 0;
     }
 
-    .site-menu-label {
-      flex: 1;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 700;
+    .sidebar-secondary-content {
+      position: relative;
+      z-index: 1;
     }
 
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
-      padding: 0 16px 26px 16px;
+    .sidebar-secondary-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5b4fc;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-secondary-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #f9fafb;
+    }
+
+    .sidebar-secondary-text {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-secondary-text strong {
+      font-weight: 600;
+    }
+
+    .sidebar-secondary-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .sidebar-secondary-pill {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.55);
+      background: rgba(15, 23, 42, 0.8);
+      color: #fefce8;
+    }
+
+    .sidebar-secondary-note {
+      font-size: 11px;
+      color: #e5e7eb;
+      opacity: 0.92;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card {
+        align-items: flex-start;
+        text-align: left;
+        padding: 24px 18px 22px 18px;
+        border-radius: 26px;
+      }
+
+      .hero-main {
+        max-width: 100%;
+      }
+
+      #articleTitle {
+        font-size: 30px;
+      }
+
+      #articleSubtitle {
+        font-size: 13px;
+      }
+
+      .hero-meta {
+        justify-content: flex-start;
+      }
+
+      .hero-badge {
+        position: static;
+        margin-top: 18px;
+      }
+
+      .layout-wrapper {
+        grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.1fr);
+        gap: 18px;
+      }
+
+      .article-wrapper {
+        padding: 18px 16px 20px 16px;
+        border-radius: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-inner {
+        padding: 12px 14px 8px 14px;
+      }
+
+      .hero-wrapper {
+        margin-top: 10px;
+        padding: 0 14px;
+      }
+
+      .hero-card {
+        padding: 20px 16px 18px 16px;
+        border-radius: 22px;
+      }
+
+      #articleTitle {
+        font-size: 24px;
+      }
+
+      .layout-wrapper {
+        padding: 0 14px 26px 14px;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .article-wrapper {
+        order: 1;
+        border-radius: 20px;
+      }
+
+      .article-sidebar {
+        order: 2;
+        position: static;
+      }
+
+      .sidebar-card,
+      .sidebar-secondary {
+        border-radius: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background: radial-gradient(circle at top, #fed7aa 0, #fee2e2 20%, #f9fafb 55%);
+      }
+
+      .logo-title {
+        font-size: 13px;
+      }
+
+      .logo-subtitle {
+        display: none;
+      }
+
+      .btn-whatsapp-text {
+        display: none;
+      }
+
+      .btn-whatsapp {
+        padding: 7px 8px;
+      }
+
+      .btn-menu {
+        display: none;
+      }
+
+      #articleTitle {
+        font-size: 22px;
+      }
+
+      .article-body {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="page-wrapper">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <div class="logo-container">
+          <div class="logo-mark">W</div>
+          <div class="logo-text">
+            <div class="logo-title">WINNERS TOUR</div>
+            <div class="logo-subtitle">VIAGENS CORPORATIVAS & EVENTOS</div>
+          </div>
+        </div>
 
-  <header class="hero-wrap">
-    <div class="hero-top-bar">
-      <!-- LOGO COMO LINK PARA A HOME -->
-      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
+        <div class="navbar-actions">
+          <a href="https://wa.me/5541992230209?text=Ol%C3%A1%20Winners%20Tour!%20Li%20o%20artigo%20sobre%20eventos%20corporativos%20e%20quero%20ajuda%20com%20as%20viagens%20do%20meu%20time."
+            target="_blank" class="btn-whatsapp">
+            <div class="btn-whatsapp-icon">
+              <span></span>
+            </div>
+            <div class="btn-whatsapp-text">
+              <span class="btn-whatsapp-label">Falar no WhatsApp</span>
+              <span class="btn-whatsapp-main">Quero ajuda com as viagens</span>
+            </div>
+          </a>
 
-      <div class="hero-actions">
-        <!-- ÍCONE WHATSAPP -->
-        <a class="hero-wa-btn"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20com%20viagens%20corporativas."
-           target="_blank" rel="noopener"
-           aria-label="Fale com nossa equipe no WhatsApp">
-          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-        </a>
-        <!-- BOTÃO DE MENU -->
-        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
-          Menu <span>☰</span>
-        </button>
-
-        <!-- MENU DROP-DOWN COLADO AO BOTÃO -->
-        <div class="site-menu" id="siteMenu">
-          <div class="site-menu-panel">
-            <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-              <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-            </a>
-            <a href="corporativo.html">
-              <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-            </a>
-            <a href="index.html">
-              <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
-            </a>
-            <a href="grupos.html">
-              <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-            </a>
-            <a href="lazer.html">
-              <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
-            </a>
+          <div class="btn-menu">
+            <div class="btn-menu-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span>Menu</span>
+            <span class="btn-menu-dot"></span>
           </div>
         </div>
       </div>
-    </div>
+    </header>
 
-    <div class="hero-main">
-      <h1 id="articleTitle">Carregando artigo…</h1>
-      <p id="articleSubtitle"></p>
-    </div>
-  </header>
+    <main>
+      <section class="hero-wrapper">
+        <div class="hero-card">
+          <div class="hero-pill">
+            <div class="hero-pill-dot"></div>
+            <div class="hero-pill-text">Artigo para gestores de viagens e eventos</div>
+          </div>
 
-  <main class="article-main">
-    <section class="article-container">
-      <div id="articleIntro"></div>
-      <div id="articleSections"></div>
-    </section>
+          <div class="hero-main">
+            <h1 id="articleTitle">
+              <!-- preenchido via JS -->
+            </h1>
+            <p id="articleSubtitle">
+              <!-- preenchido via JS -->
+            </p>
 
-    <section class="article-cta-wrapper">
-      <div class="article-cta-card">
-        <p class="cta-title">
-          Quer ajuda para transformar este conceito em resultados nas viagens da sua empresa?
-        </p>
-        <p class="cta-text">
-          Fale com nossa equipe especializada em viagens corporativas para analisar o cenário da sua empresa e montar um plano sob medida.
-        </p>
-        <a id="articleCtaWhatsApp"
-           class="cta-button"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20para%20aplicar%20essas%20ideias%20nas%20viagens%20da%20minha%20empresa."
-           target="_blank" rel="noopener">
-          👉 <em>FALE COM NOSSA EQUIPE NO WHATSAPP</em>
-        </a>
-      </div>
-    </section>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <span class="hero-meta-dot"></span>
+                <span>Gestores de viagens & eventos</span>
+              </div>
+              <div class="hero-meta-item">
+                <span class="hero-meta-dot"></span>
+                <span>Feiras, convenções & congressos</span>
+              </div>
+            </div>
+          </div>
 
-    <div id="articleError"></div>
-  </main>
+          <div class="hero-badge">
+            <div class="hero-badge-main">
+              <div class="hero-badge-icon">
+                <div class="hero-badge-icon-inner"></div>
+              </div>
+              <span>Menos nó na cabeça, mais resultado no evento</span>
+            </div>
+            <div class="hero-badge-sub">
+              Da passagem aérea à viagem do time inteiro
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    Winners Tour — Operadora e Agência de Viagens
-  </footer>
+      <section class="layout-wrapper">
+        <article class="article-wrapper">
+          <div class="article-label">Artigo Corporativo</div>
+          <div class="article-type">Viagens Corporativas & Gestão de Eventos</div>
 
-  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
-  <script>
-    (function() {
-      const menuToggle = document.getElementById('siteMenuToggle');
-      const siteMenu   = document.getElementById('siteMenu');
+          <div id="articleMain" class="article-body">
+            <!-- conteúdo do artigo preenchido via JS -->
+          </div>
+        </article>
 
-      if (!menuToggle || !siteMenu) return;
+        <aside class="article-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-content">
+              <div class="sidebar-chip">
+                <div class="sidebar-chip-dot"></div>
+                <span>Para gestores que acumulam mil funções</span>
+              </div>
 
-      function openMenu() {
-        siteMenu.classList.add('is-open');
-      }
+              <h2 class="sidebar-title">
+                De “comprar passagem” a organizar o evento inteiro
+              </h2>
+              <p class="sidebar-subtitle">
+                Se, de uma hora pra outra, você passou a ser a pessoa que cuida da viagem <em>e</em> do
+                evento, esse conteúdo foi escrito para você.
+              </p>
 
-      function closeMenu() {
-        siteMenu.classList.remove('is-open');
-      }
+              <div class="sidebar-divider"></div>
 
-      menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (siteMenu.classList.contains('is-open')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
+              <ul class="sidebar-list">
+                <li>
+                  <span class="sidebar-list-bullet"></span>
+                  <span><strong>Quando o gestor de viagens vira gestor de eventos:</strong> o que muda, na
+                    prática, dentro da empresa.</span>
+                </li>
+                <li>
+                  <span class="sidebar-list-bullet"></span>
+                  <span><strong>Onde geralmente dá problema:</strong> aéreo, traslados, hotel, credenciais,
+                    deslocamento do time e comunicação com fornecedores.</span>
+                </li>
+                <li>
+                  <span class="sidebar-list-bullet"></span>
+                  <span><strong>Como simplificar:</strong> ter um parceiro único para amarrar viagem + evento
+                    e reduzir o seu estresse.</span>
+                </li>
+              </ul>
 
-      // Fecha clicando fora
-      document.addEventListener('click', function(e) {
-        if (!siteMenu.contains(e.target) &&
-            e.target !== menuToggle &&
-            !menuToggle.contains(e.target)) {
-          closeMenu();
-        }
-      });
+              <div class="sidebar-footer">
+                <div class="sidebar-badge">
+                  Conteúdo pensado para a vida real das empresas
+                </div>
+                <div class="sidebar-mini">
+                  Da primeira reserva ao pós-evento, olhando para a sua rotina.
+                </div>
+              </div>
+            </div>
+          </div>
 
-      // Fecha com ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeMenu();
-        }
-      });
-    })();
-  </script>
+          <div class="sidebar-secondary">
+            <div class="sidebar-secondary-content">
+              <div class="sidebar-secondary-label">
+                Próximo passo
+              </div>
+              <div class="sidebar-secondary-title">
+                Quer ajuda prática para o próximo evento do seu time?
+              </div>
+              <p class="sidebar-secondary-text">
+                A Winners Tour trabalha com <strong>viagens corporativas para feiras, congressos e
+                  convenções</strong>, ajudando empresas a organizar a parte de deslocamento, hospedagem e
+                serviços em torno do evento.
+              </p>
 
-  <!-- Script que carrega o JSON do artigo -->
+              <div class="sidebar-secondary-meta">
+                <div class="sidebar-secondary-pill">
+                  Fale conosco no WhatsApp e conte qual é o próximo evento do seu time.
+                </div>
+                <div class="sidebar-secondary-note">
+                  Podemos iniciar com uma análise simples do cenário da sua empresa.
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
   <script src="artigo-corporativo.js"></script>
 </body>
 </html>
