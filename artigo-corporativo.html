@@ -9,7 +9,7 @@
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
@@ -75,12 +75,22 @@
       gap: 12px;
     }
 
+    /* LOGO WINNERS TOUR – NOVA FORMATAÇÃO */
     .hero-logo {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-family: 'Montserrat', system-ui, sans-serif;
       font-weight: 900;
-      letter-spacing: 0.18em;
-      font-size: 14px;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .hero-logo:hover {
+      text-shadow: 0 0 12px rgba(0,0,0,0.45);
+      transform: translateY(-1px);
     }
 
     .hero-actions {
@@ -90,21 +100,29 @@
       font-size: 14px;
     }
 
+    /* WHATSAPP – APENAS LOGO, SEM CONTORNO VERDE */
     .hero-wa-btn {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
-      background: #22c55e;
-      border: 2px solid #bbf7d0;
+      background: transparent;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.35);
+      padding: 0;
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
-
     .hero-wa-btn img {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+    .hero-wa-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
     }
 
     .hero-menu-btn {
@@ -120,10 +138,15 @@
       align-items: center;
       gap: 6px;
       backdrop-filter: blur(12px);
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     }
-
     .hero-menu-btn span {
       font-size: 16px;
+    }
+    .hero-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.20);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
     }
 
     .hero-main {
@@ -134,7 +157,7 @@
 
     #articleTitle {
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 30px;
+      font-size: 40px; /* título maior */
       line-height: 1.25;
       font-weight: 900;
       margin: 0 0 12px 0;
@@ -148,12 +171,12 @@
     }
 
     .hero-title-small {
-      font-size: 24px !important;
+      font-size: 32px !important;
     }
 
     @media (max-width: 640px) {
       #articleTitle {
-        font-size: 26px;
+        font-size: 30px;
       }
       .hero-top-bar {
         margin-bottom: 22px;
@@ -309,6 +332,87 @@
       text-align: center;
     }
 
+    /* MENU OVERLAY – SITE MENU */
+
+    .site-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 80px 16px 24px 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 40;
+    }
+
+    .site-menu.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-menu-panel {
+      background: #ffffff;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+      padding: 20px 18px 18px 18px;
+      animation: slideIn 0.2s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(12px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+
+    .site-menu-panel h2 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      color: #111827;
+    }
+
+    .site-menu-close {
+      font-size: 13px;
+      color: #6b7280;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: color 0.15s ease;
+    }
+    .site-menu-close:hover {
+      color: #111827;
+    }
+
+    .site-menu-panel a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 8px;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #111827;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .site-menu-panel a:hover {
+      background: #f3f4f6;
+      transform: translateX(2px);
+    }
+
+    .site-menu-icon {
+      width: 24px;
+      text-align: center;
+    }
+
+    .site-menu-label {
+      flex: 1;
+    }
+
     /* RODAPÉ SIMPLES (OPCIONAL) */
     footer {
       text-align: center;
@@ -322,15 +426,19 @@
 
   <header class="hero-wrap">
     <div class="hero-top-bar">
-      <div class="hero-logo">WINNERS TOUR</div>
+      <!-- LOGO COMO LINK PARA A HOME -->
+      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
+
       <div class="hero-actions">
+        <!-- ÍCONE WHATSAPP -->
         <a class="hero-wa-btn"
            href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20com%20viagens%20corporativas."
            target="_blank" rel="noopener"
            aria-label="Fale com nossa equipe no WhatsApp">
           <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
         </a>
-        <button type="button" class="hero-menu-btn">
+        <!-- BOTÃO DE MENU -->
+        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
           Menu <span>☰</span>
         </button>
       </div>
@@ -368,9 +476,71 @@
     <div id="articleError"></div>
   </main>
 
+  <!-- MENU OVERLAY -->
+  <div class="site-menu" id="siteMenu">
+    <div class="site-menu-panel">
+      <h2>Mais opções</h2>
+
+      <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
+
+      <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
+        <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
+      </a>
+      <a href="corporativo.html">
+        <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
+      </a>
+      <a href="index.html">
+        <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
+      </a>
+      <a href="grupos.html">
+        <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
+      </a>
+      <a href="lazer.html">
+        <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
+      </a>
+    </div>
+  </div>
+
   <footer>
     WinnersTour Operadora &amp; Viagens Corporativas
   </footer>
+
+  <!-- SCRIPT MENU -->
+  <script>
+    (function() {
+      const menuToggle = document.getElementById('siteMenuToggle');
+      const siteMenu   = document.getElementById('siteMenu');
+      const menuClose  = document.getElementById('siteMenuClose');
+
+      if (!menuToggle || !siteMenu) return;
+
+      function openMenu() {
+        siteMenu.classList.add('is-open');
+      }
+
+      function closeMenu() {
+        siteMenu.classList.remove('is-open');
+      }
+
+      menuToggle.addEventListener('click', openMenu);
+
+      if (menuClose) {
+        menuClose.addEventListener('click', closeMenu);
+      }
+
+      siteMenu.addEventListener('click', function(e) {
+        if (e.target === siteMenu) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    })();
+  </script>
 
   <!-- Script que carrega o JSON do artigo -->
   <script src="artigo-corporativo.js"></script>
