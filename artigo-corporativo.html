@@ -4,527 +4,375 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title>WinnersTour — Artigos Corporativos</title>
-  
+  <title id="pageTitle">WinnersTour — Artigo Corporativo</title>
+
+  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
-  
+
   <style>
-/* VARIÁVEIS DE COR E ESTILO */
-:root{
-  --brand:#f97316; 
-  --brand-shadow:#C2410C; 
-  --wa:#25D366; 
-  --wa-hover:#1AC656; 
-  --wa-ring:#128C7E; 
-  --text-charcoal:#111827; 
-  --muted:#6b7280;
-  --bg:#fff;
-  --card:#fff;
-  --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-  --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-  --card-hover-bg:#f5f5f5; 
-  --radius:18px;
-  --wrap:1280px; 
-  
-  /* Cores de Categoria (Mantidas) */
-  --color-rose-600: #e11d48;
-  --color-teal-600: #0d9488;
-  --color-indigo-600: #4f46e5;
-  --color-emerald-600: #059669;
-  --color-zinc-700: #475569;
-  --color-amber-600: #fbbf24;
-  --color-blue-700: #1d4ed8;
-  --color-gray-700: #4b5563; 
-  --color-purple-700: #6d28d9;
-  --color-neutral-700: #4b5563;
-  --color-slate-700: #334155;
-  --color-blue-600: #2563eb;
-  --color-stone-700: #44403c;
-  --color-cyan-700: #0e7490;
-  --color-pink-600: #db2777;
-  --color-blue-800: #1e40af;
-  
-  /* CORES DA SIDEBAR */
-  --sidebar-bg-color: #f0f4f9;
-  --sidebar-text-color: var(--text-charcoal); 
-  --sidebar-muted-text-color: var(--muted);
-}
+    :root {
+      --brand: #f97316;
+      --brand-dark: #ea580c;
+      --wa: #25D366;
+      --bg-page: #f3f4f6;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --card: #ffffff;
+      --radius-lg: 24px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
+      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
+      --max-width: 760px;
+    }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height: 100vh;}
+    * {
+      box-sizing: border-box;
+    }
 
-/* APLICAÇÃO DA FONTE MONTSERRAT */
-body{
-  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size:16px;
-  line-height:1.5;
-  color:var(--text-charcoal);
-  background:var(--bg);
-  overflow-x: hidden;
-}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
 
-/* === LAYOUT MOBILE SUPERIOR (HEADER) === */
-#mobile-header {
-  display: none; 
-  background: var(--bg);
-  padding: 10px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
-  position: static;
-  z-index: 1000;
-}
-#mobile-header .logo {
-  font-weight: 900;
-  font-size: 1.1rem; 
-  color: var(--brand);
-}
-.mobile-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.mobile-icon-btn {
-  border: none;
-  background: transparent;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.mobile-icon-btn .icon {
-  font-size: 1.3rem;
-  line-height: 1;
-}
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-main);
+      background: var(--bg-page);
+    }
 
-/* ÍCONE WHATSAPP */
-.cta-link-sidebar .whatsapp-icon {
-  width: 22px;
-  height: 22px;
-  margin-right: 10px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.mobile-icon-btn .whatsapp-icon,
-#mobile-menu .whatsapp-icon {
-  width: 22px;
-  height: 22px;
-  margin-right: 0;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cta-link-sidebar .whatsapp-icon img,
-.mobile-icon-btn .whatsapp-icon img,
-#mobile-menu .whatsapp-icon img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-#mobile-header .menu-icon {
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--text-charcoal);
-  border: none;
-  background: transparent;
-  padding: 4px;
-  line-height: 1;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* MENU MOBILE */
-#mobile-menu {
-  display: none;
-}
-#mobile-menu.open {
-  display: block;
-}
-#mobile-menu {
-  background: var(--bg);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-#mobile-menu a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-top: 1px solid rgba(0,0,0,0.04);
-}
-#mobile-menu .icon {
-  font-size: 1.2rem;
-  width: 20px;
-  text-align: center;
-  line-height: 1;
-}
+    /* HERO LARANJA DO TOPO */
+    .hero-wrap {
+      background: radial-gradient(circle at top left, #fed7aa 0, #f97316 28%, #ea580c 70%, #b45309 100%);
+      color: #fff;
+      padding: 28px 16px 60px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* LAYOUT PRINCIPAL DO GRID */
-#main-grid {
-  display: grid;
-  grid-template-columns: 250px 1fr; 
-  min-height: 100vh;
-  margin: 0 auto; 
-}
+    .hero-top-bar {
+      max-width: var(--max-width);
+      margin: 0 auto 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
 
-/* SIDEBAR FIXA (Esquerda) */
-#main-sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  padding: 30px 20px 30px 20px; 
-  background: var(--sidebar-bg-color); 
-  border-right: 1px solid rgba(0, 0, 0, 0.1); 
-  color: var(--sidebar-text-color);
-}
-.agency-info {
-  max-width: 100%; 
-}
-.agency-info h1 {
-  font-weight: 900;
-  font-size: 1.5rem; 
-  margin-bottom: 5px;
-  line-height: 1.1;
-  color: var(--brand);
-}
-.agency-info p {
-  font-size: 14px;
-  color: var(--sidebar-muted-text-color); 
-  line-height: 1.4;
-  margin-bottom: 20px;
-}
+    .hero-logo {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
 
-/* CTAS NA SIDEBAR */
-.whatsapp-cta {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.cta-link-sidebar {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--sidebar-text-color); 
-  transition: all 0.2s ease;
-  text-decoration: none;
-  padding: 2px 0;
-}
-.cta-link-sidebar:hover {
-  color: var(--brand); 
-  transform: translateX(3px); 
-}
-.cta-link-sidebar .icon {
-  font-size: 1.2rem;
-  width: 20px;
-  text-align: center;
-  margin-right: 10px;
-  line-height: 1;
-}
-.cta-link-sidebar.coming-soon {
-  color: var(--sidebar-muted-text-color) !important; 
-  text-decoration: line-through; 
-  pointer-events: none; 
-  cursor: default;
-}
-.cta-link-sidebar.coming-soon:hover {
-  color: var(--sidebar-muted-text-color) !important;
-  transform: none;
-}
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
 
-/* CONTEÚDO PRINCIPAL */
-#main-content {
-  padding: 20px 20px 20px 20px; 
-}
+    .hero-wa-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: #22c55e;
+      border: 2px solid #bbf7d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.35);
+    }
 
-/* TÍTULO DA PÁGINA */
-.page-title {
-  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: var(--text-charcoal);
-  margin: 0 0 4px 0;
-}
+    .hero-wa-btn img {
+      width: 22px;
+      height: 22px;
+    }
 
-/* SUBTÍTULO */
-.page-subtitle {
-  font-size: 14px;
-  color: var(--muted);
-  margin: 0 0 18px 0;
-}
+    .hero-menu-btn {
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+    }
 
-/* GRID DE CARDS (reaproveitada) */
-#events-grid { 
-  display: grid;
-  gap: 20px;
-  padding: 0; 
-  grid-template-columns: repeat(4, 1fr);
-}
+    .hero-menu-btn span {
+      font-size: 16px;
+    }
 
-/* CARD */
-.event-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-base);
-  overflow: hidden;
-  transition: all .2s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 100%;
-}
-.event-card:hover{
-  box-shadow:var(--shadow-hover);
-  background: var(--card-hover-bg); 
-}
-.card-media {
-  height: 140px; 
-  background: #fff; 
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-}
-.card-content {
-  padding: 15px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-.card-title {
-  font-weight: 900 !important;
-  font-size: 1rem;
-  line-height: 1.3;
-  margin-bottom: 5px;
-  color: var(--text-charcoal) !important;
-  text-transform: uppercase; 
-}
-.card-subtitle {
-  font-size: 14px;
-  color: var(--muted);
-}
-.card-chip.date-chip, .card-chip {display: none;}
+    .hero-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 0 0 0;
+    }
 
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-  body{
-    padding-top:56px;
-  }
-  #mobile-header {
-    display: flex;
-    position: fixed;
-    top:0;
-    left:0;
-    right:0;
-  }
-  #mobile-menu {
-    position: fixed;
-    top:56px;
-    left:0;
-    right:0;
-    z-index: 999;
-  }
-  #main-grid {
-    grid-template-columns: 1fr; 
-    min-height: auto;
-  }
-  #main-sidebar {
-    display: none; 
-    position: static;
-    height: auto;
-    padding: 20px;
-    border-right: none;
-    background: var(--bg);
-  }
-  #main-content {
-    padding: 20px;
-  }
-  #events-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    #articleTitle {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: 30px;
+      line-height: 1.25;
+      font-weight: 900;
+      margin: 0 0 12px 0;
+    }
 
-@media (max-width: 640px) {
-  #events-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
+    #articleSubtitle {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-title-small {
+      font-size: 24px !important;
+    }
+
+    @media (max-width: 640px) {
+      #articleTitle {
+        font-size: 26px;
+      }
+      .hero-top-bar {
+        margin-bottom: 22px;
+      }
+    }
+
+    /* ÁREA DO ARTIGO */
+    .article-main {
+      max-width: var(--max-width);
+      margin: -40px auto 60px auto;
+      padding: 0 16px 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-container {
+      background: #ffffff;
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+      padding: 30px 22px 36px 22px;
+    }
+
+    @media (min-width: 720px) {
+      .article-container {
+        padding: 36px 36px 40px 36px;
+      }
+    }
+
+    .article-container p {
+      margin: 0 0 16px 0;
+    }
+
+    .article-container p:last-child {
+      margin-bottom: 0;
+    }
+
+    .article-container strong {
+      font-weight: 700;
+    }
+
+    .article-container h2,
+    .article-container h3,
+    .article-container h4 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 800;
+      margin: 26px 0 10px 0;
+      color: #111827;
+    }
+
+    .article-container h2 {
+      font-size: 22px;
+    }
+
+    .article-container h3 {
+      font-size: 20px;
+    }
+
+    .article-container ul {
+      padding-left: 1.2rem;
+      margin: 0 0 16px 0;
+    }
+
+    .article-container li {
+      margin-bottom: 6px;
+    }
+
+    #articleIntro {
+      margin-bottom: 18px;
+    }
+
+    #articleSections {
+      margin-top: 8px;
+    }
+
+    .content-section + .content-section {
+      margin-top: 20px;
+    }
+
+    /* CTA FINAL */
+    .article-cta-wrapper {
+      margin-top: 32px;
+      margin-bottom: 18px;
+    }
+
+    .article-cta-card {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: 26px;
+      box-shadow: var(--shadow-card);
+      padding: 26px 20px 30px 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    @media (min-width: 720px) {
+      .article-cta-card {
+        padding: 30px 32px 32px 32px;
+      }
+    }
+
+    .article-cta-card .cta-title {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      margin: 0 0 14px 0;
+    }
+
+    .article-cta-card .cta-text {
+      font-size: 15px;
+      margin: 0 0 20px 0;
+      color: rgba(255,255,255,0.93);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #b45309;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+      border: none;
+      cursor: pointer;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .cta-button:hover {
+      background: #fef3c7;
+    }
+
+    .cta-button em {
+      font-style: normal;
+    }
+
+    /* ÁREA DE ERRO */
+    #articleError {
+      margin-top: 18px;
+    }
+
+    .error-box {
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      border: 1px solid #fecaca;
+      text-align: center;
+    }
+
+    /* RODAPÉ SIMPLES (OPCIONAL) */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      padding: 0 16px 26px 16px;
+    }
   </style>
 </head>
 <body>
 
-<!-- CABEÇALHO MOBILE FIXO -->
-<div id="mobile-header">
-  <span class="logo">WINNERS TOUR</span>
-  <div class="mobile-header-actions">
-    <!-- WhatsApp (nova aba) -->
-    <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
-       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
-       target="_blank" rel="noopener">
-      <span class="whatsapp-icon">
-        <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-      </span>
-    </a>
-    <!-- Loja Virtual (nova aba) -->
-    <a href="https://www.comprarviagem.com.br/winnerstour/" 
-       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
-       target="_blank" rel="noopener">
-      <span class="icon">🛒</span>
-    </a>
-    <!-- Botão Menu Hambúrguer -->
-    <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu de navegação">
-      ☰
-    </button>
-  </div>
-</div>
-
-<!-- MENU MOBILE – MESMA ESTRUTURA DO CORPORATIVO -->
-<nav id="mobile-menu" aria-label="Menu de navegação mobile">
-  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos."
-     target="_blank" rel="noopener">
-    <span class="whatsapp-icon">
-      <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-    </span>
-    <span>WhatsApp</span>
-  </a>
-  <a href="https://www.comprarviagem.com.br/winnerstour/"
-     target="_blank" rel="noopener">
-    <span class="icon">🛒</span>
-    <span>Loja Virtual</span>
-  </a>
-  <a href="https://www.google.com/travel/flights/deals"
-     target="_blank" rel="noopener">
-    <span class="icon">✈️</span>
-    <span>Promoções</span>
-  </a>
-  <a href="apps.html">
-    <span class="icon">⚙️</span>
-    <span>Aplicativos</span>
-  </a>
-  <a href="corporativo.html">
-    <span class="icon">💼</span>
-    <span>Corporativo</span>
-  </a>
-  <a href="index.html">
-    <span class="icon">🗓️</span>
-    <span>Eventos</span>
-  </a>
-  <a href="grupos.html">
-    <span class="icon">👥</span>
-    <span>Grupos</span>
-  </a>
-  <a href="lazer.html">
-    <span class="icon">🏖️</span>
-    <span>Lazer</span>
-  </a>
-</nav>
-
-<div id="main-grid">
-  
-  <!-- MESMA SIDEBAR DO CORPORATIVO -->
-  <div id="main-sidebar">
-    <div class="agency-info">
-      <h1>WINNERS TOUR</h1>
-      <p>
-        Desde 2003, organizamos viagens para empresas, equipes e profissionais que participam de feiras, congressos e reuniões de negócios, além de pacotes de lazer e viagens pessoais. Precisa de suporte para planejar sua viagem, tirar dúvidas ou receber um orçamento completo? Fale conosco pelo WhatsApp ou use as opções abaixo.
-      </p>
-      
-      <div class="whatsapp-cta">
-        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20pacotes%20para%20eventos." 
+  <header class="hero-wrap">
+    <div class="hero-top-bar">
+      <div class="hero-logo">WINNERS TOUR</div>
+      <div class="hero-actions">
+        <a class="hero-wa-btn"
+           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20com%20viagens%20corporativas."
            target="_blank" rel="noopener"
-           class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
-          <span class="whatsapp-icon"><img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp"></span> WHATSAPP
+           aria-label="Fale com nossa equipe no WhatsApp">
+          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
         </a>
-
-        <a href="https://www.comprarviagem.com.br/winnerstour/" 
-           target="_blank" rel="noopener"
-           class="cta-link-sidebar" aria-label="Fazer orçamento na Loja Virtual.">
-          <span class="icon">🛒</span> LOJA VIRTUAL
-        </a>
-
-        <a href="https://www.google.com/travel/flights/deals" 
-           target="_blank" rel="noopener"
-           class="cta-link-sidebar" aria-label="Ver promoções de passagens aéreas.">
-          <span class="icon">✈️</span> PROMOÇÕES
-        </a>
-
-        <a href="apps.html" class="cta-link-sidebar" aria-label="Ver aplicativos recomendados.">
-          <span class="icon">⚙️</span> APLICATIVOS
-        </a>
-        
-        <a href="corporativo.html" class="cta-link-sidebar" aria-label="Artigos e Soluções Corporativas">
-          <span class="icon">💼</span> CORPORATIVO
-        </a>
-
-        <a href="index.html" class="cta-link-sidebar" aria-label="Eventos e Feiras">
-          <span class="icon">🗓️</span> EVENTOS
-        </a>
-
-        <a href="grupos.html" class="cta-link-sidebar" aria-label="Viagens em grupo.">
-          <span class="icon">👥</span> GRUPOS
-        </a>
-        
-        <a href="lazer.html" class="cta-link-sidebar" aria-label="Ver pacotes de viagens de lazer.">
-          <span class="icon">🏖️</span> LAZER
-        </a>
+        <button type="button" class="hero-menu-btn">
+          Menu <span>☰</span>
+        </button>
       </div>
     </div>
-  </div>
-  
-  <!-- CONTEÚDO CENTRAL DINÂMICO DE ARTIGOS -->
-  <div id="main-content">
-    
-    <h2 class="page-title">ARTIGOS CORPORATIVOS</h2>
-    <p class="page-subtitle">
-      Conteúdo estratégico sobre gestão de viagens, eventos e políticas corporativas, em um só lugar.
-    </p>
-    
-    <!-- Grid vazio: será preenchido via artigos.js -->
-    <div id="events-grid"></div>
-    
-  </div>
-</div>
 
-<script>
-  (function() {
-    var toggle = document.getElementById('mobile-menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('open');
-      });
-      var links = menu.querySelectorAll('a');
-      links.forEach(function(link) {
-        link.addEventListener('click', function() {
-          menu.classList.remove('open');
-        });
-      });
-    }
-  })();
-</script>
+    <div class="hero-main">
+      <h1 id="articleTitle">Carregando artigo…</h1>
+      <p id="articleSubtitle"></p>
+    </div>
+  </header>
 
-<!-- Script que monta os cards de artigos -->
-<script src="artigos.js"></script>
+  <main class="article-main">
+    <section class="article-container">
+      <div id="articleIntro"></div>
+      <div id="articleSections"></div>
+    </section>
 
+    <section class="article-cta-wrapper">
+      <div class="article-cta-card">
+        <p class="cta-title">
+          Quer ajuda para transformar este conceito em resultados nas viagens da sua empresa?
+        </p>
+        <p class="cta-text">
+          Fale com nossa equipe especializada em viagens corporativas para analisar o cenário da sua empresa e montar um plano sob medida.
+        </p>
+        <a id="articleCtaWhatsApp"
+           class="cta-button"
+           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20para%20aplicar%20essas%20ideias%20nas%20viagens%20da%20minha%20empresa."
+           target="_blank" rel="noopener">
+          👉 <em>FALE COM NOSSA EQUIPE NO WHATSAPP</em>
+        </a>
+      </div>
+    </section>
+
+    <div id="articleError"></div>
+  </main>
+
+  <footer>
+    WinnersTour Operadora &amp; Viagens Corporativas
+  </footer>
+
+  <!-- Script que carrega o JSON do artigo -->
+  <script src="artigo-corporativo.js"></script>
 </body>
 </html>
