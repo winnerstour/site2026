@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     let text = md.trim();
     // Negrito **texto**
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Itálico *texto*
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
     const lines = text.split('\n');
     let html = '';
     let inList = false;
@@ -43,14 +45,81 @@ document.addEventListener('DOMContentLoaded', async function () {
           html += '</ul>';
           inList = false;
         }
-        html += '<p>' + line + '</p>';
+        const headingMatch = line.match(/^\s*(#{1,3})\s+(.*)$/);
+        if (headingMatch) {
+          const level = headingMatch[1].length;
+          const content = headingMatch[2].trim();
+          if (level === 1 || level === 3) {
+            if (content) {
+              html += '<p><strong>' + content + '</strong></p>';
+            }
+          }
+          // level 2 (##) é ignorado para evitar títulos duplicados
+        } else {
+          html += '<p>' + line + '</p>';
+        }
       }
     }
     if (inList) html += '</ul>';
     return html;
   }
 
-  function buildYoutubeEmbedUrl(url) {
+  
+  function parseIsoDateToParts(dateStr) {
+    if (!dateStr) return null;
+    try {
+      const raw = String(dateStr).trim();
+      let d;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+        const parts = raw.split('-').map(Number);
+        d = new Date(parts[0], parts[1] - 1, parts[2]);
+      } else {
+        d = new Date(raw);
+      }
+      if (Number.isNaN(d.getTime())) return null;
+      return { day: d.getDate(), monthIndex: d.getMonth() };
+    } catch (e) {
+      console.warn('Não foi possível interpretar data:', dateStr, e);
+      return null;
+    }
+  }
+
+  function formatDateRangePtBr(startDateStr, endDateStr) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const ini = parseIsoDateToParts(startDateStr);
+    const fim = parseIsoDateToParts(endDateStr);
+
+    if (!ini && !fim) return '';
+
+    if (ini && fim) {
+      const mesIni = meses[ini.monthIndex];
+      const mesFim = meses[fim.monthIndex];
+      if (ini.monthIndex === fim.monthIndex) {
+        // mesmo mês: de 5 a 8 de maio
+        if (ini.day === fim.day) {
+          return ini.day + ' de ' + mesIni;
+        }
+        return 'de ' + ini.day + ' a ' + fim.day + ' de ' + mesIni;
+      }
+      // meses diferentes: de 28 de abril a 3 de maio
+      return 'de ' + ini.day + ' de ' + mesIni + ' a ' + fim.day + ' de ' + mesFim;
+    }
+
+    const only = ini || fim;
+    const mes = meses[only.monthIndex];
+    return only.day + ' de ' + mes;
+  }
+
+  function buildSubtitle(startDateStr, endDateStr, localEvento, categoria) {
+    const partes = [];
+    const faixa = formatDateRangePtBr(startDateStr, endDateStr);
+    if (faixa) partes.push(faixa);
+    if (localEvento) partes.push(localEvento);
+    if (categoria) partes.push(categoria);
+    return partes.join(' • ');
+  }
+
+function buildYoutubeEmbedUrl(url) {
     if (!url) return null;
     try {
       if (url.includes('/embed/')) {
@@ -180,6 +249,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     const tituloCurto = data.titulo_curto || data.title || titulo;
     // micro categoria primeiro, depois categoria normal, depois macro
     const categoria = data.category_micro || data.categoria || data.category_macro || 'Feiras, Congressos & Eventos Corporativos';
+    const startDate = data.startDate || data.data_inicio || data.dataInicio || '';
+    const endDate = data.endDate || data.data_fim || data.dataFim || '';
+    const localEvento = data.local || data.local_evento || data.localEvento || data.location || '';
+    const subtitleText = buildSubtitle(startDate, endDate, localEvento, categoria);
     const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || data.YouTubeVideo || '';
 
     // Título da aba
@@ -195,7 +268,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     }
     if (articleSubtitleEl) {
-      articleSubtitleEl.textContent = categoria;
+      articleSubtitleEl.textContent = subtitleText || categoria;
     }
 
     // CTA WhatsApp final com título curto do evento
