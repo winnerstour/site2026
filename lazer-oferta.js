@@ -1,25 +1,145 @@
-// lazer-oferta-v2.js
-// Página de detalhe das ofertas de lazer (usa slug + JSON completo)
+// lazer-oferta.js
+// Página de detalhe das ofertas de lazer (usa slug + JSON completo em /lazer/slug.json)
 
-(function () {
-  const titleEl          = document.getElementById('offerTitle');
-  const categoryEl       = document.getElementById('offerCategory');
-  const metaEl           = document.getElementById('offerMeta');
-  const imgEl            = document.getElementById('offerImage');
-  const introContainer   = document.getElementById('offerIntro');
-  const sectionsContainer= document.getElementById('offerSections');
-  const cta1Container    = document.getElementById('offerCta1');
-  const errorContainer   = document.getElementById('offerError');
-  const pageTitleTag     = document.getElementById('pageTitle');
+document.addEventListener('DOMContentLoaded', async function () {
+  const pageTitleEl       = document.getElementById('pageTitle');
+  const articleTitleEl    = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
+  const introEl           = document.getElementById('articleIntro');
+  const sectionsEl        = document.getElementById('articleSections');
+  const errorEl           = document.getElementById('articleError');
+  const ctaWaEl           = document.getElementById('articleCtaWhatsApp');
+  const cta2TextEl        = document.getElementById('offerCta2Text');
+  const heroWaBtn         = document.getElementById('heroWaBtn');
 
-  const BASE_PATH = window.location.pathname.startsWith('/site2026')
-    ? '/site2026'
-    : '';
+  function showError(message, detail) {
+    console.error('Erro ao carregar oferta de lazer:', message, detail || '');
+    if (!errorEl) return;
+    errorEl.innerHTML = '<div class="error-box">' +
+      (message || 'Não foi possível carregar esta oferta agora.') +
+      (detail ? '<br><small>' + detail + '</small>' : '') +
+      '</div>';
+  }
 
-  function showError(msg) {
-    if (errorContainer) {
-      errorContainer.innerHTML = '<div class="error-box">' + (msg || 'Erro inesperado ao carregar esta oferta.') + '</div>';
+  function renderMarkdown(md) {
+    if (!md) return '';
+    let text = md.trim();
+    // Negrito *texto*
+    text = text.replace(/\\(.+?)\\/g, '<strong>$1</strong>');
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false;
+
+    for (let rawLine of lines) {
+      const line = rawLine.replace(/\r$/, '');
+      if (/^\s*-\s+/.test(line)) {
+        if (!inList) {
+          html += '<ul>';
+          inList = true;
+        }
+        html += '<li>' + line.replace(/^\s*-\s+/, '') + '</li>';
+      } else if (line.trim() === '') {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+      } else {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p>' + line + '</p>';
+      }
     }
+    if (inList) html += '</ul>';
+    return html;
+  }
+
+  function markdownToPlain(md) {
+    if (!md) return '';
+    // remove negritos, itálicos, etc., e normaliza espaço
+    let text = md.replace(/\\(.+?)\\/g, '$1');
+    text = text.replace(/[_*`]/g, '');
+    text = text.replace(/\s+/g, ' ');
+    return text.trim();
+  }
+
+  function buildYoutubeEmbedUrl(url) {
+    if (!url) return null;
+    try {
+      if (url.includes('/embed/')) {
+        return url;
+      }
+      const u = new URL(url);
+      let videoId = null;
+
+      if (u.hostname.includes('youtu.be')) {
+        videoId = u.pathname.replace('/', '');
+      } else {
+        videoId = u.searchParams.get('v');
+      }
+      if (!videoId) return null;
+
+      return 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+    } catch (e) {
+      console.warn('Não foi possível interpretar URL do YouTube:', url, e);
+      return null;
+    }
+  }
+
+  function createInlineImage(imgIndex, slug) {
+    const figure = document.createElement('figure');
+    figure.className = 'inline-media inline-media-image';
+    figure.style.margin = '26px 0';
+    figure.style.borderRadius = '20px';
+    figure.style.overflow = 'hidden';
+    figure.style.boxShadow = '0 16px 40px rgba(15,23,42,0.18)';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = '';
+    img.src = 'assets/inline/img' + imgIndex + slug + '.webp';
+
+    img.addEventListener('error', function () {
+      if (figure && figure.parentNode) {
+        figure.parentNode.removeChild(figure);
+      }
+    });
+
+    figure.appendChild(img);
+    return figure;
+  }
+
+  function createInlineYoutube(youtubeUrl) {
+    const embedUrl = buildYoutubeEmbedUrl(youtubeUrl);
+    if (!embedUrl) return null;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'inline-media inline-media-video';
+    wrapper.style.margin = '30px 0';
+
+    const aspect = document.createElement('div');
+    aspect.style.position = 'relative';
+    aspect.style.paddingTop = '56.25%';
+    aspect.style.borderRadius = '20px';
+    aspect.style.overflow = 'hidden';
+    aspect.style.boxShadow = '0 20px 45px rgba(15,23,42,0.28)';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.title = 'Vídeo do YouTube';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+
+    aspect.appendChild(iframe);
+    wrapper.appendChild(aspect);
+    return wrapper;
   }
 
   function getSlugFromUrl() {
@@ -28,371 +148,173 @@
     return slug ? slug.trim() : '';
   }
 
-  function stripDuplicateHeading(md, secTitle) {
-    if (!md || typeof md !== 'string') return md || '';
-    if (!secTitle || typeof secTitle !== 'string') return md;
+  async function fetchJsonForSlug(slug) {
+    // Mantém convenção /lazer/slug.json, com alguns fallbacks simples
+    const bases = ['lazer/', 'Lazer/', ''];
+    const attempts = [];
 
-    const norm = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const lines = norm.split('\n');
-    if (!lines.length) return md;
-
-    let idx = 0;
-    while (idx < lines.length && !lines[idx].trim()) idx++;
-    if (idx >= lines.length) return md;
-
-    const firstRaw = lines[idx].trim();
-
-    function normalizeHeadingText(line) {
-      if (!line) return '';
-      let t = String(line).trim();
-      t = t.replace(/^#{1,6}\s+/, '');
-      t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
-      return t.trim();
-    }
-
-    const firstNorm = normalizeHeadingText(firstRaw);
-    const secNorm   = String(secTitle).trim();
-
-    if (firstNorm && firstNorm === secNorm) {
-      const remaining = lines.slice(idx + 1);
-      return remaining.join('\n');
-    }
-
-    return md;
-  }
-
-  function markdownToHtml(md) {
-    if (!md || typeof md !== 'string') return '';
-
-    const norm  = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const lines = norm.split('\n');
-
-    let html      = '';
-    let inList    = false;
-    let paragraph = [];
-
-    function inlineFormat(text) {
-      if (!text) return '';
-      let t = String(text);
-      t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-      t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-      return t;
-    }
-
-    function flushParagraph() {
-      if (!paragraph.length) return;
-      const text = paragraph.join(' ').trim();
-      if (text) {
-        html += '<p>' + inlineFormat(text) + '</p>\n';
-      }
-      paragraph = [];
-    }
-
-    function closeList() {
-      if (inList) {
-        html += '</ul>\n';
-        inList = false;
-      }
-    }
-
-    for (let i = 0; i < lines.length; i++) {
-      const raw     = lines[i];
-      const trimmed = raw.trim();
-
-      if (!trimmed) {
-        flushParagraph();
-        closeList();
-        continue;
-      }
-
-      let m;
-      if ((m = /^####\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h4>' + inlineFormat(m[1].trim()) + '</h4>\n';
-        continue;
-      }
-      if ((m = /^###\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
-        continue;
-      }
-      if ((m = /^##\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
-        continue;
-      }
-      if ((m = /^#\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h2>' + inlineFormat(m[1].trim()) + '</h2>\n';
-        continue;
-      }
-
-      if (/^[-*]\s+/.test(trimmed)) {
-        flushParagraph();
-        if (!inList) {
-          html += '<ul>';
-          inList = true;
+    for (const base of bases) {
+      const path = (base ? base : '') + slug + '.json';
+      attempts.push(path);
+      try {
+        const resp = await fetch(path + '?t=' + Date.now());
+        if (resp.ok) {
+          const json = await resp.json();
+          console.log('Oferta de lazer carregada de:', path);
+          return { data: json, usedPath: path };
+        } else {
+          console.warn('Falha ao tentar', path, 'status', resp.status);
         }
-        const item = trimmed.replace(/^[-*]\s+/, '');
-        html += '<li>' + inlineFormat(item) + '</li>';
-        continue;
-      }
-
-      paragraph.push(trimmed);
-    }
-
-    flushParagraph();
-    if (inList) {
-      html += '</ul>\n';
-    }
-
-    return html;
-  }
-
-  function markdownToInlineHtml(md) {
-    if (!md || typeof md !== 'string') return '';
-    let text = md.replace(/\r\n/g, ' ').replace(/\r/g, ' ').trim();
-    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-    return text;
-  }
-
-
-  function insertInlineImages(slug, BASE_PATH){
-    if (!slug) return;
-    var articleBody = document.querySelector('.article-body');
-    if (!articleBody) return;
-
-    function createFigure(index){
-      var fig = document.createElement('figure');
-      fig.className = 'article-inline-image article-inline-image-' + index;
-      var img = document.createElement('img');
-      img.loading = 'lazy';
-      var baseName = index === 1 ? 'image1' : 'image2';
-      img.src = BASE_PATH + '/assets/lazer/' + baseName + encodeURIComponent(slug) + '.webp';
-      img.alt = '';
-      img.onerror = function(){
-        var p = fig.parentNode;
-        if (p) p.removeChild(fig);
-      };
-      fig.appendChild(img);
-      return fig;
-    }
-
-    // 1) Antes do parágrafo "As duas grandes âncoras desta viagem"
-    var paragraphs = articleBody.getElementsByTagName('p');
-    var alvoAncora = null;
-    for (var i = 0; i < paragraphs.length; i++){
-      var txt = (paragraphs[i].textContent || '').trim().toLowerCase();
-      if (txt.indexOf('as duas grandes âncoras desta viagem') === 0){
-        alvoAncora = paragraphs[i];
-        break;
+      } catch (e) {
+        console.warn('Erro ao tentar carregar', path, e);
       }
     }
-    if (alvoAncora && alvoAncora.parentNode){
-      var fig1 = createFigure(1);
-      alvoAncora.parentNode.insertBefore(fig1, alvoAncora);
-    }
 
-    // 2) Antes da "Conclusão" (título de seção)
-    var headings = articleBody.getElementsByTagName('h2');
-    var alvoConclusao = null;
-    for (var j = 0; j < headings.length; j++){
-      var htxt = (headings[j].textContent || '').trim().toLowerCase();
-      if (htxt.indexOf('conclusão') === 0){
-        alvoConclusao = headings[j];
-        break;
-      }
-    }
-    if (alvoConclusao && alvoConclusao.parentNode){
-      var fig2 = createFigure(2);
-      alvoConclusao.parentNode.insertBefore(fig2, alvoConclusao);
-    }
+    throw new Error('Nenhum dos caminhos funcionou: ' + attempts.join(', '));
   }
 
-  function renderOfferFromJson(json, slug) {
-    if (!json || typeof json !== 'object') {
-      showError('O JSON desta oferta não está no formato esperado.');
-      if (titleEl) titleEl.textContent = 'Oferta não encontrada';
+  function findSectionById(sections, idWanted) {
+    const target = String(idWanted).toUpperCase();
+    return sections.find(function (s) {
+      return String(s.id).toUpperCase() === target ||
+             String(s.titulo_secao || '').toUpperCase() === target;
+    }) || null;
+  }
+
+  // ============================
+  // INÍCIO DA CARGA DA OFERTA
+  // ============================
+  const slug = getSlugFromUrl();
+
+  if (!slug) {
+    showError('Nenhuma oferta foi selecionada. Volte à página de lazer e escolha um pacote.');
+    if (articleTitleEl) {
+      articleTitleEl.textContent = 'Oferta de lazer não encontrada';
+    }
+    return;
+  }
+
+  let usedPath = '';
+
+  try {
+    const result = await fetchJsonForSlug(slug);
+    const data = result.data;
+    usedPath = result.usedPath || '';
+
+    if (!data || !Array.isArray(data.sections)) {
+      showError('Formato de oferta inválido.', 'Verifique se o JSON possui a propriedade "sections".');
       return;
     }
 
-    const slugSafe    = slug || '';
-    const titulo      = json.titulo || json.titulo_curto || slugSafe || 'Oferta de lazer';
-    const tituloCurto = json.titulo_curto || json.titulo || slugSafe || 'Oferta de lazer';
-    const categoria   = json.categoria || '';
-    const metaTitle   = json.meta_title || titulo;
+    const sections = data.sections.slice();
 
-    // deixa o título curto disponível para o script de WhatsApp
-    document.body.dataset.offerShortTitle = tituloCurto;
+    const titulo      = data.titulo || 'Oferta de lazer';
+    const tituloCurto = data.titulo_curto || titulo;
+    const categoria   = data.categoria || 'Lazer';
 
-    if (pageTitleTag instanceof HTMLElement) {
-      pageTitleTag.textContent = metaTitle;
-    } else {
-      document.title = metaTitle;
+    const cta1Sec = findSectionById(sections, 'CTA1');
+    const cta2Sec = findSectionById(sections, 'CTA2');
+
+    const cta1TextMd = cta1Sec ? (cta1Sec.conteudo_markdown || '') : '';
+    const cta2TextMd = cta2Sec ? (cta2Sec.conteudo_markdown || '') : '';
+
+    const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || '';
+
+    // Título da aba
+    if (pageTitleEl) {
+      pageTitleEl.textContent = tituloCurto + ' — Winners Tour';
     }
 
-    if (titleEl) {
-      titleEl.textContent = titulo;
-      const len = titulo ? String(titulo).length : 0;
-      if (len > 60) {
-        titleEl.classList.add('hero-title-small');
+    // Hero: título e subtítulo com CTA1 em modo "resumo"
+    if (articleTitleEl) {
+      articleTitleEl.textContent = titulo;
+      if (titulo.length > 80) {
+        articleTitleEl.classList.add('hero-title-small');
+      }
+    }
+    if (articleSubtitleEl) {
+      articleSubtitleEl.textContent = markdownToPlain(cta1TextMd);
+    }
+
+    // Whatsapp – mensagem de orçamento com título curto
+    const waMsg = 'Ol\u00e1! Gostaria de fazer um or\u00e7amento para a oferta de lazer "' +
+      tituloCurto + '" que vi no site da Winners Tour.';
+    const waHref = 'https://wa.me/5541999450111?text=' + encodeURIComponent(waMsg);
+
+    if (ctaWaEl) {
+      ctaWaEl.href = waHref;
+    }
+    if (heroWaBtn) {
+      heroWaBtn.href = waHref;
+    }
+
+    // CTA2 no card final
+    if (cta2TextEl) {
+      if (cta2TextMd) {
+        cta2TextEl.innerHTML = renderMarkdown(cta2TextMd);
       } else {
-        titleEl.classList.remove('hero-title-small');
+        cta2TextEl.textContent =
+          'Envie suas datas e cidade de saída para nossa equipe e receba um desenho completo de voos e hospedagens para este roteiro.';
       }
     }
 
-    if (categoryEl) {
-      categoryEl.textContent = categoria || 'Lazer';
-    }
-
-    if (metaEl) {
-      metaEl.textContent = 'Oferta de viagem de lazer cuidadosamente curada pela WinnersTour.';
-    }
-
-    if (imgEl) {
-      let src = '';
-
-      if (json.image_path) {
-        const p = String(json.image_path);
-        if (p.startsWith('/')) {
-          src = BASE_PATH + p;
-        } else {
-          src = BASE_PATH + '/' + p;
-        }
-      } else if (slugSafe) {
-        src = BASE_PATH + '/assets/lazer/' + encodeURIComponent(slugSafe) + '.webp';
-      } else {
-        src = BASE_PATH + '/assets/misc/placeholder-lazer.webp';
-      }
-
-      imgEl.src = src;
-      imgEl.alt = titulo || 'Imagem da oferta de lazer';
-    }
-
-    const sections = Array.isArray(json.sections) ? json.sections : [];
-
-    let cta1Text    = '';
-    let cta2Text    = '';
-    let introSection= null;
-    const otherSections = [];
-
-    sections.forEach(function(sec) {
-      if (!sec || typeof sec !== 'object') return;
-
-      const rawId   = sec.id;
-      const title   = sec.titulo_secao || '';
-      const idStr   = (typeof rawId === 'string') ? rawId : String(rawId || '');
-
-      const tNorm = String(title).trim();
-
-      if (tNorm === 'CTA1' || idStr === 'CTA1') {
-        cta1Text = sec.conteudo_markdown || '';
-        return;
-      }
-      if (tNorm === 'CTA2' || idStr === 'CTA2') {
-        cta2Text = sec.conteudo_markdown || '';
-        return;
-      }
-      if (tNorm === 'Introdução' || rawId === 1) {
-        introSection = sec;
-        return;
-      }
-
-      otherSections.push(sec);
+    // Seções numéricas: introdução + demais
+    const numericSections = sections.filter(function (s) {
+      const n = Number(s.id);
+      return Number.isFinite(n);
     });
 
-    if (cta1Container) {
-      if (cta1Text) {
-        cta1Container.innerHTML = markdownToHtml(cta1Text);
-      } else {
-        cta1Container.textContent = '';
-      }
+    numericSections.sort(function (a, b) {
+      return Number(a.id) - Number(b.id);
+    });
+
+    const introSection = numericSections.find(function (s) { return Number(s.id) === 1; }) || numericSections[0];
+    const restSections = numericSections.filter(function (s) { return s !== introSection; });
+
+    if (introEl && introSection) {
+      introEl.innerHTML = renderMarkdown(introSection.conteudo_markdown || '');
     }
 
-    if (introContainer) {
-      introContainer.innerHTML = '';
-      if (introSection && introSection.conteudo_markdown) {
-        const introTitle = introSection.titulo_secao || 'Introdução';
-        const cleanedIntroMd = stripDuplicateHeading(introSection.conteudo_markdown, introTitle);
-        const introHtml = markdownToHtml(cleanedIntroMd);
-        if (introHtml) {
-          introContainer.innerHTML = introHtml;
+    if (!sectionsEl) return;
+
+    let videoInserted = false;
+
+    restSections.forEach(function (sec) {
+      const secNum = Number(sec.id);
+      const isNumeric = Number.isFinite(secNum);
+
+      // Imagens inline antes das seções 2 a 6
+      if (isNumeric && secNum >= 2 && secNum <= 6) {
+        const imgFigure = createInlineImage(secNum, slug);
+        sectionsEl.appendChild(imgFigure);
+      }
+
+      // Vídeo do YouTube antes da seção 7 (apenas uma vez)
+      if (!videoInserted && isNumeric && secNum === 7 && youtubeInline) {
+        const videoNode = createInlineYoutube(youtubeInline);
+        if (videoNode) {
+          sectionsEl.appendChild(videoNode);
+          videoInserted = true;
         }
       }
-    }
 
-    if (sectionsContainer) {
-      sectionsContainer.innerHTML = '';
+      const wrapper = document.createElement('section');
+      wrapper.className = 'content-section';
 
-      otherSections.forEach(function(sec) {
-        const wrapper = document.createElement('article');
-        wrapper.className = 'content-section';
-
-        const title = sec.titulo_secao || '';
-        const tNorm = String(title).trim().toLowerCase();
-
-        if (title && tNorm !== 'introdução') {
-          const h2 = document.createElement('h2');
-          h2.textContent = title;
-          wrapper.appendChild(h2);
-        }
-
-        const rawMd = sec.conteudo_markdown || '';
-        const cleanedMd = stripDuplicateHeading(rawMd, sec.titulo_secao || '');
-        const bodyHtml  = markdownToHtml(cleanedMd);
-
-        if (bodyHtml) {
-          const div = document.createElement('div');
-          div.innerHTML = bodyHtml;
-          wrapper.appendChild(div);
-        }
-
-        sectionsContainer.appendChild(wrapper);
-      });
-    }
-
-    insertInlineImages(slugSafe, BASE_PATH);
-
-    const cta2Span = document.getElementById('offerCta2');
-    if (cta2Span) {
-      if (cta2Text) {
-        cta2Span.innerHTML = markdownToInlineHtml(cta2Text);
-      } else {
-        cta2Span.textContent = '';
+      if (sec.titulo_secao) {
+        const h2 = document.createElement('h2');
+        h2.textContent = sec.titulo_secao;
+        wrapper.appendChild(h2);
       }
-    }
+
+      const contentDiv = document.createElement('div');
+      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+      wrapper.appendChild(contentDiv);
+
+      sectionsEl.appendChild(wrapper);
+    });
+  } catch (err) {
+    showError('Não foi possível carregar esta oferta de lazer.', usedPath || ('slug: ' + slug));
+    console.error('Erro ao carregar oferta de lazer:', err);
   }
-
-  async function init() {
-    const slug = getSlugFromUrl();
-
-    if (!slug) {
-      showError('Nenhuma oferta foi selecionada. Acesse a página de lazer e escolha um pacote.');
-      if (titleEl) titleEl.textContent = 'Oferta não encontrada';
-      return;
-    }
-
-    const dataUrl = BASE_PATH + '/lazer/' + encodeURIComponent(slug) + '.json';
-
-    try {
-      const response = await fetch(dataUrl, { cache: 'no-store' });
-      if (!response.ok) {
-        throw new Error('Não foi possível carregar o arquivo ' + dataUrl);
-      }
-
-      const data = await response.json();
-      renderOfferFromJson(data, slug);
-    } catch (err) {
-      console.error('Erro ao carregar oferta de lazer:', err);
-      if (titleEl) titleEl.textContent = 'Erro ao carregar oferta';
-      showError(err.message || 'Erro inesperado ao carregar esta oferta.');
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
+});
