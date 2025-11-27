@@ -1,493 +1,365 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">WinnersTour — Oferta de Lazer</title>
+// lazer-oferta.js
+// Página de detalhe das ofertas de lazer (usa slug + JSON completo em /lazer/slug.json)
 
-  <!-- FONTES -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+document.addEventListener('DOMContentLoaded', async function () {
+  const pageTitleEl       = document.getElementById('pageTitle');
+  const articleTitleEl    = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
+  const introEl           = document.getElementById('articleIntro');
+  const sectionsEl        = document.getElementById('articleSections');
+  const errorEl           = document.getElementById('articleError');
+  const ctaWaEl           = document.getElementById('articleCtaWhatsApp');
+  const cta2TextEl        = document.getElementById('offerCta2Text');
+  const heroWaBtn         = document.getElementById('heroWaBtn');
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
+  function showError(message, detail) {
+    console.error('Erro ao carregar oferta de lazer:', message, detail || '');
+    if (!errorEl) return;
+    errorEl.innerHTML = '<div class="error-box">' +
+      (message || 'Não foi possível carregar esta oferta agora.') +
+      (detail ? '<br><small>' + detail + '</small>' : '') +
+      '</div>';
+  }
 
-  <style>
-    :root {
-      --brand: #f97316;
-      --brand-dark: #ea580c;
-      --wa: #25D366;
-      --bg-page: #f3f4f6;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --card: #ffffff;
-      --radius-lg: 24px;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
-      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
-      --max-width: 760px;
-    }
+  function renderMarkdown(md) {
+    if (!md) return '';
+    let text = md.trim();
 
-    * { box-sizing: border-box; }
+    // Negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Itálico *texto*
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
 
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false;
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--text-main);
-      background: var(--bg-page);
-    }
+    for (let rawLine of lines) {
+      const line = rawLine.replace(/\r$/, '');
 
-    img { max-width: 100%; display: block; }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HERO – degradê invertido com final mais escuro */
-    .hero-wrap {
-      background: linear-gradient(
-        90deg,
-        #b45309 0%,
-        var(--brand-dark) 30%,
-        var(--brand) 65%,
-        #fb923c 100%
-      );
-      color: #fff;
-      padding: 28px 16px 60px 16px;
-      text-align: center;
-      position: relative;
-      overflow: visible;
-    }
-
-    .hero-top-bar {
-      max-width: var(--max-width);
-      margin: 0 auto 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* LOGO WINNERS TOUR */
-    .hero-logo {
-      font-family: 'Montserrat', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .hero-logo:hover {
-      text-shadow: 0 0 12px rgba(0,0,0,0.45);
-      transform: translateY(-1px);
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-    }
-
-    /* WHATSAPP – só o logo */
-    .hero-wa-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: transparent;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-shadow: none;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-    .hero-wa-btn img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
-    .hero-wa-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
-    .hero-menu-btn {
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: var(--brand-dark);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
-      position: relative;
-      z-index: 3;
-    }
-    .hero-menu-btn span {
-      font-size: 16px;
-    }
-    .hero-menu-btn:hover {
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-      transform: translateY(-1px);
-    }
-
-    .hero-main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 0 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    #articleTitle {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 40px;
-      line-height: 1.25;
-      font-weight: 900;
-      margin: 0 0 12px 0;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.32);
-    }
-
-    #articleSubtitle {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-title-small { font-size: 32px !important; }
-
-    @media (max-width: 640px) {
-      #articleTitle { font-size: 30px; }
-      .hero-top-bar { margin-bottom: 22px; }
-    }
-
-    /* ÁREA DO ARTIGO */
-    .article-main {
-      max-width: var(--max-width);
-      margin: -40px auto 60px auto;
-      padding: 0 16px 0 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-container {
-      background: #ffffff;
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      padding: 30px 22px 36px 22px;
-    }
-
-    @media (min-width: 720px) {
-      .article-container { padding: 36px 36px 40px 36px; }
-    }
-
-    .article-container p { margin: 0 0 16px 0; }
-    .article-container p:last-child { margin-bottom: 0; }
-
-    .article-container strong { font-weight: 700; }
-
-    .article-container h2,
-    .article-container h3,
-    .article-container h4 {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 800;
-      margin: 26px 0 10px 0;
-      color: var(--brand);
-    }
-
-    .article-container h2 { font-size: 22px; }
-    .article-container h3 { font-size: 20px; }
-
-    .article-container ul {
-      padding-left: 1.2rem;
-      margin: 0 0 16px 0;
-    }
-
-    .article-container li { margin-bottom: 6px; }
-
-    #articleIntro { margin-bottom: 18px; }
-    #articleSections { margin-top: 8px; }
-
-    .content-section + .content-section { margin-top: 20px; }
-
-    /* CTA FINAL – focado em oferta de lazer */
-    .article-cta-wrapper {
-      margin-top: 32px;
-      margin-bottom: 18px;
-    }
-
-    .article-cta-card {
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      border-radius: 26px;
-      box-shadow: var(--shadow-card);
-      padding: 26px 20px 30px 20px;
-      color: #fff;
-      text-align: center;
-    }
-
-    @media (min-width: 720px) {
-      .article-cta-card { padding: 30px 32px 32px 32px; }
-    }
-
-    .article-cta-card .cta-title {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      margin: 0 0 14px 0;
-    }
-
-    .article-cta-card .cta-text {
-      font-size: 15px;
-      margin: 0 0 20px 0;
-      color: rgba(255,255,255,0.93);
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #b45309;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
-      border: none;
-      cursor: pointer;
-      white-space: normal;
-      text-align: center;
-    }
-
-    .cta-button:hover { background: #fef3c7; }
-
-    .cta-button em { font-style: normal; }
-
-    /* ÁREA DE ERRO */
-    #articleError { margin-top: 18px; }
-
-    .error-box {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 12px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      border: 1px solid #fecaca;
-      text-align: center;
-    }
-
-    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
-    .site-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-8px) scale(.98);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .site-menu.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-
-    .site-menu-panel {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
-      padding: 10px 14px 10px 14px;
-      min-width: 240px;
-    }
-
-    .site-menu-panel a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-radius: 9px;
-      font-size: 15px;
-      color: #111827;
-      transition: background 0.15s ease, transform 0.15s ease;
-      font-weight: 600;
-    }
-
-    .site-menu-panel a:hover {
-      background: #f3f4f6;
-      transform: translateX(2px);
-    }
-
-    .site-menu-icon {
-      width: 26px;
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .site-menu-label {
-      flex: 1;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 700;
-    }
-
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
-      padding: 0 16px 26px 16px;
-    }
-  </style>
-</head>
-<body>
-
-  <header class="hero-wrap">
-    <div class="hero-top-bar">
-      <!-- LOGO COMO LINK PARA A PÁGINA DE LAZER -->
-      <a class="hero-logo" href="lazer.html">WINNERS TOUR</a>
-
-      <div class="hero-actions">
-        <!-- ÍCONE WHATSAPP -->
-        <a class="hero-wa-btn"
-           id="heroWaBtn"
-           href="https://wa.me/5541999450111"
-           target="_blank" rel="noopener"
-           aria-label="Fale com nossa equipe no WhatsApp">
-          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-        </a>
-        <!-- BOTÃO DE MENU -->
-        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
-          Menu <span>☰</span>
-        </button>
-
-        <!-- MENU DROP-DOWN COLADO AO BOTÃO -->
-        <div class="site-menu" id="siteMenu">
-          <div class="site-menu-panel">
-            <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-              <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-            </a>
-            <a href="corporativo.html">
-              <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-            </a>
-            <a href="index.html">
-              <span class="site-menu-icon">🗓</span><span class="site-menu-label">Eventos</span>
-            </a>
-            <a href="grupos.html">
-              <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-            </a>
-            <a href="lazer.html">
-              <span class="site-menu-icon">🏖</span><span class="site-menu-label">Lazer</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-main">
-      <h1 id="articleTitle">Carregando oferta de lazer…</h1>
-      <p id="articleSubtitle"></p>
-    </div>
-  </header>
-
-  <main class="article-main">
-    <section class="article-container">
-      <div id="articleIntro"></div>
-      <div id="articleSections"></div>
-    </section>
-
-    <section class="article-cta-wrapper">
-      <div class="article-cta-card">
-        <p class="cta-title">
-          Pronto para transformar esta ideia em viagem de verdade?
-        </p>
-        <p id="offerCta2Text" class="cta-text">
-          <!-- CTA2 do JSON entra aqui via JS -->
-        </p>
-        <a id="articleCtaWhatsApp"
-           class="cta-button"
-           href="https://wa.me/5541999450111"
-           target="_blank" rel="noopener">
-          👉 <em>Receba valores atualizados no WhatsApp</em>
-        </a>
-      </div>
-    </section>
-
-    <div id="articleError"></div>
-  </main>
-
-  <footer>
-    Winners Tour — Operadora e Agência de Viagens
-  </footer>
-
-  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
-  <script>
-    (function() {
-      const menuToggle = document.getElementById('siteMenuToggle');
-      const siteMenu   = document.getElementById('siteMenu');
-
-      if (!menuToggle || !siteMenu) return;
-
-      function openMenu() {
-        siteMenu.classList.add('is-open');
+      // Título de nível 3 (### Meu título) vira um parágrafo em negrito
+      const h3Match = line.match(/^\s*###\s+(.+)/);
+      if (h3Match) {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p><strong>' + h3Match[1].trim() + '</strong></p>';
+        continue;
       }
 
-      function closeMenu() {
-        siteMenu.classList.remove('is-open');
+      if (/^\s*-\s+/.test(line)) {
+        if (!inList) {
+          html += '<ul>';
+          inList = true;
+        }
+        html += '<li>' + line.replace(/^\s*-\s+/, '') + '</li>';
+      } else if (line.trim() === '') {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+      } else {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p>' + line + '</p>';
       }
+    }
+    if (inList) html += '</ul>';
+    return html;
+  }
 
-      menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (siteMenu.classList.contains('is-open')) {
-          closeMenu();
+
+function markdownToPlain(md) {
+    if (!md) return '';
+    // remove marcações de markdown (negrito, itálico, títulos) e normaliza espaços
+    let text = md;
+    // remove títulos tipo ### Meu título
+    text = text.replace(/^\s*#{1,6}\s+/gm, '');
+    // negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '$1');
+    // itálico *texto*
+    text = text.replace(/\*(.+?)\*/g, '$1');
+    // remove outros marcadores simples
+    text = text.replace(/[_`]/g, '');
+    text = text.replace(/\s+/g, ' ');
+    return text.trim();
+  }
+
+
+function buildYoutubeEmbedUrl(url) {
+    if (!url) return null;
+    try {
+      if (url.includes('/embed/')) {
+        return url;
+      }
+      const u = new URL(url);
+      let videoId = null;
+
+      if (u.hostname.includes('youtu.be')) {
+        videoId = u.pathname.replace('/', '');
+      } else {
+        videoId = u.searchParams.get('v');
+      }
+      if (!videoId) return null;
+
+      return 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+    } catch (e) {
+      console.warn('Não foi possível interpretar URL do YouTube:', url, e);
+      return null;
+    }
+  }
+
+  function createInlineImage(imgIndex, slug) {
+    const figure = document.createElement('figure');
+    figure.className = 'inline-media inline-media-image';
+    figure.style.margin = '26px 0';
+    figure.style.borderRadius = '20px';
+    figure.style.overflow = 'hidden';
+    figure.style.boxShadow = '0 16px 40px rgba(15,23,42,0.18)';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = '';
+    img.src = 'assets/inline/img' + imgIndex + slug + '.webp';
+
+    img.addEventListener('error', function () {
+      if (figure && figure.parentNode) {
+        figure.parentNode.removeChild(figure);
+      }
+    });
+
+    figure.appendChild(img);
+    return figure;
+  }
+
+  function createInlineYoutube(youtubeUrl) {
+    const embedUrl = buildYoutubeEmbedUrl(youtubeUrl);
+    if (!embedUrl) return null;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'inline-media inline-media-video';
+    wrapper.style.margin = '30px 0';
+
+    const aspect = document.createElement('div');
+    aspect.style.position = 'relative';
+    aspect.style.paddingTop = '56.25%';
+    aspect.style.borderRadius = '20px';
+    aspect.style.overflow = 'hidden';
+    aspect.style.boxShadow = '0 20px 45px rgba(15,23,42,0.28)';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.title = 'Vídeo do YouTube';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+
+    aspect.appendChild(iframe);
+    wrapper.appendChild(aspect);
+    return wrapper;
+  }
+
+  function getSlugFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    return slug ? slug.trim() : '';
+  }
+
+  async function fetchJsonForSlug(slug) {
+    // Mantém convenção /lazer/slug.json, com alguns fallbacks simples
+    const bases = ['lazer/', 'Lazer/', ''];
+    const attempts = [];
+
+    for (const base of bases) {
+      const path = (base ? base : '') + slug + '.json';
+      attempts.push(path);
+      try {
+        const resp = await fetch(path + '?t=' + Date.now());
+        if (resp.ok) {
+          const json = await resp.json();
+          console.log('Oferta de lazer carregada de:', path);
+          return { data: json, usedPath: path };
         } else {
-          openMenu();
+          console.warn('Falha ao tentar', path, 'status', resp.status);
         }
-      });
+      } catch (e) {
+        console.warn('Erro ao tentar carregar', path, e);
+      }
+    }
 
-      // Fecha clicando fora
-      document.addEventListener('click', function(e) {
-        if (!siteMenu.contains(e.target) &&
-            e.target !== menuToggle &&
-            !menuToggle.contains(e.target)) {
-          closeMenu();
+    throw new Error('Nenhum dos caminhos funcionou: ' + attempts.join(', '));
+  }
+
+  function findSectionById(sections, idWanted) {
+    const target = String(idWanted).toUpperCase();
+    return sections.find(function (s) {
+      return String(s.id).toUpperCase() === target ||
+             String(s.titulo_secao || '').toUpperCase() === target;
+    }) || null;
+  }
+
+  // ============================
+  // INÍCIO DA CARGA DA OFERTA
+  // ============================
+  const slug = getSlugFromUrl();
+
+  if (!slug) {
+    showError('Nenhuma oferta foi selecionada. Volte à página de lazer e escolha um pacote.');
+    if (articleTitleEl) {
+      articleTitleEl.textContent = 'Oferta de lazer não encontrada';
+    }
+    return;
+  }
+
+  let usedPath = '';
+
+  try {
+    const result = await fetchJsonForSlug(slug);
+    const data = result.data;
+    usedPath = result.usedPath || '';
+
+    if (!data || !Array.isArray(data.sections)) {
+      showError('Formato de oferta inválido.', 'Verifique se o JSON possui a propriedade "sections".');
+      return;
+    }
+
+    const sections = data.sections.slice();
+
+    const titulo      = data.titulo || 'Oferta de lazer';
+    const tituloCurto = data.titulo_curto || titulo;
+    const categoria   = data.categoria || 'Lazer';
+
+    const cta1Sec = findSectionById(sections, 'CTA1');
+    const cta2Sec = findSectionById(sections, 'CTA2');
+
+    const cta1TextMd = cta1Sec ? (cta1Sec.conteudo_markdown || '') : '';
+    const cta2TextMd = cta2Sec ? (cta2Sec.conteudo_markdown || '') : '';
+
+    const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || '';
+
+    // Título da aba
+    if (pageTitleEl) {
+      pageTitleEl.textContent = tituloCurto + ' — Winners Tour';
+    }
+
+    // Hero: título e subtítulo com CTA1 em modo "resumo"
+    if (articleTitleEl) {
+      articleTitleEl.textContent = titulo;
+      if (titulo.length > 80) {
+        articleTitleEl.classList.add('hero-title-small');
+      }
+    }
+    if (articleSubtitleEl) {
+      articleSubtitleEl.textContent = markdownToPlain(cta1TextMd);
+    }
+
+    // Whatsapp – mensagem de orçamento com título curto
+    const waMsg = 'Ol\u00e1! Gostaria de fazer um or\u00e7amento para a oferta de lazer "' +
+      tituloCurto + '" que vi no site da Winners Tour.';
+    const waHref = 'https://wa.me/5541999450111?text=' + encodeURIComponent(waMsg);
+
+    if (ctaWaEl) {
+      ctaWaEl.href = waHref;
+    }
+    if (heroWaBtn) {
+      heroWaBtn.href = waHref;
+    }
+
+    // CTA2 no card final
+    if (cta2TextEl) {
+      if (cta2TextMd) {
+        cta2TextEl.innerHTML = renderMarkdown(cta2TextMd);
+      } else {
+        cta2TextEl.textContent =
+          'Envie suas datas e cidade de saída para nossa equipe e receba um desenho completo de voos e hospedagens para este roteiro.';
+      }
+    }
+
+    // Seções numéricas: introdução + demais
+    const numericSections = sections.filter(function (s) {
+      const n = Number(s.id);
+      return Number.isFinite(n);
+    });
+
+    numericSections.sort(function (a, b) {
+      return Number(a.id) - Number(b.id);
+    });
+
+    const introSection = numericSections.find(function (s) { return Number(s.id) === 1; }) || numericSections[0];
+    const restSections = numericSections.filter(function (s) { return s !== introSection; });
+
+    if (introEl && introSection) {
+      introEl.innerHTML = renderMarkdown(introSection.conteudo_markdown || '');
+    }
+
+    if (!sectionsEl) return;
+
+    let videoInserted = false;
+
+    restSections.forEach(function (sec) {
+      const secNum = Number(sec.id);
+      const isNumeric = Number.isFinite(secNum);
+
+      // Imagens inline antes das seções 2 a 6
+      if (isNumeric && secNum >= 2 && secNum <= 6) {
+        const imgFigure = createInlineImage(secNum, slug);
+        sectionsEl.appendChild(imgFigure);
+      }
+
+      // Vídeo do YouTube antes da seção 7 (apenas uma vez)
+      if (!videoInserted && isNumeric && secNum === 7 && youtubeInline) {
+        const videoNode = createInlineYoutube(youtubeInline);
+        if (videoNode) {
+          sectionsEl.appendChild(videoNode);
+          videoInserted = true;
         }
-      });
+      }
 
-      // Fecha com ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeMenu();
+      const wrapper = document.createElement('section');
+      wrapper.className = 'content-section';
+
+      if (sec.titulo_secao) {
+        const h2 = document.createElement('h2');
+        h2.textContent = sec.titulo_secao;
+        wrapper.appendChild(h2);
+      }
+
+      const contentDiv = document.createElement('div');
+      let sectionMd = sec.conteudo_markdown || '';
+
+      // Evita repetir no conteúdo a primeira linha igual ao título da seção
+      if (sec.titulo_secao && sectionMd) {
+        const mdLines = sectionMd.split('\n');
+        if (mdLines.length > 0) {
+          const firstLine = mdLines[0].trim();
+          const normalize = function (str) {
+            return str
+              .replace(/^\s*#{1,6}\s+/, '') // remove "###" etc.
+              .replace(/[*_`]/g, '')
+              .trim()
+              .toLowerCase();
+          };
+          if (normalize(firstLine) === normalize(sec.titulo_secao)) {
+            sectionMd = mdLines.slice(1).join('\n');
+          }
         }
-      });
-    })();
-  </script>
+      }
 
-  <!-- Script que carrega o JSON da oferta de lazer -->
-  <script src="lazer-oferta.js"></script>
-</body>
-</html>
+      contentDiv.innerHTML = renderMarkdown(sectionMd);
+      wrapper.appendChild(contentDiv);
+
+      sectionsEl.appendChild(wrapper);
+    });
+  } catch (err) {
+    showError('Não foi possível carregar esta oferta de lazer.', usedPath || ('slug: ' + slug));
+    console.error('Erro ao carregar oferta de lazer:', err);
+  }
+});
