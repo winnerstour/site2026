@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">WinnersTour — Artigo Corporativo</title>
+  <title id="pageTitle">Winners Tour — Artigo Corporativo</title>
 
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,33 +125,32 @@
       opacity: 0.9;
     }
 
-/* BOTÃO MENU */
-.hero-menu-btn {
-  padding: 7px 15px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  /* antes: background: rgba(255, 255, 255, 0.08); */
-  background: rgba(255, 255, 255, 0.20); /* ~20% mais escuro/mais opaco */
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  backdrop-filter: blur(12px);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-  position: relative;
-  z-index: 3;
-}
-.hero-menu-btn span {
-  font-size: 16px;
-}
-.hero-menu-btn:hover {
-  /* mantém a mesma cor, só sombra + leve subida */
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-  transform: translateY(-1px);
-}
+    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
+    .hero-menu-btn {
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: var(--brand-dark); /* laranja escuro fixo */
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+      position: relative;
+      z-index: 3;
+    }
+    .hero-menu-btn span {
+      font-size: 16px;
+    }
+    .hero-menu-btn:hover {
+      /* mantém a cor; só sombra + leve subida */
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
 
     .hero-main {
       max-width: var(--max-width);
@@ -302,7 +301,7 @@
       text-align: center;
     }
 
-    /* MENU DROP-DOWN COLADO AO BOTÃO – fundo laranja forte */
+    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
     .site-menu {
       position: absolute;
       top: calc(100% + 8px);
@@ -321,7 +320,7 @@
     }
 
     .site-menu-panel {
-      background: var(--brand);
+      background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
       padding: 10px 14px 10px 14px;
@@ -335,13 +334,13 @@
       padding: 8px 6px;
       border-radius: 9px;
       font-size: 15px;
-      color: #ffffff;
+      color: #111827;
       transition: background 0.15s ease, transform 0.15s ease;
       font-weight: 600;
     }
 
     .site-menu-panel a:hover {
-      background: rgba(0,0,0,0.12);
+      background: #f3f4f6;
       transform: translateX(2px);
     }
 
