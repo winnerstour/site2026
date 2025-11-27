@@ -56,9 +56,15 @@
       text-decoration: none;
     }
 
-    /* HERO LARANJA DO TOPO */
+    /* HERO LARANJA DO TOPO – degradê invertido (esquerda escuro → direita claro) */
     .hero-wrap {
-      background: radial-gradient(circle at top left, #fed7aa 0, #f97316 28%, #ea580c 70%, #b45309 100%);
+      background: linear-gradient(
+        90deg,
+        #b45309 0%,
+        var(--brand-dark) 35%,
+        var(--brand) 70%,
+        #fed7aa 100%
+      );
       color: #fff;
       padding: 28px 16px 60px 16px;
       text-align: center;
@@ -73,9 +79,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* LOGO WINNERS TOUR – NOVA FORMATAÇÃO */
+    /* LOGO WINNERS TOUR – formatação pedida */
     .hero-logo {
       font-family: 'Montserrat', system-ui, sans-serif;
       font-weight: 900;
@@ -100,7 +108,7 @@
       font-size: 14px;
     }
 
-    /* WHATSAPP – APENAS LOGO, SEM CONTORNO VERDE */
+    /* WHATSAPP – apenas logo, sem contorno verde */
     .hero-wa-btn {
       width: 36px;
       height: 36px;
@@ -139,6 +147,8 @@
       gap: 6px;
       backdrop-filter: blur(12px);
       transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      position: relative;
+      z-index: 3;
     }
     .hero-menu-btn span {
       font-size: 16px;
@@ -153,6 +163,8 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 18px 0 0 0;
+      position: relative;
+      z-index: 1;
     }
 
     #articleTitle {
@@ -217,13 +229,14 @@
       font-weight: 700;
     }
 
+    /* TÍTULOS DAS SEÇÕES EM LARANJA FORTE */
     .article-container h2,
     .article-container h3,
     .article-container h4 {
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
       font-weight: 800;
       margin: 26px 0 10px 0;
-      color: #111827;
+      color: var(--brand);
     }
 
     .article-container h2 {
@@ -332,56 +345,47 @@
       text-align: center;
     }
 
-    /* MENU OVERLAY – SITE MENU */
+    /* MENU DROP-DOWN COLADO AO BOTÃO */
 
     .site-menu {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      padding: 80px 16px 24px 16px;
+      position: absolute;
+      top: 60px;         /* logo abaixo da barra superior */
+      right: 16px;
+      z-index: 10;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.18s ease;
-      z-index: 40;
+      transform: translateY(-8px) scale(.98);
+      transition: opacity 0.18s ease, transform 0.18s ease;
     }
 
     .site-menu.is-open {
       opacity: 1;
       pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
 
     .site-menu-panel {
       background: #ffffff;
-      width: 100%;
-      max-width: 320px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
-      padding: 20px 18px 18px 18px;
-      animation: slideIn 0.2s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(12px); opacity: 0; }
-      to   { transform: translateX(0); opacity: 1; }
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+      padding: 14px 14px 10px 14px;
+      min-width: 230px;
     }
 
     .site-menu-panel h2 {
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
       color: #111827;
     }
 
     .site-menu-close {
-      font-size: 13px;
+      font-size: 12px;
       color: #6b7280;
       text-align: right;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       transition: color 0.15s ease;
     }
     .site-menu-close:hover {
@@ -392,9 +396,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 9px 8px;
-      border-radius: 10px;
-      font-size: 15px;
+      padding: 7px 6px;
+      border-radius: 9px;
+      font-size: 14px;
       color: #111827;
       transition: background 0.15s ease, transform 0.15s ease;
     }
@@ -405,7 +409,7 @@
     }
 
     .site-menu-icon {
-      width: 24px;
+      width: 22px;
       text-align: center;
     }
 
@@ -448,6 +452,31 @@
       <h1 id="articleTitle">Carregando artigo…</h1>
       <p id="articleSubtitle"></p>
     </div>
+
+    <!-- MENU DROP-DOWN PRESO AO TOPO -->
+    <div class="site-menu" id="siteMenu">
+      <div class="site-menu-panel">
+        <h2>Mais opções</h2>
+
+        <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
+
+        <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
+          <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
+        </a>
+        <a href="corporativo.html">
+          <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
+        </a>
+        <a href="index.html">
+          <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
+        </a>
+        <a href="grupos.html">
+          <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
+        </a>
+        <a href="lazer.html">
+          <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
+        </a>
+      </div>
+    </div>
   </header>
 
   <main class="article-main">
@@ -476,36 +505,11 @@
     <div id="articleError"></div>
   </main>
 
-  <!-- MENU OVERLAY -->
-  <div class="site-menu" id="siteMenu">
-    <div class="site-menu-panel">
-      <h2>Mais opções</h2>
-
-      <div class="site-menu-close" id="siteMenuClose">Fechar menu ✕</div>
-
-      <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-        <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-      </a>
-      <a href="corporativo.html">
-        <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-      </a>
-      <a href="index.html">
-        <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
-      </a>
-      <a href="grupos.html">
-        <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-      </a>
-      <a href="lazer.html">
-        <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
-      </a>
-    </div>
-  </div>
-
   <footer>
     WinnersTour Operadora &amp; Viagens Corporativas
   </footer>
 
-  <!-- SCRIPT MENU -->
+  <!-- SCRIPT MENU (drop-down animado) -->
   <script>
     (function() {
       const menuToggle = document.getElementById('siteMenuToggle');
@@ -522,18 +526,30 @@
         siteMenu.classList.remove('is-open');
       }
 
-      menuToggle.addEventListener('click', openMenu);
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (siteMenu.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
 
       if (menuClose) {
-        menuClose.addEventListener('click', closeMenu);
+        menuClose.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeMenu();
+        });
       }
 
-      siteMenu.addEventListener('click', function(e) {
-        if (e.target === siteMenu) {
+      // Fecha clicando fora
+      document.addEventListener('click', function(e) {
+        if (!siteMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
           closeMenu();
         }
       });
 
+      // Fecha com ESC
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeMenu();
