@@ -2,362 +2,543 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
-  <title id="pageTitle">WinnersTour — Artigo Corporativo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
+  <title id="pageTitle">WinnersTour — Artigo Corporativo</title>
 
-  <!-- Fontes: Inter (texto) + Montserrat (logo, identidade) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
 
   <style>
-  :root {
-    --brand: #f97316;
-    --brand-shadow: #c2410c;   /* igual Lazer Oferta */
-    --bg-page: #ffffff;
-    --text-main: #111827;
-    --text-muted: #6b7280;
+/* ========= VARIÁVEIS ========= */
+:root{
+  --brand:#f97316;
+  --brand-shadow:#C2410C;
+  --wa:#25D366;
+  --wa-hover:#1AC656;
+  --wa-ring:#128C7E;
+  --text-charcoal:#111827;
+  --muted:#6b7280;
+  --bg:#f9fafb;
+  --card:#ffffff;
+  --shadow-base:0 2px 5px rgba(15,23,42,.06);
+  --shadow-hover:0 10px 30px rgba(15,23,42,.15);
+  --radius:18px;
+
+  --sidebar-bg-color:#f0f4f9;
+  --sidebar-text-color:var(--text-charcoal);
+  --sidebar-muted-text-color:var(--muted);
+}
+
+/* ========= RESETAÇO BÁSICO ========= */
+*{box-sizing:border-box;}
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100vh;
+}
+body{
+  font-family:'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  color:var(--text-charcoal);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+
+/* ========= HEADER MOBILE ========= */
+#mobile-header{
+  display:none;
+  background:var(--card);
+  padding:10px 16px;
+  border-bottom:1px solid rgba(15,23,42,.08);
+  align-items:center;
+  justify-content:space-between;
+  height:56px;
+  position:static;
+  z-index:1000;
+}
+#mobile-header .logo{
+  font-weight:800;
+  font-size:1.1rem;
+  letter-spacing:0.08em;
+  color:var(--brand);
+}
+.mobile-header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.mobile-icon-btn{
+  border:none;
+  background:transparent;
+  padding:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.mobile-icon-btn .icon{
+  font-size:1.3rem;
+  line-height:1;
+}
+.mobile-icon-btn .whatsapp-icon,
+#mobile-menu .whatsapp-icon{
+  width:22px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.mobile-icon-btn .whatsapp-icon img,
+#mobile-menu .whatsapp-icon img{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+}
+#mobile-header .menu-icon{
+  font-size:2rem;
+  cursor:pointer;
+  color:var(--text-charcoal);
+  border:none;
+  background:transparent;
+  padding:4px;
+  line-height:1;
+}
+
+/* ========= MENU MOBILE ========= */
+#mobile-menu{
+  display:none;
+  background:var(--card);
+  border-bottom:1px solid rgba(15,23,42,.08);
+}
+#mobile-menu.open{
+  display:block;
+}
+#mobile-menu a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 20px;
+  font-size:0.95rem;
+  font-weight:600;
+  border-top:1px solid rgba(15,23,42,.04);
+}
+#mobile-menu .icon{
+  font-size:1.2rem;
+  width:20px;
+  text-align:center;
+  line-height:1;
+}
+
+/* ========= GRID GERAL ========= */
+#main-grid{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:100vh;
+}
+
+/* ========= SIDEBAR ========= */
+#main-sidebar{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  padding:28px 22px 32px 22px;
+  background:var(--sidebar-bg-color);
+  border-right:1px solid rgba(15,23,42,.12);
+  color:var(--sidebar-text-color);
+}
+.agency-info h1{
+  font-weight:800;
+  font-size:1.4rem;
+  letter-spacing:0.08em;
+  margin:0 0 8px 0;
+  color:var(--brand);
+}
+.agency-info p{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--sidebar-muted-text-color);
+  margin:0 0 20px;
+}
+.whatsapp-cta{
+  margin-top:26px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.cta-link-sidebar{
+  display:flex;
+  align-items:center;
+  font-size:0.95rem;
+  font-weight:600;
+  color:var(--sidebar-text-color);
+  transition:all .18s ease;
+}
+.cta-link-sidebar:hover{
+  color:var(--brand);
+  transform:translateX(3px);
+}
+.cta-link-sidebar .icon{
+  font-size:1.2rem;
+  width:20px;
+  text-align:center;
+  margin-right:8px;
+  line-height:1;
+}
+.cta-link-sidebar .whatsapp-icon{
+  width:22px;
+  height:22px;
+  margin-right:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.cta-link-sidebar .whatsapp-icon img{
+  width:22px;
+  height:22px;
+}
+
+/* ========= CONTEÚDO PRINCIPAL ========= */
+#main-content{
+  padding:24px 32px 40px 32px;
+}
+
+/* ========= HERO DO ARTIGO ========= */
+.hero-article{
+  background:radial-gradient(circle at 0 0,#fed7aa 0,#fed7aa 1px,transparent 0),
+             linear-gradient(135deg,#0f172a,#020617);
+  color:#f9fafb;
+  border-radius:24px;
+  padding:32px 24px 34px 24px;
+  box-shadow:var(--shadow-base);
+  margin-bottom:28px;
+}
+.hero-inner{
+  max-width:820px;
+  margin:0 auto;
+  text-align:center;
+}
+.hero-kicker{
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  opacity:.8;
+  margin:0 0 10px 0;
+}
+
+/* TÍTULO PRINCIPAL DO ARTIGO */
+#articleTitle{
+  font-weight:800;           /* um nível acima do bold “normal” */
+  font-size:30px;            /* tamanho pedido */
+  line-height:1.3;
+  margin:0 auto 14px auto;
+  max-width:780px;
+}
+
+/* Subtítulo logo abaixo (opcional) */
+#articleSubtitle{
+  font-size:18px;
+  font-weight:500;
+  margin:0 auto 6px auto;
+  max-width:780px;
+  opacity:.9;
+}
+
+/* Classe auxiliar para títulos muito longos (JS pode usar) */
+.hero-title-small{
+  font-size:24px;
+}
+
+/* ========= CORPO DO ARTIGO ========= */
+.article-wrapper{
+  max-width:820px;
+  margin:0 auto;
+}
+#articleError .error-box{
+  background:#fee2e2;
+  color:#7f1d1d;
+  border-radius:12px;
+  padding:12px 14px;
+  margin-bottom:16px;
+  font-size:14px;
+}
+#articleIntro,
+#articleSections{
+  font-size:17px;
+}
+#articleIntro p,
+#articleSections p{
+  margin:0 0 14px 0;
+}
+
+/* Negritos mais marcados ao longo do texto */
+#articleIntro strong,
+#articleSections strong{
+  font-weight:700;
+}
+
+/* Títulos das seções (as “âncoras” internas) */
+#articleIntro h2,
+#articleIntro h3,
+#articleSections h2,
+#articleSections h3,
+.content-section h2,
+.content-section h3{
+  font-size:22px;
+  font-weight:700;
+  line-height:1.4;
+  margin:22px 0 10px 0;
+}
+
+/* Listas */
+#articleIntro ul,
+#articleSections ul{
+  padding-left:20px;
+  margin:0 0 14px 0;
+}
+#articleIntro li,
+#articleSections li{
+  margin-bottom:6px;
+}
+
+/* ========= RESPONSIVO ========= */
+@media (max-width:1024px){
+  body{padding-top:56px;}
+  #mobile-header{
+    display:flex;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
   }
-
-  * {
-    box-sizing: border-box;
+  #mobile-menu{
+    position:fixed;
+    top:56px;
+    left:0;
+    right:0;
+    z-index:999;
   }
-
-  html, body {
-    margin: 0;
-    padding: 0;
+  #main-grid{
+    grid-template-columns:1fr;
+    min-height:auto;
   }
-
-  body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-main);
-    background: var(--bg-page);
-    -webkit-font-smoothing: antialiased;
+  #main-sidebar{
+    display:none;
+    position:static;
+    height:auto;
+    padding:20px;
+    border-right:none;
+    background:var(--bg);
   }
-
-  strong {
-    font-weight: 700;
+  #main-content{
+    padding:20px 18px 32px 18px;
   }
-
-  a {
-    color: inherit;
-    text-decoration: none;
+  .hero-article{
+    border-radius:0 0 24px 24px;
+    margin:0 -18px 24px -18px;
   }
-
-  img {
-    max-width: 100%;
-    display: block;
+  .article-wrapper{
+    max-width:100%;
   }
+}
 
-  /* ========= TOPO / HERO ========= */
-
-  .hero-wrap {
-    background: linear-gradient(135deg, var(--brand-shadow), var(--brand)); /* mesmo degradê do Lazer Oferta */
-    color: #fff;
-    padding: 16px 16px 40px;
+@media (max-width:640px){
+  #articleTitle{
+    font-size:26px;
   }
-
-  .hero-inner {
-    max-width: 960px;
-    margin: 0 auto;
+  #articleSubtitle{
+    font-size:16px;
   }
-
-  .hero-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .hero-logo {
-    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-wa-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    background: rgba(15,23,42,0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,0.35);
-  }
-
-  .hero-wa-btn img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-  }
-
-  .hero-menu-btn {
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 6px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-  }
-
-  .hero-menu-btn span.icon {
-    font-size: 16px;
-    line-height: 1;
-  }
-
-  .hero-text {
-    max-width: 960px;
-    margin: 40px auto 0 auto;
-    text-align: center;
-    padding: 0 10px;
-  }
-
-  /* TÍTULO PRINCIPAL DO ARTIGO */
-  #articleTitle {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-weight: 800;
-    font-size: 30px;
-    line-height: 1.3;
-    text-align: center;
-    max-width: 780px;
-    margin: 32px auto 18px auto;
-  }
-
-  /* Subtítulo logo abaixo do título, se existir */
-  #articleSubtitle {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    max-width: 780px;
-    margin: 0 auto 20px auto;
-    color: rgba(255,255,255,0.92);
-  }
-
-  @media (min-width: 1024px) {
-    .hero-text {
-      margin-top: 56px;
-    }
-  }
-
-  /* ========= CORPO DO ARTIGO ========= */
-
-  .article-shell {
-    max-width: 960px;
-    margin: 32px auto 60px auto;
-    padding: 0 16px 40px;
-  }
-
-  .article-card {
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .article-body {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .article-body p {
-    margin: 0 0 1.1em 0;
-  }
-
-  .article-body h2,
-  .article-body h3 {
-    margin-top: 2.1em;
-    margin-bottom: 0.6em;
-  }
-
-  /* TÍTULOS DAS SEÇÕES (subtítulos do artigo) */
-  #articleIntro h2,
-  #articleIntro h3,
-  #articleSections h2,
-  #articleSections h3,
-  .content-section h2,
-  .content-section h3 {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.4;
-  }
-
-  /* NEGRITOS DENTRO DO TEXTO (corpo do artigo) */
-  #articleIntro strong,
-  #articleSections strong {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-weight: 700;
-  }
-
-  .article-body ul {
-    padding-left: 1.4rem;
-    margin: 0 0 1.1em 0;
-  }
-
-  .article-body li {
-    margin-bottom: 0.35em;
-  }
-
-  /* ========= CTA FINAL ========= */
-
-  .cta-final-wrap {
-    max-width: 960px;
-    margin: 0 auto 80px auto;
-    padding: 0 16px;
-  }
-
-  .cta-final-card {
-    background: linear-gradient(135deg, var(--brand-shadow), var(--brand));
-    color: #fff;
-    border-radius: 28px;
-    padding: 28px 18px 32px;
-    text-align: center;
-    box-shadow: 0 25px 70px rgba(15,23,42,0.32);
-  }
-
-  .cta-final-title {
-    font-weight: 800;
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  .cta-final-text {
-    max-width: 520px;
-    margin: 0 auto 22px auto;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .cta-final-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-radius: 999px;
-    background: #ffffff;
-    color: #b45309;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 12px 30px;
-    box-shadow: 0 12px 28px rgba(15,23,42,0.38);
-    border: none;
-    cursor: pointer;
-  }
-
-  .cta-final-btn span.icon {
-    font-size: 18px;
-  }
-
-  .cta-final-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 16px 36px rgba(15,23,42,0.46);
-  }
-
-  .error-box {
-    margin-top: 24px;
-    border-radius: 12px;
-    border: 1px solid #fecaca;
-    background: #fef2f2;
-    color: #b91c1c;
-    padding: 12px 14px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 640px) {
-    .hero-wrap {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-    .article-shell {
-      margin-top: 24px;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-    .cta-final-wrap {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-  }
+}
   </style>
 </head>
 <body>
 
-  <!-- HERO SUPERIOR -->
-  <header class="hero-wrap">
-    <div class="hero-inner">
-      <div class="hero-topbar">
-        <div class="hero-logo">WINNERS TOUR</div>
-        <div class="hero-actions">
-          <a class="hero-wa-btn"
-             href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20corporativas."
-             target="_blank" rel="noopener" aria-label="Falar com nossa equipe pelo WhatsApp">
-            <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-          </a>
-          <button class="hero-menu-btn" type="button">
-            <span>Menu</span>
-            <span class="icon">☰</span>
-          </button>
-        </div>
-      </div>
+<!-- CABEÇALHO MOBILE -->
+<div id="mobile-header">
+  <span class="logo">WINNERS TOUR</span>
+  <div class="mobile-header-actions">
+    <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20corporativas."
+       class="mobile-icon-btn" aria-label="Fale conosco pelo WhatsApp"
+       target="_blank" rel="noopener">
+      <span class="whatsapp-icon">
+        <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+      </span>
+    </a>
+    <a href="https://www.comprarviagem.com.br/winnerstour/"
+       class="mobile-icon-btn" aria-label="Loja virtual Winnerstour"
+       target="_blank" rel="noopener">
+      <span class="icon">🛒</span>
+    </a>
+    <button id="mobile-menu-toggle" class="menu-icon" aria-label="Abrir menu">
+      ☰
+    </button>
+  </div>
+</div>
 
-      <div class="hero-text">
-        <h1 id="articleTitle">Título do artigo corporativo</h1>
+<nav id="mobile-menu" aria-label="Menu de navegação mobile">
+  <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20corporativas."
+     target="_blank" rel="noopener">
+    <span class="whatsapp-icon">
+      <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+    </span>
+    <span>WhatsApp</span>
+  </a>
+  <a href="https://www.comprarviagem.com.br/winnerstour/"
+     target="_blank" rel="noopener">
+    <span class="icon">🛒</span>
+    <span>Loja Virtual</span>
+  </a>
+  <a href="https://www.google.com/travel/flights/deals"
+     target="_blank" rel="noopener">
+    <span class="icon">✈️</span>
+    <span>Promoções</span>
+  </a>
+  <a href="apps.html">
+    <span class="icon">⚙️</span>
+    <span>Aplicativos</span>
+  </a>
+  <a href="corporativo.html">
+    <span class="icon">💼</span>
+    <span>Corporativo</span>
+  </a>
+  <a href="artigos.html">
+    <span class="icon">📚</span>
+    <span>Artigos</span>
+  </a>
+  <a href="index.html">
+    <span class="icon">🗓️</span>
+    <span>Eventos</span>
+  </a>
+  <a href="grupos.html">
+    <span class="icon">👥</span>
+    <span>Grupos</span>
+  </a>
+  <a href="lazer.html">
+    <span class="icon">🏖️</span>
+    <span>Lazer</span>
+  </a>
+</nav>
+
+<div id="main-grid">
+  <!-- SIDEBAR -->
+  <aside id="main-sidebar">
+    <div class="agency-info">
+      <h1>WINNERS TOUR</h1>
+      <p>
+        Desde 2003, ajudamos empresas, equipes e profissionais a organizarem viagens corporativas, feiras e congressos, além de experiências de incentivo e lazer. Use o WhatsApp para tirar dúvidas rápidas ou solicitar um planejamento completo.
+      </p>
+
+      <div class="whatsapp-cta">
+        <a href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20corporativas."
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Fale conosco pelo WhatsApp">
+          <span class="whatsapp-icon">
+            <img src="assets/misc/WhatsApp.svg.webp" alt="Logo WhatsApp">
+          </span>
+          WHATSAPP
+        </a>
+
+        <a href="https://www.comprarviagem.com.br/winnerstour/"
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Loja virtual Winnerstour">
+          <span class="icon">🛒</span>
+          LOJA VIRTUAL
+        </a>
+
+        <a href="https://www.google.com/travel/flights/deals"
+           target="_blank" rel="noopener"
+           class="cta-link-sidebar" aria-label="Ver promoções de passagens">
+          <span class="icon">✈️</span>
+          PROMOÇÕES
+        </a>
+
+        <a href="apps.html"
+           class="cta-link-sidebar" aria-label="Ver aplicativos recomendados">
+          <span class="icon">⚙️</span>
+          APLICATIVOS
+        </a>
+
+        <a href="corporativo.html"
+           class="cta-link-sidebar" aria-label="Página principal corporativa">
+          <span class="icon">💼</span>
+          CORPORATIVO
+        </a>
+
+        <a href="artigos.html"
+           class="cta-link-sidebar" aria-label="Lista de artigos corporativos">
+          <span class="icon">📚</span>
+          ARTIGOS
+        </a>
+
+        <a href="index.html"
+           class="cta-link-sidebar" aria-label="Eventos e feiras">
+          <span class="icon">🗓️</span>
+          EVENTOS
+        </a>
+
+        <a href="grupos.html"
+           class="cta-link-sidebar" aria-label="Viagens em grupo">
+          <span class="icon">👥</span>
+          GRUPOS
+        </a>
+
+        <a href="lazer.html"
+           class="cta-link-sidebar" aria-label="Pacotes de lazer">
+          <span class="icon">🏖️</span>
+          LAZER
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO DO ARTIGO -->
+  <main id="main-content">
+    <!-- Hero com título -->
+    <section class="hero-article">
+      <div class="hero-inner">
+        <p class="hero-kicker">ARTIGO CORPORATIVO</p>
+        <h1 id="articleTitle">Carregando artigo...</h1>
         <p id="articleSubtitle"></p>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <!-- CORPO DO ARTIGO -->
-  <main class="article-shell">
-    <section class="article-card">
-      <div class="article-body">
-        <div id="articleIntro"></div>
-        <div id="articleSections"></div>
-        <div id="articleError"></div>
-      </div>
+    <!-- Corpo do artigo -->
+    <section class="article-wrapper">
+      <div id="articleError"></div>
+      <div id="articleIntro"></div>
+      <div id="articleSections"></div>
     </section>
   </main>
+</div>
 
-  <!-- CTA FINAL PADRÃO -->
-  <section class="cta-final-wrap">
-    <div class="cta-final-card">
-      <h2 class="cta-final-title">
-        Quer ajuda para transformar este conceito em resultados nas viagens da sua empresa?
-      </h2>
-      <p class="cta-final-text">
-        Fale com nossa equipe especializada em viagens corporativas para analisar o cenário da sua empresa
-        e montar um plano sob medida.
-      </p>
-      <a id="articleBottomCta"
-         class="cta-final-btn"
-         href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20viagens%20corporativas."
-         target="_blank" rel="noopener">
-        <span class="icon">👉</span>
-        <span>FALE COM NOSSA EQUIPE NO WHATSAPP</span>
-      </a>
-    </div>
-  </section>
+<script>
+  (function () {
+    var toggle = document.getElementById('mobile-menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function () {
+        menu.classList.toggle('open');
+      });
+      var links = menu.querySelectorAll('a');
+      links.forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+        });
+      });
+    }
+  })();
+</script>
 
-  <!-- SCRIPT QUE CARREGA O JSON DO ARTIGO -->
-  <script src="artigo-corporativo.js"></script>
+<script src="artigo-corporativo.js"></script>
+
 </body>
 </html>
