@@ -171,7 +171,7 @@
     const subtitulo   = json.subtitulo || '';
     const metaTitle   = json.meta_title || titulo;
 
-    // Guarda para o script que atualiza os links de WhatsApp
+    // Guarda para uso em links de WhatsApp, se quiser (título curto)
     document.body.dataset.articleShortTitle = tituloCurto;
 
     if (pageTitleTag instanceof HTMLElement) {
