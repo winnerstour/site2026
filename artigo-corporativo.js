@@ -1,316 +1,245 @@
-// artigo-corporativo.js
-// Página de artigo corporativo (usa slug + JSON em /Artigos/<slug>.json ou /artigos/<slug>.json)
+document.addEventListener('DOMContentLoaded', function () {
+  const pageTitleEl = document.getElementById('pageTitle');
+  const articleTitleEl = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
+  const introEl = document.getElementById('articleIntro');
+  const sectionsEl = document.getElementById('articleSections');
+  const errorEl = document.getElementById('articleError');
+  const ctaWaEl = document.getElementById('articleCtaWhatsApp');
 
-(function () {
-  const titleEl        = document.getElementById('articleTitle');
-  const subtitleEl     = document.getElementById('articleSubtitle');
-  const introContainer = document.getElementById('articleIntro');
-  const sectionsCont   = document.getElementById('articleSections');
-  const errorContainer = document.getElementById('articleError');
-  const pageTitleTag   = document.getElementById('pageTitle');
-
-  // Detecta se está rodando em /site2026 ou na raiz
-  const BASE_PATH = window.location.pathname.indexOf('/site2026') !== -1
-    ? '/site2026'
-    : '';
-
-  function showError(msg) {
-    if (errorContainer) {
-      errorContainer.innerHTML =
-        '<div class="error-box">' +
-        (msg || 'Erro inesperado ao carregar este artigo.') +
-        '</div>';
-    }
+  function showError(message, detail) {
+    console.error('Erro ao carregar artigo corporativo:', message, detail || '');
+    if (!errorEl) return;
+    errorEl.innerHTML = '<div class="error-box">' +
+      (message || 'Não foi possível carregar este artigo agora.') +
+      (detail ? '<br><small>' + detail + '</small>' : '') +
+      '</div>';
   }
 
-  function getSlugFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
-    return slug ? slug.trim() : '';
-  }
+  function renderMarkdown(md) {
+    if (!md) return '';
+    let text = md.trim();
+    // Negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false;
 
-  // Remove heading duplicado no início da seção (quando o título já é usado fora)
-  function stripDuplicateHeading(md, secTitle) {
-    if (!md || typeof md !== 'string') return md || '';
-    if (!secTitle || typeof secTitle !== 'string') return md;
-
-    const norm = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const lines = norm.split('\n');
-    if (!lines.length) return md;
-
-    let idx = 0;
-    while (idx < lines.length && !lines[idx].trim()) idx++;
-    if (idx >= lines.length) return md;
-
-    const firstRaw = lines[idx].trim();
-
-    function normalizeHeadingText(line) {
-      if (!line) return '';
-      let t = String(line).trim();
-      // remove #, ## etc
-      t = t.replace(/^#{1,6}\s+/, '');
-      // remove ** ou __ nas pontas
-      t = t.replace(/^[_*]+/, '').replace(/[_*]+$/, '');
-      return t.trim();
-    }
-
-    const firstNorm = normalizeHeadingText(firstRaw);
-    const secNorm   = String(secTitle).trim();
-
-    if (firstNorm && firstNorm === secNorm) {
-      const remaining = lines.slice(idx + 1);
-      return remaining.join('\n');
-    }
-
-    return md;
-  }
-
-  // Conversor de Markdown simplificado para HTML (parágrafos, listas, h2–h4, negrito/itálico)
-  function markdownToHtml(md) {
-    if (!md || typeof md !== 'string') return '';
-
-    const norm  = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const lines = norm.split('\n');
-
-    let html      = '';
-    let inList    = false;
-    let paragraph = [];
-
-    function inlineFormat(text) {
-      if (!text) return '';
-      let t = String(text);
-      t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-      t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-      return t;
-    }
-
-    function flushParagraph() {
-      if (!paragraph.length) return;
-      const text = paragraph.join(' ').trim();
-      if (text) {
-        html += '<p>' + inlineFormat(text) + '</p>\n';
-      }
-      paragraph = [];
-    }
-
-    function closeList() {
-      if (inList) {
-        html += '</ul>\n';
-        inList = false;
-      }
-    }
-
-    for (let i = 0; i < lines.length; i++) {
-      const raw     = lines[i];
-      const trimmed = raw.trim();
-
-      if (!trimmed) {
-        flushParagraph();
-        closeList();
-        continue;
-      }
-
-      let m;
-      if ((m = /^####\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h4>' + inlineFormat(m[1].trim()) + '</h4>\n';
-        continue;
-      }
-      if ((m = /^###\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
-        continue;
-      }
-      if ((m = /^##\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h3>' + inlineFormat(m[1].trim()) + '</h3>\n';
-        continue;
-      }
-      if ((m = /^#\s+(.+)$/.exec(trimmed))) {
-        flushParagraph();
-        closeList();
-        html += '<h2>' + inlineFormat(m[1].trim()) + '</h2>\n';
-        continue;
-      }
-
-      if (/^[-*]\s+/.test(trimmed)) {
-        flushParagraph();
+    for (let rawLine of lines) {
+      const line = rawLine.replace(/\r$/, '');
+      if (/^\s*-\s+/.test(line)) {
         if (!inList) {
           html += '<ul>';
           inList = true;
         }
-        const item = trimmed.replace(/^[-*]\s+/, '');
-        html += '<li>' + inlineFormat(item) + '</li>';
-        continue;
+        html += '<li>' + line.replace(/^\s*-\s+/, '') + '</li>';
+      } else if (line.trim() === '') {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+      } else {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p>' + line + '</p>';
       }
-
-      paragraph.push(trimmed);
     }
-
-    flushParagraph();
-    if (inList) {
-      html += '</ul>\n';
-    }
-
+    if (inList) html += '</ul>';
     return html;
   }
 
-  function renderArticleFromJson(json, slug) {
-    if (!json || typeof json !== 'object') {
-      showError('O JSON deste artigo não está no formato esperado.');
-      if (titleEl) titleEl.textContent = 'Artigo não encontrado';
-      return;
-    }
-
-    const slugSafe    = slug || '';
-    const titulo      = json.titulo || json.titulo_curto || slugSafe || 'Artigo corporativo';
-    const tituloCurto = json.titulo_curto || json.titulo || slugSafe || 'Artigo corporativo';
-    const subtitulo   = json.subtitulo || '';
-    const metaTitle   = json.meta_title || titulo;
-
-    // Guarda para o script que atualiza os links de WhatsApp
-    document.body.dataset.articleShortTitle = tituloCurto;
-
-    if (pageTitleTag instanceof HTMLElement) {
-      pageTitleTag.textContent = metaTitle;
-    } else {
-      document.title = metaTitle;
-    }
-
-    if (titleEl) {
-      titleEl.textContent = titulo;
-      const len = titulo ? String(titulo).length : 0;
-      if (len > 60) {
-        titleEl.classList.add('hero-title-small');
-      } else {
-        titleEl.classList.remove('hero-title-small');
+  function buildYoutubeEmbedUrl(url) {
+    if (!url) return null;
+    try {
+      // Se já vier como /embed/, só devolve
+      if (url.includes('/embed/')) {
+        return url;
       }
+      const u = new URL(url);
+      let videoId = null;
+
+      if (u.hostname.includes('youtu.be')) {
+        videoId = u.pathname.replace('/', '');
+      } else {
+        videoId = u.searchParams.get('v');
+      }
+
+      if (!videoId) return null;
+
+      return 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+    } catch (e) {
+      console.warn('Não foi possível interpretar URL do YouTube:', url, e);
+      return null;
     }
+  }
 
-    if (subtitleEl) {
-      subtitleEl.textContent = subtitulo || '';
-    }
+  function createInlineImage(imgIndex, slug) {
+    const figure = document.createElement('figure');
+    figure.className = 'inline-media inline-media-image';
+    figure.style.margin = '26px 0';
+    figure.style.borderRadius = '20px';
+    figure.style.overflow = 'hidden';
+    figure.style.boxShadow = '0 16px 40px rgba(15,23,42,0.18)';
 
-    const sections = Array.isArray(json.sections) ? json.sections : [];
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = '';
+    img.src = 'assets/inline/img' + imgIndex + slug + '.webp';
 
-    let introSection = null;
-    const otherSections = [];
+    img.addEventListener('error', function () {
+      // se a imagem não existir, remove o figure
+      if (figure && figure.parentNode) {
+        figure.parentNode.removeChild(figure);
+      }
+    });
 
-    sections.forEach(function (sec) {
-      if (!sec || typeof sec !== 'object') return;
+    figure.appendChild(img);
+    return figure;
+  }
 
-      const rawId = sec.id;
-      const title = sec.titulo_secao || '';
-      const tNorm = String(title).trim().toLowerCase();
+  function createInlineYoutube(youtubeUrl) {
+    const embedUrl = buildYoutubeEmbedUrl(youtubeUrl);
+    if (!embedUrl) return null;
 
-      if (tNorm === 'introdução' || rawId === 1) {
-        introSection = sec;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'inline-media inline-media-video';
+    wrapper.style.margin = '30px 0';
+
+    const aspect = document.createElement('div');
+    aspect.style.position = 'relative';
+    aspect.style.paddingTop = '56.25%';
+    aspect.style.borderRadius = '20px';
+    aspect.style.overflow = 'hidden';
+    aspect.style.boxShadow = '0 20px 45px rgba(15,23,42,0.28)';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.title = 'Vídeo do YouTube';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+
+    aspect.appendChild(iframe);
+    wrapper.appendChild(aspect);
+    return wrapper;
+  }
+
+  // ============================
+  // INÍCIO DA CARGA DO ARTIGO
+  // ============================
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  if (!slug) {
+    showError('Parâmetro "slug" não informado na URL.');
+    return;
+  }
+
+  const jsonPath = 'Artigos/' + slug + '.json';
+
+  fetch(jsonPath + '?t=' + Date.now())
+    .then(function (resp) {
+      if (!resp.ok) {
+        throw new Error('HTTP ' + resp.status + ' ao acessar ' + jsonPath);
+      }
+      return resp.json();
+    })
+    .then(function (data) {
+      if (!data || !Array.isArray(data.sections)) {
+        showError('Formato de artigo inválido.', 'Verifique se o JSON possui a propriedade "sections".');
         return;
       }
 
-      otherSections.push(sec);
-    });
+      const titulo = data.titulo || 'Artigo corporativo';
+      const tituloCurto = data.titulo_curto || titulo;
+      const categoria = data.categoria || 'Artigo Corporativo';
+      const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || '';
 
-    // INTRODUÇÃO
-    if (introContainer) {
-      introContainer.innerHTML = '';
-      if (introSection && introSection.conteudo_markdown) {
-        const introTitle = introSection.titulo_secao || 'Introdução';
-        const cleanedIntroMd = stripDuplicateHeading(
-          introSection.conteudo_markdown,
-          introTitle
-        );
-        const introHtml = markdownToHtml(cleanedIntroMd);
-        if (introHtml) {
-          introContainer.innerHTML = introHtml;
+      // Título da aba
+      if (pageTitleEl) {
+        pageTitleEl.textContent = tituloCurto + ' — Winners Tour';
+      }
+
+      // Hero
+      if (articleTitleEl) {
+        articleTitleEl.textContent = titulo;
+        if (titulo.length > 80) {
+          articleTitleEl.classList.add('hero-title-small');
         }
       }
-    }
+      if (articleSubtitleEl) {
+        articleSubtitleEl.textContent = categoria;
+      }
 
-    // DEMAIS SEÇÕES
-    if (sectionsCont) {
-      sectionsCont.innerHTML = '';
+      // CTA WhatsApp final com título curto
+      if (ctaWaEl) {
+        const waMsg = 'Ol\u00e1! Li o artigo "' + tituloCurto +
+          '" no site da Winners Tour e gostaria de ajuda com viagens corporativas.';
+        const waHref = 'https://wa.me/5541999450111?text=' + encodeURIComponent(waMsg);
+        ctaWaEl.href = waHref;
+      }
 
-      otherSections.forEach(function (sec) {
-        const wrapper = document.createElement('article');
+      const sections = data.sections.slice().sort(function (a, b) {
+        return (a.id || 0) - (b.id || 0);
+      });
+
+      const first = sections.find(function (s) { return s.id === 1; }) || sections[0];
+      const rest = sections.filter(function (s) { return s !== first; });
+
+      // Introdução (sem título "Introdução")
+      if (introEl && first) {
+        introEl.innerHTML = renderMarkdown(first.conteudo_markdown || '');
+      }
+
+      if (!sectionsEl) return;
+
+      let videoInserted = false;
+
+      rest.forEach(function (sec) {
+        const secId = sec.id || 0;
+
+        // Imagens inline antes das seções 2 a 6
+        if (secId >= 2 && secId <= 6) {
+          const imgIndex = secId; // img2, img3, ..., img6
+          const imgFigure = createInlineImage(imgIndex, slug);
+          sectionsEl.appendChild(imgFigure);
+        }
+
+        // Vídeo do YouTube antes da seção 7 (apenas uma vez)
+        if (!videoInserted && secId === 7 && youtubeInline) {
+          const videoNode = createInlineYoutube(youtubeInline);
+          if (videoNode) {
+            sectionsEl.appendChild(videoNode);
+            videoInserted = true;
+          }
+        }
+
+        // Bloco da seção
+        const wrapper = document.createElement('section');
         wrapper.className = 'content-section';
 
-        const title = sec.titulo_secao || '';
-        const tNorm = String(title).trim().toLowerCase();
-
-        if (title && tNorm !== 'introdução') {
+        if (sec.titulo_secao) {
           const h2 = document.createElement('h2');
-          h2.textContent = title;
+          h2.textContent = sec.titulo_secao;
           wrapper.appendChild(h2);
         }
 
-        const rawMd = sec.conteudo_markdown || '';
-        const cleanedMd = stripDuplicateHeading(rawMd, sec.titulo_secao || '');
-        const bodyHtml  = markdownToHtml(cleanedMd);
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+        wrapper.appendChild(contentDiv);
 
-        if (bodyHtml) {
-          const div = document.createElement('div');
-          div.innerHTML = bodyHtml;
-          wrapper.appendChild(div);
-        }
-
-        sectionsCont.appendChild(wrapper);
+        sectionsEl.appendChild(wrapper);
       });
-    }
-  }
-
-  // Tenta carregar o JSON em /Artigos e, se não achar, em /artigos
-  async function loadArticleJson(slug) {
-    const safeSlug = encodeURIComponent(slug);
-    const candidates = [
-      BASE_PATH + '/Artigos/' + safeSlug + '.json',
-      BASE_PATH + '/artigos/' + safeSlug + '.json'
-    ];
-
-    let lastError = null;
-
-    for (let i = 0; i < candidates.length; i++) {
-      const url = candidates[i];
-      try {
-        const response = await fetch(url, { cache: 'no-store' });
-        if (response.ok) {
-          const data = await response.json();
-          return { data, url };
-        } else {
-          lastError = new Error('Não foi possível carregar o arquivo ' + url);
-        }
-      } catch (err) {
-        lastError = err;
-      }
-    }
-
-    throw lastError || new Error('Não foi possível localizar o JSON deste artigo nas pastas /Artigos ou /artigos.');
-  }
-
-  async function init() {
-    const slug = getSlugFromUrl();
-
-    if (!slug) {
-      showError('Nenhum artigo foi selecionado. Acesse a área corporativa e escolha um conteúdo.');
-      if (titleEl) titleEl.textContent = 'Artigo não encontrado';
-      return;
-    }
-
-    try {
-      const result = await loadArticleJson(slug);
-      renderArticleFromJson(result.data, slug);
-    } catch (err) {
+    })
+    .catch(function (err) {
+      showError('Não foi possível carregar o artigo corporativo.', jsonPath);
       console.error('Erro ao carregar artigo corporativo:', err);
-      if (titleEl) titleEl.textContent = 'Erro ao carregar artigo';
-      showError(
-        (err && err.message ? err.message : 'Erro ao carregar artigo.') +
-        '<br>Verifique se o arquivo JSON "' + slug + '.json" está na pasta <strong>/Artigos</strong> ou <strong>/artigos</strong> do site.'
-      );
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
+    });
+});
