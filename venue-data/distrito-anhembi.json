@@ -6,17 +6,6 @@
   "banner": "/assets/venues/distrito-anhembi.webp",
   "hotels": [
     {
-      "type": "daytrip",
-      "id": "XXXXXXX",	  
-      "id-name": "bate-e-volta",
-      "name": "Bate e Volta",
-      "cta": "Reservar",
-      "pillColor": "blue",
-      "category": 1,
-      "description": "A opção mais rápida para quem não precisa de pernoite. Inclui a passagem aérea de <strong>Ida e Volta no mesmo dia</strong>, permitindo maximizar o tempo dentro da feira.",
-      "image": "/assets/hotels/bate-e-volta.webp"
-    },
-    {
       "type": "hotel",
       "id": "316751",	  
       "id-name": "ramada-encore-tiradentes",
@@ -104,7 +93,7 @@
 	  "roomspace": 13,
       "nightly_from_brl": 243,
       "image": "/assets/hotels/ibis-budget-paulista.webp",
-      "category": 2,
+      "category": 1,
       "description": "Só pra dormir? Escolha ideal para aproveitar <strong>Dois Dias Intensos</strong> de feira com o melhor custo-benefício. Perfeito para o profissional focado em eficiência."
     }
   ]
