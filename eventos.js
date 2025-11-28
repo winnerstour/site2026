@@ -1,3 +1,5 @@
+const VENUE_DATA_PATH = '../venue-data/';
+
 
 const SCROLL_SPEED = 8000;
 
@@ -65,6 +67,49 @@ function initCarousel(carouselId, wrapperId, isMotivos = false) {
 }
 
 // Card de MOTIVO
+
+
+// Card simples de HOTEL (versão enxuta para o artigo)
+function renderHotelCard(hotel, eventTitle) {
+  if (!hotel) return '';
+  const name = hotel.name || hotel.titulo || 'Hotel';
+
+  const distanceMin = typeof hotel.distance_min === 'number'
+    ? hotel.distance_min
+    : (typeof hotel.distancia_min === 'number' ? hotel.distancia_min : null);
+
+  const distanceText = hotel.distance_text
+    || hotel.distance
+    || hotel.distancia
+    || (distanceMin != null ? distanceMin + ' min até o pavilhão' : '');
+
+  const desc = hotel.description || hotel.descricao || '';
+  const price = hotel.nightly_from_brl || hotel.price_from || hotel.preco_desde;
+  const nightlyText = price != null
+    ? `Diárias a partir de R$ ${Number(price).toLocaleString('pt-BR', { minimumFractionDigits: 0 })}`
+    : '';
+
+  const image = hotel.image || hotel.imagem || 'assets/hotels/default.webp';
+
+  return `
+    <div class="cl-slide">
+      <div class="hotel-card">
+        <div class="thumb">
+          <img loading="lazy" src="${image}" alt="${name}">
+        </div>
+        <div class="content">
+          <div class="category">PERTO DO PAVILHÃO</div>
+          <h3 class="title text-slate-900">${name}</h3>
+          ${distanceText ? `<p class="distance">${distanceText}</p>` : ''}
+          ${desc ? `<p class="desc">${desc}</p>` : ''}
+          ${nightlyText ? `<p class="nightly">${nightlyText}</p>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Card de MOTIVO
 function renderMotivo(m) {
   const emoji = m.motivo_emoji || m.emoji || '✨';
   const title = m.motivo_titulo || m.title || 'Atração';
@@ -104,38 +149,128 @@ document.addEventListener('DOMContentLoaded', async function () {
   function renderMarkdown(md) {
     if (!md) return '';
     let text = md.trim();
-    // Negrito **texto**
+
+    // Negrito **texto** e itálico *texto*
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
     const lines = text.split('\n');
     let html = '';
     let inList = false;
 
     for (let rawLine of lines) {
       const line = rawLine.replace(/\r$/, '');
+
+      // Listas com "- "
       if (/^\s*-\s+/.test(line)) {
         if (!inList) {
           html += '<ul>';
           inList = true;
         }
         html += '<li>' + line.replace(/^\s*-\s+/, '') + '</li>';
-      } else if (line.trim() === '') {
-        if (inList) {
-          html += '</ul>';
-          inList = false;
-        }
-      } else {
-        if (inList) {
-          html += '</ul>';
-          inList = false;
-        }
-        html += '<p>' + line + '</p>';
+        continue;
       }
+
+      // Linha em branco fecha lista
+      if (line.trim() === '') {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        continue;
+      }
+
+      // Se sair de lista, fecha
+      if (inList) {
+        html += '</ul>';
+        inList = false;
+      }
+
+      // Títulos Markdown (#, ##, ###)
+      const headingMatch = line.match(/^\s*(#{1,3})\s+(.*)$/);
+      if (headingMatch) {
+        const level = headingMatch[1].length;
+        const content = headingMatch[2].trim();
+
+        if (level === 1 || level === 3) {
+          if (content) {
+            html += '<p><strong>' + content + '</strong></p>';
+          }
+        }
+        // level 2 (##) é ignorado aqui, pois já aparece no título laranja
+        continue;
+      }
+
+      // Linha normal -> parágrafo
+      html += '<p>' + line + '</p>';
     }
+
     if (inList) html += '</ul>';
     return html;
   }
 
-  function buildYoutubeEmbedUrl(url) {
+
+  // Utilitários de data para o subtítulo
+  function parseIsoDateToParts(isoDate) {
+    if (!isoDate) return null;
+    const [year, month, day] = isoDate.split('-').map(Number);
+    if (!year || !month || !day) return null;
+    return { year, month, day };
+  }
+
+  function formatDateRangePtBr(startIso, endIso) {
+    const s = parseIsoDateToParts(startIso);
+    const e = parseIsoDateToParts(endIso);
+    if (!s && !e) return '';
+    if (s && !e) {
+      return new Date(startIso + 'T12:00:00').toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+    if (!s && e) {
+      return new Date(endIso + 'T12:00:00').toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    const sameMonth = s.year === e.year && s.month === e.month;
+    if (sameMonth) {
+      const startDay = String(s.day).padStart(2, '0');
+      const fullEnd = new Date(endIso + 'T12:00:00').toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+      return `${startDay} a ${fullEnd}`;
+    }
+
+    const fullStart = new Date(startIso + 'T12:00:00').toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+    const fullEnd = new Date(endIso + 'T12:00:00').toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+    return `${fullStart} a ${fullEnd}`;
+  }
+
+  function buildSubtitle(startDate, endDate, localEvento, categoria) {
+    const range = formatDateRangePtBr(startDate, endDate);
+    const parts = [];
+    if (range) parts.push(range);
+    if (localEvento) parts.push(localEvento);
+    if (categoria) parts.push(categoria);
+    return parts.join(' • ');
+  }
+
+function buildYoutubeEmbedUrl(url) {
     if (!url) return null;
     try {
       if (url.includes('/embed/')) {
@@ -264,8 +399,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     const titulo = data.titulo || data.title || 'Evento corporativo';
     const tituloCurto = data.titulo_curto || data.title || titulo;
     // micro categoria primeiro, depois categoria normal, depois macro
-    const categoria = data.category_micro || data.categoria || data.category_macro || 'Feiras, Congressos & Eventos Corporativos';
-    const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || data.YouTubeVideo || '';
+    const categoria = data.category_micro || data.categoria || data.category || data.category_macro || 'Feiras, Congressos & Eventos Corporativos';
+    const startDate = data.startDate || data.start_date || data.data_inicio || data.dataInicio || '';
+    const endDate = data.endDate || data.end_date || data.data_fim || data.dataFim || '';
+    const localEvento = data.local || data.local_evento || data.localEvento || data.venue_name || '';
+    const subtitleText = buildSubtitle(startDate, endDate, localEvento, categoria);
+
+const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || data.YouTubeVideo || '';
 
     // Título da aba
     if (pageTitleEl) {
@@ -280,7 +420,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     }
     if (articleSubtitleEl) {
-      articleSubtitleEl.textContent = categoria;
+      articleSubtitleEl.textContent = subtitleText || categoria;
     }
 
     // CTA WhatsApp final com título curto do evento
@@ -351,7 +491,86 @@ document.addEventListener('DOMContentLoaded', async function () {
       sectionsEl.appendChild(wrapper);
     });
 
-    // --- Carrossel de Motivos (motivos-section) ---
+    // --- Carrossel de Hotéis (inline entre seções 3 e 4) ---
+    (async function () {
+      const container = document.getElementById('articleSections');
+      if (!container) return;
+
+      const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
+      if (!venueSlug) return;
+
+      // Posição: depois da seção cujo id numérico é 3
+      const sections = Array.from(container.querySelectorAll('.content-section'));
+      let anchor = null;
+      sections.forEach(function (secEl) {
+        const idAttr = secEl.getAttribute('data-sec-id');
+        const n = Number(idAttr);
+        if (Number.isFinite(n) && n === 3) {
+          anchor = secEl;
+        }
+      });
+
+      const hotelsSection = document.createElement('section');
+      hotelsSection.className = 'hotels-section';
+      hotelsSection.id = 'hotelsSection';
+      hotelsSection.innerHTML = `
+        <h3 class="wrap font-black text-center uppercase">Hotéis sugeridos perto do pavilhão</h3>
+        <div id="hotelsWrapper" class="hotels-wrapper">
+          <ul id="hotelsCarouselContainer" class="hotels-carousel-list"></ul>
+        </div>
+      `;
+
+      if (anchor && anchor.nextSibling) {
+        container.insertBefore(hotelsSection, anchor.nextSibling);
+      } else if (anchor) {
+        container.appendChild(hotelsSection);
+      } else {
+        container.appendChild(hotelsSection);
+      }
+
+      const hotelsWrapperEl = document.getElementById('hotelsWrapper');
+      const hotelsCarouselEl = document.getElementById('hotelsCarouselContainer');
+      if (!hotelsWrapperEl || !hotelsCarouselEl) return;
+
+      try {
+        const venuePath = VENUE_DATA_PATH + venueSlug + '.json';
+        const resp = await fetch(venuePath + '?t=' + Date.now());
+        if (!resp.ok) {
+          console.warn('Não foi possível carregar dados do centro de eventos:', venuePath, resp.status);
+          hotelsSection.style.display = 'none';
+          return;
+        }
+        const venueData = await resp.json();
+        const hotels = Array.isArray(venueData.hotels) ? venueData.hotels.filter(function (h) {
+          return h && (h.type === 'hotel' || h.type === 'daytrip');
+        }) : [];
+
+        if (!hotels.length) {
+          hotelsSection.style.display = 'none';
+          return;
+        }
+
+        const slidesHtml = hotels.map(function (h) { return renderHotelCard(h, titulo); }).join('');
+        hotelsCarouselEl.innerHTML = slidesHtml;
+        hotelsCarouselEl.classList.add('cl-track');
+
+        hotelsWrapperEl.insertAdjacentHTML('beforeend', `
+          <button class="carousel-nav prev">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+          </button>
+          <button class="carousel-nav next">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+          </button>
+        `);
+
+        initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+      } catch (e) {
+        console.warn('Erro ao carregar hotels a partir do venue-data:', e);
+        hotelsSection.style.display = 'none';
+      }
+    })();
+
+// --- Carrossel de Motivos (motivos-section) ---
     (function () {
       const motivosWrapperEl = document.getElementById('motivosWrapper');
       const motivosContainerEl = document.getElementById('motivosContainer');
