@@ -1,7 +1,7 @@
 
 const SCROLL_SPEED = 8000;
 
-// Função genérica de carrossel (mesma base da landing principal)
+// Carrossel genérico (mesma base da landing principal)
 function initCarousel(carouselId, wrapperId, isMotivos = false) {
   const carousel = document.getElementById(carouselId);
   const wrapper = document.getElementById(wrapperId);
@@ -64,7 +64,7 @@ function initCarousel(carouselId, wrapperId, isMotivos = false) {
   }
 }
 
-// Card de MOTIVO (aproveita o mesmo JSON do evento)
+// Card de MOTIVO
 function renderMotivo(m) {
   const emoji = m.motivo_emoji || m.emoji || '✨';
   const title = m.motivo_titulo || m.title || 'Atração';
@@ -82,7 +82,6 @@ function renderMotivo(m) {
     </div>
   `;
 }
-
 
 document.addEventListener('DOMContentLoaded', async function () {
   const pageTitleEl = document.getElementById('pageTitle');
@@ -351,48 +350,55 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       sectionsEl.appendChild(wrapper);
     });
-  } catch (err) {
-    showError('Não foi possível carregar o conteúdo deste evento.', usedPath || ('slug: ' + slug));
-    console.error('Erro ao carregar evento:', err);
-  }
-});
+
     // --- Carrossel de Motivos (motivos-section) ---
     (function () {
       const motivosWrapperEl = document.getElementById('motivosWrapper');
       const motivosContainerEl = document.getElementById('motivosContainer');
       if (!motivosWrapperEl || !motivosContainerEl) return;
 
-      const extractedMotivos = [1, 2, 3, 4].map(function (index) {
-        return {
-          motivo_emoji: data['motivo_emoji_' + index],
-          motivo_titulo: data['motivo_titulo_' + index],
-          motivo_conteudo: data['motivo_conteudo_' + index]
-        };
-      });
+      const extractedMotivos = [];
+      for (let i = 1; i <= 8; i++) {
+        const titulo = data['motivo_titulo_' + i];
+        const conteudo = data['motivo_conteudo_' + i];
+        const emoji = data['motivo_emoji_' + i];
+        if (titulo) {
+          extractedMotivos.push({
+            motivo_titulo: titulo,
+            motivo_conteudo: conteudo || '',
+            motivo_emoji: emoji || '✨'
+          });
+        }
+      }
 
-      const finalMotivos = extractedMotivos
-        .filter(function (m) { return m.motivo_titulo; })
-        .concat(Array.isArray(data.motivos) ? data.motivos : []);
+      const extraMotivos = Array.isArray(data.motivos) ? data.motivos : [];
+      const finalMotivos = extractedMotivos.concat(extraMotivos);
 
-      if (finalMotivos.length > 0) {
-        const motivoSlides = finalMotivos.map(renderMotivo).join('');
-        motivosContainerEl.innerHTML = motivoSlides;
-        motivosContainerEl.classList.add('cl-track');
-
-        motivosWrapperEl.insertAdjacentHTML('beforeend', `
-          <button class="carousel-nav prev">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-          </button>
-          <button class="carousel-nav next">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-          </button>
-        `);
-
-        initCarousel('motivosContainer', 'motivosWrapper', true);
-      } else {
+      if (!finalMotivos.length) {
         const heading = document.querySelector('.motivos-section h3');
         if (heading) heading.hidden = true;
         motivosWrapperEl.hidden = true;
+        return;
       }
+
+      const motivoSlides = finalMotivos.map(renderMotivo).join('');
+      motivosContainerEl.innerHTML = motivoSlides;
+      motivosContainerEl.classList.add('cl-track');
+
+      motivosWrapperEl.insertAdjacentHTML('beforeend', `
+        <button class="carousel-nav prev">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+        </button>
+        <button class="carousel-nav next">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        </button>
+      `);
+
+      initCarousel('motivosContainer', 'motivosWrapper', true);
     })();
 
+  } catch (err) {
+    showError('Não foi possível carregar o conteúdo deste evento.', usedPath || ('slug: ' + slug));
+    console.error('Erro ao carregar evento:', err);
+  }
+});
