@@ -114,7 +114,8 @@ function renderHotelCard(hotel, eventTitle) {
   const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
   const image = fixPath(rawImage);
 
-  return `
+  
+return `
     <div class="cl-slide">
       <div class="hotel-card">
         <div class="thumb">
@@ -123,16 +124,9 @@ function renderHotelCard(hotel, eventTitle) {
             <div class="hotel-chip-line hotel-chip-name">${name}</div>
             ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
           </div>
-        </div>
-        <div class="content">
-          <div class="category">HOTEL PRÓXIMO AO PAVILHÃO</div>
-          <h3 class="title text-slate-900">${name}</h3>
-          ${secondaryInfo ? `<p class="secondary-info">${secondaryInfo}</p>` : ''}
-          <div class="hotel-actions">
-            <button type="button" class="btn-hotel-primary">
-              Ver detalhes do hotel
-            </button>
-          </div>
+          <button type="button" class="btn-hotel-primary btn-hotel-overlay">
+            Ver detalhes do hotel
+          </button>
         </div>
       </div>
     </div>
