@@ -114,19 +114,21 @@ function renderHotelCard(hotel, eventTitle) {
   const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
   const image = fixPath(rawImage);
 
-  
-return `
+  return `
     <div class="cl-slide">
       <div class="hotel-card">
         <div class="thumb">
           <img loading="lazy" src="${image}" alt="${name}">
-          <div class="hotel-chip">
-            <div class="hotel-chip-line hotel-chip-name">${name}</div>
-            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
+        </div>
+        <div class="content">
+          <div class="category">HOTEL PRÓXIMO AO PAVILHÃO</div>
+          <h3 class="title text-slate-900">${name}</h3>
+          ${secondaryInfo ? `<p class="secondary-info">${secondaryInfo}</p>` : ''}
+          <div class="hotel-actions">
+            <button type="button" class="btn-hotel-primary">
+              Ver detalhes do hotel
+            </button>
           </div>
-          <button type="button" class="btn-hotel-primary btn-hotel-overlay">
-            Ver detalhes do hotel
-          </button>
         </div>
       </div>
     </div>
@@ -500,6 +502,9 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
 
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
+      if (sec.id != null) {
+        wrapper.setAttribute('data-sec-id', String(sec.id));
+      }
 
       if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
         const h2 = document.createElement('h2');
@@ -514,7 +519,7 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       sectionsEl.appendChild(wrapper);
     });
 
-    // --- Carrossel de Hotéis (inline entre seções 3 e 4) ---
+    // --- Carrossel de Hotéis (entre os blocos de hospedagem: após o CTA 3.6) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
@@ -522,13 +527,13 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
       if (!venueSlug) return;
 
-      // Posição: depois da seção cujo id numérico é 3
+      // Posição: depois da seção de CTA de hospedagem (id 3.6)
       const sections = Array.from(container.querySelectorAll('.content-section'));
       let anchor = null;
       sections.forEach(function (secEl) {
         const idAttr = secEl.getAttribute('data-sec-id');
         const n = Number(idAttr);
-        if (Number.isFinite(n) && n === 3) {
+        if ((idAttr && idAttr === '3.6') || (Number.isFinite(n) && n === 3.6)) {
           anchor = secEl;
         }
       });
