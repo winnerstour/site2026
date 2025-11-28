@@ -1,5 +1,15 @@
 const VENUE_DATA_PATH = 'venue-data/';
 
+const BASE_PATH = '/site2026';
+
+function fixPath(path) {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  if (path.startsWith(BASE_PATH + '/')) return path;
+  if (path.startsWith('/')) return BASE_PATH + path;
+  return BASE_PATH + '/' + path;
+}
+
 
 const SCROLL_SPEED = 8000;
 
@@ -70,26 +80,39 @@ function initCarousel(carouselId, wrapperId, isMotivos = false) {
 
 
 // Card simples de HOTEL (versão enxuta para o artigo)
+
 function renderHotelCard(hotel, eventTitle) {
   if (!hotel) return '';
   const name = hotel.name || hotel.titulo || 'Hotel';
 
-  const distanceMin = typeof hotel.distance_min === 'number'
-    ? hotel.distance_min
-    : (typeof hotel.distancia_min === 'number' ? hotel.distancia_min : null);
-
-  const distanceText = hotel.distance_text
-    || hotel.distance
-    || hotel.distancia
-    || (distanceMin != null ? distanceMin + ' min até o pavilhão' : '');
-
-  const desc = hotel.description || hotel.descricao || '';
   const price = hotel.nightly_from_brl || hotel.price_from || hotel.preco_desde;
-  const nightlyText = price != null
-    ? `Diárias a partir de R$ ${Number(price).toLocaleString('pt-BR', { minimumFractionDigits: 0 })}`
-    : '';
+  const roomspace = hotel.roomspace || hotel.tamanho_quarto;
+  const stars = hotel.stars || hotel.classificacao;
 
-  const image = hotel.image || hotel.imagem || 'assets/hotels/default.webp';
+  const roomInfo = roomspace ? `🏠 ${roomspace}m²` : '';
+
+  let priceLevel = '';
+  const priceNumber = price != null ? Number(price) : null;
+  if (!Number.isNaN(priceNumber) && priceNumber > 0) {
+    if (priceNumber < 300) priceLevel = '$';
+    else if (priceNumber < 500) priceLevel = '$$';
+    else priceLevel = '$$$';
+  }
+
+  let starsText = '';
+  if (stars && Number(stars) > 0) {
+    const n = Math.round(Number(stars));
+    starsText = '★'.repeat(n);
+  }
+
+  const infoParts = [];
+  if (roomInfo) infoParts.push(roomInfo);
+  if (priceLevel) infoParts.push(priceLevel);
+  if (starsText) infoParts.push(starsText);
+  const secondaryInfo = infoParts.join(' | ');
+
+  const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
+  const image = fixPath(rawImage);
 
   return `
     <div class="cl-slide">
@@ -98,17 +121,19 @@ function renderHotelCard(hotel, eventTitle) {
           <img loading="lazy" src="${image}" alt="${name}">
         </div>
         <div class="content">
-          <div class="category">PERTO DO PAVILHÃO</div>
+          <div class="category">HOTEL PRÓXIMO AO PAVILHÃO</div>
           <h3 class="title text-slate-900">${name}</h3>
-          ${distanceText ? `<p class="distance">${distanceText}</p>` : ''}
-          ${desc ? `<p class="desc">${desc}</p>` : ''}
-          ${nightlyText ? `<p class="nightly">${nightlyText}</p>` : ''}
+          ${secondaryInfo ? `<p class="secondary-info">${secondaryInfo}</p>` : ''}
+          <div class="hotel-actions">
+            <button type="button" class="btn-hotel-primary">
+              Ver detalhes do hotel
+            </button>
+          </div>
         </div>
       </div>
     </div>
   `;
 }
-
 // Card de MOTIVO
 function renderMotivo(m) {
   const emoji = m.motivo_emoji || m.emoji || '✨';
@@ -304,7 +329,7 @@ function buildYoutubeEmbedUrl(url) {
     const img = document.createElement('img');
     img.loading = 'lazy';
     img.alt = '';
-    img.src = 'assets/inline/img' + imgIndex + slug + '.webp';
+    img.src = fixPath('assets/inline/img' + imgIndex + slug + '.webp');
 
     img.addEventListener('error', function () {
       if (figure && figure.parentNode) {
