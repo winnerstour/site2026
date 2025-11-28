@@ -672,6 +672,28 @@
     transform: translateY(-1px);
 }
 
+
+/* Botão "Ver detalhes do hotel" sobre a imagem (aparece no hover) */
+.btn-hotel-overlay {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%, 8px);
+    width: auto;
+    min-width: 160px;
+    padding-inline: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hotel-card:hover .btn-hotel-overlay,
+.hotel-card .thumb:hover .btn-hotel-overlay {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
 </style>
 </head>
 <body>
