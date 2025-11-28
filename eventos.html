@@ -33,6 +33,9 @@
       --shadow-base: var(--shadow-card);
       --text-charcoal: var(--text-main);
       --brand-shadow: var(--brand-dark);
+    
+      --shadow-hover: var(--shadow-soft);
+      --card-hover-bg: #f9fafb;
     }
 
     * { box-sizing: border-box; }
@@ -485,6 +488,110 @@
 }
 
 
+
+
+  /* [NOVO] ESTILOS PARA HOTÉIS */
+.hotels-section {
+    padding: 0;
+    margin: 30px 0;
+}
+.hotels-section h3 { /* Alterado para H3 */
+    max-width: var(--wrap);
+    margin: 0 auto 20px;
+    padding: 0 16px;
+    text-align: center;
+}
+.hotels-wrapper {
+    position: relative; 
+    max-width: var(--wrap); 
+    margin: 0 auto; 
+    padding: 10px 0; 
+}
+/* Estilo do Card de Hotel */
+.hotel-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-base);
+    overflow: hidden;
+    transition: all .2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(2,8,23,.08); 
+    width: 300px; 
+    min-height: 100%;
+    text-align: center;
+}
+.hotel-card:hover {
+    box-shadow: var(--shadow-hover);
+    background: var(--card-hover-bg);
+    border-color: rgba(249, 115, 22, 0.5); 
+}
+.hotel-card .thumb {
+    height: 240px; /* CORRIGIDO: Aumentado para 240px */
+    overflow: hidden;
+    border-bottom: 1px solid rgba(2,8,23,.06);
+    background: #f4f4f5;
+}
+.hotel-card .content {
+    padding: 14px;
+    flex-grow: 1;
+}
+.hotel-card .category {
+    font-weight: 700;
+    font-size: 13px;
+    /* Cor do chip será definida pelo Tailwind via JS */
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+/* Estilos neutros para tipografia */
+.hotel-card .title {
+    font-weight: 900;
+    font-size: 1rem;
+    color: #111827; /* text-slate-900 */
+    /* Margem removida e adicionada ao bloco de info para separação */
+    margin-bottom: 0; 
+    line-height: 1.2;
+}
+/* NOVO: Estilo para a linha de infos secundárias */
+.hotel-card .secondary-info {
+    font-size: 14px; /* Tamanho da fonte compacto */
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-top: 5px; 
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    line-height: 1.1;
+}
+
+/* Estilo para o nível de preço e estrelas */
+.hotel-card .price-level {
+    font-weight: 900;
+    color: var(--brand); /* Cor da marca para destaque */
+    margin: 0; 
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
+}
+.hotel-card .stars {
+    color: #FFC700; 
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
+}
+.hotel-card .room-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Garante o mesmo tamanho da linha */
+    line-height: 1;
+}
+.hotel-card .room-info .emoji {
+    font-size: 14px; /* Tamanho do emoji */
+    margin-right: 2px;
+}
+.hotel-card .info-separator {
+    color: var(--muted);
+    padding: 0 5px;
+    font-weight: 400; /* Separador mais 
 </style>
 </head>
 <body>
