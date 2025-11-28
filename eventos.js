@@ -1,4 +1,4 @@
-const VENUE_DATA_PATH = '../venue-data/';
+const VENUE_DATA_PATH = 'venue-data/';
 
 
 const SCROLL_SPEED = 8000;
