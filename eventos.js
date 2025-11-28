@@ -1,3 +1,89 @@
+
+const SCROLL_SPEED = 8000;
+
+// Função genérica de carrossel (mesma base da landing principal)
+function initCarousel(carouselId, wrapperId, isMotivos = false) {
+  const carousel = document.getElementById(carouselId);
+  const wrapper = document.getElementById(wrapperId);
+  if (!carousel || !wrapper) return;
+
+  let scrollInterval;
+  let isPaused = false;
+  const cardWidth = 318;
+
+  const scrollRight = () => {
+    if (isPaused) return;
+
+    const currentScroll = carousel.scrollLeft;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
+      carousel.scroll({ left: 0, behavior: 'smooth' });
+    } else {
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const startAutoplay = () => {
+    clearInterval(scrollInterval);
+    scrollInterval = setInterval(scrollRight, SCROLL_SPEED);
+  };
+
+  carousel.addEventListener('mouseover', () => { isPaused = true; });
+  carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+  startAutoplay();
+
+  const prevButton = wrapper.querySelector('.carousel-nav.prev');
+  const nextButton = wrapper.querySelector('.carousel-nav.next');
+
+  if (prevButton && nextButton) {
+    prevButton.addEventListener('click', () => {
+      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    nextButton.addEventListener('click', () => {
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+
+    const checkScroll = () => {
+      const currentScroll = carousel.scrollLeft;
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+      if (window.innerWidth > 1024) {
+        prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
+        nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+      } else {
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+      }
+    };
+
+    carousel.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    checkScroll();
+  }
+}
+
+// Card de MOTIVO (aproveita o mesmo JSON do evento)
+function renderMotivo(m) {
+  const emoji = m.motivo_emoji || m.emoji || '✨';
+  const title = m.motivo_titulo || m.title || 'Atração';
+  const text = m.motivo_conteudo || m.content || '';
+
+  return `
+    <div class="cl-slide">
+      <li class="motivo-item">
+        <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
+          <span class="emoji" aria-hidden="true">${emoji}</span>
+          ${title.toUpperCase()}
+        </strong>
+        <p class="motivo-text-body">${text}</p>
+      </li>
+    </div>
+  `;
+}
+
+
 document.addEventListener('DOMContentLoaded', async function () {
   const pageTitleEl = document.getElementById('pageTitle');
   const articleTitleEl = document.getElementById('articleTitle');
@@ -21,8 +107,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     let text = md.trim();
     // Negrito **texto**
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    // Itálico *texto*
-    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
     const lines = text.split('\n');
     let html = '';
     let inList = false;
@@ -45,81 +129,14 @@ document.addEventListener('DOMContentLoaded', async function () {
           html += '</ul>';
           inList = false;
         }
-        const headingMatch = line.match(/^\s*(#{1,3})\s+(.*)$/);
-        if (headingMatch) {
-          const level = headingMatch[1].length;
-          const content = headingMatch[2].trim();
-          if (level === 1 || level === 3) {
-            if (content) {
-              html += '<p><strong>' + content + '</strong></p>';
-            }
-          }
-          // level 2 (##) é ignorado para evitar títulos duplicados
-        } else {
-          html += '<p>' + line + '</p>';
-        }
+        html += '<p>' + line + '</p>';
       }
     }
     if (inList) html += '</ul>';
     return html;
   }
 
-  
-  function parseIsoDateToParts(dateStr) {
-    if (!dateStr) return null;
-    try {
-      const raw = String(dateStr).trim();
-      let d;
-      if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
-        const parts = raw.split('-').map(Number);
-        d = new Date(parts[0], parts[1] - 1, parts[2]);
-      } else {
-        d = new Date(raw);
-      }
-      if (Number.isNaN(d.getTime())) return null;
-      return { day: d.getDate(), monthIndex: d.getMonth() };
-    } catch (e) {
-      console.warn('Não foi possível interpretar data:', dateStr, e);
-      return null;
-    }
-  }
-
-  function formatDateRangePtBr(startDateStr, endDateStr) {
-    const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-    const ini = parseIsoDateToParts(startDateStr);
-    const fim = parseIsoDateToParts(endDateStr);
-
-    if (!ini && !fim) return '';
-
-    if (ini && fim) {
-      const mesIni = meses[ini.monthIndex];
-      const mesFim = meses[fim.monthIndex];
-      if (ini.monthIndex === fim.monthIndex) {
-        // mesmo mês: de 5 a 8 de maio
-        if (ini.day === fim.day) {
-          return ini.day + ' de ' + mesIni;
-        }
-        return 'de ' + ini.day + ' a ' + fim.day + ' de ' + mesIni;
-      }
-      // meses diferentes: de 28 de abril a 3 de maio
-      return 'de ' + ini.day + ' de ' + mesIni + ' a ' + fim.day + ' de ' + mesFim;
-    }
-
-    const only = ini || fim;
-    const mes = meses[only.monthIndex];
-    return only.day + ' de ' + mes;
-  }
-
-  function buildSubtitle(startDateStr, endDateStr, localEvento, categoria) {
-    const partes = [];
-    const faixa = formatDateRangePtBr(startDateStr, endDateStr);
-    if (faixa) partes.push(faixa);
-    if (localEvento) partes.push(localEvento);
-    if (categoria) partes.push(categoria);
-    return partes.join(' • ');
-  }
-
-function buildYoutubeEmbedUrl(url) {
+  function buildYoutubeEmbedUrl(url) {
     if (!url) return null;
     try {
       if (url.includes('/embed/')) {
@@ -249,10 +266,6 @@ function buildYoutubeEmbedUrl(url) {
     const tituloCurto = data.titulo_curto || data.title || titulo;
     // micro categoria primeiro, depois categoria normal, depois macro
     const categoria = data.category_micro || data.categoria || data.category_macro || 'Feiras, Congressos & Eventos Corporativos';
-    const startDate = data.startDate || data.data_inicio || data.dataInicio || '';
-    const endDate = data.endDate || data.data_fim || data.dataFim || '';
-    const localEvento = data.local || data.local_evento || data.localEvento || data.location || '';
-    const subtitleText = buildSubtitle(startDate, endDate, localEvento, categoria);
     const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || data.YouTubeVideo || '';
 
     // Título da aba
@@ -268,7 +281,7 @@ function buildYoutubeEmbedUrl(url) {
       }
     }
     if (articleSubtitleEl) {
-      articleSubtitleEl.textContent = subtitleText || categoria;
+      articleSubtitleEl.textContent = categoria;
     }
 
     // CTA WhatsApp final com título curto do evento
@@ -343,3 +356,43 @@ function buildYoutubeEmbedUrl(url) {
     console.error('Erro ao carregar evento:', err);
   }
 });
+    // --- Carrossel de Motivos (motivos-section) ---
+    (function () {
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
+      const motivosContainerEl = document.getElementById('motivosContainer');
+      if (!motivosWrapperEl || !motivosContainerEl) return;
+
+      const extractedMotivos = [1, 2, 3, 4].map(function (index) {
+        return {
+          motivo_emoji: data['motivo_emoji_' + index],
+          motivo_titulo: data['motivo_titulo_' + index],
+          motivo_conteudo: data['motivo_conteudo_' + index]
+        };
+      });
+
+      const finalMotivos = extractedMotivos
+        .filter(function (m) { return m.motivo_titulo; })
+        .concat(Array.isArray(data.motivos) ? data.motivos : []);
+
+      if (finalMotivos.length > 0) {
+        const motivoSlides = finalMotivos.map(renderMotivo).join('');
+        motivosContainerEl.innerHTML = motivoSlides;
+        motivosContainerEl.classList.add('cl-track');
+
+        motivosWrapperEl.insertAdjacentHTML('beforeend', `
+          <button class="carousel-nav prev">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+          </button>
+          <button class="carousel-nav next">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+          </button>
+        `);
+
+        initCarousel('motivosContainer', 'motivosWrapper', true);
+      } else {
+        const heading = document.querySelector('.motivos-section h3');
+        if (heading) heading.hidden = true;
+        motivosWrapperEl.hidden = true;
+      }
+    })();
+
