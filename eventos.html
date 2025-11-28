@@ -490,6 +490,26 @@
 
 
 
+
+  /* Ajuste de posicionamento específico das setas do carrossel em Motivos e Hotéis */
+  .motivos-wrapper .carousel-nav,
+  .hotels-wrapper .carousel-nav {
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  @media (min-width: 1025px) {
+      .motivos-wrapper .carousel-nav.prev,
+      .hotels-wrapper .carousel-nav.prev {
+          left: -26px;
+      }
+
+      .motivos-wrapper .carousel-nav.next,
+      .hotels-wrapper .carousel-nav.next {
+          right: -26px;
+      }
+  }
+
   /* [NOVO] ESTILOS PARA HOTÉIS */
 .hotels-section {
     padding: 0;
