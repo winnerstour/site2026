@@ -548,10 +548,41 @@
     border-color: rgba(249, 115, 22, 0.5); 
 }
 .hotel-card .thumb {
+    position: relative;
     height: 240px; /* CORRIGIDO: Aumentado para 240px */
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
     background: #f4f4f5;
+}
+
+.hotel-card .hotel-chip {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90%;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9); /* fundo escuro translúcido */
+    color: #f9fafb;
+    font-size: 13px;
+    line-height: 1.3;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
+    z-index: 5;
+}
+.hotel-card .hotel-chip-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.hotel-card .hotel-chip-name {
+    font-weight: 700;
+}
+.hotel-card .hotel-chip-info {
+    font-weight: 400;
+    opacity: 0.92;
 }
 .hotel-card .content {
     padding: 14px;
