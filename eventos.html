@@ -27,6 +27,12 @@
       --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
       --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
       --max-width: 760px;
+    
+      --wrap: var(--max-width);
+      --radius: var(--radius-lg);
+      --shadow-base: var(--shadow-card);
+      --text-charcoal: var(--text-main);
+      --brand-shadow: var(--brand-dark);
     }
 
     * { box-sizing: border-box; }
@@ -166,7 +172,6 @@
       line-height: 1.25;
       font-weight: 900;
       margin: 0 0 12px 0;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.32);
     }
 
     #articleSubtitle {
@@ -363,7 +368,123 @@
       color: #9ca3af;
       padding: 0 16px 26px 16px;
     }
-  </style>
+  
+
+  /* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
+.motivos-section {
+    padding: 60px 0 80px; /* AUMENTADO: Mais padding vertical (Pág 4) */
+    margin: 20px 0 0; 
+}
+.motivos-section h3 { /* Alterado para H3 */
+    max-width: var(--wrap);
+    margin: 0 auto 15px; 
+    padding: 0 16px;
+}
+.motivos-wrapper {
+    position: relative; 
+    max-width: var(--wrap); 
+    margin: 0 auto; 
+    padding: 10px 0; 
+}
+.cl-track {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    gap: 18px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding: 0 16px; 
+    scroll-padding-inline: 16px;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.cl-track::-webkit-scrollbar {
+    display: none;
+}
+.cl-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 300px; 
+    max-width: 300px;
+}
+@media (max-width:640px){
+    .cl-slide {
+        width: 86vw; 
+    }
+}
+.motivo-item {
+    background: var(--card); 
+    border: 1px solid rgba(2,8,23,.08); 
+    padding: 20px; 
+    border-radius: var(--radius); 
+    box-shadow: var(--shadow-base);
+    min-height: 180px; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.motivo-title-montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem; 
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+.motivo-text-body {
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-charcoal);
+}
+
+/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand); 
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+.carousel-nav:hover {
+    background: var(--brand-shadow);
+}
+.carousel-nav svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-charcoal); 
+}
+.carousel-nav.prev {
+    left: 16px; 
+}
+.carousel-nav.next {
+    right: 16px; 
+}
+@media (min-width: 1025px) { 
+    .carousel-nav.prev {
+        left: calc((100vw - var(--wrap)) / 2 - 20px); 
+    }
+    .carousel-nav.next {
+        right: calc((100vw - var(--wrap)) / 2 - 20px); 
+    }
+}
+@media (max-width: 1024px) {
+    .carousel-nav {
+        display: none !important; 
+    }
+}
+
+
+</style>
 </head>
 <body>
 
@@ -420,6 +541,12 @@
       <div id="articleSections"></div>
     </section>
 
+    <section class="motivos-section">
+      <h3 class="wrap font-black text-center uppercase">Motivos para visitar</h3>
+      <div id="motivosWrapper" class="motivos-wrapper">
+        <ul id="motivosContainer" class="motivos-list"></ul>
+      </div>
+    </section>
     <section class="article-cta-wrapper">
       <div class="article-cta-card">
         <p class="cta-title">
