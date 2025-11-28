@@ -119,6 +119,10 @@ function renderHotelCard(hotel, eventTitle) {
       <div class="hotel-card">
         <div class="thumb">
           <img loading="lazy" src="${image}" alt="${name}">
+          <div class="hotel-chip">
+            <div class="hotel-chip-line hotel-chip-name">${name}</div>
+            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
+          </div>
         </div>
         <div class="content">
           <div class="category">HOTEL PRÓXIMO AO PAVILHÃO</div>
