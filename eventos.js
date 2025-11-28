@@ -119,16 +119,13 @@ function renderHotelCard(hotel, eventTitle) {
       <div class="hotel-card">
         <div class="thumb">
           <img loading="lazy" src="${image}" alt="${name}">
-        </div>
-        <div class="content">
-          <div class="category">HOTEL PRÓXIMO AO PAVILHÃO</div>
-          <h3 class="title text-slate-900">${name}</h3>
-          ${secondaryInfo ? `<p class="secondary-info">${secondaryInfo}</p>` : ''}
-          <div class="hotel-actions">
-            <button type="button" class="btn-hotel-primary">
-              Ver detalhes do hotel
-            </button>
+          <div class="hotel-chip">
+            <div class="hotel-chip-line hotel-chip-name">${name}</div>
+            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
           </div>
+          <button type="button" class="btn-hotel-primary btn-hotel-overlay">
+            Ver detalhes do hotel
+          </button>
         </div>
       </div>
     </div>
@@ -519,7 +516,7 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       sectionsEl.appendChild(wrapper);
     });
 
-    // --- Carrossel de Hotéis (entre os blocos de hospedagem: após o CTA 3.6) ---
+    // --- Carrossel de Hotéis (inline entre seções: após CTA de hospedagem 3.6, se existir) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
@@ -527,16 +524,29 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
       if (!venueSlug) return;
 
-      // Posição: depois da seção de CTA de hospedagem (id 3.6)
+      // Posição preferencial: depois da seção de CTA de hospedagem (id 3.6).
+      // Fallbacks: 4, 3.5 ou 3; se nada for encontrado, vai para o final.
       const sections = Array.from(container.querySelectorAll('.content-section'));
       let anchor = null;
+      const preferredIds = ['3.6', '4', '3.5', '3'];
+
       sections.forEach(function (secEl) {
         const idAttr = secEl.getAttribute('data-sec-id');
-        const n = Number(idAttr);
-        if ((idAttr && idAttr === '3.6') || (Number.isFinite(n) && n === 3.6)) {
+        if (!idAttr || anchor) return;
+
+        if (preferredIds.includes(idAttr)) {
           anchor = secEl;
+        } else {
+          const n = Number(idAttr);
+          if (Number.isFinite(n) && preferredIds.includes(String(n))) {
+            anchor = secEl;
+          }
         }
       });
+
+      if (!anchor && sections.length) {
+        anchor = sections[sections.length - 1];
+      }
 
       const hotelsSection = document.createElement('section');
       hotelsSection.className = 'hotels-section';
