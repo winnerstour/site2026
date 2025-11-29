@@ -1,5 +1,27 @@
 const VENUE_DATA_PATH = 'venue-data/';
 
+
+// Normaliza o identificador do pavilhão para bater com os arquivos em /venue-data/
+// Ex.: "Expo Center Norte" -> "expo-center-norte", "São Paulo Expo" -> "sao-paulo-expo"
+function normalizeVenueSlug(value) {
+  if (!value) return '';
+  const trimmed = String(value).trim();
+  if (!trimmed) return '';
+
+  // Remove eventual extensão .json
+  const noExt = trimmed.replace(/\.json$/i, '');
+
+  // Se já estiver em formato de slug (sem espaços), apenas normaliza para minúsculas
+  if (!/\s/.test(noExt) && /[-a-z0-9]/i.test(noExt)) {
+    return noExt.toLowerCase();
+  }
+
+  // Remove acentos e transforma em slug com hífens
+  let s = noExt.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  s = s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s;
+}
+
 const BASE_PATH = '/site2026';
 
 function fixPath(path) {
@@ -586,9 +608,9 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const container = document.getElementById('articleSections');
       if (!container) return;
 
-      const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
+      const rawVenueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
+      const venueSlug = normalizeVenueSlug(rawVenueSlug);
       if (!venueSlug) return;
-
       // Posição: depois da seção de CTA de hospedagem (CTA4), com fallbacks
       const sections = Array.from(container.querySelectorAll('.content-section'));
       const byId = {};
