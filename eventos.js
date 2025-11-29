@@ -14,7 +14,7 @@ function fixPath(path) {
 // Monta URL de busca no ComprarViagem para o hotel selecionado
 function buildHotelBookingUrl(hotel, eventMeta) {
   if (!hotel) return '#';
-  const baseUrl = 'https://www.comprarviagem.com.br/busca-hotel'; // ajuste se o path for diferente
+  const baseUrl = 'https://www.comprarviagem.com.br/busca-hotel'; // ajuste se necessário
 
   const hotelId = hotel.hotel_id || hotel.id || hotel.code || hotel.codigo || '';
   const hotelName = hotel.name || hotel.titulo || '';
@@ -532,6 +532,9 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
 
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
+      if (sec.id != null) {
+        wrapper.setAttribute('data-sec-id', String(sec.id));
+      }
 
       if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
         const h2 = document.createElement('h2');
@@ -546,7 +549,7 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       sectionsEl.appendChild(wrapper);
     });
 
-    // --- Carrossel de Hotéis (inline entre seções 3 e 4) ---
+    // --- Carrossel de Hotéis (entre CTA de hospedagem e CTA de grupos) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
@@ -554,16 +557,25 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
       if (!venueSlug) return;
 
-      // Posição: depois da seção cujo id numérico é 3
+      // Posição: depois da seção de CTA de hospedagem (id 3.6), com fallback
       const sections = Array.from(container.querySelectorAll('.content-section'));
-      let anchor = null;
+      const byId = {};
       sections.forEach(function (secEl) {
         const idAttr = secEl.getAttribute('data-sec-id');
-        const n = Number(idAttr);
-        if (Number.isFinite(n) && n === 3) {
-          anchor = secEl;
+        if (idAttr) {
+          byId[idAttr] = secEl;
         }
       });
+
+      let anchor = null;
+      const preferredOrder = ['3.6', '4', '3.5', '3'];
+      for (let i = 0; i < preferredOrder.length; i++) {
+        const key = preferredOrder[i];
+        if (byId[key]) {
+          anchor = byId[key];
+          break;
+        }
+      }
 
       const hotelsSection = document.createElement('section');
       hotelsSection.className = 'hotels-section';
@@ -606,16 +618,16 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
         }
 
         const eventMeta = {
-          title: titulo,
-          startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
-          endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
-        };
+        title: titulo,
+        startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
+        endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
+      };
 
-        const slidesHtml = hotels.map(function (h) {
-          const bookingUrl = buildHotelBookingUrl(h, eventMeta);
-          return renderHotelCard(h, titulo, bookingUrl);
-        }).join('');
-        hotelsCarouselEl.innerHTML = slidesHtml;
+      const slidesHtml = hotels.map(function (h) {
+        const bookingUrl = buildHotelBookingUrl(h, eventMeta);
+        return renderHotelCard(h, titulo, bookingUrl);
+      }).join('');
+      hotelsCarouselEl.innerHTML = slidesHtml;
         hotelsCarouselEl.classList.add('cl-track');
 
         hotelsWrapperEl.insertAdjacentHTML('beforeend', `
