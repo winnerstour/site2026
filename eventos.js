@@ -675,7 +675,6 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
         hotelsSection.style.display = 'none';
       }
     })();
-);
 
 // --- Carrossel de Motivos (motivos-section) ---
     (function () {
