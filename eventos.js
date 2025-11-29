@@ -568,7 +568,7 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       });
 
       let anchor = null;
-      const preferredOrder = ['3.6', '4', '3.5', '3'];
+      const preferredOrder = ['CTA4', '4', 'CTA3', '3'];
       for (let i = 0; i < preferredOrder.length; i++) {
         const key = preferredOrder[i];
         if (byId[key]) {
