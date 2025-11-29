@@ -513,8 +513,6 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
     let videoInserted = false;
 
 
-    let videoInserted = false;
-
     // Reordenar seções para garantir a sequência: 3, CTA3, 4, CTA4, 5, CTA5
     const orderedSections = [];
     const sectionsById = {};
