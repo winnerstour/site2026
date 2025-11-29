@@ -11,6 +11,36 @@ function fixPath(path) {
 }
 
 
+// Monta URL de busca no ComprarViagem para o hotel selecionado
+function buildHotelBookingUrl(hotel, eventMeta) {
+  if (!hotel) return '#';
+  const baseUrl = 'https://www.comprarviagem.com.br/busca-hotel'; // ajuste se o path for diferente
+
+  const hotelId = hotel.hotel_id || hotel.id || hotel.code || hotel.codigo || '';
+  const hotelName = hotel.name || hotel.titulo || '';
+
+  const params = [];
+
+  if (hotelId) params.push('hotelId=' + encodeURIComponent(hotelId));
+  if (hotelName) params.push('hotel=' + encodeURIComponent(hotelName));
+
+  if (eventMeta) {
+    if (eventMeta.title) {
+      params.push('evento=' + encodeURIComponent(eventMeta.title));
+    }
+    if (eventMeta.startDate) {
+      params.push('checkin=' + encodeURIComponent(eventMeta.startDate));
+    }
+    if (eventMeta.endDate) {
+      params.push('checkout=' + encodeURIComponent(eventMeta.endDate));
+    }
+  }
+
+  const query = params.join('&');
+  return baseUrl + (query ? ('?' + query) : '');
+}
+
+
 const SCROLL_SPEED = 8000;
 
 // Carrossel genérico (mesma base da landing principal)
@@ -81,7 +111,8 @@ function initCarousel(carouselId, wrapperId, isMotivos = false) {
 
 // Card simples de HOTEL (versão enxuta para o artigo)
 
-function renderHotelCard(hotel, eventTitle) {
+
+function renderHotelCard(hotel, eventTitle, bookingUrl) {
   if (!hotel) return '';
   const name = hotel.name || hotel.titulo || 'Hotel';
 
@@ -114,6 +145,8 @@ function renderHotelCard(hotel, eventTitle) {
   const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
   const image = fixPath(rawImage);
 
+  const href = bookingUrl || '#';
+
   return `
     <div class="cl-slide">
       <div class="hotel-card">
@@ -123,9 +156,9 @@ function renderHotelCard(hotel, eventTitle) {
             <div class="hotel-chip-line hotel-chip-name">${name}</div>
             ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
           </div>
-          <button type="button" class="btn-hotel-primary btn-hotel-overlay">
+          <a href="${href}" class="btn-hotel-primary btn-hotel-overlay" target="_blank" rel="noopener noreferrer">
             Ver detalhes do hotel
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -499,9 +532,6 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
 
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
-      if (sec.id != null) {
-        wrapper.setAttribute('data-sec-id', String(sec.id));
-      }
 
       if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
         const h2 = document.createElement('h2');
@@ -516,7 +546,7 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       sectionsEl.appendChild(wrapper);
     });
 
-    // --- Carrossel de Hotéis (inline entre seções: após CTA de hospedagem 3.6, se existir) ---
+    // --- Carrossel de Hotéis (inline entre seções 3 e 4) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
@@ -524,29 +554,16 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const venueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
       if (!venueSlug) return;
 
-      // Posição preferencial: depois da seção de CTA de hospedagem (id 3.6).
-      // Fallbacks: 4, 3.5 ou 3; se nada for encontrado, vai para o final.
+      // Posição: depois da seção cujo id numérico é 3
       const sections = Array.from(container.querySelectorAll('.content-section'));
       let anchor = null;
-      const preferredIds = ['3.6', '4', '3.5', '3'];
-
       sections.forEach(function (secEl) {
         const idAttr = secEl.getAttribute('data-sec-id');
-        if (!idAttr || anchor) return;
-
-        if (preferredIds.includes(idAttr)) {
+        const n = Number(idAttr);
+        if (Number.isFinite(n) && n === 3) {
           anchor = secEl;
-        } else {
-          const n = Number(idAttr);
-          if (Number.isFinite(n) && preferredIds.includes(String(n))) {
-            anchor = secEl;
-          }
         }
       });
-
-      if (!anchor && sections.length) {
-        anchor = sections[sections.length - 1];
-      }
 
       const hotelsSection = document.createElement('section');
       hotelsSection.className = 'hotels-section';
@@ -588,7 +605,16 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
           return;
         }
 
-        const slidesHtml = hotels.map(function (h) { return renderHotelCard(h, titulo); }).join('');
+        const eventMeta = {
+          title: titulo,
+          startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
+          endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
+        };
+
+        const slidesHtml = hotels.map(function (h) {
+          const bookingUrl = buildHotelBookingUrl(h, eventMeta);
+          return renderHotelCard(h, titulo, bookingUrl);
+        }).join('');
         hotelsCarouselEl.innerHTML = slidesHtml;
         hotelsCarouselEl.classList.add('cl-track');
 
