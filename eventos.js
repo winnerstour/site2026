@@ -191,6 +191,40 @@ function renderHotelCard(hotel, eventMeta) {
             ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
           </div>
           <a href="${href}" class="btn-hotel-primary btn-hotel-overlay" target="_blank" rel="noopener">
+            Reservar agora
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+  let starsText = '';
+  if (stars && Number(stars) > 0) {
+    const n = Math.round(Number(stars));
+    starsText = '★'.repeat(n);
+  }
+
+  const infoParts = [];
+  if (roomInfo) infoParts.push(roomInfo);
+  if (priceLevel) infoParts.push(priceLevel);
+  if (starsText) infoParts.push(starsText);
+  const secondaryInfo = infoParts.join(' | ');
+
+  const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
+  const image = fixPath(rawImage);
+
+  const href = buildHotelBookingUrl(hotel, eventMeta);
+
+  return `
+    <div class="cl-slide">
+      <div class="hotel-card">
+        <div class="thumb">
+          <img loading="lazy" src="${image}" alt="${name}">
+          <div class="hotel-chip">
+            <div class="hotel-chip-line hotel-chip-name">${name}</div>
+            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
+          </div>
+          <a href="${href}" class="btn-hotel-primary btn-hotel-overlay" target="_blank" rel="noopener">
             Ver detalhes do hotel
           </a>
         </div>
