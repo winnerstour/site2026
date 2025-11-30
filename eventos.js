@@ -1,27 +1,5 @@
 const VENUE_DATA_PATH = 'venue-data/';
 
-
-// Normaliza o identificador do pavilhão para bater com os arquivos em /venue-data/
-// Ex.: "Expo Center Norte" -> "expo-center-norte", "São Paulo Expo" -> "sao-paulo-expo"
-function normalizeVenueSlug(value) {
-  if (!value) return '';
-  const trimmed = String(value).trim();
-  if (!trimmed) return '';
-
-  // Remove eventual extensão .json
-  const noExt = trimmed.replace(/\.json$/i, '');
-
-  // Se já estiver em formato de slug (sem espaços), apenas normaliza para minúsculas
-  if (!/\s/.test(noExt) && /[-a-z0-9]/i.test(noExt)) {
-    return noExt.toLowerCase();
-  }
-
-  // Remove acentos e transforma em slug com hífens
-  let s = noExt.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  s = s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-  return s;
-}
-
 const BASE_PATH = '/site2026';
 
 function fixPath(path) {
@@ -608,9 +586,25 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
       const container = document.getElementById('articleSections');
       if (!container) return;
 
-      const rawVenueSlug = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
-      const venueSlug = normalizeVenueSlug(rawVenueSlug);
-      if (!venueSlug) return;
+      const venueSlugRaw = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
+      if (!venueSlugRaw) return;
+
+      function slugifyVenueName(str) {
+        if (!str) return '';
+        return String(str)
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
+      const venueSlugCandidates = [];
+      venueSlugCandidates.push(venueSlugRaw);
+      const normalizedVenue = slugifyVenueName(venueSlugRaw);
+      if (normalizedVenue && normalizedVenue !== venueSlugRaw) {
+        venueSlugCandidates.push(normalizedVenue);
+      }
+
       // Posição: depois da seção de CTA de hospedagem (CTA4), com fallbacks
       const sections = Array.from(container.querySelectorAll('.content-section'));
       const byId = {};
@@ -649,55 +643,67 @@ const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.yout
         container.appendChild(hotelsSection);
       }
 
-      try {
-        const venueResponse = await fetch(VENUE_DATA_PATH + venueSlug + '.json');
-        if (!venueResponse.ok) {
-          console.warn('Falha ao tentar venue-data para', venueSlug, 'status', venueResponse.status);
-          hotelsSection.style.display = 'none';
-          return;
+      let venueData = null;
+
+      for (let i = 0; i < venueSlugCandidates.length; i++) {
+        const candidate = venueSlugCandidates[i];
+        try {
+          const venueResponse = await fetch(VENUE_DATA_PATH + candidate + '.json');
+          if (venueResponse.ok) {
+            venueData = await venueResponse.json();
+            console.log('venue-data carregado de:', VENUE_DATA_PATH + candidate + '.json');
+            break;
+          } else {
+            console.warn('Falha ao tentar venue-data para', candidate, 'status', venueResponse.status);
+          }
+        } catch (err) {
+          console.warn('Erro ao tentar venue-data para', candidate, err);
         }
-
-        const venueData = await venueResponse.json();
-        const hotelsCarouselEl = document.getElementById('hotelsCarousel');
-        const hotelsWrapperEl = document.getElementById('hotelsWrapper');
-
-        if (!hotelsCarouselEl || !hotelsWrapperEl) return;
-
-        const hotels = Array.isArray(venueData.hotels) ? venueData.hotels.filter(function (h) {
-          return h && (h.type === 'hotel' || h.type === 'daytrip');
-        }) : [];
-
-        if (!hotels.length) {
-          hotelsSection.style.display = 'none';
-          return;
-        }
-
-        const eventMeta = {
-          title: titulo,
-          startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
-          endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
-        };
-
-        const slidesHtml = hotels.map(function (h) { return renderHotelCard(h, eventMeta); }).join('');
-        hotelsCarouselEl.innerHTML = slidesHtml;
-        hotelsCarouselEl.classList.add('cl-track');
-
-        hotelsWrapperEl.insertAdjacentHTML('beforeend', `
-          <button class="carousel-nav prev">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,7.41L14,6L8,12L14,18L15.41,16.58L10.83,12L15.41,7.41Z" /></svg>
-          </button>
-          <button class="carousel-nav next">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,7.41L10,6L16,12L10,18L8.59,16.58L13.17,12L8.59,7.41Z" /></svg>
-          </button>
-        `);
-
-        initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
-      } catch (e) {
-        console.warn('Erro ao carregar hotels a partir do venue-data:', e);
-        hotelsSection.style.display = 'none';
       }
-    })();
 
+      if (!venueData) {
+        hotelsSection.style.display = 'none';
+        return;
+      }
+
+      const hotelsCarouselEl = document.getElementById('hotelsCarousel');
+      const hotelsWrapperEl = document.getElementById('hotelsWrapper');
+
+      if (!hotelsCarouselEl || !hotelsWrapperEl) return;
+
+      const hotels = Array.isArray(venueData.hotels) ? venueData.hotels.filter(function (h) {
+        return h && (h.type === 'hotel' || h.type === 'daytrip');
+      }) : [];
+
+      if (!hotels.length) {
+        const heading = hotelsSection.querySelector('h3');
+        if (heading) heading.hidden = true;
+        hotelsSection.style.display = 'none';
+        return;
+      }
+
+      const eventMeta = {
+        slug: data.slug || data.slug_evento || '',
+        title: data.title || data.titulo || '',
+        startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
+        endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
+      };
+
+      const slidesHtml = hotels.map(function (h) { return renderHotelCard(h, eventMeta); }).join('');
+      hotelsCarouselEl.innerHTML = slidesHtml;
+      hotelsCarouselEl.classList.add('cl-track');
+
+      hotelsWrapperEl.insertAdjacentHTML('beforeend', `
+        <button class="carousel-nav prev">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6 8 12l6 6 1.41-1.42L10.83 12l4.58-4.59z"/></svg>
+        </button>
+        <button class="carousel-nav next">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z"/></svg>
+        </button>
+      `);
+
+      initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+    })();
 // --- Carrossel de Motivos (motivos-section) ---
     (function () {
       const motivosWrapperEl = document.getElementById('motivosWrapper');
