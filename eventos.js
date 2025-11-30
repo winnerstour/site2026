@@ -49,8 +49,7 @@ function renderMarkdown(text) {
     return '<ul>' + match + '</ul>';
   });
 
-  html = html.replace(/
-{2,}/g, '</p><p>');
+  html = html.replace(/\n{2,}/g, '</p><p>');
   html = '<p>' + html + '</p>';
 
   return html;
