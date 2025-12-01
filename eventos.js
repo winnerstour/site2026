@@ -243,7 +243,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   const faviconEl = document.getElementById('faviconEl');
 
   const heroTitleEl = document.getElementById('heroTitle');
-  const articleTitleEl = document.getElementById('articleTitle');
   const heroSubtitleEl = document.getElementById('heroSubtitle');
   const heroChipEl = document.getElementById('heroChip');
   const heroCtaEl = document.getElementById('heroCta');
@@ -320,145 +319,44 @@ document.addEventListener('DOMContentLoaded', async function () {
       eventWhatsCtaEl.href = whatsLink;
     }
 
-    
-const sections = Array.isArray(data.sections) ? data.sections : [];
-    const createdSections = [];
-    let introTitleFromSection = null;
-
-    // 1) Criar todos os <section> em memória, sem anexar ainda
-    sections.forEach(function (sec, index) {
+    const sections = Array.isArray(data.sections) ? data.sections : [];
+    sections.forEach(function (sec) {
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
+      wrapper.setAttribute('data-sec-id', sec.id || sec.sec_id || '');
 
-      const secId = sec.id || sec.sec_id || '';
-      const tituloSecao = sec.titulo_secao || '';
-      const tipoSecao = sec.type || sec.tipo || '';
+      if (sec.type === 'cta_whatsapp' || sec.tipo === 'cta_whatsapp') {
+        const secId = (sec.id || sec.sec_id || '').toString().toUpperCase();
+        const hideTitle = secId === 'CTA3' || secId === 'CTA4' || secId === 'CTA5';
+        const tituloCta = sec.titulo_secao || 'Fale com nossa equipe';
+        const tituloHtml = hideTitle ? '' : `<h2>${tituloCta}</h2>`;
 
-      wrapper.setAttribute('data-sec-id', secId);
-
-      // Blocos de CTA de WhatsApp (CTA3/CTA4/CTA5 etc.)
-      if (tipoSecao === 'cta_whatsapp') {
         wrapper.innerHTML = `
           <div class="cta-whatsapp-block">
-            <h2>${sec.titulo_secao || 'Fale com nossa equipe'}</h2>
+            ${tituloHtml}
             <p>${sec.texto || ''}</p>
             <a href="${whatsLink}" class="btn btn-whatsapp">Falar no WhatsApp</a>
           </div>
         `;
-        createdSections.push({
-          sec: sec,
-          wrapper: wrapper,
-          secId: secId,
-          titulo: tituloSecao,
-          used: false
-        });
+        sectionsEl.appendChild(wrapper);
         return;
       }
 
-      // Demais seções (conteúdo normal)
-      let markdownHtml = renderMarkdown(sec.conteudo_markdown || '') || '';
-      const hasH2 = /<h2>[\s\S]*?<\/h2>/i.test(markdownHtml);
-
-      // Primeira seção (introdução): promover o primeiro H2 para o título principal da página
-      if (index === 0 || String(secId).toUpperCase() === '1') {
-        const h2Match = markdownHtml.match(/<h2>([\s\S]*?)<\/h2>/i);
-        if (h2Match) {
-          const plain = h2Match[1].replace(/<[^>]*>/g, '').trim();
-          if (plain) {
-            introTitleFromSection = plain;
-          }
-          // Remove o H2 da introdução do conteúdo da seção
-          markdownHtml = markdownHtml.replace(h2Match[0], '');
-        } else if (!introTitleFromSection && tituloSecao) {
-          introTitleFromSection = tituloSecao;
-        }
-        // Não renderiza H2 separado para a primeira seção
-      } else {
-        // Outras seções: se NÃO houver H2 no markdown, usamos o titulo_secao como H2
-        if (!hasH2 && tituloSecao && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
-          const h2 = document.createElement('h2');
-          h2.textContent = tituloSecao;
-          wrapper.appendChild(h2);
-        }
-        // Se já existir H2 no markdown, não criamos outro – usamos apenas o título "interno" (mais completo)
+      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
+        const h2 = document.createElement('h2');
+        h2.textContent = sec.titulo_secao;
+        wrapper.appendChild(h2);
       }
 
       const contentDiv = document.createElement('div');
-      contentDiv.innerHTML = markdownHtml;
+      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
       wrapper.appendChild(contentDiv);
 
-      createdSections.push({
-        sec: sec,
-        wrapper: wrapper,
-        secId: secId,
-        titulo: tituloSecao,
-        used: false
-      });
-    });
-
-    // Atualiza o título principal da página, se conseguimos extrair da primeira seção
-    if (introTitleFromSection && articleTitleEl) {
-      articleTitleEl.textContent = introTitleFromSection;
-    }
-
-    // 2) Helpers para encontrar e usar seções específicas
-    function findSection(key) {
-      if (!key) return null;
-      const upperKey = String(key).toUpperCase();
-      return createdSections.find(function (item) {
-        return (
-          String(item.secId || '').toUpperCase() === upperKey ||
-          String(item.titulo || '').toUpperCase() === upperKey
-        );
-      }) || null;
-    }
-
-    function pushIfExists(entry, targetArr) {
-      if (!entry || entry.used) return;
-      entry.used = true;
-      targetArr.push(entry.wrapper);
-    }
-
-    const orderedWrappers = [];
-
-    // 3) Ordem desejada:
-    // 1, 2, (3 + CTA3), (4 + CTA4), (5 + CTA5), depois o restante
-
-    // Seções 1 e 2 (se existirem)
-    pushIfExists(findSection('1'), orderedWrappers);
-    pushIfExists(findSection('2'), orderedWrappers);
-
-    // Seção 3 + CTA3 logo abaixo
-    const sec3 = findSection('3');
-    const cta3 = findSection('CTA3');
-    pushIfExists(sec3, orderedWrappers);
-    pushIfExists(cta3, orderedWrappers);
-
-    // Seção 4 + CTA4 logo abaixo
-    const sec4 = findSection('4');
-    const cta4 = findSection('CTA4');
-    pushIfExists(sec4, orderedWrappers);
-    pushIfExists(cta4, orderedWrappers);
-
-    // Seção 5 + CTA5 logo abaixo
-    const sec5 = findSection('5');
-    const cta5 = findSection('CTA5');
-    pushIfExists(sec5, orderedWrappers);
-    pushIfExists(cta5, orderedWrappers);
-
-    // 4) Demais seções (6, 7, etc.) seguem na ordem original
-    createdSections.forEach(function (item) {
-      if (!item.used) {
-        item.used = true;
-        orderedWrappers.push(item.wrapper);
-      }
-    });
-
-    // 5) Finalmente, joga tudo dentro do #articleSections
-    orderedWrappers.forEach(function (wrapper) {
       sectionsEl.appendChild(wrapper);
     });
-// --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
+
+
+    // --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
