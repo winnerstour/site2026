@@ -705,7 +705,7 @@
 </style>
 
 <style>
-/* HOTFIX – Overlay do chip e botão nos cards de hotel (carrossel de eventos) */
+/* HOTFIX – Overlay do chip em 3 linhas nos cards de hotel (carrossel de eventos) */
 .hotels-wrapper .hotel-card {
   position: relative;
 }
@@ -724,7 +724,7 @@
   z-index: 1;
 }
 
-/* Chip superior – estilo pílula escura, podendo alongar sem quebrar palavras */
+/* Chip com 3 linhas (parâmetros, nome, CTA) */
 .hotels-wrapper .hotel-chip {
   position: absolute;
   top: 14px;
@@ -735,37 +735,35 @@
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.92);
   color: #f9fafb;
-  font-size: 13px;
-  line-height: 1.3;
-  text-align: center;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
   z-index: 2;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Cada linha do chip em no máximo uma linha (sem quebra interna) */
 .hotels-wrapper .hotel-chip-line {
   white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.3;
 }
 
-/* Botão inferior – mesma pegada visual do chip */
-.hotels-wrapper .btn-hotel-overlay {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  padding: 8px 22px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.92);
+.hotels-wrapper .hotel-chip-name {
+  font-weight: 700;
+}
+
+/* CTA "Clique aqui e saiba mais" dentro do chip */
+.hotels-wrapper .hotel-chip-cta {
+  margin-top: 2px;
+  font-size: 12px;
+  text-decoration: underline;
   color: #f9fafb;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
-  border: none;
+}
+
+.hotels-wrapper .hotel-chip-cta:hover,
+.hotels-wrapper .hotel-chip-cta:focus {
+  text-decoration: none;
 }
 </style>
 </head>
