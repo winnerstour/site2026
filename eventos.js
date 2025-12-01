@@ -248,6 +248,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   const heroCtaEl = document.getElementById('heroCta');
   const heroBgEl = document.getElementById('heroBg');
 
+  const articleTitleEl = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
+
   const eventSummaryEl = document.getElementById('eventSummary');
   const eventMetaEl = document.getElementById('eventMeta');
   const eventWhatsCtaEl = document.getElementById('eventWhatsCta');
@@ -302,6 +305,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (eventSummaryEl) {
       eventSummaryEl.textContent = resumo;
     }
+    if (articleSubtitleEl) {
+      articleSubtitleEl.textContent = resumo;
+    }
 
     if (eventMetaEl) {
       const parts = [];
@@ -320,15 +326,27 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const sections = Array.isArray(data.sections) ? data.sections : [];
-    sections.forEach(function (sec) {
+    const createdSections = [];
+    let introTitleSet = false;
+
+    sections.forEach(function (sec, index) {
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
-      wrapper.setAttribute('data-sec-id', sec.id || sec.sec_id || '');
 
-      if (sec.type === 'cta_whatsapp' || sec.tipo === 'cta_whatsapp') {
-        const secId = (sec.id || sec.sec_id || '').toString().toUpperCase();
-        const hideTitle = secId === 'CTA3' || secId === 'CTA4' || secId === 'CTA5';
-        const tituloCta = sec.titulo_secao || 'Fale com nossa equipe';
+      const secIdRaw = sec.id || sec.sec_id || '';
+      const secId = String(secIdRaw);
+      const secIdUpper = secId.toUpperCase();
+      const tituloSecao = sec.titulo_secao || '';
+      const tipoSecao = sec.type || sec.tipo || '';
+
+      wrapper.setAttribute('data-sec-id', secId);
+
+      const isCta = (tipoSecao === 'cta_whatsapp');
+      const isIntroCandidate = !isCta && !introTitleSet && (secId === '1' || index === 0);
+
+      if (isCta) {
+        const hideTitle = (secIdUpper === 'CTA3' || secIdUpper === 'CTA4' || secIdUpper === 'CTA5');
+        const tituloCta = tituloSecao || 'Fale com nossa equipe';
         const tituloHtml = hideTitle ? '' : `<h2>${tituloCta}</h2>`;
 
         wrapper.innerHTML = `
@@ -338,20 +356,105 @@ document.addEventListener('DOMContentLoaded', async function () {
             <a href="${whatsLink}" class="btn btn-whatsapp">Falar no WhatsApp</a>
           </div>
         `;
-        sectionsEl.appendChild(wrapper);
+
+        createdSections.push({
+          sec: sec,
+          wrapper: wrapper,
+          secId: secIdUpper,
+          titulo: (tituloSecao || '').toUpperCase(),
+          used: false
+        });
         return;
       }
 
-      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
+      let contentHtml = renderMarkdown(sec.conteudo_markdown || '');
+
+      if (isIntroCandidate && articleTitleEl) {
+        const h2Match = contentHtml.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+        if (h2Match) {
+          const tmp = document.createElement('div');
+          tmp.innerHTML = h2Match[1];
+          const extractedTitle = tmp.textContent.trim();
+          if (extractedTitle) {
+            articleTitleEl.textContent = extractedTitle;
+            introTitleSet = true;
+          }
+          contentHtml = contentHtml.replace(h2Match[0], '');
+        } else if (tituloSecao && !introTitleSet) {
+          articleTitleEl.textContent = tituloSecao;
+          introTitleSet = true;
+        }
+      }
+
+      const hasH2InContent = /<h2[^>]*>[\s\S]*?<\/h2>/i.test(contentHtml);
+
+      if (!hasH2InContent && tituloSecao && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
         const h2 = document.createElement('h2');
-        h2.textContent = sec.titulo_secao;
+        h2.textContent = tituloSecao;
         wrapper.appendChild(h2);
       }
 
       const contentDiv = document.createElement('div');
-      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+      contentDiv.innerHTML = contentHtml;
       wrapper.appendChild(contentDiv);
 
+      createdSections.push({
+        sec: sec,
+        wrapper: wrapper,
+        secId: secIdUpper,
+        titulo: (tituloSecao || '').toUpperCase(),
+        used: false
+      });
+    });
+
+    function findSection(key) {
+      if (!key) return null;
+      const upperKey = String(key).toUpperCase();
+      return createdSections.find(function (item) {
+        return item.secId === upperKey || item.titulo === upperKey;
+      }) || null;
+    }
+
+    function pushIfExists(entry, targetArr) {
+      if (!entry || entry.used) return;
+      entry.used = true;
+      targetArr.push(entry.wrapper);
+    }
+
+    const orderedWrappers = [];
+
+    // Seções 1 e 2 (se existirem)
+    pushIfExists(findSection('1'), orderedWrappers);
+    pushIfExists(findSection('2'), orderedWrappers);
+
+    // Seção 3 + CTA3 logo abaixo
+    const sec3 = findSection('3');
+    const cta3 = findSection('CTA3');
+    pushIfExists(sec3, orderedWrappers);
+    pushIfExists(cta3, orderedWrappers);
+
+    // Seção 4 + CTA4 logo abaixo
+    const sec4 = findSection('4');
+    const cta4 = findSection('CTA4');
+    pushIfExists(sec4, orderedWrappers);
+    pushIfExists(cta4, orderedWrappers);
+
+    // Seção 5 + CTA5 logo abaixo
+    const sec5 = findSection('5');
+    const cta5 = findSection('CTA5');
+    pushIfExists(sec5, orderedWrappers);
+    pushIfExists(cta5, orderedWrappers);
+
+    // Demais seções (6, 7, etc.) seguem na ordem original
+    createdSections.forEach(function (item) {
+      if (!item.used) {
+        item.used = true;
+        orderedWrappers.push(item.wrapper);
+      }
+    });
+
+    // Finalmente, joga tudo dentro do #articleSections
+    orderedWrappers.forEach(function (wrapper) {
       sectionsEl.appendChild(wrapper);
     });
 
