@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       hotelsSection.className = 'hotels-section';
       hotelsSection.id = 'hotelsSection';
       hotelsSection.innerHTML = `
-        <h3 class="wrap font-black text-center uppercase">Hotéis sugeridos perto do pavilhão</h3>
+        <h3 class="wrap font-black text-center uppercase">Hotéis próximos do pavilhão</h3>
         <div id="hotelsWrapper" class="hotels-wrapper wrap">
           <div id="hotelsCarouselContainer" class="carousel hotels-carousel">
             <div id="hotelsCarousel" class="carousel-track hotels-track"></div>
