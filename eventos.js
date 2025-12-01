@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const faviconEl = document.getElementById('faviconEl');
 
   const heroTitleEl = document.getElementById('heroTitle');
+  const articleTitleEl = document.getElementById('articleTitle');
   const heroSubtitleEl = document.getElementById('heroSubtitle');
   const heroChipEl = document.getElementById('heroChip');
   const heroCtaEl = document.getElementById('heroCta');
@@ -320,11 +321,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     
-    const sections = Array.isArray(data.sections) ? data.sections : [];
+const sections = Array.isArray(data.sections) ? data.sections : [];
     const createdSections = [];
+    let introTitleFromSection = null;
 
     // 1) Criar todos os <section> em memória, sem anexar ainda
-    sections.forEach(function (sec) {
+    sections.forEach(function (sec, index) {
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
 
@@ -334,7 +336,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       wrapper.setAttribute('data-sec-id', secId);
 
-      // CTA de WhatsApp (inclui CTA3/4/5 se forem desse tipo)
+      // Blocos de CTA de WhatsApp (CTA3/CTA4/CTA5 etc.)
       if (tipoSecao === 'cta_whatsapp') {
         wrapper.innerHTML = `
           <div class="cta-whatsapp-block">
@@ -343,18 +345,47 @@ document.addEventListener('DOMContentLoaded', async function () {
             <a href="${whatsLink}" class="btn btn-whatsapp">Falar no WhatsApp</a>
           </div>
         `;
+        createdSections.push({
+          sec: sec,
+          wrapper: wrapper,
+          secId: secId,
+          titulo: tituloSecao,
+          used: false
+        });
+        return;
+      }
+
+      // Demais seções (conteúdo normal)
+      let markdownHtml = renderMarkdown(sec.conteudo_markdown || '') || '';
+      const hasH2 = /<h2>[\s\S]*?<\/h2>/i.test(markdownHtml);
+
+      // Primeira seção (introdução): promover o primeiro H2 para o título principal da página
+      if (index === 0 || String(secId).toUpperCase() === '1') {
+        const h2Match = markdownHtml.match(/<h2>([\s\S]*?)<\/h2>/i);
+        if (h2Match) {
+          const plain = h2Match[1].replace(/<[^>]*>/g, '').trim();
+          if (plain) {
+            introTitleFromSection = plain;
+          }
+          // Remove o H2 da introdução do conteúdo da seção
+          markdownHtml = markdownHtml.replace(h2Match[0], '');
+        } else if (!introTitleFromSection && tituloSecao) {
+          introTitleFromSection = tituloSecao;
+        }
+        // Não renderiza H2 separado para a primeira seção
       } else {
-        // Demais seções (texto normal / conteúdo explicativo)
-        if (tituloSecao && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
+        // Outras seções: se NÃO houver H2 no markdown, usamos o titulo_secao como H2
+        if (!hasH2 && tituloSecao && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
           const h2 = document.createElement('h2');
           h2.textContent = tituloSecao;
           wrapper.appendChild(h2);
         }
-
-        const contentDiv = document.createElement('div');
-        contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
-        wrapper.appendChild(contentDiv);
+        // Se já existir H2 no markdown, não criamos outro – usamos apenas o título "interno" (mais completo)
       }
+
+      const contentDiv = document.createElement('div');
+      contentDiv.innerHTML = markdownHtml;
+      wrapper.appendChild(contentDiv);
 
       createdSections.push({
         sec: sec,
@@ -364,6 +395,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         used: false
       });
     });
+
+    // Atualiza o título principal da página, se conseguimos extrair da primeira seção
+    if (introTitleFromSection && articleTitleEl) {
+      articleTitleEl.textContent = introTitleFromSection;
+    }
 
     // 2) Helpers para encontrar e usar seções específicas
     function findSection(key) {
@@ -422,7 +458,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     orderedWrappers.forEach(function (wrapper) {
       sectionsEl.appendChild(wrapper);
     });
-
 // --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
     (async function () {
       const container = document.getElementById('articleSections');
