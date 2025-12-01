@@ -592,10 +592,7 @@
 .hotel-card .info-separator {
     color: var(--muted);
     padding: 0 5px;
-    font-weight: 400; /* Separador mais discreto entre os itens */
-}
-
-
+    font-weight: 400; /* Separador mais 
 
 .hotel-card .hotel-actions {
     margin-top: 4px;
@@ -704,7 +701,18 @@
   left: auto;
 }
 
+.motivos-wrapper .carousel-nav.prev {
+  left: 12px;
+  right: auto;
+}
+
+.motivos-wrapper .carousel-nav.next {
+  right: 12px;
+  left: auto;
+}
+
 </style>
+
 
 <style>
 /* HOTFIX – Overlay do chip em 3 linhas nos cards de hotel (carrossel de eventos) */
@@ -792,7 +800,7 @@
 }
 </style>
 
-<style>
+
 /* Controles em bolinhas para os carrosséis (dots) */
 .carousel-dots {
   display: flex;
@@ -817,7 +825,10 @@
   background: var(--brand);
 }
 
-</style>
+/* Oculta setas apenas no carrossel de hotéis */
+.hotels-wrapper .carousel-nav {
+  display: none !important;
+}
 
 </head>
 <body>
