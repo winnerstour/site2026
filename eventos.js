@@ -447,6 +447,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         `);
 
         initCarousel('hotelsCarousel', 'hotelsWrapper', false);
+        attachDots('hotelsCarousel', 'hotelsWrapper');
       } catch (e) {
         console.warn('Erro ao carregar hotels a partir do venue-data:', e);
         hotelsSection.style.display = 'none';
@@ -512,6 +513,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       motivosContainerEl.classList.add('cl-track');
 
       initCarousel('motivosContainer', 'motivosWrapper', true);
+    attachDots('motivosContainer', 'motivosWrapper');
     })();
 
 
@@ -525,3 +527,52 @@ document.addEventListener('DOMContentLoaded', async function () {
     renderError(err.message);
   }
 });
+
+
+
+// Controles por bolinhas (dots) para carrosséis horizontais
+function attachDots(carouselId, wrapperId) {
+  const carousel = document.getElementById(carouselId);
+  const wrapper = document.getElementById(wrapperId);
+  if (!carousel || !wrapper) return;
+
+  const slides = Array.from(carousel.children || []);
+  if (!slides.length || slides.length === 1) return;
+
+  let dotsContainer = wrapper.querySelector('.carousel-dots');
+  if (!dotsContainer) {
+    dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    wrapper.appendChild(dotsContainer);
+  } else {
+    dotsContainer.innerHTML = '';
+  }
+
+  const cardWidth = 318;
+  const dots = [];
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      const target = index * cardWidth;
+      carousel.scrollTo({ left: target, behavior: 'smooth' });
+    });
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+  });
+
+  const updateDots = () => {
+    if (!dots.length) return;
+    const index = Math.round(carousel.scrollLeft / cardWidth);
+    dots.forEach((dot, i) => {
+      if (i === index) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  };
+
+  carousel.addEventListener('scroll', updateDots);
+  updateDots();
+}
