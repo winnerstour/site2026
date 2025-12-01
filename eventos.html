@@ -788,6 +788,37 @@
   left: auto;
 }
 </style>
+
+
+/* Controles em bolinhas para os carrosséis (dots) */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0 0;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: rgba(148, 163, 184, 0.9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  width: 18px;
+  background: var(--brand);
+}
+
+/* Oculta setas apenas no carrossel de hotéis */
+.hotels-wrapper .carousel-nav {
+  display: none !important;
+}
+
 </head>
 <body>
 
