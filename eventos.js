@@ -319,13 +319,23 @@ document.addEventListener('DOMContentLoaded', async function () {
       eventWhatsCtaEl.href = whatsLink;
     }
 
+    
     const sections = Array.isArray(data.sections) ? data.sections : [];
+    const createdSections = [];
+
+    // 1) Criar todos os <section> em memória, sem anexar ainda
     sections.forEach(function (sec) {
       const wrapper = document.createElement('section');
       wrapper.className = 'content-section';
-      wrapper.setAttribute('data-sec-id', sec.id || sec.sec_id || '');
 
-      if (sec.type === 'cta_whatsapp' || sec.tipo === 'cta_whatsapp') {
+      const secId = sec.id || sec.sec_id || '';
+      const tituloSecao = sec.titulo_secao || '';
+      const tipoSecao = sec.type || sec.tipo || '';
+
+      wrapper.setAttribute('data-sec-id', secId);
+
+      // CTA de WhatsApp (inclui CTA3/4/5 se forem desse tipo)
+      if (tipoSecao === 'cta_whatsapp') {
         wrapper.innerHTML = `
           <div class="cta-whatsapp-block">
             <h2>${sec.titulo_secao || 'Fale com nossa equipe'}</h2>
@@ -333,25 +343,87 @@ document.addEventListener('DOMContentLoaded', async function () {
             <a href="${whatsLink}" class="btn btn-whatsapp">Falar no WhatsApp</a>
           </div>
         `;
-        sectionsEl.appendChild(wrapper);
-        return;
+      } else {
+        // Demais seções (texto normal / conteúdo explicativo)
+        if (tituloSecao && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
+          const h2 = document.createElement('h2');
+          h2.textContent = tituloSecao;
+          wrapper.appendChild(h2);
+        }
+
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+        wrapper.appendChild(contentDiv);
       }
 
-      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
-        const h2 = document.createElement('h2');
-        h2.textContent = sec.titulo_secao;
-        wrapper.appendChild(h2);
+      createdSections.push({
+        sec: sec,
+        wrapper: wrapper,
+        secId: secId,
+        titulo: tituloSecao,
+        used: false
+      });
+    });
+
+    // 2) Helpers para encontrar e usar seções específicas
+    function findSection(key) {
+      if (!key) return null;
+      const upperKey = String(key).toUpperCase();
+      return createdSections.find(function (item) {
+        return (
+          String(item.secId || '').toUpperCase() === upperKey ||
+          String(item.titulo || '').toUpperCase() === upperKey
+        );
+      }) || null;
+    }
+
+    function pushIfExists(entry, targetArr) {
+      if (!entry || entry.used) return;
+      entry.used = true;
+      targetArr.push(entry.wrapper);
+    }
+
+    const orderedWrappers = [];
+
+    // 3) Ordem desejada:
+    // 1, 2, (3 + CTA3), (4 + CTA4), (5 + CTA5), depois o restante
+
+    // Seções 1 e 2 (se existirem)
+    pushIfExists(findSection('1'), orderedWrappers);
+    pushIfExists(findSection('2'), orderedWrappers);
+
+    // Seção 3 + CTA3 logo abaixo
+    const sec3 = findSection('3');
+    const cta3 = findSection('CTA3');
+    pushIfExists(sec3, orderedWrappers);
+    pushIfExists(cta3, orderedWrappers);
+
+    // Seção 4 + CTA4 logo abaixo
+    const sec4 = findSection('4');
+    const cta4 = findSection('CTA4');
+    pushIfExists(sec4, orderedWrappers);
+    pushIfExists(cta4, orderedWrappers);
+
+    // Seção 5 + CTA5 logo abaixo
+    const sec5 = findSection('5');
+    const cta5 = findSection('CTA5');
+    pushIfExists(sec5, orderedWrappers);
+    pushIfExists(cta5, orderedWrappers);
+
+    // 4) Demais seções (6, 7, etc.) seguem na ordem original
+    createdSections.forEach(function (item) {
+      if (!item.used) {
+        item.used = true;
+        orderedWrappers.push(item.wrapper);
       }
+    });
 
-      const contentDiv = document.createElement('div');
-      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
-      wrapper.appendChild(contentDiv);
-
+    // 5) Finalmente, joga tudo dentro do #articleSections
+    orderedWrappers.forEach(function (wrapper) {
       sectionsEl.appendChild(wrapper);
     });
 
-
-    // --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
+// --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
     (async function () {
       const container = document.getElementById('articleSections');
       if (!container) return;
