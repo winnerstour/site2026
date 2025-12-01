@@ -460,7 +460,30 @@ document.addEventListener('DOMContentLoaded', async function () {
       const motivosContainerEl = document.getElementById('motivosContainer');
       if (!motivosWrapperEl || !motivosContainerEl) return;
 
-      const extractedMotivos = Array.isArray(data.motivos) ? data.motivos : [];
+      let extractedMotivos = Array.isArray(data.motivos) ? data.motivos.slice() : [];
+
+      // Fallback: montar motivos a partir dos campos numerados (motivo_emoji_1, motivo_titulo_1, motivo_conteudo_1, etc.)
+      if (!extractedMotivos.length) {
+        const tmp = [];
+        for (let i = 1; i <= 10; i++) {
+          const emojiKey = 'motivo_emoji_' + i;
+          const tituloKey = 'motivo_titulo_' + i;
+          const conteudoKey = 'motivo_conteudo_' + i;
+
+          const emojiVal = data[emojiKey];
+          const tituloVal = data[tituloKey];
+          const conteudoVal = data[conteudoKey];
+
+          if (!emojiVal && !tituloVal && !conteudoVal) continue;
+
+          tmp.push({
+            motivo_emoji: emojiVal || '✨',
+            motivo_titulo: tituloVal || '',
+            motivo_conteudo: conteudoVal || ''
+          });
+        }
+        extractedMotivos = tmp;
+      }
 
       if (!extractedMotivos.length) {
         motivosWrapperEl.style.display = 'none';
