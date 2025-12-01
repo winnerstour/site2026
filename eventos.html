@@ -765,6 +765,29 @@
   text-decoration: none;
 }
 </style>
+
+<style>
+/* Override específico do carrossel de hotéis para posicionar as setas */
+.hotels-wrapper {
+  position: relative;
+}
+
+.hotels-wrapper .carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hotels-wrapper .carousel-nav.prev {
+  left: 6px;
+  right: auto;
+}
+
+.hotels-wrapper .carousel-nav.next {
+  right: 6px;
+  left: auto;
+}
+</style>
 </head>
 <body>
 
