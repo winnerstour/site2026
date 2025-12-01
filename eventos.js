@@ -186,55 +186,6 @@ function renderHotelCard(hotel, eventMeta) {
       <div class="hotel-card">
         <div class="thumb">
           <img loading="lazy" src="${image}" alt="${name}">
-          <div class="hotel-chip" style="
-            position:absolute;
-            top:14px;
-            left:50%;
-            transform:translateX(-50%);
-            max-width:90%;
-            padding:6px 14px;
-            border-radius:999px;
-            background:rgba(15,23,42,0.88);
-            color:#f9fafb;
-            font-size:13px;
-            line-height:1.3;
-            text-align:center;
-            box-shadow:0 4px 12px rgba(15,23,42,0.55);
-            z-index:20;
-          ">
-            <div class="hotel-chip-line hotel-chip-name">${name}</div>
-            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
-          </div>
-          <a href="${href}" class="btn-hotel-primary btn-hotel-overlay" target="_blank" rel="noopener">
-            Reservar agora
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-}
-  let starsText = '';
-  if (stars && Number(stars) > 0) {
-    const n = Math.round(Number(stars));
-    starsText = '★'.repeat(n);
-  }
-
-  const infoParts = [];
-  if (roomInfo) infoParts.push(roomInfo);
-  if (priceLevel) infoParts.push(priceLevel);
-  if (starsText) infoParts.push(starsText);
-  const secondaryInfo = infoParts.join(' | ');
-
-  const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
-  const image = fixPath(rawImage);
-
-  const href = buildHotelBookingUrl(hotel, eventMeta);
-
-  return `
-    <div class="cl-slide">
-      <div class="hotel-card">
-        <div class="thumb">
-          <img loading="lazy" src="${image}" alt="${name}">
           <div class="hotel-chip">
             <div class="hotel-chip-line hotel-chip-name">${name}</div>
             ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
@@ -247,10 +198,6 @@ function renderHotelCard(hotel, eventMeta) {
     </div>
   `;
 }
-
-
-
-
 document.addEventListener('DOMContentLoaded', async function () {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('slug');
