@@ -1,199 +1,389 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-    <title id="pageTitle">Detalhes do Evento — WinnersTour</title> <link rel="icon" id="faviconEl" href="/assets/img/banners/placeholder-favicon.webp" type="image/webp">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
+  <title id="pageTitle">WinnersTour — Evento Corporativo</title>
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
+
+  <style>
+    :root {
+      --brand: #f97316;
+      --brand-dark: #ea580c;
+      --wa: #25D366;
+      --bg-page: #f3f4f6;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --card: #ffffff;
+      --radius-lg: 24px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
+      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
+      --max-width: 760px;
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+      --wrap: var(--max-width);
+      --radius: var(--radius-lg);
+      --shadow-base: var(--shadow-card);
+      --text-charcoal: var(--text-main);
+      --brand-shadow: var(--brand-dark);
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-/* VARIÁVEIS DE COR E ESTILO */
-:root{
-    --brand:#f97316; 
-    --brand-shadow:#C2410C; 
-    --wa:#25D366; 
-    --wa-hover:#1AC656; 
-    --wa-ring:#128C7E; 
-    --text-charcoal:#111827; 
-    --muted:#6b7280;
-    --bg:#fff;
-    --card:#fbfbfb; 
-    --shadow-base:0 2px 5px rgba(2,8,23,.05); 
-    --shadow-hover:0 4px 10px rgba(2,8,23,.10);
-    --card-hover-bg:#f5f5f5; 
-    --radius:18px;
-    --wrap:1024px; 
-    --highlight-color-light: #f97316; /* Fallback para cor de destaque CLARA */
-    --footer-gradient-start-rgb: 249, 115, 22; /* Fallback RGB para Laranja */
-    --footer-gradient-end-rgb: 107, 33, 168; /* Fallback RGB para Violeta */
-}
-*{box-sizing:border-box}
-html{
-    scroll-behavior: smooth; /* ADICIONADO: Scroll Suave */
-}
-html,body{margin:0;padding:0}
+      --shadow-hover: var(--shadow-soft);
+      --card-hover-bg: #f9fafb;
+    }
 
-/* APLICAÇÃO DA FONTE MONTSERRAT */
-body{
-    font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size:16px;
-    line-height:1.5;
-    color:var(--text-charcoal);
-    background:var(--bg);
-    overflow-x: hidden;
-}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
+    * { box-sizing: border-box; }
 
-/* BARRA SUPERIOR (TOPBAR) - REMOVIDA PARA MAXIMIZAR HERO */
-.topbar{position:sticky;top:0;z-index:1000;background:var(--brand); height: 0; overflow: hidden;} /* Oculta o Topbar */
-.topbar__inner{max-width:var(--wrap);margin:0 auto;height:0;display:none} 
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:900;line-height:1; transition: all .2s ease;}
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
 
-/* BOTÃO WHATSAPP PADRÃO (SÓLIDO VERDE) */
-.btn.btn-whatsapp{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center; 
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight: 900;
-    line-height: 1.2;
-    transition: all .2s ease;
-    background: var(--wa); 
-    color: #fff;
-    text-align: center;
-    border: none;
-}
-.btn.btn-whatsapp:hover {
-    background: var(--wa-hover);
-}
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-main);
+      background: var(--bg-page);
+    }
 
-/* CORREÇÃO DO TAMANHO E ÍCONE SVG DENTRO DO BOTÃO */
-.btn.btn-whatsapp svg {
-    height: 24px; 
-    width: 24px; 
-    flex-shrink: 0; 
-    fill: #fff;
-}
-.btn-hero svg {
-    height: 48px; 
-    width: 48px;
-}
-.btn.btn-whatsapp .label{color:#fff;-webkit-text-stroke:0;text-stroke:0;letter-spacing:.04em}
+    img { max-width: 100%; display: block; }
 
-/* LAYOUT PRINCIPAL */
-.wrap{
-    max-width:var(--wrap);
-    margin:16px auto; 
-    padding:0 16px;
-}
-h1,h2,h3{
-    font-weight:900 !important; /* FORÇADO: Garante o peso 900 (Black) */
-    margin:0 0 16px;
-    line-height: 1.1;
-    color: var(--text-charcoal);
-}
-h1 { font-size: 2.25rem; margin-bottom: 8px;}
-h2 { font-size: 2rem; margin-bottom: 20px;} /* H2 MANTIDO GRANDE */
-h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos rebaixados */
+    a { color: inherit; text-decoration: none; }
 
-/* CTA FIXO (MODIFICADO PARA OCULTAR) */
-.event-cta-fixed {
-    position: sticky;
-    bottom: 0;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid rgba(2,8,23,.06);
-    z-index: 900;
-    text-align: center;
-    display: none !important; /* OCULTA O BOTÃO FIXO DUPLICADO */
-}
-.event-cta-fixed .btn {
-    width: 100%;
-    max-width: 400px;
-}
+    /* HERO – degradê invertido com final mais escuro */
+    .hero-wrap {
+      background: linear-gradient(
+        90deg,
+        #b45309 0%,
+        var(--brand-dark) 30%,
+        var(--brand) 65%,
+        #fb923c 100%
+      );
+      color: #fff;
+      padding: 28px 16px 60px 16px;
+      text-align: center;
+      position: relative;
+      overflow: visible;
+    }
 
-/* ESTILO BASE DO CARD DE EVENTO SIMILAR (CARDS E CARROSSÉIS) */
-.card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-    overflow: hidden;
-    transition: all .2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid transparent; 
-    width: 300px; 
-    min-height: 100%;
-}
-.card:hover {
-    box-shadow: var(--shadow-hover);
-    background: var(--card-hover-bg);
-    border-color: rgba(249, 115, 22, 0.5); 
-}
-.card .thumb {
-    height: 100px; 
-    overflow: hidden;
-    border-bottom: 1px solid rgba(2,8,23,.06);
-    background: #f4f4f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.card .thumb img {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-}
-.card .content {
-    padding: 14px;
-}
-.card .title {
-    font-weight: 900;
-    font-size: 1rem;
-    line-height: 1.3;
-    text-transform: uppercase;
-    max-height: 1.3em; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1; 
-    -webkit-box-orient: vertical;
-}
-.card .title img.favicon {
-    width: 16px; 
-    height: 16px; 
-    margin-right: 6px; 
-    display: inline-block; 
-    vertical-align: middle;
-    max-width: 16px !important;
-    max-height: 16px !important;
-}
-.card .subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.3;
-}
+    .hero-top-bar {
+      max-width: var(--max-width);
+      margin: 0 auto 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
 
-/* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
+    /* LOGO WINNERS TOUR */
+    .hero-logo {
+      font-family: 'Montserrat', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .hero-logo:hover {
+      text-shadow: 0 0 12px rgba(0,0,0,0.45);
+      transform: translateY(-1px);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      position: relative;
+    }
+
+    /* WHATSAPP – só o logo */
+    .hero-wa-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .hero-wa-btn img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+    .hero-wa-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
+    .hero-menu-btn {
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: var(--brand-dark);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+      position: relative;
+      z-index: 3;
+    }
+    .hero-menu-btn span {
+      font-size: 16px;
+    }
+    .hero-menu-btn:hover {
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
+
+    .hero-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 0 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    #articleTitle {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: 40px;
+      line-height: 1.25;
+      font-weight: 900;
+      margin: 0 0 12px 0;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.32);
+    }
+
+    #articleSubtitle {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-title-small { font-size: 32px !important; }
+
+    @media (max-width: 640px) {
+      #articleTitle { font-size: 30px; }
+      .hero-top-bar { margin-bottom: 22px; }
+    }
+
+    /* ÁREA DO ARTIGO */
+    .article-main {
+      max-width: var(--max-width);
+      margin: -40px auto 60px auto;
+      padding: 0 16px 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-container {
+      background: #ffffff;
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+      padding: 30px 22px 36px 22px;
+    }
+
+    @media (min-width: 720px) {
+      .article-container { padding: 36px 36px 40px 36px; }
+    }
+
+    .article-container p { margin: 0 0 16px 0; }
+    .article-container p:last-child { margin-bottom: 0; }
+
+    .article-container strong { font-weight: 700; }
+
+    .article-container h2,
+    .article-container h3,
+    .article-container h4 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 800;
+      margin: 26px 0 10px 0;
+      color: var(--brand);
+    }
+
+    .article-container h2 { font-size: 22px; }
+    .article-container h3 { font-size: 20px; }
+
+    .article-container ul {
+      padding-left: 1.2rem;
+      margin: 0 0 16px 0;
+    }
+
+    .article-container li { margin-bottom: 6px; }
+
+    #articleIntro { margin-bottom: 18px; }
+    #articleSections { margin-top: 8px; }
+
+    .content-section + .content-section { margin-top: 20px; }
+
+    /* CTA FINAL – focado em eventos corporativos */
+    .article-cta-wrapper {
+      margin-top: 32px;
+      margin-bottom: 18px;
+    }
+
+    .article-cta-card {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: 26px;
+      box-shadow: var(--shadow-card);
+      padding: 26px 20px 30px 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    @media (min-width: 720px) {
+      .article-cta-card { padding: 30px 32px 32px 32px; }
+    }
+
+    .article-cta-card .cta-title {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      margin: 0 0 14px 0;
+    }
+
+    .article-cta-card .cta-text {
+      font-size: 15px;
+      margin: 0 0 20px 0;
+      color: rgba(255,255,255,0.93);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #b45309;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+      border: none;
+      cursor: pointer;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .cta-button:hover { background: #fef3c7; }
+
+    .cta-button em { font-style: normal; }
+
+    /* ÁREA DE ERRO */
+    #articleError { margin-top: 18px; }
+
+    .error-box {
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      border: 1px solid #fecaca;
+      text-align: center;
+    }
+
+    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
+    .site-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px) scale(.98);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .site-menu.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .site-menu-panel {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+      padding: 10px 14px 10px 14px;
+      min-width: 240px;
+    }
+
+    .site-menu-panel a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 6px;
+      border-radius: 9px;
+      font-size: 15px;
+      color: #111827;
+      transition: background 0.15s ease, transform 0.15s ease;
+      font-weight: 600;
+    }
+
+    .site-menu-panel a:hover {
+      background: #f3f4f6;
+      transform: translateX(2px);
+    }
+
+    .site-menu-icon {
+      width: 26px;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .site-menu-label {
+      flex: 1;
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+    }
+
+    /* RODAPÉ */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      padding: 0 16px 26px 16px;
+    }
+  
+
+  /* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
 .motivos-section {
-    padding: 60px 0 80px; /* AUMENTADO: Mais padding vertical (Pág 4) */
-    margin: 20px 0 0; 
+    padding: 32px 0 40px;
+    margin: 16px 0 0; 
 }
 .motivos-section h3 { /* Alterado para H3 */
     max-width: var(--wrap);
-    margin: 0 auto 15px; 
+    margin: 0 auto 18px; 
     padding: 0 16px;
+    text-align: center;
 }
 .motivos-wrapper {
     position: relative; 
@@ -298,7 +488,10 @@ h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos reba
     }
 }
 
-/* [NOVO] ESTILOS PARA HOTÉIS */
+
+
+
+  /* [NOVO] ESTILOS PARA HOTÉIS */
 .hotels-section {
     padding: 0;
     margin: 30px 0;
@@ -336,6 +529,7 @@ h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos reba
     border-color: rgba(249, 115, 22, 0.5); 
 }
 .hotel-card .thumb {
+    position: relative;
     height: 240px; /* CORRIGIDO: Aumentado para 240px */
     overflow: hidden;
     border-bottom: 1px solid rgba(2,8,23,.06);
@@ -399,492 +593,379 @@ h3 { font-size: 1.5rem; margin-bottom: 20px;} /* H3: Usado para os títulos reba
 .hotel-card .info-separator {
     color: var(--muted);
     padding: 0 5px;
-    font-weight: 400; /* Separador mais discreto */
+    font-weight: 400; /* Separador mais discreto entre os itens */
 }
 
-.hotel-card p {
-    font-size: 14px;
-    color: #4b5563; /* text-slate-600 */
-    margin-bottom: 12px;
+
+
+.hotel-card .hotel-actions {
+    margin-top: 4px;
 }
-/* NOVO ESTILO: Container para os dois botões */
-.hotel-card .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* Espaço entre os dois botões */
-    width: 100%;
-}
-/* Estilos de botão secundário (Ver Detalhes) */
-.btn-secondary {
-    /* CORRIGIDO: Agora usa o esquema de cor da borda/ring */
-    background: transparent; /* Fundo transparente */
-    border: 2px solid currentColor; /* Cor da borda será definida pela classe text-{color} */
-    color: var(--text-charcoal) !important;
-    font-weight: 700 !important;
-    padding: 8px 12px !important;
-    border-radius: 999px;
-    font-size: 14px;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    box-shadow: none !important;
+
+.btn-hotel-primary {
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-/* Estilos de botão secundário (hover) */
-.btn-secondary:hover {
-    background: #e5e7eb; /* Cinza Claro no hover */
-}
-/* NOVO ESTILO: Botão WhatsApp Custom (para pegar a cor da borda) */
-.btn-whatsapp-custom {
-  /* Herda a base do .btn */
-  border-width: 2px;
-  width: 100%;
-  
-  /* Cores dinâmicas definidas pelo JS via atributo style inline */
-  background-color: transparent; 
-  border-color: var(--color-whatsapp-border, #10b981); /* Fallback verde */
-  color: var(--color-whatsapp-text, #10b981); /* Fallback verde */
-  font-weight: 700 !important;
-  padding: 8px 12px !important;
-  border-radius: 999px;
-  font-size: 14px;
-}
-
-/* Estilo do ícone WhatsApp dentro do botão */
-.btn-whatsapp-custom svg {
-  height: 1.25rem; /* h-5 */
-  width: 1.25rem; /* w-5 */
-  margin-right: 0.5rem; /* mr-2 */
-  color: inherit; /* Garante que o ícone herde a cor do texto do botão */
-}
-
-/* Efeito hover (Fundo levemente opaco da cor da borda/texto) */
-.btn-whatsapp-custom:hover {
-  background-color: var(--color-whatsapp-bg-hover, rgba(16, 185, 129, 0.1));
-}
-
-
-/* --- HERO DE TELA CHEIA (FULL-SCREEN) --- */
-.full-screen-hero {
-    height: 100vh; 
-    min-height: 550px; 
-    position: relative;
-    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 20px;
-    background-size: cover;
-    background-position: center;
-    color: #fff; 
-    background-image: url("https://via.placeholder.com/1200x800/203040?text=Beauty+Fair+2026"); 
-}
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(50, 50, 150, 0.75) 0%, rgba(100, 50, 150, 0.85) 100%);
-}
-.hero-content {
-    position: relative;
-    z-index: 20; 
-    max-width: 800px; 
-    padding: 20px;
-}
-#heroTitle {
-    font-size: 4rem; 
-    font-weight: 900; 
-    line-height: 1.1;
-    margin-bottom: 20px; 
-    color: #fff;
-    opacity: 0; 
-    animation: fadeIn 1s ease-out 0.5s forwards;
-}
-/* Estilo para o destaque colorido no título (Cor mais clara) */
-#heroTitle .highlight {
-    font-weight: 900;
-    display: block; /* CORRIGIDO: Garante linha própria */
-    
-    /* Sombra preta forte para borda/halo sem falhas */
-    text-shadow: 0 0 6px #000000, 0 0 10px #000000, 0 0 16px rgba(0, 0, 0, 0.7); 
-    
-    /* A cor será definida como muito clara pelo JS */
-    color: var(--highlight-color-light, #ffd8ad); 
-}
-
-/* NOVO: Estilo para reduzir o texto do título não-destacado */
-#heroTitle small {
-    font-size: 75%; /* 100% - 25% = 75% */
-    font-weight: 900;
-    display: block; /* CORRIGIDO: Garante linha própria */
-    line-height: 1.1;
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-#heroSubheadline {
-    font-size: 1.5rem; 
-    font-weight: 700; /* Negrito adicionado */
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.95);
-    /* Adiciona sombra sutil para melhor contraste em fundos escuros */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-/* Botão do Hero */
-.btn-hero {
-    min-width: 340px;
-    font-size: 1.25rem;
-    padding: 16px 25px;
-    border-color: #fff; 
-    background: var(--wa) !important;
-}
-.btn-hero:hover {
-    background: var(--wa-hover) !important;
-}
-
-#heroMicrocopy {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    border: 1px solid rgba(15,23,42,0.15);
+    background: #ffffff;
     font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    color: #111827;
+    padding: 9px 14px;
+    box-shadow: 0 10px 22px rgba(15,23,42,0.20);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
 }
 
-/* Badge Categoria */
-.hero-badge {
-    font-weight: 900;
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: #fff;
-    background: var(--brand); 
+.btn-hotel-primary:hover {
+    box-shadow: 0 16px 30px rgba(15,23,42,0.30);
+    transform: translateY(-1px);
+}
+
+
+.hotel-card .hotel-chip {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90%;
     padding: 6px 14px;
     border-radius: 999px;
-    display: none; 
-    margin-bottom: 16px;
-    letter-spacing: 0.1em;
-}
-
-/* ESTILOS ESPECÍFICOS PARA O BOTÃO DE SIMULAÇÃO GLOBAL (Laranja) */
-/* REMOVIDO PARA O NOVO REQUISITO DE LINK NO SUBTÍTULO */
-.btn.btn-simulation {
-    display: none !important;
-}
-
-
-/* Animação Pulse/Glow */
-.pulse-glow {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-/* [MODIFICADO] Wrapper para o Vídeo (50% de largura) */
-.youtube-wrapper {
-    max-width: 50%; /* REDUZIDO para 50% */
-    margin: 0 auto; 
-}
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
-    .full-screen-hero {
-        height: auto; 
-        min-height: 450px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-    #heroTitle {
-        font-size: 2.5rem; 
-    }
-    #heroSubheadline {
-        font-size: 1.15rem;
-    }
-    .btn-hero {
-        min-width: 100%;
-        font-size: 1.15rem;
-    }
-    .youtube-wrapper {
-        max-width: 100%; /* Mantido 100% no mobile */
-    }
-}
-
-/* --- NOVO FOOTER DA PÁGINA DE EVENTO --- */
-.site-footer {
-    background: #f8f8f8;
-    padding: 20px 0 0; 
-    border-top: 1px solid rgba(2,8,23,.06);
-    color: var(--text-charcoal);
-    font-size: 14px;
-}
-/* CTA do Rodapé */
-.footer-cta-area {
+    background: rgba(15, 23, 42, 0.9);
+    color: #f9fafb;
+    font-size: 13px;
+    line-height: 1.3;
     text-align: center;
-    padding: 40px 20px; /* CORRIGIDO: Reduzido de 60px para 40px */
-    background: var(--card); /* Fundo neutro */
-    border-top: 1px solid rgba(2,8,23,.06);
-    color: var(--text-charcoal); 
-    margin-bottom: 0; /* GARANTE QUE NAO TENHA MARGEM ABAIXO */
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
+    z-index: 5;
 }
-.footer-cta-title {
-    font-size: 1.5rem; /* Ajuste para H3 - Padrão */
-    font-weight: 900; 
-    margin-bottom: 15px; 
-    color: var(--text-charcoal); /* Título escuro */
+.hotel-card .hotel-chip-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.footer-cta-message { /* Estilo específico para o novo parágrafo */
-    font-size: 1.15rem;
+.hotel-card .hotel-chip-name {
     font-weight: 700;
-    max-width: 500px;
-    margin: 0 auto 20px;
-    color: var(--text-charcoal);
 }
-.footer-cta-microcopy {
-    font-size: 14px;
-    margin-top: 15px;
-    color: var(--muted);
-    font-weight: 400; 
-}
-.footer-cta-area .btn-hero {
-    min-width: 300px;
-    font-size: 1.15rem;
-    padding: 14px 20px;
+.hotel-card .hotel-chip-info {
+    font-weight: 400;
+    opacity: 0.92;
 }
 
-/* NOVO: Força a cor branca para todo o conteúdo da seção laranja */
-#eventDetailsSection * {
-    color: #fff !important; 
-}
-/* Re-aplica a cor do link (se houver links dentro) */
-#eventDetailsSection a {
-    color: #ffd8ad !important; /* Cor clara para links sobre fundo escuro (Fallback) */
-}
-
-
-/* NOME DA AGÊNCIA EM GRADIENTE (Cor exata do chip) */
-.agency-name-section {
-    text-align: center;
-    margin: 10px 0 0; /* REDUZIDO: Ajusta o espaçamento superior e remove o margin-bottom 20px */
-    padding: 0 16px; 
-}
-.agency-name-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 2rem; 
-    text-transform: uppercase;
-    margin: 0;
-    
-    /* Usa a cor exata do Chip Color (var(--brand)) */
-    background-color: var(--brand); 
-    background-image: linear-gradient(90deg, var(--brand), var(--brand)); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-}
-.agency-name-micro {
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 5px;
+/* Botão overlay "Ver detalhes do hotel" sobre a imagem */
+.btn-hotel-overlay {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%, 10px);
+    width: auto;
+    min-width: 160px;
+    padding-inline: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Novo container para Eventos Similares no Rodapé */
-.footer-bottom-related {
-    padding-bottom: 10px; /* REDUZIDO: Espaçamento no final da página */
+@media (min-width: 1025px) {
+  .hotel-card:hover .btn-hotel-overlay,
+  .hotel-card .thumb:hover .btn-hotel-overlay {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+  }
 }
 
-/* --- NOVO: ESTILOS DO BOTÃO HAMBÚRGUER/W --- */
-.header-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1001; /* Acima de tudo */
-    padding: 15px 0 0 15px; /* Espaçamento da borda */
-}
-.menu-w-button {
-    width: 40px;
-    height: 40px;
-    background: none; /* ALTERADO: Remove o fundo para ser flutuante */
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: none; /* REMOVIDO: Sombra/Borda */
-    transition: all 0.3s ease;
-}
-.menu-line {
-    width: 28px; /* ALTERADO: Todas as linhas iguais (28px) */
-    height: 3px;
-    background: var(--text-charcoal); /* ALTERADO: Linhas Pretas */
-    margin: 2px 0; /* ALTERADO: Espaçamento reduzido para juntar as barras */
-    border-radius: 999px; /* ADICIONADO: Pontas arredondadas */
-    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.3s ease;
+@media (max-width: 1024px) {
+  /* Em telas menores, manter o botão sempre visível */
+  .btn-hotel-overlay {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+  }
 }
 
-/* ANIMAÇÃO HOVER (HAMBÚRGUER PARA W) - CORRIGIDA */
-/* Tentativa de W horizontal: 
-   Linhas 1 e 4 (externas): Movem-se para o topo.
-   Linhas 2 e 3 (internas): Movem-se para baixo e juntam-se no centro inferior.
-*/
-.menu-w-button:hover .line-1 {
-    transform: translateY(10px) rotate(25deg); /* Topo esquerdo */
+/* Ajuste fino das setas no carrossel de hotéis */
+.hotels-wrapper .carousel-nav {
+  top: 50%;
+  transform: translateY(-50%);
 }
-.menu-w-button:hover .line-2 {
-    transform: translateY(1px) rotate(-25deg); /* Centro esquerdo (ponto baixo) */
-}
-.menu-w-button:hover .line-3 {
-    transform: translateY(-1px) rotate(25deg); /* Centro direito (ponto baixo) */
-}
-.menu-w-button:hover .line-4 {
-    transform: translateY(-10px) rotate(-25deg); /* Topo direito */
-}
-/* --- FIM DOS ESTILOS DO BOTÃO --- */
 
-@media (max-width: 768px) {
-    .site-footer {
-        padding: 30px 0 0;
-    }
-    .footer-cta-title {
-        font-size: 1.5rem;
-    }
-    .footer-cta-area .btn-hero {
-        min-width: 100%;
-        max-width: 300px; 
-    }
+.hotels-wrapper .carousel-nav.prev {
+  left: 12px;
+  right: auto;
 }
-    </style>
+
+.hotels-wrapper .carousel-nav.next {
+  right: 12px;
+  left: auto;
+}
+
+/* Ajuste fino das setas no carrossel de motivos */
+.motivos-wrapper .carousel-nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.motivos-wrapper .carousel-nav.prev {
+  left: 12px;
+  right: auto;
+}
+
+.motivos-wrapper .carousel-nav.next {
+  right: 12px;
+  left: auto;
+}
+
+</style>
+
+<style>
+/* HOTFIX – Overlay do chip em 3 linhas nos cards de hotel (carrossel de eventos) */
+.hotels-wrapper .hotel-card {
+  position: relative;
+}
+
+.hotels-wrapper .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.hotels-wrapper .thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+/* Chip com 3 linhas (parâmetros, nome, CTA) */
+.hotels-wrapper .hotel-chip {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 96%;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #f9fafb;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hotels-wrapper .hotel-chip-line {
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.hotels-wrapper .hotel-chip-name {
+  font-weight: 700;
+}
+
+/* CTA "Clique aqui e saiba mais" dentro do chip */
+.hotels-wrapper .hotel-chip-cta {
+  margin-top: 2px;
+  font-size: 12px;
+  text-decoration: underline;
+  color: #f9fafb;
+}
+
+.hotels-wrapper .hotel-chip-cta:hover,
+.hotels-wrapper .hotel-chip-cta:focus {
+  text-decoration: none;
+}
+</style>
+
+<style>
+/* Override específico do carrossel de hotéis para posicionar as setas */
+.hotels-wrapper {
+  position: relative;
+}
+
+.hotels-wrapper .carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hotels-wrapper .carousel-nav.prev {
+  left: 6px;
+  right: auto;
+}
+
+.hotels-wrapper .carousel-nav.next {
+  right: 6px;
+  left: auto;
+}
+</style>
+
+<style>
+/* Controles em bolinhas para os carrosséis (dots) */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0 0;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: rgba(148, 163, 184, 0.9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  width: 18px;
+  background: var(--brand);
+}
+
+</style>
+
 </head>
 <body>
-    
-    <div class="header-nav">
-        <div id="homeButton" class="menu-w-button" aria-label="Voltar para a página principal">
-            <div class="menu-line line-1"></div>
-            <div class="menu-line line-2"></div>
-            <div class="menu-line line-3"></div>
-            <div class="menu-line line-4"></div>
-        </div>
-    </div>
-    
-    <section id="eventHeroSection" class="full-screen-hero" style="display:none;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p id="heroBadge" class="hero-badge"></p>
-            
-            <h1 id="heroTitle">
-                <small>Sua viagem para</small>
-                <span class="highlight">[NOME DO EVENTO]</span> 
-                <small>resolvida em minutos.</small>
-            </h1>
-            
-            <p id="heroSubheadline">Voos + hotéis próximos ao [LOCAL] com tarifas corporativas e suporte completo.</p>
-            
-            <a id="heroWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">RECEBA DETALHAMENTO NO WHATSAPP</span>
+
+  <header class="hero-wrap">
+    <div class="hero-top-bar">
+      <!-- LOGO COMO LINK PARA A HOME -->
+      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
+
+      <div class="hero-actions">
+        <!-- ÍCONE WHATSAPP -->
+        <a class="hero-wa-btn"
+           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20conte%C3%BAdo%20no%20site%20da%20Winners%20Tour%20sobre%20eventos%20corporativos%20e%20quero%20ajuda%20para%20planejar%20minha%20viagem."
+           target="_blank" rel="noopener"
+           aria-label="Fale com nossa equipe no WhatsApp">
+          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
+        </a>
+        <!-- BOTÃO DE MENU -->
+        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
+          Menu <span>☰</span>
+        </button>
+        <!-- MENU DROP-DOWN COLADO AO BOTÃO -->
+        <div class="site-menu" id="siteMenu">
+          <div class="site-menu-panel">
+            <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
+              <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
             </a>
-            
-            <small id="heroMicrocopy">Enviamos PDF com hotéis, voos e todos detalhes pra viagem.</small>
+            <a href="corporativo.html">
+              <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
+            </a>
+            <a href="index.html">
+              <span class="site-menu-icon">🗓</span><span class="site-menu-label">Eventos</span>
+            </a>
+            <a href="grupos.html">
+              <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
+            </a>
+            <a href="lazer.html">
+              <span class="site-menu-icon">🏖</span><span class="site-menu-label">Lazer</span>
+            </a>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="hero-main">
+      <h1 id="articleTitle">Carregando evento…</h1>
+      <p id="articleSubtitle"></p>
+    </div>
+  </header>
+
+  <main class="article-main">
+    <section class="article-container">
+      <div id="articleIntro"></div>
+      <div id="articleSections"></div>
     </section>
 
-    <div id="loading" class="wrap" style="text-align: center; padding: 50px;">
-        <p>Carregando detalhes do evento...</p>
-    </div>
-    <div id="error" class="wrap" hidden>
-        </div>
+    <section class="motivos-section">
+      <h3 class="wrap font-black text-center uppercase">Motivos para visitar este evento</h3>
+      <div id="motivosWrapper" class="motivos-wrapper wrap">
+        <ul id="motivosContainer" class="motivos-list"></ul>
+      </div>
+    </section>
+    <section class="article-cta-wrapper">
+      <div class="article-cta-card">
+        <p class="cta-title">
+          Quer ajuda para organizar a viagem da sua equipe para este evento?
+        </p>
+        <p class="cta-text">
+          Montamos cenários completos com voos, hotéis estratégicos perto do pavilhão e logística diária
+          pensada para feiras, congressos e eventos corporativos.
+        </p>
+        <a id="articleCtaWhatsApp"
+           class="cta-button"
+           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20conte%C3%BAdo%20sobre%20eventos%20corporativos%20no%20site%20da%20Winners%20Tour%20e%20quero%20ajuda%20para%20planejar%20minha%20viagem."
+           target="_blank" rel="noopener">
+          👉 <em>FALE COM NOSSA EQUIPE NO WHATSAPP</em>
+        </a>
+      </div>
+    </section>
 
-    <main id="eventContent" class="event-page" hidden>
+    <div id="articleError"></div>
+  </main>
 
-        <div id="hotelsSection" class="hotels-section" style="display:none;">
-            <h3 class="wrap font-black">GARANTA SUA VIAGEM AGORA MESMO</h3>
-            <p class="wrap section-lead" style="margin-bottom: 24px;">
-              Nossos roteiros e hotéis recomendados foram desenhados para quem viaja a trabalho, otimizando seu tempo e custo durante a feira. Veja mais detalhes abaixo e escolha o que mais combina com a sua agenda, fale com nossa equipe para mais informações ou então 
-              <a id="hotelsWhatsLink" href="#" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 700;">clique aqui para simular voos + outros hotéis disponíveis na nossa loja virtual</a>.
-            </p>
+  <footer>
+    Winners Tour — Operadora e Agência de Viagens
+  </footer>
 
-            <div id="hotelsWrapper" class="hotels-wrapper">
-                <div id="hotelsCarouselContainer" class="cl-track">
-                    </div>
-                <button class="carousel-nav prev" id="prevHotels">
-                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-                </button>
-                <button class="carousel-nav next" id="nextHotels">
-                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                </button>
-            </div>
-        </div>
-        
-        <div id="eventDetailsSection" style="background: var(--brand); color: #fff; padding: 50px 0;">
-            
-            <div id="youtubeVideoContainer" class="wrap youtube-wrapper" style="margin-top: 0; margin-bottom: 50px;">
-            </div>
-            
-            <div class="wrap event-details">
-                <h1 id="eventTitle" style="display:none;"></h1>
-                <p id="eventMeta" style="display:none;"></p>
-                
-                <div id="eventDescription">
-                    </div>
-            </div>
-        </div>
-        <div class="motivos-section">
-            <h3 class="wrap font-black text-center uppercase">Motivos para Visitar</h3>
-            
-            <div id="motivosWrapper" class="motivos-wrapper">
-                <ul id="motivosContainer" class="motivos-list">
-                    </ul>
-                </div>
-        </div>
+  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
+  <script>
+    (function() {
+      const menuToggle = document.getElementById('siteMenuToggle');
+      const siteMenu   = document.getElementById('siteMenu');
 
-    </main>
+      if (!menuToggle || !siteMenu) return;
 
-    <footer id="eventPageFooter" class="site-footer">
-        <div class="footer-cta-area">
-            <h3 id="footerCtaTitle" class="footer-cta-title font-black">Garanta Sua Vaga no Evento!</h3>
-            
-            <p id="footerCtaMessage" class="footer-cta-message" style="font-size: 1.15rem; font-weight: 700; max-width: 500px; margin: 0 auto 20px; color: var(--text-charcoal);">
-                Não perca a oportunidade de participar do maior evento de mineração das Américas com todo o conforto e o suporte da Winners Tour.
-            </p>
-            
-            <a id="footerWhatsappCta" href="#" target="_blank" class="btn btn-whatsapp btn-hero pulse-glow" aria-label="Receba proposta no WhatsApp">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.26c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.73.9-.9 1.09-.17.19-.35.21-.64.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.29-.02-.45.12-.59.12-.12.28-.31.42-.47.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36s-.99.97-.99 2.36 1.02 2.74 1.16 2.93c.14.19 2 3.05 4.84 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33zM16.05 3C9.93 3 5 7.93 5 14.05c0 2.34.68 4.53 1.85 6.37L5 29l8.81-1.83c1.79 1.1 3.9 1.74 6.24 1.74 6.12 0 11.05-4.93 11.05-11.05S22.17 3 16.05 3z"></path></svg>
-                <span class="label">RESERVE AGORA NO WHATSAPP</span>
-            </a>
-            <p class="footer-cta-microcopy">Atendimento personalizado • Resposta em minutos</p>
-        </div>
+      function openMenu() {
+        siteMenu.classList.add('is-open');
+      }
 
-        <div class="footer-bottom-info wrap">
-            <div class="agency-name-section">
-                <h3 id="agencyNameTitle" class="agency-name-title">Winners Tour</h3>
-                <p id="agencyNameMicro" class="agency-name-micro">Especializada em viagens corporativas.</p>
-            </div>
-            
-            <div class="footer-bottom wrap" style="text-align: center; border-top: 1px solid rgba(2,8,23,.03); padding-top: 20px;">
-            </div>
-        </div>
+      function closeMenu() {
+        siteMenu.classList.remove('is-open');
+      }
 
-        <div id="footerBottomRelated" class="footer-bottom-related">
-            </div>
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (siteMenu.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
 
-    </footer>
+      // Fecha clicando fora
+      document.addEventListener('click', function(e) {
+        if (!siteMenu.contains(e.target) &&
+            e.target !== menuToggle &&
+            !menuToggle.contains(e.target)) {
+          closeMenu();
+        }
+      });
 
-    <script src="./evento-page-loader.js"></script>
+      // Fecha com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    })();
+  </script>
 
+  <!-- Script que carrega o JSON do evento -->
+  <script src="eventos.js"></script>
 </body>
 </html>
