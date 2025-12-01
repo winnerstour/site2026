@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           </button>
         `);
 
-        initCarousel('hotelsCarouselContainer', 'hotelsWrapper', false);
+        initCarousel('hotelsCarousel', 'hotelsWrapper', false);
       } catch (e) {
         console.warn('Erro ao carregar hotels a partir do venue-data:', e);
         hotelsSection.style.display = 'none';
@@ -486,8 +486,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       }).join('');
 
       motivosContainerEl.innerHTML = motivosHtml;
+      motivosContainerEl.classList.add('cl-track');
 
-      initCarousel('motivosCarouselContainer', 'motivosWrapper', true);
+      initCarousel('motivosContainer', 'motivosWrapper', true);
     })();
 
 
