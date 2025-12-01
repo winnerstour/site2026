@@ -15,20 +15,51 @@ function fixPath(path) {
 // Monta URL de busca no ComprarViagem para o hotel selecionado
 function buildHotelBookingUrl(hotel, eventMeta) {
   if (!hotel) return '#';
-  const baseUrl = 'https://www.comprarviagem.com.br/busca-hotel';
+
+  const baseUrl = 'https://www.comprarviagem.com.br/winnerstour/hotel-list';
 
   const hotelId = hotel.hotel_id || hotel.id || hotel.code || hotel.codigo || '';
-  const hotelName = hotel.name || hotel.titulo || '';
+  if (!hotelId) return baseUrl;
+
+  function formatDateForBooking(dateStr) {
+    if (!dateStr) return '';
+    const trimmed = String(dateStr).trim();
+    if (!trimmed) return '';
+    if (trimmed.includes('T')) return trimmed;
+    // Assume formato YYYY-MM-DD e completa com horário padrão em UTC
+    return trimmed + 'T00:00:00.000Z';
+  }
+
+  const startDate = formatDateForBooking(
+    eventMeta && (eventMeta.startDate || eventMeta.data_inicio || eventMeta.start_date)
+  );
+  const endDate = formatDateForBooking(
+    eventMeta && (eventMeta.endDate || eventMeta.data_fim || eventMeta.end_date)
+  );
 
   const params = [];
 
-  if (hotelId) params.push('hotelId=' + encodeURIComponent(hotelId));
-  if (hotelName) params.push('hotel=' + encodeURIComponent(hotelName));
+  // Parâmetros fixos para 1 quarto / 1 adulto
+  params.push(
+    'rooms=' +
+      encodeURIComponent(
+        '[{"numberOfAdults":1,"numberOfInfant":0,"numberOfChilds":0,"agesOfChild":[],"roomNum":0}]'
+      )
+  );
+  params.push('numberOfAdults=1');
+  params.push('numberOfChild=0');
+  params.push('numberOfInfant=0');
+  params.push('numberOfRooms=1');
+  params.push('type=3');
+  params.push('source=h');
 
-  if (eventMeta) {
-    if (eventMeta.title) {
-      params.push('evento=' + encodeURIComponent(eventMeta.title));
-    }
+  // Parâmetros variáveis
+  params.push('id=' + encodeURIComponent(hotelId));
+  if (startDate) params.push('startDate=' + encodeURIComponent(startDate));
+  if (endDate) params.push('endDate=' + encodeURIComponent(endDate));
+
+  return baseUrl + '?' + params.join('&');
+}
     if (eventMeta.startDate) {
       params.push('checkin=' + encodeURIComponent(eventMeta.startDate));
     }
@@ -114,23 +145,63 @@ function initCarousel(carouselId, wrapperId, isMotivos) {
   }
 
   const prevButton = wrapper.querySelector('.carousel-nav.prev');
-  const nextButton = wrapper.querySelector('.carousel-nav.next');
+  const nextButton = wrapper.quefunction renderHotelCard(hotel, eventMeta) {
+  if (!hotel) return '';
+  const name = hotel.name || hotel.titulo || 'Hotel';
 
-  if (prevButton && nextButton) {
-    prevButton.addEventListener('click', () => {
-      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    });
-    nextButton.addEventListener('click', () => {
-      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    });
+  const price = hotel.nightly_from_brl || hotel.price_from || hotel.preco_desde;
+  const roomspace = hotel.roomspace || hotel.tamanho_quarto;
+  const stars = hotel.stars || hotel.classificacao;
 
-    const checkScroll = () => {
-      const currentScroll = carousel.scrollLeft;
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+  const roomInfo = roomspace ? `🏠 ${roomspace}m²` : '';
 
-      if (window.innerWidth > 1024) {
-        prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
-        nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+  let priceLevel = '';
+  const priceNumber = price != null ? Number(price) : null;
+  if (!Number.isNaN(priceNumber) && priceNumber > 0) {
+    if (priceNumber < 300) priceLevel = '$';
+    else if (priceNumber < 500) priceLevel = '$$';
+    else priceLevel = '$$$';
+  }
+
+  let starsText = '';
+  if (stars && Number(stars) > 0) {
+    const n = Math.round(Number(stars));
+    starsText = '★'.repeat(n);
+  }
+
+  const infoParts = [];
+  if (roomInfo) infoParts.push(roomInfo);
+  if (priceLevel) infoParts.push(priceLevel);
+  if (starsText) infoParts.push(starsText);
+  const secondaryInfo = infoParts.join(' | ');
+
+  const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
+  const image = fixPath(rawImage);
+
+  const href = buildHotelBookingUrl(hotel, eventMeta);
+
+  return `
+    <div class="cl-slide">
+      <div class="hotel-card">
+        <div class="thumb">
+          <img loading="lazy" src="${image}" alt="${name}">
+          <div class="hotel-chip">
+            ${
+              secondaryInfo
+                ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>`
+                : ''
+            }
+            <div class="hotel-chip-line hotel-chip-name"><strong>${name}</strong></div>
+            <a href="${href}" class="hotel-chip-line hotel-chip-cta" target="_blank" rel="noopener">
+              Clique aqui e saiba mais
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+ ? 'block' : 'none';
       } else {
         prevButton.style.display = 'none';
         nextButton.style.display = 'none';
