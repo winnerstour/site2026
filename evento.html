@@ -1,1086 +1,594 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">WinnersTour — Evento Corporativo</title>
+window.VENUE_DATA_PATH = window.VENUE_DATA_PATH || 'venue-data/';
 
-  <!-- FONTES -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+const BASE_PATH = '/site2026';
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
-
-  <style>
-    :root {
-      --brand: #f97316;
-      --brand-dark: #ea580c;
-      --wa: #25D366;
-      --bg-page: #f3f4f6;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --card: #ffffff;
-      --radius-lg: 24px;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
-      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
-      --max-width: 760px;
-    
-      --wrap: var(--max-width);
-      --radius: var(--radius-lg);
-      --shadow-base: var(--shadow-card);
-      --text-charcoal: var(--text-main);
-      --brand-shadow: var(--brand-dark);
-    
-      --shadow-hover: var(--shadow-soft);
-      --card-hover-bg: #f9fafb;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--text-main);
-      background: var(--bg-page);
-    }
-
-    img { max-width: 100%; display: block; }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HERO – degradê invertido com final mais escuro */
-    .hero-wrap {
-      background: linear-gradient(
-        90deg,
-        #b45309 0%,
-        var(--brand-dark) 30%,
-        var(--brand) 65%,
-        #fb923c 100%
-      );
-      color: #fff;
-      padding: 28px 16px 60px 16px;
-      text-align: center;
-      position: relative;
-      overflow: visible;
-    }
-
-    .hero-top-bar {
-      max-width: var(--max-width);
-      margin: 0 auto 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* LOGO WINNERS TOUR */
-    .hero-logo {
-      font-family: 'Montserrat', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .hero-logo:hover {
-      text-shadow: 0 0 12px rgba(0,0,0,0.45);
-      transform: translateY(-1px);
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      position: relative;
-    }
-
-    /* WHATSAPP – só o logo */
-    .hero-wa-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: transparent;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-shadow: none;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-    .hero-wa-btn img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
-    .hero-wa-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
-    .hero-menu-btn {
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: var(--brand-dark);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
-      position: relative;
-      z-index: 3;
-    }
-    .hero-menu-btn span {
-      font-size: 16px;
-    }
-    .hero-menu-btn:hover {
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-      transform: translateY(-1px);
-    }
-
-    .hero-main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 0 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    #articleTitle {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 40px;
-      line-height: 1.25;
-      font-weight: 900;
-      margin: 0 0 12px 0;
-    }
-
-    #articleSubtitle {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-title-small { font-size: 32px !important; }
-
-    @media (max-width: 640px) {
-      #articleTitle { font-size: 30px; }
-      .hero-top-bar { margin-bottom: 22px; }
-    }
-
-    /* ÁREA DO ARTIGO */
-    .article-main {
-      max-width: var(--max-width);
-      margin: -40px auto 60px auto;
-      padding: 0 16px 0 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-container {
-      background: #ffffff;
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      padding: 30px 22px 36px 22px;
-    }
-
-    @media (min-width: 720px) {
-      .article-container { padding: 36px 36px 40px 36px; }
-    }
-
-    .article-container p { margin: 0 0 16px 0; }
-    .article-container p:last-child { margin-bottom: 0; }
-
-    .article-container strong { font-weight: 700; }
-
-    .article-container h2,
-    .article-container h3,
-    .article-container h4 {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 800;
-      margin: 26px 0 10px 0;
-      color: var(--brand);
-    }
-
-    .article-container h2 { font-size: 22px; }
-    .article-container h3 { font-size: 20px; }
-
-    .article-container ul {
-      padding-left: 1.2rem;
-      margin: 0 0 16px 0;
-    }
-
-    .article-container li { margin-bottom: 6px; }
-
-    #articleIntro { margin-bottom: 18px; }
-    #articleSections { margin-top: 8px; }
-
-    .content-section + .content-section { margin-top: 20px; }
-
-    /* CTA FINAL – focado em eventos corporativos */
-    .article-cta-wrapper {
-      margin-top: 32px;
-      margin-bottom: 18px;
-    }
-
-    .article-cta-card {
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      border-radius: 26px;
-      box-shadow: var(--shadow-card);
-      padding: 26px 20px 30px 20px;
-      color: #fff;
-      text-align: center;
-    }
-
-    @media (min-width: 720px) {
-      .article-cta-card { padding: 30px 32px 32px 32px; }
-    }
-
-    .article-cta-card .cta-title {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      margin: 0 0 14px 0;
-    }
-
-    .article-cta-card .cta-text {
-      font-size: 15px;
-      margin: 0 0 20px 0;
-      color: rgba(255,255,255,0.93);
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #b45309;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
-      border: none;
-      cursor: pointer;
-      white-space: normal;
-      text-align: center;
-    }
-
-    .cta-button:hover { background: #fef3c7; }
-
-    .cta-button em { font-style: normal; }
-
-    /* ÁREA DE ERRO */
-    #articleError { margin-top: 18px; }
-
-    .error-box {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 12px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      border: 1px solid #fecaca;
-      text-align: center;
-    }
-
-    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
-    .site-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-8px) scale(.98);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .site-menu.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-
-    .site-menu-panel {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
-      padding: 10px 14px 10px 14px;
-      min-width: 240px;
-    }
-
-    .site-menu-panel a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-radius: 9px;
-      font-size: 15px;
-      color: #111827;
-      transition: background 0.15s ease, transform 0.15s ease;
-      font-weight: 600;
-    }
-
-    .site-menu-panel a:hover {
-      background: #f3f4f6;
-      transform: translateX(2px);
-    }
-
-    .site-menu-icon {
-      width: 26px;
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .site-menu-label {
-      flex: 1;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 700;
-    }
-
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
-      padding: 0 16px 26px 16px;
-    }
-  
-
-  /* ESTILOS DE CARROSSEL UNIVERSAL (CL-TRACK) */
-.motivos-section {
-    padding: 32px 0 40px;
-    margin: 16px 0 0; 
-}
-.motivos-section h3 { /* Alterado para H3 */
-    max-width: var(--wrap);
-    margin: 0 auto 18px; 
-    padding: 0 16px;
-    text-align: center;
-}
-.motivos-wrapper {
-    position: relative; 
-    max-width: var(--wrap); 
-    margin: 0 auto; 
-    padding: 10px 0; 
-}
-.cl-track {
-    list-style: none; 
-    padding: 0; 
-    margin: 0; 
-    display: flex; 
-    gap: 18px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    padding: 0 16px; 
-    scroll-padding-inline: 16px;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.cl-track::-webkit-scrollbar {
-    display: none;
-}
-.cl-slide {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 300px; 
-    max-width: 300px;
-}
-@media (max-width:640px){
-    .cl-slide {
-        width: 86vw; 
-    }
-}
-.motivo-item {
-    background: var(--card); 
-    border: 1px solid rgba(2,8,23,.08); 
-    padding: 20px; 
-    border-radius: var(--radius); 
-    box-shadow: var(--shadow-base);
-    min-height: 180px; 
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.motivo-title-montserrat {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 1rem; 
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    line-height: 1.3;
-}
-.motivo-text-body {
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--text-charcoal);
-}
-
-/* ESTILOS DOS BOTÕES DE NAVEGAÇÃO (SETAS) */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); 
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    background: var(--brand); 
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-}
-.carousel-nav:hover {
-    background: var(--brand-shadow);
-}
-.carousel-nav svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--text-charcoal); 
-}
-.carousel-nav.prev {
-    left: 16px; 
-}
-.carousel-nav.next {
-    right: 16px; 
-}
-@media (min-width: 1025px) { 
-    .carousel-nav.prev {
-        left: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-    .carousel-nav.next {
-        right: calc((100vw - var(--wrap)) / 2 - 20px); 
-    }
-}
-@media (max-width: 1024px) {
-    .carousel-nav {
-        display: none !important; 
-    }
+function fixPath(path) {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  if (path.startsWith(BASE_PATH + '/')) return path;
+  if (path.startsWith('/')) return BASE_PATH + path;
+  return BASE_PATH + '/' + path;
 }
 
 
 
+// Monta URL de busca no ComprarViagem para o hotel selecionado
 
-  /* [NOVO] ESTILOS PARA HOTÉIS */
-.hotels-section {
-    padding: 0;
-    margin: 30px 0;
-}
-.hotels-section h3 { /* Alterado para H3 */
-    max-width: var(--wrap);
-    margin: 0 auto 20px;
-    padding: 0 16px;
-    text-align: center;
-}
-.hotels-wrapper {
-    position: relative; 
-    max-width: var(--wrap); 
-    margin: 0 auto; 
-    padding: 10px 0; 
-}
-/* Estilo do Card de Hotel */
-.hotel-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-base);
-    overflow: hidden;
-    transition: all .2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(2,8,23,.08); 
-    width: 300px; 
-    min-height: 100%;
-    text-align: center;
-}
-.hotel-card:hover {
-    box-shadow: var(--shadow-hover);
-    background: var(--card-hover-bg);
-    border-color: rgba(249, 115, 22, 0.5); 
-}
-.hotel-card .thumb {
-    position: relative;
-    height: 240px; /* CORRIGIDO: Aumentado para 240px */
-    overflow: hidden;
-    border-bottom: 1px solid rgba(2,8,23,.06);
-    background: #f4f4f5;
-}
-.hotel-card .content {
-    padding: 14px;
-    flex-grow: 1;
-}
-.hotel-card .category {
-    font-weight: 700;
-    font-size: 13px;
-    /* Cor do chip será definida pelo Tailwind via JS */
-    margin-bottom: 4px;
-    text-transform: uppercase;
-}
-/* Estilos neutros para tipografia */
-.hotel-card .title {
-    font-weight: 900;
-    font-size: 1rem;
-    color: #111827; /* text-slate-900 */
-    /* Margem removida e adicionada ao bloco de info para separação */
-    margin-bottom: 0; 
-    line-height: 1.2;
-}
-/* NOVO: Estilo para a linha de infos secundárias */
-.hotel-card .secondary-info {
-    font-size: 14px; /* Tamanho da fonte compacto */
-    font-weight: 700;
-    color: var(--text-charcoal);
-    margin-top: 5px; 
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; 
-    line-height: 1.1;
-}
+function buildHotelBookingUrl(hotel, eventMeta) {
+  if (!hotel) return '#';
 
-/* Estilo para o nível de preço e estrelas */
-.hotel-card .price-level {
-    font-weight: 900;
-    color: var(--brand); /* Cor da marca para destaque */
-    margin: 0; 
-    font-size: 14px; /* Garante o mesmo tamanho da linha */
-}
-.hotel-card .stars {
-    color: #FFC700; 
-    font-size: 14px; /* Garante o mesmo tamanho da linha */
-}
-.hotel-card .room-info {
-    display: flex;
-    align-items: center;
-    font-size: 14px; /* Garante o mesmo tamanho da linha */
-    line-height: 1;
-}
-.hotel-card .room-info .emoji {
-    font-size: 14px; /* Tamanho do emoji */
-    margin-right: 2px;
-}
-.hotel-card .info-separator {
-    color: var(--muted);
-    padding: 0 5px;
-    font-weight: 400; /* Separador mais discreto entre os itens */
+  const baseUrl = 'https://www.comprarviagem.com.br/winnerstour/hotel-list';
+
+  const hotelId = hotel.hotel_id || hotel.id || hotel.code || hotel.codigo || '';
+
+  function toIsoDate(dateStr) {
+    if (!dateStr) return '';
+    const parts = String(dateStr).split('T');
+    const day = parts[0]; // espera 'YYYY-MM-DD'
+    if (!day) return '';
+    return day + 'T00:00:00.000Z';
+  }
+
+  let startDate = '';
+  let endDate = '';
+
+  if (eventMeta) {
+    if (eventMeta.startDate) startDate = eventMeta.startDate;
+    if (eventMeta.endDate) endDate = eventMeta.endDate;
+  }
+
+  const params = [];
+
+  // Quarto padrão: 1 adulto, sem crianças/infantes
+  const roomsPayload = [
+    {
+      numberOfAdults: 1,
+      numberOfInfant: 0,
+      numberOfChilds: 0,
+      agesOfChild: [],
+      roomNum: 0
+    }
+  ];
+  params.push('rooms=' + encodeURIComponent(JSON.stringify(roomsPayload)));
+  params.push('numberOfAdults=1');
+  params.push('numberOfChild=0');
+  params.push('numberOfInfant=0');
+  params.push('numberOfRooms=1');
+
+  if (hotelId) {
+    params.push('id=' + encodeURIComponent(String(hotelId)));
+  }
+
+  const startIso = toIsoDate(startDate);
+  const endIso = toIsoDate(endDate);
+  if (startIso) params.push('startDate=' + encodeURIComponent(startIso));
+  if (endIso) params.push('endDate=' + encodeURIComponent(endIso));
+
+  params.push('type=3');
+  params.push('source=h');
+
+  const query = params.join('&');
+  return baseUrl + (query ? ('?' + query) : '');
 }
 
 
 
-.hotel-card .hotel-actions {
-    margin-top: 4px;
+// --- Render de seções em markdown, mantendo estrutura original ---
+function renderMarkdown(text) {
+  if (!text) return '';
+
+  let html = text;
+
+  html = html.replace(/^###\s?(.*)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^##\s?(.*)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^#\s?(.*)$/gm, '<h2>$1</h2>');
+
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  html = html.replace(/```([\s\S]*?)```/g, function (_match, code) {
+    const escaped = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return '<pre><code>' + escaped + '</code></pre>';
+  });
+
+  html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  html = html.replace(/^\s*[-*]\s+(.*)$/gm, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>\s*)+/gm, function (match) {
+    return '<ul>' + match + '</ul>';
+  });
+
+  html = html.replace(/\n{2,}/g, '</p><p>');
+  html = '<p>' + html + '</p>';
+
+  return html;
 }
 
-.btn-hotel-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border-radius: 999px;
-    border: 1px solid rgba(15,23,42,0.15);
-    background: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    color: #111827;
-    padding: 9px 14px;
-    box-shadow: 0 10px 22px rgba(15,23,42,0.20);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-}
-
-.btn-hotel-primary:hover {
-    box-shadow: 0 16px 30px rgba(15,23,42,0.30);
-    transform: translateY(-1px);
-}
 
 
-.hotel-card .hotel-chip {
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 90%;
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.9);
-    color: #f9fafb;
-    font-size: 13px;
-    line-height: 1.3;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
-    z-index: 5;
-}
-.hotel-card .hotel-chip-line {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.hotel-card .hotel-chip-name {
-    font-weight: 700;
-}
-.hotel-card .hotel-chip-info {
-    font-weight: 400;
-    opacity: 0.92;
-}
+// Carrossel genérico (já usado no layout antigo)
+function initCarousel(carouselId, wrapperId, isMotivos) {
+  const carousel = document.getElementById(carouselId);
+  const wrapper = document.getElementById(wrapperId);
+  if (!carousel || !wrapper) return;
 
-/* Botão overlay "Ver detalhes do hotel" sobre a imagem */
-.btn-hotel-overlay {
-    position: absolute;
-    left: 50%;
-    bottom: 18px;
-    transform: translate(-50%, 10px);
-    width: auto;
-    min-width: 160px;
-    padding-inline: 18px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
+  let scrollInterval;
+  let isPaused = false;
+  const cardWidth = 318;
 
-@media (min-width: 1025px) {
-  .hotel-card:hover .btn-hotel-overlay,
-  .hotel-card .thumb:hover .btn-hotel-overlay {
-      opacity: 1;
-      transform: translate(-50%, 0);
-      pointer-events: auto;
+  const scrollRight = () => {
+    if (isPaused) return;
+
+    const currentScroll = carousel.scrollLeft;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    if (currentScroll + carousel.clientWidth >= carousel.scrollWidth - 1) {
+      carousel.scroll({ left: 0, behavior: 'smooth' });
+    } else {
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const startAutoplay = () => {
+    clearInterval(scrollInterval);
+    scrollInterval = setInterval(scrollRight, 8000);
+  };
+
+  carousel.addEventListener('mouseover', () => { isPaused = true; });
+  carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+  if (!isMotivos) {
+    startAutoplay();
+  }
+
+  const prevButton = wrapper.querySelector('.carousel-nav.prev');
+  const nextButton = wrapper.querySelector('.carousel-nav.next');
+
+  if (prevButton && nextButton) {
+    prevButton.addEventListener('click', () => {
+      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    nextButton.addEventListener('click', () => {
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+
+    const checkScroll = () => {
+      const currentScroll = carousel.scrollLeft;
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+      if (window.innerWidth > 1024) {
+        prevButton.style.display = currentScroll > 10 ? 'block' : 'none';
+        nextButton.style.display = currentScroll < maxScroll - 10 ? 'block' : 'none';
+      } else {
+        prevButton.style.display = 'none';
+        nextButton.style.display = 'none';
+      }
+    };
+
+    carousel.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    checkScroll();
   }
 }
 
-@media (max-width: 1024px) {
-  /* Em telas menores, manter o botão sempre visível */
-  .btn-hotel-overlay {
-      opacity: 1;
-      transform: translate(-50%, 0);
-      pointer-events: auto;
+
+
+// Card de hotel com chip superior (nome + parâmetros)
+
+function renderHotelCard(hotel, eventMeta) {
+  if (!hotel) return '';
+  const name = hotel.name || hotel.titulo || 'Hotel';
+
+  const price = hotel.nightly_from_brl || hotel.price_from || hotel.preco_desde;
+  const roomspace = hotel.roomspace || hotel.tamanho_quarto;
+  const stars = hotel.stars || hotel.classificacao;
+
+  const roomInfo = roomspace ? `🏠 ${roomspace}m²` : '';
+
+  let priceLevel = '';
+  const priceNumber = price != null ? Number(price) : null;
+  if (!Number.isNaN(priceNumber) && priceNumber > 0) {
+    if (priceNumber < 300) priceLevel = '$';
+    else if (priceNumber < 500) priceLevel = '$$';
+    else priceLevel = '$$$';
   }
-}
 
-/* Ajuste fino das setas no carrossel de hotéis */
-.hotels-wrapper .carousel-nav {
-  top: 50%;
-  transform: translateY(-50%);
-}
+  let starsText = '';
+  if (stars && Number(stars) > 0) {
+    const n = Math.round(Number(stars));
+    starsText = '★'.repeat(n);
+  }
 
-.hotels-wrapper .carousel-nav.prev {
-  left: 12px;
-  right: auto;
-}
+  const infoParts = [];
+  if (roomInfo) infoParts.push(roomInfo);
+  if (priceLevel) infoParts.push(priceLevel);
+  if (starsText) infoParts.push(starsText);
+  const secondaryInfo = infoParts.join(' | ');
 
-.hotels-wrapper .carousel-nav.next {
-  right: 12px;
-  left: auto;
-}
+  const rawImage = hotel.image || hotel.imagem || '/assets/hotels/default.webp';
+  const image = fixPath(rawImage);
 
-/* Ajuste fino das setas no carrossel de motivos */
-.motivos-wrapper .carousel-nav {
-  top: 50%;
-  transform: translateY(-50%);
-}
+  const href = buildHotelBookingUrl(hotel, eventMeta);
 
-.motivos-wrapper .carousel-nav.prev {
-  left: 12px;
-  right: auto;
-}
-
-.motivos-wrapper .carousel-nav.next {
-  right: 12px;
-  left: auto;
-}
-
-
-    /* Barra promocional superior */
-    .promo-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: linear-gradient(90deg, #1d4ed8, #6366f1, #8b5cf6);
-      color: #ffffff;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 13px;
-      line-height: 1.5;
-      transform: translateY(-100%);
-      opacity: 0;
-      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
-    }
-
-    .promo-bar.is-visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .promo-bar-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .promo-bar-text {
-      font-weight: 300;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .promo-bar-link {
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 1.5;
-      text-decoration: underline;
-      color: #ffffff;
-    }
-
-    .promo-bar-link:hover {
-      text-decoration: underline;
-      opacity: 0.9;
-    }
-
-    body.has-promo-bar .hero-wrap {
-      padding-top: 80px;
-    }
-
-
-</style>
-
-<style>
-/* HOTFIX – Overlay do chip em 3 linhas nos cards de hotel (carrossel de eventos) */
-.hotels-wrapper .hotel-card {
-  position: relative;
-}
-
-.hotels-wrapper .thumb {
-  position: relative;
-  overflow: hidden;
-}
-
-.hotels-wrapper .thumb img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: relative;
-  z-index: 1;
-}
-
-/* Chip com 3 linhas (parâmetros, nome, CTA) */
-.hotels-wrapper .hotel-chip {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 96%;
-  padding: 6px 18px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.92);
-  color: #f9fafb;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.hotels-wrapper .hotel-chip-line {
-  white-space: nowrap;
-  font-size: 13px;
-  line-height: 1.3;
-}
-
-.hotels-wrapper .hotel-chip-name {
-  font-weight: 700;
-}
-
-/* CTA "Clique aqui e saiba mais" dentro do chip */
-.hotels-wrapper .hotel-chip-cta {
-  margin-top: 2px;
-  font-size: 12px;
-  text-decoration: underline;
-  color: #f9fafb;
-}
-
-.hotels-wrapper .hotel-chip-cta:hover,
-.hotels-wrapper .hotel-chip-cta:focus {
-  text-decoration: none;
-}
-</style>
-
-<style>
-/* Override específico do carrossel de hotéis para posicionar as setas */
-.hotels-wrapper {
-  position: relative;
-}
-
-.hotels-wrapper .carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.hotels-wrapper .carousel-nav.prev {
-  left: 6px;
-  right: auto;
-}
-
-.hotels-wrapper .carousel-nav.next {
-  right: 6px;
-  left: auto;
-}
-</style>
-
-<style>
-/* Controles em bolinhas para os carrosséis (dots) */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 10px 0 0;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: none;
-  padding: 0;
-  background: rgba(148, 163, 184, 0.9);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.carousel-dot.active {
-  width: 18px;
-  background: var(--brand);
-}
-
-</style>
-
-</head>
-<body>
-  <div class="promo-bar" id="promoBar">
-    <div class="promo-bar-inner">
-      <span class="promo-bar-text">
-        ✈️ Pensando em viajar? 🏨 Veja valores dos voos e hotéis agora mesmo 👉
-        <a href="https://www.comprarviagem.com.br/winnerstour"
-           target="_blank"
-           rel="noopener"
-           class="promo-bar-link">FAÇA SEU ORÇAMENTO</a>
-      </span>
-    </div>
-  </div>
-
-
-  <header class="hero-wrap">
-    <div class="hero-top-bar">
-      <!-- LOGO COMO LINK PARA A HOME -->
-      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
-
-      <div class="hero-actions">
-        <!-- ÍCONE WHATSAPP -->
-        <a class="hero-wa-btn"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20conte%C3%BAdo%20no%20site%20da%20Winners%20Tour%20sobre%20eventos%20corporativos%20e%20quero%20ajuda%20para%20planejar%20minha%20viagem."
-           target="_blank" rel="noopener"
-           aria-label="Fale com nossa equipe no WhatsApp">
-          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-        </a>
-        <!-- BOTÃO DE MENU -->
-        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
-          Menu <span>☰</span>
-        </button>
-        <!-- MENU DROP-DOWN COLADO AO BOTÃO -->
-        <div class="site-menu" id="siteMenu">
-          <div class="site-menu-panel">
-            <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-              <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-            </a>
-            <a href="corporativo.html">
-              <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-            </a>
-            <a href="index.html">
-              <span class="site-menu-icon">🗓</span><span class="site-menu-label">Eventos</span>
-            </a>
-            <a href="grupos.html">
-              <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-            </a>
-            <a href="lazer.html">
-              <span class="site-menu-icon">🏖</span><span class="site-menu-label">Lazer</span>
+  return `
+    <div class="cl-slide">
+      <div class="hotel-card">
+        <div class="thumb">
+          <img loading="lazy" src="${image}" alt="${name}">
+          <div class="hotel-chip">
+            ${secondaryInfo ? `<div class="hotel-chip-line hotel-chip-info">${secondaryInfo}</div>` : ''}
+            <div class="hotel-chip-line hotel-chip-name"><strong>${name}</strong></div>
+            <a href="${href}" class="hotel-chip-line hotel-chip-cta" target="_blank" rel="noopener">
+              Clique aqui e saiba mais
             </a>
           </div>
         </div>
       </div>
     </div>
+  `;
+}
 
-    <div class="hero-main">
-      <h1 id="articleTitle">Carregando evento…</h1>
-      <p id="articleSubtitle"></p>
-    </div>
-  </header>
 
-  <main class="article-main">
-    <section class="article-container">
-      <div id="articleIntro"></div>
-      <div id="articleSections"></div>
-    </section>
 
-    <section class="motivos-section">
-      <h3 class="wrap font-black text-center uppercase">Motivos para visitar este evento</h3>
-      <div id="motivosWrapper" class="motivos-wrapper wrap">
-        <ul id="motivosContainer" class="motivos-list"></ul>
-      </div>
-    </section>
-    <section class="article-cta-wrapper">
-      <div class="article-cta-card">
-        <p class="cta-title">
-          Quer ajuda para organizar a viagem da sua equipe para este evento?
-        </p>
-        <p class="cta-text">
-          Montamos cenários completos com voos, hotéis estratégicos perto do pavilhão e logística diária
-          pensada para feiras, congressos e eventos corporativos.
-        </p>
-        <a id="articleCtaWhatsApp"
-           class="cta-button"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20conte%C3%BAdo%20sobre%20eventos%20corporativos%20no%20site%20da%20Winners%20Tour%20e%20quero%20ajuda%20para%20planejar%20minha%20viagem."
-           target="_blank" rel="noopener">
-          👉 <em>FALE COM NOSSA EQUIPE NO WHATSAPP</em>
-        </a>
-      </div>
-    </section>
 
-    <div id="articleError"></div>
-  </main>
 
-  <footer>
-    Winners Tour — Operadora e Agência de Viagens
-  </footer>
+document.addEventListener('DOMContentLoaded', async function () {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  if (!slug) return;
 
-  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
-  <script>
-    (function() {
-      const menuToggle = document.getElementById('siteMenuToggle');
-      const siteMenu   = document.getElementById('siteMenu');
+  const loading = document.getElementById('loading');
+  const errorDiv = document.getElementById('error');
+  const pageTitle = document.getElementById('pageTitle');
+  const faviconEl = document.getElementById('faviconEl');
 
-      if (!menuToggle || !siteMenu) return;
+  const heroTitleEl = document.getElementById('heroTitle');
+  const heroSubtitleEl = document.getElementById('heroSubtitle');
+  const heroChipEl = document.getElementById('heroChip');
+  const heroCtaEl = document.getElementById('heroCta');
+  const heroBgEl = document.getElementById('heroBg');
 
-      function openMenu() {
-        siteMenu.classList.add('is-open');
+  const eventSummaryEl = document.getElementById('eventSummary');
+  const eventMetaEl = document.getElementById('eventMeta');
+  const eventWhatsCtaEl = document.getElementById('eventWhatsCta');
+
+  const sectionsEl = document.getElementById('articleSections');
+  const relatedWrapperEl = document.getElementById('relatedWrapper');
+  const relatedCarouselEl = document.getElementById('relatedCarouselContainer');
+
+  try {
+    const jsonPath = fixPath('/eventos/' + slug + '.json');
+    const response = await fetch(jsonPath);
+    if (!response.ok) {
+      throw new Error('Não foi possível carregar os dados do evento.');
+    }
+    const data = await response.json();
+
+    const titulo = data.title || data.titulo || 'Evento';
+    const resumo = data.summary || data.resumo || data.subtitle || '';
+    const local = data.local || data.location || '';
+    const cidade = data.city || data.cidade || '';
+    const estado = data.state || data.estado || '';
+    const dataInicio = data.start_date || data.data_inicio || data.startDate || data.dataInicio || '';
+    const dataFim = data.end_date || data.data_fim || data.endDate || data.dataFim || '';
+    const imagemHero = data.hero_image || data.imagem_hero || '/assets/img/banners/' + slug + '-hero.webp';
+    const chipColor = data.ChipColor || data.chip_color || 'bg-orange-500';
+    const categoriaMacro = data.category_macro || data.categoria_macro || '';
+    const categoriaMicro = data.category_micro || data.categoria_micro || '';
+    const whatsLink = data.whatsapp_link || data.whatsapp || '';
+    const faviconPath = data.favicon || ('/assets/img/banners/' + slug + '-favicon.webp');
+
+    if (pageTitle) {
+      pageTitle.textContent = titulo + ' — WinnersTour';
+    }
+    if (faviconEl) {
+      faviconEl.href = fixPath(faviconPath);
+    }
+
+    if (heroTitleEl) {
+      heroTitleEl.innerHTML = titulo;
+    }
+    if (heroSubtitleEl) {
+      heroSubtitleEl.textContent = resumo;
+    }
+    if (heroChipEl) {
+      heroChipEl.textContent = categoriaMicro ? categoriaMicro.toUpperCase() : 'EVENTO';
+      heroChipEl.classList.add(chipColor);
+    }
+    if (heroBgEl) {
+      heroBgEl.style.backgroundImage = 'url(' + fixPath(imagemHero) + ')';
+    }
+
+    if (eventSummaryEl) {
+      eventSummaryEl.textContent = resumo;
+    }
+
+    if (eventMetaEl) {
+      const parts = [];
+      if (cidade && estado) parts.push(`${cidade} — ${estado}`);
+      else if (cidade) parts.push(cidade);
+      if (dataInicio && dataFim && dataInicio !== dataFim) {
+        parts.push(`${dataInicio} até ${dataFim}`);
+      } else if (dataInicio) {
+        parts.push(dataInicio);
+      }
+      eventMetaEl.textContent = parts.join(' | ');
+    }
+
+    if (eventWhatsCtaEl && whatsLink) {
+      eventWhatsCtaEl.href = whatsLink;
+    }
+
+    const sections = Array.isArray(data.sections) ? data.sections : [];
+    sections.forEach(function (sec) {
+      const wrapper = document.createElement('section');
+      wrapper.className = 'content-section';
+      wrapper.setAttribute('data-sec-id', sec.id || sec.sec_id || '');
+
+      if (sec.type === 'cta_whatsapp' || sec.tipo === 'cta_whatsapp') {
+        const secIdRaw = sec.id || sec.sec_id || '';
+        const secId = String(secIdRaw).toUpperCase();
+        const hideTitle = (secId === 'CTA3' || secId === 'CTA4' || secId === 'CTA5');
+        const tituloCta = sec.titulo_secao || 'Fale com nossa equipe';
+        const tituloHtml = hideTitle ? '' : `<h2>${tituloCta}</h2>`;
+
+        wrapper.innerHTML = `
+          <div class="cta-whatsapp-block">
+            ${tituloHtml}
+            <p>${sec.texto || ''}</p>
+            <a href="${whatsLink}" class="btn btn-whatsapp">Falar no WhatsApp</a>
+          </div>
+        `;
+        sectionsEl.appendChild(wrapper);
+        return;
       }
 
-      function closeMenu() {
-        siteMenu.classList.remove('is-open');
+      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
+        const h2 = document.createElement('h2');
+        h2.textContent = sec.titulo_secao;
+        wrapper.appendChild(h2);
       }
 
-      menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (siteMenu.classList.contains('is-open')) {
-          closeMenu();
-        } else {
-          openMenu();
+      const contentDiv = document.createElement('div');
+      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+      wrapper.appendChild(contentDiv);
+
+      sectionsEl.appendChild(wrapper);
+    });
+
+
+    // --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
+    (async function () {
+      const container = document.getElementById('articleSections');
+      if (!container) return;
+
+      const venueSlugRaw = data.venue_slug || data.local_slug || data.venue || data.centro_evento_slug;
+      if (!venueSlugRaw) return;
+
+      const venueSlug = String(venueSlugRaw)
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      // Posição: depois da seção de CTA de hospedagem (CTA4), com fallbacks
+      const sections = Array.from(container.querySelectorAll('.content-section'));
+      const byId = {};
+      sections.forEach(function (secEl) {
+        const idAttr = secEl.getAttribute('data-sec-id');
+        if (idAttr) {
+          byId[idAttr] = secEl;
         }
       });
 
-      // Fecha clicando fora
-      document.addEventListener('click', function(e) {
-        if (!siteMenu.contains(e.target) &&
-            e.target !== menuToggle &&
-            !menuToggle.contains(e.target)) {
-          closeMenu();
-        }
-      });
-
-      // Fecha com ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeMenu();
-        }
-      });
-    })();
-  </script>
-
-  <!-- Script que carrega o JSON do evento -->
-  
-  <script>
-    (function () {
-      var bar = document.getElementById('promoBar');
-      if (!bar) return;
-
-      var lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var isVisible = false;
-
-      function showBar() {
-        if (!isVisible) {
-          document.body.classList.add('has-promo-bar');
-          bar.classList.add('is-visible');
-          isVisible = true;
+      let anchor = null;
+      const preferredOrder = ['CTA4', '4', 'CTA3', '3'];
+      for (let i = 0; i < preferredOrder.length; i++) {
+        const key = preferredOrder[i];
+        if (byId[key]) {
+          anchor = byId[key];
+          break;
         }
       }
 
-      function hideBar() {
-        if (isVisible) {
-          bar.classList.remove('is-visible');
-          isVisible = false;
-        }
+      const hotelsSection = document.createElement('section');
+      hotelsSection.className = 'hotels-section';
+      hotelsSection.id = 'hotelsSection';
+      hotelsSection.innerHTML = `
+        <h3 class="wrap font-black text-center uppercase">Hotéis próximos do pavilhão</h3>
+        <div id="hotelsWrapper" class="hotels-wrapper wrap">
+          <div id="hotelsCarouselContainer" class="carousel hotels-carousel">
+            <div id="hotelsCarousel" class="carousel-track hotels-track"></div>
+          </div>
+        </div>
+      `;
+
+      if (anchor && anchor.nextSibling) {
+        container.insertBefore(hotelsSection, anchor.nextSibling);
+      } else {
+        container.appendChild(hotelsSection);
       }
 
-      // Exibe ao carregar
-      showBar();
-
-      window.addEventListener('scroll', function () {
-        var current = window.pageYOffset || document.documentElement.scrollTop || 0;
-
-        if (current <= 10) {
-          showBar();
-          lastScroll = current;
+      try {
+        const venueResponse = await fetch(window.VENUE_DATA_PATH + venueSlug + '.json');
+        if (!venueResponse.ok) {
+          console.warn('Falha ao tentar venue-data para', venueSlug, 'status', venueResponse.status);
+          hotelsSection.style.display = 'none';
           return;
         }
 
-        if (current > lastScroll + 5) {
-          hideBar();
-        } else if (current < lastScroll - 5) {
-          showBar();
+        const venueData = await venueResponse.json();
+        const hotelsCarouselEl = document.getElementById('hotelsCarousel');
+        const hotelsWrapperEl = document.getElementById('hotelsWrapper');
+
+        if (!hotelsCarouselEl || !hotelsWrapperEl) return;
+
+        const hotels = Array.isArray(venueData.hotels) ? venueData.hotels.filter(function (h) {
+          return h && (h.type === 'hotel' || h.type === 'daytrip');
+        }) : [];
+
+        if (!hotels.length) {
+          hotelsSection.style.display = 'none';
+          return;
         }
 
-        lastScroll = current;
-      });
-    })();
-  </script>
+        const eventMeta = {
+          slug: data.slug || data.slug_evento || '',
+          title: titulo,
+          startDate: data.start_date || data.data_inicio || data.startDate || data.dataInicio || '',
+          endDate: data.end_date || data.data_fim || data.endDate || data.dataFim || ''
+        };
 
-<script src="eventos.js"></script>
-</body>
-</html>
+        const slidesHtml = hotels.map(function (h) { return renderHotelCard(h, eventMeta); }).join('');
+        hotelsCarouselEl.innerHTML = slidesHtml;
+        hotelsCarouselEl.classList.add('cl-track');
+
+        hotelsWrapperEl.insertAdjacentHTML('beforeend', `
+          <button class="carousel-nav prev">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,7.41L14,6L8,12L14,18L15.41,16.58L10.83,12L15.41,7.41Z" /></svg>
+          </button>
+          <button class="carousel-nav next">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,7.41L10,6L16,12L10,18L8.59,16.58L13.17,12L8.59,7.41Z" /></svg>
+          </button>
+        `);
+
+        initCarousel('hotelsCarousel', 'hotelsWrapper', false);
+        attachDots('hotelsCarousel', 'hotelsWrapper');
+      } catch (e) {
+        console.warn('Erro ao carregar hotels a partir do venue-data:', e);
+        hotelsSection.style.display = 'none';
+      }
+    })();
+
+
+    // --- Carrossel de Motivos (motivos-section) ---
+    (function () {
+      const motivosWrapperEl = document.getElementById('motivosWrapper');
+      const motivosContainerEl = document.getElementById('motivosContainer');
+      if (!motivosWrapperEl || !motivosContainerEl) return;
+
+      let extractedMotivos = Array.isArray(data.motivos) ? data.motivos.slice() : [];
+
+      // Fallback: montar motivos a partir dos campos numerados (motivo_emoji_1, motivo_titulo_1, motivo_conteudo_1, etc.)
+      if (!extractedMotivos.length) {
+        const tmp = [];
+        for (let i = 1; i <= 10; i++) {
+          const emojiKey = 'motivo_emoji_' + i;
+          const tituloKey = 'motivo_titulo_' + i;
+          const conteudoKey = 'motivo_conteudo_' + i;
+
+          const emojiVal = data[emojiKey];
+          const tituloVal = data[tituloKey];
+          const conteudoVal = data[conteudoKey];
+
+          if (!emojiVal && !tituloVal && !conteudoVal) continue;
+
+          tmp.push({
+            motivo_emoji: emojiVal || '✨',
+            motivo_titulo: tituloVal || '',
+            motivo_conteudo: conteudoVal || ''
+          });
+        }
+        extractedMotivos = tmp;
+      }
+
+      if (!extractedMotivos.length) {
+        motivosWrapperEl.style.display = 'none';
+        return;
+      }
+
+      const motivosHtml = extractedMotivos.map(function (m) {
+        const emoji = m.motivo_emoji || m.emoji || '✨';
+        const title = m.motivo_titulo || m.title || 'Atração';
+        const text = m.motivo_conteudo || m.content || '';
+
+        return `
+          <div class="cl-slide">
+            <li class="motivo-item">
+              <strong class="motivo-title-montserrat" style="display:flex; align-items:center;">
+                <span class="emoji" aria-hidden="true">${emoji}</span>
+                ${title.toUpperCase()}
+              </strong>
+              <p class="motivo-text-body">${text}</p>
+            </li>
+          </div>
+        `;
+      }).join('');
+
+      motivosContainerEl.innerHTML = motivosHtml;
+      motivosContainerEl.classList.add('cl-track');
+
+      // Insere setas de navegação no carrossel de motivos (padrão igual ao carrossel de hotéis)
+      motivosWrapperEl.insertAdjacentHTML('beforeend', `
+        <button class="carousel-nav prev">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6L8 12L14 18L15.41 16.58L10.83 12L15.41 7.41Z" /></svg>
+        </button>
+        <button class="carousel-nav next">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 7.41L10 6L16 12L10 18L8.59 16.58L13.17 12L8.59 7.41Z" /></svg>
+        </button>
+      `);
+
+      initCarousel('motivosContainer', 'motivosWrapper', true);
+      attachDots('motivosContainer', 'motivosWrapper');
+    })();
+
+
+    if (loading) loading.hidden = true;
+    if (errorDiv) errorDiv.hidden = true;
+    const eventContent = document.getElementById('eventContent');
+    if (eventContent) eventContent.hidden = false;
+  } catch (err) {
+    console.error(err);
+    if (loading) loading.hidden = true;
+    renderError(err.message);
+  }
+});
+
+
+
+// Controles por bolinhas (dots) para carrosséis horizontais
+function attachDots(carouselId, wrapperId) {
+  const carousel = document.getElementById(carouselId);
+  const wrapper = document.getElementById(wrapperId);
+  if (!carousel || !wrapper) return;
+
+  const slides = Array.from(carousel.children || []);
+  if (!slides.length || slides.length === 1) return;
+
+  let dotsContainer = wrapper.querySelector('.carousel-dots');
+  if (!dotsContainer) {
+    dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    wrapper.appendChild(dotsContainer);
+  } else {
+    dotsContainer.innerHTML = '';
+  }
+
+  const cardWidth = 318;
+  const dots = [];
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      const target = index * cardWidth;
+      carousel.scrollTo({ left: target, behavior: 'smooth' });
+    });
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+  });
+
+  const updateDots = () => {
+    if (!dots.length) return;
+    const index = Math.round(carousel.scrollLeft / cardWidth);
+    dots.forEach((dot, i) => {
+      if (i === index) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  };
+
+  carousel.addEventListener('scroll', updateDots);
+  updateDots();
+}
