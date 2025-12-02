@@ -226,7 +226,7 @@
     }
 
     .article-container h2 { font-size: 22px; }
-    .article-container h3 { font-size: 20px; color: var(--text-main); }
+    .article-container h3 { font-size: 20px; }
 
     .article-container ul {
       padding-left: 1.2rem;
@@ -835,6 +835,83 @@
 
 </style>
 
+
+<style>
+  .prom  <div class="promo-bar" id="promoBar">
+    <div class="promo-bar-inner">
+      <span class="promo-bar-text">✈️ Faça seu orçamento de passagem aérea corporativa com condições especiais.</span>
+      <a href="https://www.comprarviagem.com.br/winnerstour" target="_blank" rel="noopener" class="promo-bar-cta">Comprar viagem com desconto</a>
+    </div>
+  </div>
+
+o-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(90deg, #1d4ed8, #6366f1, #8b5cf6);
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.35);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.45s ease-out, opacity 0.45s ease-out;
+  }
+
+  .promo-bar.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .promo-bar-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .promo-bar-text {
+    font-weight: 500;
+  }
+
+  .promo-bar-cta {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.85);
+    background: rgba(15,23,42,0.2);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .promo-bar-cta:hover {
+    background: rgba(15,23,42,0.35);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(15,23,42,0.45);
+  }
+
+  body.has-promo-bar .hero-wrap {
+    padding-top: 60px;
+  }
+
+  @media (max-width: 640px) {
+    .promo-bar-inner {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+</style>
+
 </head>
 <body>
 
@@ -965,6 +1042,18 @@
   </script>
 
   <!-- Script que carrega o JSON do evento -->
-  <script src="eventos.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var bar = document.getElementById('promoBar');
+      if (!bar) return;
+      document.body.classList.add('has-promo-bar');
+      setTimeout(function () {
+        bar.classList.add('is-visible');
+      }, 250);
+    });
+  </script>
+
+<script src="eventos.js"></script>
 </body>
 </html>
