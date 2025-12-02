@@ -325,27 +325,12 @@ document.addEventListener('DOMContentLoaded', async function () {
       wrapper.className = 'content-section';
       wrapper.setAttribute('data-sec-id', sec.id || sec.sec_id || '');
 
-      const secIdRaw = sec.id || sec.sec_id || '';
-      const secId = String(secIdRaw).toUpperCase();
-      const tituloSecao = sec.titulo_secao || '';
-      const tituloUpper = tituloSecao.toUpperCase();
-
       if (sec.type === 'cta_whatsapp' || sec.tipo === 'cta_whatsapp') {
-        // Esconder título dos CTAs 3, 4 e 5
-        const hideCtaTitle =
-          secId === 'CTA3' ||
-          secId === 'CTA4' ||
-          secId === 'CTA5' ||
-          tituloUpper.indexOf('CTA - BATE-VOLTA') === 0 ||
-          tituloUpper.indexOf('CTA – BATE-VOLTA') === 0 ||
-          tituloUpper.indexOf('CTA - VIAGEM COM HOSPEDAGEM') === 0 ||
-          tituloUpper.indexOf('CTA – VIAGEM COM HOSPEDAGEM') === 0 ||
-          tituloUpper.indexOf('CTA - GRUPOS E ESTADIA COMPLETA') === 0 ||
-          tituloUpper.indexOf('CTA – GRUPOS E ESTADIA COMPLETA') === 0;
-
-        const tituloHtml = hideCtaTitle || !tituloSecao
-          ? ''
-          : `<h2>${tituloSecao}</h2>`;
+        const secIdRaw = sec.id || sec.sec_id || '';
+        const secId = String(secIdRaw).toUpperCase();
+        const hideTitle = (secId === 'CTA3' || secId === 'CTA4' || secId === 'CTA5');
+        const tituloCta = sec.titulo_secao || 'Fale com nossa equipe';
+        const tituloHtml = hideTitle ? '' : `<h2>${tituloCta}</h2>`;
 
         wrapper.innerHTML = `
           <div class="cta-whatsapp-block">
@@ -358,14 +343,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         return;
       }
 
-      // Esconder título da seção de Introdução
-      const hideIntroTitle =
-        tituloUpper.indexOf('INTRODUÇÃO') === 0 &&
-        tituloUpper.indexOf('MISSÃO ESTRATÉGICA') !== -1;
-
-      if (tituloSecao && !hideIntroTitle && tituloSecao !== 'CTA1' && tituloSecao !== 'CTA2') {
+      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
         const h2 = document.createElement('h2');
-        h2.textContent = tituloSecao;
+        h2.textContent = sec.titulo_secao;
         wrapper.appendChild(h2);
       }
 
