@@ -9,7 +9,7 @@
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
@@ -729,13 +729,16 @@
       right: 0;
       z-index: 50;
       background: linear-gradient(90deg, #1d4ed8, #6366f1, #8b5cf6);
-      color: #ffffff;
+      color: #f4f7fa;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-size: 13px;
       line-height: 1.5;
       transform: translateY(-100%);
       opacity: 0;
       transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0.3px;
     }
 
     .promo-bar.is-visible {
@@ -764,7 +767,7 @@
       font-size: 13px;
       line-height: 1.5;
       text-decoration: underline;
-      color: #ffffff;
+      color: #f4f7fa;
     }
 
     .promo-bar-link:hover {
