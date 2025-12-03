@@ -1,6 +1,6 @@
 [
   {
-    "slug": "bienal-internacional-do-livro-sp-2026",
+    "slug": "bienal-do-livro-sp",
     "title": "28 BIENAL DO LIVRO",
     "subtitle": "Maior celebração literária do país, reúne autores, editoras e leitores em experiências, lançamentos e debates inspiradores.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -13,7 +13,7 @@
     "PublicoEstimado": 730000
   },
   {
-    "slug": "agrishow-2026",
+    "slug": "agrishow",
     "title": "AGRISHOW",
     "subtitle": "Maior feira do agronegócio, apresenta máquinas, conectividade e soluções que elevam produtividade e gestão no campo.",
     "category_macro": "Tecnologia & Telecom",
@@ -26,7 +26,7 @@
     "PublicoEstimado": 200000
   },
   {
-    "slug": "beauty-fair-2026",
+    "slug": "beauty-fair",
     "title": "Beauty Fair",
     "subtitle": "Maior feira de beleza profissional das Américas, reúne marcas, lançamentos e tendências que movem o setor.",
     "category_macro": "Beleza & Estética",
@@ -39,7 +39,7 @@
     "PublicoEstimado": 200000
   },
   {
-    "slug": "gamescom-latam-2026",
+    "slug": "gamescom-latam",
     "title": "latam gamescom",
     "subtitle": "Maior festival de games, reúne estúdios e marcas globais em lançamentos, eSports e experiências imersivas.",
     "category_macro": "Tecnologia & Telecom",
@@ -52,7 +52,7 @@
     "PublicoEstimado": 130000
   },
   {
-    "slug": "fit-feria-internacional-de-turismo-2026",
+    "slug": "fit-feria-internacional-de-turismo",
     "title": "Fit Turismo",
     "subtitle": "Maior feira de turismo, conecta destinos, operadoras e profissionais em negócios, inovação e experiências inspiradoras.",
     "category_macro": "Outros/Nichados",
@@ -91,7 +91,7 @@
     "PublicoEstimado": 90000
   },
   {
-    "slug": "arnold-sports-festival-south-america",
+    "slug": "arnold-sports-festival",
     "title": "Arnold Sports Festival",
     "subtitle": "Maior encontro multiesportivo, une competições, atletas e marcas, com saúde, fitness e performance em experiências marcantes.",
     "category_macro": "Saúde & Medicina & Farma",
@@ -117,7 +117,7 @@
     "PublicoEstimado": 85000
   },
   {
-    "slug": "caminos-y-sabores-2026",
+    "slug": "caminos-y-sabores",
     "title": "Caminos y Sabores",
     "subtitle": "Grande mostra de gastronomia e produtos regionais, celebra sabores, tradições e negócios que fortalecem o setor alimentício.",
     "category_macro": "Outros/Nichados",
@@ -130,7 +130,7 @@
     "PublicoEstimado": 80000
   },
   {
-    "slug": "apas-show-2026",
+    "slug": "apas-show",
     "title": "APAS SHOW",
     "subtitle": "Maior evento supermercadista do mundo, conecta indústria e varejo em experiências, negócios e tendências do setor.",
     "category_macro": "Foodservice & Bebidas",
@@ -195,7 +195,7 @@
     "PublicoEstimado": 70000
   },
   {
-    "slug": "expomin-2027",
+    "slug": "expomin",
     "title": "EXPOMIN 2027",
     "subtitle": "Principal feira de mineração da América Latina, realizada no Espacio Riesco (Santiago), conectando mineradoras, fornecedores, investidores e governos em torno de tecnologia, ESG e novos projetos.",
     "category_macro": "Mineração & Energia",
@@ -221,7 +221,7 @@
     "PublicoEstimado": 65000
   },
   {
-    "slug": "batev-construcao-habitacao-2026",
+    "slug": "batev-construcao-habitacao-",
     "title": "BATEV",
     "subtitle": "Principal feira de construção e habitação, apresenta materiais, sustentabilidade e soluções que impulsionam obras e projetos.",
     "category_macro": "Construção & Arquitetura",
@@ -286,7 +286,7 @@
     "PublicoEstimado": 60000
   },
   {
-    "slug": "fipan-2026",
+    "slug": "fipan",
     "title": "FIPAN",
     "subtitle": "Principal feira de panificação e confeitaria, conecta padeiros, confeiteiros e indústria em tendências e negócios.",
     "category_macro": "Foodservice & Bebidas",
@@ -338,7 +338,7 @@
     "PublicoEstimado": 55000
   },
   {
-    "slug": "formobile-2026",
+    "slug": "formobile-",
     "title": "ForMóbile",
     "subtitle": "Principal feira da indústria moveleira, apresenta máquinas, painéis e soluções que aceleram design, produtividade e negócios.",
     "category_macro": "Outros/Nichados",
@@ -416,7 +416,7 @@
     "PublicoEstimado": 45000
   },
   {
-    "slug": "fisp-2026",
+    "slug": "fisp",
     "title": "FISP",
     "subtitle": "Maior encontro de segurança e saúde do trabalho, com inovações, EPIs, treinamentos e soluções para ambientes industriais.",
     "category_macro": "Saúde & Medicina & Farma",
@@ -468,7 +468,7 @@
     "PublicoEstimado": 40000
   },
   {
-    "slug": "eletrolar-show-all-connected-2026",
+    "slug": "eletrolar-show-all-connected",
     "title": "All Eletrolar",
     "subtitle": "Plataforma líder de eletroeletrônicos e tecnologia, reúne marcas, novidades e soluções que impulsionam varejo e indústria.",
     "category_macro": "Tecnologia & Telecom",
@@ -481,7 +481,7 @@
     "PublicoEstimado": 40000
   },
   {
-    "slug": "fiee-2027",
+    "slug": "fiee",
     "title": "FIEE",
     "subtitle": "Encontro líder da indústria elétrica e eletrônica, com tecnologia, automação e energia que impulsionam a inovação.",
     "category_macro": "Construção & Arquitetura",
@@ -533,7 +533,7 @@
     "PublicoEstimado": 35000
   },
   {
-    "slug": "expo-logisti-k-2026",
+    "slug": "expo-logisti-k",
     "title": "Expo Logisti-K",
     "subtitle": "Plataforma líder de logística e supply chain, conecta transporte, armazenagem e automação com tecnologia e eficiência.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -611,7 +611,7 @@
     "PublicoEstimado": 33000
   },
   {
-    "slug": "marmomac-brazil-2026",
+    "slug": "marmomac-brazil",
     "title": "MARMOMAC BRAZIL",
     "subtitle": "Principal plataforma de rochas ornamentais e superfícies, une pedreiras, máquinas e design para projetos de arquitetura.",
     "category_macro": "Construção & Arquitetura",
@@ -624,7 +624,7 @@
     "PublicoEstimado": 30000
   },
   {
-    "slug": "induspar-2027",
+    "slug": "induspar",
     "title": "INDUSPAR",
     "subtitle": "Encontro industrial que conecta fabricantes e fornecedores, com máquinas, automação e soluções que elevam produtividade no setor.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -637,7 +637,7 @@
     "PublicoEstimado": 30000
   },
   {
-    "slug": "automechanika-buenos-aires-2026",
+    "slug": "automechanika-buenos-aires",
     "title": "Automechanika Buenos Aires",
     "subtitle": "Principal feira internacional de serviços automotivos da Argentina, conecta fabricantes, distribuidores e oficinas ao aftermarket do Cone Sul.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -676,7 +676,7 @@
     "PublicoEstimado": 27000
   },
   {
-    "slug": "concrete-show-south-america",
+    "slug": "concrete-show",
     "title": "CONCRETE SHOW",
     "subtitle": "Principal feira de concreto e construção, apresenta soluções e tecnologia para obras, pré-moldados e infraestrutura.",
     "category_macro": "Construção & Arquitetura",
@@ -702,7 +702,7 @@
     "PublicoEstimado": 25000
   },
   {
-    "slug": "snec-pv-es-latam-2026",
+    "slug": "snec-pv-es-latam",
     "title": "SNEC PV&ES LATAM",
     "subtitle": "Plataforma líder em energia solar fotovoltaica, une fabricantes, EPCs e distribuidores com inversores, storage e soluções.",
     "category_macro": "Construção & Arquitetura",
@@ -715,7 +715,7 @@
     "PublicoEstimado": 25000
   },
   {
-    "slug": "fithep-expoalimentaria-2026",
+    "slug": "fithep-expoalimentaria",
     "title": "FITHEP Expoalimentaria",
     "subtitle": "Feira de alimentos e bebidas que reúne indústria, tecnologia e ingredientes, gerando inovação e negócios.",
     "category_macro": "Foodservice & Bebidas",
@@ -767,7 +767,7 @@
     "PublicoEstimado": 25000
   },
   {
-    "slug": "yes-movel-show-sao-paulo-export-2026",
+    "slug": "yes-movel-show-sao-paulo-export",
     "title": "Yes São Móvel Paulo",
     "subtitle": "Principal encontro do varejo de móveis e eletros, conecta fabricantes, lojistas e marcas em lançamentos, tendências e negócios.",
     "category_macro": "Construção & Arquitetura",
@@ -780,7 +780,7 @@
     "PublicoEstimado": 22000
   },
   {
-    "slug": "smart-city-expo-curitiba-2026",
+    "slug": "smart-city-expo-curitiba",
     "title": "Smart City Expo Curitiba 2026",
     "subtitle": "Principal evento de cidades inteligentes e tecnologia urbana da América Latina, conectando governos, empresas e investidores em Curitiba.",
     "category_macro": "Tecnologia & Inovação & Cidades Inteligentes",
@@ -793,7 +793,7 @@
     "PublicoEstimado": 22000
   },
   {
-    "slug": "fispal-sorvetes-2026",
+    "slug": "fispal-sorvetes",
     "title": "Fispal Sorvetes",
     "subtitle": "Feira do mercado de sorvetes, gelato e confeitaria, com inovação, equipamentos e tendências que movem o setor.",
     "category_macro": "Foodservice & Bebidas",
@@ -806,7 +806,7 @@
     "PublicoEstimado": 22000
   },
   {
-    "slug": "fcepharmacosmetic",
+    "slug": "fce-pharma-cosmetique",
     "title": "FCE PHARMA",
     "subtitle": "Encontro líder da indústria farmacêutica, reúne ingredientes, P&D, qualidade e soluções que aceleram inovação.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -819,7 +819,7 @@
     "PublicoEstimado": 22000
   },
   {
-    "slug": "fcepharmacosmetic",
+    "slug": "fce-pharma-cosmetique",
     "title": "FCE PHARMA",
     "subtitle": "Encontro líder da indústria farmacêutica, reúne ingredientes, P&D, qualidade e soluções que aceleram inovação.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -845,7 +845,7 @@
     "PublicoEstimado": 22000
   },
   {
-    "slug": "abimad-2026-sao-paulo-expo",
+    "slug": "abimad",
     "title": "ABIMAD Expo",
     "subtitle": "Encontro líder de móveis e design premium, conecta lojistas, arquitetos e marcas em lançamentos, tendências e negócios.",
     "category_macro": "Construção & Arquitetura",
@@ -858,7 +858,7 @@
     "PublicoEstimado": 20000
   },
   {
-    "slug": "beauty-show-2026",
+    "slug": "beauty-show",
     "title": "Beauty",
     "subtitle": "Encontro de estética e beleza, reúne marcas, técnicas e lançamentos que impulsionam resultados em clínicas e salões.",
     "category_macro": "Saúde & Medicina & Farma",
@@ -871,7 +871,7 @@
     "PublicoEstimado": 20000
   },
   {
-    "slug": "isc-brasil-2026",
+    "slug": "isc-brasil",
     "title": "ISC Brasil",
     "subtitle": "Encontro referência em segurança eletrônica, reúne vigilância, controle de acesso e proteção contra incêndio e negócios.",
     "category_macro": "Tecnologia & Telecom",
@@ -923,7 +923,7 @@
     "PublicoEstimado": 20000
   },
   {
-    "slug": "febrava-rio-2026",
+    "slug": "febrava-rio",
     "title": "FEBRAVA RIO",
     "subtitle": "Encontro de HVAC-R que destaca climatização, refrigeração e qualidade do ar, com tecnologia, eficiência e negócios.",
     "category_macro": "Tecnologia & Telecom",
@@ -936,7 +936,7 @@
     "PublicoEstimado": 20000
   },
   {
-    "slug": "expobor-2026",
+    "slug": "expobor",
     "title": "EXPOBOR",
     "subtitle": "Encontro líder da cadeia da borracha e elastômeros, reúne tecnologia, materiais e sustentabilidade para a indústria.",
     "category_macro": "Tecnologia & Telecom",
@@ -949,7 +949,7 @@
     "PublicoEstimado": 18000
   },
   {
-    "slug": "paving-expo-2026",
+    "slug": "paving-expo",
     "title": "Paving Expo",
     "subtitle": "Principal encontro de pavimentação e infraestrutura viária, com tecnologia, equipamentos e soluções que impulsionam obras.",
     "category_macro": "Construção & Arquitetura",
@@ -962,7 +962,7 @@
     "PublicoEstimado": 18000
   },
   {
-    "slug": "tecno-fidta-2026",
+    "slug": "tecno-fidta",
     "title": "Tecno Fidta",
     "subtitle": "Plataforma de tecnologia para alimentos e bebidas, reúne processamento, ingredientes, embalagem e automação em negócios e inovação.",
     "category_macro": "Foodservice & Bebidas",
@@ -975,7 +975,7 @@
     "PublicoEstimado": 16000
   },
   {
-    "slug": "fenagra-2026",
+    "slug": "fenagra",
     "title": "Fenagra",
     "subtitle": "Maior encontro de óleos e proteínas, reúne reciclagem animal, nutrição, biodiesel e negócios que movem o setor.",
     "category_macro": "Foodservice & Bebidas",
@@ -1001,7 +1001,7 @@
     "PublicoEstimado": 15000
   },
   {
-    "slug": "abrafati-show-2027",
+    "slug": "abrafati-show",
     "title": "ABRAFATI SHOW",
     "subtitle": "Principal encontro de tintas e revestimentos, reúne inovação, tecnologia e sustentabilidade que impulsionam a cadeia.",
     "category_macro": "Construção & Arquitetura",
@@ -1014,7 +1014,7 @@
     "PublicoEstimado": 15000
   },
   {
-    "slug": "emitex-simatex-confemaq-2026",
+    "slug": "emitex-simatex-confemaq",
     "title": "Emitex + Simatex + Confemaq 2026",
     "subtitle": "Plataforma integrada da cadeia têxtil latino-americana – de fibras e insumos à automação 4.0 na confecção.",
     "category_macro": "Feiras e Congressos",
@@ -1040,7 +1040,7 @@
     "PublicoEstimado": 14000
   },
   {
-    "slug": "semana-industrial-mineira-2027",
+    "slug": "semana-industrial-mineira",
     "title": "SIM Industrial",
     "subtitle": "Principal encontro da indústria mineira, une fabricantes e fornecedores com automação, tecnologia e negócios que aceleram a produção.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1053,7 +1053,7 @@
     "PublicoEstimado": 13000
   },
   {
-    "slug": "congress-brazil-mobile-expo-2026",
+    "slug": "congress-brazil-mobile-expo",
     "title": "CBX Mobile Expo",
     "subtitle": "Plataforma de mobilidade e conectividade, reúne marcas, 5G, apps e soluções que impulsionam o ecossistema digital.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1079,7 +1079,7 @@
     "PublicoEstimado": 12000
   },
   {
-    "slug": "expo-frio-calor-chile-2026",
+    "slug": "expo-frio-calor-chile",
     "title": "Frío Calor Chile",
     "subtitle": "Encontro de climatização e refrigeração, reúne tecnologia, eficiência energética e soluções para o setor HVAC.",
     "category_macro": "Tecnologia & Telecom",
@@ -1131,7 +1131,7 @@
     "PublicoEstimado": 12000
   },
   {
-    "slug": "set-expo-2026",
+    "slug": "set-expo",
     "title": "SET EXPO",
     "subtitle": "Plataforma de mídia e broadcast, conecta TV, streaming e produção a 5G, IP e workflows avançados que modernizam o setor.",
     "category_macro": "Tecnologia & Telecom",
@@ -1144,7 +1144,7 @@
     "PublicoEstimado": 12000
   },
   {
-    "slug": "yes-movel-show-campinas-2026",
+    "slug": "yes-movel-show-campinas",
     "title": "Yes Móvel Campinas",
     "subtitle": "Principal encontro do varejo de móveis e eletros, conecta fabricantes, lojistas e marcas em lançamentos, tendências e negócios.",
     "category_macro": "Construção & Arquitetura",
@@ -1170,7 +1170,7 @@
     "PublicoEstimado": 10000
   },
   {
-    "slug": "yes-movel-show-minas-gerais-2026",
+    "slug": "yes-movel-show-minas-gerais",
     "title": "Yes Móvel Minas",
     "subtitle": "Principal encontro do varejo de móveis e eletros, conecta fabricantes, lojistas e marcas em lançamentos, tendências e negócios.",
     "category_macro": "Construção & Arquitetura",
@@ -1209,7 +1209,7 @@
     "PublicoEstimado": 9000
   },
   {
-    "slug": "33-congresso-expo-fenabrave",
+    "slug": "fenabrave",
     "title": "Fenabrave",
     "subtitle": "Maior encontro de concessionárias e mobilidade, conecta montadoras, serviços e gestão para impulsionar vendas e inovação.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1222,7 +1222,7 @@
     "PublicoEstimado": 9000
   },
   {
-    "slug": "yes-movel-show-goias-2026",
+    "slug": "yes-movel-show-goias",
     "title": "Yes Móvel Goiás",
     "subtitle": "Principal encontro do varejo de móveis e eletros, conecta fabricantes, lojistas e marcas em lançamentos, tendências e negócios.",
     "category_macro": "Construção & Arquitetura",
@@ -1235,7 +1235,7 @@
     "PublicoEstimado": 8000
   },
   {
-    "slug": "rh-summit-2026",
+    "slug": "rh-summit",
     "title": "RH",
     "subtitle": "Maior encontro de gestão de pessoas, conecta líderes, HR Techs e especialistas com tendências, cases e networking.",
     "category_macro": "Tecnologia & Telecom",
@@ -1274,7 +1274,7 @@
     "PublicoEstimado": 5500
   },
   {
-    "slug": "hyvolution-chile-2026",
+    "slug": "hyvolution-chile",
     "title": "Hyvolution Chile 2026",
     "subtitle": "Principal hub latino-americano de hidrogênio verde, conectando governo, investidores e indústria em Santiago.",
     "category_macro": "Energia & Sustentabilidade & ESG",
@@ -1313,7 +1313,7 @@
     "PublicoEstimado": 3000
   },
   {
-    "slug": "cidade-csc-2026",
+    "slug": "cidade-csc",
     "title": "Cidade CSC",
     "subtitle": "Encontro que conecta líderes de CSC, finanças e operações, com cases, automação e estratégias para eficiência corporativa.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1326,7 +1326,7 @@
     "PublicoEstimado": 3000
   },
   {
-    "slug": "abx26-automotive-business-experience-2026",
+    "slug": "abx26-automotive-business-experience",
     "title": "ABX26 Automotive Business",
     "subtitle": "Experiência imersiva do setor automotivo, une líderes, montadoras e tech em inovação, dados e negócios estratégicos.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1339,7 +1339,7 @@
     "PublicoEstimado": 3000
   },
   {
-    "slug": "imcas-americas-2026",
+    "slug": "imcas-americas",
     "title": "IMCAS Americas",
     "subtitle": "Maior congresso de dermatologia e medicina estética, reúne especialistas, evidências clínicas e técnicas avançadas.",
     "category_macro": "Saúde & Medicina & Farma",
@@ -1365,7 +1365,7 @@
     "PublicoEstimado": 0
   },
   {
-    "slug": "salao-nacional-internacional-motopecas-2026",
+    "slug": "salao-nacional-internacional-motopecas",
     "title": "Salão Motopeças",
     "subtitle": "Maior plataforma de motopeças e acessórios, reúne fabricantes, distribuidores e oficinas com tecnologia, lançamentos e negócios.",
     "category_macro": "Automotivo & Autopeças & Motos",
@@ -1378,7 +1378,7 @@
     "PublicoEstimado": 0
   },
   {
-    "slug": "expo-construcao-offsite-2026",
+    "slug": "expo-construcao-offsite",
     "title": "Expo Construção Offsite 2026",
     "subtitle": "A maior exposição de construção modular offsite da América Latina no Sambódromo do Anhembi",
     "category_macro": "Feiras e Congressos",
@@ -1391,7 +1391,7 @@
     "PublicoEstimado": "Executivos de construtoras e incorporadoras, investidores, gestores de fundos, arquitetos, engenheiros, fabricantes de sistemas offsite e fornecedores da cadeia da construção civil"
   },
   {
-    "slug": "expo-pizzaria-2026",
+    "slug": "expo-pizzaria",
     "title": "Expo Pizzaria 2026",
     "subtitle": "A maior feira B2B de pizzarias da América Latina no hub de foodservice do Distrito Anhembi",
     "category_macro": "Feiras e Congressos",
@@ -1417,7 +1417,7 @@
     "PublicoEstimado": 0
   },
   {
-    "slug": "expo-burguer-2026",
+    "slug": "expo-burguer",
     "title": null,
     "subtitle": null,
     "category_macro": null,
