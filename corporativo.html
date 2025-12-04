@@ -508,16 +508,15 @@ a{text-decoration:none;color:inherit}
     <h2 class="page-title">GESTÃO DE VIAGENS CORPORATIVAS</h2>
     <p class="page-subtitle">Conteúdo estratégico para a gestão inteligente de viagens, custos e eventos da sua empresa.</p>
     
-    
     <div id="events-grid">
-      <div class="event-card">
-        <div class="card-media"></div>
-        <div class="card-content">
-          <p class="card-title">Carregando artigos...</p>
-          <p class="card-subtitle">Aguarde enquanto carregamos os conteúdos corporativos.</p>
-        </div>
-      </div>
+  <div class="event-card">
+    <div class="card-media"></div>
+    <div class="card-content">
+      <p class="card-title">Carregando artigos...</p>
+      <p class="card-subtitle">Aguarde enquanto carregamos os conteúdos corporativos.</p>
     </div>
+  </div>
+</div>
     
   </div>
 </div>
@@ -527,6 +526,11 @@ a{text-decoration:none;color:inherit}
     var grid = document.getElementById('events-grid');
     var pageTitleEl = document.querySelector('.page-title');
     var pageSubtitleEl = document.querySelector('.page-subtitle');
+
+    function getSlugParam() {
+      var params = new URLSearchParams(window.location.search);
+      return params.get('slug');
+    }
 
     fetch('index-artigos-corporativos.json?cache=' + Date.now())
       .then(function(response) { return response.json(); })
@@ -545,8 +549,9 @@ a{text-decoration:none;color:inherit}
 
         data.artigos.forEach(function(artigo) {
           var card = document.createElement('a');
-          var hrefJson = artigo.json_path || ('artigos/' + artigo.slug + '.json');
-          card.href = hrefJson;
+          // Agora apontando para o TEMPLATE artigo-corporativo.html com slug na querystring
+          var hrefTemplate = 'artigo-corporativo.html?slug=' + encodeURIComponent(artigo.slug || '');
+          card.href = hrefTemplate;
           card.className = 'event-card';
           card.setAttribute('aria-label', artigo.titulo_card || artigo.titulo_curto || artigo.titulo || '');
 
@@ -555,7 +560,6 @@ a{text-decoration:none;color:inherit}
 
           var img = document.createElement('img');
           img.loading = 'lazy';
-
           var imgSrc = artigo.card_image || ('assets/artigos/' + artigo.slug + '.webp');
           img.src = imgSrc;
           img.alt = artigo.titulo_card || artigo.titulo || '';
