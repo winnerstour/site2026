@@ -1,612 +1,275 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-store, must-revalidate, max-age=0" />
-  <title id="pageTitle">Winners Tour — Artigo Corporativo</title>
-
-  <!-- FONTES -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="assets/misc/favicon.png">
-
-  <style>
-    :root {
-      --brand: #f97316;
-      --brand-dark: #ea580c;
-      --wa: #25D366;
-      --bg-page: #f3f4f6;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --card: #ffffff;
-      --radius-lg: 24px;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
-      --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.16);
-      --max-width: 760px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--text-main);
-      background: var(--bg-page);
-    }
-
-    img { max-width: 100%; display: block; }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HERO – degradê invertido com final mais escuro */
-    .hero-wrap {
-      background: linear-gradient(
-        90deg,
-        #b45309 0%,
-        var(--brand-dark) 30%,
-        var(--brand) 65%,
-        #fb923c 100%
-      );
-      color: #fff;
-      padding: 28px 16px 60px 16px;
-      text-align: center;
-      position: relative;
-      overflow: visible;
-    }
-
-    .hero-top-bar {
-      max-width: var(--max-width);
-      margin: 0 auto 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* LOGO WINNERS TOUR */
-    .hero-logo {
-      font-family: 'Montserrat', system-ui, sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .hero-logo:hover {
-      text-shadow: 0 0 12px rgba(0,0,0,0.45);
-      transform: translateY(-1px);
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-    }
-
-    /* WHATSAPP – só o logo */
-    .hero-wa-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: transparent;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-shadow: none;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-    .hero-wa-btn img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
-    .hero-wa-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    /* BOTÃO MENU – PÍLULA LARANJA ESCURA */
-    .hero-menu-btn {
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: var(--brand-dark); /* laranja escuro fixo */
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
-      position: relative;
-      z-index: 3;
-    }
-    .hero-menu-btn span {
-      font-size: 16px;
-    }
-    .hero-menu-btn:hover {
-      /* mantém a cor; só sombra + leve subida */
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-      transform: translateY(-1px);
-    }
-
-    .hero-main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 0 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    #articleTitle {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-size: 40px;
-      line-height: 1.25;
-      font-weight: 900;
-      margin: 0 0 12px 0;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.32);
-    }
-
-    #articleSubtitle {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-title-small { font-size: 32px !important; }
-
-    @media (max-width: 640px) {
-      #articleTitle { font-size: 30px; }
-      .hero-top-bar { margin-bottom: 22px; }
-    }
-
-    /* ÁREA DO ARTIGO */
-    .article-main {
-      max-width: var(--max-width);
-      margin: -40px auto 60px auto;
-      padding: 0 16px 0 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-container {
-      background: #ffffff;
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      padding: 30px 22px 36px 22px;
-    }
-
-    @media (min-width: 720px) {
-      .article-container { padding: 36px 36px 40px 36px; }
-    }
-
-    .article-container p { margin: 0 0 16px 0; }
-    .article-container p:last-child { margin-bottom: 0; }
-
-    .article-container strong { font-weight: 700; }
-
-    /* TÍTULOS DAS SEÇÕES EM LARANJA FORTE */
-    .article-container h2,
-    .article-container h3,
-    .article-container h4 {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 800;
-      margin: 26px 0 10px 0;
-      color: var(--brand);
-    }
-
-    .article-container h2 { font-size: 22px; }
-    .article-container h3 { font-size: 20px; }
-
-    .article-container ul {
-      padding-left: 1.2rem;
-      margin: 0 0 16px 0;
-    }
-
-    .article-container li { margin-bottom: 6px; }
-
-    #articleIntro { margin-bottom: 18px; }
-    #articleSections { margin-top: 8px; }
-
-    .content-section + .content-section { margin-top: 20px; }
-
-    /* CTA FINAL */
-    .article-cta-wrapper {
-      margin-top: 32px;
-      margin-bottom: 18px;
-    }
-
-    .article-cta-card {
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      border-radius: 26px;
-      box-shadow: var(--shadow-card);
-      padding: 26px 20px 30px 20px;
-      color: #fff;
-      text-align: center;
-    }
-
-    @media (min-width: 720px) {
-      .article-cta-card { padding: 30px 32px 32px 32px; }
-    }
-
-    .article-cta-card .cta-title {
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      margin: 0 0 14px 0;
-    }
-
-    .article-cta-card .cta-text {
-      font-size: 15px;
-      margin: 0 0 20px 0;
-      color: rgba(255,255,255,0.93);
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #b45309;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
-      border: none;
-      cursor: pointer;
-      white-space: normal;
-      text-align: center;
-    }
-
-    .cta-button:hover { background: #fef3c7; }
-
-    .cta-button em { font-style: normal; }
-
-    /* ÁREA DE ERRO */
-    #articleError { margin-top: 18px; }
-
-    .error-box {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 12px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      border: 1px solid #fecaca;
-      text-align: center;
-    }
-
-    /* MENU DROP-DOWN COLADO AO BOTÃO – CARD BRANCO */
-    .site-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-8px) scale(.98);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .site-menu.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-
-    .site-menu-panel {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
-      padding: 10px 14px 10px 14px;
-      min-width: 240px;
-    }
-
-    .site-menu-panel a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-radius: 9px;
-      font-size: 15px;
-      color: #111827;
-      transition: background 0.15s ease, transform 0.15s ease;
-      font-weight: 600;
-    }
-
-    .site-menu-panel a:hover {
-      background: #f3f4f6;
-      transform: translateX(2px);
-    }
-
-    .site-menu-icon {
-      width: 26px;
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .site-menu-label {
-      flex: 1;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-      font-weight: 700;
-    }
-
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
-      padding: 0 16px 26px 16px;
-    }
-
-    /* Barra promocional superior (mesma do evento.html) */
-    .promo-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: linear-gradient(90deg, #1d4ed8, #6366f1, #8b5cf6);
-      color: #f4f7fa;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 13px;
-      line-height: 1.5;
-      transform: translateY(-100%);
-      opacity: 0;
-      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      letter-spacing: 0.3px;
-    }
-
-    .promo-bar.is-visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .promo-bar-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .promo-bar-text {
-      font-weight: 300;
-      font-size: 13px;
-      line-height: 1.5;
-      letter-spacing: 0.25px;
-    }
-
-    .promo-bar-link {
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 1.5;
-      text-decoration: underline;
-      color: #eef2ff;
-    }
-
-    .promo-bar-link:hover {
-      text-decoration: underline;
-      opacity: 0.9;
-    }
-
-    body.has-promo-bar .hero-wrap {
-      padding-top: 80px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="promo-bar" id="promoBar">
-    <div class="promo-bar-inner">
-      <span class="promo-bar-text">
-        ✈️ Pensando em viajar? 🏨 Veja valores dos voos e hotéis agora mesmo 👉
-        <a href="https://www.comprarviagem.com.br/winnerstour"
-           target="_blank"
-           rel="noopener"
-           class="promo-bar-link">FAÇA SEU ORÇAMENTO</a>
-      </span>
-    </div>
-  </div>
-
-  <header class="hero-wrap">
-    <div class="hero-top-bar">
-      <!-- LOGO COMO LINK PARA A HOME -->
-      <a class="hero-logo" href="index.html">WINNERS TOUR</a>
-
-      <div class="hero-actions">
-        <!-- ÍCONE WHATSAPP -->
-        <a class="hero-wa-btn"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20com%20viagens%20corporativas."
-           target="_blank" rel="noopener"
-           aria-label="Fale com nossa equipe no WhatsApp">
-          <img src="assets/misc/WhatsApp.svg.webp" alt="WhatsApp">
-        </a>
-        <!-- BOTÃO DE MENU -->
-        <button type="button" class="hero-menu-btn" id="siteMenuToggle">
-          Menu <span>☰</span>
-        </button>
-
-        <!-- MENU DROP-DOWN COLADO AO BOTÃO -->
-        <div class="site-menu" id="siteMenu">
-          <div class="site-menu-panel">
-            <a href="https://www.comprarviagem.com.br/winnerstour/" rel="noopener" target="_blank">
-              <span class="site-menu-icon">🛒</span><span class="site-menu-label">Loja Virtual</span>
-            </a>
-            <a href="corporativo.html">
-              <span class="site-menu-icon">💼</span><span class="site-menu-label">Corporativo</span>
-            </a>
-            <a href="index.html">
-              <span class="site-menu-icon">🗓️</span><span class="site-menu-label">Eventos</span>
-            </a>
-            <a href="grupos.html">
-              <span class="site-menu-icon">👥</span><span class="site-menu-label">Grupos</span>
-            </a>
-            <a href="lazer.html">
-              <span class="site-menu-icon">🏖️</span><span class="site-menu-label">Lazer</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-main">
-      <h1 id="articleTitle">Carregando artigo…</h1>
-      <p id="articleSubtitle"></p>
-    </div>
-  </header>
-
-  <main class="article-main">
-    <section class="article-container">
-      <div id="articleIntro"></div>
-      <div id="articleSections"></div>
-    </section>
-
-    <section class="article-cta-wrapper">
-      <div class="article-cta-card">
-        <p class="cta-title">
-          Quer ajuda para transformar este conceito em resultados nas viagens da sua empresa?
-        </p>
-        <p class="cta-text">
-          Fale com nossa equipe especializada em viagens corporativas para analisar o cenário da sua empresa e montar um plano sob medida.
-        </p>
-        <a id="articleCtaWhatsApp"
-           class="cta-button"
-           href="https://wa.me/5541999450111?text=Ol%C3%A1!%20Li%20um%20artigo%20no%20site%20da%20Winnerstour%20e%20gostaria%20de%20ajuda%20para%20aplicar%20essas%20ideias%20nas%20viagens%20da%20minha%20empresa."
-           target="_blank" rel="noopener">
-          👉 <em>FALE COM NOSSA EQUIPE NO WHATSAPP</em>
-        </a>
-      </div>
-    </section>
-
-    <div id="articleError"></div>
-  </main>
-
-  <footer>
-    Winners Tour — Operadora e Agência de Viagens
-  </footer>
-
-  <!-- SCRIPT MENU (dropdown que desliza logo abaixo do botão) -->
-  <script>
-    (function() {
-      const menuToggle = document.getElementById('siteMenuToggle');
-      const siteMenu   = document.getElementById('siteMenu');
-
-      if (!menuToggle || !siteMenu) return;
-
-      function openMenu() {
-        siteMenu.classList.add('is-open');
+document.addEventListener('DOMContentLoaded', async function () {
+  const pageTitleEl = document.getElementById('pageTitle');
+  const articleTitleEl = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
+  const introEl = document.getElementById('articleIntro');
+  const sectionsEl = document.getElementById('articleSections');
+  const errorEl = document.getElementById('articleError');
+  const ctaWaEl = document.getElementById('articleCtaWhatsApp');
+
+  function showError(message, detail) {
+    console.error('Erro ao carregar artigo corporativo:', message, detail || '');
+    if (!errorEl) return;
+    errorEl.innerHTML = '<div class="error-box">' +
+      (message || 'Não foi possível carregar este artigo agora.') +
+      (detail ? '<br><small>' + detail + '</small>' : '') +
+      '</div>';
+  }
+
+  function renderMarkdown(md) {
+    if (!md) return '';
+    let text = md.trim();
+    // Negrito **texto**
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false;
+
+    for (let rawLine of lines) {
+      const line = rawLine.replace(/\r$/, '');
+
+      // Títulos tipo "### Título" viram <h3>Título</h3>
+      const headingMatch = line.match(/^\s*###\s+(.+)/);
+      if (headingMatch) {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<h3>' + headingMatch[1] + '</h3>';
+        continue;
       }
 
-      function closeMenu() {
-        siteMenu.classList.remove('is-open');
+      if (/^\s*-\s+/.test(line)) {
+        if (!inList) {
+          html += '<ul>';
+          inList = true;
+        }
+        html += '<li>' + line.replace(/^\s*-\s+/, '') + '</li>';
+      } else if (line.trim() === '') {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+      } else {
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += '<p>' + line + '</p>';
       }
+    }
+    if (inList) html += '</ul>';
+    return html;
+  }
 
-      menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (siteMenu.classList.contains('is-open')) {
-          closeMenu();
+
+  function buildYoutubeEmbedUrl(url) {
+    if (!url) return null;
+    try {
+      if (url.includes('/embed/')) {
+        return url;
+      }
+      const u = new URL(url);
+      let videoId = null;
+
+      if (u.hostname.includes('youtu.be')) {
+        videoId = u.pathname.replace('/', '');
+      } else {
+        videoId = u.searchParams.get('v');
+      }
+      if (!videoId) return null;
+
+      return 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+    } catch (e) {
+      console.warn('Não foi possível interpretar URL do YouTube:', url, e);
+      return null;
+    }
+  }
+
+  function createInlineImage(imgIndex, slug) {
+    const figure = document.createElement('figure');
+    figure.className = 'inline-media inline-media-image';
+    figure.style.margin = '26px 0';
+    figure.style.borderRadius = '20px';
+    figure.style.overflow = 'hidden';
+    figure.style.boxShadow = '0 16px 40px rgba(15,23,42,0.18)';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = '';
+    img.src = 'assets/inline/img' + imgIndex + slug + '.webp';
+
+    img.addEventListener('error', function () {
+      if (figure && figure.parentNode) {
+        figure.parentNode.removeChild(figure);
+      }
+    });
+
+    figure.appendChild(img);
+    return figure;
+  }
+
+  function createInlineYoutube(youtubeUrl) {
+    const embedUrl = buildYoutubeEmbedUrl(youtubeUrl);
+    if (!embedUrl) return null;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'inline-media inline-media-video';
+    wrapper.style.margin = '30px 0';
+
+    const aspect = document.createElement('div');
+    aspect.style.position = 'relative';
+    aspect.style.paddingTop = '56.25%';
+    aspect.style.borderRadius = '20px';
+    aspect.style.overflow = 'hidden';
+    aspect.style.boxShadow = '0 20px 45px rgba(15,23,42,0.28)';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.title = 'Vídeo do YouTube';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+
+    aspect.appendChild(iframe);
+    wrapper.appendChild(aspect);
+    return wrapper;
+  }
+
+  async function fetchJsonForSlug(slug) {
+    const bases = ['Artigos/', 'artigos/', ''];
+    const attempts = [];
+
+    for (const base of bases) {
+      const path = (base ? base : '') + slug + '.json';
+      attempts.push(path);
+      try {
+        const resp = await fetch(path + '?t=' + Date.now());
+        if (resp.ok) {
+          const json = await resp.json();
+          console.log('Artigo carregado de:', path);
+          return { data: json, usedPath: path };
         } else {
-          openMenu();
+          console.warn('Falha ao tentar', path, 'status', resp.status);
         }
-      });
+      } catch (e) {
+        console.warn('Erro ao tentar carregar', path, e);
+      }
+    }
 
-      // Fecha clicando fora
-      document.addEventListener('click', function(e) {
-        if (!siteMenu.contains(e.target) &&
-            e.target !== menuToggle &&
-            !menuToggle.contains(e.target)) {
-          closeMenu();
-        }
-      });
+    throw new Error('Nenhum dos caminhos funcionou: ' + attempts.join(', '));
+  }
 
-      // Fecha com ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeMenu();
-        }
-      });
-    })();
-  </script>
+  // ============================
+  // INÍCIO DA CARGA DO ARTIGO
+  // ============================
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
 
-  <!-- Script da barra promocional (mesmo do evento.html) -->
-  <script>
-    (function () {
-      var bar = document.getElementById('promoBar');
-      if (!bar) return;
+  if (!slug) {
+    showError('Parâmetro "slug" não informado na URL.');
+    return;
+  }
 
-      var lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var isVisible = false;
+  let usedPath = '';
 
-      function showBar() {
-        if (!isVisible) {
-          document.body.classList.add('has-promo-bar');
-          bar.classList.add('is-visible');
-          isVisible = true;
+  try {
+    const result = await fetchJsonForSlug(slug);
+    const data = result.data;
+    usedPath = result.usedPath || '';
+
+    if (!data || !Array.isArray(data.sections)) {
+      showError('Formato de artigo inválido.', 'Verifique se o JSON possui a propriedade "sections".');
+      return;
+    }
+
+    const titulo = data.titulo || 'Artigo corporativo';
+    const tituloCurto = data.titulo_curto || titulo;
+    const categoria = data.categoria || 'Artigo Corporativo';
+    const youtubeInline = data['youtube-inline'] || data.youtube_inline || data.youtubeInline || '';
+
+    // Título da aba
+    if (pageTitleEl) {
+      pageTitleEl.textContent = tituloCurto + ' — Winners Tour';
+    }
+
+    // Hero
+    if (articleTitleEl) {
+      articleTitleEl.textContent = titulo;
+      if (titulo.length > 80) {
+        articleTitleEl.classList.add('hero-title-small');
+      }
+    }
+    if (articleSubtitleEl) {
+      articleSubtitleEl.textContent = categoria;
+    }
+
+    // CTA WhatsApp final com título curto
+    if (ctaWaEl) {
+      const waMsg = 'Ol\u00e1! Li o artigo "' + tituloCurto +
+        '" no site da Winners Tour e gostaria de ajuda com viagens corporativas.';
+      const waHref = 'https://wa.me/5541999450111?text=' + encodeURIComponent(waMsg);
+      ctaWaEl.href = waHref;
+    }
+
+    const sections = data.sections.slice().sort(function (a, b) {
+      return (a.id || 0) - (b.id || 0);
+    });
+
+    const first = sections.find(function (s) { return s.id === 1; }) || sections[0];
+    const rest = sections.filter(function (s) { return s !== first; });
+
+    // Introdução (sem título "Introdução")
+    if (introEl && first) {
+      introEl.innerHTML = renderMarkdown(first.conteudo_markdown || '');
+    }
+
+    if (!sectionsEl) return;
+
+    let videoInserted = false;
+
+    rest.forEach(function (sec) {
+      const secId = sec.id || 0;
+
+      // Imagens inline antes das seções 2 a 6
+      if (secId >= 2 && secId <= 6) {
+        const imgIndex = secId; // img2, img3, ..., img6
+        const imgFigure = createInlineImage(imgIndex, slug);
+        sectionsEl.appendChild(imgFigure);
+      }
+
+      // Vídeo do YouTube antes da seção 7 (apenas uma vez)
+      if (!videoInserted && secId === 7 && youtubeInline) {
+        const videoNode = createInlineYoutube(youtubeInline);
+        if (videoNode) {
+          sectionsEl.appendChild(videoNode);
+          videoInserted = true;
         }
       }
 
-      function hideBar() {
-        if (isVisible) {
-          bar.classList.remove('is-visible');
-          isVisible = false;
-        }
+      // Bloco da seção
+      const wrapper = document.createElement('section');
+      wrapper.className = 'content-section';
+
+      if (sec.titulo_secao) {
+        const h2 = document.createElement('h2');
+        h2.textContent = sec.titulo_secao;
+        wrapper.appendChild(h2);
       }
 
-      // Exibe ao carregar
-      showBar();
+      const contentDiv = document.createElement('div');
+      contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
+      wrapper.appendChild(contentDiv);
 
-      window.addEventListener('scroll', function () {
-        var current = window.pageYOffset || document.documentElement.scrollTop || 0;
-
-        if (current <= 10) {
-          showBar();
-          lastScroll = current;
-          return;
-        }
-
-        if (current > lastScroll + 5) {
-          hideBar();
-        } else if (current < lastScroll - 5) {
-          showBar();
-        }
-
-        lastScroll = current;
-      });
-    })();
-  </script>
-
-  <!-- Script que carrega o JSON do artigo -->
-  <script src="artigo-corporativo.js"></script>
-</body>
-</html>
+      sectionsEl.appendChild(wrapper);
+    });
+  } catch (err) {
+    showError('Não foi possível carregar o artigo corporativo.', usedPath || ('slug: ' + slug));
+    console.error('Erro ao carregar artigo corporativo:', err);
+  }
+});
