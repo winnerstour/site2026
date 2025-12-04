@@ -1,5 +1,5 @@
 {
-  "slug": "paving-expo-2026",
+  "slug": "paving-expo",
   "title": "Paving Expo",
   "subtitle": "Principal encontro de pavimentação e infraestrutura viária, com tecnologia, equipamentos e soluções que impulsionam obras.",
   "badge": "Feira e Congresso B2B de Infraestrutura e Pavimentação",
@@ -42,10 +42,10 @@
   "seo": {
     "title": "Paving Expo 2026 — Pacotes corporativos e hotéis perto do Distrito Anhembi",
     "description": "Roteiros otimizados, hotéis estratégicos e suporte corporativo completo para sua visita à Paving Expo 2026. Alinhe sua agenda ao mercado de concessões no Distrito Anhembi.",
-    "url": "https://winnerstour.com.br/evento.html?slug=paving-expo-2026",
+    "url": "https://winnerstour.com.br/evento.html?slug=paving-expo",
     "image": "https://winnerstour.com.br/assets/img/banners/paving-expo-2026-banner.webp"
   },
-  "canonical_url": "https://winnerstour.com.br/evento.html?slug=paving-expo-2026",
+  "canonical_url": "https://winnerstour.com.br/evento.html?slug=paving-expo",
   "YouTubeVideo": "https://www.youtube.com/watch?v=Wg6tYUO85s0",
   "YouTubeCover": "",
   "ChipColor": "bg-slate-700",
@@ -84,21 +84,6 @@
       "id": 7,
       "titulo_secao": "Conclusão + Próximo passo",
       "conteudo_markdown": "## Conclusão + Próximo passo\n\nEstar na **Paving Expo 2026** é, na prática, decidir como sua organização quer se posicionar no próximo ciclo de investimentos em infraestrutura viária e rodoviária. Em três dias, é possível concentrar encontros com DNIT, DERs, secretarias, concessionárias, grandes construtoras, fabricantes de materiais e máquinas, consultorias e entidades de classe, além de absorver conteúdo técnico que aponta para onde vão as exigências regulatórias, de tecnologia e de ESG.\n\nO formato de viagem que você escolher — bate-volta, viagem com hospedagem ou estadia completa — vai determinar o quanto desse potencial se converte em resultado concreto: contratos, parcerias, alinhamento com novas regras de contratação, decisões de portfólio e posicionamento competitivo. Quando tudo é decidido em cima da hora, o roteiro costuma ser o mesmo: voos em horários ruins, hotéis longe ou caros demais, agenda corrida e a sensação de que “dava para ter aproveitado muito mais”. Em muitos casos, a viagem simplesmente não acontece porque o custo estourou ou já não há mais opção viável de voo e hospedagem — e a empresa acaba **ficando de fora** justamente de um evento que poderia destravar o próximo ciclo de competitividade.\n\nQuando a ida à Paving Expo é tratada como projeto, com antecedência e apoio especializado, o efeito se inverte: você escolhe o formato de viagem mais adequado, mantém o orçamento sob controle e cria as condições para que as conversas certas aconteçam dentro dos pavilhões, da Paving Conference e das reuniões reservadas.\n\nSe a ideia é colocar a Paving Expo 2026 na conta como **investimento**, e não como mais um custo difícil de explicar, o próximo passo é simples: **clique no botão de WhatsApp desta página** e conte, em poucas linhas, como está a ideia da sua participação. A partir daí, nossa equipe monta os cenários de viagem que fazem sentido para o seu caso, e você segue focado no que realmente importa: usar o evento para tomar boas decisões de obra, concessão e crescimento.\n"
-    },
-    {
-      "id": "CTA3",
-      "titulo_secao": "CTA – Bate-volta (loja virtual)",
-      "conteudo_markdown": "👉 **Se esse é o seu caso, clique abaixo para consultar os voos disponíveis e emitir sua passagem diretamente na nossa loja virtual.**"
-    },
-    {
-      "id": "CTA4",
-      "titulo_secao": "CTA – Viagem com hospedagem",
-      "conteudo_markdown": "👉 **Se você prefere viajar com a hospedagem já definida, confira abaixo os hotéis recomendados para a Paving Expo 2026 ou clique abaixo para falar com nossa equipe no WhatsApp e montar o seu pacote completo de viagem.**"
-    },
-    {
-      "id": "CTA5",
-      "titulo_secao": "CTA – Grupos e estadia completa",
-      "conteudo_markdown": "👉 **Se a sua empresa vai participar de todos os dias da Paving Expo 2026, levar uma equipe maior ou incluir reuniões extras em São Paulo, clique abaixo para falar com nossa equipe e organizar a viagem como um projeto – com voos, hospedagem e traslados alinhados do início ao fim.**"
     }
   ]
 }
