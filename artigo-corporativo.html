@@ -9,7 +9,7 @@
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/misc/favicon.png">
@@ -364,9 +364,80 @@
       color: #9ca3af;
       padding: 0 16px 26px 16px;
     }
+
+    /* Barra promocional superior (mesma do evento.html) */
+    .promo-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: linear-gradient(90deg, #1d4ed8, #6366f1, #8b5cf6);
+      color: #f4f7fa;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0.3px;
+    }
+
+    .promo-bar.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .promo-bar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .promo-bar-text {
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: 0.25px;
+    }
+
+    .promo-bar-link {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.5;
+      text-decoration: underline;
+      color: #eef2ff;
+    }
+
+    .promo-bar-link:hover {
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+
+    body.has-promo-bar .hero-wrap {
+      padding-top: 80px;
+    }
   </style>
 </head>
 <body>
+
+  <div class="promo-bar" id="promoBar">
+    <div class="promo-bar-inner">
+      <span class="promo-bar-text">
+        ✈️ Pensando em viajar? 🏨 Veja valores dos voos e hotéis agora mesmo 👉
+        <a href="https://www.comprarviagem.com.br/winnerstour"
+           target="_blank"
+           rel="noopener"
+           class="promo-bar-link">FAÇA SEU ORÇAMENTO</a>
+      </span>
+    </div>
+  </div>
 
   <header class="hero-wrap">
     <div class="hero-top-bar">
@@ -484,6 +555,53 @@
         if (e.key === 'Escape') {
           closeMenu();
         }
+      });
+    })();
+  </script>
+
+  <!-- Script da barra promocional (mesmo do evento.html) -->
+  <script>
+    (function () {
+      var bar = document.getElementById('promoBar');
+      if (!bar) return;
+
+      var lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var isVisible = false;
+
+      function showBar() {
+        if (!isVisible) {
+          document.body.classList.add('has-promo-bar');
+          bar.classList.add('is-visible');
+          isVisible = true;
+        }
+      }
+
+      function hideBar() {
+        if (isVisible) {
+          bar.classList.remove('is-visible');
+          isVisible = false;
+        }
+      }
+
+      // Exibe ao carregar
+      showBar();
+
+      window.addEventListener('scroll', function () {
+        var current = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        if (current <= 10) {
+          showBar();
+          lastScroll = current;
+          return;
+        }
+
+        if (current > lastScroll + 5) {
+          hideBar();
+        } else if (current < lastScroll - 5) {
+          showBar();
+        }
+
+        lastScroll = current;
       });
     })();
   </script>
