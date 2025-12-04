@@ -9,7 +9,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/gestao_de_eventos_corporativos.webp",
       "titulo_card": "GESTÃO DE EVENTOS: COMO TIRAR O NÓ DA CABEÇA DO GESTOR DE VIAGENS",
-      "subtitulo_card": "Guia sobre planejamento em fases, MICE e o papel da agência como copiloto estratégico em grandes eventos."
+      "subtitulo_card": "Guia sobre planejamento em fases, MICE e o papel da agência como copiloto estratégico em grandes eventos.",
+      "json_path": "artigos/gestao_de_eventos_corporativos.json"
     },
     {
       "slug": "gestao_inteligente_viagens",
@@ -18,7 +19,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/gestao_inteligente_viagens.webp",
       "titulo_card": "GESTÃO INTELIGENTE DE VIAGENS: O QUE É E COMO O PRINCÍPIO KISS SIMPLIFICA A SUA VIDA",
-      "subtitulo_card": "Descubra como aplicar o princípio KISS para ter clareza na política, planejamento e execução de todas as viagens."
+      "subtitulo_card": "Descubra como aplicar o princípio KISS para ter clareza na política, planejamento e execução de todas as viagens.",
+      "json_path": "artigos/gestao_inteligente_viagens.json"
     },
     {
       "slug": "habilidades_gestor_estrategico",
@@ -27,7 +29,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/habilidades_gestor_estrategico.webp",
       "titulo_card": "HABILIDADES DO GESTOR DE VIAGENS: O QUE REALMENTE DIFERENCIA UM TRAVEL MANAGER ESTRATÉGICO",
-      "subtitulo_card": "As soft e hard skills que transformam o gestor de viagens em um arquiteto de mobilidade e aliado estratégico."
+      "subtitulo_card": "As soft e hard skills que transformam o gestor de viagens em um arquiteto de mobilidade e aliado estratégico.",
+      "json_path": "artigos/habilidades_gestor_estrategico.json"
     },
     {
       "slug": "regra_de_ouro_antecedencia",
@@ -36,7 +39,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/regra_de_ouro_antecedencia.webp",
       "titulo_card": "REGRA DE OURO DA ANTECEDÊNCIA: POR QUE ESPERAR PARA COMPRAR PASSAGEM É PEDIR PARA PAGAR MAIS CARO",
-      "subtitulo_card": "Análise detalhada sobre como o algoritmo das aéreas funciona e a importância da antecedência para fugir das tarifas de emergência."
+      "subtitulo_card": "Análise detalhada sobre como o algoritmo das aéreas funciona e a importância da antecedência para fugir das tarifas de emergência.",
+      "json_path": "artigos/regra_de_ouro_antecedencia.json"
     },
     {
       "slug": "viagens_corporativas_investimento",
@@ -45,7 +49,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/viagens_corporativas_investimento.webp",
       "titulo_card": "VIAGENS CORPORATIVAS COMO INVESTIMENTO: O OLHAR DE QUEM CUIDA DAS VIAGENS",
-      "subtitulo_card": "Entenda como transformar o olhar do financeiro sobre viagens, tratando-as como investimento em receita e não apenas como despesa."
+      "subtitulo_card": "Entenda como transformar o olhar do financeiro sobre viagens, tratando-as como investimento em receita e não apenas como despesa.",
+      "json_path": "artigos/viagens_corporativas_investimento.json"
     },
     {
       "slug": "viagens_de_premiacao",
@@ -54,7 +59,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/viagens_de_premiacao.webp",
       "titulo_card": "VIAGENS DE PREMIAÇÃO E DE INCENTIVO: VOCÊ SABE QUAL É A DIFERENÇA?",
-      "subtitulo_card": "Entenda a estratégia por trás dos programas de incentivo, por que funcionam e como planejar a viagem de premiação perfeita."
+      "subtitulo_card": "Entenda a estratégia por trás dos programas de incentivo, por que funcionam e como planejar a viagem de premiação perfeita.",
+      "json_path": "artigos/viagens_de_premiacao.json"
     },
     {
       "slug": "cancelamentos_e_remarcacoes",
@@ -63,7 +69,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/cancelamentos_e_remarcacoes.webp",
       "titulo_card": "CANCELAMENTOS E REMARCAÇÕES EM VIAGENS: O CUSTO QUE NINGUÉM VÊ, MAS SEMPRE PAGA",
-      "subtitulo_card": "O guia prático para entender as políticas de multa, tarifas não reembolsáveis e como o no-show consome o orçamento."
+      "subtitulo_card": "O guia prático para entender as políticas de multa, tarifas não reembolsáveis e como o no-show consome o orçamento.",
+      "json_path": "artigos/cancelamentos_e_remarcacoes.json"
     },
     {
       "slug": "como_estruturar_viagens",
@@ -72,7 +79,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/como_estruturar_viagens.webp",
       "titulo_card": "COMO ESTRUTURAR A ÁREA DE VIAGENS CORPORATIVAS EM 6 ETAPAS",
-      "subtitulo_card": "Metodologia clara para tirar a gestão de viagens do improviso, cobrindo pagamentos, política, reservas e Duty of Care."
+      "subtitulo_card": "Metodologia clara para tirar a gestão de viagens do improviso, cobrindo pagamentos, política, reservas e Duty of Care.",
+      "json_path": "artigos/como_estruturar_viagens.json"
     },
     {
       "slug": "custos_adicionais_passagens",
@@ -81,7 +89,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/custos_adicionais_passagens.webp",
       "titulo_card": "CUSTOS ADICIONAIS EM PASSAGENS AÉREAS: O QUE REALMENTE ESTÁ POR TRÁS DA TARIFA “BARATA”",
-      "subtitulo_card": "Desvendando os gastos extras com bagagem, assento, antecipação de voo e upgrade que transformam o custo total da viagem."
+      "subtitulo_card": "Desvendando os gastos extras com bagagem, assento, antecipação de voo e upgrade que transformam o custo total da viagem.",
+      "json_path": "artigos/custos_adicionais_passagens.json"
     },
     {
       "slug": "desafios_gestor_viajante",
@@ -90,7 +99,8 @@
       "categoria": "Artigo Corporativo",
       "card_image": "./assets/artigos-corporativos/desafios_gestor_viajante.webp",
       "titulo_card": "DESAFIOS DO GESTOR DE VIAGENS E DO VIAJANTE CORPORATIVO: COMO SAIR DO EMBATE E JOGAR NO MESMO TIME",
-      "subtitulo_card": "Análise sobre o ruído na comunicação e o desalinhamento de expectativas entre quem viaja e quem gere o orçamento."
+      "subtitulo_card": "Análise sobre o ruído na comunicação e o desalinhamento de expectativas entre quem viaja e quem gere o orçamento.",
+      "json_path": "artigos/desafios_gestor_viajante.json"
     }
   ]
 }
