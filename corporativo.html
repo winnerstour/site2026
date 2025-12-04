@@ -545,7 +545,8 @@ a{text-decoration:none;color:inherit}
 
         data.artigos.forEach(function(artigo) {
           var card = document.createElement('a');
-          card.href = 'artigos-corporativo/' + artigo.slug + '.html';
+          var hrefJson = artigo.json_path || ('artigos/' + artigo.slug + '.json');
+          card.href = hrefJson;
           card.className = 'event-card';
           card.setAttribute('aria-label', artigo.titulo_card || artigo.titulo_curto || artigo.titulo || '');
 
