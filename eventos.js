@@ -402,6 +402,22 @@ document.addEventListener('DOMContentLoaded', async function () {
       local ||
       '';
 
+    // Normaliza o venue_slug para exibição:
+    // - troca hífens/underscores por espaço
+    // - coloca Primeira Letra De Cada Palavra em maiúsculo
+    // - se já vier com espaços (ex.: "São Paulo Expo"), usa como está
+    const venueDisplayLabel = (() => {
+      const raw = venueSlugLabel || '';
+      if (!raw) return '';
+      if (raw.includes(' ')) return raw;
+      const cleaned = raw.replace(/[-_]+/g, ' ');
+      return cleaned
+        .split(' ')
+        .filter(Boolean)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    })();
+
     let datasTexto = '';
     if (dataInicio && dataFim && dataInicio !== dataFim) {
       datasTexto = formatDateRangeBr(dataInicio, dataFim);
@@ -410,7 +426,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const subtitleParts = [];
-    if (venueSlugLabel) subtitleParts.push(venueSlugLabel);
+    if (venueDisplayLabel) subtitleParts.push(venueDisplayLabel);
     if (datasTexto) subtitleParts.push(datasTexto);
     if (subtitle) subtitleParts.push(subtitle);
     const subtitleLine = subtitleParts.length ? `📍 ${subtitleParts.join(' • ')}` : '';
@@ -463,6 +479,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       eventWhatsCtaEl.href = whatsLink;
     }
 
+    let sectionIndex = 0;
     const sections = Array.isArray(data.sections) ? data.sections : [];
     sections.forEach(function (sec) {
       const wrapper = document.createElement('section');
@@ -487,7 +504,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         return;
       }
 
-      if (sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
+      if (sectionIndex > 0 && sec.titulo_secao && sec.titulo_secao !== 'CTA1' && sec.titulo_secao !== 'CTA2') {
         const h2 = document.createElement('h2');
         h2.textContent = sec.titulo_secao;
         wrapper.appendChild(h2);
