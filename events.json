@@ -1415,18 +1415,5 @@
     "banner_path": "/assets/img/banners/in-cosmetics-latin-america-banner.webp",
     "chip_color": "bg-rose-600 text-white",
     "PublicoEstimado": 0
-  },
-  {
-    "slug": "expo-burguer",
-    "title": null,
-    "subtitle": null,
-    "category_macro": null,
-    "category_micro": null,
-    "start_date": null,
-    "end_date": null,
-    "hero_image_path": null,
-    "banner_path": null,
-    "chip_color": null,
-    "PublicoEstimado": null
   }
 ]
