@@ -1,70 +1,5 @@
 [
   {
-    "slug": "bienal-do-livro-sp",
-    "title": "28 BIENAL DO LIVRO",
-    "subtitle": "Maior celebração literária do país, reúne autores, editoras e leitores em experiências, lançamentos e debates inspiradores.",
-    "category_macro": "Automotivo & Autopeças & Motos",
-    "category_micro": "Eventos & MICE",
-    "start_date": "2026-09-04",
-    "end_date": "2026-09-13",
-    "hero_image_path": "/assets/img/banners/bienal-internacional-do-livro-sp-2026-hero.webp",
-    "banner_path": "/assets/img/banners/bienal-internacional-do-livro-sp-2026-banner.webp",
-    "chip_color": "bg-red-700 text-white",
-    "PublicoEstimado": 730000
-  },
-  {
-    "slug": "agrishow",
-    "title": "AGRISHOW",
-    "subtitle": "Maior feira do agronegócio, apresenta máquinas, conectividade e soluções que elevam produtividade e gestão no campo.",
-    "category_macro": "Tecnologia & Telecom",
-    "category_micro": "Agro & Máquinas",
-    "start_date": "2026-04-27",
-    "end_date": "2026-05-01",
-    "hero_image_path": "/assets/img/banners/agrishow-2026-hero.webp",
-    "banner_path": "/assets/img/banners/agrishow-2026-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 200000
-  },
-  {
-    "slug": "beauty-fair",
-    "title": "Beauty Fair",
-    "subtitle": "Maior feira de beleza profissional das Américas, reúne marcas, lançamentos e tendências que movem o setor.",
-    "category_macro": "Beleza & Estética",
-    "category_micro": "Beleza & Cosméticos",
-    "start_date": "2026-09-05",
-    "end_date": "2026-09-08",
-    "hero_image_path": "/assets/img/banners/beauty-fair-2026-hero.webp",
-    "banner_path": "/assets/img/banners/beauty-fair-2026-banner.webp",
-    "chip_color": "bg-rose-600 text-white",
-    "PublicoEstimado": 200000
-  },
-  {
-    "slug": "gamescom-latam",
-    "title": "latam gamescom",
-    "subtitle": "Maior festival de games, reúne estúdios e marcas globais em lançamentos, eSports e experiências imersivas.",
-    "category_macro": "Tecnologia & Telecom",
-    "category_micro": "Games & Cultura Pop",
-    "start_date": "2026-04-30",
-    "end_date": "2026-05-03",
-    "hero_image_path": "/assets/img/banners/gamescom-latam-2026-hero.webp",
-    "banner_path": "/assets/img/banners/gamescom-latam-2026-banner.webp",
-    "chip_color": "bg-indigo-600 text-white",
-    "PublicoEstimado": 130000
-  },
-  {
-    "slug": "fit-feria-internacional-de-turismo",
-    "title": "Fit Turismo",
-    "subtitle": "Maior feira de turismo, conecta destinos, operadoras e profissionais em negócios, inovação e experiências inspiradoras.",
-    "category_macro": "Outros/Nichados",
-    "category_micro": "Turismo & Hotelaria",
-    "start_date": "2026-09-26",
-    "end_date": "2026-09-29",
-    "hero_image_path": "/assets/img/banners/fit-feria-internacional-de-turismo-2026-hero.webp",
-    "banner_path": "/assets/img/banners/fit-feria-internacional-de-turismo-2026-banner.webp",
-    "chip_color": "bg-blue-600 text-white",
-    "PublicoEstimado": 110000
-  },
-  {
     "slug": "feicon-batimat",
     "title": "FEICON BATIMAT",
     "subtitle": "Maior feira de construção e arquitetura, reúne materiais, tecnologia e soluções que impulsionam obras e infraestrutura.",
@@ -90,19 +25,19 @@
     "chip_color": "bg-red-600 text-white",
     "PublicoEstimado": 90000
   },
-  {
-    "slug": "arnold-sports-festival",
-    "title": "Arnold Sports Festival",
-    "subtitle": "Maior encontro multiesportivo, une competições, atletas e marcas, com saúde, fitness e performance em experiências marcantes.",
-    "category_macro": "Saúde & Medicina & Farma",
-    "category_micro": "Pet & Veterinária",
-    "start_date": "2026-04-24",
-    "end_date": "2026-04-26",
-    "hero_image_path": "/assets/img/banners/arnold-sports-festival-south-america-hero.webp",
-    "banner_path": "/assets/img/banners/arnold-sports-festival-south-america-banner.webp",
-    "chip_color": "bg-teal-600 text-white",
-    "PublicoEstimado": 85000
-  },
+    {
+    "slug": "agrishow",
+    "title": "AGRISHOW",
+    "subtitle": "Maior feira do agronegócio, apresenta máquinas, conectividade e soluções que elevam produtividade e gestão no campo.",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Agro & Máquinas",
+    "start_date": "2026-04-27",
+    "end_date": "2026-05-01",
+    "hero_image_path": "/assets/img/banners/agrishow-2026-hero.webp",
+    "banner_path": "/assets/img/banners/agrishow-2026-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 200000
+        },
   {
     "slug": "hospitalar",
     "title": "HOSPITALAR",
@@ -113,6 +48,32 @@
     "end_date": "2026-05-22",
     "hero_image_path": "/assets/img/banners/hospitalar-hero.webp",
     "banner_path": "/assets/img/banners/hospitalar-banner.webp",
+    "chip_color": "bg-teal-600 text-white",
+    "PublicoEstimado": 85000
+  },
+  {
+    "slug": "beauty-fair",
+    "title": "Beauty Fair",
+    "subtitle": "Maior feira de beleza profissional das Américas, reúne marcas, lançamentos e tendências que movem o setor.",
+    "category_macro": "Beleza & Estética",
+    "category_micro": "Beleza & Cosméticos",
+    "start_date": "2026-09-05",
+    "end_date": "2026-09-08",
+    "hero_image_path": "/assets/img/banners/beauty-fair-2026-hero.webp",
+    "banner_path": "/assets/img/banners/beauty-fair-2026-banner.webp",
+    "chip_color": "bg-rose-600 text-white",
+    "PublicoEstimado": 200000
+  },
+  {
+    "slug": "arnold-sports-festival",
+    "title": "Arnold Sports Festival",
+    "subtitle": "Maior encontro multiesportivo, une competições, atletas e marcas, com saúde, fitness e performance em experiências marcantes.",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Pet & Veterinária",
+    "start_date": "2026-04-24",
+    "end_date": "2026-04-26",
+    "hero_image_path": "/assets/img/banners/arnold-sports-festival-south-america-hero.webp",
+    "banner_path": "/assets/img/banners/arnold-sports-festival-south-america-banner.webp",
     "chip_color": "bg-teal-600 text-white",
     "PublicoEstimado": 85000
   },
@@ -156,19 +117,6 @@
     "PublicoEstimado": 75000
   },
   {
-    "slug": "ciosp",
-    "title": "CIOSP",
-    "subtitle": "Maior congresso de odontologia da América Latina, reúne especialistas, ciência e tecnologias que elevam prática clínica e gestão.",
-    "category_macro": "Saúde & Medicina & Farma",
-    "category_micro": "Odontologia",
-    "start_date": "2026-01-28",
-    "end_date": "2026-01-31",
-    "hero_image_path": "/assets/img/banners/ciosp-hero.webp",
-    "banner_path": "/assets/img/banners/ciosp-banner.webp",
-    "chip_color": "bg-teal-600 text-white",
-    "PublicoEstimado": 70000
-  },
-  {
     "slug": "haus-decor-show",
     "title": "HAUS DECOR SHOW",
     "subtitle": "Maior encontro de decoração e utilidades, apresenta design, tendências e marcas que inspiram projetos e negócios.",
@@ -192,19 +140,6 @@
     "hero_image_path": "/assets/img/banners/fenatran-hero.webp",
     "banner_path": "/assets/img/banners/fenatran-banner.webp",
     "chip_color": "bg-red-600 text-white",
-    "PublicoEstimado": 70000
-  },
-  {
-    "slug": "expomin",
-    "title": "EXPOMIN 2027",
-    "subtitle": "Principal feira de mineração da América Latina, realizada no Espacio Riesco (Santiago), conectando mineradoras, fornecedores, investidores e governos em torno de tecnologia, ESG e novos projetos.",
-    "category_macro": "Mineração & Energia",
-    "category_micro": "Feiras de Negócios & Convenções",
-    "start_date": "",
-    "end_date": "",
-    "hero_image_path": "/assets/img/banners/expomin-2027-hero.webp",
-    "banner_path": "/assets/img/banners/expomin-2027-banner.webp",
-    "chip_color": "bg-amber-700 text-white",
     "PublicoEstimado": 70000
   },
   {
@@ -259,6 +194,19 @@
     "chip_color": "bg-zinc-700 text-white",
     "PublicoEstimado": 65000
   },
+      {
+    "slug": "ciosp",
+    "title": "CIOSP",
+    "subtitle": "Maior congresso de odontologia da América Latina, reúne especialistas, ciência e tecnologias que elevam prática clínica e gestão.",
+    "category_macro": "Saúde & Medicina & Farma",
+    "category_micro": "Odontologia",
+    "start_date": "2026-01-28",
+    "end_date": "2026-01-31",
+    "hero_image_path": "/assets/img/banners/ciosp-hero.webp",
+    "banner_path": "/assets/img/banners/ciosp-banner.webp",
+    "chip_color": "bg-teal-600 text-white",
+    "PublicoEstimado": 70000
+  },
   {
     "slug": "expo-revestir",
     "title": "EXPO REVESTIR",
@@ -298,6 +246,19 @@
     "chip_color": "bg-emerald-600 text-white",
     "PublicoEstimado": 60000
   },
+      {
+    "slug": "expomin",
+    "title": "EXPOMIN 2027",
+    "subtitle": "Principal feira de mineração da América Latina, realizada no Espacio Riesco (Santiago), conectando mineradoras, fornecedores, investidores e governos em torno de tecnologia, ESG e novos projetos.",
+    "category_macro": "Mineração & Energia",
+    "category_micro": "Feiras de Negócios & Convenções",
+    "start_date": "",
+    "end_date": "",
+    "hero_image_path": "/assets/img/banners/expomin-2027-hero.webp",
+    "banner_path": "/assets/img/banners/expomin-2027-banner.webp",
+    "chip_color": "bg-amber-700 text-white",
+    "PublicoEstimado": 70000
+  },
   {
     "slug": "thesmartere",
     "title": "The Smarter E",
@@ -323,7 +284,33 @@
     "banner_path": "/assets/img/banners/abcasafair-fevereiro-banner.webp",
     "chip_color": "bg-amber-500 text-gray-900",
     "PublicoEstimado": 55000
+   },
+  {
+    "slug": "gamescom-latam",
+    "title": "latam gamescom",
+    "subtitle": "Maior festival de games, reúne estúdios e marcas globais em lançamentos, eSports e experiências imersivas.",
+    "category_macro": "Tecnologia & Telecom",
+    "category_micro": "Games & Cultura Pop",
+    "start_date": "2026-04-30",
+    "end_date": "2026-05-03",
+    "hero_image_path": "/assets/img/banners/gamescom-latam-2026-hero.webp",
+    "banner_path": "/assets/img/banners/gamescom-latam-2026-banner.webp",
+    "chip_color": "bg-indigo-600 text-white",
+    "PublicoEstimado": 130000
   },
+  {
+    "slug": "fit-feria-internacional-de-turismo",
+    "title": "Fit Turismo",
+    "subtitle": "Maior feira de turismo, conecta destinos, operadoras e profissionais em negócios, inovação e experiências inspiradoras.",
+    "category_macro": "Outros/Nichados",
+    "category_micro": "Turismo & Hotelaria",
+    "start_date": "2026-09-26",
+    "end_date": "2026-09-29",
+    "hero_image_path": "/assets/img/banners/fit-feria-internacional-de-turismo-2026-hero.webp",
+    "banner_path": "/assets/img/banners/fit-feria-internacional-de-turismo-2026-banner.webp",
+    "chip_color": "bg-blue-600 text-white",
+    "PublicoEstimado": 110000
+      },
   {
     "slug": "abcasafair-agosto",
     "title": "ABCasa",
@@ -570,6 +557,19 @@
     "banner_path": "/assets/img/banners/edifica-santiago-chile-banner.webp",
     "chip_color": "bg-blue-800 text-white",
     "PublicoEstimado": 35000
+  },
+    {
+    "slug": "bienal-do-livro-sp",
+    "title": "28 BIENAL DO LIVRO",
+    "subtitle": "Maior celebração literária do país, reúne autores, editoras e leitores em experiências, lançamentos e debates inspiradores.",
+    "category_macro": "Automotivo & Autopeças & Motos",
+    "category_micro": "Eventos & MICE",
+    "start_date": "2026-09-04",
+    "end_date": "2026-09-13",
+    "hero_image_path": "/assets/img/banners/bienal-internacional-do-livro-sp-2026-hero.webp",
+    "banner_path": "/assets/img/banners/bienal-internacional-do-livro-sp-2026-banner.webp",
+    "chip_color": "bg-red-700 text-white",
+    "PublicoEstimado": 730000
   },
   {
     "slug": "movimat",
