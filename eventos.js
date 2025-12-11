@@ -243,6 +243,116 @@ document.addEventListener('DOMContentLoaded', async function () {
   const slug = params.get('slug');
   if (!slug) return;
 
+  function parseDateBr(value) {
+    if (!value) return null;
+    if (typeof value !== 'string') value = String(value);
+    value = value.trim();
+    let year, month, day;
+
+    // Formato ISO: YYYY-MM-DD
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      const parts = value.split('-');
+      year = parseInt(parts[0], 10);
+      month = parseInt(parts[1], 10);
+      day = parseInt(parts[2], 10);
+      return new Date(year, month - 1, day);
+    }
+
+    // Formato brasileiro: DD/MM/YYYY
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(value)) {
+      const parts = value.split('/');
+      day = parseInt(parts[0], 10);
+      month = parseInt(parts[1], 10);
+      year = parseInt(parts[2], 10);
+      return new Date(year, month - 1, day);
+    }
+
+    const parsed = new Date(value);
+    if (!isNaN(parsed.getTime())) return parsed;
+    return null;
+  }
+
+  function formatSingleDateBr(date) {
+    const meses = [
+      'janeiro',
+      'fevereiro',
+      'março',
+      'abril',
+      'maio',
+      'junho',
+      'julho',
+      'agosto',
+      'setembro',
+      'outubro',
+      'novembro',
+      'dezembro'
+    ];
+    const dia = String(date.getDate()).padStart(2, '0');
+    const mesNome = meses[date.getMonth()];
+    const ano = date.getFullYear();
+    return `${dia} de ${mesNome} de ${ano}`;
+  }
+
+  function formatDateRangeBr(inicioStr, fimStr) {
+    const dInicio = parseDateBr(inicioStr);
+    const dFim = fimStr ? parseDateBr(fimStr) : null;
+
+    if (dInicio && dFim) {
+      const mesmaAno = dInicio.getFullYear() === dFim.getFullYear();
+      const mesmaMes = dInicio.getMonth() === dFim.getMonth();
+      if (mesmaAno && mesmaMes) {
+        const meses = [
+          'janeiro',
+          'fevereiro',
+          'março',
+          'abril',
+          'maio',
+          'junho',
+          'julho',
+          'agosto',
+          'setembro',
+          'outubro',
+          'novembro',
+          'dezembro'
+        ];
+        const diaInicio = String(dInicio.getDate()).padStart(2, '0');
+        const diaFim = String(dFim.getDate()).padStart(2, '0');
+        const mesNome = meses[dInicio.getMonth()];
+        const ano = dFim.getFullYear();
+        return `${diaInicio} a ${diaFim} de ${mesNome} de ${ano}`;
+      }
+
+      if (dInicio.getFullYear() === dFim.getFullYear()) {
+        const meses = [
+          'janeiro',
+          'fevereiro',
+          'março',
+          'abril',
+          'maio',
+          'junho',
+          'julho',
+          'agosto',
+          'setembro',
+          'outubro',
+          'novembro',
+          'dezembro'
+        ];
+        const diaInicio = String(dInicio.getDate()).padStart(2, '0');
+        const diaFim = String(dFim.getDate()).padStart(2, '0');
+        const mesNomeInicio = meses[dInicio.getMonth()];
+        const mesNomeFim = meses[dFim.getMonth()];
+        const ano = dFim.getFullYear();
+        return `${diaInicio} de ${mesNomeInicio} a ${diaFim} de ${mesNomeFim} de ${ano}`;
+      }
+
+      // Anos diferentes
+      return `${formatSingleDateBr(dInicio)} a ${formatSingleDateBr(dFim)}`;
+    }
+
+    if (dInicio) return formatSingleDateBr(dInicio);
+    return inicioStr || '';
+  }
+
   const loading = document.getElementById('loading');
   const errorDiv = document.getElementById('articleError') || document.getElementById('error');
   const pageTitle = document.getElementById('pageTitle');
@@ -294,9 +404,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     let datasTexto = '';
     if (dataInicio && dataFim && dataInicio !== dataFim) {
-      datasTexto = `${dataInicio} a ${dataFim}`;
+      datasTexto = formatDateRangeBr(dataInicio, dataFim);
     } else if (dataInicio) {
-      datasTexto = dataInicio;
+      datasTexto = formatDateRangeBr(dataInicio);
     }
 
     const subtitleParts = [];
