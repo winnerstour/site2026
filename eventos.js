@@ -250,6 +250,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const heroTitleEl = document.getElementById('heroTitle');
   const heroSubtitleEl = document.getElementById('heroSubtitle');
+  const articleTitleEl = document.getElementById('articleTitle');
+  const articleSubtitleEl = document.getElementById('articleSubtitle');
   const heroChipEl = document.getElementById('heroChip');
   const heroCtaEl = document.getElementById('heroCta');
   const heroBgEl = document.getElementById('heroBg');
@@ -281,6 +283,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     const chipColor = data.ChipColor || data.chip_color || 'bg-orange-500';
     const categoriaMacro = data.category_macro || data.categoria_macro || '';
     const categoriaMicro = data.category_micro || data.categoria_micro || '';
+    const subtitle = data.subtitle || data.subtitulo || '';
+    const venueSlugLabel =
+      data.venue_slug ||
+      data.local_slug ||
+      data.venue_label ||
+      data.venue ||
+      local ||
+      '';
+
+    let datasTexto = '';
+    if (dataInicio && dataFim && dataInicio !== dataFim) {
+      datasTexto = `${dataInicio} a ${dataFim}`;
+    } else if (dataInicio) {
+      datasTexto = dataInicio;
+    }
+
+    const subtitleParts = [];
+    if (venueSlugLabel) subtitleParts.push(venueSlugLabel);
+    if (datasTexto) subtitleParts.push(datasTexto);
+    if (subtitle) subtitleParts.push(subtitle);
+    const subtitleLine = subtitleParts.length ? `📍 ${subtitleParts.join(' • ')}` : '';
+
     const whatsLink = data.whatsapp_link || data.whatsapp || '';
     const faviconPath = data.favicon || ('/assets/img/banners/' + slug + '-favicon.webp');
 
@@ -294,8 +318,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (heroTitleEl) {
       heroTitleEl.innerHTML = titulo;
     }
+    if (articleTitleEl) {
+      articleTitleEl.textContent = titulo;
+    }
     if (heroSubtitleEl) {
-      heroSubtitleEl.textContent = resumo;
+      heroSubtitleEl.textContent = subtitleLine || resumo;
+    }
+    if (articleSubtitleEl) {
+      articleSubtitleEl.textContent = subtitleLine;
     }
     if (heroChipEl) {
       heroChipEl.textContent = categoriaMicro ? categoriaMicro.toUpperCase() : 'EVENTO';
@@ -313,10 +343,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       const parts = [];
       if (cidade && estado) parts.push(`${cidade} — ${estado}`);
       else if (cidade) parts.push(cidade);
-      if (dataInicio && dataFim && dataInicio !== dataFim) {
-        parts.push(`${dataInicio} até ${dataFim}`);
-      } else if (dataInicio) {
-        parts.push(dataInicio);
+      if (datasTexto) {
+        parts.push(datasTexto);
       }
       eventMetaEl.textContent = parts.join(' | ');
     }
