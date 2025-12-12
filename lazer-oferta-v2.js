@@ -2,15 +2,23 @@
 // Página de detalhe das ofertas de lazer (usa slug + JSON completo)
 
 (function () {
-  const titleEl          = document.getElementById('offerTitle');
-  const categoryEl       = document.getElementById('offerCategory');
-  const metaEl           = document.getElementById('offerMeta');
-  const imgEl            = document.getElementById('offerImage');
-  const introContainer   = document.getElementById('offerIntro');
-  const sectionsContainer= document.getElementById('offerSections');
-  const cta1Container    = document.getElementById('offerCta1');
-  const errorContainer   = document.getElementById('offerError');
-  const pageTitleTag     = document.getElementById('pageTitle');
+  const getEl = (...ids) => {
+    for (let i = 0; i < ids.length; i++) {
+      const el = document.getElementById(ids[i]);
+      if (el) return el;
+    }
+    return null;
+  };
+
+  const titleEl          = getEl('offerTitle', 'articleTitle');
+  const categoryEl       = getEl('offerCategory');
+  const metaEl           = getEl('offerMeta', 'articleSubtitle');
+  const imgEl            = getEl('offerImage');
+  const introContainer   = getEl('offerIntro', 'articleIntro');
+  const sectionsContainer= getEl('offerSections', 'articleSections');
+  const cta1Container    = getEl('offerCta1');
+  const errorContainer   = getEl('offerError', 'articleError');
+const pageTitleTag     = document.getElementById('pageTitle');
 
   const BASE_PATH = window.location.pathname.startsWith('/site2026')
     ? '/site2026'
@@ -162,56 +170,44 @@
   }
 
 
+  
+  // Insere imagem do slug ANTES da seção 3
+  // Caminho: /assets/lazer/(slug).webp
   function insertInlineImages(slug, BASE_PATH){
     if (!slug) return;
-    var articleBody = document.querySelector('.article-body');
-    if (!articleBody) return;
 
-    function createFigure(index){
-      var fig = document.createElement('figure');
-      fig.className = 'article-inline-image article-inline-image-' + index;
-      var img = document.createElement('img');
-      img.loading = 'lazy';
-      var baseName = index === 1 ? 'image1' : 'image2';
-      img.src = BASE_PATH + '/assets/lazer/' + baseName + encodeURIComponent(slug) + '.webp';
-      img.alt = '';
-      img.onerror = function(){
-        var p = fig.parentNode;
-        if (p) p.removeChild(fig);
-      };
-      fig.appendChild(img);
-      return fig;
-    }
+    const container =
+      document.getElementById('offerSections') ||
+      document.getElementById('articleSections');
 
-    // 1) Antes do parágrafo "As duas grandes âncoras desta viagem"
-    var paragraphs = articleBody.getElementsByTagName('p');
-    var alvoAncora = null;
-    for (var i = 0; i < paragraphs.length; i++){
-      var txt = (paragraphs[i].textContent || '').trim().toLowerCase();
-      if (txt.indexOf('as duas grandes âncoras desta viagem') === 0){
-        alvoAncora = paragraphs[i];
-        break;
-      }
-    }
-    if (alvoAncora && alvoAncora.parentNode){
-      var fig1 = createFigure(1);
-      alvoAncora.parentNode.insertBefore(fig1, alvoAncora);
-    }
+    if (!container) return;
 
-    // 2) Antes da "Conclusão" (título de seção)
-    var headings = articleBody.getElementsByTagName('h2');
-    var alvoConclusao = null;
-    for (var j = 0; j < headings.length; j++){
-      var htxt = (headings[j].textContent || '').trim().toLowerCase();
-      if (htxt.indexOf('conclusão') === 0){
-        alvoConclusao = headings[j];
-        break;
-      }
-    }
-    if (alvoConclusao && alvoConclusao.parentNode){
-      var fig2 = createFigure(2);
-      alvoConclusao.parentNode.insertBefore(fig2, alvoConclusao);
-    }
+    const sections = Array.from(container.querySelectorAll('.content-section'));
+    if (!sections.length) return;
+
+    // Prioridade 1: seção com id == 3 (data-sec-id="3")
+    let target = sections.find(function(el){
+      return String(el.getAttribute('data-sec-id') || '') === '3';
+    });
+
+    // Fallback: terceira seção renderizada (índice 2)
+    if (!target && sections.length >= 3) target = sections[2];
+
+    if (!target || !target.parentNode) return;
+
+    const fig = document.createElement('figure');
+    fig.className = 'article-inline-image article-inline-hero';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.src = BASE_PATH + '/assets/lazer/' + encodeURIComponent(slug) + '.webp';
+    img.alt = '';
+    img.onerror = function(){
+      if (fig.parentNode) fig.parentNode.removeChild(fig);
+    };
+
+    fig.appendChild(img);
+    target.parentNode.insertBefore(fig, target);
   }
 
   function renderOfferFromJson(json, slug) {
@@ -333,6 +329,9 @@
         const wrapper = document.createElement('article');
         wrapper.className = 'content-section';
 
+        // mantém referência do id da seção (para ancoragens como 'seção 3')
+        wrapper.setAttribute('data-sec-id', (sec.id != null ? String(sec.id) : ''));
+
         const title = sec.titulo_secao || '';
         const tNorm = String(title).trim().toLowerCase();
 
@@ -358,7 +357,7 @@
 
     insertInlineImages(slugSafe, BASE_PATH);
 
-    const cta2Span = document.getElementById('offerCta2');
+    const cta2Span = document.getElementById('offerCta2') || document.getElementById('offerCta2Text');
     if (cta2Span) {
       if (cta2Text) {
         cta2Span.innerHTML = markdownToInlineHtml(cta2Text);
