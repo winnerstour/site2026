@@ -518,6 +518,120 @@ document.addEventListener('DOMContentLoaded', async function () {
       sectionsEl.appendChild(wrapper);
     });
 
+    // --- Banner Hero (imagem) antes da sessão 3 ---
+    (function () {
+      try {
+        const container = sectionsEl;
+        if (!container) return;
+
+        const imgSrc = fixPath('/assets/img/banners/' + slug + '-hero.webp');
+        const bannerSection = document.createElement('section');
+        bannerSection.className = 'content-section event-hero-inline-section';
+        bannerSection.setAttribute('data-sec-id', 'HERO');
+
+        bannerSection.innerHTML = `
+          <div class="wrap">
+            <img
+              src="${imgSrc}"
+              alt="${(titulo || slug || 'Evento')}"
+              loading="lazy"
+              decoding="async"
+              style="width:100%;height:auto;border-radius:16px;display:block;"
+              onerror="this.closest('section') && (this.closest('section').style.display='none')"
+            />
+          </div>
+        `;
+
+        const target = container.querySelector('.content-section[data-sec-id="3"]') ||
+                       container.querySelector('.content-section[data-sec-id="03"]');
+
+        if (target && target.parentNode) {
+          target.parentNode.insertBefore(bannerSection, target);
+        } else {
+          const secs = Array.from(container.querySelectorAll('.content-section'));
+          const before = secs[2];
+          if (before) container.insertBefore(bannerSection, before);
+          else container.appendChild(bannerSection);
+        }
+      } catch (e) {
+        // silencioso
+      }
+    })();
+
+    // --- Vídeo do YouTube (YouTubeVideo) antes da sessão 6 ---
+    (function () {
+      try {
+        const container = sectionsEl;
+        if (!container) return;
+
+        const ytRaw = (data && data.YouTubeVideo) ? String(data.YouTubeVideo).trim() : '';
+        if (!ytRaw) return;
+
+        function extractYouTubeId(value) {
+          // Se já for um ID (11 chars típico), deixa passar
+          if (/^[a-zA-Z0-9_-]{11}$/.test(value)) return value;
+
+          // Normaliza e tenta extrair de URL
+          try {
+            const u = new URL(value);
+            if (u.hostname.includes('youtu.be')) {
+              const id = u.pathname.replace(/^\//, '').split('/')[0];
+              if (id) return id;
+            }
+            if (u.searchParams && u.searchParams.get('v')) return u.searchParams.get('v');
+            const m = u.pathname.match(/\/embed\/([^/?]+)/);
+            if (m && m[1]) return m[1];
+          } catch (e) {
+            // não é URL
+          }
+
+          // fallback: tenta achar v= no texto
+          const m2 = value.match(/[?&]v=([^&]+)/);
+          if (m2 && m2[1]) return m2[1];
+
+          return '';
+        }
+
+        const ytId = extractYouTubeId(ytRaw);
+        if (!ytId) return;
+
+        const embedSrc = 'https://www.youtube.com/embed/' + ytId;
+
+        const videoSection = document.createElement('section');
+        videoSection.className = 'content-section event-youtube-section';
+        videoSection.setAttribute('data-sec-id', 'YOUTUBE');
+
+        videoSection.innerHTML = `
+          <div class="wrap" style="max-width:980px;margin:0 auto;">
+            <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;">
+              <iframe
+                src="${embedSrc}"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+              ></iframe>
+            </div>
+          </div>
+        `;
+
+        const target = container.querySelector('.content-section[data-sec-id="6"]') ||
+                       container.querySelector('.content-section[data-sec-id="06"]');
+
+        if (target && target.parentNode) {
+          target.parentNode.insertBefore(videoSection, target);
+        } else {
+          const secs = Array.from(container.querySelectorAll('.content-section'));
+          const before = secs[5];
+          if (before) container.insertBefore(videoSection, before);
+          else container.appendChild(videoSection);
+        }
+      } catch (e) {
+        // silencioso
+      }
+    })();
+
 
     // --- Carrossel de Hotéis (entre CTA4 e CTA5) ---
     (async function () {
