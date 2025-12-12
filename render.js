@@ -15,31 +15,54 @@
     const MONTH_FULL_NAMES = ['JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO']; 
 
 
-    // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS ---
-    function mapToSimplifiedCategory(macroCategory) {
-        switch (macroCategory) {
-            case 'Automotivo & Autopeças & Motos':
-                return 'AUTOMOTIVO';
-            case 'Beleza & Estética':
-                return 'ESTÉTICA';
-            case 'Construção & Arquitetura':
-                return 'CONSTRUÇÃO';
-            case 'Entretenimento & Cultura':
-                return 'CULTURA';
-            case 'Outros/Nichados':
-                return 'NICHADOS';
-            case 'Saúde & Medicina & Farma':
-            case 'Pets & Veterinária':
-                return 'MEDICINA';
-            case 'Tecnologia & Telecom':
-            case 'Logística & Supply Chain':
-                return 'TEC';
-            // Todas as demais categorias (Foodservice, Agro, Franquias, Turismo, etc.)
-            default:
-                return 'OUTROS';
-        }
-    }
-    // --- FIM DO MAPA DE CONSOLIDAÇÃO ---
+    // --- MAPA DE CONSOLIDAÇÃO DE CATEGORIAS (ROBUSTO) ---
+// Motivo: seu events.json passou a usar macros curtas (ex.: "Tecnologia", "Medicina", "Construção"),
+// e o switch antigo só reconhecia nomes longos, caindo em OUTROS.
+
+function normalizeCategory(value) {
+    return (value ?? '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // remove acentos
+        .replace(/\s+/g, ' ');
+}
+
+function mapToSimplifiedCategory(macroCategory) {
+    const n = normalizeCategory(macroCategory);
+
+    // Aceita já consolidado (do seu JSON novo)
+    if (n === 'automotivo' || n === 'autopecas' || n === 'motos') return 'AUTOMOTIVO';
+    if (n === 'estetica' || n === 'beleza') return 'ESTÉTICA';
+    if (n === 'construcao' || n === 'arquitetura') return 'CONSTRUÇÃO';
+    if (n === 'cultura' || n === 'entretenimento') return 'CULTURA';
+    if (n === 'nichados') return 'NICHADOS';
+    if (n === 'medicina' || n === 'saude' || n === 'farma' || n === 'farmaceutica' || n === 'pets' || n === 'veterinaria') return 'MEDICINA';
+    if (n === 'tecnologia' || n === 'tec' || n === 'telecom' || n === 'ti') return 'TEC';
+
+    // Compatibilidade com nomes antigos (caso você ainda tenha eventos com essas macros)
+    if (n === 'automotivo & autopecas & motos' || n === 'automotivo & autopeças & motos' || n === 'automotivo e autopecas e motos') return 'AUTOMOTIVO';
+    if (n === 'beleza & estetica' || n === 'beleza & estética' || n === 'beleza e estetica') return 'ESTÉTICA';
+    if (n === 'construcao & arquitetura' || n === 'construção & arquitetura' || n === 'construcao e arquitetura') return 'CONSTRUÇÃO';
+    if (n === 'entretenimento & cultura' || n === 'entretenimento e cultura') return 'CULTURA';
+    if (n === 'outros/nichados' || n === 'outros nichados') return 'NICHADOS';
+    if (n === 'saude & medicina & farma' || n === 'saúde & medicina & farma' || n === 'saude e medicina e farma') return 'MEDICINA';
+    if (n === 'tecnologia & telecom' || n === 'tecnologia e telecom') return 'TEC';
+    if (n === 'logistica & supply chain' || n === 'logística & supply chain' || n === 'logistica e supply chain') return 'TEC';
+
+    // Heurística (fallback) para evitar cair tudo em OUTROS quando você renomear macro de novo
+    if (/(auto|moto|caminhao|transporte)/.test(n)) return 'AUTOMOTIVO';
+    if (/(estetic|beleza|cosmet)/.test(n)) return 'ESTÉTICA';
+    if (/(construc|arquitet|revest|decor)/.test(n)) return 'CONSTRUÇÃO';
+    if (/(cultur|entreten|musica|arte|cinema)/.test(n)) return 'CULTURA';
+    if (/(medicin|saude|hospital|farma|odont|veter|pet)/.test(n)) return 'MEDICINA';
+    if (/(tecnolog|telecom|ti|seguranca|cloud|ia|automacao|supply|logistic)/.test(n)) return 'TEC';
+    if (/(agro|franqu|food|turismo|energia|minera|industria|varejo|educacao)/.test(n)) return 'NICHADOS';
+
+    return 'OUTROS';
+}
+// --- FIM DO MAPA DE CONSOLIDAÇÃO ---
 
     // Função que corrige o caminho absoluto para GitHub/Netlify
     function fixPath(path) {
@@ -110,7 +133,7 @@
         const title = (ev.title || 'Evento sem título').toUpperCase();
         const subtitle = ev.subtitle || 'Detalhes do evento...';
         const slug = ev.slug; 
-        const finalUrl = `evento.html?slug=${slug}`;
+        const finalUrl = `evento.html?slug=${encodeURIComponent(slug || '')}`;
         
         // 2. IMAGEM: Prioriza hero_image_path (hero.webp)
         const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
@@ -164,9 +187,8 @@
     function getUniqueCategories(events) {
         const categories = new Set();
         events.forEach(event => {
-            if (event.category_macro) {
-                categories.add(mapToSimplifiedCategory(event.category_macro));
-            }
+            // Mesmo sem macro, ainda consolida (vai para OUTROS)
+            categories.add(mapToSimplifiedCategory(event.category_macro));
         });
         
         // Define a ordem das abas conforme solicitado
