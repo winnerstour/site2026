@@ -514,6 +514,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       contentDiv.innerHTML = renderMarkdown(sec.conteudo_markdown || '');
       wrapper.appendChild(contentDiv);
 
+      sectionIndex++;
       sectionsEl.appendChild(wrapper);
     });
 
