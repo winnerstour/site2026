@@ -1,6 +1,7 @@
 [
   {
     "slug": "apas-show",
+    "url": "https://winnerstour.com.br/feiras/APAS-SHOW-2026.pdf"
     "title": "APAS SHOW",
     "subtitle": "Maior evento supermercadista do mundo, conecta indústria e varejo em experiências, negócios e tendências do setor.",
     "category_macro": "Nichados",
@@ -14,6 +15,7 @@
   },
   {
     "slug": "fispalfoodservice",
+    "url": "https://winnerstour.com.br/feiras/FISPAL-FOOD-SERVICE-2026.pdf"
     "title": "Fispal Food Service",
     "subtitle": "Maior feira de alimentação fora do lar, conecta chefs, empreendedores e marcas em negócios, inovação e tendências.",
     "category_macro": "Nichados",
@@ -27,6 +29,7 @@
   },
   {
     "slug": "fipan",
+    "url": "https://winnerstour.com.br/feiras/FIPAN-2026.pdf"
     "title": "FIPAN",
     "subtitle": "Principal feira de panificação e confeitaria, conecta padeiros, confeiteiros e indústria em tendências e negócios.",
     "category_macro": "Nichados",
@@ -40,6 +43,7 @@
   },
   {
     "slug": "bio-brazil-fair-naturaltech",
+    "url": "https://winnerstour.com.br/feiras/NATURALTECH-2026.pdf"
     "title": "NATURALTECH+BIO BRAZIL FAIR",
     "subtitle": "Principal feira de produtos naturais e orgânicos, conecta marcas, varejo e saúde com sustentabilidade, inovação e bem-estar.",
     "category_macro": "Medicina",
@@ -53,6 +57,7 @@
   },
   {
     "slug": "fispal-tecnologia",
+    "url": "https://winnerstour.com.br/feiras/FISPAL-TECNOLOGIA-2026.pdf"
     "title": "Fispal Tecnologia",
     "subtitle": "Maior feira de tecnologia para a indústria de alimentos e bebidas, com inovação, automação e soluções sustentáveis.",
     "category_macro": "Tecnologia",
@@ -66,6 +71,7 @@
   },
   {
     "slug": "expo-pizzaria",
+    "url": "https://winnerstour.com.br/feiras/EXPO-PIZZARIA-2026.pdf"
     "title": "Expo Pizzaria 2026",
     "subtitle": "A maior feira B2B de pizzarias da América Latina no hub de foodservice do Distrito Anhembi",
     "category_macro": "Nichados",
@@ -79,6 +85,7 @@
   },
    {
     "slug": "fisa",
+     "url": "https://winnerstour.com.br/feiras/FiSA-2026.pdf"
     "title": "FiSA",
     "subtitle": "Encontro líder de ingredientes para alimentos e bebidas, com inovação, sustentabilidade e negócios estratégicos.”",
     "category_macro": "Nichados",
