@@ -1,5 +1,96 @@
 [
   {
+    "slug": "apas-show",
+    "title": "APAS SHOW",
+    "subtitle": "Maior evento supermercadista do mundo, conecta indústria e varejo em experiências, negócios e tendências do setor.",
+    "category_macro": "Nichados",
+    "category_micro": "supermercado",
+    "start_date": "2026-05-18",
+    "end_date": "2026-05-21",
+    "hero_image_path": "/assets/img/banners/apas-show-2026-hero.webp",
+    "banner_path": "/assets/img/banners/apas-show-2026-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 78000
+  },
+  {
+    "slug": "fispalfoodservice",
+    "title": "Fispal Food Service",
+    "subtitle": "Maior feira de alimentação fora do lar, conecta chefs, empreendedores e marcas em negócios, inovação e tendências.",
+    "category_macro": "Nichados",
+    "category_micro": "foodservice",
+    "start_date": "2026-05-26",
+    "end_date": "2026-05-29",
+    "hero_image_path": "/assets/img/banners/fispalfoodservice-hero.webp",
+    "banner_path": "/assets/img/banners/fispalfoodservice-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 65000
+  },
+  {
+    "slug": "fipan",
+    "title": "FIPAN",
+    "subtitle": "Principal feira de panificação e confeitaria, conecta padeiros, confeiteiros e indústria em tendências e negócios.",
+    "category_macro": "Nichados",
+    "category_micro": "confeitaria",
+    "start_date": "2026-07-21",
+    "end_date": "2026-07-24",
+    "hero_image_path": "/assets/img/banners/fipan-2026-hero.webp",
+    "banner_path": "/assets/img/banners/fipan-2026-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 60000
+  },
+  {
+    "slug": "bio-brazil-fair-naturaltech",
+    "title": "BIO BRAZIL FAIR +",
+    "subtitle": "Principal feira de produtos naturais e orgânicos, conecta marcas, varejo e saúde com sustentabilidade, inovação e bem-estar.",
+    "category_macro": "Medicina",
+    "category_micro": "orgânicos",
+    "start_date": "2026-06-10",
+    "end_date": "2026-06-13",
+    "hero_image_path": "/assets/img/banners/bio-brazil-fair-naturaltech-hero.webp",
+    "banner_path": "/assets/img/banners/bio-brazil-fair-naturaltech-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 50000
+  },
+  {
+    "slug": "fispal-tecnologia",
+    "title": "Fispal Tecnologia",
+    "subtitle": "Maior feira de tecnologia para a indústria de alimentos e bebidas, com inovação, automação e soluções sustentáveis.",
+    "category_macro": "Tecnologia",
+    "category_micro": "alimentos",
+    "start_date": "2026-06-16",
+    "end_date": "2026-06-19",
+    "hero_image_path": "/assets/img/banners/fispal-tecnologia-hero.webp",
+    "banner_path": "/assets/img/banners/fispal-tecnologia-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 48000
+  },
+  {
+    "slug": "expo-pizzaria",
+    "title": "Expo Pizzaria 2026",
+    "subtitle": "A maior feira B2B de pizzarias da América Latina no hub de foodservice do Distrito Anhembi",
+    "category_macro": "Nichados",
+    "category_micro": "pizzarias",
+    "start_date": "2026-07-13",
+    "end_date": "2026-07-14",
+    "hero_image_path": "/assets/img/hero/expo-pizzaria-2026-hero.webp",
+    "banner_path": "/assets/img/banners/expo-pizzaria-2026-banner.webp",
+    "chip_color": "bg-red-600",
+    "PublicoEstimado": "Donos de pizzarias, redes de alimentação, dark kitchens, investidores e fornecedores de foodservice"
+  },
+   {
+    "slug": "fisa",
+    "title": "FiSA",
+    "subtitle": "Encontro líder de ingredientes para alimentos e bebidas, com inovação, sustentabilidade e negócios estratégicos.”",
+    "category_macro": "Nichados",
+    "category_micro": "alimentos",
+    "start_date": "2026-08-04",
+    "end_date": "2026-08-06",
+    "hero_image_path": "/assets/img/banners/fisa-hero.webp",
+    "banner_path": "/assets/img/banners/fisa-banner.webp",
+    "chip_color": "bg-emerald-600 text-white",
+    "PublicoEstimado": 15000
+  }, 
+  {
     "slug": "feicon-batimat",
     "title": "FEICON BATIMAT",
     "subtitle": "Maior feira de construção e arquitetura, reúne materiais, tecnologia e soluções que impulsionam obras e infraestrutura.",
@@ -91,19 +182,6 @@
     "PublicoEstimado": 80000
   },
   {
-    "slug": "apas-show",
-    "title": "APAS SHOW",
-    "subtitle": "Maior evento supermercadista do mundo, conecta indústria e varejo em experiências, negócios e tendências do setor.",
-    "category_macro": "Nichados",
-    "category_micro": "supermercado",
-    "start_date": "2026-05-18",
-    "end_date": "2026-05-21",
-    "hero_image_path": "/assets/img/banners/apas-show-2026-hero.webp",
-    "banner_path": "/assets/img/banners/apas-show-2026-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 78000
-  },
-  {
     "slug": "feimec",
     "title": "FEIMEC",
     "subtitle": "Maior feira de máquinas e automação industrial, apresenta tecnologia, precisão e soluções para manufatura 4.0.",
@@ -141,19 +219,6 @@
     "banner_path": "/assets/img/banners/fenatran-banner.webp",
     "chip_color": "bg-red-600 text-white",
     "PublicoEstimado": 70000
-  },
-  {
-    "slug": "fispalfoodservice",
-    "title": "Fispal Food Service",
-    "subtitle": "Maior feira de alimentação fora do lar, conecta chefs, empreendedores e marcas em negócios, inovação e tendências.",
-    "category_macro": "Nichados",
-    "category_micro": "foodservice",
-    "start_date": "2026-05-26",
-    "end_date": "2026-05-29",
-    "hero_image_path": "/assets/img/banners/fispalfoodservice-hero.webp",
-    "banner_path": "/assets/img/banners/fispalfoodservice-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 65000
   },
   {
     "slug": "batev-construcao-habitacao-",
@@ -231,19 +296,6 @@
     "hero_image_path": "/assets/img/banners/abf-franchising-expo-hero.webp",
     "banner_path": "/assets/img/banners/abf-franchising-expo-banner.webp",
     "chip_color": "bg-indigo-600 text-white",
-    "PublicoEstimado": 60000
-  },
-  {
-    "slug": "fipan",
-    "title": "FIPAN",
-    "subtitle": "Principal feira de panificação e confeitaria, conecta padeiros, confeiteiros e indústria em tendências e negócios.",
-    "category_macro": "Nichados",
-    "category_micro": "confeitaria",
-    "start_date": "2026-07-21",
-    "end_date": "2026-07-24",
-    "hero_image_path": "/assets/img/banners/fipan-2026-hero.webp",
-    "banner_path": "/assets/img/banners/fipan-2026-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
     "PublicoEstimado": 60000
   },
   {
@@ -336,32 +388,6 @@
     "banner_path": "/assets/img/banners/formobile-banner.webp",
     "chip_color": "bg-amber-700 text-white",
     "PublicoEstimado": 30000
-  },
-  {
-    "slug": "bio-brazil-fair-naturaltech",
-    "title": "BIO BRAZIL FAIR +",
-    "subtitle": "Principal feira de produtos naturais e orgânicos, conecta marcas, varejo e saúde com sustentabilidade, inovação e bem-estar.",
-    "category_macro": "Medicina",
-    "category_micro": "orgânicos",
-    "start_date": "2026-06-10",
-    "end_date": "2026-06-13",
-    "hero_image_path": "/assets/img/banners/bio-brazil-fair-naturaltech-hero.webp",
-    "banner_path": "/assets/img/banners/bio-brazil-fair-naturaltech-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 50000
-  },
-  {
-    "slug": "fispal-tecnologia",
-    "title": "Fispal Tecnologia",
-    "subtitle": "Maior feira de tecnologia para a indústria de alimentos e bebidas, com inovação, automação e soluções sustentáveis.",
-    "category_macro": "Tecnologia",
-    "category_micro": "alimentos",
-    "start_date": "2026-06-16",
-    "end_date": "2026-06-19",
-    "hero_image_path": "/assets/img/banners/fispal-tecnologia-hero.webp",
-    "banner_path": "/assets/img/banners/fispal-tecnologia-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 48000
   },
   {
     "slug": "bett-brasil",
@@ -988,19 +1014,6 @@
     "PublicoEstimado": 15000
   },
   {
-    "slug": "fisa",
-    "title": "FiSA",
-    "subtitle": "Encontro líder de ingredientes para alimentos e bebidas, com inovação, sustentabilidade e negócios estratégicos.”",
-    "category_macro": "Nichados",
-    "category_micro": "alimentos",
-    "start_date": "2026-08-04",
-    "end_date": "2026-08-06",
-    "hero_image_path": "/assets/img/banners/fisa-hero.webp",
-    "banner_path": "/assets/img/banners/fisa-banner.webp",
-    "chip_color": "bg-emerald-600 text-white",
-    "PublicoEstimado": 15000
-  },
-  {
     "slug": "abrafati-show",
     "title": "ABRAFATI SHOW",
     "subtitle": "Principal encontro de tintas e revestimentos, reúne inovação, tecnologia e sustentabilidade que impulsionam a cadeia.",
@@ -1389,19 +1402,6 @@
     "banner_path": "/assets/img/banners/expo-construcao-offsite-2026-banner.webp",
     "chip_color": "bg-slate-700",
     "PublicoEstimado": "Executivos de construtoras e incorporadoras, investidores, gestores de fundos, arquitetos, engenheiros, fabricantes de sistemas offsite e fornecedores da cadeia da construção civil"
-  },
-  {
-    "slug": "expo-pizzaria",
-    "title": "Expo Pizzaria 2026",
-    "subtitle": "A maior feira B2B de pizzarias da América Latina no hub de foodservice do Distrito Anhembi",
-    "category_macro": "Nichados",
-    "category_micro": "pizzarias",
-    "start_date": "2026-07-13",
-    "end_date": "2026-07-14",
-    "hero_image_path": "/assets/img/hero/expo-pizzaria-2026-hero.webp",
-    "banner_path": "/assets/img/banners/expo-pizzaria-2026-banner.webp",
-    "chip_color": "bg-red-600",
-    "PublicoEstimado": "Donos de pizzarias, redes de alimentação, dark kitchens, investidores e fornecedores de foodservice"
   },
   {
     "slug": "in-cosmetics-latin-america",
