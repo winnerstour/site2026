@@ -174,23 +174,23 @@ const linkAttrs = directUrl || isPdf
         const simplifiedCategory = mapToSimplifiedCategory(ev.category_macro);
 
 
-        return `
-          <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${simplifiedCategory}">
-            <div class="card-media">
-              <img loading="lazy" src="${imagePath}" alt="${title}">
-            </div>
-            <div class="card-content">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    ${dateChipHTML} 
-                    ${categoryChipHTML}
-                </div>
-                <p class="card-title">
-                  ${title}
-                </p>
-                <p class="card-subtitle">${subtitle}</p>
-            </div>
-          </a>
-        `;
+return `
+  <a href="${finalUrl}" class="event-card" aria-label="${title}" data-category="${simplifiedCategory}" ${linkAttrs}>
+    <div class="card-media">
+      <img loading="lazy" src="${imagePath}" alt="${title}">
+    </div>
+    <div class="card-content">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            ${dateChipHTML} 
+            ${categoryChipHTML}
+        </div>
+        <p class="card-title">
+          ${title}
+        </p>
+        <p class="card-subtitle">${subtitle}</p>
+    </div>
+  </a>
+`;
     }
     
     /**
