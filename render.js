@@ -132,8 +132,20 @@ function mapToSimplifiedCategory(macroCategory) {
         // 1. TÍTULO EM CAIXA ALTA
         const title = (ev.title || 'Evento sem título').toUpperCase();
         const subtitle = ev.subtitle || 'Detalhes do evento...';
-        const slug = ev.slug; 
-        const finalUrl = `evento.html?slug=${encodeURIComponent(slug || '')}`;
+const slug = (ev.slug || '').trim();
+const directUrl = (ev.url || '').trim();
+
+// Se houver URL completa no JSON, usa ela.
+// Senão, mantém o comportamento antigo com slug.
+const finalUrl = directUrl || `evento.html?slug=${encodeURIComponent(slug)}`;
+
+// Detecta se é PDF
+const isPdf = /\.pdf(\?|#|$)/i.test(finalUrl);
+
+// Se for URL direta ou PDF, abre em nova aba
+const linkAttrs = directUrl || isPdf
+  ? 'target="_blank" rel="noopener"'
+  : '';
         
         // 2. IMAGEM: Prioriza hero_image_path (hero.webp)
         const rawImagePath = ev.hero_image_path || ev.banner_path || '/assets/img/banners/placeholder.webp';
